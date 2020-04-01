@@ -1,0 +1,482 @@
+# Comparaison de deux échantillons
+
+Après avoir complété cet exercice de laboratoire, vous devriez
+pouvoir:
+• Utiliser R pour examiner visuellement vos données
+• Utiliser R pour comparer les moyennes de deux échantillons tirés
+de populations normales
+• Utiliser R pour comparer les moyennes de deux échantillons tirés
+de populations qui ne sont pas normales
+• Utiliser R pour comparer les moyennes de deux échantillons appa-
+riés.
+Examen visuel des données
+Une des premières étapes dans toute analyse de données est l’examen
+visuel des données par des graphiques et statistiques sommaires pour
+détecter les distributions sous-jacentes, les valeurs extrêmes et les
+tendances dans vos données. Cela commence souvent avec des
+graphiques de vos données (histogrammes, diagrammes de
+probabilité, Box plots, etc.) qui vous permettent d’évaluer si vos
+données sont normales, si elles sont corrélées les unes aux autres, ou
+s’il y a des valeurs suspectes dans le fichier.
+Supposons que l'on veuille comparer la distribution en taille des
+esturgeons de The Pas et Cumberland House. La variable fklngth
+dans le fichier sturgdat.SDD représente la longueur (en cm) à la
+fourche de chaque poisson mesurée de l'extrémité de la tête à la base
+de la fourche de la nageoire caudale. Pour commencer, examinons si
+cette variable est normalement distribuée. On ne va pas tester pour la
+normalité à ce stade-ci; la présomption de normalité dans les analyses
+paramétriques s’applique aux résidus et non aux données brutes.
+Cependant, si les données brutes ne sont pas normales, vous avez
+d’habitude une très bonne raison de soupçonner que les résidus vont
+aussi ne pas avoir une distribution normale.
+Une excellente façon de comparer visuellement une distribution à la
+distribution normale est de superposer un histogramme des données
+observées à une courbe normale. Pour ce faire, il faut procéder en
+deux étapes : 1) indiquer à R que nous voulons créer un histogramme
+superposé à une courbe normale, 2) spécifier qu’on veut que les
+graphiques soient faits pour les deux sites.
+
+
+ En utilisant les données du fichier sturgeon.Rdata , générez les pouret
+les distributions normales ajustées aux données de fklngth à The Pas
+et Cumberland House.
+require(ggplot2)
+# use "sturgeon" dataframe to make plot called mygraph
+# and define x axis as representing fklngth
+mygraph <- ggplot(sturgeon, aes(x = fklngth, xlab="Fork
+length (cm)"))
+# add data to the mygraph ggplot
+mygraph <- mygraph +
+# add data density smooth
+geom_density() +
+# add rug (bars at the bottom of the plot)
+geom_rug() +
+# add black semitransparent histogram
+geom_histogram(aes(y = ..density..),
+color = "black",
+alpha = 0.3) +
+# add normal curve in red, with mean and sd from fklength
+stat_function(fun = dnorm,
+args = list(
+mean = mean(sturgeon$fklngth),
+sd = sd(sturgeon$fklngth)
+),
+color = "red")
+#display graph, by location
+mygraph+facet_grid(.~location)
+Figure 1.
+
+
+Examinez ce graphique et essayez de déterminer si ces deux
+échantillons sont normalement distribués.
+À mon avis, cette variable est approximativement normalement
+distribuée dans les deux échantillons.
+Puisque ce qui nous intéresse est de comparer la taille des poissons de
+deux sites différents, c’est probablement une bonne idée de créer un
+graphique qui compare les deux groupes de données. Un Box plot
+convient très bien pour cette tâche.
+ Tracez un boxplot de fklngth groupé par location . Que concluez-
+vous quant à la différence entre les deux sites?
+ggplot(data=sturgeon, aes(x=location,
+y=fklngth))+geom_boxplot(notch=TRUE)
+Figure 2.
+Il n’y a pas de grande différence de taille entre les deux sites, mais la
+taille des poissons à The Pas est plus variable ayant une plus large
+étendue de taille et des valeurs extrêmes (définies par les valeurs qui
+sont > 1.5*l’étendue interquartile) à chaque bout de la distribution.
+
+
+Comparer les moyennes de deux
+échantillons indépendants : comparaisons
+paramétriques et non paramétriques
+ Éprouvez l'hypothèse nulle d'égalité de la longueur à la fourche à The
+Pas et Cumberland House. Que concluez-vous?
+> # t-test assuming equal variances
+> t.test(fklngth~location, alternative='two.sided',
+conf.level=.95,
++
+var.equal=TRUE, data=sturgeon)
+Two Sample t-test
+data: fklngth by location
+t = 2.1359, df = 184, p-value = 0.03401
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+0.1308307 3.2982615
+sample estimates:
+mean in group CUMBERLAND
+mean in group THE_PAS
+45.08439
+43.36984
+>
+> # t-test assuming unequal variances
+> t.test(fklngth~location, alternative='two.sided',
+conf.level=.95,
++
+var.equal=FALSE, data=sturgeon)
+Welch Two Sample t-test
+data: fklngth by location
+t = 2.2201, df = 169.804, p-value = 0.02774
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+0.1900117 3.2390804
+sample estimates:
+mean in group CUMBERLAND
+mean in group THE_PAS
+45.08439
+43.36984
+>
+> # non-parametric wilcoxon test
+> wilcox.test(fklngth ~ location, alternative="two.sided",
+data=sturgeon)
+Wilcoxon rank sum test with continuity correction
+data: fklngth by location
+W = 4973, p-value = 0.06296
+alternative hypothesis: true location shift is not equal to 0
+>
+En se fiant au test de t, on rejette donc l’hypothèse nulle. Il y a une
+différence significative (mais pas hautement significative) entre les
+deux moyennes des longueurs à la fourche.
+Notez que si l’on se fie au test de Wilcoxon, il faut accepter
+l’hypothèse nulle. Les deux tests mènent donc à des conclusions
+contradictoires. La différence significative obtenue par le test de t peut
+provenir en partie d’une violation des conditions d’application du test
+(normalité et homoscédasticité). D’un autre côté, l’absence de
+
+
+différence significative selon le test de Wilcoxon pourrait être due au
+fait que, pour un effectif donné, la puissance du test non paramétrique
+est inférieure à celle du test paramétrique correspondant. Compte
+tenu 1) des valeurs de p obtenues pour les deux tests, et 2) le fait que
+pour des grands échantillons (des effectifs de 84 et 101 sont
+considérés grands) le test de t est considéré robuste, il est raisonnable
+de rejeter l’hypothèse nulle.
+Avant d’accepter les résultats du test de t et de rejeter l’hypothèse nulle
+qu’il n’y a pas de différences de taille entre les deux sites, il est
+important de déterminer si les données remplissent les conditions de
+normalité des résidus et d’égalité des variances. L’examen préliminaire
+suggérait que les données sont à peu près normales mais qu’il y avait
+peut-être des problèmes avec les variances (puisque l’étendue des
+données pour The Pas était beaucoup plus grande que celle pour
+Cumberland). On peut examiner ces conditions d’application plus en
+détail en examinant les résidus d’un modèle linéaire et en utilisant les
+graphiques diagnostiques:
+R AnovaModel.1 <- lm(fklngth ~ location, data=sturgeon)
+par(mfrow = c(2, 2))
+plot(AnovaModel.1)
+
+
+Figure 3.
+.Le premier graphique ci-dessus montre comment les résidus se
+distribuent autour des valeurs prédites (les moyennes) pour chaque
+site et permette de juger si il semble y avoir un problème de normalité
+ou d’homoscédasticité. Si les variances étaient égales dans les deux
+sites, l’étendue verticale des résidus tendrait à être la même. Sur le
+graphique, on voit que l’étendue des résidus est plus grande à gauche
+(le site où la taille moyenne est la plus faible), ce qui suggère un
+possible problème d’homogénéité des variances. On peut tester cela
+plus formellement en comparant la moyenne de la valeur absolue des
+résidus.(on y reviendra; c’est le test de Levene).
+
+
+Le second graphique est un graphique de probabilité (graphique Q-Q)
+des résidus. Comme ici, les points tombent près de la diagonale, il ne
+semble pas y avoir de problème important avec la normalité. On peut
+faire un test formel de la condition de normalité par le test de Shapiro-
+Wilk:
+shapiro.test(residuals(AnovaModel.1))
+Shapiro-Wilk normality test
+data: residuals(AnovaModel.1)
+W = 0.9747, p-value = 0.001858
+Hummm. Ce test indique que les résidus ne sont pas normaux, ce qui
+contredit notre évaluation visuelle. Cependant, puisque (a) la
+distribution des résidus ne s’éloigne pas beaucoup de la normalité et
+(b) le nombre d’observations à chaque site est raisonnablement grand
+(i.e. >30), on n’a pas à être trop inquiet quant à l’impact de cette
+violation de normalité sur la fiabilité du test.
+Qu’en est-il de l’égalité des variances?
+> require(car)
+> leveneTest( AnovaModel.1)
+Levene's Test for Homogeneity of Variance
+Df F value
+Pr(>F)
+group
+1 11.514 0.0008456 ***
+184
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+> require(lmtest)
+> bptest(AnovaModel.1)
+studentized Breusch-Pagan test
+data: AnovaModel.1
+BP = 8.8015, df = 1, p-value = 0.00301
+>
+Les résultats qui précédents proviennent de 3 des tests disponibles en
+R (dans les package car et lmtest) qui éprouvent l’hypothèse de
+l’égalité des variances dans des tests de t ou des modèles linéaires
+ayant uniquement des variables indépendantes discontinues ou
+catégoriques. Il est redondant de faire les 2 tests. Si ils sont
+présentés ici, c’est que ces 2 tests sont usuels et qu’il n’y a pas
+consensus quant au meilleur des deux. Le test de Levene est le plus
+connu et utilisé. Il compare la moyenne des valeurs absolues des
+résidus dans les deux groupes. Le test Breusch-Pagan a l’avantage
+d’être applicable à une plus large gamme de modèles linéaires (il peut
+être utilisé également avec des variables indépendantes continues,
+comme en régression). Ici, les deux tests mènent à la même
+conclusion: la variance diffère entre les deux sites.
+
+
+Sur la base de ces résultats, on peut conclure qu’il y a évidence (mais
+faible) pour rejeter l’hypothèse nulle qu’il n’y a pas de différence dans
+la taille de poissons entre les deux sites. On a utilisé une modification
+du test de t pour tenir compte du fait que les variances ne sont pas
+égales et nous sommes satisfaits que la condition de normalité des
+résidus a été remplie. Alors, fklngth à Cumberland est plus grande
+que fklngth à The Pas.
+Bootstrap et tests de permutation pour
+comparer deux moyennes
+Le bootstrap et les tests de permutation peuvent être utilisés pour
+comparer les moyennes (ou d’autres statistiques). Le principe général
+est simple et peut être effectué de diverses façons. Ici j’utilise certains
+des outils disponibles et le fait qu’une comparaison de moyenne peut
+être représentée par un modèle linéaire. On pourra utiliser un
+programme similaire plus tard quand on ajustera des modèles plus
+complexes.
+library(boot)
+La première section sert à définir une fonction (ici appelée bs) qui
+extraie les coefficients d’un modèle ajusté
+:
+# function to obtain model coefficients for each iteration
+bs <- function(formula, data, indices) {
+d <- data[indices, ]
+fit <- lm(formula, data = d)
+return(coef(fit))
+}
+La deuxième section avec la commande boot() fait le gros du travail:
+on prend les données dans sturgeon, on les bootstrap R=1000 fois, et
+chaque fois on ajuste le modèle fklngth vs location et on garde les
+valeurs calculées par la fonction bs.
+# bootstrapping with 1000 replications
+results <- boot(data = sturgeon, statistic = bs, R = 1000,
+formula = fklngth ~ location)
+# view results
+results
+ORDINARY NONPARAMETRIC BOOTSTRAP
+Call:
+boot(data = sturgeon, statistic = bs, R = 1000, formula = fklngth ~
+location)
+
+
+Bootstrap Statistics :
+original
+bias
+t1* 45.084391 -0.005634742
+t2* -1.714546 0.012011519
+std. error
+0.4164833
+0.7510652
+On obtient les estimés originaux pour les deux coefficients du modèle:
+la moyenne pour le premier (alphabétiquement) site soit Cumberland,
+et la différence entre les deux moyennes à Cumberland et The Pas.
+C’est ce second paramètre, la différence entre les moyennes, qui nous
+intéresse.
+plot(results, index = 2)
+Figure 4.
+# get 95% confidence intervals
+boot.ci(results, type = "bca", index = 2)
+BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+Based on 1000 bootstrap replicates
+CALL :
+boot.ci(boot.out = results, type = "bca", index = 2)
+Intervals :
+Level
+BCa
+95%
+(-3.052, -0.211 )
+Calculations and Intervals on Original Scale
+Comme l’intervalle de confiance n’inclue pas 0, on conclue que les
+moyennes ne sont pas les mêmes.
+
+
+Les tests de permutation pour les modèles linéaires peuvent être
+effectués à l’aide du package lmPerm:
+require(lmPerm2)
+mymodelProb <- lmp(fklngth ~ location, data = sturgeon,
+perm = "Prob")
+La fonction lmp() fait tout le travail pour nous. Ici, cette fonction est
+effectuée avec l’option perm pour choisir la règle utilisée pour stopper
+les calculs. L’option Probs arrête les permutations quand la déviation
+standard estimée pour la p-valeur tombe sous un seuil déterminé.
+C’est l’une des nombreuses règles qui peuvent possiblement être
+utilisées pour ne faire les permutations que sur un sous-ensemble des
+permutations possibles (ce qui prendrait souvent trrrrrès longthemps,
+même sur votre super ordi).
+summary(mymodelProb)
+Call:
+lmp(formula = fklngth ~ location, data = sturgeon, perm = "Prob")
+Residuals:
+Min
+1Q
+-18.40921 -3.75370
+Coefficients:
+Median
+-0.08439
+
+Estimate Iter
+3Q
+3.76598
+Pr(Prob)
+Max
+23.48055
+
+location1
+0.8573 1117
+0.0824 .
+---
+Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Residual standard error: 5.454 on 184 degrees of freedom
+Multiple R-Squared: 0.02419,
+Adjusted R-squared: 0.01889
+F-statistic: 4.562 on 1 and 184 DF,
+p-value: 0.03401
+
+ Ici, la règle a limité à 1117 permutations le calcul. Notez que ce
+nombre va varier à chaque fois que vous tournerez cet petit bout de
+code. Ce sont des résultats obtenus par permutations aléatoires, donc
+vous devez vous attendre à de la variabilité. .
+
+La p-valeur estimée pour H0 est 0.0824. La différence observée
+pour fklngth between entre les deux sites était plus grande que les
+valeurs permutées environ (1-0.0824=presque 92%) des 1117
+permutations. Notez que 1117 permutations ce n’est pas un si grand
+nombre de permutations que ça, et donc les faibles valeurs de p ne
+sont pas très précises. Si vous voulez des valeurs précises de p, vous
+devrez faire plus de permutations.. Vous pouvez ajuster 2 paramètres:
+maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le
+seuil de précision désiré qui arrête les permutations quand l’erreur-
+type de p est plus petite que Ca*p (défaut=0.1)
+
+
+ Le reste est la sortie standard pour un modèle ajusté à des
+données, avec le test paramétrique. Ici, la p-valeur, présumant que
+toutes les conditions d’application sont remplies, est 0.34.
+Comparer les moyennes de deux
+échantillons appariés
+Dans certaines expériences les mêmes individus sont mesurés deux
+fois, par exemple avant et après un traitement ou encore à deux
+moments au cours de leur développement. Les mesures obtenues lors
+de ces deux événements ne sont pas indépendantes, et des
+comparaisons de ces mesures appariées doivent être faites.
+Le fichier skulldat.Rdata contient des mesures de la partie inférieure
+du visage de jeunes filles d'Amérique du Nord prises à 5 ans, puis à 6
+ans (données de Newman and Meredith, 1956)
+ LPour débuter, éprouvons l'hypothèse que la largeur de la figure est la
+même à 5 ans et à 6 ans en assumant que les mesures viennent
+d'échantillons indépendants. .
+> t.test(width~age, alternative='two.sided',
++
+conf.level=.95, var.equal=TRUE, data=skulldat )
+Two Sample t-test
+data: width by age
+t = -1.7812, df = 28, p-value = 0.08573
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+-0.43000032 0.03000032
+sample estimates:
+mean in group 5 mean in group 6
+7.461333
+7.661333
+>
+Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com-
+ment les résultats diffèrent-ils de la première analyse? Pourquoi?
+> t.test(skulldat$width5, skulldat$width6, alterna-
+tive='two.sided',
++
+conf.level=.95, paired=TRUE)
+Paired t-test
+data: skulldat$width5 and skulldat$width6
+t = -19.5411, df = 14, p-value = 1.473e-11
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+-0.2241710 -0.1798290
+sample estimates:
+mean of the differences
+-0.202
+
+
+La première analyse a comme supposition que les deux échantillons
+de filles de 5 et 6 ans sont indépendants, alors que la deuxième analyse
+a comme supposition que la même fille a été mesurée deux fois, une
+fois à 5 ans, et la deuxième fois à 6 ans.
+Notez que, dans le premier cas, on accepte l’hypothèse nulle, mais que
+le test apparié rejette l’hypothèse nulle. Donc, le test qui est approprié
+(le test apparié) indique un effet très significatif de l’âge, mais le test
+inapproprié suggère que l’âge n’importe pas. C’est parce qu’il y a une
+très forte corrélation entre la largeur du visage à 5 et 6 ans:
+Figure 5.
+avec r = 0.993. En présence d’une si forte corrélation, l’erreur-type de
+la différence appariée de largeur du visage entre 5 et 6 ans est
+beaucoup plus petit que l’erreur-type de la différence entre la largeur
+moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la
+statistique t associée est beaucoup plus élevée pour le test apparié, la
+puissance du test est plus grande, et la valeur de p plus petite.
+ Répétez l'analyse en utilisant l’alternative nonparamétrique, le test Wil-
+coxon signed-rank. ( Que concluez-vous?
+> wilcox.test(skulldat$width5, skulldat$width6, alterna-
+tive='two.sided',
++
+paired=TRUE)
+
+
+Warning in wilcox.test.default(skulldat$width5, skulldat$width6, alternative
+= "two.sided", :
+cannot compute exact p-value with ties
+Wilcoxon signed rank test with continuity correction
+data: skulldat$width5 and skulldat$width6
+V = 0, p-value = 0.0007211
+alternative hypothesis: true location shift is not equal to 0
+>
+Donc on tire la même conclusion qu’avec le test de t apparié et
+conclue qu’il y a des différences significatives entre la taille des crânes
+de filles âgées de 5 et 6 ans (quelle surprise!).
+Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais,
+compte tenu de s connaissances sur la croissance des enfants, une
+hypothèse unilatérale serait préférable. Ceci peut être accommodé en
+modifiant l’option "alternative". On utilise l'hypothèse alternative
+pour décider entre "less" ou "greater". Ici on s’attends que si il y a une
+différence, width5 va être inférieur à width6, donc on utiliserait "less".
+> t.test(skulldat$width5, skulldat$width6, alterna-
+tive='less',
++
+conf.level=.95, paired=TRUE)
+Paired t-test
+data: skulldat$width5 and skulldat$width6
+t = -19.5411, df = 14, p-value = 7.363e-12
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+-Inf -0.1837930
+sample estimates:
+mean of the differences
+-0.202
+>
+> wilcox.test(skulldat$width5, skulldat$width6, alterna-
+tive='less',
++
+exact=TRUE, paired=TRUE)
+Warning in wilcox.test.default(skulldat$width5, skulldat$width6, alternative
+= "less", :
+cannot compute exact p-value with ties
+Wilcoxon signed rank test with continuity correction
+data: skulldat$width5 and skulldat$width6
+V = 0, p-value = 0.0003606
+alternative hypothesis: true location shift is less than 0
+.
+
+
+Références
+Bumpus, H.C. (1898) The elimination of the unfit as illustrated by
+the introduced sparrow, Passer domesticus. Biological Lectures,
+Woods Hole Biology Laboratory, Woods Hole, 11 th Lecture: 209
+- 226.
+Newman, K.J. and H.V. Meredith. (1956) Individual growth in skele-
+tal bigonial diameter during the childhood period from 5 to 11
+years of age. Amer. J. Anat. 99: 157 - 187.

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 but first, save current par and set graphic page to hold 4 | BIO4558 Biostatistiques appliquées avec R</title>
+  <meta name="description" content="8 but first, save current par and set graphic page to hold 4 | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 but first, save current par and set graphic page to hold 4 | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 but first, save current par and set graphic page to hold 4 | BIO4558 Biostatistiques appliquées avec R" />
+  
+  
+  
+
+<meta name="author" content="Julien Martin" />
+
+
+<meta name="date" content="2019-09-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="anova-a-criteres-multiples-plans-factoriels-et-hierarchiques.html"/>
+<link rel="next" href="fit-simplified-model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quelques-points-importants-a-retenir"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructions-generales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#et-pour-les-dilettantes-ou-ceux-qui-sont-allergiques-a-la-programmation"><i class="fa fa-check"></i>Et pour les dilettantes ou ceux qui sont allergiques à la programmation…</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introductionR.html"><a href="introductionR.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introductionR.html"><a href="introductionR.html#importer-et-exporter-des-donnees"><i class="fa fa-check"></i><b>1.1</b> Importer et exporter des données</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introductionR.html"><a href="introductionR.html#ouvrir-et-sauvegarder-un-fichier-de-donnees-en-format-r"><i class="fa fa-check"></i><b>1.1.1</b> Ouvrir et sauvegarder un fichier de données en format R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introductionR.html"><a href="introductionR.html#entrer-des-donnees"><i class="fa fa-check"></i><b>1.1.2</b> Entrer des données</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introductionR.html"><a href="introductionR.html#nettoyercorriger-des-donnees"><i class="fa fa-check"></i><b>1.1.3</b> Nettoyer/corriger des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introductionR.html"><a href="introductionR.html#importer-des-donnees-a-partir-dexcel."><i class="fa fa-check"></i><b>1.1.4</b> Importer des données à partir d’Excel.</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introductionR.html"><a href="introductionR.html#exporter-des-donnees-a-partir-de-r."><i class="fa fa-check"></i><b>1.1.5</b> Exporter des données à partir de R.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introductionR.html"><a href="introductionR.html#examen-preliminaire-des-donnees"><i class="fa fa-check"></i><b>1.2</b> Examen préliminaire des données</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introductionR.html"><a href="introductionR.html#sommaire-statistique"><i class="fa fa-check"></i><b>1.2.1</b> Sommaire statistique</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introductionR.html"><a href="introductionR.html#histogramme-densite-de-probabilite-empirique-boxplot-et-examen-visuel-de-la-normalite"><i class="fa fa-check"></i><b>1.2.2</b> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introductionR.html"><a href="introductionR.html#diagrammes-de-dispersion-bivaries"><i class="fa fa-check"></i><b>1.2.3</b> Diagrammes de dispersion bivariés</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introductionR.html"><a href="introductionR.html#creer-des-sous-ensembles-de-cas"><i class="fa fa-check"></i><b>1.3</b> Créer des sous-ensembles de cas</a></li>
+<li class="chapter" data-level="1.4" data-path="introductionR.html"><a href="introductionR.html#transformations-de-donnees"><i class="fa fa-check"></i><b>1.4</b> Transformations de données</a></li>
+<li class="chapter" data-level="1.5" data-path="introductionR.html"><a href="introductionR.html#exercice"><i class="fa fa-check"></i><b>1.5</b> Exercice</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power ahahahaha</a><ul>
+<li class="chapter" data-level="2.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#la-theorie"><i class="fa fa-check"></i><b>2.1</b> La théorie</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>2.1.1</b> Qu’est-ce que la puissance?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>2.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>2.1.3</b> Facteurs qui affectent la puissance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>2.2</b> Qu’est ce que G*Power?</a></li>
+<li class="chapter" data-level="2.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#principe-general"><i class="fa fa-check"></i><b>2.3.1</b> Principe général</a></li>
+<li class="chapter" data-level="2.3.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>2.3.2</b> Types d’analyses de puissance disponibles</a></li>
+<li class="chapter" data-level="2.3.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>2.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#calculs-de-puissance-pour-un-test-de-t-comparant-deux-moyennes-independantes"><i class="fa fa-check"></i><b>2.4</b> Calculs de puissance pour un test de t comparant deux moyennes indépendantes</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#analyse-post-hoc"><i class="fa fa-check"></i><b>2.4.1</b> Analyse post-hoc</a></li>
+<li class="chapter" data-level="2.4.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#analyse-a-priori"><i class="fa fa-check"></i><b>2.4.2</b> Analyse a priori</a></li>
+<li class="chapter" data-level="2.4.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#analyse-de-sensitivite"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#points-a-retenir"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
+<li class="chapter" data-level="2.6" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#exercice-1"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation-et-regression-lineaire-simple.html"><a href="correlation-et-regression-lineaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a></li>
+<li class="chapter" data-level="4" data-path="comparaison-de-deux-echantillons.html"><a href="comparaison-de-deux-echantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a></li>
+<li class="chapter" data-level="5" data-path="anova-a-un-critere-de-classification.html"><a href="anova-a-un-critere-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a></li>
+<li class="chapter" data-level="6" data-path="but-first-save-current-par-and-set-graphic-page-to-hold-4.html"><a href="but-first-save-current-par-and-set-graphic-page-to-hold-4.html"><i class="fa fa-check"></i><b>6</b> but first, save current par and set graphic page to hold 4</a></li>
+<li class="chapter" data-level="7" data-path="anova-a-criteres-multiples-plans-factoriels-et-hierarchiques.html"><a href="anova-a-criteres-multiples-plans-factoriels-et-hierarchiques.html"><i class="fa fa-check"></i><b>7</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a></li>
+<li class="chapter" data-level="8" data-path="but-first-save-current-par-and-set-graphic-page-to-hold-4-1.html"><a href="but-first-save-current-par-and-set-graphic-page-to-hold-4-1.html"><i class="fa fa-check"></i><b>8</b> but first, save current par and set graphic page to hold 4</a></li>
+<li class="chapter" data-level="9" data-path="fit-simplified-model.html"><a href="fit-simplified-model.html"><i class="fa fa-check"></i><b>9</b> fit simplified model</a></li>
+<li class="chapter" data-level="10" data-path="modified-from-code-written-by-david-c-howell.html"><a href="modified-from-code-written-by-david-c-howell.html"><i class="fa fa-check"></i><b>10</b> modified from code written by David C. Howell</a></li>
+<li class="chapter" data-level="11" data-path="httpwww-uvm-edudhowellstatpagesmore-stuffpermuta-.html"><a href="httpwww-uvm-edudhowellstatpagesmore-stuffpermuta-.html"><i class="fa fa-check"></i><b>11</b> <span>http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permuta-</span></a></li>
+<li class="chapter" data-level="12" data-path="bootstrap-1000-time-using-the-residuals-bootstraping.html"><a href="bootstrap-1000-time-using-the-residuals-bootstraping.html"><i class="fa fa-check"></i><b>12</b> Bootstrap 1000 time using the residuals bootstraping</a></li>
+<li class="chapter" data-level="13" data-path="regression-multiple.html"><a href="regression-multiple.html"><i class="fa fa-check"></i><b>13</b> Régression multiple</a></li>
+<li class="chapter" data-level="14" data-path="bootstrap-analysis-the-simple-way-with-library-simpleboot.html"><a href="bootstrap-analysis-the-simple-way-with-library-simpleboot.html"><i class="fa fa-check"></i><b>14</b> Bootstrap analysis the simple way with library simpleboot</a></li>
+<li class="chapter" data-level="15" data-path="define-model-to-be-bootstrapped-and-the-data-source-used.html"><a href="define-model-to-be-bootstrapped-and-the-data-source-used.html"><i class="fa fa-check"></i><b>15</b> Define model to be bootstrapped and the data source used</a></li>
+<li class="chapter" data-level="16" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>16</b> ANCOVA et GLM</a></li>
+<li class="chapter" data-level="17" data-path="analyse-de-donnees-de-frequence-tableaux-de-contingence-modeles-log-lineaires-et-regression-de-poisson.html"><a href="analyse-de-donnees-de-frequence-tableaux-de-contingence-modeles-log-lineaires-et-regression-de-poisson.html"><i class="fa fa-check"></i><b>17</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a></li>
+<li class="chapter" data-level="18" data-path="convert-case-form-to-table-form.html"><a href="convert-case-form-to-table-form.html"><i class="fa fa-check"></i><b>18</b> convert case form to table form</a></li>
+<li class="chapter" data-level="19" data-path="fit-full-model.html"><a href="fit-full-model.html"><i class="fa fa-check"></i><b>19</b> Fit full model</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIO4558 Biostatistiques appliquées avec R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="but-first-save-current-par-and-set-graphic-page-to-hold-4-1" class="section level1">
+<h1><span class="header-section-number">8</span> but first, save current par and set graphic page to hold 4</h1>
+<p>graphs
+opar &lt;- par(mfrow = c(2, 2))
+anova.model1 &lt;- lm(rdwght ~ sex + location + sex:location,
+contrasts = list(sex = contr.sum, location = contr.sum),
+data = Stu2wdat)
+anova(anova.model1)
+Analysis of Variance Table
+Response: rdwght
+Df Sum Sq Mean Sq F value
+Pr(&gt;F)
+sex
+1 1839.6 1839.6 18.6785 2.569e-05 <strong><em>
+location
+1
+4.3
+4.3 0.0433
+0.8355
+sex:location
+1
+48.7
+48.7 0.4944
+0.4829
+Residuals
+178 17530.4
+98.5
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’
+1
+Attrappe. Attention, R imprime les sommes des carrés séquentielles
+(Type I) les carrés moyens et probabilités associés. Vous ne pouvez
+pas vous y fier si votre plan d’expérience n’est pas parfaitement
+balancé. Dans cet exemple, le nombre de poissons capturés change
+selon le site et le sexe et le plan d’expérience n’est donc pas balancé.
+Vous devez extraire les sommes de carrés partielles (Type III). Le
+moyen le plus simple que j’ai trouvé est d’utiliser la fonction Anova()
+du package car (notez la différence subtile, Anova() n’est pas la même
+chose que anova(), R est impitoyable et distingue les majuscules des
+minuscules). Malheureusement, Anova() ne suffit pas; il faut
+également utiliser la commande contrasts = list(sex = contr.sum,
+location = contr.sum) …
+require(car)
+Anova(anova.model1, type = 3)
+Anova Table (Type III tests)
+Response: rdwght
+Sum Sq Df
+F value
+Pr(&gt;F)
+(Intercept) 106507
+1 1081.4552 &lt; 2.2e-16 </em></strong>
+sex
+1745
+1
+17.7220 4.051e-05 ***
+location
+9
+1
+0.0891
+0.7656
+sex:location
+49
+1
+0.4944
+0.4829
+Residuals
+17530 178
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
+<p>Suite à l’ANOVA, on accepte deux hypothèses nulles: (1) que l’effet
+du sexe ne varie pas entre les sites (pas d’interaction significative) et
+(2) qu’il n’y a pas de différence de taille des esturgeons (peu importe le
+sexe) entre les deux sites. D’un autre coté, on rejette l’hypothèse nulle
+qu’il n’y a pas de différence de taille entre les esturgeons mâles et les
+femelles, tel que suggéré par les graphiques.
+plot(anova.model1)
+Cependant, on ne peut se fier à ces résultats sans vérifier si les
+conditions d’application de l’ANOVA étaient remplies. Un examen
+des graphiques des résidus, en haut, montre que les résidus semblent
+être distribués plus ou moins normalement, si ce n’est des 3 valeurs
+extrêmes qui sont notées sur le diagramme de probabilité (cas 101, 24,
+&amp; 71). D’après le graphique des résidus vs les valeurs prédites, on voit
+que l’étendue des résidus est plus ou moins égale pour les valeurs
+estimées, sauf encore pour 2 ou 3 cas. Si on éprouve la normalité, on
+obtient:
+shapiro.test(residuals(anova.model1))
+Shapiro-Wilk normality test
+data: residuals(anova.model1)
+W = 0.8721, p-value = 2.619e-11</p>
+<p>Alors, il y a évidence que les résidus ne sont pas distribués
+normalement.
+Nous allons utiliser le test de Levene pour examiner
+l’homoscédasticité des résidus, de la même façon qu’on a fait pour
+l’ANOVA à un critère de classification.
+require(car)
+leveneTest(rdwght ~ sex * location, data = Stu2wdat)
+Levene’s Test for Homogeneity of Variance
+Df F value Pr(&gt;F)
+group
+3 3.8526 0.01055 <em>
+178
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Si les résidus étaient homoscédastiques, on accepterait l’hypothèse
+nulle que le absres moyen ne varie pas entre les niveaux de sexe et
+location (i.e., sexloc). Le tableau d’ANOVA ci-dessus montre que
+l’hypothèse est rejetée. Il y a donc évidence d’hétéroscédasticité. En
+bref, nous avons donc plusieurs conditions d’application qui ne sont
+pas respectées. La question qui reste est: ces violations sont-elles
+suffisantes pour invalider nos conclusions ?
+ Répétez la même analyse avec les données du fichier stu2mdat.Rdata .
+Que concluez-vous? Supposons que vous vouliez comparer la taille
+des mâles et des femelles. Comment cette comparaison diffère entre
+les deux ensembles de données ?
+Notez que cette fois les femelles sont plus grandes que les mâles à
+Cumberland House, mais que c’est le contraire à The Pas. Quel est le
+résultat de l’ANOVA (n’oubliez pas qu’il faut des Type III sums of
+squares pour les résultats)?
+Anova Table (Type III tests)
+Response: rdwght
+Sum Sq Df
+F value
+Pr(&gt;F)
+(Intercept) 106507
+1 1081.4552 &lt; 2.2e-16 </em><strong>
+sex
+49
+1
+0.4944
+0.4829
+location
+9
+1
+0.0891
+0.7656
+sex:location
+1745
+1
+17.7220 4.051e-05 </strong>*
+Residuals
+17530 178
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Dans ce cas, le terme de l’interaction (sex:location) est maintenant
+significatif mais les effets principaux ne le sont pas.
+ Vous trouverez utile ici de créer des graphiques pour les deux fichiers
+de données pour comparer les interactions entre sex et location. Le
+graphique d’interaction montre les relations entre les moyennes de</p>
+<p>chaque combinaison de facteurs (appelées aussi les moyennes des cel-
+lules).Générez un graphique illustrant les intéractions en utilisant la
+fonction allEffects du package effects :
+library(effects)
+allEffects(anova.model1)
+model: rdwght ~ sex + location + sex:location
+sex<em>location effect
+location
+sex
+CUMBERLAND
+THE_PAS
+FEMALE
+27.37347
+27.97717
+MALE
+22.14118
+20.64652
+plot(allEffects(anova.model1), ‘sex:location’)
+allEffects(anova.model2)
+model: rdwght ~ sex + location + sex:location
+sex</em>location effect
+location
+sex
+CUMBERLAND
+THE_PAS
+FEMALE
+27.37347
+20.64652
+MALE
+22.14118
+27.97717
+plot(allEffects(anova.model2), ‘sex:location’)</p>
+<p>Il y a une différence importante entre les résultats obtenus avec
+stu2wdat et stu2mdat. Dans le premier cas, puisqu’il n’y a pas
+d’interaction, on peut regrouper les données des deux niveaux d’un
+facteur (le site, par exemple) pour éprouver l’hypothèse d’un effet de
+l’autre facteur (le sexe). En fait, si on fait cela et que l’on calcule une
+ANOVA à un critère de classification (sex), on obtient:
+Anova(aov(rdwght ~ sex, data = Stu2wdat), type = 3)
+Anova Table (Type III tests)
+Response: rdwght
+Sum Sq Df F value
+Pr(&gt;F)
+(Intercept) 78191
+1 800.440 &lt; 2.2e-16 <strong><em>
+sex
+1840
+1 18.831 2.377e-05 </em></strong>
+Residuals
+17583 180
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Notez que la somme des carrés des résidus (17583) est presque égale à
+celle du modèle complet (17530) de l’ANOVA factorielle à deux
+facteurs. C’est parce que dans cette anova factorielle, le terme
+d’interaction et le terme représentant l’effet du site n’expliquent
+qu’une partie infime de la variabilité.
+D’un autre coté, si on essaie le même truc avec stu2mdat, on obtient:
+Anova(aov(rdwght ~ sex, data = Stu2mdat), type = 3)
+Anova Table (Type III tests)</p>
+<p>Response: rdwght
+Sum Sq Df F value Pr(&gt;F)
+(Intercept) 55251
+1 515.0435 &lt;2e-16 <strong><em>
+sex
+113
+1
+1.0571 0.3053
+Residuals
+19309 180
+—
+Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Ici la somme des carrées des résidus (19309) est beaucoup plus grande
+que celle de l’ANOVA factorielle (175306) parce qu’une partie
+importante de la variabilité expliquée par le modèle est associée à
+l’interaction. Notez que si on n’avait fait que cette analyse, on
+conclurait que les esturgeons mâles et femelles ont la même taille.
+Mais en fait leur taille diffère; seulement la différence est à l’avantage
+des mâles à un site et à l’avantage des femelles à l’autre. Il est donc
+délicat d’interpréter l’effet principal (sexe) en présence d’une
+interaction significative…
+ANOVA à effets mixtes (Modèle III)
+Les analyses qui précèdent négligent un point important: location
+pourrait être traité comme un facteur aléatoire et sex est fixe. Par
+conséquent le modèle approprié d’ANOVA est de type III (mixte).
+Notez que dans toutes les analyses qui précèdent, R a traité cette
+ANOVA comme si elle était de Type I, et les termes principaux et
+celui d’interaction ont été testés en utilisant le carré moyen des résidus
+comme dénominateur des tests de F. Cependant, pour une ANOVA
+de type III, ces effets devraient être testés en utilisant le carré moyen
+du terme d’interaction, ou en combinant la somme des carrés de
+l’erreur et de l’interaction (selon le statisticien consulté!).
+En utilisant stu2wdat , refaites un tableau d’ANOVA pour RDWGHT
+en considérant location comme facteur aléatoire et sex comme un
+facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour
+sex et location en utilisant le carré moyen de l’interaction sex:location
+au lieu du carré moyen des résidus comme dénominateur. Le mieux
+c’est de le faire à la mitaine ent travaillant avec les Type III Sums of
+squares du tableau d’ANOVA.
+Anova Table (Type III tests)
+Response: rdwght
+Sum Sq Df
+F value
+Pr(&gt;F)
+(Intercept) 106507
+1 1081.4552 &lt; 2.2e-16 </em></strong>
+sex
+1745
+1
+17.7220 4.051e-05 ***
+location
+9
+1
+0.0891
+0.7656
+sex:location
+49
+1
+0.4944
+0.4829
+Residuals
+17530 178
+—
+Poursex, la nouvelle valeur de F (le rapport des carrés moyens) est de
+(1745/1)/(49/1)=35.6</p>
+<p>Pour obtenir la p-valeur correspondant à c ette statistique F, allez à la
+fenêtre de commandes et tapez: 1-pf(F, df1, df2), où F est la valeur de
+F calculée, et df1 et df2 sont les degrés de liberté du numérateur (sex)
+et dénominateur(SEX:location)
+1-pf(35.6,1,1)
+[1] 0.1057152
+Notez que maintenant la valeur de p pour sex n’est plus significative.
+C’est parce que le carré moyen de l’erreur dans l’ANOVA initiale est
+plus petit que celui associé à l’interaction, mais surtout parce que le
+nombre de degrés de liberté pour le dénominateur du test de F est
+passé de 178 à 1 seulement. En général, c’est beaucoup plus difficile
+d’obtenir des résultats significatifs quand les degrés de liberté pour le
+dénominateur sont petits.
+Plan factoriel à deux facteurs de
+classification sans réplication
+Dans certains plans d’expérience il n’y a pas de réplicats pour chaque
+combinaison de facteurs, par exemple parce qu’il serait trop coûteux
+de faire plus d’une observation. L’ANOVA à deux critères de
+classification est quand même possible dans ces circonstances, mais il
+y a une limitation importante.
+Comme il n’y a pas de réplicats, on ne peut estimer la variance du
+terme d’erreur. En effet on ne peut qu’estimer la somme des carrés
+associés à chacun des facteurs principaux, et la quantité de variabilité
+qui reste (Remainder Mean Square) représente la somme de la
+variabilité attribuable à l’interaction et au terme d’erreur. Cela a une
+implication importante : s’il y a une interaction, seul un modèle II
+d’ANOVA peut être entièrement testé et dans un modèle III
+d’ANOVA, seul l’effet fixe peut être testé (il est éprouvé en les
+comparant au carré moyen associé avec le remainder MS). Dans le cas
+d’un modèle I ou pour l’effet aléatoire d’un modèle III on ne peut
+tester les effets principaux que si on est sur qu’il n’y a pas d’interaction.
+Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend
+une seule mesure de température (temp,en degrés C) à 10 profondeurs
+différentes (depth, en m) à quatre dates (date) au cours de l’été. Ses
+données sont au fichier nr2wdat.Rdata.
+ Effectuez une ANOVA à deux critères de classification en utilisant
+temp comme variable dépendante et date et depth comme variables
+indépendantes (vous devez changer le type de données pour DEPTH
+pour que R traite cette variable comme un facteur et non pas une vari-
+able continue).</p>
+<p>anova.model4&lt;-lm(temp ~ date + as.factor(depth), data =
+nr2wdat)
+Anova(anova.model4, type = 3)
+Anova Table (Type III tests)
+Response: temp
+Sum Sq Df F value
+Pr(&gt;F)
+(Intercept)
+1511.99 1 125.5652 1.170e-11 <strong><em>
+date
+591.15 3 16.3641 2.935e-06 </em></strong>
+as.factor(depth) 1082.82 9
+9.9916 1.450e-06 ***
+Residuals
+325.12 27
+Si on suppose que c’est un modèle III d’ANOVA (date aléatoire,
+Depth fixe), que concluez vous? (Indice: faites un graphique
+d’interaction température en fonction de la profondeur et la date,
+pour voir ce qui se passe).
+interaction.plot(nr2wdat<span class="math inline">\(depth, nr2wdat\)</span>date, nr2wdat$temp)
+La température diminue significativement en profondeur. Pour tester
+l’effet du mois (le facteur aléatoire), on doit présumer qu’il n’y a pas
+d’interaction entre la profondeur et le mois (donc que l’effet de la
+profondeur sur la température est le même à chaque mois). C’est peu
+probable: si vous faites un graphique de la température en fonction de
+la profondeur pour chaque mois, vous observerez que le profil de</p>
+<p>température change au fur et à mesure du développement de la
+thermocline. Bref, comme le profil change au cours de l’été, ce
+modèle ne fait pas de très bonnes prédictions.
+Jetez un coup d’oeil sur les graphiques des résidus:
+Le test de normalité sur les résidus donne p = 0.16, donc l’hypothèse
+de normalité ne semble pas être sérieusement en doute. Pour l’égalité
+des variances, on peut seulement comparer entre les mois en utilisant
+les profondeurs comme réplicats (ou l’inverse). En utilisant les
+profondeurs comme réplicats, on obtient:
+leveneTest(temp ~ date , data = nr2wdat)
+Levene’s Test for Homogeneity of Variance
+Df F value
+Pr(&gt;F)
+group 3 17.979 2.679e-07 ***
+Il y a donc un problème d’hétéroscédasticité, comme on peut très bien
+voir dans le graphique des résidus vs les valeurs estimées. Cette
+analyse n’est donc pas très satisfaisante: il y a des violations des
+conditions d’application et il semble y avoir une interaction entre
+depth et date qui pourrait invalider l’analyse</p>
+<p>Plans hiérarchiques
+Un design expérimental fréquent implique la division de chaque
+groupe du facteur majeur en sous-groupes aléatoires. Par exemple,
+une généticienne intéressée par l’effet du génotype sur la résistance à
+la dessiccation chez la drosophile effectue une expérience. Pour
+chaque génotype (facteur principal) elle prépare trois chambres de
+croissance (sous-groupes) avec une température et humidité
+contrôlées. Dans chaque chambre de croissance, elle place cinq larves,
+puis mesure le nombre d’heures pendant lesquelles chaque larve
+survit.
+ Le fichier nestdat.Rdata contient les résultats d’une expérience sem-
+blable. Il contient trois variables : genotype, chamber et survival.
+Effectuez une ANOVA hiérarchique avec survival comme variable
+dépendante et genotype et chamber/genotype comme variables
+indépendantes.
+nestdat<span class="math inline">\(chamber &lt;- as.factor(nestdat\)</span>chamber)
+anova.nested &lt;- lm(survival ~ genotype/chamber, data = nest-
+dat)
+Que concluez-vous de cette analyse ? Que devrait être la prochaine
+étape ? (Indice: si l’effet de Chamber / genotype n’est pas significatif,
+vous pouvez augmenter la puissance des comparaisons entre
+génotypes en regroupant les chambres de chaque génotype.). Faites-le
+! N’oubliez pas de vérifier les conditions d’applications de l’ANOVA!
+Analysis of Variance Table
+Response: survival
+Df Sum Sq Mean Sq F value Pr(&gt;F)
+genotype
+2 2952.22 1476.11 292.6081 &lt;2e-16 <strong><em>
+genotype:chamber 6
+40.65
+6.78
+1.3432 0.2639
+Residuals
+36 181.61
+5.04
+On conclue de cette analyse que la variation entre les chambres de
+croissance n’est pas significative, mais qu’on doit rejeter l’hypothèse
+nulle que tous les génotypes ont la même résistance à la dessiccation.
+Comme l’effet hiérarchique chamber / genotype n’est pas significatif,
+on peut regrouper les observations pour augmenter le nombre de
+degrés de liberté:
+anova.simple &lt;- lm(survival ~ genotype, data = nestdat)
+anova(anova.simple)
+Analysis of Variance Table
+Response: survival
+Df Sum Sq Mean Sq F value
+Pr(&gt;F)
+genotype
+2 2952.22 1476.11 278.93 &lt; 2.2e-16 </em></strong>
+Residuals 42 222.26
+5.29</p>
+<p>Donc on conclue qu’il y a une variation significative de résistance à la
+dessiccation entre les trois génotypes.
+Le graphique de survival en fonction du génotype suggère que la
+résistance à la dessiccation varie entre chaque génotype. On peut
+combiner cela avec un test de Tukey
+par(mfrow=c(1,1))
+# Compute and plot means and Tukey CI
+means &lt;- glht(anova.simple, linfct = mcp(genotype =
+“Tukey”))
+cimeans &lt;- cld(means)
+# use sufficiently large upper margin
+old.par &lt;- par(mai = c(1, 1, 1.25, 1))
+# plot
+plot(cimeans, las=1) # las option to put y-axis labels as God
+intended them
+On conclue donc que la résistance à la dessiccation (R), telle que
+mesurée par la survie dans des conditions chaudes et sèches, varie
+significativement entre les trois génotypes avec R(AA) &gt; R(Aa) &gt;
+R(aa).
+Cependant, avant d’accepter cette conclusion, il faut éprouver les
+conditions d’application du test. Voici les diagnostics des résidus pour
+l’ANOVA à un critère de classification (non hiérarchique):</p>
+<p>Donc, toutes les conditions d’application semblent être
+remplies, et on peut donc accepter les conclusions. Notez que si l’on
+compare le carré moyen des résidus de l’ANOVA hiérarchique et de
+l’ANOVA à un critère de classification (5.045 vs 5.292), ils sont
+presque identiques. Cela n’est pas surprenant compte tenu de la faible
+variabilité associée aux chambres de croissance pour chaque génotype.
+ANOVA non paramétrique avec deux facteurs
+de classification
+L’ANOVA non paramétrique à deux critères de classification est une
+extension de celle à un critère de classification vue précédemment.
+Elle débute par une ANOVA faite sur les données transformées en
+rangs. Elle peut se faire sur des données avec ou sans réplicats.
+À partir du fichier stu2wdat.Rdata, effectuez une ANOVA non
+paramétrique à deux facteurs de classification pour examiner l’effet de
+sex et location sur rank(rdwght).
+aov.rank &lt;- aov(rank(rdwght) ~ sex * location,
+contrasts = list(sex = contr.sum,
+location = contr.sum), data = Stu2wdat)
+Anova(aov.rank, type = 3)</p>
+<p>Anova Table (Type III tests)
+Response: rank(rdwght)
+Sum Sq Df F value
+Pr(&gt;F)
+(Intercept) 1499862
+1 577.8673 &lt; 2.2e-16 <strong><em>
+sex
+58394
+1 22.4979 4.237e-06 </em></strong>
+location
+1128
+1
+0.4347
+0.5105
+sex:location
+1230
+1
+0.4738
+0.4921
+Residuals
+472383 182
+L’extension de Schreirer-Ray-Hare au test de Kruskall-Wallis se fait
+ensuite à la main. Il faut d’abord calculer la statistique H égale au
+rapport de la somme des carrées de l’effet testé, divisée par le carré
+moyen total. On calcule la statistique H pour chacun des termes. Les
+statistiques H sont ensuite comparées à une distribution théorique c2
+en utilisant la commande (dans la fenêtre Commands): 1-pchisq(H,
+df), où H et df sont les statistiques H calculées et les degrés de libertés,
+respectivement.
+Testez l’effet de sex et location sur rdwght. Que concluez-vous ?
+Comment ce résultat se compare-t-il à celui obtenu en faisant
+l’ANOVA paramétrique faite précédemment ?
+Pour calculer l’extension Schreirer-Ray-Hare au test de Kruskall-
+Wallis, on doit d’abord calculer le carré moyen total (MS), i.e. la
+variance des données transformées en rang. Ici, on a 186 observations,
+donc des rangs; 1, 2, 3, … 186. La variance de cette série de 186 valeurs
+peut être calculée simplement par var(1:186) (N’est-ce pas que R est
+fabuleux? Pas toujours évident, mais fabuleux tout de même, non?)
+Donc on peut calculer la statistique H pour chaque terme:
+Hsex = 58394/var(1:186) = 20.14
+Hlocation = 1128/var(1:186) = 0.39
+Hsex:location = 1230/var(1:186) = 0.42
+Et convertir ces statistiques en p-valeurs:
+pour sex: 1-pchisq(20.14,1) = 7.197556e-06
+location 1-pchisq(0.39, 1) = 0.5322994
+sex:location 1-pchisq(0.42, 1) = 0.516937
+Ces résultats sont semblables aux résultats de l’ANOVA non-
+paramétrique à deux critères de classification. Malgré la puissance
+réduite, il y a encore un effet significatif du sexe, mais ni interaction ni
+effet du site.</p>
+<p>Il y a toutefois une différence importante. Rappelez-vous que dans
+l’ANOVA paramétrique il y avait un effet significatif de sex en
+considérant le problème comme un modèle I d’ANOVA. Cependant,
+si on traite le problème comme un modèle III, l’effet significatif de sex
+peut en principe disparaître parce que le nombre de dl associés au CM
+de l’interaction est plus faible que le nombre de dl du CM de l’erreur
+du modèle I. Dans ce cas ci, cependant, le CM de l’interaction est
+environ la moitié du CM de l’erreur. Par conséquent, l’effet significatif
+de sex pourrait devenir encore plus significatif si le problème est
+analysé (comme il se doit) comme une ANOVA de modèle III.
+Encore une fois on peut voir l’importance de spécifier le modèle
+adéquat en ANOVA.
+Comparaisons multiples
+Les épreuves d’hypothèses subséquentes en ANOVA à plus d’un
+critère de classification dépendent des résultats initiaux de l’ANOVA.
+Si vous êtes intéressés à comparer des effets moyens d’un facteur pour
+tous les niveaux d’un autre facteur (par exemple l’effet du sexe sur la
+taille des esturgeons peu importe d’où ils viennent), alors vous pouvez
+procéder exactement tel que décrit dans la section sur les
+comparaisons multiples suivant l’ANOVA à un critère de
+classification. Pour comparer les moyennes des cellules entre elles, il
+faut spécifier l’interaction comme variable qui représente le groupe.
+Le fichier wmcdat2.Rdata contient des mesures de consommation
+d’oxygène ( o2cons ) de deux espèces ( species ) d’un mollusque (une
+patelle) à trois concentrations différentes d’eau de mer ( conc ) (ces
+données sont présentées à la p. 332 de Sokal et Rohlf 1995).
+Effectuez une ANOVA factorielle à deux critères de classification sur
+ces données en utilisant 02cons comme variable dépendante et species
+et conc comme les facteurs (il va probablement falloir changer le type
+de données du variable conc à facteur). Que concluez-vous ?
+Comme l’effectif dans chaque cellule est relativement petit, il faudrait
+idéalement refaire cette analyse avec une ANOVA non-paramétrique.
+Pour le moment, contentons nous de la version paramétrique.
+Anova Table (Type III tests)
+Response: o2cons
+Sum Sq Df F value
+Pr(&gt;F)
+(Intercept) 4441.7 1 464.6163 &lt; 2.2e-16 <strong><em>
+species
+16.6 1
+1.7404 0.1942381
+conc
+181.3 2
+9.4833 0.0003993 </em></strong>
+species:conc
+23.9 2
+1.2514 0.2965616
+Residuals
+401.5 42
+Examinons les graphiques diagnostiques:</p>
+<p>Les variances semblent donc égales. Le test de normalité donne:
+Shapiro-Wilk normality test
+data: residuals(anova.model5)
+W = 0.9369, p-value = 0.01238
+Il y a donc évidence de non-normalité, mais à part ça tout semble aller.
+Comme l’ANOVA est relativement robuste à la non-normalité, on va
+regarder de l’autre coté. (Si vous voulez être plus confiants, vous
+pouvez tourner une ANOVA non paramétrique. Vous arriverez aux
+mêmes conclusions.)
+ À la suite des résultats que vous venez d’obtenir, quelles moyennes
+voudriez-vous comparer ? Pourquoi?
+On conclue donc qu’il n’y a pas de différence entre les espèces et que
+l’effet de la concentration ne dépends pas de l’espèce (il n’y a pas
+d’interaction). Par conséquent, les seules comparaisons justifiables
+sont entre les concentrations:</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="anova-a-criteres-multiples-plans-factoriels-et-hierarchiques.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fit-simplified-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

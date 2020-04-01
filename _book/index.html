@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>BIO4558 Biostatistiques appliquées avec R</title>
+  <meta name="description" content="BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="BIO4558 Biostatistiques appliquées avec R" />
+  
+  
+  
+
+<meta name="author" content="Julien Martin" />
+
+
+<meta name="date" content="2019-09-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introductionR.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quelques-points-importants-a-retenir"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructions-generales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#et-pour-les-dilettantes-ou-ceux-qui-sont-allergiques-a-la-programmation"><i class="fa fa-check"></i>Et pour les dilettantes ou ceux qui sont allergiques à la programmation…</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introductionR.html"><a href="introductionR.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
+<li class="chapter" data-level="1.1" data-path="introductionR.html"><a href="introductionR.html#importer-et-exporter-des-donnees"><i class="fa fa-check"></i><b>1.1</b> Importer et exporter des données</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introductionR.html"><a href="introductionR.html#ouvrir-et-sauvegarder-un-fichier-de-donnees-en-format-r"><i class="fa fa-check"></i><b>1.1.1</b> Ouvrir et sauvegarder un fichier de données en format R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introductionR.html"><a href="introductionR.html#entrer-des-donnees"><i class="fa fa-check"></i><b>1.1.2</b> Entrer des données</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introductionR.html"><a href="introductionR.html#nettoyercorriger-des-donnees"><i class="fa fa-check"></i><b>1.1.3</b> Nettoyer/corriger des données</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introductionR.html"><a href="introductionR.html#importer-des-donnees-a-partir-dexcel."><i class="fa fa-check"></i><b>1.1.4</b> Importer des données à partir d’Excel.</a></li>
+<li class="chapter" data-level="1.1.5" data-path="introductionR.html"><a href="introductionR.html#exporter-des-donnees-a-partir-de-r."><i class="fa fa-check"></i><b>1.1.5</b> Exporter des données à partir de R.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introductionR.html"><a href="introductionR.html#examen-preliminaire-des-donnees"><i class="fa fa-check"></i><b>1.2</b> Examen préliminaire des données</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introductionR.html"><a href="introductionR.html#sommaire-statistique"><i class="fa fa-check"></i><b>1.2.1</b> Sommaire statistique</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introductionR.html"><a href="introductionR.html#histogramme-densite-de-probabilite-empirique-boxplot-et-examen-visuel-de-la-normalite"><i class="fa fa-check"></i><b>1.2.2</b> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introductionR.html"><a href="introductionR.html#diagrammes-de-dispersion-bivaries"><i class="fa fa-check"></i><b>1.2.3</b> Diagrammes de dispersion bivariés</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introductionR.html"><a href="introductionR.html#creer-des-sous-ensembles-de-cas"><i class="fa fa-check"></i><b>1.3</b> Créer des sous-ensembles de cas</a></li>
+<li class="chapter" data-level="1.4" data-path="introductionR.html"><a href="introductionR.html#transformations-de-donnees"><i class="fa fa-check"></i><b>1.4</b> Transformations de données</a></li>
+<li class="chapter" data-level="1.5" data-path="introductionR.html"><a href="introductionR.html#exercice"><i class="fa fa-check"></i><b>1.5</b> Exercice</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power ahahahaha</a><ul>
+<li class="chapter" data-level="2.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#la-theorie"><i class="fa fa-check"></i><b>2.1</b> La théorie</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>2.1.1</b> Qu’est-ce que la puissance?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>2.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>2.1.3</b> Facteurs qui affectent la puissance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>2.2</b> Qu’est ce que G*Power?</a></li>
+<li class="chapter" data-level="2.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#principe-general"><i class="fa fa-check"></i><b>2.3.1</b> Principe général</a></li>
+<li class="chapter" data-level="2.3.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>2.3.2</b> Types d’analyses de puissance disponibles</a></li>
+<li class="chapter" data-level="2.3.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>2.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#calculs-de-puissance-pour-un-test-de-t-comparant-deux-moyennes-independantes"><i class="fa fa-check"></i><b>2.4</b> Calculs de puissance pour un test de t comparant deux moyennes indépendantes</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#analyse-post-hoc"><i class="fa fa-check"></i><b>2.4.1</b> Analyse post-hoc</a></li>
+<li class="chapter" data-level="2.4.2" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#analyse-a-priori"><i class="fa fa-check"></i><b>2.4.2</b> Analyse a priori</a></li>
+<li class="chapter" data-level="2.4.3" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#analyse-de-sensitivite"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#points-a-retenir"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
+<li class="chapter" data-level="2.6" data-path="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html"><a href="analyse-de-puissance-avec-r-et-gpower-ahahahaha.html#exercice-1"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation-et-regression-lineaire-simple.html"><a href="correlation-et-regression-lineaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a></li>
+<li class="chapter" data-level="4" data-path="comparaison-de-deux-echantillons.html"><a href="comparaison-de-deux-echantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a></li>
+<li class="chapter" data-level="5" data-path="anova-a-un-critere-de-classification.html"><a href="anova-a-un-critere-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a></li>
+<li class="chapter" data-level="6" data-path="but-first-save-current-par-and-set-graphic-page-to-hold-4.html"><a href="but-first-save-current-par-and-set-graphic-page-to-hold-4.html"><i class="fa fa-check"></i><b>6</b> but first, save current par and set graphic page to hold 4</a></li>
+<li class="chapter" data-level="7" data-path="anova-a-criteres-multiples-plans-factoriels-et-hierarchiques.html"><a href="anova-a-criteres-multiples-plans-factoriels-et-hierarchiques.html"><i class="fa fa-check"></i><b>7</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a></li>
+<li class="chapter" data-level="8" data-path="but-first-save-current-par-and-set-graphic-page-to-hold-4-1.html"><a href="but-first-save-current-par-and-set-graphic-page-to-hold-4-1.html"><i class="fa fa-check"></i><b>8</b> but first, save current par and set graphic page to hold 4</a></li>
+<li class="chapter" data-level="9" data-path="fit-simplified-model.html"><a href="fit-simplified-model.html"><i class="fa fa-check"></i><b>9</b> fit simplified model</a></li>
+<li class="chapter" data-level="10" data-path="modified-from-code-written-by-david-c-howell.html"><a href="modified-from-code-written-by-david-c-howell.html"><i class="fa fa-check"></i><b>10</b> modified from code written by David C. Howell</a></li>
+<li class="chapter" data-level="11" data-path="httpwww-uvm-edudhowellstatpagesmore-stuffpermuta-.html"><a href="httpwww-uvm-edudhowellstatpagesmore-stuffpermuta-.html"><i class="fa fa-check"></i><b>11</b> <span>http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permuta-</span></a></li>
+<li class="chapter" data-level="12" data-path="bootstrap-1000-time-using-the-residuals-bootstraping.html"><a href="bootstrap-1000-time-using-the-residuals-bootstraping.html"><i class="fa fa-check"></i><b>12</b> Bootstrap 1000 time using the residuals bootstraping</a></li>
+<li class="chapter" data-level="13" data-path="regression-multiple.html"><a href="regression-multiple.html"><i class="fa fa-check"></i><b>13</b> Régression multiple</a></li>
+<li class="chapter" data-level="14" data-path="bootstrap-analysis-the-simple-way-with-library-simpleboot.html"><a href="bootstrap-analysis-the-simple-way-with-library-simpleboot.html"><i class="fa fa-check"></i><b>14</b> Bootstrap analysis the simple way with library simpleboot</a></li>
+<li class="chapter" data-level="15" data-path="define-model-to-be-bootstrapped-and-the-data-source-used.html"><a href="define-model-to-be-bootstrapped-and-the-data-source-used.html"><i class="fa fa-check"></i><b>15</b> Define model to be bootstrapped and the data source used</a></li>
+<li class="chapter" data-level="16" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>16</b> ANCOVA et GLM</a></li>
+<li class="chapter" data-level="17" data-path="analyse-de-donnees-de-frequence-tableaux-de-contingence-modeles-log-lineaires-et-regression-de-poisson.html"><a href="analyse-de-donnees-de-frequence-tableaux-de-contingence-modeles-log-lineaires-et-regression-de-poisson.html"><i class="fa fa-check"></i><b>17</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a></li>
+<li class="chapter" data-level="18" data-path="convert-case-form-to-table-form.html"><a href="convert-case-form-to-table-form.html"><i class="fa fa-check"></i><b>18</b> convert case form to table form</a></li>
+<li class="chapter" data-level="19" data-path="fit-full-model.html"><a href="fit-full-model.html"><i class="fa fa-check"></i><b>19</b> Fit full model</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIO4558 Biostatistiques appliquées avec R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">BIO4558 Biostatistiques appliquées avec R</h1>
+<h2 class="subtitle"><em>Manuel de Laboratoire</em></h2>
+<p class="author"><em>Julien Martin</em></p>
+<p class="date"><em>2019-09-25</em></p>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Préface</h1>
+<!-- {-} pour enlever num/rotation -->
+<p>Les exercices de laboratoire que vous retrouverez dans les pages qui suivent sont conçus de manière à vous permettre de développer une expérience pratique en analyse de données à l’aide d’un logiciel (R).
+R est un logiciel très puissant, mais comme tous les logiciels, il a des limites.
+En particulier il ne peut réfléchir à votre place, vous dire si l’analyse que vous tentez d’effectuer est appropriée ou sensée, ou interpréter biologiquement les résultats.</p>
+<div id="quelques-points-importants-a-retenir" class="section level2 unnumbered">
+<h2>Quelques points importants à retenir</h2>
+<ul>
+<li>Avant de commencer une analyse statistique, il faut d’abord vous familiariser son fonctionnement.
+Cela ne veut pas dire que vous devez connaître les outils mathématiques qui la sous-tendent, mais
+vous devriez au moins comprendre les principes utilisés lors de cette analyse.
+Avant de faire un exercice de laboratoire, lisez donc la section correspondante dans les notes de cours.
+Sans cette lecture préalable, il est très probable que les résultats produits par le logiciel, même si l’analyse a été effectuée correctement, seront indéchiffrables.</li>
+<li>Les laboratoires sont conçus pour compléter les cours théoriques et vice versa.
+À cause des contraintes d’horaires, il se pourrait que le cours et le laboratoire ne soient pas parfaitement synchronisés.
+N’hésitez donc pas à poser des questions sur le labo en classe ou des questions théoriques au laboratoire.</li>
+<li>Travaillez sur les exercices de laboratoire à votre propre rythme.
+Certains exercices prennent beaucoup moins de temps que d’autres et il n’est pas nécessaire de compléter un exercice par séance de laboratoire.
+En fait deux séances de laboratoire sont prévues pour certains des exercices.
+Même si vous n’êtes pas notés sur les exercices de laboratoire, soyez conscient que ces exercices
+sont essentiels.
+Si vous ne les faites pas, il est très peu probable
+que vous serez capable de compléter les devoirs et l’examen final.
+Prenez donc ces exercices de laboratoire au sérieux !</li>
+<li><p>Le premier laboratoire est conçu pour vous permettre d’acquérir ou de réviser le minimum de connaissances requises pour vous permettre de réaliser les exercices de laboratoires avec R.
+Il y a presque toujours de multiples façons de faire les choses avec R et vous ne trouverez ici que des méthodes simples.
+Ceux et celles d’entre vous qui y sont enclins pourront trouver en ligne des instructions plus détaillées et complexes.
+En particulier, je vous conseille :</p>
+<ul>
+<li>R pour les débutants
+<a href="http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf" class="uri">http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf</a></li>
+<li>Using R for psychological research: A simple guide to an elegant package
+<a href="http://www.personality-project.org/r/" class="uri">http://www.personality-project.org/r/</a></li>
+<li>An introduction to R
+<a href="http://cran.r-project.org/doc/manuals/R-intro.html" class="uri">http://cran.r-project.org/doc/manuals/R-intro.html</a></li>
+<li>Si vous préférez des manuels, le site web de CRAN en garde une liste commentée à :
+<a href="http://www.r-project.org/doc/bib/R-books.html" class="uri">http://www.r-project.org/doc/bib/R-books.html</a></li>
+<li>Finalement, comme aide-mémoire à garder sous la main, je vous recommande R reference card par Tom Short
+<a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf" class="uri">http://cran.r-project.org/doc/contrib/Short-refcard.pdf</a></li>
+</ul></li>
+</ul>
+</div>
+<div id="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours" class="section level2 unnumbered">
+<h2>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</h2>
+<p>R est un logiciel libre et multiplateforme formant un système statistique et graphique.
+R est également un langage de programmation spécialisé pour les statistiques.
+C’est un dialecte du langage S.
+S-Plus est un autre dialecte, très semblable, et forme un produit commercial qui a un interface graphique que certains trouvent plus convivial.</p>
+<p>R a deux très grands avantages pour ce cours, et un inconvénient embêtant initialement mais qui vous forcera à acquérir des excellentes habitudes de travail.
+Le premier avantage est que vous pouvez tous l’installer sur votre (ou vos) ordinateurs personnel gratuitement.
+C’est important parce que c’est à l’usage que vous apprendrez et maîtriserez réellement les biostatistiques et cela implique que vous devez avoir un accès facile et illimité à un logiciel statistique.
+Le deuxième avantage est que R peut tout faire en statistiques.
+R est conçu pour être extensible et est devenu l’outil de prédilection des statisticiens mondialement.
+La question n’est plus : &quot; Est-ce que R peut faire ceci? “, mais devient” Comment faire ceci avec R &quot;.
+Et la recherche internet est votre ami.
+Aucun autre logiciel n’offre ces deux avantages.</p>
+<p>L’inconvénient embêtant initialement est que l’on doit opérer R en tapant des instructions (ou en copiant des sections de code) plutôt qu’en utilisant des menus et en cliquant sur différentes options.
+Si on ne sait pas quelle commande taper, rien ne se passe.
+Ce n’est donc pas facile d’utilisation à priori.
+Cependant, il est possible d’apprendre rapidement à faire certaines des opérations de base (ouvrir un fichier de données, faire un graphique pour examiner ces données, effectuer un test statistique simple).
+Et une fois que l’on comprend le principe de la chose, on peut assez facilement trouver sur le web des exemples d’analyses ou de graphiques plus complexes et adapter le code à nos propres besoins.
+C’est ce que vous ferez dans le premier laboratoire pour vous familiariser avec R.</p>
+<p>Pourquoi cet inconvénient est-il d’une certaine façon un avantage? Parce que vous allez sauver du temps en fin de compte.
+Garanti.
+Croyez-moi, on ne fait jamais une analyse une seule fois.
+En cours de route, on découvre des erreurs d’entrée de données, ou que l’on doit faire l’analyse séparément pour des sous-groupes, ou on obtient des données supplémentaires, ou on fait une erreur.
+On doit alors recommencer l’analyse.
+Avec une interface graphique et des menus, cela implique recommencer à cliquer ici, entre des paramètres dans des boîtes et sélectionner des boutons.
+Chaque fois avec possibilité d’erreur.
+Avec une série de commandes écrites, il suffit de corriger ce qui doit l’être puis de copier-coller l’ensemble pour répéter instantanément.
+Et vous avez la possibilité de parfaitement documenter ce que vous avez fait.
+C’est comme cela que les professionnels travaillent et offrent une assurance de qualité de leurs résultats.</p>
+</div>
+<div id="installation" class="section level2 unnumbered">
+<h2>Installation</h2>
+<p>Pour installer R sur un nouvel ordinateur, allez au site <a href="http://cran.r-project.org/" class="uri">http://cran.r-project.org/</a>.
+Vous y trouverez des versions compilées (binaries) ou non (sources) pour votre système d’exploitation de prédilection (Windows, MacOS, Linux).</p>
+<p>Note : R a déjà été installé sur les ordinateurs du laboratoire (la version pourrait être un peu plus ancienne, mais cela devrait être sans conséquences).</p>
+</div>
+<div id="instructions-generales-pour-les-laboratoires" class="section level2 unnumbered">
+<h2>Instructions générales pour les laboratoires</h2>
+<ul>
+<li>Apporter une clé USB ou son équivalent à chaque séance de labo- ratoire pour sauvegarder votre travail.</li>
+<li>Lire l’exercice de laboratoire AVANT la séance, lire le code R cor- respondant et préparer vos questions sur le code.</li>
+<li>Durant les pré-labs, écouter les instructions et posez vos questions au moment approprié.</li>
+<li>Faites les exercices du manuel de laboratoire à votre rythme, en équipe, puis je vous recommande de commencer (compléter?) le devoir.
+Profitez de la présence du démonstrateur et du prof…</li>
+<li>Pendant vos analyses, copiez-collez des fragments de sorties de R dans un document (par exemple dans votre traitement de texte favori).
+Annotez abondamment.</li>
+<li>À chaque fois que vous fermez R, sauvegardez l’historique de vos commandes (ex: labo1.1.rHistory, labo1.2.rHistory, etc).
+Vous pourrez ainsi refaire le labo instantanément, récupérer des fragments de code, ou plus facilement identifier les erreurs dans vos analyses.</li>
+<li>Créez votre propre librairie de fragments de codes (snippets).
+Annotez-là abondamment.
+Vous vous en féliciterez plus tard.</li>
+</ul>
+</div>
+<div id="et-pour-les-dilettantes-ou-ceux-qui-sont-allergiques-a-la-programmation" class="section level2 unnumbered">
+<h2>Et pour les dilettantes ou ceux qui sont allergiques à la programmation…</h2>
+<p>Je vous conseille d’essayer d’apprivoiser R sans interface graphique.
+Au début ce sera peut-être difficile, mais cela vous forcera à acquérir de bonnes habitudes.
+Si vous trouvez cela vraiment trop lourd, ou que vous vous heurtez à des problèmes récurrents qui vous font perdre trop de temps, alors vous pouvez installer (du moins sur votre propre ordi, je ne sais pas si vous pouvez au laboratoire) une interface graphique distribuée par CRAN et qui fonctionne sous Windows, Mac et Linux (à ce qu’il paraît, je n’ai essayé que la version Windows).
+Il s’agit de Rcmdr, que vous devez d’abord installer dans R.
+Vous devez avoir accès à l’Internet.
+Dans la fenêtre de commande, entrez la commande</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;Rcmdr&quot;</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Une fenêtre s’ouvrira vous permettant de choisir l’un des sites distribuant Rcmdr.
+Le téléchargement et l’installation prendront plusieurs minutes car plusieurs autres packages doivent être téléchargées et installées.
+Quand ce sera terminé, vous pourrez démarrer l’interface graphique en entrant la commande: library(Rcmdr) Une nouvelle fenêtre s’ouvrira, avec des menus pour accéder à la majorité des commandes usuelles.
+Une des sous-fenêtres de Rcmdr est un historique des commandes R correspondant à vos choix dans les menus.
+Étudiez-les pour apprendre, peut-être plus facilement, le language R.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introductionR.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
