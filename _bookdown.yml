@@ -1,4 +1,5 @@
 #list files in order for book
+output_dir: "docs"
 rmd_files:
   html: ["index.Rmd", "01-introR.Rmd", "02-Gpower.Rmd", "03-reg_lin.Rmd", "04-t_test.Rmd", "05-anova.Rmd", "06-anova_mult.Rmd", "07-reg_mult.Rmd", "08-ancova_glm.Rmd", "09-model_freq.Rmd"]
   latex: ["index.Rmd", "01-introR.Rmd"]
