@@ -169,8 +169,8 @@ Chaque panneau illustre la distribution pour un sexe cette année-là, et la cou
 Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
 Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes `qqnorm()` et `qqline()`.
 ```{r stur_norm}
-qqnorm(fklngth)
-qqline(fklngth)
+qqnorm(sturgeon$fklngth)
+qqline(sturgeon$fklngth)
 ```
 
 Des données parfaitement normales suivraient la ligne droite diagonale.
@@ -183,7 +183,7 @@ Si oui, alors W=1.
 Si W s’éloigne de 1 (vers 0), alors les données s’éloignent de la normalité.
 Ici,
 ```{r shapito_stur}
-shapiro.test(fklngth)
+shapiro.test(sturgeon$fklngth)
 ```
 
 W n’est pas très loin de 1, mais suffisamment pour que la différence soit significative.
@@ -259,24 +259,24 @@ Les fonctions les plus fréquemment utilisées sont:
 On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
 Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire
 ```{r plot_translog_stur_plot, eval = FALSE}
-plot(log10(fklngth)~age)
+plot(log10(fklngth)~age, data = sturgeon)
 ```
 
  Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
  ```{r translog_stur_orph, eval = FALSE}
- logfklngth <- log10(fklngth)
+logfklngth <- log10(sturgeon$fklngth)
  ```
 
 Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole `$`, par exemple, pour ajouter une variable nommée `lfkl` contenant le log10 de fklngth au tableau sturgeon, on peut écrire:
 ```{r translog_stur_dat, eval = FALSE}
-sturgeon$logfkl <- log10(fklngth)
+sturgeon$logfkl <- log10(sturgeonfklngth)
 ```
 
 N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
 Pour les transformations conditionnelles, on peut utiliser la fonction `ifelse()`.
 Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:
 ```{r translog_stur_dummy, eval = FALSE}
-dummy <- ifelse(sex == "MALE", 1, 0)
+sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 ```
 
 ## Exercice
