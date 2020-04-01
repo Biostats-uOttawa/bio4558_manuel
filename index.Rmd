@@ -11,6 +11,9 @@ documentclass: book
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# Note {-}
+Version en cours de développement pour le cours de l'automne 2020
+
 # Préface {-}
 <!-- {-} pour enlever num/rotation -->
 
