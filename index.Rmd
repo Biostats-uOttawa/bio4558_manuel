@@ -11,8 +11,8 @@ documentclass: book
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-# Note {-}
-Version en cours de développement pour le cours de l'automne 2020
+## Note {-}
+Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.
 
 # Préface {-}
 <!-- {-} pour enlever num/rotation -->
@@ -24,8 +24,7 @@ En particulier il ne peut réfléchir à votre place, vous dire si l'analyse que
 ## Quelques points importants à retenir {-}
 
 - Avant de commencer une analyse statistique, il faut d'abord vous familiariser son fonctionnement.
-Cela ne veut pas dire que vous devez connaître les outils mathématiques qui la sous-tendent, mais
-vous devriez au moins comprendre les principes utilisés lors de cette analyse.
+Cela ne veut pas dire que vous devez connaître les outils mathématiques qui la sous-tendent, mais vous devriez au moins comprendre les principes utilisés lors de cette analyse.
 Avant de faire un exercice de laboratoire, lisez donc la section correspondante dans les notes de cours.
 Sans cette lecture préalable, il est très probable que les résultats produits par le logiciel, même si l'analyse a été effectuée correctement, seront indéchiffrables.
 - Les laboratoires sont conçus pour compléter les cours théoriques et vice versa.
@@ -36,10 +35,9 @@ Certains exercices prennent beaucoup moins de temps que d'autres et il n'est pas
 En fait deux séances de laboratoire sont prévues pour certains des exercices.
 Même si vous n'êtes pas notés sur les exercices de laboratoire, soyez conscient que ces exercices
 sont essentiels.
-Si vous ne les faites pas, il est très peu probable
-que vous serez capable de compléter les devoirs et l'examen final.
+Si vous ne les faites pas, il est très peu probable que vous serez capable de compléter les devoirs et le projet de session.
 Prenez donc ces exercices de laboratoire au sérieux !
-- Le premier laboratoire est conçu pour vous permettre d'acquérir ou de réviser le minimum de connaissances requises pour vous permettre de réaliser les exercices de laboratoires avec R.
+- Les 2 premier laboratoires sont conçu pour vous permettre d'acquérir ou de réviser le minimum de connaissances requises pour vous permettre de réaliser les exercices de laboratoires avec R.
 Il y a presque toujours de multiples façons de faire les choses avec R et vous ne trouverez ici que des méthodes simples.
 Ceux et celles d'entre vous qui y sont enclins pourront trouver en ligne des instructions plus détaillées et complexes.
 En particulier, je vous conseille :
@@ -96,14 +94,14 @@ Vous y trouverez des versions compilées (binaries) ou non (sources) pour votre 
 Note : R a déjà été installé sur les ordinateurs du laboratoire (la version pourrait être un peu plus ancienne, mais cela devrait être sans conséquences).
 
 ## Instructions générales pour les laboratoires {-}
-- Apporter une clé USB ou son équivalent à chaque séance de labo- ratoire pour sauvegarder votre travail.
-- Lire l’exercice de laboratoire AVANT la séance, lire le code R cor- respondant et préparer vos questions sur le code.
+
+- Apporter une clé USB ou son équivalent à chaque séance de laboratoire pour sauvegarder votre travail.
+- Lire l’exercice de laboratoire AVANT la séance, lire le code R correspondant et préparer vos questions sur le code.
 - Durant les pré-labs, écouter les instructions et posez vos questions au moment approprié.
 - Faites les exercices du manuel de laboratoire à votre rythme, en équipe, puis je vous recommande de commencer (compléter?) le devoir.
 Profitez de la présence du démonstrateur et du prof...
-- Pendant vos analyses, copiez-collez des fragments de sorties de R dans un document (par exemple dans votre traitement de texte favori).
-Annotez abondamment.
-- À chaque fois que vous fermez R, sauvegardez l’historique de vos commandes (ex: labo1.1.rHistory, labo1.2.rHistory, etc).
+- Pendant vos analyses, copiez-collez des fragments de sorties de R dans un document (par exemple dans votre traitement de texte favori) et annotez abondamment.
+- Ne tapez pas directement vos commandes dans R mais plutôt dans un script.
 Vous pourrez ainsi refaire le labo instantanément, récupérer des fragments de code, ou plus facilement identifier les erreurs dans vos analyses.
 - Créez votre propre librairie de fragments de codes (snippets).
 Annotez-là abondamment.
