@@ -1,2 +1,3 @@
-rm(list=ls()); bookdown::render_book("index.Rmd", "bookdown::gitbook")
+rm(list=ls());
+bookdown::render_book("index.Rmd", "bookdown::gitbook")
 bookdown::render_book("index.Rmd", "bookdown::pdf_book")
