@@ -2,7 +2,7 @@
 title: "BIO4558 Biostatistiques appliquées avec R"
 subtitle: "Manuel de Laboratoire"
 author: "Julien Martin"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 site: "bookdown::bookdown_site"
 output:
   bookdown::gitbook: default
@@ -107,6 +107,7 @@ Vous pourrez ainsi refaire le labo instantanément, récupérer des fragments de
 Annotez-là abondamment.
 Vous vous en féliciterez plus tard.
 
+<!--
 ## Et pour les dilettantes ou ceux qui sont allergiques à la programmation... {-}
 Je vous conseille d’essayer d’apprivoiser R sans interface graphique.
 Au début ce sera peut-être difficile, mais cela vous forcera à acquérir de bonnes habitudes.
@@ -115,7 +116,7 @@ Il s’agit de Rcmdr, que vous devez d’abord installer dans R.
 Vous devez avoir accès à l’Internet.
 Dans la fenêtre de commande, entrez la commande
 
-```{r, eval = FALSE}
+```{r install_rcmdr, eval = FALSE}
 install.packages("Rcmdr", dependencies=TRUE)
 ```
  Une fenêtre s’ouvrira vous permettant de choisir l’un des sites distribuant Rcmdr.
@@ -123,3 +124,4 @@ Le téléchargement et l’installation prendront plusieurs minutes car plusieur
 Quand ce sera terminé, vous pourrez démarrer l’interface graphique en entrant la commande:   library(Rcmdr) Une nouvelle fenêtre s’ouvrira, avec des menus pour accéder à la majorité des commandes usuelles.
 Une des sous-fenêtres de Rcmdr est un historique des commandes R correspondant à vos choix dans les menus.
 Étudiez-les pour apprendre, peut-être plus facilement, le language R.
+-->
