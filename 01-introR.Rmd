@@ -11,19 +11,41 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Effectuer des transformations de données
 
 ## Importer et exporter des données
-### Ouvrir et sauvegarder un fichier de données en format R
-Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format R (fichiers avec extension .Rdata).
+Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
+Les fichiers `.csv` sont utilisés pour stocker des données.
+Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, ...) et les tableurs (e.g. MS Excel, LO Calc).
+Les fichiers `.Rdata` sont utilisés pour stocker n'importe quelle objet R pas uniquement des données.
+Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+
+Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format `.csv`.
+
+### Ouvrir un fichier de données en format `.Rdata`
+
 Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
 ```{r load_choose, eval = FALSE}
 load(file.choose())
 ```
 ce qui ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur.
-Après avoir fait votre sélection (choisir le fichier `ErablesGatineau.Rdata`), vous reviendrez à la fenêtre Rconsole sans changement apparent.
+Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque que l'on souhaite l'utiliser.
 
-Vous pouvez aussi utiliser la commande suivante directement.
-```{r load}
-load("data/ErablesGatineau.Rdata")
+Vous pouvez aussi directement taper le nom du fichier entre guillemet `"nom du fichier avec l'extension"`.
+Par exemple,
+```{r load, eval = FALSE}
+load("ErablesGatineau.Rdata")
 ```
+
+### Ouvrir un fichier de données en format `.csv`
+Pour importer ces données en format `.csv` dans R, il faut utiliser la commande `read.csv()`.
+Par exemple, pour créer un objet R `erables` qui contient les données du fichier `ErablesGatineau.csv`, il faut utiliser la commande suivant.
+
+```{r erables}
+erables <- read.csv("data/ErablesGatineau.csv")
+```
+
+**Attrape** : Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
+Par défaut, R utilise le point décimal et vous n’obtiendrez pas le résultat escompté.
+Il existe une version modifiée de `read.csv()` appelée `read.csv2()` qui règle ce problème.
+Googlez-la si vous en avez besoin.
 
 Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction `ls()` ou en obtenir une liste avec une description plus détaillée avec `ls.str()`
 ```{r ls}
@@ -35,61 +57,40 @@ R confirme avoir en mémoire l’objet `ErablesGatineau`.
 
 ### Entrer des données
 R n’est pas un environnement idéal pour entrer des données.
-C’est possible, mais la syntaxe est lourde et m’incite à m’arracher les cheveux.
+C’est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
 Utilisez votre chiffrier préféré pour faire l’entrée de données.
 Ce sera plus efficace et moins frustrant.
 
 ### Nettoyer/corriger des données
 Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
-Retournez au fichier original, faites la correction là, puis re-exportez les données vers R.
+Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
 Il est finalement plus simple de refaire exécuter les quelques lignes de code par la machine.
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
-
-### Importer des données à partir d’Excel.
-Sauvegarder la matrice rectangulaire de données en dans un fichier en format csv (File>Save as).
-Importer ces données en R avec la commande `read.csv()`.
-Par exemple, pour créer un base de données appelé age à partir d’un fichier csv préalablement sauvegardé.
-Essayez avec le fichier age.csv exporté du fichier excel age.xls, soit en utilisant `file.choose()`, soit en nommant directement le fichier.
-
-```{r age_choose, eval = FALSE}
-age <- read.csv(file.choose())
-```
-```{r age}
-age <- read.csv("data/age.csv")
-```
-
-**Attrape** : Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
-Par défaut, R utilise le point décimal et vous n’obtiendrez pas le résultat escompté.
-Il existe une version modifiée de `read.csv()` appelée `read.csv2()` qui règle ce problème.
-Googlez-la si vous en avez besoin.
 
 ### Exporter des données à partir de R.
 Vous pouvez utiliser la fonction,
 ```{r write, eval =FALSE)
   write.csv(mydata, file = "outfilename.csv", row.names = FALSE)
 ```
-où mydata est le nom du base de données à exporter et `outfilename.csv` est le nom du fichier à produire. Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à `File>Change dir`, ou par la commande `setwd()`)
+où `mydata` est le nom du base de données à exporter et `outfilename.csv` est le nom du fichier à produire.
+Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à `File>Change dir`, ou par la commande `setwd()`)
 
 ## Examen préliminaire des données
 La première étape de toute analyse est l’examen des données.
 Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
 L’examen préliminaire des données permet souvent aussi d’identifier des observations suspectes, possiblement dûes à des erreurs d’entrée de donnée.
 Finalement, l’examen graphique préliminaire permet en général de visualiser les tendances principales qui seront confirmées par l’analyse statistique en tant que telle.
-Le fichier `sturgeon.Rdata` contient les données d’une étude effectuée sur les esturgeons de la rivière Saskatchewan.
+Le fichier `sturgeon.csv` contient les données d’une étude effectuée sur les esturgeons de la rivière Saskatchewan.
 Ces données ont été récoltées, entre autres, pour examiner comment la taille des esturgeons varie entre les sexes (sex), les sites (location), et les années (year).
 
 - Pour recommencer avec une ardoise vide, videz la mémoire de R de tout son contenu en tapant la commande `rm(list=ls())`
-- Ouvrez le fichier `sturgeon.Rdata`.
-- Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande `ls.str()`.
+- Chargez les données du fichier `sturgeon.csv` dans un objet `sturgeon`.
+- Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande `str(sturgeon)`.
 
-```{r load_stur, include = FALSE}
-load("data/sturgeon.Rdata")
-```
-
-
-```{r ls_sturgeon}
-ls.str()
+```{r load_stur}
+sturgeon <- read.csv("data/sturgeon.csv")
+str(sturgeon)
 ```
 
 ### Sommaire statistique
@@ -118,12 +119,8 @@ hist(sturgeon$fklngth)
 
 Les données semblent suivre approximativement une distribution normale.
 C’est bon à savoir.
-Cette syntaxe est un peu lourde puisqu’on doit ajouter le préfixe sturgeon$ devant chaque nom de variable.
-On peut se faciliter la tâche en utilisant la commande `attach()` qui va nous donner accès directement accès aux variables contenues dans la base de données.
-**Cependent, cela est fortement déconseillé.**
-```{r attach_stur, eval = FALSE}
-attach(sturgeon)
-```
+Cette syntaxe est un peu lourde puisqu’on doit ajouter le préfixe `sturgeon$` devant chaque nom de variable.
+On pourrait se faciliter la tâche en utilisant la commande `attach()` **mais cela est fortement déconseillé** et jamais utilisé dans ce document.
 
 Cet histogramme est la représentation classique.
 Mais les histogrammes ne sont pas parfaits.
@@ -133,7 +130,7 @@ Mais il faut programmer un peu (ou savoir copier-coller...)
 
 - Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
 
-```{r stur_script}
+```{r stur_g1}
 library(ggplot2)
 #  use "sturgeon" dataframe to make plot called mygraph
 #  and define x axis as representing fklngth
@@ -212,10 +209,10 @@ plot(fklngth ~ age, data = sturgeon)
 ```
 R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (`pairs()`).
 Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
-Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande `pairs(sturgeon, panel=panel.smooth)` et vous devriez obtenir
+Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande `pairs(sturgeon[,1:6], panel=panel.smooth)` et vous devriez obtenir
 
 ```{r pairs_stur}
-pairs(sturgeon, panel=panel.smooth)
+pairs(sturgeon[,1:6], panel = panel.smooth)
 ```
 
 ## Créer des sous-ensembles de cas
@@ -235,9 +232,9 @@ Dans le tableau qui suit se trouve une liste de commandes communes que vous alle
 
 Operateur | Explication | Operateur | Explication
 ----------|----------|----------|----------
- == | Égal à | != | Pas égal à
- \> | Plus que | < | Moins que
- \>= | Plus que ou égal à | <= | Moins que ou égal à
+ ==       | Égal à   | !=       | Pas égal à
+ \>       | Plus que | <        | Moins que
+ \>=      | Plus que ou égal à | <= | Moins que ou égal à
  \& | Et vectorisé | \| | Ou vectorisé
  \&\& | Et contrôle | \|\| | Ou contrôle
  ! | Pas | |
@@ -252,14 +249,14 @@ Il est très fréquemment nécessaire d’effectuer des transformations mathéma
 R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
 Les fonctions les plus fréquemment utilisées sont:
 
-- `log10()`
+- `log()`
 - `sqrt()`
 - `ifelse()`
 
 On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
 Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire
 ```{r plot_translog_stur_plot, eval = FALSE}
-plot(log10(fklngth)~age, data = sturgeon)
+plot(log(fklngth)~age, data = sturgeon)
 ```
 
  Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
@@ -279,12 +276,12 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 ```
 
-## Exercice
+## Exercice sur R
 Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
 Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
 
 ```{r intror_exer, echo = FALSE}
-load("data/salmonella.Rdata")
+salmonella <- read.csv("data/salmonella.csv")
 mygraph <- ggplot(subset(salmonella, souche == "SAUVAGE"), aes(x = ratio))
 mygraph <- mygraph +
   geom_density() +
