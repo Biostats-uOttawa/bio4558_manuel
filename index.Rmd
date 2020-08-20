@@ -6,12 +6,17 @@ date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 site: "bookdown::bookdown_site"
 output:
   bookdown::gitbook: default
+  bookdown::pdf_book:
+    extra_dependencies: ["float"]
 documentclass: book
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+library(ggplot2)
+library(car)
 ```
-## Note {-}
+# Note {-}
 Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.
 
 # Préface {-}
