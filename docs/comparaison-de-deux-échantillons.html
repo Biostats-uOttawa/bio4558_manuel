@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="corrélation-et-régression-linéaire-simple.html"/>
-
+<link rel="next" href="anova-à-un-critère-de-classification.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -199,6 +199,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>4.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
 <li class="chapter" data-level="4.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>4.6</b> Références</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="5.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>5.2.1</b> Visualiser les données</a></li>
+<li class="chapter" data-level="5.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>5.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
+<li class="chapter" data-level="5.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>5.2.3</b> Faire l’ANOVA</a></li>
+<li class="chapter" data-level="5.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2.4</b> Les comparaisons multiples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>5.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
+<li class="chapter" data-level="5.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
+<li class="chapter" data-level="5.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
 </ul>
 
@@ -418,8 +430,8 @@ Figure 4.3: Condition d’application du modèle linéaire
 ## 
 ## Bootstrap Statistics :
 ##      original      bias    std. error
-## t1* 45.084391  0.02006423   0.4385534
-## t2* -1.714546 -0.02588481   0.7687507</code></pre>
+## t1* 45.084391 -0.02033768   0.4362823
+## t2* -1.714546  0.01666320   0.7784776</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
@@ -438,7 +450,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.234, -0.176 )  
+## 95%   (-3.318, -0.211 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
@@ -461,7 +473,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 3784   0.0259 *
+## location1   0.8573 5000   0.0146 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -573,8 +585,8 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 </div>
 <div id="références" class="section level2">
 <h2><span class="header-section-number">4.6</span> Références</h2>
-<p>Bumpus, H.C. (1898) The elimination of the unfit as illustrated by the introduced sparrow, Passer domesticus. Biological Lectures, Woods Hole Biology Laboratory, Woods Hole, 11 th Lecture: 209 - 226.
-Newman, K.J. and H.V. Meredith. (1956) Individual growth in skele- tal bigonial diameter during the childhood period from 5 to 11 years of age. Amer. J. Anat. 99: 157 - 187.</p>
+<p>Bumpus, H.C. (1898) The elimination of the unfit as illustrated by the introduced sparrow, Passer domesticus. Biological Lectures, Woods Hole Biology Laboratory, Woods Hole, 11 th Lecture: 209 - 226.</p>
+<p>Newman, K.J. and H.V. Meredith. (1956) Individual growth in skele- tal bigonial diameter during the childhood period from 5 to 11 years of age. Amer. J. Anat. 99: 157 - 187.</p>
 
 </div>
 </div>
@@ -583,8 +595,8 @@ Newman, K.J. and H.V. Meredith. (1956) Individual growth in skele- tal bigonial 
           </div>
         </div>
       </div>
-<a href="corrélation-et-régression-linéaire-simple.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="corrélation-et-régression-linéaire-simple.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="anova-à-un-critère-de-classification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -200,6 +200,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>4.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
 <li class="chapter" data-level="4.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>4.6</b> Références</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="5.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>5.2.1</b> Visualiser les données</a></li>
+<li class="chapter" data-level="5.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>5.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
+<li class="chapter" data-level="5.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>5.2.3</b> Faire l’ANOVA</a></li>
+<li class="chapter" data-level="5.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2.4</b> Les comparaisons multiples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>5.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
+<li class="chapter" data-level="5.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
+<li class="chapter" data-level="5.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -817,8 +829,8 @@ Figure 3.4: Analyse à priori pour déterminer la taille d’échantillon pour u
 ## 
 ## Bootstrap Statistics :
 ##      original        bias    std. error
-## t1* 1.1919926  0.0010636205  0.03307135
-## t2* 0.3408557 -0.0005121717  0.02615564</code></pre>
+## t1* 1.1919926  0.0010443976  0.03330065
+## t2* 0.3408557 -0.0006089909  0.02649592</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -844,10 +856,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.126,  1.256 )   ( 1.125,  1.256 )  
+## 95%   ( 1.126,  1.256 )   ( 1.123,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.259 )   ( 1.115,  1.251 )  
+## 95%   ( 1.127,  1.261 )   ( 1.121,  1.254 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
 <a class="sourceLine" id="cb93-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
@@ -861,10 +873,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2901,  0.3926 )   ( 0.2911,  0.3924 )  
+## 95%   ( 0.2895,  0.3934 )   ( 0.2890,  0.3958 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2893,  0.3906 )   ( 0.2949,  0.3998 )  
+## 95%   ( 0.2859,  0.3927 )   ( 0.2915,  0.3999 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

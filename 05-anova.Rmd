@@ -140,11 +140,11 @@ Dans d’autres situations, vous pourriez obtenir des résultats contradictoires
 La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a une sale petit bogue qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans mon code):
 
 ```{r, ano-12}
-#myyear <- as.factor(paste("", year))
-TukeyHSD(aov(fklngth ~ year))
+Dam10dat$myyear <- as.factor(paste("", Dam10dat$year))
+TukeyHSD(aov(fklngth ~ myyear, data = Dam10dat))
 ```
 ```{r, ano-13, fig.cap = "Différence anuelles dans la longueur des esturgeons"}
-plot(TukeyHSD(aov(fklngth ~ year)))
+plot(TukeyHSD(aov(fklngth ~ myyear, data = Dam10dat)))
 ```
 Les intervalles de confiance, corrigés pour les comparaisons multiples par la méthode de Tukey, sont illustrés pour les différences entre années. Malheureusement les légendes ne sont pas complètes, mais l’ordre est le même que dans le tableau précédent.
 
@@ -153,10 +153,10 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ```{r, ano-14, fig.cap = "Différence anuelles dans la longueur des esturgeons"}
 # Alternative way to compute Tukey multiple comparisons
 # set up a one-way ANOVA
-anova.fkl.vs.year <- aov(aov(fklngth ~ year))
+anova.fkl.vs.year <- aov(aov(fklngth ~ myyear, data = Dam10dat))
 # set up all-pairs comparisons for factor `year'
 
-meandiff <- glht(anova.fkl.vs.year, linfct = mcp(year =
+meandiff <- glht(anova.fkl.vs.year, linfct = mcp(myyear =
 "Tukey"))
 confint(meandiff)
 
@@ -169,7 +169,7 @@ C’est un peu mieux, mais ce qui le serait encore plus c’est un graphique des
 
 ```{r, ano-15, fig.cap = "Différence anuelles dans la longueur des esturgeons"}
 # Compute and plot means and Tukey CI
-means <- glht(anova.fkl.vs.year, linfct = mcp(year =
+means <- glht(anova.fkl.vs.year, linfct = mcp(myyear =
 "Tukey"))
 cimeans <- cld(means)
 # use sufficiently large upper margin
@@ -209,7 +209,7 @@ Alors, on a toujours des problèmes avec la normalité et on est juste sur le se
 tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur `fklngth` et comparez les résultats à ceux de l'analyse paramétrique. Que concluez-vous?
 
 ```{r, ano-18}
-kruskal.test(fklngth, year, data=Dam10dat)
+kruskal.test(fklngth ~ year, data=Dam10dat)
 ```
 
 La conclusion est donc la même qu’avec l’ANOVA paramétrique: on rejette l’hypothèse nulle que le rang moyen est le même pour chaque année. Donc, même si les conditions d’application de l’analyse paramétrique n’étaient pas parfaitement rencontrées, les conclusions sont les mêmes, ce qui illustre la robustesse de l’ANOVA paramétrique.
@@ -230,7 +230,7 @@ shapiro.test(residuals(aov.Damsubset))
 ```
 
 ```{r, ano-21}
-leveneTest(fklngth) ~ year, Damsubset)
+leveneTest(fklngth ~ year, Damsubset)
 ```
 
 L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.
