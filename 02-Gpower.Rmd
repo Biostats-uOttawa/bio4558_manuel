@@ -167,9 +167,16 @@ Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s’attend
 On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une différence aussi grande que celle-là avant d’accepter ses conclusions que la biomasse est la même entre les deux régions.
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 $g/m^2$ entre les deux régions? G\*Power peut nous le dire.
 
-- Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir:
+- Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir :
 
-![Analyse post-hoc avec une taille d'effet différente](images/gpower_2.png)
+![Analyse post-hoc avec une taille d'effet différente\label{gpower_2}](images/gpower_2.png)
+<!-- ```{r,2}
+knitr::include_graphics("images/gpower_2.png")
+``` -->
+<!-- \begin{figure}[H]
+  \includegraphics{images/gpower_2.png}
+  \caption{Analyse post-hoc avec une taille d'effet différente}
+\end{figure} -->
 
 La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.
 
@@ -187,6 +194,11 @@ Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chan
 Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance et vous obtiendrez:
 
 ![Analyse à priori](images/gpower_3.png)
+<!-- \begin{figure}[ht]
+  \includegraphics{images/gpower_3.png}
+  \caption{Analyse à priori}
+\end{figure} -->
+
 
 **Ouch!** Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
 Sans cela, on ne pourrait échantillonner que quelques dizaines de ruisseaux, et il serait peu probable que l’on puisse détecter une si faible différence de biomasse entre les deux régions.
@@ -202,6 +214,10 @@ Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 
 Vous obtiendrez:
 
 ![Analyse de sensitivité](images/gpower_4.png)
+<!-- \begin{figure}[ht]
+  \includegraphics{images/gpower_4.png}
+  \caption{Analyse de sensitivité}
+\end{figure} -->
 
 La taille d’effet détectable pour cette taille d’échantillon, $\alpha=0.05$ et $\beta=0.2$ (ou une puissance de 80%) est de 0.961296.
 **Attention**, cette valeur est l’indice `d` de la taille de l’effet et est pondérée par la variabilité des mesures.
