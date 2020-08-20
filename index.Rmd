@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 library(ggplot2)
 library(car)
+library(lmtest)
 ```
 # Note {-}
 Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.
