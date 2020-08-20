@@ -2,15 +2,15 @@
 
 Après avoir complété cet exercice de laboratoire, vous devriez être en mesure de :
 
-• Utiliser R pour produire un diagramme de dispersion pour illus-
+* Utiliser R pour produire un diagramme de dispersion pour illus-
 trer la relation entre deux variables avec trace lowess
-• Utiliser R pour faire des transformations simples
-• Utiliser R pour calculer le coefficient de corrélation de Pearson entre deux variables et en évaluer sa signification statistique
-• Utiliser R pour calculer la corrélation de rang entre des paires de variables avec le r de Spearman et le tau de Kendall
-• Utiliser R pour évaluer la signification de corrélations dans une matrice de corrélation en utilisant les probabilités ajustées par la méthode de Bonferroni.
-• Utiliser R pour faire une régression linéaire simple.
-• Utiliser R pour évaluer si un ensemble de données remplit les conditions d'application d'une analyse de régression simple.
-• Quantifier la taille de l’effet d’une régression simple et effectuer une analyse de puissance avec G\*Power.
+* Utiliser R pour faire des transformations simples
+* Utiliser R pour calculer le coefficient de corrélation de Pearson entre deux variables et en évaluer sa signification statistique
+* Utiliser R pour calculer la corrélation de rang entre des paires de variables avec le r de Spearman et le tau de Kendall
+* Utiliser R pour évaluer la signification de corrélations dans une matrice de corrélation en utilisant les probabilités ajustées par la méthode de Bonferroni.
+* Utiliser R pour faire une régression linéaire simple.
+* Utiliser R pour évaluer si un ensemble de données remplit les conditions d'application d'une analyse de régression simple.
+* Quantifier la taille de l’effet d’une régression simple et effectuer une analyse de puissance avec G\*Power.
 
 ## Diagrammes de dispersion
 Les analyses de corrélation et de régression devraient toujours commencer par un examen des données.C'est une étape critique qui sert à évaluer si ce type d'analyse est approprié pour un ensemble de données.
@@ -24,14 +24,14 @@ corrélation est que la relation entre les deux variables est linéaire. Pour
 - Les données sur les esturgeons son disponibles dans le fichier `sturgeon.csv`.
 Après avoir chargé les données dnas un objet `sturgeon`, faites un diagramme de dispersion avec une droite de régression et une courbe LOWESS de la longueur en fonction du poids.
 
-```{r, stur_1}
+```{r, stur-1}
 sturgeon <- read.csv("data/sturgeon.csv")
 str(sturgeon)
 ```
 
-```{r, stur_2}
+```{r, stur-2, warning = FALSE, message =  FALSE, fig.cap = "Graphique du poids en fonction de la longueur des esturgeons"}
 mygraph<-ggplot(
-  data = sturgeon, # source of data
+  data = sturgeon[!is.na(sturgeon$rdwght),], # source of data
   aes(x = fklngth, y = rdwght))
 # plot data points, regression, loess trace
 mygraph <- mygraph +
@@ -52,12 +52,12 @@ Malgré tout, il semble y avoir une forte corrélation entre les deux variables.
 
 - Refaites le diagramme de dispersion avec des axes logarithmiques.
 
-```{r, stru_log}
+```{r, stur-log, warning = FALSE, message =  FALSE, fig.cap = "Graphique poids-longueur avec une échelle log"}
 # apply log transformation on defined graph
 mygraph + scale_x_log10() + scale_y_log10()
 ```
 
-Comparez les diagrammes de dispersion avant et après transformation (Figures \@ref(fig:stur_2) et \@ref(fig:stur_log)). Comme l’analyse de corrélation présuppose une relation linéaire entre les variables, on devrait donc privilégier l’analyse sur les données log-transformées.
+Comparez les diagrammes de dispersion avant et après transformation (Figures \@ref(fig:stur-2) et \@ref(fig:stur-log)). Comme l’analyse de corrélation présuppose une relation linéaire entre les variables, on devrait donc privilégier l’analyse sur les données log-transformées.
 
 ## Transformations et le coefficient de corrélation
 Une autre condition préalable à l'analyse de corrélation est que les deux variables concernées suivent une distribution normale bidimensionnelle.
@@ -70,7 +70,7 @@ Les figures ci-dessous sont les diagrammes de probabilité (`qqplot()).
 Le code pour produire des graphiques multiples sur une page, comme
 on voit ci-dessous, est:
 
-```{r, stur_4hist}
+```{r, stur-4hist}
 par(mfrow = c(2, 2)) # divise le graphique en 4 sections
 qqnorm(sturgeon$fklngth,ylab="fklngth")
 qqline(sturgeon$fklngth)
@@ -89,7 +89,7 @@ parfaitement normale, mais les déviations semblent mineures.
 
 - Générez une matrice de graphiques de dispersion améliorés en utilisant la commande `scatterplotMatrix` de la librairie `car`.
 
-```{r, stur_scatmat}
+```{r, stur-scatmat}
 scatterplotMatrix(
   ~fklngth+log10(fklngth)+rdwght+log10(rdwght),
   data= sturgeon,
@@ -99,7 +99,7 @@ scatterplotMatrix(
 - Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées ) en utilisant la commande `cor()`.
 Avant de commencer, on va cependant ajouter les variables transformées au tableau de données sturgeon:
 
-```{r, stur_newvar}
+```{r, stur-newvar}
 sturgeon$lfklngth <- with(sturgeon, log10(fklngth))
 sturgeon$lrdwght <- log10(sturgeon$rdwght)
 ```
@@ -120,7 +120,7 @@ observations.
 
 Pourquoi la corrélation entre les variables originales est-elle la plus faible des trois ?
 
-```{r, sturmat_eval}
+```{r, sturmat-eval}
 cor(sturgeon[,c("fklngth","lfklngth","lrdwght","rdwght")], use="complete.obs")
 ```
 
@@ -141,7 +141,7 @@ Comme exemple, essayons de tester si la corrélation entre lfklngth et rdwght es
 
 - Estimer la correlation entre la longueur (fklngth) et le poids (rdwght) des esturgeons:
 
-```{r, sturcor_2}
+```{r, sturcor-2}
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
   alternative="two.sided",
@@ -169,14 +169,14 @@ Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kend
 - Dans R, testez la corrélation entre `fklngth` et `rdwght` en utilisant Spearman et Kendall’s .
 
 
-```{r, sturcor_spear}
+```{r, sturcor-spear}
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
   alternative="two.sided",
   method="spearman")
 ```
 
-```{r, sturcor_ken}
+```{r, sturcor-ken}
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
   alternative="two.sided",
@@ -213,7 +213,7 @@ Puisque l'on est intéressé à quantifier la relation entre deux variables, un 
 Faites un diagramme de dispersion de `fklngth` (la variable dépendante) en fonction de `age` (la variable indépendante) pour les esturgeons mâles unqiuement et ajoutez-y une régression linéaire et une trace lowess.
 Que concluez-vous de ce diagramme de dispersion ?
 
-```{r, sturlm_1}
+```{r, sturlm-1}
 sturgeon.male <- subset(sturgeon, subset = sex == "MALE")
 mygraph <- ggplot(
   data=sturgeon.male, # source of data
@@ -233,14 +233,14 @@ Un estimé (peut-être pas terrible...) du taux de croissance peut être obtenu 
 
 Ajustons d’abord une régression avec la commande lm() et sauvons ces résultats dans un objet appelé `RegModel.1`.
 
-```{r, sturlm_2}
+```{r, sturlm-2}
 RegModel.1 <- lm(fklngth ~ age, data = sturgeon.male)
 ```
 
 Rien n’apparait à l’écran, c'est normal ne vous inquiétez pas, tout a été sauvegardé en mémoire.
 Pour voir les résultats, tapez:
 
-```{r, sturlm_3}
+```{r, sturlm-3}
 summary(RegModel.1)
 ```
 
@@ -285,7 +285,7 @@ peuvent cependant être vérifiées, ou du moins évaluées visuellement.
 La commande plot() permet de visualiser des graphiques
 diagnostiques pour des modèles linéaires.
 
-```{r, sturlmv_1, eval = FALSE}
+```{r, sturlmv-1, eval = FALSE}
 par(mfrow = c(2, 2), las=1)
 plot(RegModel.1)
 ```
@@ -293,7 +293,7 @@ plot(RegModel.1)
 La commande par() est utilisée pour dire à R de tracer 2 rangées et 2 colonnes de graphiques par page (il y a quatre graphiques diagnostiques qui sont générés automatiquement pour les modèles linéaires), et la commande las indique à R d’effectuer une rotation des légendes de l’axe des Y pour qu’elles soient perpendiculaires à l’axe (oui. Je sais. Rien de tout ça n’est évident.)
 
 Vous obtiendrez:
-```{r, sturlmv_1eval, include = FALSE}
+```{r, sturlmv-1eval, echo = FALSE}
 par(mfrow = c(2, 2), las=1)
 plot(RegModel.1)
 ```
@@ -314,29 +314,29 @@ Personnellement, je n’utilise jamais les tests formels des conditions d’appl
 Le package `lmtest` , qui ne fait pas partie de l’installation de base, mais qui est disponible sur CRAN, permet de faire plusieurs tests de linéarité et d’homoscédasticité. Et on peut tester la normalité avec le test Shapiro-Wilk test vu précédemment.
 
 - Charger le package lmtest de CRAN (et installer le si besoin).
-```{r, sturfor_1}
+```{r, sturfor-1}
 library(lmtest)
 ```
 - Exécutez les commandes suivantes:
-```{r, sturfor_2}
+```{r, sturfor-2}
 bptest(RegModel.1)
 ```
 
 Le test Breusch-Pagan test examine si la variabilité des résidus est constantes lorsque les valeurs prédites changent. Une faible valeur de p suggère de l’hétéroscédasticité. Ici, la valeur p est élevée et suggère que la condition d’application d’homoscédasticité est remplie avec ces données.
 
-```{r, sturfor_3}
+```{r, sturfor-3}
 dwtest(RegModel.1)
 ```
 
 Le test Durbin-Watson permet de détecter l’autocorrélation sérielle des résidus. En l’absence d’autocorrélation (i.e. d’indépendance des résidus) la valeur attendue de la statistique D est 2. Ce test permet d’éprouver l’hypothèse d’indépendance des résidus, mais ne permet de détecter qu’un type particulier de dépendance. Ici, le test ne permet pas de rejeter l’hypothèse d’indépendance.
 
-```{r, sturfor_4}
+```{r, sturfor-4}
 resettest(RegModel.1)
 ```
 
 Le test RESET permet d’éprouver la linéarité. Si la relation est linéaire, alors la statistique RESET sera d’environ 1. Ici, la statistique est beaucoup plus élevée (14.54) et hautement significative. Le test confirme la tendance que nous avons détectée visuellement plus haut: la relation n’est pas linéaire.
 
-```{r, sturfor_5}
+```{r, sturfor-5}
 shapiro.test(residuals(RegModel.1))
 ```
 
@@ -347,7 +347,7 @@ La relation entre `fklngth` et `age` n’étant pas linéaire, on devrait donc e
 
 - Voyons ce qu’une transformation log donne:
 
-```{r, sturtr_1}
+```{r, sturtr-1}
 par(mfrow = c(1, 1), las=1)
 ggplot(
   data = sturgeon.male,
@@ -359,21 +359,21 @@ ggplot(
 
 Ajustons maintenant une régression simple sur ces données transformées.
 
-```{r, sturtr_2}
+```{r, sturtr-2}
 RegModel.2 <- lm(log10(fklngth)~log10(age), data=sturgeon.male)
 summary(RegModel.2)
 ```
 
 Examinons maintenant les graphiques diagnostiques:
 
-```{r, sturtr_3}
+```{r, sturtr-3}
 par(mfrow = c(2, 2), las=1)
 plot(RegModel.2)
 ```
 
 Il y a une certaine amélioration, mais ce n’est pas encore parfait (la perfection n’est pas de ce monde....). Le graphique des résidus en fonction des valeurs prédites suggère encore une certaine non linéarité. Sur le graphique Q-Q les points se retrouvent plus près de la droite diagonale qu’avant, indiquant que les résidus sont encore plus près de la normalité après la transformation log-log. Il n’y a pas d’indice d’hétéroscédasticité. Finalement, même si il reste quelques points avec plus d’influence (leverage) que les autres, aucun n’a une distance de Cook au-delà de 0.5. En résumé, la transformation log a amélioré les choses: relation est plus linéaire, les résidus sont plus normaux, et il y a moins de points avec une influence relativement élevée.Est-ce que les tests formels supportent cette évaluation?
 
-```{r, sturtr_4}
+```{r, sturtr-4}
 bptest(RegModel.2)
 dwtest(RegModel.2)
 resettest(RegModel.2)
@@ -394,7 +394,7 @@ L’approche conservatrice qui consiste à conserver toutes les valeurs extrême
 Suivant cette approche comparative, refaisons donc l’analyse après
 avoir enlevé les observations 8, 24, et 112.
 
-```{r, sturtr_5}
+```{r, sturtr-5}
 RegModel.3 <- lm(log10(fklngth)~log10(age), data=sturgeon.male, subset = !(rownames(sturgeon.male) %in% c('8','24','112')))
 summary(RegModel.3)
 ```
@@ -404,7 +404,7 @@ L’ordonnée à l’origine (Intercept), la pente, et le R carré sont presque 
 
 Les graphiques diagnostiques des résidus et les tests formels des conditions d’application sur ce sous-ensemble de données donnent:
 
-```{r, sturtr_6}
+```{r, sturtr-6}
 par(mfrow = c(2,2))
 plot(RegModel.3)
 sturgeon.male.subset <- subset(sturgeon, subset=!(rownames(sturgeon.male) %in% c('8','24','112')))
@@ -428,7 +428,7 @@ Vous pouvez calculer approximativement la puissance avec G\*Power pour une valeu
 
 Par exemple, supposons que les ichthyologues considèrent qu’une pente de 0.1 pour la relation entre log10(fklngth) et log10(age) est signifiante biologiquement, et qu’ils désirent estimer la puissance de détecter une telle pente à partir d’un échantillon de 20 esturgeons. Les résultats de la régression log-log nous fournissent ce dont on a besoin:
 
-```{r, sturpow_1}
+```{r, sturpow-1}
 summary(RegModel.2)
 ```
 
@@ -437,23 +437,25 @@ $$ d = \frac{b}{s_b\sqrt{n-k-1}} = \frac{0.1}{0.02168\sqrt{74-1-1}}=0.54$$
 
 Armés de cette taille d’effet (une pente présumée de 0.1 et une variabilité autour de la régression similaire à la régression de fklngth vs age), aller à __Tests: Means: One group: difference from constant__, et entrez la valeur calculée de d, alpha, et l’effectif de l’échantillon pour calculer la puissance.
 
-![](images/lm_pow_1.png)
-
+```{r, lm-pow-fig-1, fig.cap = "Analyse de puissance pour N = 20 et pente = 0.1", out.width = "100%", echo = FALSE  }
+knitr::include_graphics("images/lm_pow_1.png")
+```
 
 La puissance de détecter une pente comme étant statistiquement significative (au niveau alpha), si la pente est 0.1, que la variabilité résiduelle autour de la régression est semblable à celle de notre échantillon (ce qui revient à une taille d’effet de 0.54, pour un échantillon de 20 esturgeons et alpha=0.05) est de 0.629. Seulement environ 2/3 des échantillons de cette taille détecteraient un effet significatif de l’âge sur `fklngth`.
 
 ### Effectif requis pour atteindre une puissance désirée (test A-priori)
 Pour estimer la taille d’échantillon (effectif) requis pour avoir une puissance de 99% de détecter un effet de l’âge si la pente est 0.1 (sur une échelle log-log ), avec alpha=0.05, on utilise la même valeur de d (0.54):
 
-![](images/lm_pow_2.png)
-
+```{r, lm-pow-fig-2, fig.cap = "Analyse à priori pour déterminer la taille d'échantillon pour une puissance de 0.99", out.width = "100%", echo = FALSE  }
+knitr::include_graphics("images/lm_pow_2.png")
+```
 En augmentant la taille de l’échantillon à 65, selon le même scénario que précédemment, la puissance augmente à 99%.
 
 ## Bootstrap en régression simple avec R
 
 Un test non paramétrique pour l’ordonnée à l’origine et la pente d’une régression simple peut être effectué par bootstrap.
 
-```{r, lm_boot_1}
+```{r, lm-boot-1}
 #charger le paquet boot
 library(boot)
 # obtenir les poids de régression
@@ -478,7 +480,7 @@ appelée t1\* et la pente de la régression t2\*), R imprime :
 2. `bias` la différence entre la valeur moyenne des estimés par bootstrap et la valeur originale sur tout l’échantillon
 3. `std. error` l’erreur-type de l’estimé bootstrap
 
-```{r, lm_boot_2}
+```{r, lm-boot-2}
 par(mfrow = c(2,2))
 plot(results, index=1) # intercept
 plot(results, index=2) # log10(age)
@@ -487,11 +489,11 @@ plot(results, index=2) # log10(age)
 
 La distribution des estimés obtenus par bootstrap est assez normale dans cet exemple, avec de petites déviations dans les queuee de la distribution (là où ça compte pour les intervalles de confiance...). On pourrait utiliser l’erreur-type des estimés bootstrap pour calculer un intervalle de confiance symétrique (moyenne +- t ET). Cependant, comme R peut facilement calculer des intervalles de confiance qui corrigent pour le biais (BCa) ou encore des intervalle empiriques à partir des distributions simulées (méthode Percentile) il peut être aussi simple de les calculer selon les 3 méthodes:
 
-```{r, lm_boot_3}
+```{r, lm-boot-3}
 # interval de confiance pour l'ordonnée à l'origine
 boot.ci(results, type = "all", index = 1)
 ```
-```{r, lm_boot_4}
+```{r, lm-boot-4}
 #intervalle de confiance pour la pente
 boot.ci(results, type = "all", index = 2)
 ```
