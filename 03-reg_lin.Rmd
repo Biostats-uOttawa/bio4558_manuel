@@ -213,7 +213,7 @@ Puisque l'on est intéressé à quantifier la relation entre deux variables, un 
 Faites un diagramme de dispersion de `fklngth` (la variable dépendante) en fonction de `age` (la variable indépendante) pour les esturgeons mâles unqiuement et ajoutez-y une régression linéaire et une trace lowess.
 Que concluez-vous de ce diagramme de dispersion ?
 
-```{r, sturlm-1}
+```{r, sturlm-1, warning = FALSE, message =  FALSE}
 sturgeon.male <- subset(sturgeon, subset = sex == "MALE")
 mygraph <- ggplot(
   data=sturgeon.male, # source of data
@@ -347,7 +347,7 @@ La relation entre `fklngth` et `age` n’étant pas linéaire, on devrait donc e
 
 - Voyons ce qu’une transformation log donne:
 
-```{r, sturtr-1}
+```{r, sturtr-1,warning = FALSE, message =  FALSE}
 par(mfrow = c(1, 1), las=1)
 ggplot(
   data = sturgeon.male,

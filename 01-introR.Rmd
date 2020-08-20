@@ -22,7 +22,7 @@ Les données pour les exercices de laboratoire et pour les devoirs vous sont fou
 ### Ouvrir un fichier de données en format `.Rdata`
 
 Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
-```{r load_choose, eval = FALSE}
+```{r load-choose, eval = FALSE}
 load(file.choose())
 ```
 ce qui ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur.
@@ -88,14 +88,14 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 - Chargez les données du fichier `sturgeon.csv` dans un objet `sturgeon`.
 - Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande `str(sturgeon)`.
 
-```{r load_stur}
+```{r load-stur}
 sturgeon <- read.csv("data/sturgeon.csv")
 str(sturgeon)
 ```
 
 ### Sommaire statistique
 Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
-```{r sum_stur}
+```{r sum-stur}
 summary(sturgeon)
 ```
 
@@ -113,7 +113,7 @@ On y reviendra, mais prenez l’habitude de noter mentalement si il y a des donn
 Examinons maintenant de plus près la distribution de fklngth.
 La commande `hist()` permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.
 
-```{r hist_stur}
+```{r hist-stur}
 hist(sturgeon$fklngth)
 ```
 
@@ -130,7 +130,7 @@ Mais il faut programmer un peu (ou savoir copier-coller...)
 
 - Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
 
-```{r stur_g1}
+```{r stur-g1, warning = FALSE, message =  FALSE}
 library(ggplot2)
 #  use "sturgeon" dataframe to make plot called mygraph
 #  and define x axis as representing fklngth
@@ -165,7 +165,7 @@ mygraph + facet_grid(year ~ sex)
 Chaque panneau illustre la distribution pour un sexe cette année-là, et la courbe en rouge récurrente représente la distribution normale pour l’ensemble des données.
 Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
 Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes `qqnorm()` et `qqline()`.
-```{r stur_norm}
+```{r stur-norm}
 qqnorm(sturgeon$fklngth)
 qqline(sturgeon$fklngth)
 ```
@@ -179,7 +179,7 @@ De plus, on peut facilement éprouver statistiquement l’hypothèse que les don
 Si oui, alors W=1.
 Si W s’éloigne de 1 (vers 0), alors les données s’éloignent de la normalité.
 Ici,
-```{r shapito_stur}
+```{r shapito-stur}
 shapiro.test(sturgeon$fklngth)
 ```
 
@@ -188,7 +188,7 @@ L’examen visuel des grands échantillons est souvent compliqué par le fait qu
 Les boxplots avec "moustaches" (box and whiskers plots) offrent une alternative intéressante.
 La commande `boxplot()` peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.
 
-```{r boxplot_stur}
+```{r boxplot-stur}
 boxplot(fklngth ~ sex, data = sturgeon, notch = TRUE)
 ```
 
@@ -205,7 +205,7 @@ La commande `plot(y~x)` permet de faire le graphique de y sur l’axe vertical (
 - Faites un graphique de fklngth en fonction de age avec la commande plot.
 Vous devriez obtenir:
 
-```{r stur_biv_plot}
+```{r stur-biv-plot}
 plot(fklngth ~ age, data = sturgeon)
 ```
 
@@ -213,7 +213,7 @@ R a une fonction qui permet la création des graphiques de dispersion de toutes 
 Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
 Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande `pairs(sturgeon[,1:6], panel=panel.smooth)` et vous devriez obtenir
 
-```{r pairs_stur}
+```{r pairs-stur}
 pairs(sturgeon[,1:6], panel = panel.smooth)
 ```
 
@@ -223,7 +223,7 @@ Les cas sont d’habitude sélectionnés selon un critère en particulier.
 Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande `subset()`.
 Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui ne contient que les femelles capturées en 1978, on peut écrire :
 
-```{r stur_subset}
+```{r stur-subset}
 sturgeon.female.1978 <- subset(sturgeon, sex == "FEMALE" & year == "1978")
 sturgeon.female.1978
 ```
@@ -257,24 +257,24 @@ Les fonctions les plus fréquemment utilisées sont:
 
 On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
 Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire
-```{r plot_translog_stur_plot, eval = FALSE}
+```{r plot-translog-stur-plot, eval = FALSE}
 plot(log(fklngth)~age, data = sturgeon)
 ```
 
  Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
- ```{r translog_stur_orph, eval = FALSE}
+ ```{r translog-stur-orph, eval = FALSE}
 logfklngth <- log10(sturgeon$fklngth)
  ```
 
 Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole `$`, par exemple, pour ajouter une variable nommée `lfkl` contenant le log10 de fklngth au tableau sturgeon, on peut écrire:
-```{r translog_stur_dat, eval = FALSE}
+```{r translog-stur-dat, eval = FALSE}
 sturgeon$logfkl <- log10(sturgeonfklngth)
 ```
 
 N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
 Pour les transformations conditionnelles, on peut utiliser la fonction `ifelse()`.
 Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:
-```{r translog_stur_dummy, eval = FALSE}
+```{r translog-stur-dummy, eval = FALSE}
 sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 ```
 
@@ -282,7 +282,7 @@ sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
 Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
 
-```{r intror_exer, echo = FALSE}
+```{r intror-exer, echo = FALSE, warning = FALSE, message =  FALSE}
 salmonella <- read.csv("data/salmonella.csv")
 mygraph <- ggplot(subset(salmonella, souche == "SAUVAGE"), aes(x = ratio))
 mygraph <- mygraph +
