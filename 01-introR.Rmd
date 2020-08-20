@@ -204,9 +204,11 @@ La commande `plot(y~x)` permet de faire le graphique de y sur l’axe vertical (
 
 - Faites un graphique de fklngth en fonction de age avec la commande plot.
 Vous devriez obtenir:
-```{r stur_biv_plot, echo = TRUE, eval = TRUE}
+
+```{r stur_biv_plot}
 plot(fklngth ~ age, data = sturgeon)
 ```
+
 R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (`pairs()`).
 Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
 Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande `pairs(sturgeon[,1:6], panel=panel.smooth)` et vous devriez obtenir
