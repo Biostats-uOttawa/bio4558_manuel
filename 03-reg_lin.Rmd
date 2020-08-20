@@ -12,6 +12,16 @@ trer la relation entre deux variables avec trace lowess
 * Utiliser R pour évaluer si un ensemble de données remplit les conditions d'application d'une analyse de régression simple.
 * Quantifier la taille de l’effet d’une régression simple et effectuer une analyse de puissance avec G\*Power.
 
+## Paquets et données requises pour le labo {#set-lm}
+Ce laboratoire nécessite:
+
+* les paquets R:
+  * car
+  * lmtest
+  * boot
+* les fichiers de données
+  * sturgeon.csv
+
 ## Diagrammes de dispersion
 Les analyses de corrélation et de régression devraient toujours commencer par un examen des données.C'est une étape critique qui sert à évaluer si ce type d'analyse est approprié pour un ensemble de données.
 Supposons que nous sommes intéressés à évaluer si la longueur d'esturgeons mâles dans la région de *The Pas* covarie avec leur poids.

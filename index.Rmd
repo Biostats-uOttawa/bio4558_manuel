@@ -16,6 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)#, warning = FALSE, message = FALSE)
 library(ggplot2)
 library(car)
 library(lmtest)
+library(boot)
+library(lmPerm)
 ```
 # Note {-}
 Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.

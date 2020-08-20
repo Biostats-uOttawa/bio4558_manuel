@@ -10,6 +10,17 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Calculer des statistiques descriptives d’une variable
 - Effectuer des transformations de données
 
+## Paquets et données requises pour le labo {#set-intro}
+Ce laboratoire nécessite:
+
+* les paquets R:
+  * car
+  * lmtest
+  * boot
+  * lmPerm
+* les fichiers de données
+  * sturgeon.csv
+
 ## Importer et exporter des données
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
 Les fichiers `.csv` sont utilisés pour stocker des données.
