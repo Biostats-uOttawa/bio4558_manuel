@@ -1,375 +1,173 @@
 # ANOVA à un critère de classification
 
-Après avoir complété cet exercice de laboratoire, vous devriez être
-capable de :
-• Utiliser R pour effectuer une analyse de variance paramétrique à
-un critère de classification, suivie de comparaisons multiples
-• Utiliser R pour vérifier si les conditions d'application de l'ANOVA
-paramétrique sont remplies
-• Utiliser R pour faire une ANOVA à un critère de classification
-non-paramétrique
-• Utiliser R pour transformer des données de manière à mieux rem-
-plir les conditions d'application de l'ANOVA paramétrique.
-ANOVA à un critère de classification et
-comparaisons multiples
-L'ANOVA à un critère de classification est l'analogue du test de t pour
-des comparaisons de moyennes de plus de deux échantillons. Les
-conditions d'application du test sont essentiellement les mêmes, et
-lorsque appliqué à deux échantillons ce test est mathématiquement
-équivalent au test de t.
-En 1961-1962, le barrage Grand Rapids était construit sur la rivière
-Saskatchewan en amont de Cumberland House. On croit que durant
-la construction plusieurs gros esturgeons restèrent prisonniers dans
-des sections peu profondes et moururent. Des inventaires de la
-population d'esturgeons furent faits en 1954, 1958, 1965 et 1966. Au
-cours de ces inventaires, la longueur à la fourche ( frklngth ) et la
-masse ( rndwght ) furent mesurées (pas nécessairement sur chaque
-poisson cependant). Ces données sont dans le fichier dam10dat.SdD .
-Visualiser les données
- À partir des données du fichier dam10dat.Rdata , vous devez d’abord
-changer le type de donnée de la variable year , pour que R traite YEAR
-comme une variable discontinue (factor) plutôt que continue.
-Dam10dat$year<-as.factor(Dam10dat$year)
-ls.str()
-attach(Dam10dat)
+Après avoir complété cet exercice de laboratoire, vous devriez être capable de :
 
+* Utiliser R pour effectuer une analyse de variance paramétrique à un critère de classification, suivie de comparaisons multiples * Utiliser R pour vérifier si les conditions d'application de l'ANOVA paramétrique sont remplies * Utiliser R pour faire une ANOVA à un critère de classification non-paramétrique * Utiliser R pour transformer des données de manière à mieux rem- plir les conditions d'application de l'ANOVA paramétrique.
 
- Ensuite, visualisez les données comme dans le labo pour les tests de t.
-Créez un histogramme avec ligne de densité, un diagramme de proba-
-bilité, et un Box plot par année. Que vous révèlent ces données?
-require(ggplot2)
-# use "Dam10dat" dataframe to make plot called mygraph
-# and define x axis as representing fklngth
-mygraph <- ggplot(Dam10dat, aes(x = fklngth, xlab="Fork
-length (cm)"))
-# add data to the mygraph ggplot
-mygraph <- mygraph +
-# add data density smooth
-geom_density() +
-# add rug (bars at the bottom of the plot)
-geom_rug() +
-# add black semitransparent histogram
-geom_histogram(aes(y = ..density..),
-color = "black",
-alpha = 0.3) +
-# add normal curve in red, with mean and sd from fklength
-stat_function(fun = dnorm,
-args = list(
-mean = mean(Dam10dat$fklngth),
-sd = sd(Dam10dat$fklngth)
-),
-color = "red")
+## Paquets et données requises pour le labo {#set-t}
+Ce laboratoire nécessite:
+
+* les paquets R:
+  * multicomp
+  * car
+* les fichiers de données
+  * Dam10dat.csv
+
+## ANOVA à un critère de classification et comparaisons multiples
+
+L'ANOVA à un critère de classification est l'analogue du test de t pour des comparaisons de moyennes de plus de deux échantillons. Les conditions d'application du test sont essentiellement les mêmes, et lorsque appliqué à deux échantillons ce test est mathématiquement équivalent au test de t.
+
+En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d'esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) et la masse ( rndwght ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier `Dam10dat.csv`.
+
+### Visualiser les données
+- À partir des données, vous devez d’abord changer le type de donnée de la variable `year`, pour que R traite `year` comme une variable discontinue (factor) plutôt que continue.
+
+```{r, ano-1}
+Dam10dat <- read.csv("data/Dam10dat.csv")
+Dam10dat$year <- as.factor(Dam10dat$year)
+str(Dam10dat)
+```
+
+- Ensuite, visualisez les données comme dans le labo pour les tests de t. Créez un histogramme avec ligne de densité, un diagramme de probabilité, et un Box plot par année. Que vous révèlent ces données?
+
+```{r, ano-2, warning = FALSE, message = FALSE, fig.cap = "Distribution de la longueur des esturgeons par année" }
+
+mygraph <- ggplot(Dam10dat, aes(x = fklngth)) +
+  labs (x = "Fork length (cm)") +
+  geom_density() +
+  geom_rug() +
+  geom_histogram(aes(y = ..density..),
+    color = "black",
+    alpha = 0.3) +
+  stat_function(fun = dnorm,
+    args = list(
+      mean = mean(Dam10dat$fklngth),
+      sd = sd(Dam10dat$fklngth)),
+    color = "red")
+
 #display graph, by year
 mygraph+facet_wrap(~year,ncol=2)
+```
 
+Il semble que la taille des esturgeons est un peu plus petite après la construction du barrage, mais les données sont très variables et les effets ne sont pas parfaitement clairs. Il y a peut-être des problèmes de normalité avec les échantillons de 1954 et 1966, et il y a probablement des valeurs extrêmes dans les échantillons de 1958 et 1966. On va continuer en testant les conditions d’application de l’ANOVA. Il faut d’abord faire l’analyse et examiner les résidus.
 
-Il semble que la taille des esturgeons est un peu plus petite après la
-construction du barrage, mais les données sont très variables et les
-effets ne sont pas parfaitement clairs. Il y a peut-être des problèmes de
-normalité avec les échantillons de 1954 et 1966, et il y a probablement
-des valeurs extrêmes dans les échantillons de 1958 et 1966. On va
-continuer en testant les conditions d’application de l’ANOVA. Il faut
-d’abord faire l’analyse et examiner les résidus.
-Vérifier si les conditions d'application de l'ANOVA paramétrique
-sont remplies
-L'ANOVA paramétrique a trois conditions principales d'application :
-1) les résidus sont normalement distribués, 2) la variance des résidus
-est égale dans tous les traitements (homoscédasticité) et 3) les résidus
-sont indépendants les uns des autres. Ces conditions doivent être
-remplies avant qu’on puisse se fier aux résultats de l’ANOVA
-paramétrique.
- Faites une ANOVA à un critère de classification sur fklngth par année
-et produisez les graphiques diagnostiques
+### Vérifier les conditions d'application de l'ANOVA paramétrique
+
+L'ANOVA paramétrique a trois conditions principales d'application : 1) les résidus sont normalement distribués, 2) la variance des résidus est égale dans tous les traitements (homoscédasticité) et 3) les résidus sont indépendants les uns des autres. Ces conditions doivent être remplies avant qu’on puisse se fier aux résultats de l’ANOVA paramétrique.
+
+- Faites une ANOVA à un critère de classification sur fklngth par année et produisez les graphiques diagnostiques
+
+```{r, ano-3, fig.cap = "Conditions d'applications de l'ANOVA"}
 # Fit anova model and plot residual diagnostics
-
-
-# but first, save current par and set graphic page to hold 4
-graphs
-opar <- par(mfrow = c(2, 2))
 anova.model1 <- lm(fklngth ~ year, data=Dam10dat)
+par(mfrow = c(2, 2))
 plot(anova.model1)
-par(opar)
-D’après les graphiques, on peut douter de la normalité et de
-l’homogénéité des variances. Notez qu’il y a un point qui ressort
-vraiment avec une forte valeur résiduelle (cas numéro 59) et qu’il ne
-s’aligne pas bien avec les autres valeurs: c’est la valeur extrême qui
-avait été détectée plus tôt. Ce point fera sans doute gonfler la variance
-résiduelle du groupe auquel il appartient.
-Des tests formels nous confirmeront ou infirmeront nos conclusions
-faites à partir de ces graphiques.
- Faites un test de normalité sur les résidus de l’ANOVA.
+```
+
+D’après les graphiques, on peut douter de la normalité et de l’homogénéité des variances. Notez qu’il y a un point qui ressort vraiment avec une forte valeur résiduelle (cas numéro 59) et qu’il ne s’aligne pas bien avec les autres valeurs: c’est la valeur extrême qui avait été détectée plus tôt. Ce point fera sans doute gonfler la variance résiduelle du groupe auquel il appartient.
+
+Des tests formels nous confirmeront ou infirmeront nos conclusions faites à partir de ces graphiques.
+
+- Faites un test de normalité sur les résidus de l’ANOVA.
+
+```{r, ano-4}
 shapiro.test(residuals(anova.model1))
-Shapiro-Wilk normality test
-data: residuals(anova.model1)
-W = 0.9157, p-value = 1.63e-06
+```
+Ce test confirme nos soupçons: les résidus ne sont pas distribués normalement. Il faut cependant garder à l’esprit que la puissance est grande et que même de petites déviations de la normalité sont suffisantes pour rejeter l’hypothèse nulle.
 
+- Ensuite, éprouvez l'hypothèse d'égalité des variances (homoscedasticité):
 
-Ce test confirme nos soupçons: les résidus ne sont pas distribués
-normalement. Il faut cependant garder à l’esprit que la puissance est
-grande et que même de petites déviations de la normalité sont
-suffisantes pour rejeter l’hypothèse nulle.
- Ensuite, éprouvez l'hypothèse d'égalité des variances (homoscedastic-
-ité):
-require(car)
+```{r, ano-5}
 leveneTest(fklngth ~ year, data=Dam10dat)
-Levene's Test for Homogeneity of Variance
-Df F value Pr(>F)
-group
-3 2.8159 0.04234 *
-114
----
-Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
->
-La valeur de p vous dit que vous pouvez rejeter l’hypothèse nulle qu’il
-n’y a aucune différence dans les variances entre les années. Alors, nous
-concluons que les variances ne sont pas homogènes.
-Faire l’ANOVA
- Faites une ANOVA de fklnght en choisissant en p résumant pour
-l’instant que les conditions d’application sont suffisamment remplies.
-Que concluez-vous?
-> summary(anova.model1)
-Call:
-lm(formula = fklngth ~ year)
-Residuals:
-Min
-1Q
--11.2116 -2.6866
-Median
--0.7116
-3Q
-2.2103
-Max
-26.7885
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept)
-
-48.0243
-0.8566
-56.061
-< 2e-16 ***
-year1958
-0.1872
-1.3335
-0.140 0.88859
-year1965
--5.5077
-1.7310 -3.182 0.00189 **
-year1966
--3.3127
-1.1684 -2.835 0.00542 **
----
-Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-Residual standard error: 5.211
-Multiple R-squared: 0.1355,
-on 114 degrees of freedom
-F-statistic: 5.957 on 3 and 114 DF,
-Adjusted R-squared: 0.1128
-
-p-value: 0.0008246
+```
 
+La valeur de p vous dit que vous pouvez rejeter l’hypothèse nulle qu’il n’y a aucune différence dans les variances entre les années. Alors, nous concluons que les variances ne sont pas homogènes.
 
- Les 4 coefficients peuvent être utilisés pour obtenir les valeurs
-prédites par le modèle (i.e. les moyennes de chaque groupe). La
-fklngth moyenne de la première année (1954) est 48.0243. Les
-coefficients pour les 3 autres années sont la différence entre la
-moyenne de l’année en question et la moyenne de 1954. La moyenne
-pour 1965 est 48.0243-5.5077=42.5166. Pour chaque coefficient, on a
-également accès à l’erreur-type, une valeur de t et la probabilité qui lui
-est associée (H0 que le coefficient est 0). Les poissons étaient plus
-petits après la construction du barrage qu’en 1954. Vous devez
-prendre ces p-valeurs avec un grain de sel, car elles ne sont pas
-corrigées pour les comparaisons multiples et. En général, je porte peu
-d’attention à cette partie des résultats imprimés et me concentre sur ce
-qui suit.
- La racine carrée de la variance des résidus (valeurs observées
-moins valeurs prédites) qui correspond à la variabilité inexpliquée par
-le modèle (variation de la taille des poissons capturés la même année).
- Le R-carré est la proportion de la variabilité de la variable
-dépendante qui peut être expliquée par le modèle. Ici, le modèle
-explique 13.5% de la variabilité. Les différences de taille d’une année à
-l’autre sont relativement petites lorsqu’on les compare à la variation de
-taille entre les poissons capturés la même année.
- La p-valeur associée au test "omnibus" que toutes les moyennes
-sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0
-pour conclure que fklngth varie selon les années.
-La commande anova() produit le tableau d’ANOVA standard qui
-contient la plupart de cette information:
-> anova(anova.model1)
-Analysis of Variance Table
-Response: fklngth
-Df Sum Sq Mean Sq F value
-Pr(>F)
-year
-3 485.26 161.75 5.9574 0.0008246 ***
-Residuals 114 3095.30
-27.15
----
-Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
->
-La variabilité totale de fklngth, mesurée par la somme des carrés des
-écarts (Sum sq) est partitionnée en ce qui peut être expliqué par
-l’année (485.26) et la variabilité résiduelle inexpliquée (3095.30).
-L’année explique bien (485.26/(3095.30+485.26)=.1355 or 13.55%
-de la variabilité). Le carré moyen des résidus (Residual Mean Sq) est
-leur variance.
+### Faire l’ANOVA
+- Faites une ANOVA de fklnght en choisissant / en présumant pour l’instant que les conditions d’application sont suffisamment remplies. Que concluez-vous?
 
+```{r, ano-6}
+summary(anova.model1)
+```
 
-Les comparaisons multiples
- La fonction pairwise.t.test() peut être utilisée pour comparer des moy-
-ennes et ajuster (ou non, si désiré) les probabilités pour le nombre de
-comparaisons en utilisant l’une des options pour p.adj:
-pairwise.t.test(Dam10dat$fklngth,
-"none")
-pairwise.t.test(Dam10dat$fklngth,
-"bonf")
-pairwise.t.test(Dam10dat$fklngth,
-"holm")
-pairwise.t.test(Dam10dat$fklngth,
-"fdr")
-Dam10dat$year, p.adj =
-Dam10dat$year, p.adj =
-Dam10dat$year, p.adj =
-Dam10dat$year, p.adj =
-> pairwise.t.test(Dam10dat$fklngth, Dam10dat$year, p.adj =
-"none")
-Compare toutes les moyennes, sans ajuster les probabilités.
-Pairwise comparisons using t tests with pooled SD
-data:
-Dam10dat$fklngth and Dam10dat$year
-1954
-1958
-1965
-1958 0.8886 -
--
-1965 0.0019 0.0022 -
-1966 0.0054 0.0079 0.1996
-Option "bonf" ajuste les p-valeurs avec la correction de Bonferroni.
-Ici, il y a 6 p-valeurs calculées, et la correction de Bonferroni revient à
-simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur
-à 1. Si tel est le cas, la p-valeur ajustée est 1)
->
-data:
-Pairwise comparisons using t tests with pooled SD
-Dam10dat$fklngth and Dam10dat$year
-1954 1958 1965
-1958 1.000 -
--
-1965 0.011 0.013 -
-1966 0.033 0.047 1.000
-P value adjustment method: bonferroni
-Option "holm" is est la correction séquentielle de Bonferroni dans
-laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la
-plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a
-N=6 paires de moyennes qui sont comparées. La plus petite valeur de
-p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est
-donc 0.0019*(6-1+1)=0.011. La seconde plus petite p-valeur est
-0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p-
-valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur
-corrigée est égale à la p-valeur brute.
+1. Les 4 coefficients peuvent être utilisés pour obtenir les valeurs prédites par le modèle (i.e. les moyennes de chaque groupe). La fklngth moyenne de la première année (1954) est 48.0243. Les coefficients pour les 3 autres années sont la différence entre la moyenne de l’année en question et la moyenne de 1954. La moyenne pour 1965 est 48.0243-5.5077=42.5166. Pour chaque coefficient, on a également accès à l’erreur-type, une valeur de t et la probabilité qui lui est associée (H0 que le coefficient est 0). Les poissons étaient plus petits après la construction du barrage qu’en 1954. Vous devez prendre ces p-valeurs avec un grain de sel, car elles ne sont pas corrigées pour les comparaisons multiples et. En général, je porte peu d’attention à cette partie des résultats imprimés et me concentre sur ce qui suit.
+2. La racine carrée de la variance des résidus (valeurs observées moins valeurs prédites) qui correspond à la variabilité inexpliquée par le modèle (variation de la taille des poissons capturés la même année).
+3. Le R-carré est la proportion de la variabilité de la variable dépendante qui peut être expliquée par le modèle. Ici, le modèle explique 13.5% de la variabilité. Les différences de taille d’une année à l’autre sont relativement petites lorsqu’on les compare à la variation de taille entre les poissons capturés la même année.
+4. La p-valeur associée au test "omnibus" que toutes les moyennes sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0 pour conclure que fklngth varie selon les années.
 
+La commande `anova()` produit le tableau d’ANOVA standard qui contient la plupart de cette information:
 
->
-pairwise.t.test(Dam10dat$fklngth, Dam10dat$year, p.adj = "holm")
-Pairwise comparisons using t tests with pooled SD
-data:
-Dam10dat$fklngth and Dam10dat$year
-1954 1958 1965
-1958 0.889 -
--
-1965 0.011 0.011 -
-1966 0.022 0.024 0.399
-P value adjustment method: holm
+```{r, ano-7}
+anova(anova.model1)
+```
+
+La variabilité totale de `fklngth`, mesurée par la somme des carrés des écarts (Sum sq) est partitionnée en ce qui peut être expliqué par l’année (485.26) et la variabilité résiduelle inexpliquée (3095.30). L’année explique bien (485.26/(3095.30+485.26)=.1355 or 13.55% de la variabilité). Le carré moyen des résidus (Residual Mean Sq) est leur variance.
+
+### Les comparaisons multiples
+- La fonction `pairwise.t.test()` peut être utilisée pour comparer des moyennes et ajuster (ou non, si désiré) les probabilités pour le nombre de comparaisons en utilisant l’une des options pour p.adj:
+
+Compare toutes les moyennes sans ajuster les probabilités
+
+```{r, ano-8}
+pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
+  p.adj = "none")
+```
+
+Option `bonf` ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 p-valeurs calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la p-valeur ajustée est 1).
+
+```{r, ano-9}
+pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
+  p.adj = "bonf")
+```
+
+Option "holm" is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc $0.0019*(6-1+1)=0.011$. La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p- valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.
+
+```{r, ano-10}
+pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
+  p.adj = "holm")
+```
 L’option "fdr" sert à contrôler le "false discovery rate".
-> pairwise.t.test(Dam10dat$fklngth, Dam10dat$year, p.adj = "fdr")
-Pairwise comparisons using t tests with pooled SD
-data:
-Dam10dat$fklngth and Dam10dat$year
-1954
-1958
-1965
-1958 0.8886 -
--
-1965 0.0066 0.0066 -
-1966 0.0108 0.0119 0.2395
-Les quatre méthodes mènent ici à la même conclusion: les poissons
-sont plus gros après la construction du barrage et toutes les
-comparaisons entre les années 50 et 60 sont significatives alors que les
-différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne
-dépend pas du choix de méthode.
-Dans d’autres situations, vous pourriez obtenir des résultats
-contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne
-sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs
-comparaisons. D’un autre coté, la correction de Bonferroni est
-conservatrice et le devient encore plus lorsqu’il y a de très nombreuses
-comparaisons. Des travaux récents suggèrent que la correction fdr est
-un bon compromis lorsqu’il y a beaucoup de comparaisons.
-La méthode de Tukey est l’une des plus populaires et est facile à
-utiliser en R (notez cependant qu’il y a une sale petit bogue qui se
-manifeste quand la variable indépendante peut ressemble à un nombre
-plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans
-mon code):
-myyear <- as.factor(paste("", year))
-TukeyHSD(aov(fklngth ~ myyear))
-Tukey multiple comparisons of means
-95% family-wise confidence level
-Fit: aov(formula = fklngth ~ myyear)
-$myyear
-diff
-lwr
-upr
-p adj
-1958- 1954 0.1872141 -3.289570 3.6639986 0.9990071
-1965- 1954 -5.5076577 -10.021034 -0.9942809 0.0100528
-1966- 1954 -3.3126964 -6.359223 -0.2661701 0.0274077
 
+```{r, ano-11}
+pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
+  p.adj = "fdr")
+```
 
-1965- 1958 -5.6948718 -10.436304 -0.9534397 0.0116943
-1966- 1958 -3.4999106 -6.875104 -0.1247171 0.0390011
-1966- 1965 2.1949612 -2.240630 6.6305526 0.5710111
-plot(TukeyHSD(aov(fklngth ~ myyear)))
-Les intervalles de confiance, corrigés pour les comparaisons multiples
-par la méthode de Tukey, sont illustrés pour les différences entre
-années. Malheureusement les légendes ne sont pas complètes, mais
-l’ordre est le même que dans le tableau précédent.
-Le package multcomp peut produire de meilleurs graphiques, mais
-requiert un peu plus de code:
+Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus gros après la construction du barrage et toutes les comparaisons entre les années 50 et 60 sont significatives alors que les différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne dépend pas du choix de méthode.
+
+Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.
+
+La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a une sale petit bogue qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans mon code):
+
+```{r, ano-12}
+#myyear <- as.factor(paste("", year))
+TukeyHSD(aov(fklngth ~ year))
+```
+```{r, ano-13, fig.cap = "Différence anuelles dans la longueur des esturgeons"}
+plot(TukeyHSD(aov(fklngth ~ year)))
+```
+Les intervalles de confiance, corrigés pour les comparaisons multiples par la méthode de Tukey, sont illustrés pour les différences entre années. Malheureusement les légendes ne sont pas complètes, mais l’ordre est le même que dans le tableau précédent.
+
+Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu plus de code:
+
+```{r, ano-14, fig.cap = "Différence anuelles dans la longueur des esturgeons"}
 # Alternative way to compute Tukey multiple comparisons
 # set up a one-way ANOVA
 anova.fkl.vs.year <- aov(aov(fklngth ~ year))
 # set up all-pairs comparisons for factor `year'
-library(multcomp)
+
 meandiff <- glht(anova.fkl.vs.year, linfct = mcp(year =
 "Tukey"))
 confint(meandiff)
-Simultaneous Confidence Intervals
-Multiple Comparisons of Means: Tukey Contrasts
 
-
-Fit: aov(formula = aov(fklngth ~ year))
-Estimated Quantile = 2.5936
-95% family-wise confidence level
-Linear Hypotheses:
-Estimate lwr
-upr
-1958 - 1954 == 0
-0.1872 -3.2713
-3.6457
-1965 - 1954 == 0 -5.5077 -9.9973 -1.0180
-1966 - 1954 == 0 -3.3127 -6.3432 -0.2822
-1965 - 1958 == 0 -5.6949 -10.4114 -0.9783
-1966 - 1958 == 0 -3.4999 -6.8574 -0.1424
-1966 - 1965 == 0
-2.1950 -2.2173
-6.6073
 old.par <- par(mai = c(1, 1.25, 1, 1))
 plot(meandiff)
 par(old.par)
-C’est un peu mieux, mais ce qui le serait encore plus c’est un
-graphique des moyennes, avec leurs intervalles de confiance ajustés
-pour les comparaisons multiples:
+```
+
+C’est un peu mieux, mais ce qui le serait encore plus c’est un graphique des moyennes, avec leurs intervalles de confiance ajustés pour les comparaisons multiples:
+
+```{r, ano-15, fig.cap = "Différence anuelles dans la longueur des esturgeons"}
 # Compute and plot means and Tukey CI
 means <- glht(anova.fkl.vs.year, linfct = mcp(year =
 "Tukey"))
@@ -379,136 +177,83 @@ old.par <- par(mai = c(1, 1, 1.25, 1))
 # plot
 plot(cimeans)
 par(old.par)
+```
 
 
-Notez les lettres au dessus du graphique: les années étiquetées avec la
-même lettre ne diffèrent pas significativement l’une de l’autre.
-Transformations de données et ANOVA non-
-paramétrique
-Dans l’exemple précédent sur les différences annuelles de la variable
-fklgnth, on a noté que les conditions d’application de l’ANOVA
-n’étaient pas remplies. Si les données ne remplissent pas les conditions
-de l'ANOVA paramétrique, il y a 3 options : 1) Ne rien faire. Si les
-effectifs dans chaque groupe sont grands, on peut relaxer les
-conditions d'application car l'ANOVA est alors assez robuste aux
-violations de normalité (mais moins aux violations
-d'homoscedasticité), 2) on peut transformer les données, ou 3) on
-peut faire une analyse non-paramétrique.
- Refaites l'ANOVA de la section précédente après avoir transformé
-en faisant le logarithme à la base de 10. Avec les données
-transformées, est-ce que les problèmes qui avaient été identifiés dis-
-paraissent ?
-fklngth
+Notez les lettres au dessus du graphique: les années étiquetées avec la même lettre ne diffèrent pas significativement l’une de l’autre.
+
+## Transformations de données et ANOVA non-paramétrique
+
+Dans l’exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d’application de l’ANOVA n’étaient pas remplies. Si les données ne remplissent pas les conditions de l'ANOVA paramétrique, il y a 3 options : 1) Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d'application car l'ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d'homoscedasticité), 2) on peut transformer les données, ou 3) on peut faire une analyse non-paramétrique.
+
+- Refaites l'ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés dis- paraissent ?
+
+```{r, ano-16, fig.cap = "Conditions d'application de l'ANOVA" }
 # Fit anova model on log10 of fklngth and plot residual diagnostics
-opar <- par(mfrow = c(2, 2))
-
-
+par(mfrow = c(2, 2))
 anova.model2 <- lm(log10(fklngth) ~ year, data=Dam10dat)
 plot(anova.model2)
-par(opar)
+```
+
 Les graphiques diagnostiques des résidus donnent:
-Les graphiques sont à peine mieux ici. Si on fait le test Wilk-Shapiro
-sur les résidus, on obtient:
-data: residuals(anova.model2)
-W = 0.962, p-value = 0.002048
-Si on refait le test de Levene sur les valeurs absolues des résidus, on
-obtient:
-Levene's Test for Homogeneity of Variance
-Df F value Pr(>F)
-group
-3 2.6611 0.05148 .
-114
----
-Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-1
-Alors, on a toujours des problèmes avec la normalité et on est juste
-sur le seuil de décision pour l’égalité des variances. Vous avez le choix
-à ce point: 1) essayer de trouver une autre transformation pour mieux
-rencontrer les conditions d’application, 2) assumer que les données
-sont rencontrent suffisamment les conditions d’application, ou 3)
-faire une ANOVA non-paramétrique.
- L'analogue non-paramétrique de l'ANOVA à un critère de classifica-
-tion le plus employé est le test de Kruskall-Wallis. Faites ce test ( sur
 
+Les graphiques sont à peine mieux ici. Si on fait le test Wilk-Shapiro sur les résidus, on obtient:
 
-et comparez les résultats à ceux de l'analyse paramétrique.
-Que concluez-vous?
-fklngth
+```{r, ano-17}
+shapiro.test(residuals(anova.model2))
+```
+
+Alors, on a toujours des problèmes avec la normalité et on est juste sur le seuil de décision pour l’égalité des variances. Vous avez le choix à ce point: 1) essayer de trouver une autre transformation pour mieux rencontrer les conditions d’application, 2) assumer que les données sont rencontrent suffisamment les conditions d’application, ou 3) faire une ANOVA non-paramétrique.
+
+- L'analogue non-paramétrique de l'ANOVA à un critère de classifica-
+tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur `fklngth` et comparez les résultats à ceux de l'analyse paramétrique. Que concluez-vous?
+
+```{r, ano-18}
 kruskal.test(fklngth, year, data=Dam10dat)
-Kruskal-Wallis rank sum test
-data: fklngth and year
-Kruskal-Wallis chi-squared = 15.7309, df = 3, p-value = 0.001288
-La conclusion est donc la même qu’avec l’ANOVA paramétrique: on
-rejette l’hypothèse nulle que le rang moyen est le même pour chaque
-année. Donc, même si les conditions d’application de l’analyse
-paramétrique n’étaient pas parfaitement rencontrées, les conclusions
-sont les mêmes, ce qui illustre la robustesse de l’ANOVA
-paramétrique.
-Examen des valeurs extrêmes
-Vous devriez avoir remarqué au cours des analyses précédentes qu’il y
-avait peut-être des valeurs extrêmes dans les données. Ces points
-étaient évidents dans le Box Plot de fklngth by year et ont été notés
-comme les points 59, 23, et 87 dans les diagrammes de probabilité des
-résidus et dans le diagramme de dispersion des résidus et des valeurs
-estimées. En général, vous devez avoir de très bonnes raisons pour
-enlever des valeurs extrêmes de la base de données (i.e. vous savez
-qu’il y a eu une erreur avec un cas). Cependant, il est quand même
-toujours valable de voir comment l’analyse change en enlevant des
-valeurs extrêmes de la base de données.
- Répétez l’ANOVA originale sur fklngth et year mais faites le avec un
-sous-ensemble de données sans les valeurs extrêmes. Est-ce que les
-conclusions ont changé?
-Damsubset<-Dam10dat[-c(23,59,87),] #removes obs 23, 59 and
-87
+```
+
+La conclusion est donc la même qu’avec l’ANOVA paramétrique: on rejette l’hypothèse nulle que le rang moyen est le même pour chaque année. Donc, même si les conditions d’application de l’analyse paramétrique n’étaient pas parfaitement rencontrées, les conclusions sont les mêmes, ce qui illustre la robustesse de l’ANOVA paramétrique.
+
+## Examen des valeurs extrêmes
+Vous devriez avoir remarqué au cours des analyses précédentes qu’il y avait peut-être des valeurs extrêmes dans les données. Ces points étaient évidents dans le Box Plot de fklngth by year et ont été notés comme les points 59, 23, et 87 dans les diagrammes de probabilité des résidus et dans le diagramme de dispersion des résidus et des valeurs estimées. En général, vous devez avoir de très bonnes raisons pour enlever des valeurs extrêmes de la base de données (i.e. vous savez qu’il y a eu une erreur avec un cas). Cependant, il est quand même toujours valable de voir comment l’analyse change en enlevant des valeurs extrêmes de la base de données.
+
+- Répétez l’ANOVA originale sur fklngth et year mais faites le avec un sous-ensemble de données sans les valeurs extrêmes. Est-ce que les conclusions ont changé?
+
+```{r, ano-19}
+Damsubset<-Dam10dat[-c(23,59,87),] #removes obs 23, 59 and 87
 aov.Damsubset <- aov(fklngth ~ as.factor(year), Damsubset)
 summary(aov.Damsubset)
-Df Sum Sq Mean Sq F value
-Pr(>F)
-as.factor(year)
-3 367.51 122.50 6.8942 0.000267 ***
-Residuals
-111 1972.36
-17.77
----
-Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+```{r, ano-20}
 shapiro.test(residuals(aov.Damsubset))
-Shapiro-Wilk normality test
-data: residuals(aov.Damsubset)
-W = 0.9853, p-value = 0.2448
+```
 
+```{r, ano-21}
+leveneTest(fklngth) ~ year, Damsubset)
+```
 
-leveneTest(log10(fklngth) ~ year, Damsubset)
-Levene's Test for Homogeneity of Variance
-Df F value Pr(>F)
-group
-3 3.8144 0.01206 *
-111
----
-Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-L’élimination de trois valeurs extrêmes améliore un peu les choses,
-mais ce n’est pas parfait. On a toujours une problème avec les
-variances, mais les résidus sont maintenant normaux. Cependant, le
-fait que la conclusion qu’on tire de l’ANOVA originale ne change pas
-en enlevant les points renforce le fait qu’on n’a pas une bonne raison
-pour enlever les points.
-Commandes R pour refaire l’ANOVA sur le sous-ensemble
-de données
+L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.
+
+Commandes R pour refaire l’ANOVA sur le sous-ensemble de données
+
+```{r, ano-22, eval = FALSE}
 Damsubset<-Dam10dat[-c(23,59,87),]
 # removes obs 23, 59 and 87
 aov.Damsubset <- aov(fklngth ~ as.factor(year), Damsubset)
 summary(aov.Damsubset)
 shapiro.test(residuals(aov.Damsubset))
-leveneTest(log10(fklngth) ~ year, Damsubset)
+leveneTest(fklngth ~ year, Damsubset)
+```
 
+## Test de permutation
+Commande R pour un test de permutation d’une ANOVA à un critère de classification.
 
-Test de permutation
-Commander R pour un test de permutation d’une ANOVA
-à un critère de classification.
+```{r, ano-23, eval = FALSE}
 #############################################################
 # Permutation Test for one-way ANOVA
 # modified from code written by David C. Howell
-# http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permuta-
-tion%20Anova/PermTestsAnova.html
+# http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html
 # set desired number of permutations
 nreps <-500
 # to simplify reuse of this code, copy desired dataframe to mydata
@@ -549,9 +294,11 @@ permprob <- length(Fboot[Fboot >= observedF])/nreps
 cat(" The permutation probability value is: ", permprob,
 "\n")
 # end of code chunk for permutation
-
+```
 
 Version lmPerm du test de permutation.
+
+```{r, ano-24, eval = FALSE}
 ## lmPerm version of permutation test
 require(lmPerm2)
 # for generality, copy desired dataframe to mydata
@@ -563,3 +310,4 @@ mymodel <- lm(myformula, data=mydata)
 # Calculate permutation p-value
 anova(lmp(myformula, data=mydata, perm = "Prob", center=FALSE,
 Ca=0.001))
+```
