@@ -5,21 +5,21 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Introduction à R | BIO4558 Biostatistiques appliquées avec R</title>
-  <meta name="description" content="1 Introduction à R | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Introduction à R | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
-  
-  
-  
+  <meta property="og:image" content="images/missing.png" />
+  <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="1 Introduction à R | BIO4558 Biostatistiques appliquées avec R" />
   
-  
-  
+  <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="twitter:image" content="images/missing.png" />
 
 <meta name="author" content="Julien Martin" />
 
@@ -246,8 +246,8 @@ Googlez-la si vous en avez besoin.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">ls</span>()</a></code></pre></div>
 <pre><code>##  [1] &quot;bs&quot;                   &quot;erables&quot;              &quot;mygraph&quot;             
 ##  [4] &quot;RegModel.1&quot;           &quot;RegModel.2&quot;           &quot;RegModel.3&quot;          
-##  [7] &quot;results&quot;              &quot;sturgeon&quot;             &quot;sturgeon.male&quot;       
-## [10] &quot;sturgeon.male.subset&quot;</code></pre>
+##  [7] &quot;results&quot;              &quot;salmonella&quot;           &quot;sturgeon&quot;            
+## [10] &quot;sturgeon.female.1978&quot; &quot;sturgeon.male&quot;        &quot;sturgeon.male.subset&quot;</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">ls.str</span>()</a></code></pre></div>
 <pre><code>## bs : function (formula, data, indices)  
 ## erables : &#39;data.frame&#39;:	100 obs. of  3 variables:
@@ -357,16 +357,21 @@ Googlez-la si vous en avez besoin.</p>
 ##  $ model        :&#39;data.frame&#39;:	72 obs. of  2 variables:
 ## results : List of 11
 ##  $ t0       : Named num [1:2] 1.192 0.341
-##  $ t        : num [1:1000, 1:2] 1.24 1.16 1.2 1.2 1.21 ...
+##  $ t        : num [1:1000, 1:2] 1.23 1.12 1.21 1.17 1.14 ...
 ##  $ R        : num 1000
 ##  $ data     :&#39;data.frame&#39;:	80 obs. of  11 variables:
-##  $ seed     : int [1:626] 10403 463 -1620701064 261065639 -1905022027 -1418010950 497144989 1363104476 465735294 -1311635720 ...
+##  $ seed     : int [1:626] 10403 447 1085068033 -1925839500 1869803202 -564022198 1253231630 1182216043 -1607011307 1979668467 ...
 ##  $ statistic:function (formula, data, indices)  
 ##  $ sim      : chr &quot;ordinary&quot;
 ##  $ call     : language boot(data = sturgeon.male, statistic = bs, R = 1000, formula = log10(fklngth) ~      log10(age))
 ##  $ stype    : chr &quot;i&quot;
 ##  $ strata   : num [1:80] 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ weights  : num [1:80] 0.0125 0.0125 0.0125 0.0125 0.0125 0.0125 0.0125 0.0125 0.0125 0.0125 ...
+## salmonella : &#39;data.frame&#39;:	60 obs. of  4 variables:
+##  $ ratio : num  0.006322 0.00281 0.000111 0.007533 2.440643 ...
+##  $ souche: chr  &quot;SMR&quot; &quot;SMR&quot; &quot;SMR&quot; &quot;SMR&quot; ...
+##  $ milieu: chr  &quot;IN VITRO&quot; &quot;IN VITRO&quot; &quot;IN VITRO&quot; &quot;IN VITRO&quot; ...
+##  $ labo  : int  1 2 3 4 5 6 7 8 9 10 ...
 ## sturgeon : &#39;data.frame&#39;:	186 obs. of  11 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
@@ -379,6 +384,16 @@ Googlez-la si vous en avez besoin.</p>
 ##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
 ##  $ lfklngth: num  1.57 1.7 1.46 1.7 1.66 ...
 ##  $ lrdwght : num  1.203 NA 0.812 NA 1.476 ...
+## sturgeon.female.1978 : &#39;data.frame&#39;:	15 obs. of  9 variables:
+##  $ fklngth : num  50.2 50.2 49.6 47.7 48.9 ...
+##  $ totlngth: num  54.1 53.1 53.9 51.4 53.9 ...
+##  $ drlngth : num  31.5 32.3 31.1 34 29.9 ...
+##  $ rdwght  : num  NA NA 35.9 33.9 35.9 ...
+##  $ age     : int  24 23 23 20 23 24 18 21 19 20 ...
+##  $ girth   : num  53.5 52.5 54.2 48 52.5 NA NA NA NA NA ...
+##  $ sex     : chr  &quot;FEMALE&quot; &quot;FEMALE&quot; &quot;FEMALE&quot; &quot;FEMALE&quot; ...
+##  $ location: chr  &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; ...
+##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
 ## sturgeon.male : &#39;data.frame&#39;:	80 obs. of  11 variables:
 ##  $ fklngth : num  37 28.9 45.6 25 45.7 ...
 ##  $ totlngth: num  40.7 31.3 49.5 28.1 50.4 ...
@@ -494,7 +509,7 @@ On y reviendra, mais prenez l’habitude de noter mentalement si il y a des donn
 <p>Examinons maintenant de plus près la distribution de fklngth.
 La commande <code>hist()</code> permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">hist</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/hist_stur-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/hist-stur-1.png" width="672" /></p>
 <p>Les données semblent suivre approximativement une distribution normale.
 C’est bon à savoir.
 Cette syntaxe est un peu lourde puisqu’on doit ajouter le préfixe <code>sturgeon$</code> devant chaque nom de variable.
@@ -527,7 +542,7 @@ Mais il faut programmer un peu (ou savoir copier-coller…)</p>
 <a class="sourceLine" id="cb13-18" title="18">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
 <a class="sourceLine" id="cb13-19" title="19"><span class="co"># display graph</span></a>
 <a class="sourceLine" id="cb13-20" title="20">    mygraph</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur_g1-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-g1-1.png" width="672" /></p>
 <p>Chaque observation est représentée par une barre sous l’axe des x (rug).
 En rouge est la distribution normale de données avec la même moyenne et écart-type que les observations.
 Et l’autre ligne est la densité de probabilité empirique, « lissée » à partir des observations.
@@ -539,7 +554,7 @@ Cette courbe peut servir à mieux évaluer visuellement les différences entre l
 Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes <code>qqnorm()</code> et <code>qqline()</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth)</a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur_norm-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-norm-1.png" width="672" /></p>
 <p>Des données parfaitement normales suivraient la ligne droite diagonale.
 Ici, il y a des déviations dans les queues de la distribution, et un peu à droite du centre.
 Comparez cette représentation à celle des deux graphiques précédents.
@@ -560,7 +575,7 @@ L’examen visuel des grands échantillons est souvent compliqué par le fait qu
 Les boxplots avec “moustaches” (box and whiskers plots) offrent une alternative intéressante.
 La commande <code>boxplot()</code> peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> sturgeon, <span class="dt">notch =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/boxplot_stur-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/boxplot-stur-1.png" width="672" /></p>
 <p>La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
 La coche est proportionnelle à l’incertitude quant à la position de la médiane.
 On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n’y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
@@ -576,12 +591,12 @@ La commande <code>plot(y~x)</code> permet de faire le graphique de y sur l’axe
 Vous devriez obtenir:</li>
 </ul>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">plot</span>(fklngth <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur_biv_plot-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-biv-plot-1.png" width="672" /></p>
 <p>R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (<code>pairs()</code>).
 Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
 Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande <code>pairs(sturgeon[,1:6], panel=panel.smooth)</code> et vous devriez obtenir</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">pairs</span>(sturgeon[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">panel =</span> panel.smooth)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/pairs_stur-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/pairs-stur-1.png" width="672" /></p>
 </div>
 </div>
 <div id="créer-des-sous-ensembles-de-cas" class="section level2">
@@ -689,7 +704,7 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 <h2><span class="header-section-number">1.5</span> Exercice sur R</h2>
 <p>Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
 Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.</p>
-<p><img src="Labo_BIO4558_files/figure-html/intror_exer-1.png" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/intror-exer-1.png" width="672" /></p>
 
 </div>
 </div>

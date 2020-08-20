@@ -5,21 +5,21 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R</title>
-  <meta name="description" content="2 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
-  
-  
-  
+  <meta property="og:image" content="images/missing.png" />
+  <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
   
-  
-  
+  <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="twitter:image" content="images/missing.png" />
 
 <meta name="author" content="Julien Martin" />
 
@@ -416,9 +416,11 @@ t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Cliquer sur le bouton Calculate dans la fenêtre principale et vous devriez obtenir ceci:</li>
 </ol>
-<div class="figure">
-<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d’effet estimée" />
-<p class="caption">Analyse post-hoc avec la taille d’effet estimée</p>
+<div class="figure"><span id="fig:gpower-1"></span>
+<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" />
+<p class="caption">
+Figure 2.1: Analyse post-hoc avec la taille d’effet estimée
+</p>
 </div>
 <p>Étudions un peu ce graphique.</p>
 <ul>
@@ -446,16 +448,14 @@ Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s’attend
 On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une différence aussi grande que celle-là avant d’accepter ses conclusions que la biomasse est la même entre les deux régions.
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 <span class="math inline">\(g/m^2\)</span> entre les deux régions? G*Power peut nous le dire.</p>
 <ul>
-<li>Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir :</li>
+<li>Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="analyse-de-puissance-avec-r-et-gpower.html#fig:gpower-2">2.2</a>):</li>
 </ul>
-<p><img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d’effet différente" />
-<!-- ```{r,2}
-knitr::include_graphics("images/gpower_2.png")
-``` -->
-<!-- \begin{figure}[H]
-  \includegraphics{images/gpower_2.png}
-  \caption{Analyse post-hoc avec une taille d'effet différente}
-\end{figure} --></p>
+<div class="figure"><span id="fig:gpower-2"></span>
+<img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
+<p class="caption">
+Figure 2.2: Analyse post-hoc avec une taille d’effet différente
+</p>
+</div>
 <p>La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.</p>
 <p>Notez que cette analyse de puissance post hoc pour une taille d’effet jugée biologiquement significative est bien plus informative que l’analyse précédente pour la taille d’effet observée (qui est celle effectuée par défaut par bien des néophytes et de trop nombreux logiciels qui essaient de penser pour nous).
 En effet, Jaynie n’a pu détecter de différences significatives entre les deux régions.
@@ -471,11 +471,12 @@ Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chan
 <li>Changer le type d’analyse de puissance dans G*Power à <strong>A priori</strong>: <strong>Compute sample size - given <span class="math inline">\(\alpha\)</span> , power, and effect size.</strong>
 Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance et vous obtiendrez:</li>
 </ul>
-<p><img src="images/gpower_3.png" alt="Analyse à priori" />
-<!-- \begin{figure}[ht]
-  \includegraphics{images/gpower_3.png}
-  \caption{Analyse à priori}
-\end{figure} --></p>
+<div class="figure"><span id="fig:gpower-3"></span>
+<img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
+<p class="caption">
+Figure 2.3: Analyse à priori
+</p>
+</div>
 <p><strong>Ouch!</strong> Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
 Sans cela, on ne pourrait échantillonner que quelques dizaines de ruisseaux, et il serait peu probable que l’on puisse détecter une si faible différence de biomasse entre les deux régions.
 Ce serait vraisemblablement en vain et pourrait être considéré comme une perte de temps: pourquoi tant d’efforts et de dépenses si les chances de succès sont si faibles.</p>
@@ -489,11 +490,12 @@ Augmenter la puissance ça demande plus d’effort.</p>
 <li>Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <strong>Compute required effect size - given <span class="math inline">\(\alpha\)</span> , power, and sample size</strong> et assurez-vous que la taille des échantillons est de 18 dans chaque région.
 Vous obtiendrez:</li>
 </ul>
-<p><img src="images/gpower_4.png" alt="Analyse de sensitivité" />
-<!-- \begin{figure}[ht]
-  \includegraphics{images/gpower_4.png}
-  \caption{Analyse de sensitivité}
-\end{figure} --></p>
+<div class="figure"><span id="fig:gpower-4"></span>
+<img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
+<p class="caption">
+Figure 2.4: Analyse de sensitivité
+</p>
+</div>
 <p>La taille d’effet détectable pour cette taille d’échantillon, <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (ou une puissance de 80%) est de 0.961296.
 <strong>Attention</strong>, cette valeur est l’indice <code>d</code> de la taille de l’effet et est pondérée par la variabilité des mesures.
 Dans ce cas ci, <code>d</code> est approximativement égal à
