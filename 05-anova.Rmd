@@ -4,7 +4,7 @@ Après avoir complété cet exercice de laboratoire, vous devriez être capable 
 
 * Utiliser R pour effectuer une analyse de variance paramétrique à un critère de classification, suivie de comparaisons multiples * Utiliser R pour vérifier si les conditions d'application de l'ANOVA paramétrique sont remplies * Utiliser R pour faire une ANOVA à un critère de classification non-paramétrique * Utiliser R pour transformer des données de manière à mieux rem- plir les conditions d'application de l'ANOVA paramétrique.
 
-## Paquets et données requises pour le labo {#set-t}
+## Paquets et données requises pour le labo {#set-ano}
 Ce laboratoire nécessite:
 
 * les paquets R:
@@ -303,11 +303,10 @@ Version lmPerm du test de permutation.
 require(lmPerm2)
 # for generality, copy desired dataframe to mydata
 # and model formula to myformula
-mydata<-Dam10dat
-myformula<-as.formula("fklngth ~ year")
+mydata <- Dam10dat
+myformula <- as.formula("fklngth ~ year")
 # Fit desired model on the desired dataframe
-mymodel <- lm(myformula, data=mydata)
+mymodel <- lm(myformula, data = mydata)
 # Calculate permutation p-value
-anova(lmp(myformula, data=mydata, perm = "Prob", center=FALSE,
-Ca=0.001))
+anova(lmp(myformula, data = mydata, perm = "Prob", center=FALSE, Ca=0.001))
 ```
