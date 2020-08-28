@@ -201,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>4.6</b> Références</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a><ul>
-<li class="chapter" data-level="5.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="5.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#set-ano"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>5.2.1</b> Visualiser les données</a></li>
 <li class="chapter" data-level="5.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>5.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
@@ -329,7 +329,7 @@ Si les deux variables sont normalement distribuées, on présume généralement 
 <ul>
 <li>Examinez la distribution des quatre variables (les deux variables originales et les variables transformées). Que concluez-vous de l’inspection visuelle de ces graphiques ?</li>
 </ul>
-<p>Les figures ci-dessous sont les diagrammes de probabilité (`qqplot()).
+<p>Les figures ci-dessous sont les diagrammes de probabilité (<code>qqplot()</code>).
 Le code pour produire des graphiques multiples sur une page, comme
 on voit ci-dessous, est:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># divise le graphique en 4 sections</span></a>
@@ -787,6 +787,7 @@ Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 </p>
 </div>
 <p>La puissance de détecter une pente comme étant statistiquement significative (au niveau alpha), si la pente est 0.1, que la variabilité résiduelle autour de la régression est semblable à celle de notre échantillon (ce qui revient à une taille d’effet de 0.54, pour un échantillon de 20 esturgeons et alpha=0.05) est de 0.629. Seulement environ 2/3 des échantillons de cette taille détecteraient un effet significatif de l’âge sur <code>fklngth</code>.</p>
+<!-- parler de l'autre manière de faire un test de puissance pour la pente -->
 </div>
 <div id="effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori" class="section level3">
 <h3><span class="header-section-number">3.9.2</span> Effectif requis pour atteindre une puissance désirée (test A-priori)</h3>
@@ -828,9 +829,9 @@ Figure 3.4: Analyse à priori pour déterminer la taille d’échantillon pour u
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0010443976  0.03330065
-## t2* 0.3408557 -0.0006089909  0.02649592</code></pre>
+##      original       bias    std. error
+## t1* 1.1919926  0.001770032  0.03341155
+## t2* 0.3408557 -0.001291806  0.02643552</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -856,11 +857,12 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.126,  1.256 )   ( 1.123,  1.257 )  
+## 95%   ( 1.125,  1.256 )   ( 1.125,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.127,  1.261 )   ( 1.121,  1.254 )  
-## Calculations and Intervals on Original Scale</code></pre>
+## 95%   ( 1.127,  1.259 )   ( 1.117,  1.252 )  
+## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable</code></pre>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
 <a class="sourceLine" id="cb93-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## Warning in boot.ci(results, type = &quot;all&quot;, index = 2): bootstrap variances needed
@@ -873,10 +875,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2895,  0.3934 )   ( 0.2890,  0.3958 )  
+## 95%   ( 0.2903,  0.3940 )   ( 0.2893,  0.3947 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2859,  0.3927 )   ( 0.2915,  0.3999 )  
+## 95%   ( 0.2870,  0.3924 )   ( 0.2942,  0.4005 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

@@ -76,7 +76,7 @@ Si les deux variables sont normalement distribuées, on présume généralement 
 
 - Examinez la distribution des quatre variables (les deux variables originales et les variables transformées). Que concluez-vous de l'inspection visuelle de ces graphiques ?
 
-Les figures ci-dessous sont les diagrammes de probabilité (`qqplot()).
+Les figures ci-dessous sont les diagrammes de probabilité (`qqplot()`).
 Le code pour produire des graphiques multiples sur une page, comme
 on voit ci-dessous, est:
 
