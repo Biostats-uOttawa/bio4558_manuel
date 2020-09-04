@@ -1,7 +1,7 @@
 \PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[12pt,]{krantz}
+\documentclass[12pt,]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -122,7 +122,8 @@
 \renewcommand{\bottomfraction}{0.8}
 \renewcommand{\floatpagefraction}{0.75}
 
-\renewenvironment{quote}{\begin{VF}}{\end{VF}}
+%\renewenvironment{quote}{\begin{VF}}{\end{VF}}
+
 \let\oldhref\href
 \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 
@@ -213,7 +214,7 @@
 }
 \makeatother
 
-\frontmatter
+%\frontmatter
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
@@ -241,8 +242,6 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\listoftables
-\listoffigures
 \hypertarget{note}{%
 \chapter*{Note}\label{note}}
 
@@ -2471,9 +2470,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0012365261  0.03393979
-## t2* 0.3408557 -0.0007789921  0.02706188
+##      original       bias    std. error
+## t1* 1.1919926  0.001478296  0.03376836
+## t2* 0.3408557 -0.001205433  0.02687736
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -2530,11 +2529,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.257 )   ( 1.127,  1.257 )  
+## 95%   ( 1.124,  1.257 )   ( 1.125,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.127,  1.257 )   ( 1.120,  1.250 )  
+## 95%   ( 1.128,  1.259 )   ( 1.115,  1.247 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -2558,10 +2558,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2886,  0.3947 )   ( 0.2885,  0.3923 )  
+## 95%   ( 0.2894,  0.3947 )   ( 0.2902,  0.3943 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2894,  0.3932 )   ( 0.2951,  0.3985 )  
+## 95%   ( 0.2874,  0.3915 )   ( 0.2969,  0.4043 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2906,9 +2906,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 0.0002412457   0.4451144
-## t2* -1.714546 0.0234845831   0.7811294
+##      original     bias    std. error
+## t1* 45.084391 0.01417341   0.4247835
+## t2* -1.714546 0.01602731   0.7706623
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -2941,7 +2941,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.176, -0.218 )  
+## 95%   (-3.157, -0.143 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2983,7 +2983,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 4957     0.02 *
+## location1   0.8573 3539   0.0277 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -3605,18 +3605,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5951
+## Quantile = 2.5907
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2733   3.6477
-##  1965 -  1954 == 0  -5.5077  -9.9999  -1.0154
-##  1966 -  1954 == 0  -3.3127  -6.3450  -0.2804
-##  1965 -  1958 == 0  -5.6949 -10.4141  -0.9756
-##  1966 -  1958 == 0  -3.4999  -6.8593  -0.1405
-##  1966 -  1965 == 0   2.1950  -2.2199   6.6098
+##  1958 -  1954 == 0   0.1872  -3.2674   3.6418
+##  1965 -  1954 == 0  -5.5077  -9.9922  -1.0231
+##  1966 -  1954 == 0  -3.3127  -6.3398  -0.2856
+##  1965 -  1958 == 0  -5.6949 -10.4060  -0.9837
+##  1966 -  1958 == 0  -3.4999  -6.8535  -0.1463
+##  1966 -  1965 == 0   2.1950  -2.2123   6.6022
 \end{verbatim}
 
 \begin{Shaded}
