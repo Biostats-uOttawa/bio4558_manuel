@@ -1,7 +1,7 @@
 \PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
 \PassOptionsToPackage{hyphens}{url}
 %
-\documentclass[]{book}
+\documentclass[12pt,]{krantz}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -13,6 +13,7 @@
 \else % if luatex or xelatex
   \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmonofont[Mapping=tex-ansi,Scale=0.7]{Source Code Pro}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -43,37 +44,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.33,0.33,0.33}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.61,0.61,0.61}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.14,0.14,0.14}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
 \newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.43,0.43,0.43}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
@@ -108,10 +109,10 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage[bf,singlelinecheck=off]{caption}
-
+\usepackage{sourcecodepro}
 %\usepackage{Alegreya}
 
-%\setmainfont[UprightFeatures={SmallCapsFont=AlegreyaSC-Regular}]{Alegreya}
+\setmainfont[UprightFeatures={SmallCapsFont=AlegreyaSC-Regular}]{Alegreya}
 
 \usepackage{framed,color}
 \definecolor{shadecolor}{RGB}{248,248,248}
@@ -195,6 +196,9 @@
 \newenvironment{rmdwarning}
   {\begin{rmdblock}{warning}}
   {\end{rmdblock}}
+\newenvironment{rmdcode}
+  {\begin{rmdblock}{screen}}
+  {\end{rmdblock}}
 
 \usepackage{makeidx}
 \makeindex
@@ -217,7 +221,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{03-09-2020}
+\date{04-09-2020}
 
 \begin{document}
 \maketitle
@@ -234,9 +238,11 @@
 %\setlength{\abovedisplayshortskip}{-5pt}
 
 {
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 \tableofcontents
 }
+\listoftables
+\listoffigures
 \hypertarget{note}{%
 \chapter*{Note}\label{note}}
 
@@ -406,6 +412,38 @@ Ces 2 paquets devrait être installé automatiquement avec RStudio, mais pas tou
   Vous vous en féliciterez plus tard.
 \end{itemize}
 
+\hypertarget{notes-sur-le-manuel}{%
+\section*{Notes sur le manuel}\label{notes-sur-le-manuel}}
+
+
+Vous trouverez dans le manuel des explications sur la théorie, du code R, des explications sur R et des exercises.
+
+Le manuel essaie aussi de mettre en évidence le texte de différentes manières.
+
+\begin{rmdcode}
+Avec des sections à vous de jouer, ui indique un exercise à faire, idéalement sans regarder la solution qui se trouve plus bas.
+\end{rmdcode}
+
+\begin{rmdcaution}
+des avertissements
+\end{rmdcaution}
+
+\begin{rmdwarning}
+des avertissements
+\end{rmdwarning}
+
+\begin{rmdimportant}
+des points importants
+\end{rmdimportant}
+
+\begin{rmdnote}
+des notes
+\end{rmdnote}
+
+\begin{rmdtip}
+et des conseils
+\end{rmdtip}
+
 \hypertarget{introductionR}{%
 \chapter{Introduction à R}\label{introductionR}}
 
@@ -496,12 +534,18 @@ Par exemple, pour créer un objet R \texttt{erables} qui contient les données d
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Attrape} : Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
+\begin{rmdwarning}
+Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
 Par défaut, R utilise le point décimal et vous n'obtiendrez pas le résultat escompté.
 Il existe une version modifiée de \texttt{read.csv()} appelée \texttt{read.csv2()} qui règle ce problème.
 Googlez-la si vous en avez besoin.
+\end{rmdwarning}
 
-Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction \texttt{ls()} ou en obtenir une liste avec une description plus détaillée avec \texttt{ls.str()}
+Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction \texttt{ls()} ou en obtenir une liste avec une description plus détaillée avec \texttt{ls.str()}.
+
+\begin{rmdtip}
+Je vous déconseille cependant, la fonction \texttt{ls.str()} car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d'objet dans l'environnement R. Je vous suggère donc d'utliser \texttt{ls()} et ensuite \texttt{str()} sur l'objet qui vous intéresse.
+\end{rmdtip}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -510,437 +554,24 @@ Pour vérifier si les données ont bel et bien été lues, vous pouvez lister le
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "anova.fkl.vs.year"    "anova.model1"         "anova.model2"        
-##  [4] "aov.Damsubset"        "bs"                   "cimeans"             
-##  [7] "Dam10dat"             "Damsubset"            "erables"             
-## [10] "graphskull"           "m1"                   "m1Perm"              
-## [13] "meandiff"             "means"                "mygraph"             
-## [16] "old.par"              "opar"                 "RegModel.1"          
-## [19] "RegModel.2"           "RegModel.3"           "results"             
-## [22] "salmonella"           "skull"                "Stu2wdat"            
-## [25] "sturgeon"             "sturgeon.female.1978" "sturgeon.male"       
-## [28] "sturgeon.male.subset"
+## [1] "erables"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ls.str}\NormalTok{()}
+\KeywordTok{str}\NormalTok{(erables)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## anova.fkl.vs.year : List of 13
-##  $ coefficients : Named num [1:4] 48.024 0.187 -5.508 -3.313
-##  $ residuals    : Named num [1:118] -3.02 1.98 -9.02 -2.02 6.48 ...
-##  $ effects      : Named num [1:118] -502.93 11.05 -12.04 -14.77 7.08 ...
-##  $ rank         : int 4
-##  $ fitted.values: Named num [1:118] 48 48 48 48 48 ...
-##  $ assign       : int [1:4] 0 1 1 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 114
-##  $ contrasts    :List of 1
-##  $ xlevels      :List of 1
-##  $ call         : language aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
-##  $ terms        :Classes 'terms', 'formula'  language fklngth ~ myyear
-##  $ model        :'data.frame':	118 obs. of  2 variables:
-## anova.model1 : List of 13
-##  $ coefficients : Named num [1:4] 48.024 0.187 -5.508 -3.313
-##  $ residuals    : Named num [1:118] -3.02 1.98 -9.02 -2.02 6.48 ...
-##  $ effects      : Named num [1:118] -502.93 11.05 -12.04 -14.77 7.08 ...
-##  $ rank         : int 4
-##  $ fitted.values: Named num [1:118] 48 48 48 48 48 ...
-##  $ assign       : int [1:4] 0 1 1 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 114
-##  $ contrasts    :List of 1
-##  $ xlevels      :List of 1
-##  $ call         : language lm(formula = fklngth ~ year, data = Dam10dat)
-##  $ terms        :Classes 'terms', 'formula'  language fklngth ~ year
-##  $ model        :'data.frame':	118 obs. of  2 variables:
-## anova.model2 : List of 13
-##  $ coefficients : Named num [1:4] 1.67839 0.00123 -0.05177 -0.0293
-##  $ residuals    : Named num [1:118] -0.0252 0.0206 -0.0873 -0.0156 0.058 ...
-##  $ effects      : Named num [1:118] -18.0618 0.0976 -0.1164 -0.1307 0.0632 ...
-##  $ rank         : int 4
-##  $ fitted.values: Named num [1:118] 1.68 1.68 1.68 1.68 1.68 ...
-##  $ assign       : int [1:4] 0 1 1 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 114
-##  $ contrasts    :List of 1
-##  $ xlevels      :List of 1
-##  $ call         : language lm(formula = log10(fklngth) ~ year, data = Dam10dat)
-##  $ terms        :Classes 'terms', 'formula'  language log10(fklngth) ~ year
-##  $ model        :'data.frame':	118 obs. of  2 variables:
-## aov.Damsubset : List of 13
-##  $ coefficients : Named num [1:4] 47.594 -0.454 -5.078 -3.152
-##  $ residuals    : Named num [1:115] -2.59 2.41 -8.59 -1.59 6.91 ...
-##  $ effects      : Named num [1:115] -491.31 7.49 -10.9 -13.88 7.42 ...
-##  $ rank         : int 4
-##  $ fitted.values: Named num [1:115] 47.6 47.6 47.6 47.6 47.6 ...
-##  $ assign       : int [1:4] 0 1 1 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 111
-##  $ contrasts    :List of 1
-##  $ xlevels      :List of 1
-##  $ call         : language aov(formula = fklngth ~ as.factor(year), data = Damsubset)
-##  $ terms        :Classes 'terms', 'formula'  language fklngth ~ as.factor(year)
-##  $ model        :'data.frame':	115 obs. of  2 variables:
-## bs : function (formula, data, indices)  
-## cimeans : List of 10
-##  $ y        : num [1:118] 45 50 39 46 54.5 49 42.5 49 56 54 ...
-##  $ yname    : chr "fklngth"
-##  $ x        : Factor w/ 4 levels " 1954"," 1958",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ xname    : chr "myyear"
-##  $ weights  : NULL
-##  $ lp       : Named num [1:118] 48 48 48 48 48 ...
-##  $ covar    : logi FALSE
-##  $ comps    : chr [1:6, 1:2] " 1958" " 1965" " 1966" " 1965" ...
-##  $ signif   : logi [1:6] FALSE TRUE TRUE TRUE TRUE FALSE
-##  $ mcletters:List of 5
-## Dam10dat : 'data.frame':	118 obs. of  22 variables:
-##  $ year    : Factor w/ 4 levels "1954","1958",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
-##  $ totlngth: num  49 NA 43 50.5 NA 51.7 45.5 52 60.2 58.5 ...
-##  $ drlngth : logi  NA NA NA NA NA NA ...
-##  $ drwght  : num  16 20.5 10 17.5 19.7 21.3 9.5 23.7 31 27.3 ...
-##  $ rdwght  : num  24.5 33 15.5 28.5 32.5 35.5 15.3 40.5 51.5 43 ...
-##  $ sex     : int  1 1 1 2 1 2 1 1 1 1 ...
-##  $ age     : int  24 33 17 31 37 44 23 34 33 47 ...
-##  $ lfkl    : num  1.65 1.7 1.59 1.66 1.74 ...
-##  $ ltotl   : num  1.69 NA 1.63 1.7 NA ...
-##  $ ldrl    : logi  NA NA NA NA NA NA ...
-##  $ ldrwght : num  1.2 1.31 1 1.24 1.29 ...
-##  $ lrdwght : num  1.39 1.52 1.19 1.45 1.51 ...
-##  $ lage    : num  1.38 1.52 1.23 1.49 1.57 ...
-##  $ rage    : int  4 6 3 6 7 7 4 6 6 7 ...
-##  $ ryear   : int  1954 1954 1954 1954 1954 1954 1954 1954 1954 1954 ...
-##  $ ryear2  : int  1958 1958 1958 1958 1958 1958 1958 1958 1958 1958 ...
-##  $ ryear3  : int  1966 1966 1966 1966 1966 1966 1966 1966 1966 1966 ...
-##  $ location: int  1 1 1 1 1 1 1 1 1 1 ...
-##  $ girth   : logi  NA NA NA NA NA NA ...
-##  $ lgirth  : logi  NA NA NA NA NA NA ...
-##  $ myyear  : Factor w/ 4 levels " 1954"," 1958",..: 1 1 1 1 1 1 1 1 1 1 ...
-## Damsubset : 'data.frame':	115 obs. of  22 variables:
-##  $ year    : Factor w/ 4 levels "1954","1958",..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
-##  $ totlngth: num  49 NA 43 50.5 NA 51.7 45.5 52 60.2 58.5 ...
-##  $ drlngth : logi  NA NA NA NA NA NA ...
-##  $ drwght  : num  16 20.5 10 17.5 19.7 21.3 9.5 23.7 31 27.3 ...
-##  $ rdwght  : num  24.5 33 15.5 28.5 32.5 35.5 15.3 40.5 51.5 43 ...
-##  $ sex     : int  1 1 1 2 1 2 1 1 1 1 ...
-##  $ age     : int  24 33 17 31 37 44 23 34 33 47 ...
-##  $ lfkl    : num  1.65 1.7 1.59 1.66 1.74 ...
-##  $ ltotl   : num  1.69 NA 1.63 1.7 NA ...
-##  $ ldrl    : logi  NA NA NA NA NA NA ...
-##  $ ldrwght : num  1.2 1.31 1 1.24 1.29 ...
-##  $ lrdwght : num  1.39 1.52 1.19 1.45 1.51 ...
-##  $ lage    : num  1.38 1.52 1.23 1.49 1.57 ...
-##  $ rage    : int  4 6 3 6 7 7 4 6 6 7 ...
-##  $ ryear   : int  1954 1954 1954 1954 1954 1954 1954 1954 1954 1954 ...
-##  $ ryear2  : int  1958 1958 1958 1958 1958 1958 1958 1958 1958 1958 ...
-##  $ ryear3  : int  1966 1966 1966 1966 1966 1966 1966 1966 1966 1966 ...
-##  $ location: int  1 1 1 1 1 1 1 1 1 1 ...
-##  $ girth   : logi  NA NA NA NA NA NA ...
-##  $ lgirth  : logi  NA NA NA NA NA NA ...
-##  $ myyear  : Factor w/ 4 levels " 1954"," 1958",..: 1 1 1 1 1 1 1 1 1 1 ...
-## erables : 'data.frame':	100 obs. of  3 variables:
+## 'data.frame':	100 obs. of  3 variables:
 ##  $ station: chr  "A" "A" "A" "A" ...
 ##  $ diam   : num  22.4 36.1 44.4 24.6 17.7 ...
 ##  $ biom   : num  732 1171 673 1552 504 ...
-## graphskull : List of 9
-##  $ data       :'data.frame':	30 obs. of  4 variables:
-##  $ layers     :List of 2
-##  $ scales     :Classes 'ScalesList', 'ggproto', 'gg' <ggproto object: Class ScalesList, gg>
-##     add: function
-##     clone: function
-##     find: function
-##     get_scales: function
-##     has_scale: function
-##     input: function
-##     n: function
-##     non_position_scales: function
-##     scales: list
-##     super:  <ggproto object: Class ScalesList, gg> 
-##  $ mapping    :List of 2
-##  $ theme      : list()
-##  $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto', 'gg' <ggproto object: Class CoordCartesian, Coord, gg>
-##     aspect: function
-##     backtransform_range: function
-##     clip: on
-##     default: TRUE
-##     distance: function
-##     expand: TRUE
-##     is_free: function
-##     is_linear: function
-##     labels: function
-##     limits: list
-##     modify_scales: function
-##     range: function
-##     render_axis_h: function
-##     render_axis_v: function
-##     render_bg: function
-##     render_fg: function
-##     setup_data: function
-##     setup_layout: function
-##     setup_panel_guides: function
-##     setup_panel_params: function
-##     setup_params: function
-##     train_panel_guides: function
-##     transform: function
-##     super:  <ggproto object: Class CoordCartesian, Coord, gg> 
-##  $ facet      :Classes 'FacetNull', 'Facet', 'ggproto', 'gg' <ggproto object: Class FacetNull, Facet, gg>
-##     compute_layout: function
-##     draw_back: function
-##     draw_front: function
-##     draw_labels: function
-##     draw_panels: function
-##     finish_data: function
-##     init_scales: function
-##     map_data: function
-##     params: list
-##     setup_data: function
-##     setup_params: function
-##     shrink: TRUE
-##     train_scales: function
-##     vars: function
-##     super:  <ggproto object: Class FacetNull, Facet, gg> 
-##  $ plot_env   :<environment: R_GlobalEnv> 
-##  $ labels     :List of 2
-## m1 : List of 13
-##  $ coefficients : Named num [1:2] 45.08 -1.71
-##  $ residuals    : Named num [1:186] -6.36 6.83 -14.43 6.83 2.18 ...
-##  $ effects      : Named num [1:186] -602.17 11.65 -14.43 6.83 2.19 ...
-##  $ rank         : int 2
-##  $ fitted.values: Named num [1:186] 43.4 43.4 43.4 43.4 43.4 ...
-##  $ assign       : int [1:2] 0 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 184
-##  $ contrasts    :List of 1
-##  $ xlevels      :List of 1
-##  $ call         : language lm(formula = fklngth ~ location, data = sturgeon)
-##  $ terms        :Classes 'terms', 'formula'  language fklngth ~ location
-##  $ model        :'data.frame':	186 obs. of  2 variables:
-## m1Perm : List of 13
-##  $ coefficients : Named num [1:2] 44.227 0.857
-##  $ residuals    : Named num [1:186] -6.36 6.83 -14.43 6.83 2.18 ...
-##  $ effects      : Named num [1:186] -602.17 11.65 -14.43 6.83 2.19 ...
-##  $ rank         : int 2
-##  $ fitted.values: Named num [1:186] 43.4 43.4 43.4 43.4 43.4 ...
-##  $ assign       : num [1:2] 0 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 184
-##  $ perm         :List of 5
-##  $ xlevels      :List of 1
-##  $ call         : language lmp(formula = fklngth ~ location, data = sturgeon, perm = "Prob")
-##  $ terms        :Classes 'terms', 'formula'  language fklngth ~ location
-##  $ model        :'data.frame':	186 obs. of  2 variables:
-## meandiff : List of 9
-##  $ model      :List of 13
-##  $ linfct     : num [1:6, 1:4] 0 0 0 0 0 0 1 0 0 -1 ...
-##  $ rhs        : num [1:6] 0 0 0 0 0 0
-##  $ coef       : Named num [1:4] 48.024 0.187 -5.508 -3.313
-##  $ vcov       : num [1:4, 1:4] 0.734 -0.734 -0.734 -0.734 -0.734 ...
-##  $ df         : int 114
-##  $ alternative: chr "two.sided"
-##  $ type       : chr "Tukey"
-##  $ focus      : chr "myyear"
-## means : List of 9
-##  $ model      :List of 13
-##  $ linfct     : num [1:6, 1:4] 0 0 0 0 0 0 1 0 0 -1 ...
-##  $ rhs        : num [1:6] 0 0 0 0 0 0
-##  $ coef       : Named num [1:4] 48.024 0.187 -5.508 -3.313
-##  $ vcov       : num [1:4, 1:4] 0.734 -0.734 -0.734 -0.734 -0.734 ...
-##  $ df         : int 114
-##  $ alternative: chr "two.sided"
-##  $ type       : chr "Tukey"
-##  $ focus      : chr "myyear"
-## mygraph : List of 9
-##  $ data       :'data.frame':	118 obs. of  21 variables:
-##  $ layers     :List of 4
-##  $ scales     :Classes 'ScalesList', 'ggproto', 'gg' <ggproto object: Class ScalesList, gg>
-##     add: function
-##     clone: function
-##     find: function
-##     get_scales: function
-##     has_scale: function
-##     input: function
-##     n: function
-##     non_position_scales: function
-##     scales: list
-##     super:  <ggproto object: Class ScalesList, gg> 
-##  $ mapping    :List of 1
-##  $ theme      : list()
-##  $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto', 'gg' <ggproto object: Class CoordCartesian, Coord, gg>
-##     aspect: function
-##     backtransform_range: function
-##     clip: on
-##     default: TRUE
-##     distance: function
-##     expand: TRUE
-##     is_free: function
-##     is_linear: function
-##     labels: function
-##     limits: list
-##     modify_scales: function
-##     range: function
-##     render_axis_h: function
-##     render_axis_v: function
-##     render_bg: function
-##     render_fg: function
-##     setup_data: function
-##     setup_layout: function
-##     setup_panel_guides: function
-##     setup_panel_params: function
-##     setup_params: function
-##     train_panel_guides: function
-##     transform: function
-##     super:  <ggproto object: Class CoordCartesian, Coord, gg> 
-##  $ facet      :Classes 'FacetNull', 'Facet', 'ggproto', 'gg' <ggproto object: Class FacetNull, Facet, gg>
-##     compute_layout: function
-##     draw_back: function
-##     draw_front: function
-##     draw_labels: function
-##     draw_panels: function
-##     finish_data: function
-##     init_scales: function
-##     map_data: function
-##     params: list
-##     setup_data: function
-##     setup_params: function
-##     shrink: TRUE
-##     train_scales: function
-##     vars: function
-##     super:  <ggproto object: Class FacetNull, Facet, gg> 
-##  $ plot_env   :<environment: R_GlobalEnv> 
-##  $ labels     :List of 4
-## old.par : List of 1
-##  $ mai: num [1:4] 1.02 0.82 0.82 0.42
-## opar : List of 1
-##  $ mfrow: int [1:2] 1 1
-## RegModel.1 : List of 13
-##  $ coefficients : Named num [1:2] 28.504 0.707
-##  $ residuals    : Named num [1:75] 0.725 -4.517 2.903 -8.494 0.978 ...
-##  $ effects      : Named num [1:75] -361.75 39.717 2.688 -7.819 0.558 ...
-##  $ rank         : int 2
-##  $ fitted.values: Named num [1:75] 36.3 33.5 42.6 33.5 44.8 ...
-##  $ assign       : int [1:2] 0 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 73
-##  $ na.action    : 'omit' Named int [1:5] 63 64 66 68 70
-##  $ xlevels      : Named list()
-##  $ call         : language lm(formula = fklngth ~ age, data = sturgeon.male)
-##  $ terms        :Classes 'terms', 'formula'  language fklngth ~ age
-##  $ model        :'data.frame':	75 obs. of  2 variables:
-## RegModel.2 : List of 13
-##  $ coefficients : Named num [1:2] 1.192 0.341
-##  $ residuals    : Named num [1:75] 0.02134 -0.0186 0.02304 -0.08279 0.00423 ...
-##  $ effects      : Named num [1:75] -1.40e+01 4.74e-01 1.99e-02 -8.05e-02 4.07e-04 ...
-##  $ rank         : int 2
-##  $ fitted.values: Named num [1:75] 1.55 1.48 1.64 1.48 1.66 ...
-##  $ assign       : int [1:2] 0 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 73
-##  $ na.action    : 'omit' Named int [1:5] 63 64 66 68 70
-##  $ xlevels      : Named list()
-##  $ call         : language lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male)
-##  $ terms        :Classes 'terms', 'formula'  language log10(fklngth) ~ log10(age)
-##  $ model        :'data.frame':	75 obs. of  2 variables:
-## RegModel.3 : List of 13
-##  $ coefficients : Named num [1:2] 1.227 0.312
-##  $ residuals    : Named num [1:72] 0.01642 -0.02914 0.02557 0.00849 -0.02009 ...
-##  $ effects      : Named num [1:72] -13.71657 0.41261 0.02249 0.00431 -0.02276 ...
-##  $ rank         : int 2
-##  $ fitted.values: Named num [1:72] 1.55 1.49 1.63 1.65 1.63 ...
-##  $ assign       : int [1:2] 0 1
-##  $ qr           :List of 5
-##  $ df.residual  : int 70
-##  $ na.action    : 'omit' Named int [1:5] 60 61 63 65 67
-##  $ xlevels      : Named list()
-##  $ call         : language lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male, subset = !(rownames(sturgeon.male) %in%      c("8| __truncated__
-##  $ terms        :Classes 'terms', 'formula'  language log10(fklngth) ~ log10(age)
-##  $ model        :'data.frame':	72 obs. of  2 variables:
-## results : List of 11
-##  $ t0       : Named num [1:2] 45.08 -1.71
-##  $ t        : num [1:1000, 1:2] 45.7 45.1 45.5 45.4 44.9 ...
-##  $ R        : num 1000
-##  $ data     :'data.frame':	186 obs. of  11 variables:
-##  $ seed     : int [1:626] 10403 401 -1527343658 -1349513976 -399705859 -1939080725 1464139052 1317401249 -1414560275 1104483230 ...
-##  $ statistic:function (formula, data, indices)  
-##  $ sim      : chr "ordinary"
-##  $ call     : language boot(data = sturgeon, statistic = bs, R = 1000, formula = fklngth ~ location)
-##  $ stype    : chr "i"
-##  $ strata   : num [1:186] 1 1 1 1 1 1 1 1 1 1 ...
-##  $ weights  : num [1:186] 0.00538 0.00538 0.00538 0.00538 0.00538 ...
-## salmonella : 'data.frame':	60 obs. of  4 variables:
-##  $ ratio : num  0.006322 0.00281 0.000111 0.007533 2.440643 ...
-##  $ souche: chr  "SMR" "SMR" "SMR" "SMR" ...
-##  $ milieu: chr  "IN VITRO" "IN VITRO" "IN VITRO" "IN VITRO" ...
-##  $ labo  : int  1 2 3 4 5 6 7 8 9 10 ...
-## skull : 'data.frame':	30 obs. of  4 variables:
-##  $ width : num  7.33 7.53 7.49 7.7 7.27 7.46 7.93 8.21 7.56 7.81 ...
-##  $ age   : int  5 6 5 6 5 6 5 6 5 6 ...
-##  $ width5: num  7.3 7.49 7.27 7.93 7.56 7.81 7.46 6.94 7.49 7.44 ...
-##  $ width6: num  7.53 7.7 7.46 8.21 7.81 8.01 7.72 7.13 7.68 7.66 ...
-## Stu2wdat : 'data.frame':	186 obs. of  9 variables:
-##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
-##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
-##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
-##  $ drwght  : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ rdwght  : num  15.95 NA 6.49 NA 29.92 ...
-##  $ age     : int  11 24 7 23 20 23 20 7 23 19 ...
-##  $ sex     : chr  "MALE        " "FEMALE      " "MALE        " "FEMALE      " ...
-##  $ location: chr  "THE_PAS     " "THE_PAS     " "THE_PAS     " "THE_PAS     " ...
-##  $ year    : num  1978 1978 1978 1978 1978 ...
-## sturgeon : 'data.frame':	186 obs. of  11 variables:
-##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
-##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
-##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
-##  $ rdwght  : num  15.95 NA 6.49 NA 29.92 ...
-##  $ age     : int  11 24 7 23 20 23 20 7 23 19 ...
-##  $ girth   : num  40.5 53.5 31 52.5 50 54.2 48 28.5 44 39 ...
-##  $ sex     : chr  "MALE" "FEMALE" "MALE" "FEMALE" ...
-##  $ location: chr  "THE_PAS" "THE_PAS" "THE_PAS" "THE_PAS" ...
-##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
-##  $ lfklngth: num  1.57 1.7 1.46 1.7 1.66 ...
-##  $ lrdwght : num  1.203 NA 0.812 NA 1.476 ...
-## sturgeon.female.1978 : 'data.frame':	15 obs. of  9 variables:
-##  $ fklngth : num  50.2 50.2 49.6 47.7 48.9 ...
-##  $ totlngth: num  54.1 53.1 53.9 51.4 53.9 ...
-##  $ drlngth : num  31.5 32.3 31.1 34 29.9 ...
-##  $ rdwght  : num  NA NA 35.9 33.9 35.9 ...
-##  $ age     : int  24 23 23 20 23 24 18 21 19 20 ...
-##  $ girth   : num  53.5 52.5 54.2 48 52.5 NA NA NA NA NA ...
-##  $ sex     : chr  "FEMALE" "FEMALE" "FEMALE" "FEMALE" ...
-##  $ location: chr  "THE_PAS" "THE_PAS" "THE_PAS" "THE_PAS" ...
-##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
-## sturgeon.male : 'data.frame':	80 obs. of  11 variables:
-##  $ fklngth : num  37 28.9 45.6 25 45.7 ...
-##  $ totlngth: num  40.7 31.3 49.5 28.1 50.4 ...
-##  $ drlngth : num  23.6 17.3 32.1 14.3 29.3 ...
-##  $ rdwght  : num  15.95 6.49 29.92 4.73 29.48 ...
-##  $ age     : int  11 7 20 7 23 19 17 14 21 29 ...
-##  $ girth   : num  40.5 31 50 28.5 44 39 41 47 43.5 49 ...
-##  $ sex     : chr  "MALE" "MALE" "MALE" "MALE" ...
-##  $ location: chr  "THE_PAS" "THE_PAS" "THE_PAS" "THE_PAS" ...
-##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
-##  $ lfklngth: num  1.57 1.46 1.66 1.4 1.66 ...
-##  $ lrdwght : num  1.203 0.812 1.476 0.675 1.47 ...
-## sturgeon.male.subset : 'data.frame':	178 obs. of  11 variables:
-##  $ fklngth : num  37 50.2 28.9 45.6 49.6 ...
-##  $ totlngth: num  40.7 54.1 31.3 49.5 53.9 ...
-##  $ drlngth : num  23.6 31.5 17.3 32.1 31.1 ...
-##  $ rdwght  : num  15.95 NA 6.49 29.92 35.86 ...
-##  $ age     : int  11 24 7 20 23 20 7 23 19 17 ...
-##  $ girth   : num  40.5 53.5 31 50 54.2 48 28.5 44 39 41 ...
-##  $ sex     : chr  "MALE" "FEMALE" "MALE" "MALE" ...
-##  $ location: chr  "THE_PAS" "THE_PAS" "THE_PAS" "THE_PAS" ...
-##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
-##  $ lfklngth: num  1.57 1.7 1.46 1.66 1.7 ...
-##  $ lrdwght : num  1.203 NA 0.812 1.476 1.555 ...
 \end{verbatim}
 
-R confirme avoir en mémoire l'objet \texttt{ErablesGatineau}.
-\texttt{ErableGatineau} est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): \texttt{station}, une variable de type Facteur avec 2 niveaux, et \texttt{diam} et \texttt{biom} qui sont 2 variables numériques.
+R confirme avoir en mémoire l'objet \texttt{erables}.
+\texttt{erables} est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): \texttt{station}, une variable de type Facteur avec 2 niveaux, et \texttt{diam} et \texttt{biom} qui sont 2 variables numériques.
 
 \hypertarget{entrer-des-donnuxe9es}{%
 \subsection{Entrer des données}\label{entrer-des-donnuxe9es}}
@@ -963,7 +594,9 @@ Vous aurez à la fin une seule version (corrigée) de vos données et un code qu
 \subsection{Exporter des données à partir de R.}\label{exporter-des-donnuxe9es-uxe0-partir-de-r.}}
 
 Vous pouvez utiliser la fonction,
+
 \texttt{\{r\ write,\ eval\ =FALSE)\ \ \ write.csv(mydata,\ file\ =\ "outfilename.csv",\ row.names\ =\ FALSE)}
+
 où \texttt{mydata} est le nom du base de données à exporter et \texttt{outfilename.csv} est le nom du fichier à produire.
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à \texttt{File\textgreater{}Change\ dir}, ou par la commande \texttt{setwd()})
 
@@ -1049,9 +682,11 @@ Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la val
 Notez que plusieurs des variables ont des observations manquantes (NA).
 Donc, seules les variables fklngth (longueur à la fourche), sex, location et year ont 186 observations.
 
-\textbf{Attrape} : Attention aux valeurs manquantes.
+\begin{rmdwarning}
+\textbf{Attention aux valeurs manquantes}
 Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses sur des sous- ensembles sans valeur manquante, par des commandes ou des options dans les commandes.
 On y reviendra, mais prenez l'habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l'analyse.
+\end{rmdwarning}
 
 \hypertarget{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}{%
 \subsection{Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité}\label{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}}
@@ -1078,11 +713,9 @@ Leur forme dépend en partie du nombre de catégories utilisées, surtout pour l
 On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
 Mais il faut programmer un peu (ou savoir copier-coller\ldots{})
 
-\begin{itemize}
-\tightlist
-\item
-  Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgreater{}New script, ou Ctrl-n dans Windows), puis exécutez le.
-\end{itemize}
+\begin{rmdcode}
+Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgreater{}New script, ou Ctrl-n dans Windows), puis exécutez le.
+\end{rmdcode}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1186,12 +819,11 @@ Enfin, les observations qui excèdent les limites des moustaches (donc à plus d
 En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d'oeil aux diagrammes de dispersion .
 La commande \texttt{plot(y\textasciitilde{}x)} permet de faire le graphique de y sur l'axe vertical (l'ordonnée) en fonction de x sur l'axe horizontal (l'abscisse).
 
-\begin{itemize}
-\tightlist
-\item
-  Faites un graphique de fklngth en fonction de age avec la commande plot.
-  Vous devriez obtenir:
-\end{itemize}
+\begin{rmdcode}
+Faites un graphique de fklngth en fonction de age avec la commande plot.
+\end{rmdcode}
+
+Vous devriez obtenir:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1247,9 +879,11 @@ Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui n
 ## 123 49.01575       NA 29.13386  37.50  22    NA FEMALE CUMBERLAND 1978
 \end{verbatim}
 
-\textbf{Attrape}: Dans ces comparaisons, il faut toujours utiliser \texttt{==} pour égal à.
+\begin{rmdcaution}
+Dans ces comparaisons, il faut toujours utiliser \texttt{==} pour égal à.
 Dans ce contexte, si vous utilisez \texttt{=} seulement, vous n'obtiendrez pas ce que vous désirez.
 Dans le tableau qui suit se trouve une liste de commandes communes que vous allez probablement utiliser pour créer des expressions en R.
+\end{rmdcaution}
 
 \begin{longtable}[]{@{}llll@{}}
 \toprule
@@ -1326,8 +960,10 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 \hypertarget{exercice-sur-r}{%
 \section{Exercice sur R}\label{exercice-sur-r}}
 
+\begin{rmdcode}
 Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
 Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
+\end{rmdcode}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/intror-exer-1.pdf}
 
@@ -1771,6 +1407,7 @@ Donc, avec 18 ruisseaux dans chaque région, pour \(\alpha=0.05\) et \(\beta=0.2
 \hypertarget{exercice-sur-la-puissance}{%
 \section{Exercice sur la puissance}\label{exercice-sur-la-puissance}}
 
+\begin{rmdcode}
 Les larves de mouches noires (Diptera: Simuliidae) ont été échantillonnées en février à l'émissaire de deux lacs des Cantons de l'Est (lacs Orford et Lovering).
 La longueur de chaque larve a été mesurée.
 Les données sont dans le fichier simulies.RData La relation entre la longueur (L, en mm) et la masse (M, en \(\mu\)g) pour l'espèce dominante (\emph{P. mixtum/fuscum}) est:
@@ -1832,6 +1469,7 @@ M = 1.36 L^3.05
 \item
   Calculer la différence de masse, en \(\mu\)g, qui est détectable d'après vos estimés de la taille minimale d'effet détectable à 4a, b, et c.
 \end{enumerate}
+\end{rmdcode}
 
 \hypertarget{corruxe9lation-et-ruxe9gression-linuxe9aire-simple}{%
 \chapter{Corrélation et régression linéaire simple}\label{corruxe9lation-et-ruxe9gression-linuxe9aire-simple}}
@@ -2394,7 +2032,9 @@ Vous obtiendrez:
   En bas à droite, montre les résidus en fonction du ``leverage'' et permet de détecter certaines valeurs extrêmes qui ont une grande influence sur la régression. Le leverage d'un point mesure sa distance des autres points, mais seulement en ce qui concerne les variables indépendantes. Dans le cas d'une régression simple, cela revient à la distance entre le point sur l'axe des x et la moyenne de tous les points sur cet axe. Vous devriez porter une attention particulière aux observations qui ont un leverage plus grand que \(2(k+1)/n\), où k est le nombre de variables indépendantes (ici, 1) et n est le nombre d'observations. Dans cet exemple, il y a 75 observations et une variable indépendante et donc les points ayant un leverage plus grand que \(4 / 75 = 0.053\) devrait être considérés avec attention. Le graphique indique également comment la régression changerait si on enlevait un point. Ce changement est mesuré par la distance de Cook, illustrée par les bandes en rouge sur le graphique. Un point ayant une distance de Cook supérieure à 1 a une grande influence.
 \end{enumerate}
 
-\textbf{Attrappe}: Notez que R identifie automatiquement les cas les plus extrèmes sur chacun de ces 4 graphiques. Le fait qu'un point soit identifié ne signifie pas nécessairement que c'est une valeur réellement extrème, ou que vous devez vous en préoccuper. Dans tous les ensembles de données il y aura toujours un résidu plus grand que les autres\ldots{}
+\begin{rmdwarning}
+Notez que R identifie automatiquement les cas les plus extrèmes sur chacun de ces 4 graphiques. Le fait qu'un point soit identifié ne signifie pas nécessairement que c'est une valeur réellement extrème, ou que vous devez vous en préoccuper. Dans tous les ensembles de données il y aura toujours un résidu plus grand que les autres\ldots{}
+\end{rmdwarning}
 
 Finalement, quel est le verdict concernant la régression linéaire entre fklngth et age ? Elle viole la condition de linéarité, possiblement celle de normalité, remplit la condition d'homoscédasticité, et ne semble pas influencée outre mesure par des valeurs bizarres ou extrêmes.
 
@@ -2405,11 +2045,9 @@ Personnellement, je n'utilise jamais les tests formels des conditions d'applicat
 
 Le package \texttt{lmtest} , qui ne fait pas partie de l'installation de base, mais qui est disponible sur CRAN, permet de faire plusieurs tests de linéarité et d'homoscédasticité. Et on peut tester la normalité avec le test Shapiro-Wilk test vu précédemment.
 
-\begin{itemize}
-\tightlist
-\item
-  Charger le package lmtest de CRAN (et installer le si besoin).
-\end{itemize}
+\begin{rmdcode}
+Charger le package lmtest de CRAN (et installer le si besoin).
+\end{rmdcode}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2417,11 +2055,9 @@ Le package \texttt{lmtest} , qui ne fait pas partie de l'installation de base, m
 \end{Highlighting}
 \end{Shaded}
 
-\begin{itemize}
-\tightlist
-\item
-  Exécutez les commandes suivantes:
-\end{itemize}
+\begin{rmdcode}
+Exécutez les commandes suivantes
+\end{rmdcode}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2835,9 +2471,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.002479517  0.03291795
-## t2* 0.3408557 -0.001942378  0.02577449
+##      original        bias    std. error
+## t1* 1.1919926  0.0012365261  0.03393979
+## t2* 0.3408557 -0.0007789921  0.02706188
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -2894,10 +2530,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.254 )   ( 1.117,  1.251 )  
+## 95%   ( 1.124,  1.257 )   ( 1.127,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.133,  1.267 )   ( 1.115,  1.253 )  
+## 95%   ( 1.127,  1.257 )   ( 1.120,  1.250 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2922,10 +2558,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2923,  0.3933 )   ( 0.2927,  0.3962 )  
+## 95%   ( 0.2886,  0.3947 )   ( 0.2885,  0.3923 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2855,  0.3890 )   ( 0.2920,  0.3970 )  
+## 95%   ( 0.2894,  0.3932 )   ( 0.2951,  0.3985 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -3270,9 +2906,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 45.084391 -0.01853456   0.4268549
-## t2* -1.714546  0.01076523   0.7869084
+##      original       bias    std. error
+## t1* 45.084391 0.0002412457   0.4451144
+## t2* -1.714546 0.0234845831   0.7811294
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -3305,7 +2941,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.312, -0.196 )  
+## 95%   (-3.176, -0.218 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -3346,8 +2982,10 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## -18.40921  -3.75370  -0.08439   3.76598  23.48055 
 ## 
 ## Coefficients:
-##           Estimate Iter Pr(Prob)
-## location1   0.8573   51        1
+##           Estimate Iter Pr(Prob)  
+## location1   0.8573 4957     0.02 *
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.454 on 184 degrees of freedom
 ## Multiple R-Squared: 0.02419,	Adjusted R-squared: 0.01889 
@@ -3967,18 +3605,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5917
+## Quantile = 2.5951
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2687   3.6432
-##  1965 -  1954 == 0  -5.5077  -9.9940  -1.0213
-##  1966 -  1954 == 0  -3.3127  -6.3410  -0.2844
-##  1965 -  1958 == 0  -5.6949 -10.4079  -0.9819
-##  1966 -  1958 == 0  -3.4999  -6.8549  -0.1449
-##  1966 -  1965 == 0   2.1950  -2.2140   6.6040
+##  1958 -  1954 == 0   0.1872  -3.2733   3.6477
+##  1965 -  1954 == 0  -5.5077  -9.9999  -1.0154
+##  1966 -  1954 == 0  -3.3127  -6.3450  -0.2804
+##  1965 -  1958 == 0  -5.6949 -10.4141  -0.9756
+##  1966 -  1958 == 0  -3.4999  -6.8593  -0.1405
+##  1966 -  1965 == 0   2.1950  -2.2199   6.6098
 \end{verbatim}
 
 \begin{Shaded}
@@ -4239,6 +3877,237 @@ Version lmPerm du test de permutation.
 \KeywordTok{anova}\NormalTok{(}\KeywordTok{lmp}\NormalTok{(myformula, }\DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{perm =} \StringTok{"Prob"}\NormalTok{, }\DataTypeTok{center=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{Ca=}\FloatTok{0.001}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+\cleardoublepage
+
+\hypertarget{appendix-appendice}{%
+\appendix \addcontentsline{toc}{chapter}{\appendixname}}
+
+
+\hypertarget{petit-guide-pour-rmarkdown}{%
+\chapter{Petit guide pour Rmarkdown}\label{petit-guide-pour-rmarkdown}}
+
+\hypertarget{syntaxe-markdown}{%
+\section{Syntaxe Markdown}\label{syntaxe-markdown}}
+
+Ceci est un petit document qui résume la syntaxe de Markdown
+
+On utilise \# (6 max.) pour créer des titres (section) :
+
+\texttt{\#\#\#\ Titre\ 3}
+
+\texttt{\#\#\#\#\ Titre\ 4}
+
+\texttt{\#\#\#\#\ Titre\ 5}
+
+\texttt{\#\#\#\#\#\ Titre\ 6}
+
+Donne
+
+\hypertarget{titre-3}{%
+\subsection{Titre 3}\label{titre-3}}
+
+\hypertarget{titre-4}{%
+\subsubsection{Titre 4}\label{titre-4}}
+
+\hypertarget{titre-5}{%
+\subsubsection{Titre 5}\label{titre-5}}
+
+\hypertarget{titre-6}{%
+\paragraph{Titre 6}\label{titre-6}}
+
+On entoure le texte des symboles * ou \_ pour mettre le texte en italique ou en gras.
+Un symbole pour mettre en italique:
+\texttt{*Texte\ en\ Italique*}
+\emph{Texte en Italique}
+
+\texttt{\_Texte\ en\ Italique\_}
+\emph{Texte en Italique}
+
+Deux symboles pour mettre en gras:
+\texttt{**Texte\ gras**}
+\textbf{Texte gras}
+
+\texttt{\_\_Texte\ gras\_\_}
+\textbf{Texte gras}
+
+On utilise une combinaison des 2 charactère pour obtenir du \textbf{texte gras et \emph{italique}}.
+
+Pour créer un liste on utilise le symbole \texttt{-} suivit d'une espace.
+
+\begin{itemize}
+\tightlist
+\item
+  Il doit y avoir une ligne vide avant la liste.
+\item
+  On doit ajouter quelques espaces après chaque ligne.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Pour ajouter des niveau à la liste on indente (tab) 2 fois, puis on ajoute le symbole + suivit d'un espace.
+  \item
+    Ici encore, on doit ajouter quelques espaces après chaque lignes.
+  \end{itemize}
+\item
+  Il doit y avoir une ligne vide après la liste.
+\end{itemize}
+
+On peut aussi créer des liste avec des numéro ou des lettre.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  On doit simplement mettre un point après le chiffre ou la lettre, suivit d'un espace
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Encore une fois, il peut y avoir plusieurs niveaux
+    ii). Mais pas plus de 3 niveau
+  \end{enumerate}
+\end{enumerate}
+
+Pour écrire des équation mathématique, on entoure le texte du symbole \$
+
+\(K = 0.5\)
+
+\(\log(x + k)\)
+
+Pour faire un tableau, on fait comme suit (noter que l'alignement des symbole est sans importance) :
+
+\begin{verbatim}
+colonne 1  |colonne 2|colonne 3|colonne 4
+---------|--------|--------|-----------
+cellulle | cellulle |cellulle| cellulle
+cellulle   | cellulle |cellulle| cellulle
+cellulle | cellulle |cellulle| cellulle
+\end{verbatim}
+
+On peut utiliser le symbole \textgreater{} pour indenter un paragraphe (le résultat est différent entre PDF et HTML) :
+
+\begin{quote}
+En HTML, ça produit un résultat étrange \ldots{}
+\textgreater{} mais bon \ldots{}
+\end{quote}
+
+On peut écrire dans la même police que celle du code en entourant le texte avec le symbole ` :
+\texttt{variable}
+
+Si l'on veut utilisé un symbole dans le texte sans qu'il modifie le texte, il faut mettre le symbole \textbackslash{} devant.
+
+Pour inséré un lien, on entoure le texte avec {[} {]}, et on met l'addresse dans des paranthèse () immédiatement à coté:
+\href{http://rmarkdown.rstudio.com}{R Markdown}
+
+On peut tracer un ligne horizontale en répétant le symbole - 3 fois ou plus :
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uxe0-propos-de-latex}{%
+\section{À propos de LaTex}\label{uxe0-propos-de-latex}}
+
+Ce qui suit concerne uniquement ceux qui on installer LaTex.
+Les fonction LaTex serve à modifier le texte, mais ne fonctionne que lorsqu'on produit un document PDF (ça fonctionne peut-être aussi pour les document word). Ils en existe beaucoup trop de fonction pour toutes les énumérer ici. Google est votre ami.
+
+Voici quelques exemple:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\textbackslash{}emph}\NormalTok{\{texte italique\}}
+\FunctionTok{\textbackslash{}textcolor}\NormalTok{\{red\}\{texte rouge\}}
+\FunctionTok{\textbackslash{}texttt}\NormalTok{\{même police que le code de R\}}
+\end{Highlighting}
+\end{Shaded}
+
+Le nom de la prochaine fonction est assez descriptif
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\textbackslash{}pagebreak}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{concernant-le-code-dans-notebook}{%
+\section{Concernant le code dans notebook}\label{concernant-le-code-dans-notebook}}
+
+Vous devez écrire le code à l'intérieur de bloc de code, sinon il ne sera pas interpréter comme du code, mais comme du texte.
+Vous pouvez taper directement la notation pour créer un bloc code ou utiliser les raccourci clavier de RStudio
+Pour créer un nouveau bloc de code, taper \emph{\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}}} pour ouvrir le bloc et \emph{\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}} pour le fermer.
+Sinon, appuyer sur \emph{Ctrl+Alt+I}
+Dans Rstudio, pour éxécuter le code à l'intérieur d'un bloc appuyer sur \emph{Ctrl+Shift+Enter} ou cliquer sur le boutton \emph{Run} (dans le bloc, en haut à droite).
+
+Charger les données et les packages dans le premier bloc de code.
+
+\begin{verbatim}
+```{r} #ouverture du bloc de code
+ code
+``` #fermeture du bloc code
+\end{verbatim}
+
+Lorsque vous exécuter du code dans un bloc, le résultat apparait directement en dessous de la du bloc (si votre document est un R Notebook).
+L'option \texttt{fig.cap} fonctionnement seulement lorsqu'on génère un PDF.
+
+Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les résultats est sauvegarder en même temps. Cliquer sur le bouton \emph{Preview} ou appuyer sur \emph{Ctrl+Shift+K} pour voir le fichier HTML.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BaseNTok{```\{r, fig.cap = "Exemple de graphique tiré du fichier d'aide de la fonction stat_bin"\}}
+\BaseNTok{ggplot(diamonds, aes(carat)) +}
+\BaseNTok{  geom_histogram()}
+
+\BaseNTok{ggplot(diamonds, aes(carat)) +}
+\BaseNTok{  geom_histogram(binwidth = 0.01)}
+
+\BaseNTok{ggplot(diamonds, aes(carat)) +}
+\BaseNTok{  geom_histogram(bins = 200)}
+\BaseNTok{```}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(diamonds, }\KeywordTok{aes}\NormalTok{(carat)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-18-1.pdf}
+\caption{\label{fig:unnamed-chunk-18-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(diamonds, }\KeywordTok{aes}\NormalTok{(carat)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth =} \FloatTok{0.01}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-18-2.pdf}
+\caption{\label{fig:unnamed-chunk-18-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(diamonds, }\KeywordTok{aes}\NormalTok{(carat)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-18-3.pdf}
+\caption{\label{fig:unnamed-chunk-18-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\end{figure}
 
 \printindex
 

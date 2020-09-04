@@ -263,4 +263,5 @@ $$
     d) Comment est-ce que la taille d'effet détectable dépend de la taille d'échantillon dans les 2 groupes?
 
 5. Calculer la différence de masse, en $\mu$g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c.
+
 ```
