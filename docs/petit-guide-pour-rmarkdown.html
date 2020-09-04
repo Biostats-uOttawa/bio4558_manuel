@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>BIO4558 Biostatistiques appliquées avec R</title>
+  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="anova-à-un-critère-de-classification.html"/>
 
-<link rel="next" href="préface.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -249,23 +249,158 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">BIO4558 Biostatistiques appliquées avec R</h1>
-<h2 class="subtitle"><em>Manuel de Laboratoire</em></h2>
-<p class="author"><em>Julien Martin</em></p>
-<p class="date"><em>03-09-2020</em></p>
+<div id="petit-guide-pour-rmarkdown" class="section level1">
+<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
+<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="syntaxe-markdown" class="section level2">
+<h2><span class="header-section-number">A.1</span> Syntaxe Markdown</h2>
+<p>Ceci est un petit document qui résume la syntaxe de Markdown</p>
+<p>On utilise # (6 max.) pour créer des titres (section) :</p>
+<p><code>### Titre 3</code></p>
+<p><code>#### Titre 4</code></p>
+<p><code>#### Titre 5</code></p>
+<p><code>##### Titre 6</code></p>
+<p>Donne</p>
+<div id="titre-3" class="section level3">
+<h3><span class="header-section-number">A.1.1</span> Titre 3</h3>
+<div id="titre-4" class="section level4">
+<h4><span class="header-section-number">A.1.1.1</span> Titre 4</h4>
 </div>
-<div id="note" class="section level1 unnumbered">
-<h1>Note</h1>
-<p>Version en cours de développement pour le cours de l’automne 2020. Les chapitres vont apparaitre au cours de la session.</p>
+<div id="titre-5" class="section level4">
+<h4><span class="header-section-number">A.1.1.2</span> Titre 5</h4>
+<div id="titre-6" class="section level5">
+<h5><span class="header-section-number">A.1.1.2.1</span> Titre 6</h5>
+<p>On entoure le texte des symboles * ou _ pour mettre le texte en italique ou en gras.
+Un symbole pour mettre en italique:
+<code>*Texte en Italique*</code>
+<em>Texte en Italique</em></p>
+<p><code>_Texte en Italique_</code>
+<em>Texte en Italique</em></p>
+<p>Deux symboles pour mettre en gras:
+<code>**Texte gras**</code>
+<strong>Texte gras</strong></p>
+<p><code>__Texte gras__</code>
+<strong>Texte gras</strong></p>
+<p>On utilise une combinaison des 2 charactère pour obtenir du <strong>texte gras et <em>italique</em></strong>.</p>
+<p>Pour créer un liste on utilise le symbole <code>-</code> suivit d’une espace.</p>
+<ul>
+<li>Il doit y avoir une ligne vide avant la liste.</li>
+<li>On doit ajouter quelques espaces après chaque ligne.
+<ul>
+<li>Pour ajouter des niveau à la liste on indente (tab) 2 fois, puis on ajoute le symbole + suivit d’un espace.</li>
+<li>Ici encore, on doit ajouter quelques espaces après chaque lignes.</li>
+</ul></li>
+<li>Il doit y avoir une ligne vide après la liste.</li>
+</ul>
+<p>On peut aussi créer des liste avec des numéro ou des lettre.</p>
+<ol style="list-style-type: decimal">
+<li>On doit simplement mettre un point après le chiffre ou la lettre, suivit d’un espace
+<ol style="list-style-type: lower-alpha">
+<li>Encore une fois, il peut y avoir plusieurs niveaux
+ii). Mais pas plus de 3 niveau</li>
+</ol></li>
+</ol>
+<p>Pour écrire des équation mathématique, on entoure le texte du symbole $</p>
+<p><span class="math inline">\(K = 0.5\)</span></p>
+<p><span class="math inline">\(\log(x + k)\)</span></p>
+<p>Pour faire un tableau, on fait comme suit (noter que l’alignement des symbole est sans importance) :</p>
+<pre><code>colonne 1  |colonne 2|colonne 3|colonne 4
+---------|--------|--------|-----------
+cellulle | cellulle |cellulle| cellulle
+cellulle   | cellulle |cellulle| cellulle
+cellulle | cellulle |cellulle| cellulle</code></pre>
+<p>On peut utiliser le symbole &gt; pour indenter un paragraphe (le résultat est différent entre PDF et HTML) :</p>
+<blockquote>
+<p>En HTML, ça produit un résultat étrange…</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>mais bon…</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>On peut écrire dans la même police que celle du code en entourant le texte avec le symbole ` :
+<code>variable</code></p>
+<p>Si l’on veut utilisé un symbole dans le texte sans qu’il modifie le texte, il faut mettre le symbole \ devant.</p>
+<p>Pour inséré un lien, on entoure le texte avec [ ], et on met l’addresse dans des paranthèse () immédiatement à coté:
+<a href="http://rmarkdown.rstudio.com">R Markdown</a></p>
+<p>On peut tracer un ligne horizontale en répétant le symbole - 3 fois ou plus :</p>
+<hr />
+</div>
+</div>
+</div>
+</div>
+<div id="à-propos-de-latex" class="section level2">
+<h2><span class="header-section-number">A.2</span> À propos de LaTex</h2>
+<p>Ce qui suit concerne uniquement ceux qui on installer LaTex.
+Les fonction LaTex serve à modifier le texte, mais ne fonctionne que lorsqu’on produit un document PDF (ça fonctionne peut-être aussi pour les document word). Ils en existe beaucoup trop de fonction pour toutes les énumérer ici. Google est votre ami.</p>
+<p>Voici quelques exemple:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb181-1" title="1"><span class="fu">\emph</span>{texte italique}</a>
+<a class="sourceLine" id="cb181-2" title="2"><span class="fu">\textcolor</span>{red}{texte rouge}</a>
+<a class="sourceLine" id="cb181-3" title="3"><span class="fu">\texttt</span>{même police que le code de R}</a></code></pre></div>
+<p>Le nom de la prochaine fonction est assez descriptif</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode latex"><code class="sourceCode latex"><a class="sourceLine" id="cb182-1" title="1"><span class="fu">\pagebreak</span></a></code></pre></div>
+</div>
+<div id="concernant-le-code-dans-notebook" class="section level2">
+<h2><span class="header-section-number">A.3</span> Concernant le code dans notebook</h2>
+<p>Vous devez écrire le code à l’intérieur de bloc de code, sinon il ne sera pas interpréter comme du code, mais comme du texte.
+Vous pouvez taper directement la notation pour créer un bloc code ou utiliser les raccourci clavier de RStudio
+Pour créer un nouveau bloc de code, taper <em><code>```{r}</code></em> pour ouvrir le bloc et <em><code>```</code></em> pour le fermer.
+Sinon, appuyer sur <em>Ctrl+Alt+I</em>
+Dans Rstudio, pour éxécuter le code à l’intérieur d’un bloc appuyer sur <em>Ctrl+Shift+Enter</em> ou cliquer sur le boutton <em>Run</em> (dans le bloc, en haut à droite).</p>
+<p>Charger les données et les packages dans le premier bloc de code.</p>
+<pre><code>```{r} #ouverture du bloc de code
+ code
+``` #fermeture du bloc code</code></pre>
+<p>Lorsque vous exécuter du code dans un bloc, le résultat apparait directement en dessous de la du bloc (si votre document est un R Notebook).
+L’option <code>fig.cap</code> fonctionnement seulement lorsqu’on génère un PDF.</p>
+<p>Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les résultats est sauvegarder en même temps. Cliquer sur le bouton <em>Preview</em> ou appuyer sur <em>Ctrl+Shift+K</em> pour voir le fichier HTML.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb184-1" title="1"><span class="bn">```{r, fig.cap = &quot;Exemple de graphique tiré du fichier d&#39;aide de la fonction stat_bin&quot;}</span></a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb184-3" title="3"><span class="bn">  geom_histogram()</span></a>
+<a class="sourceLine" id="cb184-4" title="4"></a>
+<a class="sourceLine" id="cb184-5" title="5"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb184-6" title="6"><span class="bn">  geom_histogram(binwidth = 0.01)</span></a>
+<a class="sourceLine" id="cb184-7" title="7"></a>
+<a class="sourceLine" id="cb184-8" title="8"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb184-9" title="9"><span class="bn">  geom_histogram(bins = 200)</span></a>
+<a class="sourceLine" id="cb184-10" title="10"><span class="bn">```</span></a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb185-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-18-1"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-18-1.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<p class="caption">
+Figure A.1: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
+</p>
+</div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb187-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.01</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-18-2"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-18-2.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<p class="caption">
+Figure A.2: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
+</p>
+</div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb188-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">200</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-18-3"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-18-3.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<p class="caption">
+Figure A.3: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
+</p>
+</div>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="anova-à-un-critère-de-classification.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="préface.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

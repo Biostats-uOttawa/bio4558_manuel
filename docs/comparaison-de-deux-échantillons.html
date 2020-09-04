@@ -114,6 +114,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -126,12 +127,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">BIO4558 Manuel de laboratoire</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Note</a></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a><ul>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#quelques-points-importants-à-retenir"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
-<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#installation-des-logiciels-nécessaires"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#rstudio"><i class="fa fa-check"></i>Rstudio</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#instructions-générales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
+<li class="chapter" data-level="0.1" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i><b>0.1</b> Notes sur le manuel</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introductionR.html"><a href="introductionR.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
 <li class="chapter" data-level="1.1" data-path="introductionR.html"><a href="introductionR.html#set-intro"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
@@ -212,6 +221,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
 <li class="chapter" data-level="5.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendice</b></span></li>
+<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#syntaxe-markdown"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#à-propos-de-latex"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="A.3" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#concernant-le-code-dans-notebook"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -268,29 +288,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>En utilisant les données du fichier <code>sturgeon.csv</code>, générez les histogrammes et les approximations des distributions normales ajustées aux données de <code>fklngth</code> à <code>The Pas</code> et <code>Cumberland House</code>.</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># use &quot;sturgeon&quot; dataframe to make plot called mygraph</span></a>
-<a class="sourceLine" id="cb96-2" title="2"><span class="co"># and define x axis as representing fklngth</span></a>
-<a class="sourceLine" id="cb96-3" title="3">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb96-4" title="4">  <span class="dt">data =</span> sturgeon,</a>
-<a class="sourceLine" id="cb96-5" title="5">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fork length (cm)&quot;</span>)</a>
-<a class="sourceLine" id="cb96-7" title="7"><span class="co"># add data to the mygraph ggplot</span></a>
-<a class="sourceLine" id="cb96-8" title="8">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-9" title="9"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="co"># add data density smooth</span></a>
-<a class="sourceLine" id="cb96-10" title="10"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="co"># add rug (bars at the bottom of the plot)</span></a>
-<a class="sourceLine" id="cb96-11" title="11"><span class="st">  </span><span class="kw">geom_histogram</span>( <span class="co"># add black semitransparent histogram</span></a>
-<a class="sourceLine" id="cb96-12" title="12">    <span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-13" title="13"><span class="st">  </span><span class="co"># add normal curve in red, with mean and sd from fklength</span></a>
-<a class="sourceLine" id="cb96-14" title="14"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
-<a class="sourceLine" id="cb96-15" title="15">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb96-16" title="16">      <span class="dt">mean =</span> <span class="kw">mean</span>(sturgeon<span class="op">$</span>fklngth),</a>
-<a class="sourceLine" id="cb96-17" title="17">      <span class="dt">sd =</span> <span class="kw">sd</span>(sturgeon<span class="op">$</span>fklngth)</a>
-<a class="sourceLine" id="cb96-18" title="18">    ),</a>
-<a class="sourceLine" id="cb96-19" title="19">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb96-20" title="20"><span class="co">#display graph, by location</span></a>
-<a class="sourceLine" id="cb96-21" title="21">mygraph<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>location)</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="co"># use &quot;sturgeon&quot; dataframe to make plot called mygraph</span></a>
+<a class="sourceLine" id="cb97-2" title="2"><span class="co"># and define x axis as representing fklngth</span></a>
+<a class="sourceLine" id="cb97-3" title="3">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb97-4" title="4">  <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb97-5" title="5">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fork length (cm)&quot;</span>)</a>
+<a class="sourceLine" id="cb97-7" title="7"><span class="co"># add data to the mygraph ggplot</span></a>
+<a class="sourceLine" id="cb97-8" title="8">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-9" title="9"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="co"># add data density smooth</span></a>
+<a class="sourceLine" id="cb97-10" title="10"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="co"># add rug (bars at the bottom of the plot)</span></a>
+<a class="sourceLine" id="cb97-11" title="11"><span class="st">  </span><span class="kw">geom_histogram</span>( <span class="co"># add black semitransparent histogram</span></a>
+<a class="sourceLine" id="cb97-12" title="12">    <span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-13" title="13"><span class="st">  </span><span class="co"># add normal curve in red, with mean and sd from fklength</span></a>
+<a class="sourceLine" id="cb97-14" title="14"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb97-15" title="15">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb97-16" title="16">      <span class="dt">mean =</span> <span class="kw">mean</span>(sturgeon<span class="op">$</span>fklngth),</a>
+<a class="sourceLine" id="cb97-17" title="17">      <span class="dt">sd =</span> <span class="kw">sd</span>(sturgeon<span class="op">$</span>fklngth)</a>
+<a class="sourceLine" id="cb97-18" title="18">    ),</a>
+<a class="sourceLine" id="cb97-19" title="19">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb97-20" title="20"><span class="co">#display graph, by location</span></a>
+<a class="sourceLine" id="cb97-21" title="21">mygraph<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>location)</a></code></pre></div>
 <div class="figure"><span id="fig:t-1"></span>
-<img src="Labo_BIO4558_files/figure-html/t-1-1.png" alt="Distribution de la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/t-1-1.svg" alt="Distribution de la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 4.1: Distribution de la longueur des esturgeons
 </p>
@@ -299,10 +319,10 @@ Figure 4.1: Distribution de la longueur des esturgeons
 <ul>
 <li>Tracez un boxplot de <code>fklngth</code> groupé par <code>location</code>. Que concluez-vous quant à la différence entre les deux sites?</li>
 </ul>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data=</span>sturgeon, <span class="kw">aes</span>(<span class="dt">x=</span>location,</a>
-<a class="sourceLine" id="cb97-2" title="2"><span class="dt">y=</span>fklngth))<span class="op">+</span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data=</span>sturgeon, <span class="kw">aes</span>(<span class="dt">x=</span>location,</a>
+<a class="sourceLine" id="cb98-2" title="2"><span class="dt">y=</span>fklngth))<span class="op">+</span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:t-2"></span>
-<img src="Labo_BIO4558_files/figure-html/t-2-1.png" alt="Boxplot de la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/t-2-1.svg" alt="Boxplot de la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 4.2: Boxplot de la longueur des esturgeons
 </p>
@@ -318,11 +338,11 @@ Figure 4.2: Boxplot de la longueur des esturgeons
 <li>non-paramétriques</li>
 </ol>
 <p>Que concluez-vous?</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># t-test assuming equal variances</span></a>
-<a class="sourceLine" id="cb98-2" title="2"> <span class="kw">t.test</span>(</a>
-<a class="sourceLine" id="cb98-3" title="3">   fklngth<span class="op">~</span>location, <span class="dt">data =</span> sturgeon,</a>
-<a class="sourceLine" id="cb98-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb98-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># t-test assuming equal variances</span></a>
+<a class="sourceLine" id="cb99-2" title="2"> <span class="kw">t.test</span>(</a>
+<a class="sourceLine" id="cb99-3" title="3">   fklngth<span class="op">~</span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb99-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb99-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Two Sample t-test
 ## 
@@ -334,11 +354,11 @@ Figure 4.2: Boxplot de la longueur des esturgeons
 ## sample estimates:
 ## mean in group CUMBERLAND    mean in group THE_PAS 
 ##                 45.08439                 43.36984</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># t-test assuming unequal variances</span></a>
-<a class="sourceLine" id="cb100-2" title="2"> <span class="kw">t.test</span>(</a>
-<a class="sourceLine" id="cb100-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
-<a class="sourceLine" id="cb100-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb100-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># t-test assuming unequal variances</span></a>
+<a class="sourceLine" id="cb101-2" title="2"> <span class="kw">t.test</span>(</a>
+<a class="sourceLine" id="cb101-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb101-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb101-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Welch Two Sample t-test
 ## 
@@ -350,10 +370,10 @@ Figure 4.2: Boxplot de la longueur des esturgeons
 ## sample estimates:
 ## mean in group CUMBERLAND    mean in group THE_PAS 
 ##                 45.08439                 43.36984</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># test non paramétrique</span></a>
-<a class="sourceLine" id="cb102-2" title="2"> <span class="kw">wilcox.test</span>(</a>
-<a class="sourceLine" id="cb102-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
-<a class="sourceLine" id="cb102-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co"># test non paramétrique</span></a>
+<a class="sourceLine" id="cb103-2" title="2"> <span class="kw">wilcox.test</span>(</a>
+<a class="sourceLine" id="cb103-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb103-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Wilcoxon rank sum test with continuity correction
 ## 
@@ -363,18 +383,18 @@ Figure 4.2: Boxplot de la longueur des esturgeons
 <p>En se fiant au test de t, on rejette donc l’hypothèse nulle. Il y a une différence significative entre les deux moyennes des longueurs à la fourche.</p>
 <p>Notez que si l’on se fie au test de <em>Wilcoxon</em>, il faut accepter l’hypothèse nulle. Les deux tests mènent donc à des conclusions contradictoires. La différence significative obtenue par le test de t peut provenir en partie d’une violation des conditions d’application du test (normalité et homoscédasticité). D’un autre côté, l’absence de différence significative selon le test de Wilcoxon pourrait être due au fait que, pour un effectif donné, la puissance du test non paramétrique est inférieure à celle du test paramétrique correspondant. Compte tenu 1) des valeurs de p obtenues pour les deux tests, et 2) le fait que pour des grands échantillons (des effectifs de 84 et 101 sont considérés grands) le test de t est considéré robuste, il est raisonnable de rejeter l’hypothèse nulle.</p>
 <p>Avant d’accepter les résultats du test de t et de rejeter l’hypothèse nulle qu’il n’y a pas de différences de taille entre les deux sites, il est important de déterminer si les données remplissent les conditions de normalité des résidus et d’égalité des variances. L’examen préliminaire suggérait que les données sont à peu près normales mais qu’il y avait peut-être des problèmes avec les variances (puisque l’étendue des données pour The Pas était beaucoup plus grande que celle pour Cumberland). On peut examiner ces conditions d’application plus en détail en examinant les résidus d’un modèle linéaire et en utilisant les graphiques diagnostiques:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data=</span>sturgeon)</a>
-<a class="sourceLine" id="cb104-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb104-3" title="3"><span class="kw">plot</span>(m1)</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data=</span>sturgeon)</a>
+<a class="sourceLine" id="cb105-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb105-3" title="3"><span class="kw">plot</span>(m1)</a></code></pre></div>
 <div class="figure"><span id="fig:t-6"></span>
-<img src="Labo_BIO4558_files/figure-html/t-6-1.png" alt="Condition d'application du modèle linéaire" width="672" />
+<img src="Labo_BIO4558_files/figure-html/t-6-1.svg" alt="Condition d'application du modèle linéaire" width="672" />
 <p class="caption">
 Figure 4.3: Condition d’application du modèle linéaire
 </p>
 </div>
 <p>Le premier graphique ci-dessus montre comment les résidus se distribuent autour des valeurs prédites (les moyennes) pour chaque site et permette de juger si il semble y avoir un problème de normalité ou d’homoscédasticité. Si les variances étaient égales dans les deux sites, l’étendue verticale des résidus tendrait à être la même. Sur le graphique, on voit que l’étendue des résidus est plus grande à gauche (le site où la taille moyenne est la plus faible), ce qui suggère un possible problème d’homogénéité des variances. On peut tester cela plus formellement en comparant la moyenne de la valeur absolue des résidus.(on y reviendra; c’est le test de Levene).</p>
 <p>Le second graphique est un graphique de probabilité (graphique Q-Q) des résidus. Comme ici, les points tombent près de la diagonale, il ne semble pas y avoir de problème important avec la normalité. On peut faire un test formel de la condition de normalité par le test de Shapiro- Wilk:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(m1))</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(m1))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
@@ -382,7 +402,7 @@ Figure 4.3: Condition d’application du modèle linéaire
 ## W = 0.97469, p-value = 0.001857</code></pre>
 <p>Hummm. Ce test indique que les résidus ne sont pas normaux, ce qui contredit notre évaluation visuelle. Cependant, puisque (a) la distribution des résidus ne s’éloigne pas beaucoup de la normalité et (b) le nombre d’observations à chaque site est raisonnablement grand (i.e. &gt;30), on n’a pas à être trop inquiet quant à l’impact de cette violation de normalité sur la fiabilité du test.</p>
 <p>Qu’en est-il de l’égalité des variances?</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"> <span class="kw">leveneTest</span>(m1)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"> <span class="kw">leveneTest</span>(m1)</a></code></pre></div>
 <pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
 ## factor.</code></pre>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
@@ -391,7 +411,7 @@ Figure 4.3: Condition d’application du modèle linéaire
 ##       184                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">bptest</span>(m1)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">bptest</span>(m1)</a></code></pre></div>
 <pre><code>## 
 ## 	studentized Breusch-Pagan test
 ## 
@@ -407,18 +427,18 @@ Figure 4.3: Condition d’application du modèle linéaire
 <p>Le bootstrap et les tests de permutation peuvent être utilisés pour comparer les moyennes (ou d’autres statistiques). Le principe général est simple et peut être effectué de diverses façons. Ici j’utilise certains des outils disponibles et le fait qu’une comparaison de moyenne peut être représentée par un modèle linéaire. On pourra utiliser un programme similaire plus tard quand on ajustera des modèles plus complexes.</p>
 <p><code>library(boot)</code></p>
 <p>La première section sert à définir une fonction (ici appelée bs) qui extraie les coefficients d’un modèle ajusté :</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="co"># function to obtain model coefficients for each iteration</span></a>
-<a class="sourceLine" id="cb112-2" title="2">bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</a>
-<a class="sourceLine" id="cb112-3" title="3">  d &lt;-<span class="st"> </span>data[indices, ]</a>
-<a class="sourceLine" id="cb112-4" title="4">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</a>
-<a class="sourceLine" id="cb112-5" title="5">  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</a>
-<a class="sourceLine" id="cb112-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="co"># function to obtain model coefficients for each iteration</span></a>
+<a class="sourceLine" id="cb113-2" title="2">bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</a>
+<a class="sourceLine" id="cb113-3" title="3">  d &lt;-<span class="st"> </span>data[indices, ]</a>
+<a class="sourceLine" id="cb113-4" title="4">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</a>
+<a class="sourceLine" id="cb113-5" title="5">  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</a>
+<a class="sourceLine" id="cb113-6" title="6">}</a></code></pre></div>
 <p>La deuxième section avec la commande boot() fait le gros du travail: on prend les données dans sturgeon, on les bootstrap <span class="math inline">\(R = 1000\)</span> fois, et chaque fois on ajuste le modèle <code>fklngth</code> vs <code>location</code> et on garde les valeurs calculées par la fonction <code>bs</code>.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="co"># bootstrapping with 1000 replications</span></a>
-<a class="sourceLine" id="cb113-2" title="2">results &lt;-<span class="st"> </span><span class="kw">boot</span>(<span class="dt">data =</span> sturgeon, <span class="dt">statistic =</span> bs, <span class="dt">R =</span> <span class="dv">1000</span>,</a>
-<a class="sourceLine" id="cb113-3" title="3"><span class="dt">formula =</span> fklngth <span class="op">~</span><span class="st"> </span>location)</a>
-<a class="sourceLine" id="cb113-4" title="4"><span class="co"># view results</span></a>
-<a class="sourceLine" id="cb113-5" title="5">results</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="co"># bootstrapping with 1000 replications</span></a>
+<a class="sourceLine" id="cb114-2" title="2">results &lt;-<span class="st"> </span><span class="kw">boot</span>(<span class="dt">data =</span> sturgeon, <span class="dt">statistic =</span> bs, <span class="dt">R =</span> <span class="dv">1000</span>,</a>
+<a class="sourceLine" id="cb114-3" title="3"><span class="dt">formula =</span> fklngth <span class="op">~</span><span class="st"> </span>location)</a>
+<a class="sourceLine" id="cb114-4" title="4"><span class="co"># view results</span></a>
+<a class="sourceLine" id="cb114-5" title="5">results</a></code></pre></div>
 <pre><code>## 
 ## ORDINARY NONPARAMETRIC BOOTSTRAP
 ## 
@@ -430,18 +450,18 @@ Figure 4.3: Condition d’application du modèle linéaire
 ## 
 ## Bootstrap Statistics :
 ##      original      bias    std. error
-## t1* 45.084391 -0.02732822   0.4247389
-## t2* -1.714546  0.02719193   0.7699191</code></pre>
+## t1* 45.084391  0.01440142   0.4251324
+## t2* -1.714546 -0.04233178   0.7817046</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
-<img src="Labo_BIO4558_files/figure-html/tb-3-1.png" alt="Normalité des estimés de la différence des moyennes par bootstrap" width="672" />
+<img src="Labo_BIO4558_files/figure-html/tb-3-1.svg" alt="Normalité des estimés de la différence des moyennes par bootstrap" width="672" />
 <p class="caption">
 Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 </p>
 </div>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="co"># get 95% confidence intervals</span></a>
-<a class="sourceLine" id="cb116-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="co"># get 95% confidence intervals</span></a>
+<a class="sourceLine" id="cb117-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
 ## Based on 1000 bootstrap replicates
 ## 
@@ -450,19 +470,19 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.302, -0.164 )  
+## 95%   (-3.230, -0.105 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
 <div id="permutation" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> Permutation</h3>
 <p>Les tests de permutation pour les modèles linéaires peuvent être effectués à l’aide du package <code>lmPerm</code>:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">m1Perm &lt;-<span class="st"> </span><span class="kw">lmp</span>(</a>
-<a class="sourceLine" id="cb118-2" title="2">  fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
-<a class="sourceLine" id="cb118-3" title="3">  <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">m1Perm &lt;-<span class="st"> </span><span class="kw">lmp</span>(</a>
+<a class="sourceLine" id="cb119-2" title="2">  fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb119-3" title="3">  <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Settings:  unique SS &quot;</code></pre>
 <p>La fonction <code>lmp()</code> fait tout le travail pour nous. Ici, cette fonction est effectuée avec l’option perm pour choisir la règle utilisée pour stopper les calculs. L’option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C’est l’une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longthemps).</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">summary</span>(m1Perm)</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="kw">summary</span>(m1Perm)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lmp(formula = fklngth ~ location, data = sturgeon, perm = &quot;Prob&quot;)
@@ -472,8 +492,8 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## -18.40921  -3.75370  -0.08439   3.76598  23.48055 
 ## 
 ## Coefficients:
-##           Estimate Iter Pr(Prob)   
-## location1   0.8573 5000   0.0028 **
+##           Estimate Iter Pr(Prob)  
+## location1   0.8573 5000    0.019 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -495,10 +515,10 @@ données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes le
 <ul>
 <li>Pour débuter, éprouvons l’hypothèse que la largeur de la figure est la même à 5 ans et à 6 ans en assumant que les mesures viennent d’échantillons indépendants.</li>
 </ul>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb122-2" title="2"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb122-3" title="3">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb122-4" title="4">  <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb123-3" title="3">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb123-4" title="4">  <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Welch Two Sample t-test
 ## 
@@ -511,9 +531,9 @@ données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes le
 ## mean in group 5 mean in group 6 
 ##        7.461333        7.661333</code></pre>
 <p>Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com- ment les résultats diffèrent-ils de la première analyse? Pourquoi?</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb124-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb124-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb125-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb125-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Paired t-test
 ## 
@@ -527,15 +547,15 @@ données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes le
 ##                    -0.2</code></pre>
 <p>La première analyse a comme supposition que les deux échantillons de filles de 5 et 6 ans sont indépendants, alors que la deuxième analyse a comme supposition que la même fille a été mesurée deux fois, une fois à 5 ans, et la deuxième fois à 6 ans.</p>
 <p>Notez que, dans le premier cas, on accepte l’hypothèse nulle, mais que le test apparié rejette l’hypothèse nulle. Donc, le test qui est approprié (le test apparié) indique un effet très significatif de l’âge, mais le test inapproprié suggère que l’âge n’importe pas. C’est parce qu’il y a une très forte corrélation entre la largeur du visage à 5 et 6 ans:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb126-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb126-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb126-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb126-5" title="5"><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low=</span><span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high=</span><span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb126-6" title="6">graphskull</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-5" title="5"><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low=</span><span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb127-6" title="6">graphskull</a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <div class="figure"><span id="fig:tpaired-3"></span>
-<img src="Labo_BIO4558_files/figure-html/tpaired-3-1.png" alt="Relation entre la taille de la tête à 5 et 6 ans" width="672" />
+<img src="Labo_BIO4558_files/figure-html/tpaired-3-1.svg" alt="Relation entre la taille de la tête à 5 et 6 ans" width="672" />
 <p class="caption">
 Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 </p>
@@ -544,9 +564,9 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 <ul>
 <li>Répétez l’analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. ( Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb128-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb128-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb129-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb129-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
 ## cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -557,9 +577,9 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Donc on tire la même conclusion qu’avec le test de t apparié et conclue qu’il y a des différences significatives entre la taille des crânes de filles âgées de 5 et 6 ans (quelle surprise!).</p>
 <p>Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte tenu de s connaissances sur la croissance des enfants, une hypothèse unilatérale serait préférable. Ceci peut être accommodé en modifiant l’option “alternative”. On utilise l’hypothèse alternative pour décider entre “less” ou “greater”. Ici on s’attends que si il y a une différence, width5 va être inférieur à width6, donc on utiliserait “less”.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb131-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
-<a class="sourceLine" id="cb131-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb132-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
+<a class="sourceLine" id="cb132-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Paired t-test
 ## 
@@ -571,9 +591,9 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 ## sample estimates:
 ## mean of the differences 
 ##                    -0.2</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb133-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
-<a class="sourceLine" id="cb133-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb134-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
+<a class="sourceLine" id="cb134-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
 ## cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -611,16 +631,7 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -638,9 +649,9 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

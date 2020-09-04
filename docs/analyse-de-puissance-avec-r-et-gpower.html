@@ -114,6 +114,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -126,12 +127,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">BIO4558 Manuel de laboratoire</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Note</a></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a><ul>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#quelques-points-importants-à-retenir"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
-<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#installation"><i class="fa fa-check"></i>Installation</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#installation-des-logiciels-nécessaires"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#rstudio"><i class="fa fa-check"></i>Rstudio</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#instructions-générales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
+<li class="chapter" data-level="0.1" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i><b>0.1</b> Notes sur le manuel</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introductionR.html"><a href="introductionR.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
 <li class="chapter" data-level="1.1" data-path="introductionR.html"><a href="introductionR.html#set-intro"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
@@ -212,6 +221,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
 <li class="chapter" data-level="5.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
+<li class="appendix"><span><b>Appendice</b></span></li>
+<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#syntaxe-markdown"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#à-propos-de-latex"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="A.3" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#concernant-le-code-dans-notebook"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -546,6 +566,8 @@ On considère que <span class="math inline">\(\beta=0.2\)</span> (puissance de 8
 </div>
 <div id="exercice-sur-la-puissance" class="section level2">
 <h2><span class="header-section-number">2.6</span> Exercice sur la puissance</h2>
+
+<div class="rmdcode">
 <p>Les larves de mouches noires (Diptera: Simuliidae) ont été échantillonnées en février à l’émissaire de deux lacs des Cantons de l’Est (lacs Orford et Lovering).
 La longueur de chaque larve a été mesurée.
 Les données sont dans le fichier simulies.RData La relation entre la longueur (L, en mm) et la masse (M, en <span class="math inline">\(\mu\)</span>g) pour l’espèce dominante (<em>P. mixtum/fuscum</em>) est:</p>
@@ -575,7 +597,8 @@ M = 1.36 L^3.05
 <li>avec une puissance de 80%, <span class="math inline">\(\alpha\)</span> =0.05, et des mesures sur 20 larves d’un site et sur 380 larves au second site</li>
 <li>Comment est-ce que la taille d’effet détectable dépend de la taille d’échantillon dans les 2 groupes?</li>
 </ol></li>
-<li>Calculer la différence de masse, en <span class="math inline">\(\mu\)</span>g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c.</li>
+<li>Calculer la différence de masse, en <span class="math inline">\(\mu\)</span>g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c.
+</div></li>
 </ol>
 
 </div>
@@ -601,16 +624,7 @@ M = 1.36 L^3.05
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
+"sharing": false,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -628,9 +642,9 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

@@ -8,8 +8,6 @@ output:
   html_document: default
 ---
 
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
-
 # Syntaxe Markdown
 Ceci est un petit document qui résume la syntaxe de Markdown
 
