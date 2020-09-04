@@ -67,3 +67,32 @@ h1.title {
 .book .book-body .page-wrapper .page-inner section.normal strong {
   font-weight: 600;
 }
+
+/* Exercices */
+.solution-link {
+  width: 100%;
+  text-align: right;
+  font-size: 80%;
+  margin-top: -0.3em;
+  margin-bottom: 1.8em;
+}
+
+.solution-link a:before {
+  content: "Afficher ";
+}
+
+.solution-link.shown a:before {
+  content: "Masquer ";
+}
+
+.solution {
+  margin-top: -1.3em;
+  margin-bottom: 1.2em;
+  padding-left: 1em;
+  border-left: 6px solid #4183C4;
+  display: none;
+}
+
+.solution pre.sourceCode {
+  background-color: #f0f4fd;
+}

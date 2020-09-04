@@ -3,6 +3,8 @@ bookdown::gitbook:
   css: css/style.css
   split_by: chapter
   scroll_highlight: yes
+  includes:
+    after_body: js/js_solution.html
   config:
     toc:
       collapse: section
@@ -11,7 +13,7 @@ bookdown::gitbook:
       after: |
         <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
     download: [pdf, epub, mobi]
-#    edit: https://github.com/rstudio/bookdown/edit/master/inst/examples/%s
+    edit: https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/%s
     sharing: false
 #      github: no
 #      facebook: no
@@ -31,7 +33,7 @@ bookdown::pdf_book:
   citation_package: natbib
   template: null
   pandoc_args: --top-level-division=chapter
-  toc_unnumbered: no
+  toc_unnumbered: yes
   toc_appendix: yes
   quote_footer: ["\\VA{", "}{}"]
   highlight_bw: yes
