@@ -10,7 +10,9 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Calculer des statistiques descriptives d’une variable
 - Effectuer des transformations de données
 
+
 ## Paquets et données requises pour le labo {#set-intro}
+
 Ce laboratoire nécessite:
 
 * les paquets R:
@@ -21,7 +23,9 @@ Ce laboratoire nécessite:
 * les fichiers de données
   * sturgeon.csv
 
+
 ## Importer et exporter des données
+
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
 Les fichiers `.csv` sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, ...) et les tableurs (e.g. MS Excel, LO Calc).
@@ -29,6 +33,7 @@ Les fichiers `.Rdata` sont utilisés pour stocker n'importe quelle objet R pas u
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
 
 Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format `.csv`.
+
 
 ### Ouvrir un fichier de données en format `.Rdata`
 
@@ -45,7 +50,9 @@ Par exemple,
 load("ErablesGatineau.Rdata")
 ```
 
+
 ### Ouvrir un fichier de données en format `.csv`
+
 Pour importer ces données en format `.csv` dans R, il faut utiliser la commande `read.csv()`.
 Par exemple, pour créer un objet R `erables` qui contient les données du fichier `ErablesGatineau.csv`, il faut utiliser la commande suivant.
 
@@ -53,26 +60,36 @@ Par exemple, pour créer un objet R `erables` qui contient les données du fichi
 erables <- read.csv("data/ErablesGatineau.csv")
 ```
 
-**Attrape** : Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
+```{block2, type='rmdwarning'}
+Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
 Par défaut, R utilise le point décimal et vous n’obtiendrez pas le résultat escompté.
 Il existe une version modifiée de `read.csv()` appelée `read.csv2()` qui règle ce problème.
 Googlez-la si vous en avez besoin.
+```
 
-Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction `ls()` ou en obtenir une liste avec une description plus détaillée avec `ls.str()`
+Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction `ls()` ou en obtenir une liste avec une description plus détaillée avec `ls.str()`.
+
+```{block2, type = "rmdtip"}
+Je vous déconseille cependant, la fonction `ls.str()` car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d'objet dans l'environnement R. Je vous suggère donc d'utliser `ls()` et ensuite `str()` sur l'objet qui vous intéresse.
+```
+
 ```{r ls}
 ls()
-ls.str()
+str(erables)
 ```
-R confirme avoir en mémoire l’objet `ErablesGatineau`.
-`ErableGatineau` est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): `station`, une variable de type Facteur avec 2 niveaux, et `diam` et `biom` qui sont 2 variables numériques.
+
+R confirme avoir en mémoire l’objet `erables`.
+`erables` est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): `station`, une variable de type Facteur avec 2 niveaux, et `diam` et `biom` qui sont 2 variables numériques.
 
 ### Entrer des données
+
 R n’est pas un environnement idéal pour entrer des données.
 C’est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
 Utilisez votre chiffrier préféré pour faire l’entrée de données.
 Ce sera plus efficace et moins frustrant.
 
 ### Nettoyer/corriger des données
+
 Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
 Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
@@ -80,14 +97,18 @@ Il est finalement plus simple de refaire exécuter les quelques lignes de code p
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
 
 ### Exporter des données à partir de R.
+
 Vous pouvez utiliser la fonction,
+
 ```{r write, eval =FALSE)
   write.csv(mydata, file = "outfilename.csv", row.names = FALSE)
 ```
+
 où `mydata` est le nom du base de données à exporter et `outfilename.csv` est le nom du fichier à produire.
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à `File>Change dir`, ou par la commande `setwd()`)
 
 ## Examen préliminaire des données
+
 La première étape de toute analyse est l’examen des données.
 Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
 L’examen préliminaire des données permet souvent aussi d’identifier des observations suspectes, possiblement dûes à des erreurs d’entrée de donnée.
@@ -105,19 +126,22 @@ str(sturgeon)
 ```
 
 ### Sommaire statistique
+
 Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
+
 ```{r sum-stur}
 summary(sturgeon)
 ```
-
 
 Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la valeur au milieu de la liste des observations ordonnées (appelée le 50 ième percentile), ici, la 93 ième valeur des 186 observations, les valeurs au premier (25%) et troisième quartile (75%), et si il y a des valeurs manquantes dans la colonne.
 Notez que plusieurs des variables ont des observations manquantes (NA).
 Donc, seules les variables fklngth (longueur à la fourche), sex, location et year ont 186 observations.
 
- **Attrape** : Attention aux valeurs manquantes.
+```{block2, type='rmdwarning'}
+**Attention aux valeurs manquantes**
 Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses sur des sous- ensembles sans valeur manquante, par des commandes ou des options dans les commandes.
 On y reviendra, mais prenez l’habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l’analyse.
+```
 
 ### Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité
 
@@ -139,7 +163,9 @@ Leur forme dépend en partie du nombre de catégories utilisées, surtout pour l
 On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
 Mais il faut programmer un peu (ou savoir copier-coller...)
 
-- Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
+```{block2, type = "rmdcode"}
+Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
+```
 
 ```{r stur-g1, warning = FALSE, message =  FALSE}
 library(ggplot2)
@@ -210,10 +236,14 @@ Les boîtes s’étendent du premier au troisième quartile (du 25ième au 75iè
 Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l’étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.
 
 ### Diagrammes de dispersion bivariés
+
 En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d’oeil aux diagrammes de dispersion .
 La commande `plot(y~x)` permet de faire le graphique de y sur l’axe vertical (l’ordonnée) en fonction de x sur l’axe horizontal (l’abscisse).
 
-- Faites un graphique de fklngth en fonction de age avec la commande plot.
+```{block2, type = "rmdcode"}
+ Faites un graphique de fklngth en fonction de age avec la commande plot.
+```
+
 Vous devriez obtenir:
 
 ```{r stur-biv-plot}
@@ -229,6 +259,7 @@ pairs(sturgeon[,1:6], panel = panel.smooth)
 ```
 
 ## Créer des sous-ensembles de cas
+
 Il arrive fréquemment qu'une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
 Les cas sont d’habitude sélectionnés selon un critère en particulier.
 Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande `subset()`.
@@ -239,9 +270,11 @@ sturgeon.female.1978 <- subset(sturgeon, sex == "FEMALE" & year == "1978")
 sturgeon.female.1978
 ```
 
-**Attrape**: Dans ces comparaisons, il faut toujours utiliser `==` pour égal à.
+```{block2, type = "rmdcaution"}
+Dans ces comparaisons, il faut toujours utiliser `==` pour égal à.
 Dans ce contexte, si vous utilisez `=` seulement, vous n’obtiendrez pas ce que vous désirez.
 Dans le tableau qui suit se trouve une liste de commandes communes que vous allez probablement utiliser pour créer des expressions en R.
+```
 
 Operateur | Explication | Operateur | Explication
 ----------|----------|----------|----------
@@ -268,16 +301,19 @@ Les fonctions les plus fréquemment utilisées sont:
 
 On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
 Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire
+
 ```{r plot-translog-stur-plot, eval = FALSE}
 plot(log(fklngth)~age, data = sturgeon)
 ```
 
  Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
+
  ```{r translog-stur-orph, eval = FALSE}
 logfklngth <- log10(sturgeon$fklngth)
  ```
 
 Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole `$`, par exemple, pour ajouter une variable nommée `lfkl` contenant le log10 de fklngth au tableau sturgeon, on peut écrire:
+
 ```{r translog-stur-dat, eval = FALSE}
 sturgeon$logfkl <- log10(sturgeonfklngth)
 ```
@@ -285,13 +321,16 @@ sturgeon$logfkl <- log10(sturgeonfklngth)
 N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
 Pour les transformations conditionnelles, on peut utiliser la fonction `ifelse()`.
 Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:
+
 ```{r translog-stur-dummy, eval = FALSE}
 sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 ```
 
 ## Exercice sur R
+```{block2, type = "rmdcode"}
 Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
 Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
+```
 
 ```{r intror-exer, echo = FALSE, warning = FALSE, message =  FALSE}
 salmonella <- read.csv("data/salmonella.csv")
