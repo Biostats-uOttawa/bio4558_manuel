@@ -857,8 +857,8 @@ Figure 3.4: Analyse à priori pour déterminer la taille d’échantillon pour u
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002633104   0.0337826
-## t2* 0.3408557 -0.001981894   0.0268385</code></pre>
+## t1* 1.1919926  0.001540598  0.03344248
+## t2* 0.3408557 -0.001102419  0.02647719</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -884,12 +884,11 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.123,  1.256 )   ( 1.122,  1.255 )  
+## 95%   ( 1.125,  1.256 )   ( 1.128,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.129,  1.262 )   ( 1.114,  1.248 )  
-## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable</code></pre>
+## 95%   ( 1.128,  1.256 )   ( 1.112,  1.249 )  
+## Calculations and Intervals on Original Scale</code></pre>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
 <a class="sourceLine" id="cb94-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## Warning in boot.ci(results, type = &quot;all&quot;, index = 2): bootstrap variances needed
@@ -902,12 +901,11 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2902,  0.3954 )   ( 0.2908,  0.3950 )  
+## 95%   ( 0.2901,  0.3939 )   ( 0.2887,  0.3927 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2867,  0.3909 )   ( 0.2954,  0.4057 )  
-## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable</code></pre>
+## 95%   ( 0.2890,  0.3930 )   ( 0.2958,  0.3989 )  
+## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 
 </div>

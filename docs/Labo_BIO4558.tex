@@ -2471,8 +2471,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.001478296  0.03376836
-## t2* 0.3408557 -0.001205433  0.02687736
+## t1* 1.1919926  0.001817578  0.03382908
+## t2* 0.3408557 -0.001411900  0.02680257
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -2529,10 +2529,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.257 )   ( 1.125,  1.256 )  
+## 95%   ( 1.124,  1.256 )   ( 1.124,  1.259 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.259 )   ( 1.115,  1.247 )  
+## 95%   ( 1.125,  1.260 )   ( 1.115,  1.250 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -2558,10 +2558,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2894,  0.3947 )   ( 0.2902,  0.3943 )  
+## 95%   ( 0.2897,  0.3948 )   ( 0.2908,  0.3938 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2874,  0.3915 )   ( 0.2969,  0.4043 )  
+## 95%   ( 0.2879,  0.3909 )   ( 0.2953,  0.4051 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2906,9 +2906,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original     bias    std. error
-## t1* 45.084391 0.01417341   0.4247835
-## t2* -1.714546 0.01602731   0.7706623
+##      original      bias    std. error
+## t1* 45.084391 -0.01071599   0.4219215
+## t2* -1.714546  0.03221483   0.7613399
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -2941,7 +2941,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.157, -0.143 )  
+## 95%   (-3.289, -0.255 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2983,7 +2983,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 3539   0.0277 *
+## location1   0.8573 1966   0.0488 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -3605,18 +3605,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5907
+## Quantile = 2.5955
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2674   3.6418
-##  1965 -  1954 == 0  -5.5077  -9.9922  -1.0231
-##  1966 -  1954 == 0  -3.3127  -6.3398  -0.2856
-##  1965 -  1958 == 0  -5.6949 -10.4060  -0.9837
-##  1966 -  1958 == 0  -3.4999  -6.8535  -0.1463
-##  1966 -  1965 == 0   2.1950  -2.2123   6.6022
+##  1958 -  1954 == 0   0.1872  -3.2738   3.6482
+##  1965 -  1954 == 0  -5.5077 -10.0006  -1.0148
+##  1966 -  1954 == 0  -3.3127  -6.3454  -0.2800
+##  1965 -  1958 == 0  -5.6949 -10.4148  -0.9749
+##  1966 -  1958 == 0  -3.4999  -6.8598  -0.1400
+##  1966 -  1965 == 0   2.1950  -2.2205   6.6104
 \end{verbatim}
 
 \begin{Shaded}
