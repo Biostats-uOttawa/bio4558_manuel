@@ -4,7 +4,6 @@ subtitle: "Manuel de Laboratoire"
 author: "Julien Martin"
 date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
 documentclass: book
 description: "Manuel de laboratoire pour le cours BIO4558"
 github-repo: "JulienGAMartin/BIO4558_uOttawa_lab_manual"
@@ -51,15 +50,15 @@ Il y a presque toujours de multiples façons de faire les choses avec R et vous 
 Ceux et celles d'entre vous qui y sont enclins pourront trouver en ligne des instructions plus détaillées et complexes.
 En particulier, je vous conseille :
 
-   - R pour les débutants
+  - R pour les débutants
 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf
-   - Using R for psychological research: A simple guide to an elegant package
-   http://www.personality-project.org/r/
-   - An introduction to R
+  - An introduction to R
 http://cran.r-project.org/doc/manuals/R-intro.html
-   - Si vous préférez des manuels, le site web de CRAN en garde une liste commentée à :
+  - Si vous préférez des manuels, le site web de CRAN en garde une liste commentée à :
 http://www.r-project.org/doc/bib/R-books.html
-   - Finalement, comme aide-mémoire à garder sous la main, je vous recommande R reference card par Tom Short
+  - Une liste impressionnante de très bon livre sur R
+https://www.bigbookofr.com/
+  - Finalement, comme aide-mémoire à garder sous la main, je vous recommande R reference card par Tom Short
 http://cran.r-project.org/doc/contrib/Short-refcard.pdf
 
 ## Qu'est-ce que R et pourquoi l'utiliser dans ce cours? {-}
@@ -96,11 +95,33 @@ Avec une série de commandes écrites, il suffit de corriger ce qui doit l'être
 Et vous avez la possibilité de parfaitement documenter ce que vous avez fait.
 C'est comme cela que les professionnels travaillent et offrent une assurance de qualité de leurs résultats.
 
-## Installation {-}
+## Installation des logiciels nécessaires {-}
+### R{-}
 Pour installer R sur un nouvel ordinateur, allez au site http://cran.r-project.org/.
 Vous y trouverez des versions compilées (binaries) ou non (sources) pour votre système d'exploitation de prédilection (Windows, MacOS, Linux).
 
 Note : R a déjà été installé sur les ordinateurs du laboratoire (la version pourrait être un peu plus ancienne, mais cela devrait être sans conséquences).
+
+### Rstudio {-}
+RStudio est un environnement de développement intégré (IDE) créé spécifiquement pour travailler avec R. Sa popularité connaît une progression foudroyante depuis 2014.
+Il permet de consulter dans une interface conviviale ses fichiers de script, la ligne de commande R, les rubriques d’aide,
+les graphiques, etc.
+
+RStudio est disponible à l’identique pour les plateformes Windows, OS X et Linux.
+Pour une utilisation locale sur son poste de travail, on installera la version libre (Open Source) de RStudio Desktop depuis le site
+https://www.rstudio.com/products/rstudio/download/
+
+### Paquets pour R {-}
+* Rmarkdown
+* tinytex
+
+Ces 2 paquets devrait être installé automatiquement avec RStudio, mais pas toujours. Je vous recommande donc de les installer manuellement. Pour ce faire, simplement copier-coller le texte suivant dans le terminal R.
+
+```{r, ind-install, eval = FALSE}
+install.packages(c("rmarkdown", "tinytex"))
+```
+
+
 
 ## Instructions générales pour les laboratoires {-}
 
@@ -116,21 +137,33 @@ Vous pourrez ainsi refaire le labo instantanément, récupérer des fragments de
 Annotez-là abondamment.
 Vous vous en féliciterez plus tard.
 
-<!--
-## Et pour les dilettantes ou ceux qui sont allergiques à la programmation... {-}
-Je vous conseille d’essayer d’apprivoiser R sans interface graphique.
-Au début ce sera peut-être difficile, mais cela vous forcera à acquérir de bonnes habitudes.
-Si vous trouvez cela vraiment trop lourd, ou que vous vous heurtez à des problèmes récurrents qui vous font perdre trop de temps, alors vous pouvez installer (du moins sur votre propre ordi, je ne sais pas si vous pouvez au laboratoire) une interface graphique distribuée par CRAN et qui fonctionne sous Windows, Mac et Linux (à ce qu’il paraît, je n’ai essayé que la version Windows).
-Il s’agit de Rcmdr, que vous devez d’abord installer dans R.
-Vous devez avoir accès à l’Internet.
-Dans la fenêtre de commande, entrez la commande
+## Notes sur le manuel
 
-```{r install_rcmdr, eval = FALSE}
-install.packages("Rcmdr", dependencies=TRUE)
+Vous trouverez dans le manuel des explications sur la théorie, du code R, des explications sur R et des exercises.
+
+Le manuel essaie aussi de mettre en évidence le texte de différentes manières.
+
+
+```{block2, type = "rmdcode"}
+Avec des sections à vous de jouer, ui indique un exercise à faire, idéalement sans regarder la solution qui se trouve plus bas.
 ```
- Une fenêtre s’ouvrira vous permettant de choisir l’un des sites distribuant Rcmdr.
-Le téléchargement et l’installation prendront plusieurs minutes car plusieurs autres packages doivent être téléchargées et installées.
-Quand ce sera terminé, vous pourrez démarrer l’interface graphique en entrant la commande:   library(Rcmdr) Une nouvelle fenêtre s’ouvrira, avec des menus pour accéder à la majorité des commandes usuelles.
-Une des sous-fenêtres de Rcmdr est un historique des commandes R correspondant à vos choix dans les menus.
-Étudiez-les pour apprendre, peut-être plus facilement, le language R.
--->
+
+```{block2, type = "rmdcaution"}
+des avertissements
+```
+
+```{block2, type = "rmdwarning"}
+des avertissements
+```
+
+```{block2, type = "rmdimportant"}
+des points importants
+```
+
+```{block2, type = "rmdnote"}
+des notes
+```
+
+```{block2, type = "rmdtip"}
+et des conseils
+```
