@@ -1,3 +1,5 @@
+# (PART) Analyse de puissance {-}
+
 # Analyse de puissance avec R et G\*Power
 
 Après avoir complété cet exercice de laboratoire, vous devriez :
@@ -51,7 +53,9 @@ G\*Power vous permettra d’effectuer une analyse de puissance pour la majorité
 Il est possible de faire tous les analyses de G\*power avec R, mais cela est nettement plus complexes, car il faut tous coder à la main. Dans les cas les plus simple le code R est aussi fourni.
 G\*power est vraiment un outil très utile que vous devrez maîtriser.
 
-* Téléchargez le programme **[ici](https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html)** et installez-le sur votre ordi et votre station de travail au laboratoire (si ce n’est déjà fait).*
+```{block2, type = "rmdcode"}
+Téléchargez le programme **[ici](https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html)** et installez-le sur votre ordi et votre station de travail au laboratoire (si ce n’est déjà fait).
+```
 
 ## Comment utiliser G\*Power
 
@@ -169,7 +173,9 @@ Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s’attend
 On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une différence aussi grande que celle-là avant d’accepter ses conclusions que la biomasse est la même entre les deux régions.
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 $g/m^2$ entre les deux régions? G\*Power peut nous le dire.
 
-- Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (\@ref(fig:gpower-2)):
+```{block2, type = "rmdcode"}
+Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (\@ref(fig:gpower-2)).
+```
 
 ```{r, gpower-2, fig.cap = "Analyse post-hoc avec une taille d'effet différente", out.width = "100%", echo = FALSE  }
 knitr::include_graphics("images/gpower_2.png")
@@ -187,8 +193,10 @@ Supposons qu’on puisse défendre la position qu’une différence de biomasse 
 On devrait donc planifier la prochaine saison d’échantillonnage de manière à avoir de bonnes chances de détecter une différence de cette taille.
 Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chances de la détecter (compte tenu de la variabilité observée)?
 
-- Changer le type d’analyse de puissance dans G\*Power à **A priori**: **Compute sample size - given $\alpha$ , power, and effect size.**
-Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance et vous obtiendrez:
+```{block2, type = "rmdcode"}
+Changer le type d’analyse de puissance dans G\*Power à **A priori**: **Compute sample size - given $\alpha$ , power, and effect size.**
+Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance.
+```
 
 ```{r, gpower-3, fig.cap = "Analyse à priori", out.width = "100%", echo = FALSE }
 knitr::include_graphics("images/gpower_3.png")
@@ -205,18 +213,23 @@ Augmenter la puissance ça demande plus d’effort.
 ### Analyse de sensitivité - Calculer la taille d’effet détectable
 Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 18 ruisseaux par région, et en conservant $\alpha=0.05$, quelle est la taille d’effet que Jaynie pouvait détecter avec 80% de chances $\beta=0.2$)?
 
-- Changez le type d’analyse dans G\*Power à **Sensitivity**: **Compute required effect size - given $\alpha$ , power, and sample size** et assurez-vous que la taille des échantillons est de 18 dans chaque région.
-Vous obtiendrez:
+```{block2, type = "rmdcode"}
+Changez le type d’analyse dans G\*Power à **Sensitivity**: **Compute required effect size - given $\alpha$ , power, and sample size** et assurez-vous que la taille des échantillons est de 18 dans chaque région.
+```
 
 ```{r, gpower-4, fig.cap = "Analyse de sensitivité", out.width = "100%", echo = FALSE }
 knitr::include_graphics("images/gpower_4.png")
 ```
 
 La taille d’effet détectable pour cette taille d’échantillon, $\alpha=0.05$ et $\beta=0.2$ (ou une puissance de 80%) est de 0.961296.
-**Attention**, cette valeur est l’indice `d` de la taille de l’effet et est pondérée par la variabilité des mesures.
+
+```{block2, type = "rmdcaution"}
+cette valeur est l’indice `d` de la taille de l’effet et est pondérée par la variabilité des mesures.
+```
+
 Dans ce cas ci, `d` est approximativement égal à
 $$ d = \frac{| \bar{X_1} \bar{X_2} |} {\sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}}$$
-Pour convertir cette valeur de d sans unités en une valeur de différence de biomasse détectable (i.e $| \bar{X_1} \bar{X_2} |$), il suffit de multiplier d par le dénominateur de l’équation.
+Pour convertir cette valeur de d sans unités en une valeur de différence de biomasse détectable (i.e $| \bar{X_1} \bar{X_2} |$), il suffit de multiplier `d` par le dénominateur de l’équation.
 $$
 | \bar{X_1} \bar{X_2} | = d * \sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}
 $$
@@ -235,6 +248,9 @@ On considère que $\beta=0.2$ (puissance de 80%) est relativement élevé.
 ## Exercice sur la puissance
 
 ```{block2, type = "rmdcode"}
+
+```
+
 Les larves de mouches noires (Diptera: Simuliidae) ont été échantillonnées en février à l’émissaire de deux lacs des Cantons de l’Est (lacs Orford et Lovering).
 La longueur de chaque larve a été mesurée.
 Les données sont dans le fichier simulies.RData   La relation entre la longueur (L, en mm) et la masse (M, en $\mu$g) pour l’espèce dominante (*P. mixtum/fuscum*) est:
@@ -263,5 +279,3 @@ $$
     d) Comment est-ce que la taille d'effet détectable dépend de la taille d'échantillon dans les 2 groupes?
 
 5. Calculer la différence de masse, en $\mu$g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c.
-
-```

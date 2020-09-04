@@ -1,3 +1,5 @@
+# (PART) Modèle multivarié {-}
+
 # ANOVA à critères multiples : plans factoriels et hiérarchiques
 
 Après avoir complété cet exercice de laboratoire, vous devriez être

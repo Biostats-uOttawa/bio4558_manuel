@@ -1,3 +1,5 @@
+# (PART) Modèle univarié {-}
+
 # Corrélation et régression linéaire simple
 
 Après avoir complété cet exercice de laboratoire, vous devriez être en mesure de :
