@@ -1,4 +1,6 @@
-# Introduction à R {#introductionR}
+# (PART) Introduction à R {-}
+
+# Objectifs Labo 1
 
 Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Ouvrir des fichiers de données R déjà existants
@@ -10,343 +12,663 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Calculer des statistiques descriptives d’une variable
 - Effectuer des transformations de données
 
-
 ## Paquets et données requises pour le labo {#set-intro}
 
 Ce laboratoire nécessite:
 
 * les paquets R:
-  * car
-  * lmtest
-  * boot
-  * lmPerm
+  * questionr
+  * ggplot2
 * les fichiers de données
+  * ErablesGatineau.csv
   * sturgeon.csv
 
+# Premier pas avec R
 
-## Importer et exporter des données
+Une fois R et RStudio installés sur votre machine, nous n'allons pas lancer R mais plutôt RStudio.
 
-Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
-Les fichiers `.csv` sont utilisés pour stocker des données.
-Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, ...) et les tableurs (e.g. MS Excel, LO Calc).
-Les fichiers `.Rdata` sont utilisés pour stocker n'importe quelle objet R pas uniquement des données.
-Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière "classique" via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un *Environnement de développement intégré* (IDE) qui facilite l'utilisation de R et le développement de scripts (voir section \@ref(rstudio)).
 
-Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format `.csv`.
+## La console
 
+### L'invite de commandes
 
-### Ouvrir un fichier de données en format `.Rdata`
+Au premier lancement de RStudio, l'écran principal est découpé en trois grandes zones :
 
-Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
-```{r load-choose, eval = FALSE}
-load(file.choose())
+![Interface de Rstudio](images/screenshots/rstudio_start.png)
+
+La zone de gauche se nomme *Console*. À son démarrage, RStudio a lancé une nouvelle session de R et c'est dans cette fenêtre que nous allons pouvoir interagir avec lui.
+
+La *Console* doit normalement afficher un texte de bienvenue ressemblant à ceci :
+
 ```
-ce qui ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur.
-Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque que l'on souhaite l'utiliser.
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
 
-Vous pouvez aussi directement taper le nom du fichier entre guillemet `"nom du fichier avec l'extension"`.
-Par exemple,
-```{r load, eval = FALSE}
-load("ErablesGatineau.Rdata")
-```
+R est un logiciel libre livré sans AUCUNE GARANTIE.
+Vous pouvez le redistribuer sous certaines conditions.
+Tapez 'license()' ou 'licence()' pour plus de détails.
 
+R est un projet collaboratif avec de nombreux contributeurs.
+Tapez 'contributors()' pour plus d'information et
+'citation()' pour la façon de le citer dans les publications.
 
-### Ouvrir un fichier de données en format `.csv`
-
-Pour importer ces données en format `.csv` dans R, il faut utiliser la commande `read.csv()`.
-Par exemple, pour créer un objet R `erables` qui contient les données du fichier `ErablesGatineau.csv`, il faut utiliser la commande suivant.
-
-```{r erables}
-erables <- read.csv("data/ErablesGatineau.csv")
-```
-
-```{block2, type='rmdwarning'}
-Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
-Par défaut, R utilise le point décimal et vous n’obtiendrez pas le résultat escompté.
-Il existe une version modifiée de `read.csv()` appelée `read.csv2()` qui règle ce problème.
-Googlez-la si vous en avez besoin.
+Tapez 'demo()' pour des démonstrations, 'help()' pour l'aide
+en ligne ou 'help.start()' pour obtenir l'aide au format HTML.
+Tapez 'q()' pour quitter R.
 ```
 
-Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction `ls()` ou en obtenir une liste avec une description plus détaillée avec `ls.str()`.
+suivi d'une ligne commençant par le caractère `>` et sur laquelle devrait se trouver votre curseur. Cette ligne est appelée l'*invite de commande* (ou *prompt* en anglais). Elle signifie que R est disponible et en attente de votre prochaine commande.
 
-```{block2, type = "rmdtip"}
-Je vous déconseille cependant, la fonction `ls.str()` car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d'objet dans l'environnement R. Je vous suggère donc d'utliser `ls()` et ensuite `str()` sur l'objet qui vous intéresse.
+Nous pouvons tout de suite lui fournir une première commande, en saisissant le texte suivant puis en appuyant sur `Entrée` :
+
+```{r}
+2 + 2
 ```
 
-```{r ls}
-ls()
-str(erables)
+R nous répond immédiatement, et nous pouvons constater avec soulagement qu'il sait faire des additions à un chiffre^[On peut ignorer pour le moment la présence du `[1]` en début de ligne.]. On peut donc continuer avec d'autres opérations :
+
+
+```{r}
+5 - 7
+4 * 12
+-10 / 3
+5^2
 ```
 
-R confirme avoir en mémoire l’objet `erables`.
-`erables` est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): `station`, une variable de type Facteur avec 2 niveaux, et `diam` et `biom` qui sont 2 variables numériques.
+Cette dernière opération utilise le symbole `^` qui représente l'opération *puissance*. `5^2` signifie donc "5 au carré", soit 25.
 
-### Entrer des données
+### Précisions concernant la saisie des commandes
 
-R n’est pas un environnement idéal pour entrer des données.
-C’est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
-Utilisez votre chiffrier préféré pour faire l’entrée de données.
-Ce sera plus efficace et moins frustrant.
+Lorsqu'on saisit une commande, les espaces autour des opérateurs n'ont pas d'importance. Les trois commandes suivantes sont donc équivalentes, mais on privilégie en général la deuxième pour des raisons de lisibilité du code.
 
-### Nettoyer/corriger des données
-
-Une autre opération qui peut être frustrante en R.
-Mon conseil : ne le faites pas là.
-Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
-Il est finalement plus simple de refaire exécuter les quelques lignes de code par la machine.
-Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
-
-### Exporter des données à partir de R.
-
-Vous pouvez utiliser la fonction,
-
-```{r write, eval =FALSE)
-  write.csv(mydata, file = "outfilename.csv", row.names = FALSE)
+```{r eval=FALSE}
+10+2
+10 + 2
+10       +       2
 ```
 
-où `mydata` est le nom du base de données à exporter et `outfilename.csv` est le nom du fichier à produire.
-Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à `File>Change dir`, ou par la commande `setwd()`)
 
-## Examen préliminaire des données
+Quand vous êtes dans la console, vous pouvez utiliser les flèches vers le haut et vers le bas pour naviguer dans l'historique des commandes que vous avez tapées précédemment. Vous pouvez à tout moment modifier la commande affichée, et l'exécuter en appuyant sur `Entrée`.
 
-La première étape de toute analyse est l’examen des données.
-Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
-L’examen préliminaire des données permet souvent aussi d’identifier des observations suspectes, possiblement dûes à des erreurs d’entrée de donnée.
-Finalement, l’examen graphique préliminaire permet en général de visualiser les tendances principales qui seront confirmées par l’analyse statistique en tant que telle.
-Le fichier `sturgeon.csv` contient les données d’une étude effectuée sur les esturgeons de la rivière Saskatchewan.
-Ces données ont été récoltées, entre autres, pour examiner comment la taille des esturgeons varie entre les sexes (sex), les sites (location), et les années (year).
+Enfin, il peut arriver qu'on saisisse une commande de manière incomplète : oubli d'une parenthèse, faute de frappe, etc. Dans ce cas, R remplace l'invite de commande habituel par un signe `+` :
 
-- Pour recommencer avec une ardoise vide, videz la mémoire de R de tout son contenu en tapant la commande `rm(list=ls())`
-- Chargez les données du fichier `sturgeon.csv` dans un objet `sturgeon`.
-- Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande `str(sturgeon)`.
-
-```{r load-stur}
-sturgeon <- read.csv("data/sturgeon.csv")
-str(sturgeon)
+```{r eval=FALSE}
+4 *
++
 ```
 
-### Sommaire statistique
+Cela signifie qu'il "attend la suite". On peut alors soit compléter la commande sur cette nouvelle ligne et appuyer sur `Entrée`, soit, si on est perdu, tout annuler et revenir à l'invite de commandes normal en appuyant sur `Esc` ou `Échap`.
 
-Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
 
-```{r sum-stur}
-summary(sturgeon)
+
+## Objets
+
+### Objets simples
+
+Faire des calculs c'est bien, mais il serait intéressant de pouvoir stocker un résultat quelque part pour pouvoir le réutiliser ultérieurement sans avoir à faire du copier/coller.
+
+Pour conserver le résultat d'une opération, on peut le stocker dans un *objet* à l'aide de l'opérateur d'assignation `<-`. Cette "flèche" stocke ce qu'il y a à sa droite dans un objet dont le nom est indiqué à sa gauche.
+
+Prenons tout de suite un exemple :
+
+```{r}
+x <- 2
 ```
 
-Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la valeur au milieu de la liste des observations ordonnées (appelée le 50 ième percentile), ici, la 93 ième valeur des 186 observations, les valeurs au premier (25%) et troisième quartile (75%), et si il y a des valeurs manquantes dans la colonne.
-Notez que plusieurs des variables ont des observations manquantes (NA).
-Donc, seules les variables fklngth (longueur à la fourche), sex, location et year ont 186 observations.
+Cette commande peut se lire *"prend la valeur 2 et mets la dans un objet qui s'appelle `x`"*.
 
-```{block2, type='rmdwarning'}
-**Attention aux valeurs manquantes**
-Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses sur des sous- ensembles sans valeur manquante, par des commandes ou des options dans les commandes.
-On y reviendra, mais prenez l’habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l’analyse.
+Si on exécute une commande comportant juste le nom d'un objet, R affiche son contenu :
+
+```{r}
+x
 ```
 
-### Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité
+On voit donc que notre objet `x` contient bien la valeur 2.
 
-Examinons maintenant de plus près la distribution de fklngth.
-La commande `hist()` permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.
+On peut évidemment réutiliser cet objet dans d'autres opérations. R le remplacera alors par sa valeur :
 
-```{r hist-stur}
-hist(sturgeon$fklngth)
+```{r}
+x + 4
 ```
 
-Les données semblent suivre approximativement une distribution normale.
-C’est bon à savoir.
-Cette syntaxe est un peu lourde puisqu’on doit ajouter le préfixe `sturgeon$` devant chaque nom de variable.
-On pourrait se faciliter la tâche en utilisant la commande `attach()` **mais cela est fortement déconseillé** et jamais utilisé dans ce document.
+On peut créer autant d'objets qu'on le souhaite.
 
-Cet histogramme est la représentation classique.
-Mais les histogrammes ne sont pas parfaits.
-Leur forme dépend en partie du nombre de catégories utilisées, surtout pour les petits échantillons.
-On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
-Mais il faut programmer un peu (ou savoir copier-coller...)
-
-```{block2, type = "rmdcode"}
-Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
+```{r}
+x <- 2
+y <- 5
+resultat <- x + y
+resultat
 ```
 
-```{r stur-g1, warning = FALSE, message =  FALSE}
+```{block, type='rmdimportant'}
+Les noms d'objets peuvent contenir des lettres, des chiffres, les symboles `.` et `_`. Ils ne peuvent pas commencer par un chiffre. Attention, R fait la différence entre minuscules et majuscules dans les noms d'objets, ce qui signifie que `x` et `X` seront deux objets différents, tout comme `resultat` et `Resultat`.
+
+De manière générale, il est préférable d'éviter les majuscules (pour les risques d'erreur) et les caractères accentués (pour des questions d'encodage) dans les noms d'objets.
+
+De même, il faut essayer de trouver un équilibre entre clarté du nom (comprendre à quoi sert l'objet, ce qu'il contient) et sa longueur. Par exemple, on préfèrera comme nom d'objet `taille_conj1` à `taille_du_conjoint_numero_1` (trop long) ou à `t1` (pas assez explicite).
+```
+
+Quand on assigne une nouvelle valeur à un objet déjà existant, la valeur précédente est perdue. Les objets n'ont pas de mémoire.
+
+```{r}
+x <- 2
+x <- 5
+x
+```
+
+De la même manière, assigner un objet à un autre ne crée pas de "lien" entre les deux. Cela copie juste la valeur de l'objet de droite dans celui de gauche :
+
+```{r}
+x <- 1
+y <- 3
+x <- y
+x
+## Si on modifie y, cela ne modifie pas x
+y <- 4
+x
+```
+
+On le verra, les objets peuvent contenir tout un tas d'informations. Jusqu'ici on n'a stocké que des nombres, mais ils peuvent aussi contenir des chaînes de caractères (du texte), qu'on délimite avec des guillemets simples ou doubles (`'` ou `"`) :
+
+```{r}
+chien <- "Chihuahua"
+chien
+```
+
+
+
+### Vecteurs
+
+Imaginons maintenant qu'on a demandé la taille en centimètres de 5 personnes et qu'on souhaite calculer leur taille moyenne. On pourrait créer autant d'objets que de tailles et faire l'opération mathématique qui va bien :
+
+```{r}
+taille1 <- 156
+taille2 <- 164
+taille3 <- 197
+taille4 <- 147
+taille5 <- 173
+(taille1 + taille2 + taille3 + taille4 + taille5) / 5
+```
+
+Cette manière de faire n'est évidemment pas pratique du tout. On va plutôt stocker l'ensemble de nos tailles dans un seul objet, de type *vecteur*, avec la syntaxe suivante :
+
+```{r}
+tailles <- c(156, 164, 197, 147, 173)
+```
+
+Si on affiche le contenu de cet objet, on voit qu'il contient bien l'ensemble des tailles saisies :
+
+```{r}
+tailles
+```
+
+Un *vecteur* dans R est un objet qui peut contenir plusieurs informations du même type, potentiellement en très grand nombre.
+
+L'avantage d'un vecteur est que lorsqu'on lui applique une opération, celle-ci s'applique à toutes les valeurs qu'il contient. Ainsi, si on veut la taille en mètres plutôt qu'en centimètres, on peut faire :
+
+```{r}
+tailles_m <- tailles / 100
+tailles_m
+```
+
+Cela fonctionne pour toutes les opérations de base :
+
+```{r}
+tailles + 10
+tailles^2
+```
+
+Imaginons maintenant qu'on a aussi demandé aux cinq mêmes personnes leur poids en kilos. On peut alors créer un deuxième vecteur :
+
+```{r}
+poids <- c(45, 59, 110, 44, 88)
+```
+
+On peut alors effectuer des calculs utilisant nos deux vecteurs `tailles` et `poids`. On peut par exemple calculer l'indice de masse corporelle (IMC) de chacun de nos enquêtés en divisant leur poids en kilo par leur taille en mètre au carré :
+
+```{r}
+imc <- poids / (tailles / 100) ^ 2
+imc
+```
+
+Un vecteur peut contenir des nombres, mais il peut aussi contenir du texte. Imaginons qu'on a demandé aux 5 mêmes personnes leur niveau de diplôme : on peut regrouper l'information dans un vecteur de *chaînes de caractères*. Une chaîne de caractère contient du texte libre, délimité par des guillemets simples ou doubles :
+
+```{r}
+diplome <- c("CAP", "Bac", "Bac+2", "CAP", "Bac+3")
+diplome
+```
+
+L'opérateur `:`, lui, permet de générer rapidement un vecteur comprenant tous les nombres entre deux valeurs, opération assez courante sous R :
+
+```{r}
+x <- 1:10
+x
+```
+
+Enfin, notons qu'on peut accéder à un élément particulier d'un vecteur en faisant suivre le nom du vecteur de crochets contenant le numéro de l'élément désiré. Par exemple :
+
+```{r}
+diplome[2]
+```
+
+Cette opération, qui utilise l'opérateur `[]`, permet donc la sélection d'éléments d'un vecteur.
+
+Dernière remarque, si on affiche dans la console un vecteur avec beaucoup d'éléments, ceux-ci seront répartis sur plusieurs lignes. Par exemple, si on a un vecteur de 50 nombres on peut obtenir quelque chose comme :
+
+     [1] 294 425 339 914 114 896 716 648 915 587 181 926 489
+    [14] 848 583 182 662 888 417 133 146 322 400 698 506 944
+    [27] 237 324 333 443 487 658 793 288 897 588 697 439 697
+    [40] 914 694 126 969 744 927 337 439 226 704 635
+
+On remarque que R ajoute systématiquement un nombre entre crochets au début de chaque ligne : il s'agit en fait de la position du premier élément de la ligne dans le vecteur. Ainsi, le 848 de la deuxième ligne est le 14e élément du vecteur, le 914 de la dernière ligne est le 40e, etc.
+
+Ceci explique le `[1]` qu'on obtient quand on affiche un simple nombre^[Et permet de constater que pour R, un nombre est un vecteur à un seul élément.] :
+
+     [1] 4
+
+
+
+## Fonctions
+
+### Principe
+
+Nous savons désormais effectuer des opérations arithmétiques de base sur des nombres et des vecteurs, et stocker des valeurs dans des objets pour pouvoir les réutiliser plus tard.
+
+Pour aller plus loin, nous devons aborder les *fonctions* qui sont, avec les objets, un deuxième concept de base de R. On utilise des fonctions pour effectuer des calculs, obtenir des résultats et accomplir des actions.
+
+Formellement, une fonction a un *nom*, elle prend en entrée entre parenthèses un ou plusieurs *arguments* (ou *paramètres*), et retourne un *résultat*.
+
+Prenons tout de suite un exemple. Si on veut connaître le nombre d'éléments du vecteur `tailles` que nous avons construit précédemment, on peut utiliser la fonction `length`, de cette manière :
+
+```{r}
+length(tailles)
+```
+
+Ici, `length` est le nom de la fonction, on l'appelle en lui passant un argument entre parenthèses (en l'occurrence notre vecteur `tailles`), et elle nous renvoie un résultat, à savoir le nombre d'éléments du vecteur passé en paramètre.
+
+Autre exemple, les fonctions `min` et `max` retournent respectivement les valeurs minimales et maximales d'un vecteur de nombres :
+
+```{r}
+min(tailles)
+max(tailles)
+```
+
+La fonction `mean` calcule et retourne la moyenne d'un vecteur de nombres :
+
+```{r}
+mean(tailles)
+```
+
+La fonction `sum` retourne la somme de tous les éléments du vecteur :
+
+```{r}
+sum(tailles)
+```
+
+
+Jusqu'à présent on n'a vu que des fonctions qui calculent et retournent un unique nombre. Mais une fonction peut renvoyer d'autres types de résultats. Par exemple, la fonction `range` (étendue) renvoie un vecteur de deux nombres, le minimum et le maximum :
+
+```{r}
+range(tailles)
+```
+
+Ou encore, la fonction `unique`, qui supprime toutes les valeurs en double dans un vecteur, qu'il s'agisse de nombres ou de chaînes de caractères :
+
+```{r}
+diplome <- c("CAP", "Bac", "Bac+2", "CAP", "Bac+3")
+unique(diplome)
+```
+
+
+
+### Arguments
+
+Une fonction peut prendre plusieurs arguments, dans ce cas on les indique toujours entre parenthèses, séparés par des virgules.
+
+On a déjà rencontré un exemple de fonction acceptant plusieurs arguments : la fonction `c`, qui combine l'ensemble de ses arguments en un vecteur^[`c` est l'abbréviation de *combine*, son nom est très court car on l'utilise très souvent] :
+
+```{r}
+tailles <- c(156, 164, 197, 181, 173)
+```
+
+Ici, `c` est appelée en lui passant cinq arguments, les cinq tailles séparées par des virgules, et elle renvoie un vecteur numérique regroupant ces cinq valeurs.
+
+Supposons maintenant que dans notre vecteur `tailles` nous avons une valeur manquante (une personne a refusé de répondre, ou notre mètre mesureur était en panne). On symbolise celle-ci dans R avec le code interne `NA` :
+
+```{r}
+tailles <- c(156, 164, 197, NA, 173)
+tailles
+```
+
+```{block, type='rmdnote'}
+`NA` est l'abbréviation de *Not available*, non disponible. Cette valeur particulière peut être utilisée pour indiquer une valeur manquante, qu'il s'agisse d'un nombre, d'une chaîne de caractères, etc.
+```
+
+Si je calcule maintenant la taille moyenne à l'aide de la fonction `mean`, j'obtiens :
+
+```{r}
+mean(tailles)
+```
+
+En effet, R considère par défaut qu'il ne peut pas calculer la moyenne si une des valeurs n'est pas disponible. Il considère alors que cette moyenne est elle-même "non disponible" et renvoie donc comme résultat `NA`.
+
+On peut cependant indiquer à `mean` d'effectuer le calcul en ignorant les valeurs manquantes. Ceci se fait en ajoutant un argument supplémentaire, nommé `na.rm` (abbréviation de *NA remove*, "enlever les NA"), et de lui attribuer la valeur `TRUE` (code interne de R signifiant *vrai*) :
+
+```{r}
+mean(tailles, na.rm = TRUE)
+```
+
+Positionner le paramètre `na.rm` à `TRUE`  indique à la fonction `mean` de ne pas tenir compte des valeurs manquantes dans le calcul.
+
+Si on ne dit rien à la fonction `mean`, cet argument a une valeur par défaut, en l'occurrence `FALSE` (faux), qui fait qu'il ne supprime pas les valeurs manquantes. Les deux commandes suivantes sont donc rigoureusement équivalentes :
+
+```{r}
+mean(tailles)
+mean(tailles, na.rm = FALSE)
+```
+
+```{block, type='rmdnote'}
+Lorsqu'on passe un argument à une fonction de cette manière, c'est-à-dire sous la forme `nom = valeur`, on parle d'*argument nommé*.
+```
+
+
+
+
+### Aide sur une fonction
+
+Il est fréquent de ne pas savoir (ou d'avoir oublié) quels sont les arguments d'une fonction, ou comment ils se nomment. On peut à tout moment faire appel à l'aide intégrée à R en passant le nom de la fonction (entre guillemets) à la fonction `help` :
+
+```{r, eval = FALSE}
+help("mean")
+```
+
+On peut aussi utiliser le raccourci `?mean`.
+
+Ces deux commandes affichent une page (en anglais) décrivant la fonction, ses paramètres, son résultat, le tout accompagné de diverses notes, références et exemples. Ces pages d'aide contiennent à peu près tout ce que vous pourrez chercher à savoir, mais elles ne sont pas toujours d'une lecture aisée.
+
+Dans RStudio, les pages d'aide en ligne s'ouvriront par défaut dans la zone en bas à droite,
+sous l'onglet *Help*. Un clic sur l'icône en forme de maison vous affichera la page d'accueil de l'aide.
+
+
+
+## Regrouper ses commandes dans des scripts
+
+Jusqu'ici on a utilisé R de manière "interactive", en saisissant des commandes directement dans la console. Ça n'est cependant pas la manière dont on va utiliser R au quotidien, pour une raison simple : lorsque R redémarre, tout ce qui a été effectué dans la console est perdu.
+
+Plutôt que de saisir nos commandes dans la console, on va donc les regrouper dans des scripts (de simples fichiers texte), qui vont garder une trace de toutes les opérations effectuées, et ce sont ces scripts, sauvegardés régulièrement, qui seront le "coeur" de notre travail. C'est en rouvrant les scripts et en réexécutant les commandes qu'ils contiennent qu'on pourra "reproduire" les données, leur traitement, les analyses et leurs résultats.
+
+Pour créer un script, il suffit de sélectionner le menu *File*, puis *New file* et *R script*. Une quatrième zone apparaît alors en haut à gauche de l'interface de RStudio. On peut enregistrer notre script à tout moment dans un fichier avec l'extension `.R`, en cliquant sur l'icône de disquette ou en choissant *File* puis *Save*.
+
+Un script est un fichier texte brut, qui s'édite de la manière habituelle. À la différence de la console, quand on appuie sur `Entrée`, cela n'exécute pas la commande en cours mais insère un saut de ligne (comme on pouvait s'y attendre).
+
+Pour exécuter une commande saisie dans un script, il suffit de positionner le curseur sur la ligne de la commande en question, et de cliquer sur le bouton *Run* dans la barre d'outils juste au-dessus de la zone d'édition du script. On peut aussi utiliser le raccourci clavier `Ctrl + Entrée` (`Cmd + Entrée` sous Mac). On peut enfin sélectionner plusieurs lignes avec la souris ou le clavier et cliquer sur *Run* (ou utiliser le raccourci clavier), et l'ensemble des lignes est exécuté d'un coup.
+
+Au final, un script pourra ressembler à quelque chose comme ça :
+
+```{r, eval=FALSE}
+tailles <- c(156, 164, 197, 147, 173)
+poids <- c(45, 59, 110, 44, 88)
+
+mean(tailles)
+mean(poids)
+
+imc <- poids / (tailles / 100) ^ 2
+min(imc)
+max(imc)
+```
+
+
+### Commentaires
+
+Les commentaires sont un élément très important d'un script. Il s'agit de texte libre, ignoré par R, et qui permet de décrire les étapes du script, sa logique, les raisons pour lesquelles on a procédé de telle ou telle manière... Il est primordial de documenter ses scripts à l'aide de commentaires, car il est très facile de ne plus se retrouver dans un programme qu'on a produit soi-même, même après une courte interruption.
+
+Pour ajouter un commentaire, il suffit de le faire précéder d'un ou plusieurs symboles `#`. En effet, dès que R rencontre ce caractère, il ignore tout ce qui se trouve derrière, jussqu'à la fin de la ligne.
+
+On peut donc documenter le script précédent :
+
+```{r, eval=FALSE}
+# Saisie des tailles et poids des enquêtés
+tailles <- c(156, 164, 197, 147, 173)
+poids <- c(45, 59, 110, 44, 88)
+
+# Calcul des tailles et poids moyens
+mean(tailles)
+mean(poids)
+
+# Calcul de l'IMC (poids en kilo divisé par les tailles en mètre au carré)
+imc <- poids / (tailles / 100) ^ 2
+# Valeurs extrêmes de l'IMC
+min(imc)
+max(imc)
+```
+
+
+
+## Installer et charger des extensions (*packages*) {#packages}
+
+R étant un logiciel libre, il bénéficie d'un développement communautaire riche et dynamique. L'installation de base de R permet de faire énormément de choses, mais le langage dispose en plus d'un système d'extensions permettant d'ajouter facilement de nouvelles fonctionnalités. La plupart des extensions sont développées et maintenues par la communauté des utilisateurs de R, et diffusées via un réseau de serveurs nommé CRAN (*Comprehensive R Archive Network*).
+
+Pour installer une extension, si on dispose d'une connexion Internet, on peut utiliser le bouton *Install* de l'onglet *Packages* de RStudio.
+
+![Installer une extension](images/screenshots/rstudio_package_install.png)
+
+
+Il suffit alors d'indiquer le nom de l'extension dans le champ *Package* et de cliquer sur *Install*.
+
+![Installation d'une extension](images/screenshots/rstudio_package_install2.png)
+
+On peut aussi installer des extensions en utilisant la fonction `install.packages()` directement dans la console. Par exemple, pour installer le *package* `questionr` on peut exécuter la commande :
+
+```{r, eval = FALSE}
+install.packages("questionr")
+```
+
+Installer une extension via l'une des deux méthodes précédentes va télécharger l'ensemble des fichiers nécessaires depuis l'une des machines du CRAN, puis installer tout ça sur le disque dur de votre ordinateur. Vous n'avez besoin de le faire qu'une fois, comme vous le faites pour installer un programme sur votre Mac ou PC.
+
+Une fois l'extension installée, il faut la "charger" avant de pouvoir utiliser les fonctions qu'elle propose. Ceci se fait avec la fonction `library`. Par exemple, pour pouvoir utiliser les fonctions de `questionr`, vous devrez exécuter la commande suivante :
+
+```{r eval = FALSE}
+library(questionr)
+```
+
+Ainsi, bien souvent, on regroupe en début de script toute une série d'appels à `library` qui permettent de charger tous les packages utilisés dans le script. Quelque chose comme :
+
+```{r, eval = FALSE}
+library(readxl)
 library(ggplot2)
-#  use "sturgeon" dataframe to make plot called mygraph
-#  and define x axis as representing fklngth
-mygraph <- ggplot(sturgeon, aes(x = fklngth))
-#  add data to the mygraph ggplot
-mygraph <- mygraph +
-#  add data density smooth
-    geom_density() +
-#  add rug (bars at the bottom of the plot)
-    geom_rug() +
-#  add black semitransparent histogram
-    geom_histogram(aes(y = ..density..), bins = 30, color = "black",   alpha = 0.3) +
-#  add normal curve in red, with mean and sd from fklength
-    stat_function(fun = dnorm,
-                   args = list(
-                     mean = mean(sturgeon$fklngth),
-                     sd = sd(sturgeon$fklngth) ),
-                   color = "red")
-# display graph
-    mygraph
+library(questionr)
 ```
 
-Chaque observation est représentée par une barre sous l’axe des x (rug).
-En rouge est la distribution normale de données avec la même moyenne et écart-type que les observations.
-Et l’autre ligne est la densité de probabilité empirique, « lissée » à partir des observations.
-Si vous êtes plus aventureux, vous pouvez examiner la distribution des observations de fklngth par sous-groupes (par exemple sex et year) avec :
+Si vous essayez d'exécuter une fonction d'une extension et que vous obtenez le message d'erreur `impossible de trouver la fonction`, c'est certainement parce que vous n'avez pas exécuté la commande `library` correspondante.
 
-```{r aventure}
-mygraph + facet_grid(year ~ sex)
+
+
+
+
+
+
+## Exercices
+
+**Exercice 1**
+
+Construire le vecteur `x` suivant :
+
+```{r echo=FALSE}
+x <- c(120, 134, 256, 12)
+x
 ```
 
-Chaque panneau illustre la distribution pour un sexe cette année-là, et la courbe en rouge récurrente représente la distribution normale pour l’ensemble des données.
-Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
-Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes `qqnorm()` et `qqline()`.
-```{r stur-norm}
-qqnorm(sturgeon$fklngth)
-qqline(sturgeon$fklngth)
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+x <- c(120, 134, 256, 12)
+```
+</div>
+\fi
+
+
+Utiliser ce vecteur `x` pour générer les deux vecteurs suivants :
+
+```{r echo=FALSE}
+x + 100
+x * 2
 ```
 
-Des données parfaitement normales suivraient la ligne droite diagonale.
-Ici, il y a des déviations dans les queues de la distribution, et un peu à droite du centre.
-Comparez cette représentation à celle des deux graphiques précédents.
-Vous conviendrez sans doute avec moi qu’il est plus facile de visualiser comment la distribution dévie de la normalité sur les histogrammes et les graphiques de la densité empirique de probabilité que sur les QQ plots.
-Ceci dit, les QQ plots sont souvent utilisés et vous devriez être capable de les interpréter.
-De plus, on peut facilement éprouver statistiquement l’hypothèse que les données sont distribuées normalement avec R par la commande `shapiro.test()` qui calcule une statistique (W) qui est une mesure de la tendance des points d’un QQ plot à former une ligne parfaite.
-Si oui, alors W=1.
-Si W s’éloigne de 1 (vers 0), alors les données s’éloignent de la normalité.
-Ici,
-```{r shapito-stur}
-shapiro.test(sturgeon$fklngth)
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+x + 100
+x * 2
+```
+</div>
+\fi
+
+
+**Exercice 2**
+
+On a demandé à 4 ménages le revenu des deux conjoints, et le nombre de personnes du ménage :
+
+```{r eval=FALSE}
+conjoint1 <- c(1200, 1180, 1750, 2100)
+conjoint2 <- c(1450, 1870, 1690, 0)
+nb_personnes <- c(4, 2, 3, 2)
 ```
 
-W n’est pas très loin de 1, mais suffisamment pour que la différence soit significative.
-L’examen visuel des grands échantillons est souvent compliqué par le fait que plusieurs points se superposent et qu’il devient plus difficile de bien visualiser la tendance centrale.
-Les boxplots avec "moustaches" (box and whiskers plots) offrent une alternative intéressante.
-La commande `boxplot()` peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.
+Calculer le revenu total de chaque ménage, puis diviser par le nombre de personnes pour obtenir le revenu par personne de chaque ménage.
 
-```{r boxplot-stur}
-boxplot(fklngth ~ sex, data = sturgeon, notch = TRUE)
+
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+revenu_total <- conjoint1 + conjoint2
+revenu_total / nb_personnes
+```
+</div>
+\fi
+
+
+
+**Exercice 3**
+
+Dans l'exercice précédent, calculer le revenu minimum et maximum parmi ceux du premier conjoint.
+
+```{r eval=FALSE}
+conjoint1 <- c(1200, 1180, 1750, 2100)
 ```
 
-La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
-La coche est proportionnelle à l’incertitude quant à la position de la médiane.
-On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n’y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
-Les boîtes s’étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s’étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l’intérieur de 1.5x la largeur de l’étendue interquartile .
-Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l’étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.
 
-### Diagrammes de dispersion bivariés
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+range(conjoint1)
+```
+</div>
+\fi
 
-En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d’oeil aux diagrammes de dispersion .
-La commande `plot(y~x)` permet de faire le graphique de y sur l’axe vertical (l’ordonnée) en fonction de x sur l’axe horizontal (l’abscisse).
 
-```{block2, type = "rmdcode"}
- Faites un graphique de fklngth en fonction de age avec la commande plot.
+
+Recommencer avec les revenus suivants, parmi lesquels l'un des enquetés n'a pas voulu répondre :
+
+```{r eval=FALSE}
+conjoint1 <- c(1200, 1180, 1750, NA)
 ```
 
-Vous devriez obtenir:
 
-```{r stur-biv-plot}
-plot(fklngth ~ age, data = sturgeon)
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+range(conjoint1, na.rm = TRUE)
+```
+</div>
+\fi
+
+
+
+
+**Exercice 4**
+
+Les deux vecteurs suivants représentent les précipitations (en mm) et la température (en °C) moyennes sur la ville de Lyon, pour chaque mois de l'année, entre 1981 et 2010 :
+
+```{r}
+temperature <- c(3.4, 4.8, 8.4, 11.4, 15.8, 19.4, 22.2, 21.6, 17.6, 13.4, 7.6, 4.4)
+precipitations <- c(47.2, 44.1, 50.4, 74.9, 90.8, 75.6, 63.7, 62, 87.5, 98.6, 81.9, 55.2)
 ```
 
-R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (`pairs()`).
-Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
-Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande `pairs(sturgeon[,1:6], panel=panel.smooth)` et vous devriez obtenir
+Calculer la température moyenne sur l'année.
 
-```{r pairs-stur}
-pairs(sturgeon[,1:6], panel = panel.smooth)
+Calculer la quantité totale de précipitations sur l'année.
+
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+mean(temperature)
+sum(precipitations)
+```
+</div>
+\fi
+
+
+À quoi correspond et comment peut-on interpréter le résultat de la fonction suivante ? Vous pouvez vous aider de la page d'aide de la fonction si nécessaire.
+
+```{r}
+cumsum(precipitations)
 ```
 
-## Créer des sous-ensembles de cas
+Même question pour :
 
-Il arrive fréquemment qu'une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
-Les cas sont d’habitude sélectionnés selon un critère en particulier.
-Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande `subset()`.
-Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui ne contient que les femelles capturées en 1978, on peut écrire :
-
-```{r stur-subset}
-sturgeon.female.1978 <- subset(sturgeon, sex == "FEMALE" & year == "1978")
-sturgeon.female.1978
+```{r}
+diff(temperature)
 ```
 
-```{block2, type = "rmdcaution"}
-Dans ces comparaisons, il faut toujours utiliser `==` pour égal à.
-Dans ce contexte, si vous utilisez `=` seulement, vous n’obtiendrez pas ce que vous désirez.
-Dans le tableau qui suit se trouve une liste de commandes communes que vous allez probablement utiliser pour créer des expressions en R.
+\iffalse
+<div class="solution">
+`cumsum(precipitations)` correspond à la somme cumulée des précipitations sur l'année. Par exemple, la 6e valeur du vecteur résultat correspond au total de précipitations de janvier à juin.
+
+`diff(temperature)` correspond à la différence de température d'un mois sur l'autre. Par exemple, la 2e valeur de ce vecteur correspond à l'écart de température entre le mois de février et le mois de janvier.
+</div>
+\fi
+
+
+
+**Exercice 5**
+
+On a relevé les notes en maths, anglais et sport d'une classe de 6 élèves et on a stocké ces données dans trois vecteurs :
+
+```{r}
+maths <- c(12, 16, 8, 18, 6, 10)
+anglais <- c(14, 9, 13, 15, 17, 11)
+sport <- c(18, 11, 14, 10, 8, 12)
 ```
 
-Operateur | Explication | Operateur | Explication
-----------|----------|----------|----------
- ==       | Égal à   | !=       | Pas égal à
- \>       | Plus que | <        | Moins que
- \>=      | Plus que ou égal à | <= | Moins que ou égal à
- \& | Et vectorisé | \| | Ou vectorisé
- \&\& | Et contrôle | \|\| | Ou contrôle
- ! | Pas | |
+Calculer la moyenne des élèves de la classe en anglais.
 
- - En utilisant les commandes `subset()` et `hist()`, essayez de faire un histogramme pour le sous-ensemble de cas correspondant aux femelles capturées en 1979 et 1980 (donc `sex == "FEMALE" & (year == "1979" | year == "1980")`)
+Calculer la moyenne générale de chaque élève.
+
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+mean(anglais)
+(maths + anglais + sport) / 3
+```
+</div>
+\fi
 
 
+Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vous aider de la page d'aide de ces fonctions) :
 
-## Transformations de données
-
-Il est très fréquemment nécessaire d’effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d’application de tests statistiques.
-R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
-Les fonctions les plus fréquemment utilisées sont:
-
-- `log()`
-- `sqrt()`
-- `ifelse()`
-
-On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
-Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire
-
-```{r plot-translog-stur-plot, eval = FALSE}
-plot(log(fklngth)~age, data = sturgeon)
+```{r}
+pmin(maths, anglais, sport)
 ```
 
- Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
-
- ```{r translog-stur-orph, eval = FALSE}
-logfklngth <- log10(sturgeon$fklngth)
- ```
-
-Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole `$`, par exemple, pour ajouter une variable nommée `lfkl` contenant le log10 de fklngth au tableau sturgeon, on peut écrire:
-
-```{r translog-stur-dat, eval = FALSE}
-sturgeon$logfkl <- log10(sturgeonfklngth)
+```{r}
+pmax(maths, anglais, sport)
 ```
 
-N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
-Pour les transformations conditionnelles, on peut utiliser la fonction `ifelse()`.
-Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:
 
-```{r translog-stur-dummy, eval = FALSE}
-sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
-```
-
-## Exercice sur R
-```{block2, type = "rmdcode"}
-Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
-Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
-```
-
-```{r intror-exer, echo = FALSE, warning = FALSE, message =  FALSE}
-salmonella <- read.csv("data/salmonella.csv")
-mygraph <- ggplot(subset(salmonella, souche == "SAUVAGE"), aes(x = ratio))
-mygraph <- mygraph +
-  geom_density() +
-  geom_rug() +
-  geom_histogram(aes(y = ..density..),
-                 bins = 30,
-                 color = "black",
-                 alpha = 0.3) +
-  stat_function(fun = dnorm,
-                args = list(
-                  mean = mean(subset(salmonella, souche == "SAUVAGE")$ratio),
-                  sd = sd(subset(salmonella, souche == "SAUVAGE")$ratio)
-                ),
-                color = "red")
-mygraph
-```
+\iffalse
+<div class="solution">
+`pmin` et `pmax` renvoient les minimum et maximum "parallèles" des trois vecteurs passés en argument. Ainsi, `pmin` renvoie pour chaque élève la note minimale dans les trois matières, et `pmax` la note maximale.
+</div>
+\fi
