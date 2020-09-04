@@ -51,7 +51,7 @@ En résumé, quand on fait un tableau croisé, celui-ci est parfaitement symétr
 Pour faciliter la lecture d'un tableau croisé, il est recommandé de **faire les pourcentages sur la variable indépendante**. Dans notre exemple, la variable indépendante est le sexe, elle est en colonne, on calcule donc les pourcentages colonnes qui permettent de comparer directement, pour chaque sexe, la répartition des catégories socio-professionnelles.
 ```
 
-### Test du χ²
+<!--### Test du χ²
 
 Comme on travaille sur un échantillon et pas sur une population entière, on peut compléter ce tableau croisé par un test d'indépendance du χ². Celui-ci permet de rejeter l'hypothèse d'indépendance des lignes et des colonnes du tableau, c'est à dire de rejeter l'hypothèse que les écarts à l'indépendance observés seraient uniquement dus au biais d'échantillonnage (au fait qu'on n'a pas interrogé toute notre population).
 
@@ -82,6 +82,7 @@ L'interprétation des résidus est la suivante :
 - si le résidu est compris entre -2 et 2, il n'y a pas d'écart à l'indépendance significatif
 
 Les résidus peuvent être une aide utile à l'interprétation, notamment pour des tableaux de grande dimension.
+-->
 
 ### Représentation graphique
 
@@ -100,8 +101,6 @@ mosaicplot(tab, las = 3, shade = TRUE)
 ```
 
 Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y'a beaucoup d'employés et d'ouvriers et très peu d'"autres"). Sa hauteur correspond aux pourcentages colonnes : la proportion d'hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant : les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l'hypothèse d'indépendance.
-
-
 
 
 ## Croisement d'une variable quantitative et d'une variable qualitative
@@ -170,10 +169,7 @@ Une autre possibilité est d'utiliser la fonction `tapply`, qui prend en paramè
 tapply(d$age, d$sport, mean)
 ```
 
-On verra dans la partie \@ref(dplyr) d'autres méthodes basées sur `dplyr` pour effectuer ce genre d'opérations.
-
-
-### Tests statistiques
+<!-- ### Tests statistiques
 
 Un des tests les plus connus est le test du *t* de Student, qui permet de tester si les moyennes de deux sous-populations peuvent être considérées comme différentes (compte tenu des fluctuations aléatoires provenant du biais d'échantillonnage).
 
@@ -217,7 +213,7 @@ wilcox.test(d$age ~ d$sport)
 ```
 
 La valeur *p* étant à nouveau extrêmement petite, on peut rejeter l'hypothèse d'indépendance et considérer que les distributions des âges dans les deux sous-populations sont différentes.
-
+-->
 
 
 ## Croisement de deux variables quantitatives
@@ -284,8 +280,7 @@ plot(rp2012$cadres, rp2012$dipl_sup)
 ```
 
 
-
-### Calcul d'indicateurs
+<!-- ### Calcul d'indicateurs
 
 En plus d'une représentation graphique, on peut calculer certains indicateurs permettant de mesurer le degré d'association de deux variables quantitatives.
 
@@ -423,6 +418,7 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 plot(rp2012$dipl_sup, rp2012$cadres)
 abline(reg, col="red")
 ```
+-->
 
 
 ## Exercices {#ex-introR-biv}
@@ -437,7 +433,6 @@ data(hdv2003)
 tab <- table(hdv2003$qualif, hdv2003$clso)
 tab
 lprop(tab)
-chisq.test(tab)
 mosaicplot(tab, shade=TRUE)
 ```
 
@@ -456,7 +451,7 @@ lprop(tab)
 </div>
 \fi
 
-
+<!--
 Faire un test du χ². Peut-on rejeter l'hypothèse d'indépendance ?
 
 \iffalse
@@ -469,7 +464,7 @@ chisq.test(tab)
 ```
 </div>
 \fi
-
+-->
 
 Représenter ce tableau croisé sous la forme d'un `mosaicplot` en colorant les cases selon les résidus du test du χ².
 
@@ -525,7 +520,7 @@ plot(rp2012$dipl_aucun, rp2012$proprio)
 </div>
 \fi
 
-
+<!--
 Calculer le coefficient de corrélation linéaire correspondant.
 
 \iffalse
@@ -535,3 +530,4 @@ cor(rp2012$dipl_aucun, rp2012$proprio)
 ```
 </div>
 \fi
+-->

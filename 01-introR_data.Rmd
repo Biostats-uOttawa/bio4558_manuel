@@ -1,31 +1,4 @@
-# Introduction à R {#introductionR}
-
-Après avoir complété cet exercice de laboratoire, vous pourrez :
-- Ouvrir des fichiers de données R déjà existants
-- Importer des ensembles de données rectangulaires
-- Exporter des donnes de R vers un fichier texte
-- Vérifier si les données ont été correctement importées
-- Examiner la distribution des observations d’une variable
-- Examiner visuellement et tester la normalité d’une variable
-- Calculer des statistiques descriptives d’une variable
-- Effectuer des transformations de données
-
-```{block2, type = "rmdimportant"}
-Je vous suggère fortement de lire ;les chapitres 2 et 8 du livre de Julien Barnier [Introduction à R et au *tidyverse*](https://juba.github.io/tidyverse/).Je suggère aussi de lire le livre d'emmanuel Paradis, [R pour les débutants](https://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf). Ces 2 livres décrivent très bien les notions de bases de R.
-
-
-```
-
-## Paquets et données requises pour le labo {#set-intro}
-
-Ce laboratoire nécessite:
-
-* les paquets R:
-  * ggplot2
-* les fichiers de données
-  * ErablesGatineau.csv
-  * sturgeon.csv
-
+# Gérer les données
 
 ## Importer et exporter des données
 
@@ -84,12 +57,14 @@ str(erables)
 R confirme avoir en mémoire l’objet `erables`.
 `erables` est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): `station`, une variable de type Facteur avec 2 niveaux, et `diam` et `biom` qui sont 2 variables numériques.
 
+
 ### Entrer des données
 
 R n’est pas un environnement idéal pour entrer des données.
 C’est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
 Utilisez votre chiffrier préféré pour faire l’entrée de données.
 Ce sera plus efficace et moins frustrant.
+
 
 ### Nettoyer/corriger des données
 
@@ -98,6 +73,7 @@ Mon conseil : ne le faites pas là.
 Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
 Il est finalement plus simple de refaire exécuter les quelques lignes de code par la machine.
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
+
 
 ### Exporter des données à partir de R.
 
@@ -110,6 +86,7 @@ Vous pouvez utiliser la fonction,
 où `mydata` est le nom du base de données à exporter et `outfilename.csv` est le nom du fichier à produire.
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à `File>Change dir`, ou par la commande `setwd()`)
 
+
 ## Examen préliminaire des données
 
 La première étape de toute analyse est l’examen des données.
@@ -119,7 +96,8 @@ Finalement, l’examen graphique préliminaire permet en général de visualiser
 Le fichier `sturgeon.csv` contient les données d’une étude effectuée sur les esturgeons de la rivière Saskatchewan.
 Ces données ont été récoltées, entre autres, pour examiner comment la taille des esturgeons varie entre les sexes (sex), les sites (location), et les années (year).
 
-- Pour recommencer avec une ardoise vide, videz la mémoire de R de tout son contenu en tapant la commande `rm(list=ls())`
+<!-- - Pour recommencer avec une ardoise vide, videz la mémoire de R de tout son contenu en tapant la commande `rm(list=ls())`-->
+
 - Chargez les données du fichier `sturgeon.csv` dans un objet `sturgeon`.
 - Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande `str(sturgeon)`.
 
