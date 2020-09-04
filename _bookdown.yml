@@ -14,7 +14,7 @@ rmd_files: ["index.Rmd",
   "01-introR.Rmd",
   "01-introR_travail.Rmd",
   "01-introR_biv.Rmd",
-  "01-introR_data.Rmd"
+  "01-introR_data.Rmd",
   "02-Gpower.Rmd",
   "03-reg_lin.Rmd",
   "04-t_test.Rmd",

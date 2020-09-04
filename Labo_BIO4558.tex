@@ -2474,75 +2474,6 @@ directement, pour chaque sexe, la répartition des catégories
 socio-professionnelles.
 \end{rmdnote}
 
-\hypertarget{test-du-ux3c7uxb2}{%
-\subsection{Test du χ²}\label{test-du-ux3c7uxb2}}
-
-Comme on travaille sur un échantillon et pas sur une population entière, on peut compléter ce tableau croisé par un test d'indépendance du χ². Celui-ci permet de rejeter l'hypothèse d'indépendance des lignes et des colonnes du tableau, c'est à dire de rejeter l'hypothèse que les écarts à l'indépendance observés seraient uniquement dus au biais d'échantillonnage (au fait qu'on n'a pas interrogé toute notre population).
-
-Pour effectuer un test de ce type, on applique la fonction \texttt{chisq.test} au tableau croisé calculé précédemment~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{chisq.test}\NormalTok{(tab)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## 	Pearson's Chi-squared test
-## 
-## data:  tab
-## X-squared = 387.56, df = 6, p-value < 2.2e-16
-\end{verbatim}
-
-Le résultat nous indique trois valeurs~:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{X-squared}, la valeur de la statistique du χ² pour notre tableau, c'est-à-dire une ``distance'' entre notre tableau observé et celui attendu si les deux variables étaient indépendantes.
-\item
-  \texttt{df}, le nombre de degrés de libertés du test.
-\item
-  \texttt{p-value}, le fameux \emph{p}, qui indique la probabilité d'obtenir une valeur de la statistique du χ² au moins aussi extrême sous l'hypothèse d'indépendance.
-\end{itemize}
-
-Ici, le \emph{p} est extrêmement petit (la notation \texttt{\textless{}\ 2.2e-16} indique qu'il est plus petit que la plus petite valeur proche de zéro calculable par R), donc certainement en-dessous du seuil de décision choisi préalablement au test (souvent 5\%, soit 0.05). On peut donc rejeter l'hypothèse d'indépendance des lignes et des colonnes du tableau.
-
-En complément du test du χ², on peut aussi regarder les \emph{résidus} de ce test pour affiner la lecture du tableau. Ceux-ci s'obtiennent avec la fonction \texttt{chisq.residuals} de \texttt{questionr}~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{chisq.residuals}\NormalTok{(tab)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                           
-##                             Homme  Femme
-##   Ouvrier specialise         0.52  -0.47
-##   Ouvrier qualifie           8.57  -7.73
-##   Technicien                 4.42  -3.98
-##   Profession intermediaire   1.92  -1.73
-##   Cadre                      2.64  -2.38
-##   Employe                  -10.43   9.41
-##   Autre                     -0.98   0.88
-\end{verbatim}
-
-L'interprétation des résidus est la suivante~:
-
-\begin{itemize}
-\tightlist
-\item
-  si la valeur du résidu pour une case est inférieure à -2, alors il y a une sous-représentation de cette case dans le tableau~: les effectifs sont significativement plus faibles que ceux attendus sous l'hypothèse d'indépendance
-\item
-  à l'inverse, si le résidu est supérieur à 2, il y a sur-représentatation de cette case
-\item
-  si le résidu est compris entre -2 et 2, il n'y a pas d'écart à l'indépendance significatif
-\end{itemize}
-
-Les résidus peuvent être une aide utile à l'interprétation, notamment pour des tableaux de grande dimension.
-
 \hypertarget{repruxe9sentation-graphique}{%
 \subsection{Représentation graphique}\label{repruxe9sentation-graphique}}
 
@@ -2670,47 +2601,6 @@ Une autre possibilité est d'utiliser la fonction \texttt{tapply}, qui prend en 
 ## 52.25137 40.92531
 \end{verbatim}
 
-On verra dans la partie \ref{dplyr} d'autres méthodes basées sur \texttt{dplyr} pour effectuer ce genre d'opérations.
-
-\hypertarget{tests-statistiques}{%
-\subsection{Tests statistiques}\label{tests-statistiques}}
-
-Un des tests les plus connus est le test du \emph{t} de Student, qui permet de tester si les moyennes de deux sous-populations peuvent être considérées comme différentes (compte tenu des fluctuations aléatoires provenant du biais d'échantillonnage).
-
-Un test \emph{t} s'effectue à l'aide de la fonction \texttt{t.test}. Ainsi, on peut tester l'hypothèse d'égalité des âges moyens selon la pratique ou non d'un sport avec la commande suivante~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(d}\OperatorTok{$}\NormalTok{age }\OperatorTok{~}\StringTok{ }\NormalTok{d}\OperatorTok{$}\NormalTok{sport)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## 	Welch Two Sample t-test
-## 
-## data:  d$age by d$sport
-## t = 15.503, df = 1600.4, p-value < 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##   9.893117 12.759002
-## sample estimates:
-## mean in group Non mean in group Oui 
-##          52.25137          40.92531
-\end{verbatim}
-
-Le résultat du test est significatif, avec un \emph{p} extrêmement petit, et on peut rejeter l'hypothèse nulle d'égalité des moyennes des deux groupes. Le test nous donne même un intervalle de confiance à 95\% pour la valeur de la différence entre les deux moyennes.
-
-Nous sommes cependant allés un peu vite, et avons négligé le fait que le test \emph{t} s'applique normalement à des distributions normales. On peut se faire un premier aperçu visuel de cette normalité en traçant les histogrammes des deux répartitions~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(d_sport}\OperatorTok{$}\NormalTok{age)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-137-1.pdf}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{hist}\NormalTok{(d_nonsport}\OperatorTok{$}\NormalTok{age)}
@@ -2771,6 +2661,7 @@ Dans ce cas on peut faire appel à un test non-paramétrique, qui ne fait donc p
 \end{verbatim}
 
 La valeur \emph{p} étant à nouveau extrêmement petite, on peut rejeter l'hypothèse d'indépendance et considérer que les distributions des âges dans les deux sous-populations sont différentes.
+--\textgreater{}
 
 \hypertarget{croisement-de-deux-variables-quantitatives}{%
 \section{Croisement de deux variables quantitatives}\label{croisement-de-deux-variables-quantitatives}}
@@ -2811,57 +2702,6 @@ Dans ce premier graphique généré sur nos données, il semble difficile de met
 \end{Shaded}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-145-1.pdf}
-
-\hypertarget{calcul-dindicateurs}{%
-\subsection{Calcul d'indicateurs}\label{calcul-dindicateurs}}
-
-En plus d'une représentation graphique, on peut calculer certains indicateurs permettant de mesurer le degré d'association de deux variables quantitatives.
-
-\hypertarget{corruxe9lation-linuxe9aire-pearson}{%
-\subsubsection{Corrélation linéaire (Pearson)}\label{corruxe9lation-linuxe9aire-pearson}}
-
-La corrélation est une mesure du lien d'association \emph{linéaire} entre deux variables quantitatives. Sa valeur varie entre -1 et 1. Si la corrélation vaut -1, il s'agit d'une association linéaire négative parfaite. Si elle vaut 1, il s'agit d'une association linéaire positive parfaite. Si elle vaut 0, il n'y a aucune association linéaire entre les variables.
-
-On la calcule dans R à l'aide de la fonction \texttt{cor}.
-
-Ainsi la corrélation entre le pourcentage de cadres et celui de diplômés du supérieur vaut~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{cor}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres, rp2012}\OperatorTok{$}\NormalTok{dipl_sup)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.9371629
-\end{verbatim}
-
-Ce qui est extrêmement fort. Il y a donc un lien linéaire et positif entre les deux variables (quand la valeur de l'une augmente, la valeur de l'autre augmente également).
-
-À l'inverse, la corrélation entre le pourcentage de cadres et le pourcentage de propriétaires vaut~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{cor}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres, rp2012}\OperatorTok{$}\NormalTok{proprio)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.1622786
-\end{verbatim}
-
-Ce qui indique, pour nos données, une absence de liaison linéaire entre les deux variables.
-
-\hypertarget{corruxe9lation-des-rangs-spearman}{%
-\subsubsection{Corrélation des rangs (Spearman)}\label{corruxe9lation-des-rangs-spearman}}
-
-Le coefficient de corrélation de Pearson ci-dessus fait une hypothèse forte sur les données~: elles doivent être liées par une association linéaire. Quand ça n'est pas le cas mais qu'on est en présence d'une association monotone, on peut utiliser un autre coefficient, le coefficient de corrélation des rangs de Spearman.
-
-Plutôt que de se baser sur les valeurs des variables, cette corrélation va se baser sur leurs rangs, c'est-à-dire sur leur position parmi les différentes valeurs prises par les variables.
-
-Ainsi, si la valeur la plus basse de la première variable est associée à la valeur la plus basse de la deuxième, et ainsi de suite jusqu'à la valeur la plus haute, on obtiendra une corrélation de 1. Si la valeur la plus forte de la première variable est associée à la valeur la plus faible de la seconde, et ainsi de suite, et que la valeur la plus faible de la première est associée à la plus forte de la deuxième, on obtiendra une corrélation de -1. Si les rangs sont ``mélangés'', sans rapports entre eux, on obtiendra une corrélation autour de 0.
-
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-148-1.pdf}
 
 La corrélation des rangs a aussi pour avantage d'être moins sensibles aux valeurs extrêmes ou aux points isolés. On dit qu'elle est plus ``robuste''.
 
@@ -2964,6 +2804,7 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 \end{Shaded}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-153-1.pdf}
+--\textgreater{}
 
 \hypertarget{ex-introR-biv}{%
 \section{Exercices}\label{ex-introR-biv}}
@@ -2985,25 +2826,6 @@ Dans le jeu de données \texttt{hdv2003}, faire le tableau croisé entre la cat�
 \CommentTok{## Ici la variable indépendante est `qualif`, on calcule donc}
 \CommentTok{## les pourcentages lignes}
 \KeywordTok{lprop}\NormalTok{(tab)}
-\end{Highlighting}
-\end{Shaded}
-
-\end{solution}
-
-\fi
-
-Faire un test du χ². Peut-on rejeter l'hypothèse d'indépendance ?
-
-\iffalse
-
-\begin{solution}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{chisq.test}\NormalTok{(tab)}
-
-\CommentTok{## On peut rejeter l'hypothèse d'indépendance au seuil de 0.05,}
-\CommentTok{## et même au seuil de 0.001}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3081,21 +2903,496 @@ Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant
 
 \fi
 
-Calculer le coefficient de corrélation linéaire correspondant.
+\hypertarget{guxe9rer-les-donnuxe9es}{%
+\chapter{Gérer les données}\label{guxe9rer-les-donnuxe9es}}
 
-\iffalse
+\hypertarget{importer-et-exporter-des-donnuxe9es}{%
+\section{Importer et exporter des données}\label{importer-et-exporter-des-donnuxe9es}}
 
-\begin{solution}
+Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont \texttt{.csv} et \texttt{.Rdata}.
+Les fichiers \texttt{.csv} sont utilisés pour stocker des données.
+Ils sont ouvrables par les éditeurs de texte (e.g.~Word, Writer, atom, \ldots{}) et les tableurs (e.g.~MS Excel, LO Calc).
+Les fichiers \texttt{.Rdata} sont utilisés pour stocker n'importe quelle objet R pas uniquement des données.
+Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+
+Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format \texttt{.csv}.
+
+\hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}{%
+\subsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.Rdata}}{Ouvrir un fichier de données en format .Rdata}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}}
+
+Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d'exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{cor}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{dipl_aucun, rp2012}\OperatorTok{$}\NormalTok{proprio)}
+\KeywordTok{load}\NormalTok{(}\KeywordTok{file.choose}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
-\end{solution}
+ce qui ouvrira une boîte de dialogue vous permettant d'aller choisir un fichier sur votre ordinateur.
+Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque que l'on souhaite l'utiliser.
 
-\fi
+Vous pouvez aussi directement taper le nom du fichier entre guillemet \texttt{"nom\ du\ fichier\ avec\ l\textquotesingle{}extension"}.
+Par exemple,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{"ErablesGatineau.Rdata"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}{%
+\subsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.csv}}{Ouvrir un fichier de données en format .csv}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}}
+
+Pour importer ces données en format \texttt{.csv} dans R, il faut utiliser la commande \texttt{read.csv()}.
+Par exemple, pour créer un objet R \texttt{erables} qui contient les données du fichier \texttt{ErablesGatineau.csv}, il faut utiliser la commande suivant.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{erables <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/ErablesGatineau.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{rmdwarning}
+Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
+Par défaut, R utilise le point décimal et vous n'obtiendrez pas le résultat escompté.
+Il existe une version modifiée de \texttt{read.csv()} appelée \texttt{read.csv2()} qui règle ce problème.
+Googlez-la si vous en avez besoin.
+\end{rmdwarning}
+
+Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction \texttt{ls()} ou en obtenir une liste avec une description plus détaillée avec \texttt{ls.str()}.
+
+\begin{rmdtip}
+Je vous déconseille cependant, la fonction \texttt{ls.str()} car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d'objet dans l'environnement R. Je vous suggère donc d'utliser \texttt{ls()} et ensuite \texttt{str()} sur l'objet qui vous intéresse.
+\end{rmdtip}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ls}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "anglais"        "chien"          "d"              "d_nonsport"    
+##  [5] "d_sport"        "diplome"        "erables"        "hdv2003"       
+##  [9] "imc"            "maths"          "p"              "poids"         
+## [13] "precipitations" "reg"            "resultat"       "rp2012"        
+## [17] "s"              "sport"          "tab"            "taille1"       
+## [21] "taille2"        "taille3"        "taille4"        "taille5"       
+## [25] "tailles"        "tailles_m"      "temperature"    "title"         
+## [29] "x"              "y"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(erables)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	100 obs. of  3 variables:
+##  $ station: chr  "A" "A" "A" "A" ...
+##  $ diam   : num  22.4 36.1 44.4 24.6 17.7 ...
+##  $ biom   : num  732 1171 673 1552 504 ...
+\end{verbatim}
+
+R confirme avoir en mémoire l'objet \texttt{erables}.
+\texttt{erables} est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): \texttt{station}, une variable de type Facteur avec 2 niveaux, et \texttt{diam} et \texttt{biom} qui sont 2 variables numériques.
+
+\hypertarget{entrer-des-donnuxe9es}{%
+\subsection{Entrer des données}\label{entrer-des-donnuxe9es}}
+
+R n'est pas un environnement idéal pour entrer des données.
+C'est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
+Utilisez votre chiffrier préféré pour faire l'entrée de données.
+Ce sera plus efficace et moins frustrant.
+
+\hypertarget{nettoyercorriger-des-donnuxe9es}{%
+\subsection{Nettoyer/corriger des données}\label{nettoyercorriger-des-donnuxe9es}}
+
+Une autre opération qui peut être frustrante en R.
+Mon conseil : ne le faites pas là.
+Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
+Il est finalement plus simple de refaire exécuter les quelques lignes de code par la machine.
+Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
+
+\hypertarget{exporter-des-donnuxe9es-uxe0-partir-de-r.}{%
+\subsection{Exporter des données à partir de R.}\label{exporter-des-donnuxe9es-uxe0-partir-de-r.}}
+
+Vous pouvez utiliser la fonction,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{write.csv}\NormalTok{(mydata, }\DataTypeTok{file =} \StringTok{"outfilename.csv"}\NormalTok{, }\DataTypeTok{row.names =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+où \texttt{mydata} est le nom du base de données à exporter et \texttt{outfilename.csv} est le nom du fichier à produire.
+Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à \texttt{File\textgreater{}Change\ dir}, ou par la commande \texttt{setwd()})
+
+\hypertarget{examen-pruxe9liminaire-des-donnuxe9es}{%
+\section{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
+
+La première étape de toute analyse est l'examen des données.
+Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
+L'examen préliminaire des données permet souvent aussi d'identifier des observations suspectes, possiblement dûes à des erreurs d'entrée de donnée.
+Finalement, l'examen graphique préliminaire permet en général de visualiser les tendances principales qui seront confirmées par l'analyse statistique en tant que telle.
+Le fichier \texttt{sturgeon.csv} contient les données d'une étude effectuée sur les esturgeons de la rivière Saskatchewan.
+Ces données ont été récoltées, entre autres, pour examiner comment la taille des esturgeons varie entre les sexes (sex), les sites (location), et les années (year).
+
+\begin{itemize}
+\tightlist
+\item
+  Chargez les données du fichier \texttt{sturgeon.csv} dans un objet \texttt{sturgeon}.
+\item
+  Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande \texttt{str(sturgeon)}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sturgeon <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/sturgeon.csv"}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(sturgeon)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	186 obs. of  9 variables:
+##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
+##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
+##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
+##  $ rdwght  : num  15.95 NA 6.49 NA 29.92 ...
+##  $ age     : int  11 24 7 23 20 23 20 7 23 19 ...
+##  $ girth   : num  40.5 53.5 31 52.5 50 54.2 48 28.5 44 39 ...
+##  $ sex     : chr  "MALE" "FEMALE" "MALE" "FEMALE" ...
+##  $ location: chr  "THE_PAS" "THE_PAS" "THE_PAS" "THE_PAS" ...
+##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...
+\end{verbatim}
+
+\hypertarget{sommaire-statistique}{%
+\subsection{Sommaire statistique}\label{sommaire-statistique}}
+
+Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(sturgeon)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     fklngth         totlngth        drlngth          rdwght     
+##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73  
+##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09  
+##  Median :44.06   Median :47.32   Median :27.00   Median :23.10  
+##  Mean   :44.15   Mean   :47.45   Mean   :27.29   Mean   :24.87  
+##  3rd Qu.:48.00   3rd Qu.:51.97   3rd Qu.:29.72   3rd Qu.:30.27  
+##  Max.   :66.85   Max.   :72.05   Max.   :41.93   Max.   :93.72  
+##                  NA's   :85      NA's   :13      NA's   :4      
+##       age            girth           sex              location        
+##  Min.   : 7.00   Min.   :11.50   Length:186         Length:186        
+##  1st Qu.:17.00   1st Qu.:40.00   Class :character   Class :character  
+##  Median :20.00   Median :44.00   Mode  :character   Mode  :character  
+##  Mean   :20.24   Mean   :44.33                                        
+##  3rd Qu.:23.50   3rd Qu.:48.80                                        
+##  Max.   :55.00   Max.   :73.70                                        
+##  NA's   :11      NA's   :85                                           
+##       year     
+##  Min.   :1978  
+##  1st Qu.:1979  
+##  Median :1979  
+##  Mean   :1979  
+##  3rd Qu.:1980  
+##  Max.   :1980  
+## 
+\end{verbatim}
+
+Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la valeur au milieu de la liste des observations ordonnées (appelée le 50 ième percentile), ici, la 93 ième valeur des 186 observations, les valeurs au premier (25\%) et troisième quartile (75\%), et si il y a des valeurs manquantes dans la colonne.
+Notez que plusieurs des variables ont des observations manquantes (NA).
+Donc, seules les variables fklngth (longueur à la fourche), sex, location et year ont 186 observations.
+
+\begin{rmdwarning}
+\textbf{Attention aux valeurs manquantes}
+Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses sur des sous- ensembles sans valeur manquante, par des commandes ou des options dans les commandes.
+On y reviendra, mais prenez l'habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l'analyse.
+\end{rmdwarning}
+
+\hypertarget{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}{%
+\subsection{Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité}\label{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}}
+
+Examinons maintenant de plus près la distribution de fklngth.
+La commande \texttt{hist()} permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/hist-stur-1.pdf}
+
+Les données semblent suivre approximativement une distribution normale.
+
+\begin{rmdnote}
+Cette syntaxe peut paraître un peu lourde puisqu'on doit ajouter le préfixe \texttt{sturgeon\$} devant chaque nom de variable.
+On pourrait se faciliter la tâche en utilisant la commande \texttt{attach()} \textbf{mais cela est fortement déconseillé} et jamais utilisé dans ce document.
+\end{rmdnote}
+
+Cet histogramme est la représentation classique.
+Mais les histogrammes ne sont pas parfaits.
+Leur forme dépend en partie du nombre de catégories utilisées, surtout pour les petits échantillons.
+On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
+Mais il faut programmer un peu (ou savoir copier-coller\ldots{})
+
+\begin{rmdcode}
+Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgreater{}New script, ou Ctrl-n dans Windows), puis exécutez le.
+\end{rmdcode}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\CommentTok{#  use "sturgeon" dataframe to make plot called mygraph}
+\CommentTok{#  and define x axis as representing fklngth}
+\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(sturgeon, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fklngth))}
+\CommentTok{#  add data to the mygraph ggplot}
+\NormalTok{mygraph <-}\StringTok{ }\NormalTok{mygraph }\OperatorTok{+}
+\CommentTok{#  add data density smooth}
+\StringTok{    }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
+\CommentTok{#  add rug (bars at the bottom of the plot)}
+\StringTok{    }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
+\CommentTok{#  add black semitransparent histogram}
+\StringTok{    }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..), }\DataTypeTok{bins =} \DecValTok{30}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{,   }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
+\CommentTok{#  add normal curve in red, with mean and sd from fklength}
+\StringTok{    }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm,}
+                   \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}
+                     \DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth),}
+                     \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth) ),}
+                   \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
+\CommentTok{# display graph}
+\NormalTok{    mygraph}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/stur-g1-1.pdf}
+
+Chaque observation est représentée par une barre sous l'axe des x (rug).
+En rouge est la distribution normale de données avec la même moyenne et écart-type que les observations.
+Et l'autre ligne est la densité de probabilité empirique, « lissée » à partir des observations.
+Si vous êtes plus aventureux, vous pouvez examiner la distribution des observations de fklngth par sous-groupes (par exemple sex et year) avec :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mygraph }\OperatorTok{+}\StringTok{ }\KeywordTok{facet_grid}\NormalTok{(year }\OperatorTok{~}\StringTok{ }\NormalTok{sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/aventure-1.pdf}
+
+Chaque panneau illustre la distribution pour un sexe cette année-là, et la courbe en rouge récurrente représente la distribution normale pour l'ensemble des données.
+Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
+Une autre façon d'évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes \texttt{qqnorm()} et \texttt{qqline()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qqnorm}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
+\KeywordTok{qqline}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/stur-norm-1.pdf}
+
+Des données parfaitement normales suivraient la ligne droite diagonale.
+Ici, il y a des déviations dans les queues de la distribution, et un peu à droite du centre.
+Comparez cette représentation à celle des deux graphiques précédents.
+Vous conviendrez sans doute avec moi qu'il est plus facile de visualiser comment la distribution dévie de la normalité sur les histogrammes et les graphiques de la densité empirique de probabilité que sur les QQ plots.
+Ceci dit, les QQ plots sont souvent utilisés et vous devriez être capable de les interpréter.
+De plus, on peut facilement éprouver statistiquement l'hypothèse que les données sont distribuées normalement avec R par la commande \texttt{shapiro.test()} qui calcule une statistique (W) qui est une mesure de la tendance des points d'un QQ plot à former une ligne parfaite.
+Si oui, alors W=1.
+Si W s'éloigne de 1 (vers 0), alors les données s'éloignent de la normalité.
+Ici,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  sturgeon$fklngth
+## W = 0.97225, p-value = 0.0009285
+\end{verbatim}
+
+W n'est pas très loin de 1, mais suffisamment pour que la différence soit significative.
+L'examen visuel des grands échantillons est souvent compliqué par le fait que plusieurs points se superposent et qu'il devient plus difficile de bien visualiser la tendance centrale.
+Les boxplots avec ``moustaches'' (box and whiskers plots) offrent une alternative intéressante.
+La commande \texttt{boxplot()} peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(fklngth }\OperatorTok{~}\StringTok{ }\NormalTok{sex, }\DataTypeTok{data =}\NormalTok{ sturgeon, }\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/boxplot-stur-1.pdf}
+
+La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
+La coche est proportionnelle à l'incertitude quant à la position de la médiane.
+On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n'y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
+Les boîtes s'étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s'étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l'intérieur de 1.5x la largeur de l'étendue interquartile .
+Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l'étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.
+
+\hypertarget{diagrammes-de-dispersion-bivariuxe9s}{%
+\subsection{Diagrammes de dispersion bivariés}\label{diagrammes-de-dispersion-bivariuxe9s}}
+
+En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d'oeil aux diagrammes de dispersion .
+La commande \texttt{plot(y\textasciitilde{}x)} permet de faire le graphique de y sur l'axe vertical (l'ordonnée) en fonction de x sur l'axe horizontal (l'abscisse).
+
+\begin{rmdcode}
+Faites un graphique de fklngth en fonction de age avec la commande plot.
+\end{rmdcode}
+
+Vous devriez obtenir:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(fklngth }\OperatorTok{~}\StringTok{ }\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ sturgeon)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/stur-biv-plot-1.pdf}
+
+R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (\texttt{pairs()}).
+Une des option de ¬ est l'ajout d'une trace lowess qui indique la tendance de la relation entre les variables.
+Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande \texttt{pairs(sturgeon{[},1:6{]},\ panel=panel.smooth)} et vous devriez obtenir
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pairs}\NormalTok{(sturgeon[,}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{], }\DataTypeTok{panel =}\NormalTok{ panel.smooth)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/pairs-stur-1.pdf}
+
+\hypertarget{cruxe9er-des-sous-ensembles-de-cas}{%
+\section{Créer des sous-ensembles de cas}\label{cruxe9er-des-sous-ensembles-de-cas}}
+
+Il arrive fréquemment qu'une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
+Les cas sont d'habitude sélectionnés selon un critère en particulier.
+Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande \texttt{subset()}.
+Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui ne contient que les femelles capturées en 1978, on peut écrire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sturgeon.female}\FloatTok{.1978}\NormalTok{ <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(sturgeon, sex }\OperatorTok{==}\StringTok{ "FEMALE"} \OperatorTok{&}\StringTok{ }\NormalTok{year }\OperatorTok{==}\StringTok{ "1978"}\NormalTok{)}
+\NormalTok{sturgeon.female}\FloatTok{.1978}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      fklngth totlngth  drlngth rdwght age girth    sex   location year
+## 2   50.19685 54.13386 31.49606     NA  24  53.5 FEMALE    THE_PAS 1978
+## 4   50.19685 53.14961 32.28346     NA  23  52.5 FEMALE    THE_PAS 1978
+## 6   49.60630 53.93701 31.10236  35.86  23  54.2 FEMALE    THE_PAS 1978
+## 7   47.71654 51.37795 33.97638  33.88  20  48.0 FEMALE    THE_PAS 1978
+## 15  48.89764 53.93701 29.92126  35.86  23  52.5 FEMALE    THE_PAS 1978
+## 105 46.85039       NA 28.34646  23.90  24    NA FEMALE CUMBERLAND 1978
+## 106 40.74803       NA 24.80315  17.50  18    NA FEMALE CUMBERLAND 1978
+## 107 40.35433       NA 25.59055  20.90  21    NA FEMALE CUMBERLAND 1978
+## 109 43.30709       NA 27.95276  24.10  19    NA FEMALE CUMBERLAND 1978
+## 113 53.54331       NA 33.85827  48.90  20    NA FEMALE CUMBERLAND 1978
+## 114 51.77165       NA 31.49606  35.30  26    NA FEMALE CUMBERLAND 1978
+## 116 45.27559       NA 26.57480  23.70  24    NA FEMALE CUMBERLAND 1978
+## 118 53.14961       NA 32.67717  45.30  25    NA FEMALE CUMBERLAND 1978
+## 119 50.19685       NA 32.08661  33.90  26    NA FEMALE CUMBERLAND 1978
+## 123 49.01575       NA 29.13386  37.50  22    NA FEMALE CUMBERLAND 1978
+\end{verbatim}
+
+\begin{rmdcaution}
+Dans ces comparaisons, il faut toujours utiliser \texttt{==} pour égal à.
+Dans ce contexte, si vous utilisez \texttt{=} seulement, vous n'obtiendrez pas ce que vous désirez.
+Dans le tableau qui suit se trouve une liste de commandes communes que vous allez probablement utiliser pour créer des expressions en R.
+\end{rmdcaution}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Operateur & Explication & Operateur & Explication\tabularnewline
+\midrule
+\endhead
+== & Égal à & != & Pas égal à\tabularnewline
+\textgreater{} & Plus que & \textless{} & Moins que\tabularnewline
+\textgreater{}= & Plus que ou égal à & \textless{}= & Moins que ou égal à\tabularnewline
+\& & Et vectorisé & \textbar{} & Ou vectorisé\tabularnewline
+\&\& & Et contrôle & \textbar{}\textbar{} & Ou contrôle\tabularnewline
+! & Pas & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{rmdcode}
+En utilisant les commandes \texttt{subset()} et \texttt{hist()}, essayez de faire un histogramme pour le sous-ensemble de cas correspondant aux femelles capturées en 1979 et 1980 (donc \texttt{sex\ ==\ "FEMALE"\ \&\ (year\ ==\ "1979"\ \textbar{}\ year\ ==\ "1980")})
+\end{rmdcode}
+
+\hypertarget{transformations-de-donnuxe9es}{%
+\section{Transformations de données}\label{transformations-de-donnuxe9es}}
+
+Il est très fréquemment nécessaire d'effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d'application de tests statistiques.
+R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
+Les fonctions les plus fréquemment utilisées sont:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{log()}
+\item
+  \texttt{sqrt()}
+\item
+  \texttt{ifelse()}
+\end{itemize}
+
+On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d'un data.frame.
+Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l'âge, on peut écrire
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{log}\NormalTok{(fklngth)}\OperatorTok{~}\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ sturgeon)}
+\end{Highlighting}
+\end{Shaded}
+
+Pour créer une variable orpheline (i.e.~non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logfklngth <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
+\end{Highlighting}
+\end{Shaded}
+
+Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole \texttt{\$}, par exemple, pour ajouter une variable nommée \texttt{lfkl} contenant le log10 de fklngth au tableau sturgeon, on peut écrire:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sturgeon}\OperatorTok{$}\NormalTok{logfkl <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(sturgeonfklngth)}
+\end{Highlighting}
+\end{Shaded}
+
+N'oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
+Pour les transformations conditionnelles, on peut utiliser la fonction \texttt{ifelse()}.
+Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sturgeon}\OperatorTok{$}\NormalTok{dummy <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{sex }\OperatorTok{==}\StringTok{ "MALE"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercice-sur-r}{%
+\section{Exercice sur R}\label{exercice-sur-r}}
+
+\begin{rmdcode}
+Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
+Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
+\end{rmdcode}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/intror-exer-1.pdf}
 
 \hypertarget{part-analyse-de-puissance}{%
 \part{Analyse de puissance}\label{part-analyse-de-puissance}}
@@ -4603,9 +4900,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.001818556  0.03414086
-## t2* 0.3408557 -0.001284031  0.02684973
+##      original        bias    std. error
+## t1* 1.1919926  0.0009165474  0.03313900
+## t2* 0.3408557 -0.0006764283  0.02629528
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4662,10 +4959,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.123,  1.257 )   ( 1.120,  1.255 )  
+## 95%   ( 1.126,  1.256 )   ( 1.128,  1.254 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.129,  1.264 )   ( 1.118,  1.256 )  
+## 95%   ( 1.130,  1.256 )   ( 1.118,  1.247 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -4690,10 +4987,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2895,  0.3948 )   ( 0.2902,  0.3966 )  
+## 95%   ( 0.2900,  0.3931 )   ( 0.2911,  0.3917 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2851,  0.3915 )   ( 0.2903,  0.3962 )  
+## 95%   ( 0.2900,  0.3906 )   ( 0.2968,  0.4041 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5039,8 +5336,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original      bias    std. error
-## t1* 45.084391 -0.01020777   0.4416771
-## t2* -1.714546  0.02331378   0.7747569
+## t1* 45.084391  0.01086395   0.4094873
+## t2* -1.714546 -0.02878882   0.7456108
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5073,7 +5370,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.302, -0.243 )  
+## 95%   (-3.071, -0.187 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5115,7 +5412,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 4483   0.0219 *
+## location1   0.8573 5000   0.0168 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5737,18 +6034,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5923
+## Quantile = 2.5959
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2695   3.6440
-##  1965 -  1954 == 0  -5.5077  -9.9950  -1.0203
-##  1966 -  1954 == 0  -3.3127  -6.3417  -0.2837
-##  1965 -  1958 == 0  -5.6949 -10.4090  -0.9808
-##  1966 -  1958 == 0  -3.4999  -6.8556  -0.1442
-##  1966 -  1965 == 0   2.1950  -2.2151   6.6050
+##  1958 -  1954 == 0   0.1872  -3.2743   3.6488
+##  1965 -  1954 == 0  -5.5077 -10.0013  -1.0140
+##  1966 -  1954 == 0  -3.3127  -6.3459  -0.2795
+##  1965 -  1958 == 0  -5.6949 -10.4155  -0.9742
+##  1966 -  1958 == 0  -3.4999  -6.8603  -0.1395
+##  1966 -  1965 == 0   2.1950  -2.2212   6.6111
 \end{verbatim}
 
 \begin{Shaded}
@@ -6211,8 +6508,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-171-1.pdf}
-\caption{\label{fig:unnamed-chunk-171-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-1.pdf}
+\caption{\label{fig:unnamed-chunk-180-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -6224,8 +6521,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-171-2.pdf}
-\caption{\label{fig:unnamed-chunk-171-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-2.pdf}
+\caption{\label{fig:unnamed-chunk-180-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -6237,8 +6534,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-171-3.pdf}
-\caption{\label{fig:unnamed-chunk-171-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-3.pdf}
+\caption{\label{fig:unnamed-chunk-180-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \printindex

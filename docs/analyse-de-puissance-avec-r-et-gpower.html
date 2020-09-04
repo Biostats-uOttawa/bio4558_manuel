@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>6 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="6 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="6 Analyse de puissance avec R et G*Power | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="analyse-de-2-variables.html"/>
+<link rel="prev" href="gérer-les-données.html"/>
 <link rel="next" href="corrélation-et-régression-linéaire-simple.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,83 +186,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>4</b> Analyse de 2 variables</a><ul>
 <li class="chapter" data-level="4.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-qualitatives"><i class="fa fa-check"></i><b>4.1</b> Croisement de deux variables qualitatives</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#tableaux-croisés"><i class="fa fa-check"></i><b>4.1.1</b> Tableaux croisés</a></li>
-<li class="chapter" data-level="4.1.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#test-du-χ²"><i class="fa fa-check"></i><b>4.1.2</b> Test du χ²</a></li>
-<li class="chapter" data-level="4.1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#représentation-graphique"><i class="fa fa-check"></i><b>4.1.3</b> Représentation graphique</a></li>
+<li class="chapter" data-level="4.1.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#représentation-graphique"><i class="fa fa-check"></i><b>4.1.2</b> Représentation graphique</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-dune-variable-quantitative-et-dune-variable-qualitative"><i class="fa fa-check"></i><b>4.2</b> Croisement d’une variable quantitative et d’une variable qualitative</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#représentation-graphique-1"><i class="fa fa-check"></i><b>4.2.1</b> Représentation graphique</a></li>
 <li class="chapter" data-level="4.2.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#calculs-dindicateurs"><i class="fa fa-check"></i><b>4.2.2</b> Calculs d’indicateurs</a></li>
-<li class="chapter" data-level="4.2.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#tests-statistiques"><i class="fa fa-check"></i><b>4.2.3</b> Tests statistiques</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-quantitatives"><i class="fa fa-check"></i><b>4.3</b> Croisement de deux variables quantitatives</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#représentation-graphique-2"><i class="fa fa-check"></i><b>4.3.1</b> Représentation graphique</a></li>
-<li class="chapter" data-level="4.3.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#calcul-dindicateurs"><i class="fa fa-check"></i><b>4.3.2</b> Calcul d’indicateurs</a></li>
-<li class="chapter" data-level="4.3.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#régression-linéaire"><i class="fa fa-check"></i><b>4.3.3</b> Régression linéaire</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#ex-introR-biv"><i class="fa fa-check"></i><b>4.4</b> Exercices</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="gérer-les-données.html"><a href="gérer-les-données.html"><i class="fa fa-check"></i><b>5</b> Gérer les données</a><ul>
+<li class="chapter" data-level="5.1" data-path="gérer-les-données.html"><a href="gérer-les-données.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>5.1</b> Importer et exporter des données</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="gérer-les-données.html"><a href="gérer-les-données.html#ouvrir-un-fichier-de-données-en-format-.rdata"><i class="fa fa-check"></i><b>5.1.1</b> Ouvrir un fichier de données en format <code>.Rdata</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="gérer-les-données.html"><a href="gérer-les-données.html#ouvrir-un-fichier-de-données-en-format-.csv"><i class="fa fa-check"></i><b>5.1.2</b> Ouvrir un fichier de données en format <code>.csv</code></a></li>
+<li class="chapter" data-level="5.1.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#entrer-des-données"><i class="fa fa-check"></i><b>5.1.3</b> Entrer des données</a></li>
+<li class="chapter" data-level="5.1.4" data-path="gérer-les-données.html"><a href="gérer-les-données.html#nettoyercorriger-des-données"><i class="fa fa-check"></i><b>5.1.4</b> Nettoyer/corriger des données</a></li>
+<li class="chapter" data-level="5.1.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html#exporter-des-données-à-partir-de-r."><i class="fa fa-check"></i><b>5.1.5</b> Exporter des données à partir de R.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>5.2</b> Examen préliminaire des données</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="gérer-les-données.html"><a href="gérer-les-données.html#sommaire-statistique"><i class="fa fa-check"></i><b>5.2.1</b> Sommaire statistique</a></li>
+<li class="chapter" data-level="5.2.2" data-path="gérer-les-données.html"><a href="gérer-les-données.html#histogramme-densité-de-probabilité-empirique-boxplot-et-examen-visuel-de-la-normalité"><i class="fa fa-check"></i><b>5.2.2</b> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</a></li>
+<li class="chapter" data-level="5.2.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#diagrammes-de-dispersion-bivariés"><i class="fa fa-check"></i><b>5.2.3</b> Diagrammes de dispersion bivariés</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#créer-des-sous-ensembles-de-cas"><i class="fa fa-check"></i><b>5.3</b> Créer des sous-ensembles de cas</a></li>
+<li class="chapter" data-level="5.4" data-path="gérer-les-données.html"><a href="gérer-les-données.html#transformations-de-données"><i class="fa fa-check"></i><b>5.4</b> Transformations de données</a></li>
+<li class="chapter" data-level="5.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html#exercice-sur-r"><i class="fa fa-check"></i><b>5.5</b> Exercice sur R</a></li>
+</ul></li>
 <li class="part"><span><b>II Analyse de puissance</b></span></li>
-<li class="chapter" data-level="5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>5</b> Analyse de puissance avec R et G*Power</a><ul>
-<li class="chapter" data-level="5.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#la-théorie"><i class="fa fa-check"></i><b>5.1</b> La théorie</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>5.1.1</b> Qu’est-ce que la puissance?</a></li>
-<li class="chapter" data-level="5.1.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>5.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
-<li class="chapter" data-level="5.1.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>5.1.3</b> Facteurs qui affectent la puissance</a></li>
+<li class="chapter" data-level="6" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>6</b> Analyse de puissance avec R et G*Power</a><ul>
+<li class="chapter" data-level="6.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#la-théorie"><i class="fa fa-check"></i><b>6.1</b> La théorie</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>6.1.1</b> Qu’est-ce que la puissance?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>6.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
+<li class="chapter" data-level="6.1.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>6.1.3</b> Facteurs qui affectent la puissance</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>5.2</b> Qu’est ce que G*Power?</a></li>
-<li class="chapter" data-level="5.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>5.3</b> Comment utiliser G*Power</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#principe-général"><i class="fa fa-check"></i><b>5.3.1</b> Principe général</a></li>
-<li class="chapter" data-level="5.3.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>5.3.2</b> Types d’analyses de puissance disponibles</a></li>
-<li class="chapter" data-level="5.3.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>5.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
+<li class="chapter" data-level="6.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>6.2</b> Qu’est ce que G*Power?</a></li>
+<li class="chapter" data-level="6.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>6.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#principe-général"><i class="fa fa-check"></i><b>6.3.1</b> Principe général</a></li>
+<li class="chapter" data-level="6.3.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>6.3.2</b> Types d’analyses de puissance disponibles</a></li>
+<li class="chapter" data-level="6.3.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>6.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#puissance-pour-un-test-de-t-comparant-deux-moyennes"><i class="fa fa-check"></i><b>5.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-post-hoc"><i class="fa fa-check"></i><b>5.4.1</b> Analyse post-hoc</a></li>
-<li class="chapter" data-level="5.4.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-à-priori"><i class="fa fa-check"></i><b>5.4.2</b> Analyse à priori</a></li>
-<li class="chapter" data-level="5.4.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>5.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
+<li class="chapter" data-level="6.4" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#puissance-pour-un-test-de-t-comparant-deux-moyennes"><i class="fa fa-check"></i><b>6.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-post-hoc"><i class="fa fa-check"></i><b>6.4.1</b> Analyse post-hoc</a></li>
+<li class="chapter" data-level="6.4.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-à-priori"><i class="fa fa-check"></i><b>6.4.2</b> Analyse à priori</a></li>
+<li class="chapter" data-level="6.4.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>6.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#points-à-retenir"><i class="fa fa-check"></i><b>5.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="5.6" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#ex-power"><i class="fa fa-check"></i><b>5.6</b> Exercice</a></li>
+<li class="chapter" data-level="6.5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#points-à-retenir"><i class="fa fa-check"></i><b>6.5</b> Points à retenir</a></li>
+<li class="chapter" data-level="6.6" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#ex-power"><i class="fa fa-check"></i><b>6.6</b> Exercice</a></li>
 </ul></li>
 <li class="part"><span><b>III Modèle univarié</b></span></li>
-<li class="chapter" data-level="6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>6</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#set-lm"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#diagrammes-de-dispersion"><i class="fa fa-check"></i><b>6.2</b> Diagrammes de dispersion</a></li>
-<li class="chapter" data-level="6.3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformations-et-le-coefficient-de-corrélation"><i class="fa fa-check"></i><b>6.3</b> Transformations et le coefficient de corrélation</a></li>
-<li class="chapter" data-level="6.4" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#matrices-de-corrélations-et-correction-de-bonferroni"><i class="fa fa-check"></i><b>6.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="6.5" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall"><i class="fa fa-check"></i><b>6.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
-<li class="chapter" data-level="6.6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>6.6</b> Régression linéaire simple</a><ul>
-<li class="chapter" data-level="6.6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>6.6.1</b> Vérifier les conditions d’application de la régression</a></li>
-<li class="chapter" data-level="6.6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>6.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
+<li class="chapter" data-level="7" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>7</b> Corrélation et régression linéaire simple</a><ul>
+<li class="chapter" data-level="7.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#set-lm"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="7.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#diagrammes-de-dispersion"><i class="fa fa-check"></i><b>7.2</b> Diagrammes de dispersion</a></li>
+<li class="chapter" data-level="7.3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformations-et-le-coefficient-de-corrélation"><i class="fa fa-check"></i><b>7.3</b> Transformations et le coefficient de corrélation</a></li>
+<li class="chapter" data-level="7.4" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#matrices-de-corrélations-et-correction-de-bonferroni"><i class="fa fa-check"></i><b>7.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
+<li class="chapter" data-level="7.5" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall"><i class="fa fa-check"></i><b>7.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="7.6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>7.6</b> Régression linéaire simple</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>7.6.1</b> Vérifier les conditions d’application de la régression</a></li>
+<li class="chapter" data-level="7.6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>7.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformation-des-données-en-régression"><i class="fa fa-check"></i><b>6.7</b> Transformation des données en régression</a></li>
-<li class="chapter" data-level="6.8" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#traitement-des-valeurs-extrèmes"><i class="fa fa-check"></i><b>6.8</b> Traitement des valeurs extrèmes</a></li>
-<li class="chapter" data-level="6.9" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression"><i class="fa fa-check"></i><b>6.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
-<li class="chapter" data-level="6.9.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>6.9.1</b> Puissance de détecter une pente donnée</a></li>
-<li class="chapter" data-level="6.9.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>6.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
+<li class="chapter" data-level="7.7" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformation-des-données-en-régression"><i class="fa fa-check"></i><b>7.7</b> Transformation des données en régression</a></li>
+<li class="chapter" data-level="7.8" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#traitement-des-valeurs-extrèmes"><i class="fa fa-check"></i><b>7.8</b> Traitement des valeurs extrèmes</a></li>
+<li class="chapter" data-level="7.9" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression"><i class="fa fa-check"></i><b>7.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>7.9.1</b> Puissance de détecter une pente donnée</a></li>
+<li class="chapter" data-level="7.9.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>7.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#bootstrap-en-régression-simple-avec-r"><i class="fa fa-check"></i><b>6.10</b> Bootstrap en régression simple avec R</a></li>
+<li class="chapter" data-level="7.10" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#bootstrap-en-régression-simple-avec-r"><i class="fa fa-check"></i><b>7.10</b> Bootstrap en régression simple avec R</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>7</b> Comparaison de deux échantillons</a><ul>
-<li class="chapter" data-level="7.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="7.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#examen-visuel-des-données"><i class="fa fa-check"></i><b>7.2</b> Examen visuel des données</a></li>
-<li class="chapter" data-level="7.3" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-indépendants"><i class="fa fa-check"></i><b>7.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
-<li class="chapter" data-level="7.4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes"><i class="fa fa-check"></i><b>7.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap"><i class="fa fa-check"></i><b>7.4.1</b> Bootstrap</a></li>
-<li class="chapter" data-level="7.4.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#permutation"><i class="fa fa-check"></i><b>7.4.2</b> Permutation</a></li>
+<li class="chapter" data-level="8" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>8</b> Comparaison de deux échantillons</a><ul>
+<li class="chapter" data-level="8.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="8.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#examen-visuel-des-données"><i class="fa fa-check"></i><b>8.2</b> Examen visuel des données</a></li>
+<li class="chapter" data-level="8.3" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-indépendants"><i class="fa fa-check"></i><b>8.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
+<li class="chapter" data-level="8.4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes"><i class="fa fa-check"></i><b>8.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap"><i class="fa fa-check"></i><b>8.4.1</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.4.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#permutation"><i class="fa fa-check"></i><b>8.4.2</b> Permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>7.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
-<li class="chapter" data-level="7.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>7.6</b> Références</a></li>
+<li class="chapter" data-level="8.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>8.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
+<li class="chapter" data-level="8.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>8.6</b> Références</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>8</b> ANOVA à un critère de classification</a><ul>
-<li class="chapter" data-level="8.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#set-ano"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="8.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>8.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>8.2.1</b> Visualiser les données</a></li>
-<li class="chapter" data-level="8.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>8.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
-<li class="chapter" data-level="8.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>8.2.3</b> Faire l’ANOVA</a></li>
-<li class="chapter" data-level="8.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>8.2.4</b> Les comparaisons multiples</a></li>
+<li class="chapter" data-level="9" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>9</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="9.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#set-ano"><i class="fa fa-check"></i><b>9.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="9.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>9.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>9.2.1</b> Visualiser les données</a></li>
+<li class="chapter" data-level="9.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>9.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
+<li class="chapter" data-level="9.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>9.2.3</b> Faire l’ANOVA</a></li>
+<li class="chapter" data-level="9.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>9.2.4</b> Les comparaisons multiples</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>8.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
-<li class="chapter" data-level="8.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>8.4</b> Examen des valeurs extrêmes</a></li>
-<li class="chapter" data-level="8.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>8.5</b> Test de permutation</a></li>
+<li class="chapter" data-level="9.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>9.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
+<li class="chapter" data-level="9.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>9.4</b> Examen des valeurs extrêmes</a></li>
+<li class="chapter" data-level="9.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>9.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
 <li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
@@ -293,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="analyse-de-puissance-avec-r-et-gpower" class="section level1">
-<h1><span class="header-section-number">5</span> Analyse de puissance avec R et G*Power</h1>
+<h1><span class="header-section-number">6</span> Analyse de puissance avec R et G*Power</h1>
 <p>Après avoir complété cet exercice de laboratoire, vous devriez :</p>
 <ul>
 <li>Pouvoir calculer la puissance d’un test de t avec R et G*Power</li>
@@ -303,13 +316,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Comprendre comment la puissance est affectée lorsque l’on passe d’un test bilatéral à un test unilatéral</li>
 </ul>
 <div id="la-théorie" class="section level2">
-<h2><span class="header-section-number">5.1</span> La théorie</h2>
+<h2><span class="header-section-number">6.1</span> La théorie</h2>
 <div id="quest-ce-que-la-puissance" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Qu’est-ce que la puissance?</h3>
+<h3><span class="header-section-number">6.1.1</span> Qu’est-ce que la puissance?</h3>
 <p><em>La puissance est la probabilité de rejeter l’hypothèse nulle quand elle est fausse.</em></p>
 </div>
 <div id="pourquoi-faire-une-analyse-de-puissance" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Pourquoi faire une analyse de puissance?</h3>
+<h3><span class="header-section-number">6.1.2</span> Pourquoi faire une analyse de puissance?</h3>
 <div id="évaluer-lévidence" class="section level4 unnumbered">
 <h4>Évaluer l’évidence</h4>
 <p>L’analyse de puissance effectuée après avoir accepté une hypothèse nulle permet de calculer la probabilité que l’hypothèse nulle soit rejetée si elle était fausse et que la taille de l’effet était d’une valeur donnée.
@@ -327,7 +340,7 @@ Que ce soit a priori ou a posteriori l’analyse de puissance vous permet d’es
 </div>
 </div>
 <div id="facteurs-qui-affectent-la-puissance" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Facteurs qui affectent la puissance</h3>
+<h3><span class="header-section-number">6.1.3</span> Facteurs qui affectent la puissance</h3>
 <p>Il y a 3 facteurs qui affectent la puissance d’un test statistique.</p>
 <div id="le-critère-de-décision" class="section level4 unnumbered">
 <h4>Le critère de décision</h4>
@@ -348,7 +361,7 @@ La taille de l’effet est en fait une mesure du degré de fausseté de l’hypo
 </div>
 </div>
 <div id="quest-ce-que-gpower" class="section level2">
-<h2><span class="header-section-number">5.2</span> Qu’est ce que G*Power?</h2>
+<h2><span class="header-section-number">6.2</span> Qu’est ce que G*Power?</h2>
 <p>G*Power est un programme gratuit, développé par des psychologues de l’Université de Dusseldorf en Allemagne.
 Le programme existe en version Mac et Windows.
 Il peut cependant être utilisé sous linux via Wine.
@@ -362,9 +375,9 @@ Téléchargez le programme <strong><a href="https://www.psychologie.hhu.de/arbei
 
 </div>
 <div id="comment-utiliser-gpower" class="section level2">
-<h2><span class="header-section-number">5.3</span> Comment utiliser G*Power</h2>
+<h2><span class="header-section-number">6.3</span> Comment utiliser G*Power</h2>
 <div id="principe-général" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Principe général</h3>
+<h3><span class="header-section-number">6.3.1</span> Principe général</h3>
 <p>L’utilisation de G*Power implique généralement en trois étapes:</p>
 <ol style="list-style-type: decimal">
 <li>Choisir le test approprié</li>
@@ -373,7 +386,7 @@ Téléchargez le programme <strong><a href="https://www.psychologie.hhu.de/arbei
 </ol>
 </div>
 <div id="types-danalyses-de-puissance-disponibles" class="section level3">
-<h3><span class="header-section-number">5.3.2</span> Types d’analyses de puissance disponibles</h3>
+<h3><span class="header-section-number">6.3.2</span> Types d’analyses de puissance disponibles</h3>
 <div id="a-priori" class="section level4 unnumbered">
 <h4>A priori</h4>
 <p>Calcule l’effectif requis pour une valeur de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> et de taille d’effet donnée.
@@ -403,7 +416,7 @@ Très utile également au stade de planification des expériences.</p>
 </div>
 </div>
 <div id="comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques" class="section level3">
-<h3><span class="header-section-number">5.3.3</span> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</h3>
+<h3><span class="header-section-number">6.3.3</span> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</h3>
 <p>L’indice de la taille de l’effet qui est utilisé par G*Power pour les calculs dépend du test.
 Notez que d’autres logiciels peuvent utiliser des indices différents et il est important de vérifier que l’indice que l’on utilise est celui qui convient.
 G*Power vous facilite la tâche et permet de calculer la taille de l’effet en inscrivant seulement les valeurs pertinentes dans la fenêtre de calcul.
@@ -467,7 +480,7 @@ Le tableau suivant donne les indices utilisés par G*Power pour les différents 
 </div>
 </div>
 <div id="puissance-pour-un-test-de-t-comparant-deux-moyennes" class="section level2">
-<h2><span class="header-section-number">5.4</span> Puissance pour un test de t comparant deux moyennes</h2>
+<h2><span class="header-section-number">6.4</span> Puissance pour un test de t comparant deux moyennes</h2>
 <p>L’objectif de cette séance de laboratoire est de vous familiariser avec G*Power et de vous aider à comprendre comment les quatre paramètres des analyses de puissance (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, effectif et taille de l’effet) sont reliés entre eux.
 On examinera seulement un des nombreux tests, le test de t permettant de comparer deux moyennes indépendantes.
 C’est le test le plus communément utilisé par les biologistes, vous l’avez tous déjà utilisé, et il conviendra très bien pour les besoins de la cause.
@@ -480,7 +493,7 @@ En faisant un test de t pour éprouver l’hypothèse nulle que la biomasse des 
 t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <p>Elle accepte l’hypothèse nulle (puisque p est plus élevé que 0.05) conclue donc que la biomasse moyenne des poissons est la même dans ces deux régions.</p>
 <div id="analyse-post-hoc" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Analyse post-hoc</h3>
+<h3><span class="header-section-number">6.4.1</span> Analyse post-hoc</h3>
 <p>Compte tenu des valeurs des moyennes observées et de leur écart- type, on peut utiliser G*Power pour calculer la puissance du test de t bilatéral pour deux moyennes indépendantes et pour la taille d’effet (i.e. la différence entre la biomasse entre les deux régions, pondérée par les écarts-type) à <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <p>Démarrer G*Power.</p>
 <ol style="list-style-type: decimal">
@@ -509,7 +522,7 @@ t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <div class="figure"><span id="fig:gpower-1"></span>
 <img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" />
 <p class="caption">
-Figure 5.1: Analyse post-hoc avec la taille d’effet estimée
+Figure 6.1: Analyse post-hoc avec la taille d’effet estimée
 </p>
 </div>
 <p>Étudions un peu ce graphique.</p>
@@ -539,13 +552,13 @@ On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une diff
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 <span class="math inline">\(g/m^2\)</span> entre les deux régions? G*Power peut nous le dire.</p>
 
 <div class="rmdcode">
-Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="analyse-de-puissance-avec-r-et-gpower.html#fig:gpower-2">5.2</a>).
+Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="analyse-de-puissance-avec-r-et-gpower.html#fig:gpower-2">6.2</a>).
 </div>
 
 <div class="figure"><span id="fig:gpower-2"></span>
 <img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
 <p class="caption">
-Figure 5.2: Analyse post-hoc avec une taille d’effet différente
+Figure 6.2: Analyse post-hoc avec une taille d’effet différente
 </p>
 </div>
 <p>La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.</p>
@@ -555,7 +568,7 @@ Cela pourrait être pour deux raisons: soit qu’il n’y a pas de différences 
 La deuxième analyse de puissance permet d’éliminer cette seconde possibilité puisque Jaynie avait 71% des chances de détecter une différence du simple au double.</p>
 </div>
 <div id="analyse-à-priori" class="section level3">
-<h3><span class="header-section-number">5.4.2</span> Analyse à priori</h3>
+<h3><span class="header-section-number">6.4.2</span> Analyse à priori</h3>
 <p>Supposons qu’on puisse défendre la position qu’une différence de biomasse observée par Jaynie entre les deux régions, <span class="math inline">\(3.31- 2.64=0.67g/m^2\)</span> , soit écologiquement signifiante.
 On devrait donc planifier la prochaine saison d’échantillonnage de manière à avoir de bonnes chances de détecter une différence de cette taille.
 Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chances de la détecter (compte tenu de la variabilité observée)?</p>
@@ -568,7 +581,7 @@ Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles
 <div class="figure"><span id="fig:gpower-3"></span>
 <img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
 <p class="caption">
-Figure 5.3: Analyse à priori
+Figure 6.3: Analyse à priori
 </p>
 </div>
 <p><strong>Ouch!</strong> Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
@@ -578,7 +591,7 @@ Ce serait vraisemblablement en vain et pourrait être considéré comme une pert
 Augmenter la puissance ça demande plus d’effort.</p>
 </div>
 <div id="analyse-de-sensitivité---calculer-la-taille-deffet-détectable" class="section level3">
-<h3><span class="header-section-number">5.4.3</span> Analyse de sensitivité - Calculer la taille d’effet détectable</h3>
+<h3><span class="header-section-number">6.4.3</span> Analyse de sensitivité - Calculer la taille d’effet détectable</h3>
 <p>Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 18 ruisseaux par région, et en conservant <span class="math inline">\(\alpha=0.05\)</span>, quelle est la taille d’effet que Jaynie pouvait détecter avec 80% de chances <span class="math inline">\(\beta=0.2\)</span>)?</p>
 
 <div class="rmdcode">
@@ -588,7 +601,7 @@ Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <stron
 <div class="figure"><span id="fig:gpower-4"></span>
 <img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
 <p class="caption">
-Figure 5.4: Analyse de sensitivité
+Figure 6.4: Analyse de sensitivité
 </p>
 </div>
 <p>La taille d’effet détectable pour cette taille d’échantillon, <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (ou une puissance de 80%) est de 0.961296.</p>
@@ -607,7 +620,7 @@ Donc, avec 18 ruisseaux dans chaque région, pour <span class="math inline">\(\a
 </div>
 </div>
 <div id="points-à-retenir" class="section level2">
-<h2><span class="header-section-number">5.5</span> Points à retenir</h2>
+<h2><span class="header-section-number">6.5</span> Points à retenir</h2>
 <ul>
 <li>L’analyse de puissance post hoc n’est pertinente que lorsque l’on a accepté l’hypothèse nulle.
 Il est en effet impossible de faire une erreur de type II quand on rejette <span class="math inline">\(H_0\)</span>.</li>
@@ -619,7 +632,7 @@ On considère que <span class="math inline">\(\beta=0.2\)</span> (puissance de 8
 </ul>
 </div>
 <div id="ex-power" class="section level2">
-<h2><span class="header-section-number">5.6</span> Exercice</h2>
+<h2><span class="header-section-number">6.6</span> Exercice</h2>
 
 <div class="rmdcode">
 
@@ -668,7 +681,7 @@ M = 1.36 L^3.05
           </div>
         </div>
       </div>
-<a href="analyse-de-2-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gérer-les-données.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="corrélation-et-régression-linéaire-simple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

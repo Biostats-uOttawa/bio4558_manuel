@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>BIO4558 Biostatistiques appliquées avec R</title>
+  <title>5 Gérer les données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="5 Gérer les données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="5 Gérer les données | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="préface.html"/>
+<link rel="prev" href="analyse-de-2-variables.html"/>
+<link rel="next" href="analyse-de-puissance-avec-r-et-gpower.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -305,24 +305,381 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">BIO4558 Biostatistiques appliquées avec R</h1>
-<h2 class="subtitle"><em>Manuel de Laboratoire</em></h2>
-<p class="author"><em>Julien Martin</em></p>
-<p class="date"><em>04-09-2020</em></p>
+<div id="gérer-les-données" class="section level1">
+<h1><span class="header-section-number">5</span> Gérer les données</h1>
+<div id="importer-et-exporter-des-données" class="section level2">
+<h2><span class="header-section-number">5.1</span> Importer et exporter des données</h2>
+<p>Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont <code>.csv</code> et <code>.Rdata</code>.
+Les fichiers <code>.csv</code> sont utilisés pour stocker des données.
+Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, …) et les tableurs (e.g. MS Excel, LO Calc).
+Les fichiers <code>.Rdata</code> sont utilisés pour stocker n’importe quelle objet R pas uniquement des données.
+Cependant, ces fichiers ne peuvent être lus et utilisés que par R.</p>
+<p>Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format <code>.csv</code>.</p>
+<div id="ouvrir-un-fichier-de-données-en-format-.rdata" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Ouvrir un fichier de données en format <code>.Rdata</code></h3>
+<p>Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">load</span>(<span class="kw">file.choose</span>())</a></code></pre></div>
+<p>ce qui ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur.
+Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s’en servir car elle ne permet pas de reproduire l’analyse facilement. En effet, elle nécessite de choisir le document chaque que l’on souhaite l’utiliser.</p>
+<p>Vous pouvez aussi directement taper le nom du fichier entre guillemet <code>"nom du fichier avec l'extension"</code>.
+Par exemple,</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="kw">load</span>(<span class="st">&quot;ErablesGatineau.Rdata&quot;</span>)</a></code></pre></div>
 </div>
-<div id="note" class="section level1 unnumbered">
-<h1>Note</h1>
-<p>Version en cours de développement pour le cours de l’automne 2020. Les chapitres vont apparaitre au cours de la session.</p>
+<div id="ouvrir-un-fichier-de-données-en-format-.csv" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Ouvrir un fichier de données en format <code>.csv</code></h3>
+<p>Pour importer ces données en format <code>.csv</code> dans R, il faut utiliser la commande <code>read.csv()</code>.
+Par exemple, pour créer un objet R <code>erables</code> qui contient les données du fichier <code>ErablesGatineau.csv</code>, il faut utiliser la commande suivant.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">erables &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ErablesGatineau.csv&quot;</span>)</a></code></pre></div>
+
+<div class="rmdwarning">
+Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
+Par défaut, R utilise le point décimal et vous n’obtiendrez pas le résultat escompté.
+Il existe une version modifiée de <code>read.csv()</code> appelée <code>read.csv2()</code> qui règle ce problème.
+Googlez-la si vous en avez besoin.
 </div>
+
+<p>Pour vérifier si les données ont bel et bien été lues, vous pouvez lister les objets en mémoire avec la fonction <code>ls()</code> ou en obtenir une liste avec une description plus détaillée avec <code>ls.str()</code>.</p>
+
+<div class="rmdtip">
+Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d’objet dans l’environnement R. Je vous suggère donc d’utliser <code>ls()</code> et ensuite <code>str()</code> sur l’objet qui vous intéresse.
+</div>
+
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">ls</span>()</a></code></pre></div>
+<pre><code>##  [1] &quot;anglais&quot;        &quot;chien&quot;          &quot;d&quot;              &quot;d_nonsport&quot;    
+##  [5] &quot;d_sport&quot;        &quot;diplome&quot;        &quot;erables&quot;        &quot;hdv2003&quot;       
+##  [9] &quot;imc&quot;            &quot;maths&quot;          &quot;p&quot;              &quot;poids&quot;         
+## [13] &quot;precipitations&quot; &quot;reg&quot;            &quot;resultat&quot;       &quot;rp2012&quot;        
+## [17] &quot;s&quot;              &quot;sport&quot;          &quot;tab&quot;            &quot;taille1&quot;       
+## [21] &quot;taille2&quot;        &quot;taille3&quot;        &quot;taille4&quot;        &quot;taille5&quot;       
+## [25] &quot;tailles&quot;        &quot;tailles_m&quot;      &quot;temperature&quot;    &quot;title&quot;         
+## [29] &quot;x&quot;              &quot;y&quot;</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="kw">str</span>(erables)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	100 obs. of  3 variables:
+##  $ station: chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+##  $ diam   : num  22.4 36.1 44.4 24.6 17.7 ...
+##  $ biom   : num  732 1171 673 1552 504 ...</code></pre>
+<p>R confirme avoir en mémoire l’objet <code>erables</code>.
+<code>erables</code> est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): <code>station</code>, une variable de type Facteur avec 2 niveaux, et <code>diam</code> et <code>biom</code> qui sont 2 variables numériques.</p>
+</div>
+<div id="entrer-des-données" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Entrer des données</h3>
+<p>R n’est pas un environnement idéal pour entrer des données.
+C’est possible, mais la syntaxe est lourde et peut inciter à s’arracher les cheveux.
+Utilisez votre chiffrier préféré pour faire l’entrée de données.
+Ce sera plus efficace et moins frustrant.</p>
+</div>
+<div id="nettoyercorriger-des-données" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Nettoyer/corriger des données</h3>
+<p>Une autre opération qui peut être frustrante en R.
+Mon conseil : ne le faites pas là.
+Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
+Il est finalement plus simple de refaire exécuter les quelques lignes de code par la machine.
+Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.</p>
+</div>
+<div id="exporter-des-données-à-partir-de-r." class="section level3">
+<h3><span class="header-section-number">5.1.5</span> Exporter des données à partir de R.</h3>
+<p>Vous pouvez utiliser la fonction,</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1">  <span class="kw">write.csv</span>(mydata, <span class="dt">file =</span> <span class="st">&quot;outfilename.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>où <code>mydata</code> est le nom du base de données à exporter et <code>outfilename.csv</code> est le nom du fichier à produire.
+Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à <code>File&gt;Change dir</code>, ou par la commande <code>setwd()</code>)</p>
+</div>
+</div>
+<div id="examen-préliminaire-des-données" class="section level2">
+<h2><span class="header-section-number">5.2</span> Examen préliminaire des données</h2>
+<p>La première étape de toute analyse est l’examen des données.
+Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
+L’examen préliminaire des données permet souvent aussi d’identifier des observations suspectes, possiblement dûes à des erreurs d’entrée de donnée.
+Finalement, l’examen graphique préliminaire permet en général de visualiser les tendances principales qui seront confirmées par l’analyse statistique en tant que telle.
+Le fichier <code>sturgeon.csv</code> contient les données d’une étude effectuée sur les esturgeons de la rivière Saskatchewan.
+Ces données ont été récoltées, entre autres, pour examiner comment la taille des esturgeons varie entre les sexes (sex), les sites (location), et les années (year).</p>
+<!-- - Pour recommencer avec une ardoise vide, videz la mémoire de R de tout son contenu en tapant la commande `rm(list=ls())`-->
+<ul>
+<li>Chargez les données du fichier <code>sturgeon.csv</code> dans un objet <code>sturgeon</code>.</li>
+<li>Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande <code>str(sturgeon)</code>.</li>
+</ul>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb216-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	186 obs. of  9 variables:
+##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
+##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
+##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
+##  $ rdwght  : num  15.95 NA 6.49 NA 29.92 ...
+##  $ age     : int  11 24 7 23 20 23 20 7 23 19 ...
+##  $ girth   : num  40.5 53.5 31 52.5 50 54.2 48 28.5 44 39 ...
+##  $ sex     : chr  &quot;MALE&quot; &quot;FEMALE&quot; &quot;MALE&quot; &quot;FEMALE&quot; ...
+##  $ location: chr  &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; ...
+##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...</code></pre>
+<div id="sommaire-statistique" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Sommaire statistique</h3>
+<p>Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">summary</span>(sturgeon)</a></code></pre></div>
+<pre><code>##     fklngth         totlngth        drlngth          rdwght     
+##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73  
+##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09  
+##  Median :44.06   Median :47.32   Median :27.00   Median :23.10  
+##  Mean   :44.15   Mean   :47.45   Mean   :27.29   Mean   :24.87  
+##  3rd Qu.:48.00   3rd Qu.:51.97   3rd Qu.:29.72   3rd Qu.:30.27  
+##  Max.   :66.85   Max.   :72.05   Max.   :41.93   Max.   :93.72  
+##                  NA&#39;s   :85      NA&#39;s   :13      NA&#39;s   :4      
+##       age            girth           sex              location        
+##  Min.   : 7.00   Min.   :11.50   Length:186         Length:186        
+##  1st Qu.:17.00   1st Qu.:40.00   Class :character   Class :character  
+##  Median :20.00   Median :44.00   Mode  :character   Mode  :character  
+##  Mean   :20.24   Mean   :44.33                                        
+##  3rd Qu.:23.50   3rd Qu.:48.80                                        
+##  Max.   :55.00   Max.   :73.70                                        
+##  NA&#39;s   :11      NA&#39;s   :85                                           
+##       year     
+##  Min.   :1978  
+##  1st Qu.:1979  
+##  Median :1979  
+##  Mean   :1979  
+##  3rd Qu.:1980  
+##  Max.   :1980  
+## </code></pre>
+<p>Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la valeur au milieu de la liste des observations ordonnées (appelée le 50 ième percentile), ici, la 93 ième valeur des 186 observations, les valeurs au premier (25%) et troisième quartile (75%), et si il y a des valeurs manquantes dans la colonne.
+Notez que plusieurs des variables ont des observations manquantes (NA).
+Donc, seules les variables fklngth (longueur à la fourche), sex, location et year ont 186 observations.</p>
+
+<div class="rmdwarning">
+<strong>Attention aux valeurs manquantes</strong>
+Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses sur des sous- ensembles sans valeur manquante, par des commandes ou des options dans les commandes.
+On y reviendra, mais prenez l’habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l’analyse.
+</div>
+
+</div>
+<div id="histogramme-densité-de-probabilité-empirique-boxplot-et-examen-visuel-de-la-normalité" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</h3>
+<p>Examinons maintenant de plus près la distribution de fklngth.
+La commande <code>hist()</code> permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">hist</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/hist-stur-1.svg" width="672" /></p>
+<p>Les données semblent suivre approximativement une distribution normale.</p>
+
+<div class="rmdnote">
+Cette syntaxe peut paraître un peu lourde puisqu’on doit ajouter le préfixe <code>sturgeon$</code> devant chaque nom de variable.
+On pourrait se faciliter la tâche en utilisant la commande <code>attach()</code> <strong>mais cela est fortement déconseillé</strong> et jamais utilisé dans ce document.
+</div>
+
+<p>Cet histogramme est la représentation classique.
+Mais les histogrammes ne sont pas parfaits.
+Leur forme dépend en partie du nombre de catégories utilisées, surtout pour les petits échantillons.
+On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
+Mais il faut programmer un peu (ou savoir copier-coller…)</p>
+
+<div class="rmdcode">
+Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-&gt;New script, ou Ctrl-n dans Windows), puis exécutez le.
+</div>
+
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb221-2" title="2"><span class="co">#  use &quot;sturgeon&quot; dataframe to make plot called mygraph</span></a>
+<a class="sourceLine" id="cb221-3" title="3"><span class="co">#  and define x axis as representing fklngth</span></a>
+<a class="sourceLine" id="cb221-4" title="4">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(sturgeon, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth))</a>
+<a class="sourceLine" id="cb221-5" title="5"><span class="co">#  add data to the mygraph ggplot</span></a>
+<a class="sourceLine" id="cb221-6" title="6">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-7" title="7"><span class="co">#  add data density smooth</span></a>
+<a class="sourceLine" id="cb221-8" title="8"><span class="st">    </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-9" title="9"><span class="co">#  add rug (bars at the bottom of the plot)</span></a>
+<a class="sourceLine" id="cb221-10" title="10"><span class="st">    </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-11" title="11"><span class="co">#  add black semitransparent histogram</span></a>
+<a class="sourceLine" id="cb221-12" title="12"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">bins =</span> <span class="dv">30</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,   <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-13" title="13"><span class="co">#  add normal curve in red, with mean and sd from fklength</span></a>
+<a class="sourceLine" id="cb221-14" title="14"><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb221-15" title="15">                   <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb221-16" title="16">                     <span class="dt">mean =</span> <span class="kw">mean</span>(sturgeon<span class="op">$</span>fklngth),</a>
+<a class="sourceLine" id="cb221-17" title="17">                     <span class="dt">sd =</span> <span class="kw">sd</span>(sturgeon<span class="op">$</span>fklngth) ),</a>
+<a class="sourceLine" id="cb221-18" title="18">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb221-19" title="19"><span class="co"># display graph</span></a>
+<a class="sourceLine" id="cb221-20" title="20">    mygraph</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/stur-g1-1.svg" width="672" /></p>
+<p>Chaque observation est représentée par une barre sous l’axe des x (rug).
+En rouge est la distribution normale de données avec la même moyenne et écart-type que les observations.
+Et l’autre ligne est la densité de probabilité empirique, « lissée » à partir des observations.
+Si vous êtes plus aventureux, vous pouvez examiner la distribution des observations de fklngth par sous-groupes (par exemple sex et year) avec :</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>sex)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/aventure-1.svg" width="672" /></p>
+<p>Chaque panneau illustre la distribution pour un sexe cette année-là, et la courbe en rouge récurrente représente la distribution normale pour l’ensemble des données.
+Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
+Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes <code>qqnorm()</code> et <code>qqline()</code>.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth)</a>
+<a class="sourceLine" id="cb223-2" title="2"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/stur-norm-1.svg" width="672" /></p>
+<p>Des données parfaitement normales suivraient la ligne droite diagonale.
+Ici, il y a des déviations dans les queues de la distribution, et un peu à droite du centre.
+Comparez cette représentation à celle des deux graphiques précédents.
+Vous conviendrez sans doute avec moi qu’il est plus facile de visualiser comment la distribution dévie de la normalité sur les histogrammes et les graphiques de la densité empirique de probabilité que sur les QQ plots.
+Ceci dit, les QQ plots sont souvent utilisés et vous devriez être capable de les interpréter.
+De plus, on peut facilement éprouver statistiquement l’hypothèse que les données sont distribuées normalement avec R par la commande <code>shapiro.test()</code> qui calcule une statistique (W) qui est une mesure de la tendance des points d’un QQ plot à former une ligne parfaite.
+Si oui, alors W=1.
+Si W s’éloigne de 1 (vers 0), alors les données s’éloignent de la normalité.
+Ici,</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">shapiro.test</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  sturgeon$fklngth
+## W = 0.97225, p-value = 0.0009285</code></pre>
+<p>W n’est pas très loin de 1, mais suffisamment pour que la différence soit significative.
+L’examen visuel des grands échantillons est souvent compliqué par le fait que plusieurs points se superposent et qu’il devient plus difficile de bien visualiser la tendance centrale.
+Les boxplots avec “moustaches” (box and whiskers plots) offrent une alternative intéressante.
+La commande <code>boxplot()</code> peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> sturgeon, <span class="dt">notch =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/boxplot-stur-1.svg" width="672" /></p>
+<p>La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
+La coche est proportionnelle à l’incertitude quant à la position de la médiane.
+On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n’y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
+Les boîtes s’étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s’étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l’intérieur de 1.5x la largeur de l’étendue interquartile .
+Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l’étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.</p>
+</div>
+<div id="diagrammes-de-dispersion-bivariés" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Diagrammes de dispersion bivariés</h3>
+<p>En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d’oeil aux diagrammes de dispersion .
+La commande <code>plot(y~x)</code> permet de faire le graphique de y sur l’axe vertical (l’ordonnée) en fonction de x sur l’axe horizontal (l’abscisse).</p>
+
+<div class="rmdcode">
+Faites un graphique de fklngth en fonction de age avec la commande plot.
+</div>
+
+<p>Vous devriez obtenir:</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">plot</span>(fklngth <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/stur-biv-plot-1.svg" width="672" /></p>
+<p>R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (<code>pairs()</code>).
+Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
+Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande <code>pairs(sturgeon[,1:6], panel=panel.smooth)</code> et vous devriez obtenir</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">pairs</span>(sturgeon[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">panel =</span> panel.smooth)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/pairs-stur-1.svg" width="672" /></p>
+</div>
+</div>
+<div id="créer-des-sous-ensembles-de-cas" class="section level2">
+<h2><span class="header-section-number">5.3</span> Créer des sous-ensembles de cas</h2>
+<p>Il arrive fréquemment qu’une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
+Les cas sont d’habitude sélectionnés selon un critère en particulier.
+Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande <code>subset()</code>.
+Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui ne contient que les femelles capturées en 1978, on peut écrire :</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1">sturgeon.female<span class="fl">.1978</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, sex <span class="op">==</span><span class="st"> &quot;FEMALE&quot;</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">==</span><span class="st"> &quot;1978&quot;</span>)</a>
+<a class="sourceLine" id="cb229-2" title="2">sturgeon.female<span class="fl">.1978</span></a></code></pre></div>
+<pre><code>##      fklngth totlngth  drlngth rdwght age girth    sex   location year
+## 2   50.19685 54.13386 31.49606     NA  24  53.5 FEMALE    THE_PAS 1978
+## 4   50.19685 53.14961 32.28346     NA  23  52.5 FEMALE    THE_PAS 1978
+## 6   49.60630 53.93701 31.10236  35.86  23  54.2 FEMALE    THE_PAS 1978
+## 7   47.71654 51.37795 33.97638  33.88  20  48.0 FEMALE    THE_PAS 1978
+## 15  48.89764 53.93701 29.92126  35.86  23  52.5 FEMALE    THE_PAS 1978
+## 105 46.85039       NA 28.34646  23.90  24    NA FEMALE CUMBERLAND 1978
+## 106 40.74803       NA 24.80315  17.50  18    NA FEMALE CUMBERLAND 1978
+## 107 40.35433       NA 25.59055  20.90  21    NA FEMALE CUMBERLAND 1978
+## 109 43.30709       NA 27.95276  24.10  19    NA FEMALE CUMBERLAND 1978
+## 113 53.54331       NA 33.85827  48.90  20    NA FEMALE CUMBERLAND 1978
+## 114 51.77165       NA 31.49606  35.30  26    NA FEMALE CUMBERLAND 1978
+## 116 45.27559       NA 26.57480  23.70  24    NA FEMALE CUMBERLAND 1978
+## 118 53.14961       NA 32.67717  45.30  25    NA FEMALE CUMBERLAND 1978
+## 119 50.19685       NA 32.08661  33.90  26    NA FEMALE CUMBERLAND 1978
+## 123 49.01575       NA 29.13386  37.50  22    NA FEMALE CUMBERLAND 1978</code></pre>
+
+<div class="rmdcaution">
+Dans ces comparaisons, il faut toujours utiliser <code>==</code> pour égal à.
+Dans ce contexte, si vous utilisez <code>=</code> seulement, vous n’obtiendrez pas ce que vous désirez.
+Dans le tableau qui suit se trouve une liste de commandes communes que vous allez probablement utiliser pour créer des expressions en R.
+</div>
+
+<table>
+<thead>
+<tr class="header">
+<th>Operateur</th>
+<th>Explication</th>
+<th>Operateur</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>==</td>
+<td>Égal à</td>
+<td>!=</td>
+<td>Pas égal à</td>
+</tr>
+<tr class="even">
+<td>&gt;</td>
+<td>Plus que</td>
+<td>&lt;</td>
+<td>Moins que</td>
+</tr>
+<tr class="odd">
+<td>&gt;=</td>
+<td>Plus que ou égal à</td>
+<td>&lt;=</td>
+<td>Moins que ou égal à</td>
+</tr>
+<tr class="even">
+<td>&amp;</td>
+<td>Et vectorisé</td>
+<td>|</td>
+<td>Ou vectorisé</td>
+</tr>
+<tr class="odd">
+<td>&amp;&amp;</td>
+<td>Et contrôle</td>
+<td>||</td>
+<td>Ou contrôle</td>
+</tr>
+<tr class="even">
+<td>!</td>
+<td>Pas</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<div class="rmdcode">
+En utilisant les commandes <code>subset()</code> et <code>hist()</code>, essayez de faire un histogramme pour le sous-ensemble de cas correspondant aux femelles capturées en 1979 et 1980 (donc <code>sex == "FEMALE" &amp; (year == "1979" | year == "1980")</code>)
+</div>
+
+</div>
+<div id="transformations-de-données" class="section level2">
+<h2><span class="header-section-number">5.4</span> Transformations de données</h2>
+<p>Il est très fréquemment nécessaire d’effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d’application de tests statistiques.
+R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
+Les fonctions les plus fréquemment utilisées sont:</p>
+<ul>
+<li><code>log()</code></li>
+<li><code>sqrt()</code></li>
+<li><code>ifelse()</code></li>
+</ul>
+<p>On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
+Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1"><span class="kw">plot</span>(<span class="kw">log</span>(fklngth)<span class="op">~</span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
+<p>Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1">logfklngth &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<p>Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole <code>$</code>, par exemple, pour ajouter une variable nommée <code>lfkl</code> contenant le log10 de fklngth au tableau sturgeon, on peut écrire:</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1">sturgeon<span class="op">$</span>logfkl &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeonfklngth)</a></code></pre></div>
+<p>N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
+Pour les transformations conditionnelles, on peut utiliser la fonction <code>ifelse()</code>.
+Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1">sturgeon<span class="op">$</span>dummy &lt;-<span class="st"> </span><span class="kw">ifelse</span>(sturgeon<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;MALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</a></code></pre></div>
+</div>
+<div id="exercice-sur-r" class="section level2">
+<h2><span class="header-section-number">5.5</span> Exercice sur R</h2>
+
+<div class="rmdcode">
+Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
+Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
+</div>
+
+<p><img src="Labo_BIO4558_files/figure-html/intror-exer-1.svg" width="672" /></p>
+
+</div>
+</div>
+
+
+
 <script src="js/solution.js"></script>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="préface.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analyse-de-2-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analyse-de-puissance-avec-r-et-gpower.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -344,7 +701,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/index.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/01-introR_data.Rmd",
 "text": "Edit"
 },
 "history": {
