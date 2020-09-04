@@ -4,9 +4,9 @@ subtitle: "Manuel de Laboratoire"
 author: "Julien Martin"
 date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 site: bookdown::bookdown_site
-documentclass: krantz
-lot: yes
-lof: yes
+documentclass: book
+#lot: yes
+#lof: yes
 fontsize: 12pt
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
