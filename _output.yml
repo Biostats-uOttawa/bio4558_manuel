@@ -1,0 +1,37 @@
+bookdown::gitbook:
+  dev: svglite
+  css: css/style.css
+  split_by: chapter
+  scroll_highlight: yes
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">BIO4558 Manuel de laboratoire</a></li>
+      after: |
+        <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
+    download: [pdf, epub, mobi]
+#    edit: https://github.com/rstudio/bookdown/edit/master/inst/examples/%s
+    sharing: false
+#      github: no
+#      facebook: no
+bookdown::html_chapters:
+  css: [css/style.css, css/toc.css]
+bookdown::epub_book:
+  dev: svglite
+  stylesheet: css/style.css
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+    before_body: latex/before_body.tex
+    after_body: latex/after_body.tex
+  keep_tex: yes
+  dev: "cairo_pdf"
+  latex_engine: pdflatex
+  citation_package: natbib
+  template: null
+  pandoc_args: --top-level-division=chapter
+  toc_depth: 3
+  toc_unnumbered: no
+  toc_appendix: yes
+  quote_footer: ["\\VA{", "}{}"]

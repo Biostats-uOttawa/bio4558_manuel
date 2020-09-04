@@ -10,8 +10,7 @@ delete_merged_file: true
 #  ui:
 #    edit: "Edit"
 #    chapter_name: "Chapter "
-rmd_files:
-  html: ["index.Rmd",
+rmd_files: ["index.Rmd",
   "01-introR.Rmd",
   "02-Gpower.Rmd",
   "03-reg_lin.Rmd",
@@ -20,7 +19,19 @@ rmd_files:
   #"06-anova_mult.Rmd",
   #"07-reg_mult.Rmd",
   #"08-ancova_glm.Rmd",
-  #"09-model_freq.Rmd"
+  #"09-model_freq.Rmd",
+  "10-notebook.Rmd"
   ]
-  latex: ["index.Rmd", "01-introR.Rmd", "02-Gpower.Rmd"] #, "03-reg_lin.Rmd", "04-t_test.Rmd", "05-anova.Rmd", "06-anova_mult.Rmd", "07-reg_mult.Rmd", "08-ancova_glm.Rmd", "09-model_freq.Rmd"]
+  # latex: ["index.Rmd",
+  # "01-introR.Rmd",
+  # "02-Gpower.Rmd",
+  # "03-reg_lin.Rmd",
+  # "04-t_test.Rmd",
+  # "05-anova.Rmd",
+  #"06-anova_mult.Rmd",
+  #"07-reg_mult.Rmd",
+  #"08-ancova_glm.Rmd",
+  #"09-model_freq.Rmd",
+  #"10-notebook.Rmd"
+  #]
 #clean: [packages.bib, bookdown.bbl]
