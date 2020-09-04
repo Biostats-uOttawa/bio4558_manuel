@@ -137,7 +137,7 @@ Vous pourrez ainsi refaire le labo instantanément, récupérer des fragments de
 Annotez-là abondamment.
 Vous vous en féliciterez plus tard.
 
-## Notes sur le manuel
+## Notes sur le manuel {-}
 
 Vous trouverez dans le manuel des explications sur la théorie, du code R, des explications sur R et des exercises.
 

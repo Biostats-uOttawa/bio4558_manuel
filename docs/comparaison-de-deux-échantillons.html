@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#instructions-générales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
-<li class="chapter" data-level="0.1" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i><b>0.1</b> Notes sur le manuel</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i>Notes sur le manuel</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introductionR.html"><a href="introductionR.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
 <li class="chapter" data-level="1.1" data-path="introductionR.html"><a href="introductionR.html#set-intro"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
@@ -449,9 +449,9 @@ Figure 4.3: Condition d’application du modèle linéaire
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 45.084391  0.01440142   0.4251324
-## t2* -1.714546 -0.04233178   0.7817046</code></pre>
+##      original       bias    std. error
+## t1* 45.084391 -0.004616555   0.4213526
+## t2* -1.714546  0.012307985   0.7414231</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
@@ -470,7 +470,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.230, -0.105 )  
+## 95%   (-3.150, -0.263 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
@@ -493,7 +493,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000    0.019 *
+## location1   0.8573 4113   0.0238 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
