@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 ANOVA à un critère de classification | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>8 ANOVA à un critère de classification | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 ANOVA à un critère de classification | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="8 ANOVA à un critère de classification | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 ANOVA à un critère de classification | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="8 ANOVA à un critère de classification | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -138,88 +138,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#r"><i class="fa fa-check"></i>R</a></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#rstudio"><i class="fa fa-check"></i>Rstudio</a></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#gpower"><i class="fa fa-check"></i>G*Power</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#instructions-générales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
-<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i>Notes sur le manuel</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i>Notes sur le manuel</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introductionR.html"><a href="introductionR.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
-<li class="chapter" data-level="1.1" data-path="introductionR.html"><a href="introductionR.html#set-intro"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="1.2" data-path="introductionR.html"><a href="introductionR.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>1.2</b> Importer et exporter des données</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="introductionR.html"><a href="introductionR.html#ouvrir-un-fichier-de-données-en-format-.rdata"><i class="fa fa-check"></i><b>1.2.1</b> Ouvrir un fichier de données en format <code>.Rdata</code></a></li>
-<li class="chapter" data-level="1.2.2" data-path="introductionR.html"><a href="introductionR.html#ouvrir-un-fichier-de-données-en-format-.csv"><i class="fa fa-check"></i><b>1.2.2</b> Ouvrir un fichier de données en format <code>.csv</code></a></li>
-<li class="chapter" data-level="1.2.3" data-path="introductionR.html"><a href="introductionR.html#entrer-des-données"><i class="fa fa-check"></i><b>1.2.3</b> Entrer des données</a></li>
-<li class="chapter" data-level="1.2.4" data-path="introductionR.html"><a href="introductionR.html#nettoyercorriger-des-données"><i class="fa fa-check"></i><b>1.2.4</b> Nettoyer/corriger des données</a></li>
-<li class="chapter" data-level="1.2.5" data-path="introductionR.html"><a href="introductionR.html#exporter-des-données-à-partir-de-r."><i class="fa fa-check"></i><b>1.2.5</b> Exporter des données à partir de R.</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="introductionR.html"><a href="introductionR.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>1.3</b> Examen préliminaire des données</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="introductionR.html"><a href="introductionR.html#sommaire-statistique"><i class="fa fa-check"></i><b>1.3.1</b> Sommaire statistique</a></li>
-<li class="chapter" data-level="1.3.2" data-path="introductionR.html"><a href="introductionR.html#histogramme-densité-de-probabilité-empirique-boxplot-et-examen-visuel-de-la-normalité"><i class="fa fa-check"></i><b>1.3.2</b> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</a></li>
-<li class="chapter" data-level="1.3.3" data-path="introductionR.html"><a href="introductionR.html#diagrammes-de-dispersion-bivariés"><i class="fa fa-check"></i><b>1.3.3</b> Diagrammes de dispersion bivariés</a></li>
+<li class="part"><span><b>I Introduction à R</b></span></li>
+<li class="chapter" data-level="1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html"><i class="fa fa-check"></i><b>1</b> Objectifs Labo 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html#set-intro"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="introductionR.html"><a href="introductionR.html#créer-des-sous-ensembles-de-cas"><i class="fa fa-check"></i><b>1.4</b> Créer des sous-ensembles de cas</a></li>
-<li class="chapter" data-level="1.5" data-path="introductionR.html"><a href="introductionR.html#transformations-de-données"><i class="fa fa-check"></i><b>1.5</b> Transformations de données</a></li>
-<li class="chapter" data-level="1.6" data-path="introductionR.html"><a href="introductionR.html#exercice-sur-r"><i class="fa fa-check"></i><b>1.6</b> Exercice sur R</a></li>
+<li class="chapter" data-level="2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>2</b> Premier pas avec R</a><ul>
+<li class="chapter" data-level="2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#la-console"><i class="fa fa-check"></i><b>2.1</b> La console</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#linvite-de-commandes"><i class="fa fa-check"></i><b>2.1.1</b> L’invite de commandes</a></li>
+<li class="chapter" data-level="2.1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#précisions-concernant-la-saisie-des-commandes"><i class="fa fa-check"></i><b>2.1.2</b> Précisions concernant la saisie des commandes</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power</a><ul>
-<li class="chapter" data-level="2.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#la-théorie"><i class="fa fa-check"></i><b>2.1</b> La théorie</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>2.1.1</b> Qu’est-ce que la puissance?</a></li>
-<li class="chapter" data-level="2.1.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>2.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
-<li class="chapter" data-level="2.1.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>2.1.3</b> Facteurs qui affectent la puissance</a></li>
+<li class="chapter" data-level="2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets"><i class="fa fa-check"></i><b>2.2</b> Objets</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets-simples"><i class="fa fa-check"></i><b>2.2.1</b> Objets simples</a></li>
+<li class="chapter" data-level="2.2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#vecteurs"><i class="fa fa-check"></i><b>2.2.2</b> Vecteurs</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>2.2</b> Qu’est ce que G*Power?</a></li>
-<li class="chapter" data-level="2.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#principe-général"><i class="fa fa-check"></i><b>2.3.1</b> Principe général</a></li>
-<li class="chapter" data-level="2.3.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>2.3.2</b> Types d’analyses de puissance disponibles</a></li>
-<li class="chapter" data-level="2.3.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>2.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
+<li class="chapter" data-level="2.3" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#fonctions"><i class="fa fa-check"></i><b>2.3</b> Fonctions</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#principe"><i class="fa fa-check"></i><b>2.3.1</b> Principe</a></li>
+<li class="chapter" data-level="2.3.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#arguments"><i class="fa fa-check"></i><b>2.3.2</b> Arguments</a></li>
+<li class="chapter" data-level="2.3.3" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#aide-sur-une-fonction"><i class="fa fa-check"></i><b>2.3.3</b> Aide sur une fonction</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#puissance-pour-un-test-de-t-comparant-deux-moyennes"><i class="fa fa-check"></i><b>2.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-post-hoc"><i class="fa fa-check"></i><b>2.4.1</b> Analyse post-hoc</a></li>
-<li class="chapter" data-level="2.4.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-à-priori"><i class="fa fa-check"></i><b>2.4.2</b> Analyse à priori</a></li>
-<li class="chapter" data-level="2.4.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
+<li class="chapter" data-level="2.4" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#regrouper-ses-commandes-dans-des-scripts"><i class="fa fa-check"></i><b>2.4</b> Regrouper ses commandes dans des scripts</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#commentaires"><i class="fa fa-check"></i><b>2.4.1</b> Commentaires</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#points-à-retenir"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="2.6" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#exercice-sur-la-puissance"><i class="fa fa-check"></i><b>2.6</b> Exercice sur la puissance</a></li>
+<li class="chapter" data-level="2.5" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#packages"><i class="fa fa-check"></i><b>2.5</b> Installer et charger des extensions (<em>packages</em>)</a></li>
+<li class="chapter" data-level="2.6" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#exercices"><i class="fa fa-check"></i><b>2.6</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#set-lm"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="3.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#diagrammes-de-dispersion"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
-<li class="chapter" data-level="3.3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformations-et-le-coefficient-de-corrélation"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
-<li class="chapter" data-level="3.4" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#matrices-de-corrélations-et-correction-de-bonferroni"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
-<li class="chapter" data-level="3.6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
-<li class="chapter" data-level="3.6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
+<li class="chapter" data-level="3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html"><i class="fa fa-check"></i><b>3</b> Premier travail avec des données</a><ul>
+<li class="chapter" data-level="3.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#jeu-de-données-dexemple"><i class="fa fa-check"></i><b>3.1</b> Jeu de données d’exemple</a></li>
+<li class="chapter" data-level="3.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#tableau-de-données-data-frame"><i class="fa fa-check"></i><b>3.2</b> Tableau de données (<em>data frame</em>)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#structure-du-tableau"><i class="fa fa-check"></i><b>3.2.1</b> Structure du tableau</a></li>
+<li class="chapter" data-level="3.2.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#accéder-aux-variables-dun-tableau"><i class="fa fa-check"></i><b>3.2.2</b> Accéder aux variables d’un tableau</a></li>
+<li class="chapter" data-level="3.2.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#créer-une-nouvelle-variable"><i class="fa fa-check"></i><b>3.2.3</b> Créer une nouvelle variable</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformation-des-données-en-régression"><i class="fa fa-check"></i><b>3.7</b> Transformation des données en régression</a></li>
-<li class="chapter" data-level="3.8" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#traitement-des-valeurs-extrèmes"><i class="fa fa-check"></i><b>3.8</b> Traitement des valeurs extrèmes</a></li>
-<li class="chapter" data-level="3.9" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression"><i class="fa fa-check"></i><b>3.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>3.9.1</b> Puissance de détecter une pente donnée</a></li>
-<li class="chapter" data-level="3.9.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>3.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
+<li class="chapter" data-level="3.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyse-univariée"><i class="fa fa-check"></i><b>3.3</b> Analyse univariée</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyser-une-variable-quantitative"><i class="fa fa-check"></i><b>3.3.1</b> Analyser une variable quantitative</a></li>
+<li class="chapter" data-level="3.3.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyser-une-variable-qualitative"><i class="fa fa-check"></i><b>3.3.2</b> Analyser une variable qualitative</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#bootstrap-en-régression-simple-avec-r"><i class="fa fa-check"></i><b>3.10</b> Bootstrap en régression simple avec R</a></li>
+<li class="chapter" data-level="3.4" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#exercices"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a><ul>
-<li class="chapter" data-level="4.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>4.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="4.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#examen-visuel-des-données"><i class="fa fa-check"></i><b>4.2</b> Examen visuel des données</a></li>
-<li class="chapter" data-level="4.3" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-indépendants"><i class="fa fa-check"></i><b>4.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
-<li class="chapter" data-level="4.4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes"><i class="fa fa-check"></i><b>4.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap"><i class="fa fa-check"></i><b>4.4.1</b> Bootstrap</a></li>
-<li class="chapter" data-level="4.4.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#permutation"><i class="fa fa-check"></i><b>4.4.2</b> Permutation</a></li>
+<li class="chapter" data-level="4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>4</b> Analyse de 2 variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-qualitatives"><i class="fa fa-check"></i><b>4.1</b> Croisement de deux variables qualitatives</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#tableaux-croisés"><i class="fa fa-check"></i><b>4.1.1</b> Tableaux croisés</a></li>
+<li class="chapter" data-level="4.1.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#test-du-χ²"><i class="fa fa-check"></i><b>4.1.2</b> Test du χ²</a></li>
+<li class="chapter" data-level="4.1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#représentation-graphique"><i class="fa fa-check"></i><b>4.1.3</b> Représentation graphique</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>4.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
-<li class="chapter" data-level="4.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>4.6</b> Références</a></li>
+<li class="chapter" data-level="4.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-dune-variable-quantitative-et-dune-variable-qualitative"><i class="fa fa-check"></i><b>4.2</b> Croisement d’une variable quantitative et d’une variable qualitative</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#représentation-graphique-1"><i class="fa fa-check"></i><b>4.2.1</b> Représentation graphique</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#calculs-dindicateurs"><i class="fa fa-check"></i><b>4.2.2</b> Calculs d’indicateurs</a></li>
+<li class="chapter" data-level="4.2.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#tests-statistiques"><i class="fa fa-check"></i><b>4.2.3</b> Tests statistiques</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a><ul>
-<li class="chapter" data-level="5.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#set-ano"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>5.2.1</b> Visualiser les données</a></li>
-<li class="chapter" data-level="5.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>5.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
-<li class="chapter" data-level="5.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>5.2.3</b> Faire l’ANOVA</a></li>
-<li class="chapter" data-level="5.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>5.2.4</b> Les comparaisons multiples</a></li>
+<li class="chapter" data-level="4.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-quantitatives"><i class="fa fa-check"></i><b>4.3</b> Croisement de deux variables quantitatives</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#représentation-graphique-2"><i class="fa fa-check"></i><b>4.3.1</b> Représentation graphique</a></li>
+<li class="chapter" data-level="4.3.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#calcul-dindicateurs"><i class="fa fa-check"></i><b>4.3.2</b> Calcul d’indicateurs</a></li>
+<li class="chapter" data-level="4.3.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#régression-linéaire"><i class="fa fa-check"></i><b>4.3.3</b> Régression linéaire</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>5.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
-<li class="chapter" data-level="5.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
-<li class="chapter" data-level="5.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
+<li class="chapter" data-level="4.4" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#exercices"><i class="fa fa-check"></i><b>4.4</b> Exercices</a></li>
+</ul></li>
+<li class="part"><span><b>II Analyse de puissance</b></span></li>
+<li class="chapter" data-level="5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>5</b> Analyse de puissance avec R et G*Power</a><ul>
+<li class="chapter" data-level="5.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#la-théorie"><i class="fa fa-check"></i><b>5.1</b> La théorie</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>5.1.1</b> Qu’est-ce que la puissance?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>5.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>5.1.3</b> Facteurs qui affectent la puissance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>5.2</b> Qu’est ce que G*Power?</a></li>
+<li class="chapter" data-level="5.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>5.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#principe-général"><i class="fa fa-check"></i><b>5.3.1</b> Principe général</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>5.3.2</b> Types d’analyses de puissance disponibles</a></li>
+<li class="chapter" data-level="5.3.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>5.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#puissance-pour-un-test-de-t-comparant-deux-moyennes"><i class="fa fa-check"></i><b>5.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-post-hoc"><i class="fa fa-check"></i><b>5.4.1</b> Analyse post-hoc</a></li>
+<li class="chapter" data-level="5.4.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-à-priori"><i class="fa fa-check"></i><b>5.4.2</b> Analyse à priori</a></li>
+<li class="chapter" data-level="5.4.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>5.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#points-à-retenir"><i class="fa fa-check"></i><b>5.5</b> Points à retenir</a></li>
+<li class="chapter" data-level="5.6" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#exercice-sur-la-puissance"><i class="fa fa-check"></i><b>5.6</b> Exercice sur la puissance</a></li>
+</ul></li>
+<li class="part"><span><b>III Modèle univarié</b></span></li>
+<li class="chapter" data-level="6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>6</b> Corrélation et régression linéaire simple</a><ul>
+<li class="chapter" data-level="6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#set-lm"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#diagrammes-de-dispersion"><i class="fa fa-check"></i><b>6.2</b> Diagrammes de dispersion</a></li>
+<li class="chapter" data-level="6.3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformations-et-le-coefficient-de-corrélation"><i class="fa fa-check"></i><b>6.3</b> Transformations et le coefficient de corrélation</a></li>
+<li class="chapter" data-level="6.4" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#matrices-de-corrélations-et-correction-de-bonferroni"><i class="fa fa-check"></i><b>6.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
+<li class="chapter" data-level="6.5" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall"><i class="fa fa-check"></i><b>6.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="6.6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>6.6</b> Régression linéaire simple</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>6.6.1</b> Vérifier les conditions d’application de la régression</a></li>
+<li class="chapter" data-level="6.6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>6.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformation-des-données-en-régression"><i class="fa fa-check"></i><b>6.7</b> Transformation des données en régression</a></li>
+<li class="chapter" data-level="6.8" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#traitement-des-valeurs-extrèmes"><i class="fa fa-check"></i><b>6.8</b> Traitement des valeurs extrèmes</a></li>
+<li class="chapter" data-level="6.9" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression"><i class="fa fa-check"></i><b>6.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>6.9.1</b> Puissance de détecter une pente donnée</a></li>
+<li class="chapter" data-level="6.9.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>6.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#bootstrap-en-régression-simple-avec-r"><i class="fa fa-check"></i><b>6.10</b> Bootstrap en régression simple avec R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>7</b> Comparaison de deux échantillons</a><ul>
+<li class="chapter" data-level="7.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="7.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#examen-visuel-des-données"><i class="fa fa-check"></i><b>7.2</b> Examen visuel des données</a></li>
+<li class="chapter" data-level="7.3" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-indépendants"><i class="fa fa-check"></i><b>7.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
+<li class="chapter" data-level="7.4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes"><i class="fa fa-check"></i><b>7.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap"><i class="fa fa-check"></i><b>7.4.1</b> Bootstrap</a></li>
+<li class="chapter" data-level="7.4.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#permutation"><i class="fa fa-check"></i><b>7.4.2</b> Permutation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>7.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
+<li class="chapter" data-level="7.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>7.6</b> Références</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>8</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="8.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#set-ano"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>8.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>8.2.1</b> Visualiser les données</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>8.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>8.2.3</b> Faire l’ANOVA</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>8.2.4</b> Les comparaisons multiples</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>8.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
+<li class="chapter" data-level="8.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>8.4</b> Examen des valeurs extrêmes</a></li>
+<li class="chapter" data-level="8.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>8.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
 <li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
@@ -250,13 +293,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="anova-à-un-critère-de-classification" class="section level1">
-<h1><span class="header-section-number">5</span> ANOVA à un critère de classification</h1>
+<h1><span class="header-section-number">8</span> ANOVA à un critère de classification</h1>
 <p>Après avoir complété cet exercice de laboratoire, vous devriez être capable de :</p>
 <ul>
 <li>Utiliser R pour effectuer une analyse de variance paramétrique à un critère de classification, suivie de comparaisons multiples * Utiliser R pour vérifier si les conditions d’application de l’ANOVA paramétrique sont remplies * Utiliser R pour faire une ANOVA à un critère de classification non-paramétrique * Utiliser R pour transformer des données de manière à mieux rem- plir les conditions d’application de l’ANOVA paramétrique.</li>
 </ul>
 <div id="set-ano" class="section level2">
-<h2><span class="header-section-number">5.1</span> Paquets et données requises pour le labo</h2>
+<h2><span class="header-section-number">8.1</span> Paquets et données requises pour le labo</h2>
 <p>Ce laboratoire nécessite:</p>
 <ul>
 <li>les paquets R:
@@ -271,17 +314,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="anova-à-un-critère-de-classification-et-comparaisons-multiples" class="section level2">
-<h2><span class="header-section-number">5.2</span> ANOVA à un critère de classification et comparaisons multiples</h2>
+<h2><span class="header-section-number">8.2</span> ANOVA à un critère de classification et comparaisons multiples</h2>
 <p>L’ANOVA à un critère de classification est l’analogue du test de t pour des comparaisons de moyennes de plus de deux échantillons. Les conditions d’application du test sont essentiellement les mêmes, et lorsque appliqué à deux échantillons ce test est mathématiquement équivalent au test de t.</p>
 <p>En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d’esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) et la masse ( rndwght ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier <code>Dam10dat.csv</code>.</p>
 <div id="visualiser-les-données" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Visualiser les données</h3>
+<h3><span class="header-section-number">8.2.1</span> Visualiser les données</h3>
 <ul>
 <li>À partir des données, vous devez d’abord changer le type de donnée de la variable <code>year</code>, pour que R traite <code>year</code> comme une variable discontinue (factor) plutôt que continue.</li>
 </ul>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb137-2" title="2">Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</a>
-<a class="sourceLine" id="cb137-3" title="3"><span class="kw">str</span>(Dam10dat)</a></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1">Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb344-2" title="2">Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</a>
+<a class="sourceLine" id="cb344-3" title="3"><span class="kw">str</span>(Dam10dat)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	118 obs. of  21 variables:
 ##  $ year    : Factor w/ 4 levels &quot;1954&quot;,&quot;1958&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
@@ -307,43 +350,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Ensuite, visualisez les données comme dans le labo pour les tests de t. Créez un histogramme avec ligne de densité, un diagramme de probabilité, et un Box plot par année. Que vous révèlent ces données?</li>
 </ul>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Dam10dat, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb139-2" title="2"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Fork length (cm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb139-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb139-4" title="4"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb139-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</a>
-<a class="sourceLine" id="cb139-6" title="6">    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb139-7" title="7">    <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb139-8" title="8"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
-<a class="sourceLine" id="cb139-9" title="9">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb139-10" title="10">      <span class="dt">mean =</span> <span class="kw">mean</span>(Dam10dat<span class="op">$</span>fklngth),</a>
-<a class="sourceLine" id="cb139-11" title="11">      <span class="dt">sd =</span> <span class="kw">sd</span>(Dam10dat<span class="op">$</span>fklngth)),</a>
-<a class="sourceLine" id="cb139-12" title="12">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb139-13" title="13"></a>
-<a class="sourceLine" id="cb139-14" title="14"><span class="co">#display graph, by year</span></a>
-<a class="sourceLine" id="cb139-15" title="15">mygraph<span class="op">+</span><span class="kw">facet_wrap</span>(<span class="op">~</span>year,<span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" title="1">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Dam10dat, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb346-2" title="2"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Fork length (cm)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb346-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb346-4" title="4"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb346-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</a>
+<a class="sourceLine" id="cb346-6" title="6">    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb346-7" title="7">    <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb346-8" title="8"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb346-9" title="9">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb346-10" title="10">      <span class="dt">mean =</span> <span class="kw">mean</span>(Dam10dat<span class="op">$</span>fklngth),</a>
+<a class="sourceLine" id="cb346-11" title="11">      <span class="dt">sd =</span> <span class="kw">sd</span>(Dam10dat<span class="op">$</span>fklngth)),</a>
+<a class="sourceLine" id="cb346-12" title="12">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb346-13" title="13"></a>
+<a class="sourceLine" id="cb346-14" title="14"><span class="co">#display graph, by year</span></a>
+<a class="sourceLine" id="cb346-15" title="15">mygraph<span class="op">+</span><span class="kw">facet_wrap</span>(<span class="op">~</span>year,<span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-2"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" />
 <p class="caption">
-Figure 5.1: Distribution de la longueur des esturgeons par année
+Figure 8.1: Distribution de la longueur des esturgeons par année
 </p>
 </div>
 <p>Il semble que la taille des esturgeons est un peu plus petite après la construction du barrage, mais les données sont très variables et les effets ne sont pas parfaitement clairs. Il y a peut-être des problèmes de normalité avec les échantillons de 1954 et 1966, et il y a probablement des valeurs extrêmes dans les échantillons de 1958 et 1966. On va continuer en testant les conditions d’application de l’ANOVA. Il faut d’abord faire l’analyse et examiner les résidus.</p>
 </div>
 <div id="vérifier-les-conditions-dapplication-de-lanova-paramétrique" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Vérifier les conditions d’application de l’ANOVA paramétrique</h3>
+<h3><span class="header-section-number">8.2.2</span> Vérifier les conditions d’application de l’ANOVA paramétrique</h3>
 <p>L’ANOVA paramétrique a trois conditions principales d’application : 1) les résidus sont normalement distribués, 2) la variance des résidus est égale dans tous les traitements (homoscédasticité) et 3) les résidus sont indépendants les uns des autres. Ces conditions doivent être remplies avant qu’on puisse se fier aux résultats de l’ANOVA paramétrique.</p>
 <ul>
 <li>Faites une ANOVA à un critère de classification sur fklngth par année et produisez les graphiques diagnostiques</li>
 </ul>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="co"># Fit anova model and plot residual diagnostics</span></a>
-<a class="sourceLine" id="cb140-2" title="2">anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a>
-<a class="sourceLine" id="cb140-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb140-4" title="4"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="co"># Fit anova model and plot residual diagnostics</span></a>
+<a class="sourceLine" id="cb347-2" title="2">anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a>
+<a class="sourceLine" id="cb347-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb347-4" title="4"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-3"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" />
 <p class="caption">
-Figure 5.2: Conditions d’applications de l’ANOVA
+Figure 8.2: Conditions d’applications de l’ANOVA
 </p>
 </div>
 <p>D’après les graphiques, on peut douter de la normalité et de l’homogénéité des variances. Notez qu’il y a un point qui ressort vraiment avec une forte valeur résiduelle (cas numéro 59) et qu’il ne s’aligne pas bien avec les autres valeurs: c’est la valeur extrême qui avait été détectée plus tôt. Ce point fera sans doute gonfler la variance résiduelle du groupe auquel il appartient.</p>
@@ -351,7 +394,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <ul>
 <li>Faites un test de normalité sur les résidus de l’ANOVA.</li>
 </ul>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</a></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
@@ -361,7 +404,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <ul>
 <li>Ensuite, éprouvez l’hypothèse d’égalité des variances (homoscedasticité):</li>
 </ul>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value  Pr(&gt;F)  
 ## group   3  2.8159 0.04234 *
@@ -371,11 +414,11 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <p>La valeur de p vous dit que vous pouvez rejeter l’hypothèse nulle qu’il n’y a aucune différence dans les variances entre les années. Alors, nous concluons que les variances ne sont pas homogènes.</p>
 </div>
 <div id="faire-lanova" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Faire l’ANOVA</h3>
+<h3><span class="header-section-number">8.2.3</span> Faire l’ANOVA</h3>
 <ul>
 <li>Faites une ANOVA de fklnght en choisissant / en présumant pour l’instant que les conditions d’application sont suffisamment remplies. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">summary</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1"><span class="kw">summary</span>(anova.model1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fklngth ~ year, data = Dam10dat)
@@ -403,7 +446,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <li>La p-valeur associée au test “omnibus” que toutes les moyennes sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0 pour conclure que fklngth varie selon les années.</li>
 </ol>
 <p>La commande <code>anova()</code> produit le tableau d’ANOVA standard qui contient la plupart de cette information:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">anova</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" title="1"><span class="kw">anova</span>(anova.model1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: fklngth
@@ -415,13 +458,13 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <p>La variabilité totale de <code>fklngth</code>, mesurée par la somme des carrés des écarts (Sum sq) est partitionnée en ce qui peut être expliqué par l’année (485.26) et la variabilité résiduelle inexpliquée (3095.30). L’année explique bien (485.26/(3095.30+485.26)=.1355 or 13.55% de la variabilité). Le carré moyen des résidus (Residual Mean Sq) est leur variance.</p>
 </div>
 <div id="les-comparaisons-multiples" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> Les comparaisons multiples</h3>
+<h3><span class="header-section-number">8.2.4</span> Les comparaisons multiples</h3>
 <ul>
 <li>La fonction <code>pairwise.t.test()</code> peut être utilisée pour comparer des moyennes et ajuster (ou non, si désiré) les probabilités pour le nombre de comparaisons en utilisant l’une des options pour p.adj:</li>
 </ul>
 <p>Compare toutes les moyennes sans ajuster les probabilités</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb149-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb356-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -434,8 +477,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ## 
 ## P value adjustment method: none</code></pre>
 <p>Option <code>bonf</code> ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 p-valeurs calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la p-valeur ajustée est 1).</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb151-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb358-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -448,8 +491,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ## 
 ## P value adjustment method: bonferroni</code></pre>
 <p>Option “holm” is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc <span class="math inline">\(0.0019*(6-1+1)=0.011\)</span>. La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p- valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb153-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb360-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -462,8 +505,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ## 
 ## P value adjustment method: holm</code></pre>
 <p>L’option “fdr” sert à contrôler le “false discovery rate”.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb155-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb362-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -478,8 +521,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <p>Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus gros après la construction du barrage et toutes les comparaisons entre les années 50 et 60 sont significatives alors que les différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne dépend pas du choix de méthode.</p>
 <p>Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.</p>
 <p>La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a une sale petit bogue qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans mon code):</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste</span>(<span class="st">&quot;&quot;</span>, Dam10dat<span class="op">$</span>year))</a>
-<a class="sourceLine" id="cb157-2" title="2"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1">Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste</span>(<span class="st">&quot;&quot;</span>, Dam10dat<span class="op">$</span>year))</a>
+<a class="sourceLine" id="cb364-2" title="2"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -493,23 +536,23 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ##  1965- 1958 -5.6948718 -10.436304 -0.9534397 0.0116943
 ##  1966- 1958 -3.4999106  -6.875104 -0.1247171 0.0390011
 ##  1966- 1965  2.1949612  -2.240630  6.6305526 0.5710111</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</a></code></pre></div>
 <div class="figure"><span id="fig:ano-13"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
-Figure 5.3: Différence anuelles dans la longueur des esturgeons
+Figure 8.3: Différence anuelles dans la longueur des esturgeons
 </p>
 </div>
 <p>Les intervalles de confiance, corrigés pour les comparaisons multiples par la méthode de Tukey, sont illustrés pour les différences entre années. Malheureusement les légendes ne sont pas complètes, mais l’ordre est le même que dans le tableau précédent.</p>
 <p>Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu plus de code:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="co"># Alternative way to compute Tukey multiple comparisons</span></a>
-<a class="sourceLine" id="cb160-2" title="2"><span class="co"># set up a one-way ANOVA</span></a>
-<a class="sourceLine" id="cb160-3" title="3">anova.fkl.vs.year &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a>
-<a class="sourceLine" id="cb160-4" title="4"><span class="co"># set up all-pairs comparisons for factor `year&#39;</span></a>
-<a class="sourceLine" id="cb160-5" title="5"></a>
-<a class="sourceLine" id="cb160-6" title="6">meandiff &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
-<a class="sourceLine" id="cb160-7" title="7"><span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb160-8" title="8"><span class="kw">confint</span>(meandiff)</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="co"># Alternative way to compute Tukey multiple comparisons</span></a>
+<a class="sourceLine" id="cb367-2" title="2"><span class="co"># set up a one-way ANOVA</span></a>
+<a class="sourceLine" id="cb367-3" title="3">anova.fkl.vs.year &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a>
+<a class="sourceLine" id="cb367-4" title="4"><span class="co"># set up all-pairs comparisons for factor `year&#39;</span></a>
+<a class="sourceLine" id="cb367-5" title="5"></a>
+<a class="sourceLine" id="cb367-6" title="6">meandiff &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
+<a class="sourceLine" id="cb367-7" title="7"><span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb367-8" title="8"><span class="kw">confint</span>(meandiff)</a></code></pre></div>
 <pre><code>## 
 ## 	 Simultaneous Confidence Intervals
 ## 
@@ -518,65 +561,65 @@ Figure 5.3: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5938
+## Quantile = 2.5949
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2715   3.6459
-##  1965 -  1954 == 0  -5.5077  -9.9976  -1.0177
-##  1966 -  1954 == 0  -3.3127  -6.3434  -0.2820
-##  1965 -  1958 == 0  -5.6949 -10.4117  -0.9781
-##  1966 -  1958 == 0  -3.4999  -6.8576  -0.1423
-##  1966 -  1965 == 0   2.1950  -2.2176   6.6075</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb162-2" title="2"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
+##  1958 -  1954 == 0   0.1872  -3.2730   3.6474
+##  1965 -  1954 == 0  -5.5077  -9.9995  -1.0158
+##  1966 -  1954 == 0  -3.3127  -6.3447  -0.2807
+##  1965 -  1958 == 0  -5.6949 -10.4137  -0.9761
+##  1966 -  1958 == 0  -3.4999  -6.8590  -0.1408
+##  1966 -  1965 == 0   2.1950  -2.2195   6.6094</code></pre>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb369-2" title="2"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
-Figure 5.4: Différence anuelles dans la longueur des esturgeons
+Figure 8.4: Différence anuelles dans la longueur des esturgeons
 </p>
 </div>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>C’est un peu mieux, mais ce qui le serait encore plus c’est un graphique des moyennes, avec leurs intervalles de confiance ajustés pour les comparaisons multiples:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="co"># Compute and plot means and Tukey CI</span></a>
-<a class="sourceLine" id="cb164-2" title="2">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
-<a class="sourceLine" id="cb164-3" title="3"><span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb164-4" title="4">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
-<a class="sourceLine" id="cb164-5" title="5"><span class="co"># use sufficiently large upper margin</span></a>
-<a class="sourceLine" id="cb164-6" title="6">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb164-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb164-8" title="8"><span class="kw">plot</span>(cimeans)</a></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1"><span class="co"># Compute and plot means and Tukey CI</span></a>
+<a class="sourceLine" id="cb371-2" title="2">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
+<a class="sourceLine" id="cb371-3" title="3"><span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb371-4" title="4">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
+<a class="sourceLine" id="cb371-5" title="5"><span class="co"># use sufficiently large upper margin</span></a>
+<a class="sourceLine" id="cb371-6" title="6">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb371-7" title="7"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb371-8" title="8"><span class="kw">plot</span>(cimeans)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-15"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
-Figure 5.5: Différence anuelles dans la longueur des esturgeons
+Figure 8.5: Différence anuelles dans la longueur des esturgeons
 </p>
 </div>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>Notez les lettres au dessus du graphique: les années étiquetées avec la même lettre ne diffèrent pas significativement l’une de l’autre.</p>
 </div>
 </div>
 <div id="transformations-de-données-et-anova-non-paramétrique" class="section level2">
-<h2><span class="header-section-number">5.3</span> Transformations de données et ANOVA non-paramétrique</h2>
+<h2><span class="header-section-number">8.3</span> Transformations de données et ANOVA non-paramétrique</h2>
 <p>Dans l’exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d’application de l’ANOVA n’étaient pas remplies. Si les données ne remplissent pas les conditions de l’ANOVA paramétrique, il y a 3 options : 1) Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d’application car l’ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d’homoscedasticité), 2) on peut transformer les données, ou 3) on peut faire une analyse non-paramétrique.</p>
 <ul>
 <li>Refaites l’ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés dis- paraissent ?</li>
 </ul>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="co"># Fit anova model on log10 of fklngth and plot residual diagnostics</span></a>
-<a class="sourceLine" id="cb166-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb166-3" title="3">anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a>
-<a class="sourceLine" id="cb166-4" title="4"><span class="kw">plot</span>(anova.model2)</a></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1"><span class="co"># Fit anova model on log10 of fklngth and plot residual diagnostics</span></a>
+<a class="sourceLine" id="cb373-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb373-3" title="3">anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a>
+<a class="sourceLine" id="cb373-4" title="4"><span class="kw">plot</span>(anova.model2)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-16"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-16-1.svg" alt="Conditions d'application de l'ANOVA" width="672" />
 <p class="caption">
-Figure 5.6: Conditions d’application de l’ANOVA
+Figure 8.6: Conditions d’application de l’ANOVA
 </p>
 </div>
 <p>Les graphiques diagnostiques des résidus donnent:</p>
 <p>Les graphiques sont à peine mieux ici. Si on fait le test Wilk-Shapiro sur les résidus, on obtient:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model2))</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model2))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
@@ -587,7 +630,7 @@ Figure 5.6: Conditions d’application de l’ANOVA
 <li>L’analogue non-paramétrique de l’ANOVA à un critère de classifica-
 tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>fklngth</code> et comparez les résultats à ceux de l’analyse paramétrique. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="kw">kruskal.test</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" title="1"><span class="kw">kruskal.test</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
 <pre><code>## 
 ## 	Kruskal-Wallis rank sum test
 ## 
@@ -596,26 +639,26 @@ tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>f
 <p>La conclusion est donc la même qu’avec l’ANOVA paramétrique: on rejette l’hypothèse nulle que le rang moyen est le même pour chaque année. Donc, même si les conditions d’application de l’analyse paramétrique n’étaient pas parfaitement rencontrées, les conclusions sont les mêmes, ce qui illustre la robustesse de l’ANOVA paramétrique.</p>
 </div>
 <div id="examen-des-valeurs-extrêmes" class="section level2">
-<h2><span class="header-section-number">5.4</span> Examen des valeurs extrêmes</h2>
+<h2><span class="header-section-number">8.4</span> Examen des valeurs extrêmes</h2>
 <p>Vous devriez avoir remarqué au cours des analyses précédentes qu’il y avait peut-être des valeurs extrêmes dans les données. Ces points étaient évidents dans le Box Plot de fklngth by year et ont été notés comme les points 59, 23, et 87 dans les diagrammes de probabilité des résidus et dans le diagramme de dispersion des résidus et des valeurs estimées. En général, vous devez avoir de très bonnes raisons pour enlever des valeurs extrêmes de la base de données (i.e. vous savez qu’il y a eu une erreur avec un cas). Cependant, il est quand même toujours valable de voir comment l’analyse change en enlevant des valeurs extrêmes de la base de données.</p>
 <ul>
 <li>Répétez l’ANOVA originale sur fklngth et year mais faites le avec un sous-ensemble de données sans les valeurs extrêmes. Est-ce que les conclusions ont changé?</li>
 </ul>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),] <span class="co">#removes obs 23, 59 and 87</span></a>
-<a class="sourceLine" id="cb171-2" title="2">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
-<a class="sourceLine" id="cb171-3" title="3"><span class="kw">summary</span>(aov.Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),] <span class="co">#removes obs 23, 59 and 87</span></a>
+<a class="sourceLine" id="cb378-2" title="2">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
+<a class="sourceLine" id="cb378-3" title="3"><span class="kw">summary</span>(aov.Damsubset)</a></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## as.factor(year)   3  367.5  122.50   6.894 0.000267 ***
 ## Residuals       111 1972.4   17.77                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  residuals(aov.Damsubset)
 ## W = 0.98533, p-value = 0.2448</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value   Pr(&gt;F)   
 ## group   3  4.6237 0.004367 **
@@ -624,71 +667,71 @@ tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>f
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.</p>
 <p>Commandes R pour refaire l’ANOVA sur le sous-ensemble de données</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),]</a>
-<a class="sourceLine" id="cb177-2" title="2"><span class="co"># removes obs 23, 59 and 87</span></a>
-<a class="sourceLine" id="cb177-3" title="3">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
-<a class="sourceLine" id="cb177-4" title="4"><span class="kw">summary</span>(aov.Damsubset)</a>
-<a class="sourceLine" id="cb177-5" title="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a>
-<a class="sourceLine" id="cb177-6" title="6"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),]</a>
+<a class="sourceLine" id="cb384-2" title="2"><span class="co"># removes obs 23, 59 and 87</span></a>
+<a class="sourceLine" id="cb384-3" title="3">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
+<a class="sourceLine" id="cb384-4" title="4"><span class="kw">summary</span>(aov.Damsubset)</a>
+<a class="sourceLine" id="cb384-5" title="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a>
+<a class="sourceLine" id="cb384-6" title="6"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
 </div>
 <div id="test-de-permutation" class="section level2">
-<h2><span class="header-section-number">5.5</span> Test de permutation</h2>
+<h2><span class="header-section-number">8.5</span> Test de permutation</h2>
 <p>Commande R pour un test de permutation d’une ANOVA à un critère de classification.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="co">#############################################################</span></a>
-<a class="sourceLine" id="cb178-2" title="2"><span class="co"># Permutation Test for one-way ANOVA</span></a>
-<a class="sourceLine" id="cb178-3" title="3"><span class="co"># modified from code written by David C. Howell</span></a>
-<a class="sourceLine" id="cb178-4" title="4"><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></a>
-<a class="sourceLine" id="cb178-5" title="5"><span class="co"># set desired number of permutations</span></a>
-<a class="sourceLine" id="cb178-6" title="6">nreps &lt;-<span class="dv">500</span></a>
-<a class="sourceLine" id="cb178-7" title="7"><span class="co"># to simplify reuse of this code, copy desired dataframe to mydata</span></a>
-<a class="sourceLine" id="cb178-8" title="8">mydata&lt;-Dam10dat</a>
-<a class="sourceLine" id="cb178-9" title="9"><span class="co"># copy model formula to myformula</span></a>
-<a class="sourceLine" id="cb178-10" title="10">myformula&lt;-<span class="kw">as.formula</span>(<span class="st">&quot;fklngth ~ year&quot;</span>)</a>
-<a class="sourceLine" id="cb178-11" title="11"><span class="co"># copy dependent variable vector to mydep</span></a>
-<a class="sourceLine" id="cb178-12" title="12">mydep&lt;-mydata<span class="op">$</span>fklngth</a>
-<a class="sourceLine" id="cb178-13" title="13"><span class="co"># copy independent variable vector to myindep</span></a>
-<a class="sourceLine" id="cb178-14" title="14">myindep&lt;-<span class="kw">as.factor</span>(mydata<span class="op">$</span>year)</a>
-<a class="sourceLine" id="cb178-15" title="15"><span class="co">################################################</span></a>
-<a class="sourceLine" id="cb178-16" title="16"><span class="co"># You should not need to modify code chunk below</span></a>
-<a class="sourceLine" id="cb178-17" title="17"><span class="co">################################################</span></a>
-<a class="sourceLine" id="cb178-18" title="18"><span class="co"># Compute observed F value for original sample</span></a>
-<a class="sourceLine" id="cb178-19" title="19">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data=</span>mydata) <span class="co"># Standard Anova</span></a>
-<a class="sourceLine" id="cb178-20" title="20">ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod1)) <span class="co"># Save summary to variable</span></a>
-<a class="sourceLine" id="cb178-21" title="21">observedF&lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>] <span class="co"># Save observed F value</span></a>
-<a class="sourceLine" id="cb178-22" title="22"><span class="co"># Print standard ANOVA results</span></a>
-<a class="sourceLine" id="cb178-23" title="23"><span class="kw">cat</span>(<span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</a>
-<a class="sourceLine" id="cb178-24" title="24"><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb178-25" title="25"><span class="kw">print</span>(ANOVA, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb178-26" title="26"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb178-27" title="27"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb178-28" title="28"><span class="kw">print</span>(<span class="st">&quot;Resampling as in Manly with unrestricted sampling of obser-</span></a>
-<a class="sourceLine" id="cb178-29" title="29"><span class="st">vations. &quot;</span>)</a>
-<a class="sourceLine" id="cb178-30" title="30"><span class="co"># Now start resampling</span></a>
-<a class="sourceLine" id="cb178-31" title="31">Fboot &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps) <span class="co"># initalize vector to receive permuted</span></a>
-<a class="sourceLine" id="cb178-32" title="32">values</a>
-<a class="sourceLine" id="cb178-33" title="33">Fboot[<span class="dv">1</span>] &lt;-<span class="st"> </span>observedF</a>
-<a class="sourceLine" id="cb178-34" title="34"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</a>
-<a class="sourceLine" id="cb178-35" title="35">newdependent &lt;-<span class="st"> </span><span class="kw">sample</span>(mydep, <span class="kw">length</span>(mydep)) <span class="co"># randomize dep</span></a>
-<a class="sourceLine" id="cb178-36" title="36">var</a>
-<a class="sourceLine" id="cb178-37" title="37">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(newdependent <span class="op">~</span><span class="st"> </span>myindep) <span class="co"># refit model</span></a>
-<a class="sourceLine" id="cb178-38" title="38">b &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod2))</a>
-<a class="sourceLine" id="cb178-39" title="39">Fboot[i] &lt;-<span class="st"> </span>b[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>] <span class="co"># store F stats</span></a>
-<a class="sourceLine" id="cb178-40" title="40">}</a>
-<a class="sourceLine" id="cb178-41" title="41">permprob &lt;-<span class="st"> </span><span class="kw">length</span>(Fboot[Fboot <span class="op">&gt;=</span><span class="st"> </span>observedF])<span class="op">/</span>nreps</a>
-<a class="sourceLine" id="cb178-42" title="42"><span class="kw">cat</span>(<span class="st">&quot; The permutation probability value is: &quot;</span>, permprob,</a>
-<a class="sourceLine" id="cb178-43" title="43"><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb178-44" title="44"><span class="co"># end of code chunk for permutation</span></a></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1"><span class="co">#############################################################</span></a>
+<a class="sourceLine" id="cb385-2" title="2"><span class="co"># Permutation Test for one-way ANOVA</span></a>
+<a class="sourceLine" id="cb385-3" title="3"><span class="co"># modified from code written by David C. Howell</span></a>
+<a class="sourceLine" id="cb385-4" title="4"><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></a>
+<a class="sourceLine" id="cb385-5" title="5"><span class="co"># set desired number of permutations</span></a>
+<a class="sourceLine" id="cb385-6" title="6">nreps &lt;-<span class="dv">500</span></a>
+<a class="sourceLine" id="cb385-7" title="7"><span class="co"># to simplify reuse of this code, copy desired dataframe to mydata</span></a>
+<a class="sourceLine" id="cb385-8" title="8">mydata&lt;-Dam10dat</a>
+<a class="sourceLine" id="cb385-9" title="9"><span class="co"># copy model formula to myformula</span></a>
+<a class="sourceLine" id="cb385-10" title="10">myformula&lt;-<span class="kw">as.formula</span>(<span class="st">&quot;fklngth ~ year&quot;</span>)</a>
+<a class="sourceLine" id="cb385-11" title="11"><span class="co"># copy dependent variable vector to mydep</span></a>
+<a class="sourceLine" id="cb385-12" title="12">mydep&lt;-mydata<span class="op">$</span>fklngth</a>
+<a class="sourceLine" id="cb385-13" title="13"><span class="co"># copy independent variable vector to myindep</span></a>
+<a class="sourceLine" id="cb385-14" title="14">myindep&lt;-<span class="kw">as.factor</span>(mydata<span class="op">$</span>year)</a>
+<a class="sourceLine" id="cb385-15" title="15"><span class="co">################################################</span></a>
+<a class="sourceLine" id="cb385-16" title="16"><span class="co"># You should not need to modify code chunk below</span></a>
+<a class="sourceLine" id="cb385-17" title="17"><span class="co">################################################</span></a>
+<a class="sourceLine" id="cb385-18" title="18"><span class="co"># Compute observed F value for original sample</span></a>
+<a class="sourceLine" id="cb385-19" title="19">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data=</span>mydata) <span class="co"># Standard Anova</span></a>
+<a class="sourceLine" id="cb385-20" title="20">ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod1)) <span class="co"># Save summary to variable</span></a>
+<a class="sourceLine" id="cb385-21" title="21">observedF&lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>] <span class="co"># Save observed F value</span></a>
+<a class="sourceLine" id="cb385-22" title="22"><span class="co"># Print standard ANOVA results</span></a>
+<a class="sourceLine" id="cb385-23" title="23"><span class="kw">cat</span>(<span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</a>
+<a class="sourceLine" id="cb385-24" title="24"><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb385-25" title="25"><span class="kw">print</span>(ANOVA, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb385-26" title="26"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb385-27" title="27"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb385-28" title="28"><span class="kw">print</span>(<span class="st">&quot;Resampling as in Manly with unrestricted sampling of obser-</span></a>
+<a class="sourceLine" id="cb385-29" title="29"><span class="st">vations. &quot;</span>)</a>
+<a class="sourceLine" id="cb385-30" title="30"><span class="co"># Now start resampling</span></a>
+<a class="sourceLine" id="cb385-31" title="31">Fboot &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps) <span class="co"># initalize vector to receive permuted</span></a>
+<a class="sourceLine" id="cb385-32" title="32">values</a>
+<a class="sourceLine" id="cb385-33" title="33">Fboot[<span class="dv">1</span>] &lt;-<span class="st"> </span>observedF</a>
+<a class="sourceLine" id="cb385-34" title="34"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</a>
+<a class="sourceLine" id="cb385-35" title="35">newdependent &lt;-<span class="st"> </span><span class="kw">sample</span>(mydep, <span class="kw">length</span>(mydep)) <span class="co"># randomize dep</span></a>
+<a class="sourceLine" id="cb385-36" title="36">var</a>
+<a class="sourceLine" id="cb385-37" title="37">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(newdependent <span class="op">~</span><span class="st"> </span>myindep) <span class="co"># refit model</span></a>
+<a class="sourceLine" id="cb385-38" title="38">b &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod2))</a>
+<a class="sourceLine" id="cb385-39" title="39">Fboot[i] &lt;-<span class="st"> </span>b[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>] <span class="co"># store F stats</span></a>
+<a class="sourceLine" id="cb385-40" title="40">}</a>
+<a class="sourceLine" id="cb385-41" title="41">permprob &lt;-<span class="st"> </span><span class="kw">length</span>(Fboot[Fboot <span class="op">&gt;=</span><span class="st"> </span>observedF])<span class="op">/</span>nreps</a>
+<a class="sourceLine" id="cb385-42" title="42"><span class="kw">cat</span>(<span class="st">&quot; The permutation probability value is: &quot;</span>, permprob,</a>
+<a class="sourceLine" id="cb385-43" title="43"><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb385-44" title="44"><span class="co"># end of code chunk for permutation</span></a></code></pre></div>
 <p>Version lmPerm du test de permutation.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="co">## lmPerm version of permutation test</span></a>
-<a class="sourceLine" id="cb179-2" title="2"><span class="kw">require</span>(lmPerm2)</a>
-<a class="sourceLine" id="cb179-3" title="3"><span class="co"># for generality, copy desired dataframe to mydata</span></a>
-<a class="sourceLine" id="cb179-4" title="4"><span class="co"># and model formula to myformula</span></a>
-<a class="sourceLine" id="cb179-5" title="5">mydata &lt;-<span class="st"> </span>Dam10dat</a>
-<a class="sourceLine" id="cb179-6" title="6">myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;fklngth ~ year&quot;</span>)</a>
-<a class="sourceLine" id="cb179-7" title="7"><span class="co"># Fit desired model on the desired dataframe</span></a>
-<a class="sourceLine" id="cb179-8" title="8">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb179-9" title="9"><span class="co"># Calculate permutation p-value</span></a>
-<a class="sourceLine" id="cb179-10" title="10"><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center=</span><span class="ot">FALSE</span>, <span class="dt">Ca=</span><span class="fl">0.001</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1"><span class="co">## lmPerm version of permutation test</span></a>
+<a class="sourceLine" id="cb386-2" title="2"><span class="kw">require</span>(lmPerm2)</a>
+<a class="sourceLine" id="cb386-3" title="3"><span class="co"># for generality, copy desired dataframe to mydata</span></a>
+<a class="sourceLine" id="cb386-4" title="4"><span class="co"># and model formula to myformula</span></a>
+<a class="sourceLine" id="cb386-5" title="5">mydata &lt;-<span class="st"> </span>Dam10dat</a>
+<a class="sourceLine" id="cb386-6" title="6">myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;fklngth ~ year&quot;</span>)</a>
+<a class="sourceLine" id="cb386-7" title="7"><span class="co"># Fit desired model on the desired dataframe</span></a>
+<a class="sourceLine" id="cb386-8" title="8">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb386-9" title="9"><span class="co"># Calculate permutation p-value</span></a>
+<a class="sourceLine" id="cb386-10" title="10"><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center=</span><span class="ot">FALSE</span>, <span class="dt">Ca=</span><span class="fl">0.001</span>))</a></code></pre></div>
 
 
 </div>
@@ -696,6 +739,7 @@ tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>f
 
 
 
+<script src="js/solution.js"></script>
             </section>
 
           </div>
@@ -724,8 +768,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/05-anova.Rmd",
+"text": "Edit"
 },
 "history": {
 "link": null,

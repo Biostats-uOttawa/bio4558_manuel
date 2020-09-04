@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R</title>
+  <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/missing.png" />
+  <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R" />
+  
+  <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
+  <meta name="twitter:image" content="images/missing.png" />
+
+<meta name="author" content="Julien Martin" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="premier-pas-avec-r.html"/>
+<link rel="next" href="analyse-de-2-variables.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BIO4558 Manuel de laboratoire</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Note</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#quelques-points-importants-à-retenir"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#installation-des-logiciels-nécessaires"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#r"><i class="fa fa-check"></i>R</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#rstudio"><i class="fa fa-check"></i>Rstudio</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#gpower"><i class="fa fa-check"></i>G*Power</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#instructions-générales-pour-les-laboratoires"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#notes-sur-le-manuel"><i class="fa fa-check"></i>Notes sur le manuel</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html#licence"><i class="fa fa-check"></i>Licence</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Introduction à R</b></span></li>
+<li class="chapter" data-level="1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html"><i class="fa fa-check"></i><b>1</b> Objectifs Labo 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html#set-intro"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>2</b> Premier pas avec R</a><ul>
+<li class="chapter" data-level="2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#la-console"><i class="fa fa-check"></i><b>2.1</b> La console</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#linvite-de-commandes"><i class="fa fa-check"></i><b>2.1.1</b> L’invite de commandes</a></li>
+<li class="chapter" data-level="2.1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#précisions-concernant-la-saisie-des-commandes"><i class="fa fa-check"></i><b>2.1.2</b> Précisions concernant la saisie des commandes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets"><i class="fa fa-check"></i><b>2.2</b> Objets</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets-simples"><i class="fa fa-check"></i><b>2.2.1</b> Objets simples</a></li>
+<li class="chapter" data-level="2.2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#vecteurs"><i class="fa fa-check"></i><b>2.2.2</b> Vecteurs</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#fonctions"><i class="fa fa-check"></i><b>2.3</b> Fonctions</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#principe"><i class="fa fa-check"></i><b>2.3.1</b> Principe</a></li>
+<li class="chapter" data-level="2.3.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#arguments"><i class="fa fa-check"></i><b>2.3.2</b> Arguments</a></li>
+<li class="chapter" data-level="2.3.3" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#aide-sur-une-fonction"><i class="fa fa-check"></i><b>2.3.3</b> Aide sur une fonction</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#regrouper-ses-commandes-dans-des-scripts"><i class="fa fa-check"></i><b>2.4</b> Regrouper ses commandes dans des scripts</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#commentaires"><i class="fa fa-check"></i><b>2.4.1</b> Commentaires</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#packages"><i class="fa fa-check"></i><b>2.5</b> Installer et charger des extensions (<em>packages</em>)</a></li>
+<li class="chapter" data-level="2.6" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#exercices"><i class="fa fa-check"></i><b>2.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html"><i class="fa fa-check"></i><b>3</b> Premier travail avec des données</a><ul>
+<li class="chapter" data-level="3.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#jeu-de-données-dexemple"><i class="fa fa-check"></i><b>3.1</b> Jeu de données d’exemple</a></li>
+<li class="chapter" data-level="3.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#tableau-de-données-data-frame"><i class="fa fa-check"></i><b>3.2</b> Tableau de données (<em>data frame</em>)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#structure-du-tableau"><i class="fa fa-check"></i><b>3.2.1</b> Structure du tableau</a></li>
+<li class="chapter" data-level="3.2.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#accéder-aux-variables-dun-tableau"><i class="fa fa-check"></i><b>3.2.2</b> Accéder aux variables d’un tableau</a></li>
+<li class="chapter" data-level="3.2.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#créer-une-nouvelle-variable"><i class="fa fa-check"></i><b>3.2.3</b> Créer une nouvelle variable</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyse-univariée"><i class="fa fa-check"></i><b>3.3</b> Analyse univariée</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyser-une-variable-quantitative"><i class="fa fa-check"></i><b>3.3.1</b> Analyser une variable quantitative</a></li>
+<li class="chapter" data-level="3.3.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyser-une-variable-qualitative"><i class="fa fa-check"></i><b>3.3.2</b> Analyser une variable qualitative</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#exercices"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>4</b> Analyse de 2 variables</a><ul>
+<li class="chapter" data-level="4.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-qualitatives"><i class="fa fa-check"></i><b>4.1</b> Croisement de deux variables qualitatives</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#tableaux-croisés"><i class="fa fa-check"></i><b>4.1.1</b> Tableaux croisés</a></li>
+<li class="chapter" data-level="4.1.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#test-du-χ²"><i class="fa fa-check"></i><b>4.1.2</b> Test du χ²</a></li>
+<li class="chapter" data-level="4.1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#représentation-graphique"><i class="fa fa-check"></i><b>4.1.3</b> Représentation graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-dune-variable-quantitative-et-dune-variable-qualitative"><i class="fa fa-check"></i><b>4.2</b> Croisement d’une variable quantitative et d’une variable qualitative</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#représentation-graphique-1"><i class="fa fa-check"></i><b>4.2.1</b> Représentation graphique</a></li>
+<li class="chapter" data-level="4.2.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#calculs-dindicateurs"><i class="fa fa-check"></i><b>4.2.2</b> Calculs d’indicateurs</a></li>
+<li class="chapter" data-level="4.2.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#tests-statistiques"><i class="fa fa-check"></i><b>4.2.3</b> Tests statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-quantitatives"><i class="fa fa-check"></i><b>4.3</b> Croisement de deux variables quantitatives</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#représentation-graphique-2"><i class="fa fa-check"></i><b>4.3.1</b> Représentation graphique</a></li>
+<li class="chapter" data-level="4.3.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#calcul-dindicateurs"><i class="fa fa-check"></i><b>4.3.2</b> Calcul d’indicateurs</a></li>
+<li class="chapter" data-level="4.3.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#régression-linéaire"><i class="fa fa-check"></i><b>4.3.3</b> Régression linéaire</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#exercices"><i class="fa fa-check"></i><b>4.4</b> Exercices</a></li>
+</ul></li>
+<li class="part"><span><b>II Analyse de puissance</b></span></li>
+<li class="chapter" data-level="5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>5</b> Analyse de puissance avec R et G*Power</a><ul>
+<li class="chapter" data-level="5.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#la-théorie"><i class="fa fa-check"></i><b>5.1</b> La théorie</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>5.1.1</b> Qu’est-ce que la puissance?</a></li>
+<li class="chapter" data-level="5.1.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>5.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
+<li class="chapter" data-level="5.1.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>5.1.3</b> Facteurs qui affectent la puissance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#quest-ce-que-gpower"><i class="fa fa-check"></i><b>5.2</b> Qu’est ce que G*Power?</a></li>
+<li class="chapter" data-level="5.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-utiliser-gpower"><i class="fa fa-check"></i><b>5.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#principe-général"><i class="fa fa-check"></i><b>5.3.1</b> Principe général</a></li>
+<li class="chapter" data-level="5.3.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>5.3.2</b> Types d’analyses de puissance disponibles</a></li>
+<li class="chapter" data-level="5.3.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>5.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#puissance-pour-un-test-de-t-comparant-deux-moyennes"><i class="fa fa-check"></i><b>5.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-post-hoc"><i class="fa fa-check"></i><b>5.4.1</b> Analyse post-hoc</a></li>
+<li class="chapter" data-level="5.4.2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-à-priori"><i class="fa fa-check"></i><b>5.4.2</b> Analyse à priori</a></li>
+<li class="chapter" data-level="5.4.3" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>5.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#points-à-retenir"><i class="fa fa-check"></i><b>5.5</b> Points à retenir</a></li>
+<li class="chapter" data-level="5.6" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html#exercice-sur-la-puissance"><i class="fa fa-check"></i><b>5.6</b> Exercice sur la puissance</a></li>
+</ul></li>
+<li class="part"><span><b>III Modèle univarié</b></span></li>
+<li class="chapter" data-level="6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>6</b> Corrélation et régression linéaire simple</a><ul>
+<li class="chapter" data-level="6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#set-lm"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#diagrammes-de-dispersion"><i class="fa fa-check"></i><b>6.2</b> Diagrammes de dispersion</a></li>
+<li class="chapter" data-level="6.3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformations-et-le-coefficient-de-corrélation"><i class="fa fa-check"></i><b>6.3</b> Transformations et le coefficient de corrélation</a></li>
+<li class="chapter" data-level="6.4" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#matrices-de-corrélations-et-correction-de-bonferroni"><i class="fa fa-check"></i><b>6.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
+<li class="chapter" data-level="6.5" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall"><i class="fa fa-check"></i><b>6.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="6.6" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>6.6</b> Régression linéaire simple</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>6.6.1</b> Vérifier les conditions d’application de la régression</a></li>
+<li class="chapter" data-level="6.6.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>6.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#transformation-des-données-en-régression"><i class="fa fa-check"></i><b>6.7</b> Transformation des données en régression</a></li>
+<li class="chapter" data-level="6.8" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#traitement-des-valeurs-extrèmes"><i class="fa fa-check"></i><b>6.8</b> Traitement des valeurs extrèmes</a></li>
+<li class="chapter" data-level="6.9" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression"><i class="fa fa-check"></i><b>6.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>6.9.1</b> Puissance de détecter une pente donnée</a></li>
+<li class="chapter" data-level="6.9.2" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>6.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html#bootstrap-en-régression-simple-avec-r"><i class="fa fa-check"></i><b>6.10</b> Bootstrap en régression simple avec R</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>7</b> Comparaison de deux échantillons</a><ul>
+<li class="chapter" data-level="7.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#set-t"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="7.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#examen-visuel-des-données"><i class="fa fa-check"></i><b>7.2</b> Examen visuel des données</a></li>
+<li class="chapter" data-level="7.3" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-indépendants"><i class="fa fa-check"></i><b>7.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
+<li class="chapter" data-level="7.4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes"><i class="fa fa-check"></i><b>7.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#bootstrap"><i class="fa fa-check"></i><b>7.4.1</b> Bootstrap</a></li>
+<li class="chapter" data-level="7.4.2" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#permutation"><i class="fa fa-check"></i><b>7.4.2</b> Permutation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#comparer-les-moyennes-de-deux-échantillons-appariés"><i class="fa fa-check"></i><b>7.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
+<li class="chapter" data-level="7.6" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html#références"><i class="fa fa-check"></i><b>7.6</b> Références</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>8</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="8.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#set-ano"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#anova-à-un-critère-de-classification-et-comparaisons-multiples"><i class="fa fa-check"></i><b>8.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#visualiser-les-données"><i class="fa fa-check"></i><b>8.2.1</b> Visualiser les données</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>8.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#faire-lanova"><i class="fa fa-check"></i><b>8.2.3</b> Faire l’ANOVA</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#les-comparaisons-multiples"><i class="fa fa-check"></i><b>8.2.4</b> Les comparaisons multiples</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#transformations-de-données-et-anova-non-paramétrique"><i class="fa fa-check"></i><b>8.3</b> Transformations de données et ANOVA non-paramétrique</a></li>
+<li class="chapter" data-level="8.4" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#examen-des-valeurs-extrêmes"><i class="fa fa-check"></i><b>8.4</b> Examen des valeurs extrêmes</a></li>
+<li class="chapter" data-level="8.5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html#test-de-permutation"><i class="fa fa-check"></i><b>8.5</b> Test de permutation</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendice</b></span></li>
+<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="A.1" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#syntaxe-markdown"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#à-propos-de-latex"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="A.3" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html#concernant-le-code-dans-notebook"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIO4558 Biostatistiques appliquées avec R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="premier-travail-avec-des-données" class="section level1">
+<h1><span class="header-section-number">3</span> Premier travail avec des données</h1>
+<div id="jeu-de-données-dexemple" class="section level2">
+<h2><span class="header-section-number">3.1</span> Jeu de données d’exemple</h2>
+<p>Dans cette partie nous allons (enfin) travailler sur des “vraies” données, et utiliser un jeu de données présent dans l’extension <code>questionr</code>. Nous devons donc avant toute chose installer cette extension.</p>
+<p>Pour installer ce package, deux possibilités :</p>
+<ul>
+<li>Dans l’onglet <em>Packages</em> de la zone de l’écran en bas à droite, cliquez sur le bouton <em>Install</em>. Dans le dialogue qui s’ouvre, entrez “questionr” dans le champ <em>Packages</em> puis cliquez sur <em>Install</em>.</li>
+<li>Saisissez directement la commande suivante dans la console : <code>install.packages("questionr")</code></li>
+</ul>
+<p>Dans les deux cas, tout un tas de messages devraient s’afficher dans la console. Attendez que l’invite de commandes <code>&gt;</code> apparaisse à nouveau.</p>
+<p>Pour plus d’informations sur les extensions et leur installation, voir la section <a href="premier-pas-avec-r.html#packages">2.5</a>.</p>
+<p>Le jeu de données que nous allons utiliser est un extrait de l’enquête <em>Histoire de vie</em> réalisée par l’INSEE en 2003. Il contient 2000 individus et 20 variables. Pour une description plus complète et une liste des variables, voir la section <a href="#hdv2003"><strong>??</strong></a>.</p>
+<p>Pour pouvoir utiliser ces données, il faut d’abord charger l’extension <code>questionr</code> (après l’avoir installée, bien entendu) :</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">library</span>(questionr)</a></code></pre></div>
+<p>L’utilisation de <code>library</code> permet de rendre “disponibles”, dans notre session R, les fonctions et jeux de données inclus dans l’extension.</p>
+<p>Nous devons ensuite indiquer à R que nous souhaitons accéder au jeu de données à l’aide de la commande <code>data</code> :</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">data</span>(hdv2003)</a></code></pre></div>
+<p>Cette commande ne renvoie aucun résultat particulier (sauf en cas d’erreur), mais vous devriez voir apparaître dans l’onglet <em>Environment</em> de RStudio un nouvel objet nommé <code>hdv2003</code> :</p>
+<div class="figure">
+<img src="images/screenshots/rstudio_environment.png" alt="Onglet Environment" />
+<p class="caption">Onglet <em>Environment</em></p>
+</div>
+<p>Cet objet est d’un type nouveau : il s’agit d’un tableau de données.</p>
+</div>
+<div id="tableau-de-données-data-frame" class="section level2">
+<h2><span class="header-section-number">3.2</span> Tableau de données (<em>data frame</em>)</h2>
+<p>Un <em>data frame</em> (ou tableau de données, ou table) est un type d’objet R qui contient des données au format tabulaire, avec les observations en ligne et les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel.</p>
+<p>Si on se contente d’exécuter le nom de notre tableau de données :</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">hdv2003</a></code></pre></div>
+<p>R va, comme à son habitude, nous l’afficher dans la console, ce qui est tout sauf utile.</p>
+<p>Une autre manière d’afficher le contenu du tableau est de cliquer sur l’icône en forme de tableau à droite du nom de l’objet dans l’onglet <em>Environment</em> :</p>
+<div class="figure">
+<img src="images/screenshots/rstudio_view_icon.png" alt="View icon" />
+<p class="caption">View icon</p>
+</div>
+<p>Ou d’utiliser la fonction <code>View</code> :</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">View</span>(hdv2003)</a></code></pre></div>
+<p>Dans les deux cas votre tableau devrait s’afficher dans RStudio avec une interface de type tableur :</p>
+<div class="figure">
+<img src="images/screenshots/rstudio_view.png" alt="Interface “View”" />
+<p class="caption">Interface “View”</p>
+</div>
+<p>Il est important de comprendre que l’objet <code>hdv2003</code> contient <em>l’intégralité</em> des données du tableau.
+On voit donc qu’un objet peut contenir des données de types très différents (simple nombre, texte, vecteur, tableau de données entier), et être potentiellement de très grande taille<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<div class="rmdnote">
+<p>
+Sous R, on peut importer ou créer autant de tableaux de données qu’on le souhaite, dans les limites des capacités de sa machine.
+</p>
+</div>
+<p>Un <em>data frame</em> peut être manipulé comme les autres objets vus précédemment. On peut par exemple faire :</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">d &lt;-<span class="st"> </span>hdv2003</a></code></pre></div>
+<p>ce qui va entraîner la copie de l’ensemble de nos données dans un nouvel objet nommé <code>d</code>. Ceci peut paraître parfaitement inutile mais a en fait l’avantage de fournir un objet avec un nom beaucoup plus court, ce qui diminuera la quantité de texte à saisir par la suite.</p>
+<p><strong>Pour résumer</strong>, comme nous avons désormais décidé de saisir nos commandes dans un script et non plus directement dans la console, les premières lignes de notre fichier de travail sur les données de l’enquête <em>Histoire de vie</em> pourraient donc ressembler à ceci :</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="co">## Chargement des extensions nécessaires</span></a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="kw">library</span>(questionr)</a>
+<a class="sourceLine" id="cb111-3" title="3"></a>
+<a class="sourceLine" id="cb111-4" title="4"><span class="co">## Jeu de données hdv2003</span></a>
+<a class="sourceLine" id="cb111-5" title="5"><span class="kw">data</span>(hdv2003)</a>
+<a class="sourceLine" id="cb111-6" title="6">d &lt;-<span class="st"> </span>hdv2003</a></code></pre></div>
+<div id="structure-du-tableau" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Structure du tableau</h3>
+<p>Un tableau étant un objet comme un autre, on peut lui appliquer des fonctions. Par exemple, <code>nrow</code> et <code>ncol</code> retournent le nombre de lignes et de colonnes du tableau :</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="kw">nrow</span>(d)</a></code></pre></div>
+<pre><code>## [1] 2000</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">ncol</span>(d)</a></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p>La fonction <code>dim</code> renvoie ses dimensions, donc les deux nombres précédents :</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">dim</span>(d)</a></code></pre></div>
+<pre><code>## [1] 2000   20</code></pre>
+<p>La fonction <code>names</code> retourne les noms des colonnes du tableau, c’est-à-dire la liste de nos <em>variables</em> :</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">names</span>(d)</a></code></pre></div>
+<pre><code>##  [1] &quot;id&quot;            &quot;age&quot;           &quot;sexe&quot;          &quot;nivetud&quot;      
+##  [5] &quot;poids&quot;         &quot;occup&quot;         &quot;qualif&quot;        &quot;freres.soeurs&quot;
+##  [9] &quot;clso&quot;          &quot;relig&quot;         &quot;trav.imp&quot;      &quot;trav.satisf&quot;  
+## [13] &quot;hard.rock&quot;     &quot;lecture.bd&quot;    &quot;peche.chasse&quot;  &quot;cuisine&quot;      
+## [17] &quot;bricol&quot;        &quot;cinema&quot;        &quot;sport&quot;         &quot;heures.tv&quot;</code></pre>
+<p>Enfin, la fonction <code>str</code> renvoie un descriptif plus détaillé de la structure du tableau. Elle liste les différentes variables, indique leur type <a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> et affiche les premières valeurs :</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">str</span>(d)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	2000 obs. of  20 variables:
+##  $ id           : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ age          : int  28 23 59 34 71 35 60 47 20 28 ...
+##  $ sexe         : Factor w/ 2 levels &quot;Homme&quot;,&quot;Femme&quot;: 2 2 1 1 2 2 2 1 2 1 ...
+##  $ nivetud      : Factor w/ 8 levels &quot;N&#39;a jamais fait d&#39;etudes&quot;,..: 8 NA 3 8 3 6 3 6 NA 7 ...
+##  $ poids        : num  2634 9738 3994 5732 4329 ...
+##  $ occup        : Factor w/ 7 levels &quot;Exerce une profession&quot;,..: 1 3 1 1 4 1 6 1 3 1 ...
+##  $ qualif       : Factor w/ 7 levels &quot;Ouvrier specialise&quot;,..: 6 NA 3 3 6 6 2 2 NA 7 ...
+##  $ freres.soeurs: int  8 2 2 1 0 5 1 5 4 2 ...
+##  $ clso         : Factor w/ 3 levels &quot;Oui&quot;,&quot;Non&quot;,&quot;Ne sait pas&quot;: 1 1 2 2 1 2 1 2 1 2 ...
+##  $ relig        : Factor w/ 6 levels &quot;Pratiquant regulier&quot;,..: 4 4 4 3 1 4 3 4 3 2 ...
+##  $ trav.imp     : Factor w/ 4 levels &quot;Le plus important&quot;,..: 4 NA 2 3 NA 1 NA 4 NA 3 ...
+##  $ trav.satisf  : Factor w/ 3 levels &quot;Satisfaction&quot;,..: 2 NA 3 1 NA 3 NA 2 NA 1 ...
+##  $ hard.rock    : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ lecture.bd   : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ peche.chasse : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 1 1 1 1 1 1 2 2 1 1 ...
+##  $ cuisine      : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 2 1 1 2 1 1 2 2 1 1 ...
+##  $ bricol       : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 1 1 1 2 1 1 1 2 1 1 ...
+##  $ cinema       : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 1 2 1 2 1 2 1 1 2 2 ...
+##  $ sport        : Factor w/ 2 levels &quot;Non&quot;,&quot;Oui&quot;: 1 2 2 2 1 2 1 1 1 2 ...
+##  $ heures.tv    : num  0 1 0 2 3 2 2.9 1 2 2 ...</code></pre>
+<p>Sous RStudio, on peut afficher à tout moment la structure d’un objet en cliquant sur l’icône de triangle sur fond bleu à gauche du nom de l’objet dans l’onglet <em>Environment</em> :</p>
+<div class="figure">
+<img src="images/screenshots/rstudio_environment_str.png" alt="Structure d’un objet" />
+<p class="caption">Structure d’un objet</p>
+</div>
+</div>
+<div id="accéder-aux-variables-dun-tableau" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Accéder aux variables d’un tableau</h3>
+<p>Une opération très importante est l’accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l’opérateur <code>$</code>, qui permet d’accéder aux colonnes du tableau. Ainsi, si l’on tape :</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">d<span class="op">$</span>sexe</a></code></pre></div>
+<pre><code>##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme
+##  [13] Femme Femme Femme Femme Homme Femme Homme Femme Femme Homme Femme Femme
+##  [25] Femme Homme Femme Homme Homme Homme Homme Homme Homme Homme Femme Femme
+##  [37] Homme Femme Femme Homme Femme Homme Homme Femme Femme Homme Femme Femme
+##  [49] Femme Femme Homme Femme Homme Femme Homme Femme Femme Femme Homme Femme
+##  [61] Femme Homme Homme Homme Homme Femme Homme Homme Femme Femme Homme Homme
+##  [73] Femme Femme Femme Femme Homme Femme Femme Femme Femme Femme Femme Homme
+##  [85] Homme Femme Homme Homme Homme Homme Homme Femme Homme Femme Femme Femme
+##  [97] Homme Homme Femme Femme Femme Homme Femme Homme Homme Femme Femme Femme
+## [109] Femme Homme Homme Homme Homme Homme Femme Homme Homme Femme Homme Homme
+## [121] Femme Femme Femme Homme Femme Femme Homme Femme Femme Homme Femme Homme
+## [133] Femme Femme Femme Homme Homme Homme Homme Homme Homme Homme Homme Femme
+## [145] Homme Homme Homme Femme Femme Femme Homme Femme Femme Femme Femme Homme
+## [157] Femme Homme Homme Homme Femme Homme Femme Homme Femme Homme Homme Femme
+## [169] Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Femme
+## [181] Homme Femme Femme Homme Homme Femme Femme Femme Femme Femme Homme Homme
+## [193] Femme Homme Homme Femme Homme Femme Homme Femme
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 1800 entries ]
+## Levels: Homme Femme</code></pre>
+<p>R va nous afficher l’ensemble des valeurs de notre variable <code>sexe</code> dans la console, ce qui est à nouveau fort peu utile. Mais cela nous permet de constater que <code>d$sexe</code> est un vecteur de chaînes de caractères tels qu’on en a déjà rencontré précédemment.</p>
+<p>La fonction <code>table$colonne</code> renvoie donc la colonne nommée <code>colonne</code> du tableau <code>table</code>, c’est-à-dire un vecteur, en général de nombres ou de chaînes de caractères.</p>
+<p>Si on souhaite afficher seulement les premières ou dernières valeurs d’une variable, on peut utiliser les fonctions <code>head</code> et <code>tail</code> :</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="kw">head</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 28 23 59 34 71 35</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">tail</span>(d<span class="op">$</span>age, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1] 52 42 50 41 46 45 46 24 24 66</code></pre>
+<p>Le deuxième argument numérique permet d’indiquer le nombre de valeurs à afficher.</p>
+</div>
+<div id="créer-une-nouvelle-variable" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Créer une nouvelle variable</h3>
+<p>On peut aussi utiliser l’opérateur <code>$</code> pour créer une nouvelle variable dans notre tableau : pour cela, il suffit de lui assigner une valeur.</p>
+<p>Par exemple, la variable <code>heures.tv</code> contient le nombre d’heures passées quotidiennement devant la télé :</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">head</span>(d<span class="op">$</span>heures.tv, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1] 0.0 1.0 0.0 2.0 3.0 2.0 2.9 1.0 2.0 2.0</code></pre>
+<p>On peut vouloir créer une nouvelle variable dans notre tableau qui contienne la même durée mais en minutes. On va donc créer une nouvelle variables <code>minutes.tv</code> de la manière suivante :</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">d<span class="op">$</span>minutes.tv &lt;-<span class="st"> </span>d<span class="op">$</span>heures.tv <span class="op">*</span><span class="st"> </span><span class="dv">60</span></a></code></pre></div>
+<p>On peut alors constater, soit visuellement soit dans la console, qu’une nouvelle variable (une nouvelle colonne) a bien été ajoutée au tableau :</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="kw">head</span>(d<span class="op">$</span>minutes.tv)</a></code></pre></div>
+<pre><code>## [1]   0  60   0 120 180 120</code></pre>
+</div>
+</div>
+<div id="analyse-univariée" class="section level2">
+<h2><span class="header-section-number">3.3</span> Analyse univariée</h2>
+<p>On a donc désormais accès à un tableau de données <code>d</code>, dont les lignes sont des observations (des individus enquêtés), et les colonnes des variables (des caractéristiques de chacun de ces individus), et on sait accéder à ces variables grâce à l’opérateur <code>$</code>.</p>
+<p>Si on souhaite analyser ces variables, les méthodes et fonctions utilisées seront différentes selon qu’il s’agit d’une variable <em>quantitative</em> (variable numérique pouvant prendre un grand nombre de valeurs : l’âge, le revenu, un pourcentage…) ou d’une variable <em>qualitative</em> (variable pouvant prendre un nombre limité de valeurs appelées modalités : le sexe, la profession, le dernier diplôme obtenu, etc.).</p>
+<div id="analyser-une-variable-quantitative" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Analyser une variable quantitative</h3>
+<p>Une variable quantitative est une variable de type numérique (un nombre) qui peut prendre un grand nombre de valeurs. On en a plusieurs dans notre jeu de données, notamment l’âge (variable <code>age</code>) ou le nombre d’heures passées devant la télé (<code>heures.tv</code>).</p>
+<div id="indicateurs-de-centralité" class="section level4">
+<h4><span class="header-section-number">3.3.1.1</span> Indicateurs de centralité</h4>
+<p>Caractériser une variable quantitative, c’est essayer de décrire la manière dont ses valeurs se répartissent, ou se distribuent.</p>
+<p>Pour cela on peut commencer par regarder les valeurs extrêmes, avec les fonctions <code>min</code>, <code>max</code> ou <code>range</code> :</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">min</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 18</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1"><span class="kw">max</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 97</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">range</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 18 97</code></pre>
+<p>On peut aussi calculer des indicateurs de <em>centralité</em> : ceux-ci indiquent autour de quel nombre se répartissent les valeurs de la variable. Il y en a plusieurs, le plus connu étant la moyenne, qu’on peut calculer avec la fonction <code>mean</code> :</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">mean</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 48.157</code></pre>
+<p>Il existe aussi la médiane, qui est la valeur qui sépare notre population en deux : on a la moitié de nos observations en-dessous, et la moitié au-dessus. Elle se calcule avec la fonction <code>median</code> :</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">median</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 48</code></pre>
+<p>Une différence entre les deux indicateurs est que la médiane est beaucoup moins sensible aux valeurs “extrêmes” : on dit qu’elle est plus <em>robuste</em>. Ainsi, en 2013, le salaire net <em>moyen</em> des salariés à temps plein en France était de 2202 euros, tandis que le salaire net <em>médian</em> n’était que de 1772 euros. La différence étant due à des très hauts salaires qui “tirent” la moyenne vers le haut.</p>
+</div>
+<div id="indicateurs-de-dispersion" class="section level4">
+<h4><span class="header-section-number">3.3.1.2</span> Indicateurs de dispersion</h4>
+<p>Les indicateurs de dispersion permettent de mesurer si les valeurs sont plutôt regroupées ou au contraire plutôt dispersées.</p>
+<p>L’indicateur le plus simple est l’étendue de la distribution, qui décrit l’écart maximal observé entre les observations :</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">max</span>(d<span class="op">$</span>age) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 79</code></pre>
+<p>Les indicateurs de dispersion les plus utilisés sont la variance ou, de manière équivalente, l’écart-type (qui est égal à la racine carrée de la variance). On obtient la première avec la fonction <code>var</code>, et le second avec <code>sd</code> (abbréviation de <em>standard deviation</em>) :</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">var</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 287.0249</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">sd</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>## [1] 16.94181</code></pre>
+<p>Plus la variance ou l’écart-type sont élevés, plus les valeurs sont dispersées autour de la moyenne. À l’inverse, plus ils sont faibles et plus les valeurs sont regroupées.</p>
+<p>Une autre manière de mesurer la dispersion est de calculer les quartiles :</p>
+<ul>
+<li>le premier quartile est la valeur pour laquelle on a 25% des observations en dessous et 75% au dessus</li>
+<li>le deuxième quartile est la valeur pour laquelle on a 50% des observations en dessous et 50% au dessus (c’est donc la médiane)</li>
+<li>le troisième quartile est la valeur pour laquelle on a 75% des observations en dessous et 25% au dessus</li>
+</ul>
+<p>On peut les calculer avec la fonction <code>quantile</code> :</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="co">## Premier quartile</span></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="kw">quantile</span>(d<span class="op">$</span>age, <span class="dt">prob =</span> <span class="fl">0.25</span>)</a></code></pre></div>
+<pre><code>## 25% 
+##  35</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="co">## Troisième quartile</span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="kw">quantile</span>(d<span class="op">$</span>age, <span class="dt">prob =</span> <span class="fl">0.75</span>)</a></code></pre></div>
+<pre><code>## 75% 
+##  60</code></pre>
+<p><code>quantile</code> prend deux arguments principaux : le vecteur dont on veut calculer le quantile, et un argument <code>prob</code> qui indique quel quantile on souhaite obtenir. <code>prob</code> prend une valeur entre 0 et 1 : 0.5 est la médiane, 0.25 le premier quartile, 0.1 le premier décile, etc.</p>
+<p>Notons enfin que la fonction <code>summary</code> permet d’obtenir d’un coup plusieurs indicateurs classiques :</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">summary</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   35.00   48.00   48.16   60.00   97.00</code></pre>
+</div>
+<div id="représentation-graphique" class="section level4">
+<h4><span class="header-section-number">3.3.1.3</span> Représentation graphique</h4>
+<p>L’outil le plus utile pour étudier la distribution des valeurs d’une variable quantitative reste la représentation graphique.</p>
+<p>La représentation la plus courante est sans doute l’histogramme. On peut l’obtenir avec la fonction <code>hist</code> :</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-94-1.svg" width="672" /></p>
+<p>Cette fonction n’a pas pour effet direct d’effectuer un calcul ou de nous renvoyer un résultat : elle génère un graphique qui va s’afficher dans l’onglet <em>Plots</em> de RStudio.</p>
+<p>On peut personnaliser l’apparence de l’histogramme en ajoutant des arguments supplémentaires à la fonction <code>hist</code>. L’argument le plus important est <code>breaks</code>, qui permet d’indiquer le nombre de classes que l’on souhaite.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">breaks =</span> <span class="dv">10</span>)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-95-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">breaks =</span> <span class="dv">70</span>)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-96-1.svg" width="672" /></p>
+<p>Le choix d’un “bon” nombre de classes pour un histogramme n’est pas un problème simple : si on a trop peu de classes, on risque d’effacer quasiment toutes les variations, et si on en a trop on risque d’avoir trop de détails et de masquer les grandes tendances.</p>
+<p>Les arguments de <code>hist</code> permettent également de modifier la présentation du graphique. On peut ainsi changer la couleur des barres avec <code>col</code><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>, le titre avec <code>main</code>, les étiquettes des axes avec <code>xlab</code> et <code>ylab</code>, etc. :</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">col =</span> <span class="st">&quot;skyblue&quot;</span>,</a>
+<a class="sourceLine" id="cb158-2" title="2">     <span class="dt">main =</span> <span class="st">&quot;Répartition des âges des enquêtés&quot;</span>,</a>
+<a class="sourceLine" id="cb158-3" title="3">     <span class="dt">xlab =</span> <span class="st">&quot;Âge&quot;</span>,</a>
+<a class="sourceLine" id="cb158-4" title="4">     <span class="dt">ylab =</span> <span class="st">&quot;Effectif&quot;</span>)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-97-1.svg" width="672" /></p>
+<p>La fonction <code>hist</code> fait partie des fonctions graphique de base de R. On verra plus en détail d’autres fonctions graphiques dans la partie <a href="#ggplot2"><strong>??</strong></a> de ce document, consacrée à l’extension <code>ggplot2</code>, qui fait partie du <em>tidyverse</em> et qui permet la production et la personnalisation de graphiques complexes.</p>
+</div>
+</div>
+<div id="analyser-une-variable-qualitative" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Analyser une variable qualitative</h3>
+<p>Une variable qualitative est une variable qui ne peut prendre qu’un nombre limité de valeurs, appelées modalités. Dans notre jeu de données on trouvera par exemple le sexe (<code>sexe</code>), le niveau d’études (<code>nivetud</code>), la catégorie socio-professionnelle (<code>qualif</code>)…</p>
+<p>À noter qu’une variable qualitative peut tout-à-fait être numérique, et que certaines variables peuvent être traitées soit comme quantitatives, soit comme qualitatives : c’est le cas par exemple du nombre d’enfants ou du nombre de frères et soeurs.</p>
+<div id="tri-à-plat" class="section level4">
+<h4><span class="header-section-number">3.3.2.1</span> Tri à plat</h4>
+<p>L’outil le plus utilisé pour représenter la répartition des valeurs d’une variable qualitative est le <em>tri à plat</em> : il s’agit simplement de compter, pour chacune des valeurs possibles de la variable (pour chacune des modalités), le nombre d’observations ayant cette valeur. Un tri à plat s’obtient sous R à l’aide de la fonction <code>table</code> :</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1"><span class="kw">table</span>(d<span class="op">$</span>sexe)</a></code></pre></div>
+<pre><code>## 
+## Homme Femme 
+##   899  1101</code></pre>
+<p>Ce tableau nous indique donc que parmi nos enquêtés on trouve 899 hommes et 1101 femmes.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1"><span class="kw">table</span>(d<span class="op">$</span>qualif)</a></code></pre></div>
+<pre><code>## 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                      203                      292                       86 
+## Profession intermediaire                    Cadre                  Employe 
+##                      160                      260                      594 
+##                    Autre 
+##                       58</code></pre>
+<p>Un tableau de ce type peut être affiché ou stocké dans un objet, et on peut à son tour lui appliquer des fonctions. Par exemple, la fonction <code>sort</code> permet de trier le tableau selon la valeur de l’effectif. On peut donc faire :</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>qualif)</a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="kw">sort</span>(tab)</a></code></pre></div>
+<pre><code>## 
+##                    Autre               Technicien Profession intermediaire 
+##                       58                       86                      160 
+##       Ouvrier specialise                    Cadre         Ouvrier qualifie 
+##                      203                      260                      292 
+##                  Employe 
+##                      594</code></pre>
+<div class="rmdimportant">
+<p>
+Attention, par défaut la fonction <code>table</code> n’affiche pas les valeurs manquantes (<code>NA</code>). Si on souhaite les inclure il faut utiliser l’argument <code>useNA = “always”</code>, soit : <code>table(d$qualif, useNA = “always”)</code>.
+</p>
+</div>
+<p>À noter qu’on peut aussi appliquer <code>summary</code> à une variable qualitative. Le résultat est également le tri à plat de la variable, avec en plus le nombre de valeurs manquantes éventuelles :</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1"><span class="kw">summary</span>(d<span class="op">$</span>qualif)</a></code></pre></div>
+<pre><code>##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                      203                      292                       86 
+## Profession intermediaire                    Cadre                  Employe 
+##                      160                      260                      594 
+##                    Autre                     NA&#39;s 
+##                       58                      347</code></pre>
+<p>Par défaut ces tris à plat sont en effectifs et ne sont donc pas toujours très lisibles, notamment quand on a des effectifs importants. On leur rajoute donc en général la répartition en pourcentages. Pour cela, nous allons utiliser la fonction <code>freq</code> de l’extension <code>questionr</code>, qui devra donc avoir précédemment été chargée avec <code>library(questionr)</code> :</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="co">## À rajouter en haut de script et à exécuter</span></a>
+<a class="sourceLine" id="cb167-2" title="2"><span class="kw">library</span>(questionr)</a></code></pre></div>
+<p>On peut alors utiliser la fonction :</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">freq</span>(d<span class="op">$</span>qualif)</a></code></pre></div>
+<pre><code>##                            n    % val%
+## Ouvrier specialise       203 10.2 12.3
+## Ouvrier qualifie         292 14.6 17.7
+## Technicien                86  4.3  5.2
+## Profession intermediaire 160  8.0  9.7
+## Cadre                    260 13.0 15.7
+## Employe                  594 29.7 35.9
+## Autre                     58  2.9  3.5
+## NA                       347 17.3   NA</code></pre>
+<p>La colonne <code>n</code> représente les effectifs de chaque catégorie, la colonne <code>%</code> le pourcentage, et la colonne <code>val%</code> le pourcentage calculé sur les valeurs valides, donc en excluant les <code>NA</code>. Une ligne a également été rajoutée pour indiquer le nombre et la proportion de <code>NA</code>.</p>
+<p><code>freq</code> accepte un certain nombre d’arguments pour personnaliser son affichage. Par exemple :</p>
+<ul>
+<li><code>valid</code> indique si on souhaite ou non afficher les pourcentages sur les valeurs valides</li>
+<li><code>cum</code> indique si on souhaite ou non afficher les pourcentages cumulés</li>
+<li><code>total</code> permet d’ajouter une ligne avec les effectifs totaux</li>
+<li><code>sort</code> permet de trier le tableau par fréquence croissante (<code>sort="inc"</code>) ou décroissante (<code>sort="dec"</code>).</li>
+</ul>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">freq</span>(d<span class="op">$</span>qualif, <span class="dt">valid=</span> <span class="ot">FALSE</span>, <span class="dt">total =</span> <span class="ot">TRUE</span>, <span class="dt">sort =</span> <span class="st">&quot;dec&quot;</span>)</a></code></pre></div>
+<pre><code>##                             n     %
+## Employe                   594  29.7
+## Ouvrier qualifie          292  14.6
+## Cadre                     260  13.0
+## Ouvrier specialise        203  10.2
+## Profession intermediaire  160   8.0
+## Technicien                 86   4.3
+## Autre                      58   2.9
+## NA                        347  17.3
+## Total                    2000 100.0</code></pre>
+</div>
+<div id="représentations-graphiques" class="section level4">
+<h4><span class="header-section-number">3.3.2.2</span> Représentations graphiques</h4>
+<p>On peut représenter graphiquement le tri à plat d’une variable qualitative avec un diagramme en barres, obtenu avec la fonction <code>barplot</code>. Attention, contrairement à <code>hist</code> cette fonction ne s’applique pas directement à la variable mais au résultat du tri à plat de cette variable, calculé avec <code>table</code>. Il faut donc procéder en deux étapes :</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>clso)</a>
+<a class="sourceLine" id="cb172-2" title="2"><span class="kw">barplot</span>(tab)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-108-1.svg" width="672" /></p>
+<p>On peut aussi trier le tri à plat avec la fonction <code>sort</code> avant de le représenter graphiquement, ce qui peut faciliter la lecture du graphique :</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab))</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-109-1.svg" width="672" /></p>
+<p>Une alternative au graphique en barres est le <em>diagramme de Cleveland</em>, qu’on peut obtenir avec la fonction <code>dotchart</code>. Celle-ci s’applique elle aussi au tri à plat de la variable calculé avec <code>table</code>.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="kw">dotchart</span>(<span class="kw">table</span>(d<span class="op">$</span>qualif))</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-110-1.svg" width="672" />
+Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter :</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">dotchart</span>(<span class="kw">sort</span>(<span class="kw">table</span>(d<span class="op">$</span>qualif)))</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-111-1.svg" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="exercices" class="section level2">
+<h2><span class="header-section-number">3.4</span> Exercices</h2>
+<p><strong>Exercice 1</strong></p>
+<p>Créer un nouveau script qui effectue les actions suivantes :</p>
+<ul>
+<li>charger l’extension <code>questionr</code></li>
+<li>charger le jeu de données nommé <code>hdv2003</code></li>
+<li>copier le jeu de données dans un nouvel objet nommé <code>df</code></li>
+<li>afficher les dimensions et la liste des variables de <code>df</code></li>
+</ul>
+
+<div class="solution">
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1"><span class="kw">library</span>(questionr)</a>
+<a class="sourceLine" id="cb176-2" title="2"></a>
+<a class="sourceLine" id="cb176-3" title="3"><span class="kw">data</span>(hdv2003)</a>
+<a class="sourceLine" id="cb176-4" title="4">df &lt;-<span class="st"> </span>hdv2003</a>
+<a class="sourceLine" id="cb176-5" title="5"></a>
+<a class="sourceLine" id="cb176-6" title="6"><span class="kw">dim</span>(df)</a>
+<a class="sourceLine" id="cb176-7" title="7"><span class="kw">names</span>(df)</a></code></pre></div>
+</div>
+
+<p><strong>Exercice 2</strong></p>
+<p>On souhaite étudier la répartition du temps passé devant la télévision par les enquêtés (variable <code>heures.tv</code>). Pour cela, affichez les principaux indicateurs de cette variable : valeur minimale, maximale, moyenne, médiane et écart-type. Représentez ensuite sa distribution par un histogramme en 10 classes.</p>
+
+<div class="solution">
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="kw">summary</span>(df<span class="op">$</span>heures.tv)</a>
+<a class="sourceLine" id="cb177-2" title="2"><span class="kw">sd</span>(df<span class="op">$</span>heures.tv)</a>
+<a class="sourceLine" id="cb177-3" title="3"></a>
+<a class="sourceLine" id="cb177-4" title="4"><span class="kw">hist</span>(df<span class="op">$</span>heures.tv, <span class="dt">breaks =</span> <span class="dv">10</span>)</a></code></pre></div>
+</div>
+
+<p><strong>Exercice 3</strong></p>
+<p>On s’intéresse maintenant à l’importance accordée par les enquêtés à leur travail (variable <code>trav.imp</code>). Faites un tri à plat des effectifs des modalités de cette variable avec la commande <code>table</code>.</p>
+
+<div class="solution">
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">table</span>(df<span class="op">$</span>trav.imp)</a></code></pre></div>
+</div>
+
+<p>Faites un tri à plat affichant à la fois les effectifs et les pourcentages de chaque modalité. Y’a-t-il des valeurs manquantes ?</p>
+
+<div class="solution">
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="kw">freq</span>(df<span class="op">$</span>trav.imp)</a></code></pre></div>
+</div>
+
+<p>Représentez graphiquement les effectifs des modalités à l’aide d’un graphique en barres.</p>
+
+<div class="solution">
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df<span class="op">$</span>trav.imp))</a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="kw">barplot</span>(tab)</a></code></pre></div>
+</div>
+
+<p>Utilisez l’argument <code>col</code> de la fonction <code>barplot</code> pour modifier la couleur du graphique en
+<code>tomato</code>.</p>
+
+<div class="solution">
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="kw">barplot</span>(tab, <span class="dt">col =</span> <span class="st">&quot;tomato&quot;</span>)</a></code></pre></div>
+</div>
+
+<p>Tapez <code>colors()</code> dans la console pour afficher l’ensemble des noms de couleurs disponibles dans R. Testez chaque couleur une à une pour trouver votre couleur préférée.</p>
+
+<div class="solution">
+<p>C’est une blague, hein ! Cela dit <code>moccasin</code> ou <code>palevioletred</code> sont pas mal, si vous voulez essayer :-)</p>
+</div>
+
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>La seule limite pour la taille d’un objet étant la mémoire vive (RAM) de la machine sur laquelle tourne la session R.<a href="premier-travail-avec-des-données.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Les différents types de variables seront décrits plus en détail dans le chapitre <a href="#vectorfactor"><strong>??</strong></a> sur les recodages.<a href="premier-travail-avec-des-données.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Les différentes manières de spécifier des couleurs sont indiquées dans l’encadré de la section <a href="#scalecolor"><strong>??</strong></a>.<a href="premier-travail-avec-des-données.html#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<script src="js/solution.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="premier-pas-avec-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analyse-de-2-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/02-introR_travail.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

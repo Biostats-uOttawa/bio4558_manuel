@@ -27,6 +27,7 @@ library(multcomp)
 # Note {-}
 Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.
 
+
 # Préface {-}
 <!-- {-} pour enlever num/rotation -->
 
@@ -36,42 +37,40 @@ En particulier il ne peut réfléchir à votre place, vous dire si l'analyse que
 
 ## Quelques points importants à retenir {-}
 
-- Avant de commencer une analyse statistique, il faut d'abord vous familiariser son fonctionnement.
+* Avant de commencer une analyse statistique, il faut d'abord vous familiariser son fonctionnement.
 Cela ne veut pas dire que vous devez connaître les outils mathématiques qui la sous-tendent, mais vous devriez au moins comprendre les principes utilisés lors de cette analyse.
 Avant de faire un exercice de laboratoire, lisez donc la section correspondante dans les notes de cours.
 Sans cette lecture préalable, il est très probable que les résultats produits par le logiciel, même si l'analyse a été effectuée correctement, seront indéchiffrables.
-- Les laboratoires sont conçus pour compléter les cours théoriques et vice versa.
+* Les laboratoires sont conçus pour compléter les cours théoriques et vice versa.
 À cause des contraintes d'horaires, il se pourrait que le cours et le laboratoire ne soient pas parfaitement synchronisés.
 N'hésitez donc pas à poser des questions sur le labo en classe ou des questions théoriques au laboratoire.
-- Travaillez sur les exercices de laboratoire à votre propre rythme.
+* Travaillez sur les exercices de laboratoire à votre propre rythme.
 Certains exercices prennent beaucoup moins de temps que d'autres et il n'est pas nécessaire de compléter un exercice par séance de laboratoire.
 En fait deux séances de laboratoire sont prévues pour certains des exercices.
 Même si vous n'êtes pas notés sur les exercices de laboratoire, soyez conscient que ces exercices
 sont essentiels.
 Si vous ne les faites pas, il est très peu probable que vous serez capable de compléter les devoirs et le projet de session.
 Prenez donc ces exercices de laboratoire au sérieux !
-- Les 2 premier laboratoires sont conçu pour vous permettre d'acquérir ou de réviser le minimum de connaissances requises pour vous permettre de réaliser les exercices de laboratoires avec R.
+* Les 2 premier laboratoires sont conçu pour vous permettre d'acquérir ou de réviser le minimum de connaissances requises pour vous permettre de réaliser les exercices de laboratoires avec R.
 Il y a presque toujours de multiples façons de faire les choses avec R et vous ne trouverez ici que des méthodes simples.
 Ceux et celles d'entre vous qui y sont enclins pourront trouver en ligne des instructions plus détaillées et complexes.
 En particulier, je vous conseille :
 
-  - R pour les débutants
+  * R pour les débutants
 http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf
-  - An introduction to R
+  * An introduction to R
 http://cran.r-project.org/doc/manuals/R-intro.html
-  - Si vous préférez des manuels, le site web de CRAN en garde une liste commentée à :
+  * Si vous préférez des manuels, le site web de CRAN en garde une liste commentée à :
 http://www.r-project.org/doc/bib/R-books.html
-  - Une liste impressionnante de très bon livre sur R
+  * Une liste impressionnante de très bon livre sur R
 https://www.bigbookofr.com/
-  - Finalement, comme aide-mémoire à garder sous la main, je vous recommande R reference card par Tom Short
+  * Finalement, comme aide-mémoire à garder sous la main, je vous recommande R reference card par Tom Short
 http://cran.r-project.org/doc/contrib/Short-refcard.pdf
 
 ## Qu'est-ce que R et pourquoi l'utiliser dans ce cours? {-}
 
-R est un logiciel libre et multiplateforme formant un système statistique et graphique.
+R est un logiciel libre et multi-plateforme formant un système statistique et graphique.
 R est également un langage de  programmation spécialisé pour les statistiques.
-C’est un dialecte du langage S.
-S-Plus est un autre dialecte, très semblable, et forme un produit commercial qui a un interface graphique que certains trouvent plus convivial.
 
 R a deux très grands avantages pour ce cours, et un inconvénient embêtant initialement mais qui vous forcera à acquérir des excellentes habitudes de travail.
 Le premier avantage est que vous pouvez tous l'installer sur votre (ou vos) ordinateurs personnel gratuitement.
@@ -127,6 +126,14 @@ install.packages(c("rmarkdown", "tinytex"))
 ```
 
 
+### G\*Power {-}
+G\*Power est un programme gratuit, développé par des psychologues de l’Université de Dusseldorf en Allemagne.
+Le programme existe en version Mac et Windows.
+Il peut cependant être utilisé sous linux via Wine.
+G\*Power vous permettra d’effectuer une analyse de puissance pour la majorité des tests que nous verrons au cours de la session sans avoir à effectuer des calculs complexes ou farfouiller dans des tableaux ou des figures décrivant des distributions ou des courbes de puissance.
+
+Téléchargez le programme  sur le site https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html
+
 
 ## Instructions générales pour les laboratoires {-}
 
@@ -172,3 +179,13 @@ des notes
 ```{block2, type = "rmdtip"}
 et des conseils
 ```
+### Resources {-}
+
+Ce document est généré par l'excellente extension [bookdown](https://bookdown.org/) de [Yihui Xie](https://yihui.name/). Il est basé sur le précédent manuel de laboratoire *BIO4558 manuel de laboratoire* par Antoine Morin. L'introduction à R est largement reprise de l'excellent manuel de **Julien Barnier** intitulé [*Introduction à R et au tidyverse*](https://juba.github.io/tidyverse/)
+
+
+### Licence {-}
+
+Ce document est mis à disposition selon les termes de la [Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+![Licence Creative Commons](images/icons/license_cc.png)
