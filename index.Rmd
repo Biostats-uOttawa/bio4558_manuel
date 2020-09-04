@@ -4,7 +4,12 @@ subtitle: "Manuel de Laboratoire"
 author: "Julien Martin"
 date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 site: bookdown::bookdown_site
-documentclass: book
+documentclass: krantz
+lot: yes
+lof: yes
+fontsize: 12pt
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
 description: "Manuel de laboratoire pour le cours BIO4558"
 github-repo: "JulienGAMartin/BIO4558_uOttawa_lab_manual"
 cover-image: "images/missing.png"
