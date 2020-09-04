@@ -489,7 +489,7 @@ Si vous essayez d'exécuter une fonction d'une extension et que vous obtenez le 
 
 
 
-## Exercices
+## Exercices {#ex-introR}
 
 **Exercice 1**
 

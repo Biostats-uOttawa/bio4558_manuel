@@ -245,7 +245,7 @@ Il est en effet impossible de faire une erreur de type II quand on rejette $H_0$
 - Le choix de $\beta$ est quelque peu arbitraire.
 On considère que $\beta=0.2$ (puissance de 80%) est relativement élevé.
 
-## Exercice sur la puissance
+## Exercice {#ex-power}
 
 ```{block2, type = "rmdcode"}
 

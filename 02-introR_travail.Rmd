@@ -405,7 +405,7 @@ Là aussi, pour améliorer la lisibilité du graphique il est préférable de tr
 dotchart(sort(table(d$qualif)))
 ```
 
-## Exercices
+## Exercices {#ex-introR-univ}
 
 **Exercice 1**
 
