@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{15-09-2020}
+\date{16-09-2020}
 
 \begin{document}
 \maketitle
@@ -701,22 +701,11 @@ On peut créer autant d'objets qu'on le souhaite.
 \end{verbatim}
 
 \begin{rmdimportant}
-Les noms d'objets peuvent contenir des lettres, des chiffres, les
-symboles \texttt{.} et \texttt{\_}. Ils ne peuvent pas commencer par un
-chiffre. Attention, R fait la différence entre minuscules et majuscules
-dans les noms d'objets, ce qui signifie que \texttt{x} et \texttt{X}
-seront deux objets différents, tout comme \texttt{resultat} et
-\texttt{Resultat}.
+Les noms d'objets peuvent contenir des lettres, des chiffres, les symboles \texttt{.} et \texttt{\_}. Ils ne peuvent pas commencer par un chiffre. Attention, R fait la différence entre minuscules et majuscules dans les noms d'objets, ce qui signifie que \texttt{x} et \texttt{X} seront deux objets différents, tout comme \texttt{resultat} et \texttt{Resultat}.
 
-De manière générale, il est préférable d'éviter les majuscules (pour les
-risques d'erreur) et les caractères accentués (pour des questions
-d'encodage) dans les noms d'objets.
+De manière générale, il est préférable d'éviter les majuscules (pour les risques d'erreur) et les caractères accentués (pour des questions d'encodage) dans les noms d'objets.
 
-De même, il faut essayer de trouver un équilibre entre clarté du nom
-(comprendre à quoi sert l'objet, ce qu'il contient) et sa longueur. Par
-exemple, on préfèrera comme nom d'objet \texttt{taille\_conj1} à
-\texttt{taille\_du\_conjoint\_numero\_1} (trop long) ou à \texttt{t1}
-(pas assez explicite).
+De même, il faut essayer de trouver un équilibre entre clarté du nom (comprendre à quoi sert l'objet, ce qu'il contient) et sa longueur. Par exemple, on préfèrera comme nom d'objet \texttt{taille\_conj1} à \texttt{taille\_du\_conjoint\_numero\_1} (trop long) ou à \texttt{t1} (pas assez explicite).
 \end{rmdimportant}
 
 Quand on assigne une nouvelle valeur à un objet déjà existant, la valeur précédente est perdue. Les objets n'ont pas de mémoire.
@@ -875,13 +864,13 @@ Un vecteur peut contenir des nombres, mais il peut aussi contenir du texte. Imag
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{diplome <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"CAP"}\NormalTok{, }\StringTok{"Bac"}\NormalTok{, }\StringTok{"Bac+2"}\NormalTok{, }\StringTok{"CAP"}\NormalTok{, }\StringTok{"Bac+3"}\NormalTok{)}
+\NormalTok{diplome <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"PHD"}\NormalTok{, }\StringTok{"Bac"}\NormalTok{, }\StringTok{"MSc"}\NormalTok{, }\StringTok{"MSc"}\NormalTok{, }\StringTok{"Bac"}\NormalTok{)}
 \NormalTok{diplome}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "CAP"   "Bac"   "Bac+2" "CAP"   "Bac+3"
+## [1] "PHD" "Bac" "MSc" "MSc" "Bac"
 \end{verbatim}
 
 L'opérateur \texttt{:}, lui, permet de générer rapidement un vecteur comprenant tous les nombres entre deux valeurs, opération assez courante sous R~:
@@ -922,7 +911,7 @@ Dernière remarque, si on affiche dans la console un vecteur avec beaucoup d'él
 
 On remarque que R ajoute systématiquement un nombre entre crochets au début de chaque ligne~: il s'agit en fait de la position du premier élément de la ligne dans le vecteur. Ainsi, le 848 de la deuxième ligne est le 14e élément du vecteur, le 914 de la dernière ligne est le 40e, etc.
 
-Ceci explique le \texttt{{[}1{]}} qu'on obtient quand on affiche un simple nombre\footnote{Et permet de constater que pour R, un nombre est un vecteur à un seul élément.}~:
+Ceci explique le \texttt{{[}1{]}} qu'on obtient quand on affiche un simple nombre et permet de constater que pour R, un nombre est un vecteur à un seul élément~:
 
 \begin{verbatim}
  [1] 4
@@ -1016,13 +1005,22 @@ Ou encore, la fonction \texttt{unique}, qui supprime toutes les valeurs en doubl
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{diplome <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"CAP"}\NormalTok{, }\StringTok{"Bac"}\NormalTok{, }\StringTok{"Bac+2"}\NormalTok{, }\StringTok{"CAP"}\NormalTok{, }\StringTok{"Bac+3"}\NormalTok{)}
+\NormalTok{diplome}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "PHD" "Bac" "MSc" "MSc" "Bac"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{unique}\NormalTok{(diplome)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "CAP"   "Bac"   "Bac+2" "Bac+3"
+## [1] "PHD" "Bac" "MSc"
 \end{verbatim}
 
 \hypertarget{arguments}{%
@@ -1054,9 +1052,7 @@ Supposons maintenant que dans notre vecteur \texttt{tailles} nous avons une vale
 \end{verbatim}
 
 \begin{rmdnote}
-\texttt{NA} est l'abbréviation de \emph{Not available}, non disponible.
-Cette valeur particulière peut être utilisée pour indiquer une valeur
-manquante, qu'il s'agisse d'un nombre, d'une chaîne de caractères, etc.
+\texttt{NA} est l'abbréviation de \emph{Not available}, non disponible. Cette valeur particulière peut être utilisée pour indiquer une valeur manquante, qu'il s'agisse d'un nombre, d'une chaîne de caractères, etc.
 \end{rmdnote}
 
 Si je calcule maintenant la taille moyenne à l'aide de la fonction \texttt{mean}, j'obtiens~:
@@ -1514,7 +1510,7 @@ Dans les deux cas, tout un tas de messages devraient s'afficher dans la console.
 
 Pour plus d'informations sur les extensions et leur installation, voir la section \ref{packages}.
 
-Le jeu de données que nous allons utiliser est un extrait de l'enquête \emph{Histoire de vie} réalisée par l'INSEE en 2003. Il contient 2000 individus et 20 variables. Pour une description plus complète et une liste des variables, voir la section \ref{hdv2003}.
+Le jeu de données que nous allons utiliser est un extrait de l'enquête \emph{Histoire de vie} réalisée par l'INSEE en 2003. Il contient 2000 individus et 20 variables.
 
 Pour pouvoir utiliser ces données, il faut d'abord charger l'extension \texttt{questionr} (après l'avoir installée, bien entendu)~:
 
@@ -1587,8 +1583,7 @@ Il est important de comprendre que l'objet \texttt{hdv2003} contient \emph{l'int
 On voit donc qu'un objet peut contenir des données de types très différents (simple nombre, texte, vecteur, tableau de données entier), et être potentiellement de très grande taille\footnote{La seule limite pour la taille d'un objet étant la mémoire vive (RAM) de la machine sur laquelle tourne la session R.}.
 
 \begin{rmdnote}
-Sous R, on peut importer ou créer autant de tableaux de données qu'on le
-souhaite, dans les limites des capacités de sa machine.
+Sous R, on peut importer ou créer autant de tableaux de données qu'on le souhaite, dans les limites des capacités de sa machine.
 \end{rmdnote}
 
 Un \emph{data frame} peut être manipulé comme les autres objets vus précédemment. On peut par exemple faire~:
@@ -2024,7 +2019,8 @@ Les arguments de \texttt{hist} permettent également de modifier la présentatio
 
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-97-1.pdf}
 
-La fonction \texttt{hist} fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques dans la partie \ref{ggplot2} de ce document, consacrée à l'extension \texttt{ggplot2}, qui fait partie du \emph{tidyverse} et qui permet la production et la personnalisation de graphiques complexes.
+La fonction \texttt{hist} fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques
+avec l'extension \texttt{ggplot2} qui permet la production et la personnalisation de graphiques complexes.
 
 \hypertarget{analyser-une-variable-qualitative}{%
 \subsubsection{Analyser une variable qualitative}\label{analyser-une-variable-qualitative}}
@@ -2088,10 +2084,7 @@ Un tableau de ce type peut être affiché ou stocké dans un objet, et on peut �
 \end{verbatim}
 
 \begin{rmdimportant}
-Attention, par défaut la fonction \texttt{table} n'affiche pas les
-valeurs manquantes (\texttt{NA}). Si on souhaite les inclure il faut
-utiliser l'argument \texttt{useNA\ =\ "always"}, soit~:
-\texttt{table(d\$qualif,\ useNA\ =\ "always")}.
+Attention, par défaut la fonction \texttt{table} n'affiche pas les valeurs manquantes (\texttt{NA}). Si on souhaite les inclure il faut utiliser l'argument \texttt{useNA\ =\ "always"}, soit~: \texttt{table(d\$qualif,\ useNA\ =\ "always")}.
 \end{rmdimportant}
 
 À noter qu'on peut aussi appliquer \texttt{summary} à une variable qualitative. Le résultat est également le tri à plat de la variable, avec en plus le nombre de valeurs manquantes éventuelles~:
@@ -2910,7 +2903,7 @@ Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont \texttt{.csv} et \texttt{.Rdata}.
 Les fichiers \texttt{.csv} sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g.~Word, Writer, atom, \ldots{}) et les tableurs (e.g.~MS Excel, LO Calc).
-Les fichiers \texttt{.Rdata} sont utilisés pour stocker n'importe quelle objet R pas uniquement des données.
+Les fichiers \texttt{.Rdata} sont utilisés pour stocker n'importe quel objet R pas uniquement des données.
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
 
 Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format \texttt{.csv}.
@@ -3138,7 +3131,8 @@ Cet histogramme est la représentation classique.
 Mais les histogrammes ne sont pas parfaits.
 Leur forme dépend en partie du nombre de catégories utilisées, surtout pour les petits échantillons.
 On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
-Mais il faut programmer un peu (ou savoir copier-coller\ldots{})
+Mais il faut programmer un peu (ou savoir copier-coller\ldots{}).
+Le code suivant est un histogramme fait avec l'extension \texttt{ggplot2}.
 
 \begin{rmdcode}
 Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgreater{}New script, ou Ctrl-n dans Windows), puis exécutez le.
@@ -3146,26 +3140,29 @@ Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgrea
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{## Chargez l'extension ggplot si besoin}
 \KeywordTok{library}\NormalTok{(ggplot2)}
-\CommentTok{#  use "sturgeon" dataframe to make plot called mygraph}
-\CommentTok{#  and define x axis as representing fklngth}
-\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(sturgeon, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fklngth))}
-\CommentTok{#  add data to the mygraph ggplot}
+\CommentTok{##  créer un graphique `mygraph` utilisant les données de "sturgeon"}
+\CommentTok{## et définir l'axe des X comme la longueur `fklngth`}
+\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ sturgeon, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fklngth))}
+
+\CommentTok{## ajouter différentes parties au graphique}
 \NormalTok{mygraph <-}\StringTok{ }\NormalTok{mygraph }\OperatorTok{+}
-\CommentTok{#  add data density smooth}
-\StringTok{    }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
-\CommentTok{#  add rug (bars at the bottom of the plot)}
-\StringTok{    }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
-\CommentTok{#  add black semitransparent histogram}
+\CommentTok{## histogramme semi-transparent}
 \StringTok{    }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..), }\DataTypeTok{bins =} \DecValTok{30}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{,   }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\CommentTok{#  add normal curve in red, with mean and sd from fklength}
+\CommentTok{##  line de densité}
+\StringTok{    }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
+\CommentTok{##  localisation des observations}
+\StringTok{    }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
+\CommentTok{##  courbe de distribution normale approximé au données}
 \StringTok{    }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm,}
                    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}
                      \DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth),}
                      \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth) ),}
                    \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
-\CommentTok{# display graph}
-\NormalTok{    mygraph}
+
+\CommentTok{## montrer le graphique}
+\NormalTok{mygraph}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3234,7 +3231,7 @@ La commande \texttt{boxplot()} peut produire un boxplot de fklngth pour chaque n
 
 \includegraphics{Labo_BIO4558_files/figure-latex/boxplot-stur-1.pdf}
 
-La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
+La ligne un peu plus épaisse dans la boîte de la Figure indique la médiane.
 La coche est proportionnelle à l'incertitude quant à la position de la médiane.
 On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n'y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
 Les boîtes s'étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s'étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l'intérieur de 1.5x la largeur de l'étendue interquartile .
@@ -3385,12 +3382,48 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 \hypertarget{exercice-sur-r}{%
 \subsection{Exercice sur R}\label{exercice-sur-r}}
 
-\begin{rmdcode}
-Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
-Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
-\end{rmdcode}
+Vous trouverez dans le fichier \texttt{salmonella.csv}, des valeurs numériques du ratio d'infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
+Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.
 
 \includegraphics{Labo_BIO4558_files/figure-latex/intror-exer-1.pdf}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Charger les données}
+\NormalTok{salmonella <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/salmonella.csv"}\NormalTok{)}
+
+\CommentTok{##creer le graph en utilisant juste la souche sauvage et définir x}
+\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ ratio))}
+\CommentTok{##ajouter des composants graphiques}
+\NormalTok{mygraph <-}\StringTok{ }\NormalTok{mygraph }\OperatorTok{+}
+\CommentTok{# line densité}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
+\CommentTok{# position des observations}
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
+\CommentTok{# histogramme}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..),}
+                 \DataTypeTok{bins =} \DecValTok{30}\NormalTok{,}
+                 \DataTypeTok{color =} \StringTok{"black"}\NormalTok{,}
+                 \DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
+\CommentTok{# distribution normal ajustée}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm,}
+                \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}
+                  \DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{)}\OperatorTok{$}\NormalTok{ratio),}
+                  \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{)}\OperatorTok{$}\NormalTok{ratio)}
+\NormalTok{                ),}
+                \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
+\CommentTok{## faire le graphique}
+\NormalTok{mygraph}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
 
 \hypertarget{analyse-de-puissance-avec-r-et-gpower}{%
 \chapter{Analyse de puissance avec R et G*Power}\label{analyse-de-puissance-avec-r-et-gpower}}
@@ -4893,8 +4926,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.003200715  0.03406614
-## t2* 0.3408557 -0.002409885  0.02717557
+## t1* 1.1919926  0.003373672  0.03401772
+## t2* 0.3408557 -0.002506418  0.02686500
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4951,11 +4984,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.256 )   ( 1.122,  1.257 )  
+## 95%   ( 1.122,  1.255 )   ( 1.121,  1.254 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.127,  1.262 )   ( 1.113,  1.253 )  
+## 95%   ( 1.130,  1.263 )   ( 1.117,  1.250 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -4979,11 +5013,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2900,  0.3965 )   ( 0.2890,  0.3982 )  
+## 95%   ( 0.2907,  0.3960 )   ( 0.2900,  0.3971 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2835,  0.3927 )   ( 0.2925,  0.4029 )  
+## 95%   ( 0.2846,  0.3917 )   ( 0.2956,  0.4004 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5328,8 +5363,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391 -0.004829833   0.4417675
-## t2* -1.714546 -0.002795033   0.7566737
+## t1* 45.084391 -0.007771507   0.4385274
+## t2* -1.714546  0.007445734   0.7763190
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5362,7 +5397,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.169, -0.265 )  
+## 95%   (-3.150, -0.151 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5404,7 +5439,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1372   0.0685 .
+## location1   0.8573 2070   0.0464 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6026,18 +6061,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5949
+## Quantile = 2.5944
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2730   3.6474
-##  1965 -  1954 == 0  -5.5077  -9.9996  -1.0158
-##  1966 -  1954 == 0  -3.3127  -6.3447  -0.2807
-##  1965 -  1958 == 0  -5.6949 -10.4137  -0.9760
-##  1966 -  1958 == 0  -3.4999  -6.8590  -0.1408
-##  1966 -  1965 == 0   2.1950  -2.2195   6.6094
+##  1958 -  1954 == 0   0.1872  -3.2723   3.6467
+##  1965 -  1954 == 0  -5.5077  -9.9986  -1.0167
+##  1966 -  1954 == 0  -3.3127  -6.3441  -0.2813
+##  1965 -  1958 == 0  -5.6949 -10.4128  -0.9770
+##  1966 -  1958 == 0  -3.4999  -6.8584  -0.1415
+##  1966 -  1965 == 0   2.1950  -2.2186   6.6085
 \end{verbatim}
 
 \begin{Shaded}

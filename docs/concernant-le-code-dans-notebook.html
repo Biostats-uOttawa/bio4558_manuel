@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>A.3 Concernant le code dans notebook | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="A.3 Concernant le code dans notebook | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="A.3 Concernant le code dans notebook | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="à-propos-de-latex.html"/>
+<link rel="next" href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,18 +269,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="concernant-le-code-dans-notebook" class="section level2">
+<h2><span class="header-section-number">A.3</span> Concernant le code dans notebook</h2>
+<p>Vous devez écrire le code à l’intérieur de bloc de code, sinon il ne sera pas interpréter comme du code, mais comme du texte.
+Vous pouvez taper directement la notation pour créer un bloc code ou utiliser les raccourci clavier de RStudio
+Pour créer un nouveau bloc de code, taper <em><code>```{r}</code></em> pour ouvrir le bloc et <em><code>```</code></em> pour le fermer.
+Sinon, appuyer sur <em>Ctrl+Alt+I</em>
+Dans Rstudio, pour éxécuter le code à l’intérieur d’un bloc appuyer sur <em>Ctrl+Shift+Enter</em> ou cliquer sur le boutton <em>Run</em> (dans le bloc, en haut à droite).</p>
+<p>Charger les données et les packages dans le premier bloc de code.</p>
+<pre><code>```{r} #ouverture du bloc de code
+ code
+``` #fermeture du bloc code</code></pre>
+<p>Lorsque vous exécuter du code dans un bloc, le résultat apparait directement en dessous de la du bloc (si votre document est un R Notebook).
+L’option <code>fig.cap</code> fonctionnement seulement lorsqu’on génère un PDF.</p>
+<p>Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les résultats est sauvegarder en même temps. Cliquer sur le bouton <em>Preview</em> ou appuyer sur <em>Ctrl+Shift+K</em> pour voir le fichier HTML.</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb394-1" title="1"><span class="bn">```{r, fig.cap = &quot;Exemple de graphique tiré du fichier d&#39;aide de la fonction stat_bin&quot;}</span></a>
+<a class="sourceLine" id="cb394-2" title="2"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb394-3" title="3"><span class="bn">  geom_histogram()</span></a>
+<a class="sourceLine" id="cb394-4" title="4"></a>
+<a class="sourceLine" id="cb394-5" title="5"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb394-6" title="6"><span class="bn">  geom_histogram(binwidth = 0.01)</span></a>
+<a class="sourceLine" id="cb394-7" title="7"></a>
+<a class="sourceLine" id="cb394-8" title="8"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb394-9" title="9"><span class="bn">  geom_histogram(bins = 200)</span></a>
+<a class="sourceLine" id="cb394-10" title="10"><span class="bn">```</span></a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb395-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-180-1"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-180-1.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<p class="caption">
+Figure A.1: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
+</p>
 </div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb397-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.01</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-180-2"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-180-2.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<p class="caption">
+Figure A.2: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
+</p>
+</div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb398-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">200</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-180-3"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-180-3.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<p class="caption">
+Figure A.3: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
+</p>
+</div>
+</div>
+<!-- </div> -->
 <script src="js/solution.js"></script>
             </section>
 
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="à-propos-de-latex.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

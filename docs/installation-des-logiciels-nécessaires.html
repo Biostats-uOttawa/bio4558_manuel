@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>Installation des logiciels nécessaires | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="Installation des logiciels nécessaires | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="Installation des logiciels nécessaires | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours.html"/>
+<link rel="next" href="instructions-générales-pour-les-laboratoires.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="installation-des-logiciels-nécessaires" class="section level2 unnumbered">
+<h2>Installation des logiciels nécessaires</h2>
+<div id="r" class="section level3 unnumbered">
+<h3>R</h3>
+<p>Pour installer R sur un nouvel ordinateur, allez au site <a href="http://cran.r-project.org/" class="uri">http://cran.r-project.org/</a>.
+Vous y trouverez des versions compilées (binaries) ou non (sources) pour votre système d’exploitation de prédilection (Windows, MacOS, Linux).</p>
+<p>Note : R a déjà été installé sur les ordinateurs du laboratoire (la version pourrait être un peu plus ancienne, mais cela devrait être sans conséquences).</p>
+</div>
+<div id="rstudio" class="section level3 unnumbered">
+<h3>Rstudio</h3>
+<p>RStudio est un environnement de développement intégré (IDE) créé spécifiquement pour travailler avec R. Sa popularité connaît une progression foudroyante depuis 2014.
+Il permet de consulter dans une interface conviviale ses fichiers de script, la ligne de commande R, les rubriques d’aide,
+les graphiques, etc.</p>
+<p>RStudio est disponible à l’identique pour les plateformes Windows, OS X et Linux.
+Pour une utilisation locale sur son poste de travail, on installera la version libre (Open Source) de RStudio Desktop depuis le site
+<a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
+</div>
+<div id="paquets-pour-r" class="section level3 unnumbered">
+<h3>Paquets pour R</h3>
+<ul>
+<li>Rmarkdown</li>
+<li>tinytex</li>
+</ul>
+<p>Ces 2 paquets devrait être installé automatiquement avec RStudio, mais pas toujours. Je vous recommande donc de les installer manuellement. Pour ce faire, simplement copier-coller le texte suivant dans le terminal R.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;tinytex&quot;</span>))</a></code></pre></div>
+</div>
+<div id="gpower" class="section level3 unnumbered">
+<h3>G*Power</h3>
+<p>G*Power est un programme gratuit, développé par des psychologues de l’Université de Dusseldorf en Allemagne.
+Le programme existe en version Mac et Windows.
+Il peut cependant être utilisé sous linux via Wine.
+G*Power vous permettra d’effectuer une analyse de puissance pour la majorité des tests que nous verrons au cours de la session sans avoir à effectuer des calculs complexes ou farfouiller dans des tableaux ou des figures décrivant des distributions ou des courbes de puissance.</p>
+<p>Téléchargez le programme sur le site <a href="https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html" class="uri">https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html</a></p>
+</div>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +310,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="instructions-générales-pour-les-laboratoires.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +333,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/index.Rmd",
 "text": "Edit"
 },
 "history": {

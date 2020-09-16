@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.5 Corrélations non paramétriques: r de Spearman et tau de Kendall | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.5 Corrélations non paramétriques: r de Spearman et tau de Kendall | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.5 Corrélations non paramétriques: r de Spearman et tau de Kendall | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="matrices-de-corrélations-et-correction-de-bonferroni.html"/>
+<link rel="next" href="régression-linéaire-simple.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall" class="section level2">
+<h2><span class="header-section-number">3.5</span> Corrélations non paramétriques: r de Spearman et tau de Kendall</h2>
+<p>L’analyse faite à la section précédente avec les esturgeons suggère que l’une des conditions préalables à l’analyse de corrélation, soit la distribution normale bidimensionnelle de données, pourrait ne pas être remplie pour <code>fklngth</code> et <code>rdwght</code>, ni pour les paires de variables transformées.
+La recherche d’une transformation appropriée peut parfois être difficile.
+Pire encore, pour certaines distributions il n’existe pas de transformation qui va normaliser les données.
+Dans ces cas-là, la meilleure option est de faire une analyse non
+paramétrique qui ne présume ni de la normalité ni de la linéarité.
+Ces analyses sont basées sur les rangs.
+Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kendall.</p>
+<ul>
+<li>Dans R, testez la corrélation entre <code>fklngth</code> et <code>rdwght</code> en utilisant Spearman et Kendall’s .</li>
+</ul>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb253-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb253-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb253-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning in cor.test.default(sturgeon$lfklngth, sturgeon$rdwght, alternative =
+## &quot;two.sided&quot;, : Cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+## 	Spearman&#39;s rank correlation rho
+## 
+## data:  sturgeon$lfklngth and sturgeon$rdwght
+## S = 47971, p-value &lt; 2.2e-16
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.9522546</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb256-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb256-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb256-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Pearson&#39;s product-moment correlation
+## 
+## data:  sturgeon$lfklngth and sturgeon$rdwght
+## t = 24.322, df = 180, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8367345 0.9057199
+## sample estimates:
+##       cor 
+## 0.8756203</code></pre>
+<p>Comparer les résultats de cette analyse à l’analyse paramétrique.
+Pourquoi y-a-t’il une différence ?</p>
+<p>Calculez les corrélations non paramétriques sur les paires de variables transformées.
+Vous devriez voir tout de suite que les corrélations des données transformées et non transformées sont identiques puisque dans les deux cas la corrélation est calculée à partir des rangs qui ne sont pas affectés par la transformation.</p>
+<p>Notez que les corrélations obtenues avec le tau de Kendall (0.820) sont plus faibles que celles du coefficient de Spearman (0.952).
+Le tau de Kendall pondère un peu plus les grandes différences entre les rangs alors que le coefficient de Spearman donne le même poids à chaque paire d’observations.
+En général, on préfère le tau de Kendall lorsqu’il y a plus d’incertitude quant aux rangs qui sont près les uns des autres.</p>
+<p>Les esturgeons de cet échantillon ont été capturés à l’aide de filets et d’hameçons d’une taille fixe.
+Quel impact cette méthode de capture peut-elle avoir eu sur la forme de la distribution de <code>fklngth</code> et <code>rdwght</code>?
+Compte tenu de ces circonstances, l’analyse de corrélation est-elle appropriée ?</p>
+<p>Rappelez-vous que l’analyse de corrélation présume aussi que chaque variable est échantillonnée aléatoirement.
+Dans le cas de nos esturgeons, ce n’est pas le cas: les hameçons appâtés et les filets ne capturent pas de petits esturgeons (et c’est pourquoi il n’y en a pas dans l’échantillon).
+Il faut donc réaliser que les coefficients de corrélation obtenus dans cette analyse ne reflètent pas nécessairement ceux de la population totale des esturgeons.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="matrices-de-corrélations-et-correction-de-bonferroni.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="régression-linéaire-simple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +354,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/03-reg_lin.Rmd",
 "text": "Edit"
 },
 "history": {

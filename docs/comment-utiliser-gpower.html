@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>2.3 Comment utiliser G*Power | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="2.3 Comment utiliser G*Power | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="2.3 Comment utiliser G*Power | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="quest-ce-que-gpower.html"/>
+<link rel="next" href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="comment-utiliser-gpower" class="section level2">
+<h2><span class="header-section-number">2.3</span> Comment utiliser G*Power</h2>
+<div id="principe-général" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Principe général</h3>
+<p>L’utilisation de G*Power implique généralement en trois étapes:</p>
+<ol style="list-style-type: decimal">
+<li>Choisir le test approprié</li>
+<li>Choisir l’un des 5 types d’analyses de puissance disponibles</li>
+<li>Inscrire les valeurs des paramètres requis et cliquer sur Calculate</li>
+</ol>
+</div>
+<div id="types-danalyses-de-puissance-disponibles" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Types d’analyses de puissance disponibles</h3>
+<div id="a-priori" class="section level4 unnumbered">
+<h4>A priori</h4>
+<p>Calcule l’effectif requis pour une valeur de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> et de taille d’effet donnée.
+Ce type d’analyse est utile à l’étape de planification des expériences.</p>
+</div>
+<div id="compromis" class="section level4 unnumbered">
+<h4>Compromis</h4>
+<p>Calcule <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span> pour un rapport <span class="math inline">\(\beta / \alpha\)</span> donné, un effectif fixe, et une taille d’effet donnée.
+Ce type d’analyse est plus rarement utilisé (je ne l’ai jamais fait), mais peut être utile lorsque le rapport <span class="math inline">\(\beta / \alpha\)</span> est d’intérêt, par exemple lorsque le coût d’une erreur de type I et de type II peut être quantifié.</p>
+</div>
+<div id="critère" class="section level4 unnumbered">
+<h4>Critère</h4>
+<p>Calcule <span class="math inline">\(\alpha\)</span> pour <span class="math inline">\(\beta\)</span>, effectif et taille d’effet donné.
+En pratique, je vois peu d’utilité pour ce type de calcul.
+Contactez-moi si vous en voyez une!</p>
+</div>
+<div id="post-hoc" class="section level4 unnumbered">
+<h4>Post-hoc</h4>
+<p>Calcule la puissance (1 - <span class="math inline">\(\beta\)</span>) pour <span class="math inline">\(\alpha\)</span>, une taille d’effet et un effectif donné.
+Très utilisée pour interpréter les résultats d’une analyse statistique non-significative, mais seulement si l’on utilise une taille d’effet biologiquement significative (et non la taille d’effet observée).
+Peu pertinente lorsque le test est significatif.</p>
+</div>
+<div id="sensitivité" class="section level4 unnumbered">
+<h4>Sensitivité</h4>
+<p>Calcule la taille d’effet détectable pour une valeur d’<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> et un effectif donné.
+Très utile également au stade de planification des expériences.</p>
+</div>
+</div>
+<div id="comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</h3>
+<p>L’indice de la taille de l’effet qui est utilisé par G*Power pour les calculs dépend du test.
+Notez que d’autres logiciels peuvent utiliser des indices différents et il est important de vérifier que l’indice que l’on utilise est celui qui convient.
+G*Power vous facilite la tâche et permet de calculer la taille de l’effet en inscrivant seulement les valeurs pertinentes dans la fenêtre de calcul.
+Le tableau suivant donne les indices utilisés par G*Power pour les différents tests.</p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="38%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Test</th>
+<th align="center">Taille d’effet</th>
+<th align="left">Formule</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">test de t sur des moyennes</td>
+<td align="center">d</td>
+<td align="left"><span class="math inline">\(d = \frac{|\mu_1 - \mu_2|}{\sqrt{({s_1}^2 + {s_2}^2)/2}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">test de t pour des corrélations</td>
+<td align="center">r</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">autres tests de t</td>
+<td align="center">f</td>
+<td align="left"><span class="math inline">\(f = \frac{\mu_1}{\sigma}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">test F (ANOVA)</td>
+<td align="center">f</td>
+<td align="left"><span class="math inline">\(f = \frac{\frac{\sqrt{\sum_{i=1}^k (\mu_i - \mu)^2}}{k}}{\sigma}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">autres test F</td>
+<td align="center"><span class="math inline">\(f^2\)</span></td>
+<td align="left"><span class="math inline">\(f^2 = \frac{{R_p}^2}{1-{R_p}^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center"></td>
+<td align="left"><span class="math inline">\({R_p}\)</span> est le coefficient de corrélation partiel</td>
+</tr>
+<tr class="odd">
+<td align="left">test Chi-carré</td>
+<td align="center">w</td>
+<td align="left"><span class="math inline">\(w = \sqrt{ \sum_{i=1}^m \frac{(p_{0i} - p_{1i})^2 }{ p_{0i}} }\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center"></td>
+<td align="left"><span class="math inline">\(p_{0i}\)</span> <span class="math inline">\(p_{1i}\)</span> sont les proportions de la catégorie i prédites par l’hypothèse nulle et alternative respectivement</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +380,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="quest-ce-que-gpower.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +403,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/02-Gpower.Rmd",
 "text": "Edit"
 },
 "history": {

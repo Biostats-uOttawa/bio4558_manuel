@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.2 Diagrammes de dispersion | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.2 Diagrammes de dispersion | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.2 Diagrammes de dispersion | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="set-lm.html"/>
+<link rel="next" href="transformations-et-le-coefficient-de-corrélation.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="diagrammes-de-dispersion" class="section level2">
+<h2><span class="header-section-number">3.2</span> Diagrammes de dispersion</h2>
+<p>Les analyses de corrélation et de régression devraient toujours commencer par un examen des données.C’est une étape critique qui sert à évaluer si ce type d’analyse est approprié pour un ensemble de données.
+Supposons que nous sommes intéressés à évaluer si la longueur d’esturgeons mâles dans la région de <em>The Pas</em> covarie avec leur poids.
+Pour répondre à cette question, regardons d’abord la corrélation entre
+la longueur et le poids.
+Souvenez-vous qu’une des conditions d’application de l’analyse de
+corrélation est que la relation entre les deux variables est linéaire. Pour
+évaluer cela, commençons par faire un diagramme de dispersion.</p>
+<ul>
+<li>Les données sur les esturgeons son disponibles dans le fichier <code>sturgeon.csv</code>.
+Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un diagramme de dispersion avec une droite de régression et une courbe LOWESS de la longueur en fonction du poids.</li>
+</ul>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb239-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	186 obs. of  9 variables:
+##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
+##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
+##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
+##  $ rdwght  : num  15.95 NA 6.49 NA 29.92 ...
+##  $ age     : int  11 24 7 23 20 23 20 7 23 19 ...
+##  $ girth   : num  40.5 53.5 31 52.5 50 54.2 48 28.5 44 39 ...
+##  $ sex     : chr  &quot;MALE&quot; &quot;FEMALE&quot; &quot;MALE&quot; &quot;FEMALE&quot; ...
+##  $ location: chr  &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; ...
+##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1">mygraph&lt;-<span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb241-2" title="2">  <span class="dt">data =</span> sturgeon[<span class="op">!</span><span class="kw">is.na</span>(sturgeon<span class="op">$</span>rdwght),], <span class="co"># source of data</span></a>
+<a class="sourceLine" id="cb241-3" title="3">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth, <span class="dt">y =</span> rdwght))</a>
+<a class="sourceLine" id="cb241-4" title="4"><span class="co"># plot data points, regression, loess trace</span></a>
+<a class="sourceLine" id="cb241-5" title="5">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb241-6" title="6"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># add linear regression, but no SE shading</span></a>
+<a class="sourceLine" id="cb241-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co">#add loess</span></a>
+<a class="sourceLine" id="cb241-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></a>
+<a class="sourceLine" id="cb241-9" title="9"></a>
+<a class="sourceLine" id="cb241-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
+<div class="figure"><span id="fig:stur-2"></span>
+<img src="Labo_BIO4558_files/figure-html/stur-2-1.svg" alt="Graphique du poids en fonction de la longueur des esturgeons" width="672" />
+<p class="caption">
+Figure 3.1: Graphique du poids en fonction de la longueur des esturgeons
+</p>
+</div>
+<!-- (notez ici la gymnastique requise pour éliminer les données
+manquantes qui posent problème pour obtenir la trace loess). -->
+<ul>
+<li>Est-ce que la dispersion des points suggère une bonne corrélation entre les deux variables?
+Est-ce que la relation semble linéaire?</li>
+</ul>
+<p>Ce graphique suggère une tendance plus curvilinéaire que linéaire.
+Malgré tout, il semble y avoir une forte corrélation entre les deux variables.</p>
+<ul>
+<li>Refaites le diagramme de dispersion avec des axes logarithmiques.</li>
+</ul>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="co"># apply log transformation on defined graph</span></a>
+<a class="sourceLine" id="cb242-2" title="2">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="figure"><span id="fig:stur-log"></span>
+<img src="Labo_BIO4558_files/figure-html/stur-log-1.svg" alt="Graphique poids-longueur avec une échelle log" width="672" />
+<p class="caption">
+Figure 3.2: Graphique poids-longueur avec une échelle log
+</p>
+</div>
+<p>Comparez les diagrammes de dispersion avant et après transformation (Figures <a href="diagrammes-de-dispersion.html#fig:stur-2">3.1</a> et <a href="diagrammes-de-dispersion.html#fig:stur-log">3.2</a>). Comme l’analyse de corrélation présuppose une relation linéaire entre les variables, on devrait donc privilégier l’analyse sur les données log-transformées.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +337,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="set-lm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transformations-et-le-coefficient-de-corrélation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +360,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/03-reg_lin.Rmd",
 "text": "Edit"
 },
 "history": {

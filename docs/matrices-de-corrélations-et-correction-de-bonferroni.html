@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.4 Matrices de corrélations et correction de Bonferroni | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.4 Matrices de corrélations et correction de Bonferroni | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.4 Matrices de corrélations et correction de Bonferroni | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="transformations-et-le-coefficient-de-corrélation.html"/>
+<link rel="next" href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="matrices-de-corrélations-et-correction-de-bonferroni" class="section level2">
+<h2><span class="header-section-number">3.4</span> Matrices de corrélations et correction de Bonferroni</h2>
+<p>Une pratique courante est d’examiner une matrice de corrélation à la recherche des associations significatives.
+Comme exemple, essayons de tester si la corrélation entre lfklngth et rdwght est significative (c’est le plus faible coefficient de corrélation de cette matrice).</p>
+<ul>
+<li>Estimer la correlation entre la longueur (fklngth) et le poids (rdwght) des esturgeons:</li>
+</ul>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb251-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb251-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb251-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Pearson&#39;s product-moment correlation
+## 
+## data:  sturgeon$lfklngth and sturgeon$rdwght
+## t = 24.322, df = 180, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8367345 0.9057199
+## sample estimates:
+##       cor 
+## 0.8756203</code></pre>
+<p>On voit ici que la corrélation est hautement significative (p&lt; 2.2e-16),ce qui n’est pas surprenant étant donné la valeur du coefficient de corrélation (0.8756).
+Il est important de réaliser que si une matrice contient un grand nombre de corrélations, il n’est pas surprenant d’en trouver au moins une qui soit “significative”.
+En effet, on s’attend à en trouver 5% en moyenne lorsqu’il n’y a en fait aucune corrélation entre les paires de moyennes.
+Une façon de corriger pour cette tendance est d’ajuster le niveau <span class="math inline">\(\alpha\)</span> critique auquel on attribue une signification statistique en divisant <span class="math inline">\(\alpha\)</span> par le nombre <span class="math inline">\(k\)</span> de corrélations qui sont examinées : <span class="math inline">\(\alpha&#39; = \alpha / k\)</span> (ajustement de Bonferroni). Si initialement <span class="math inline">\(\alpha = 0.05\)</span> et qu’il y a 10 corrélations qui sont examinées, alors <span class="math inline">\(\alpha&#39;= 0.005\)</span>.
+Donc, afin de rejeter l’hypothèse nulle, la valeur de p devra être plus petite que <span class="math inline">\(\alpha&#39;\)</span>, en l’occurrence 0.005.
+Dans l’exemple qui précède, on devrait donc ajuster <span class="math inline">\(\alpha\)</span> critique en divisant par le nombre total de corrélations dans la matrice (6 dans ce cas, donc <span class="math inline">\(\alpha&#39;=0.00833\)</span>).
+Cette correction modifie-t-elle votre conclusion quant à la corrélation entre <code>lkfl</code> et <code>rdwght</code>?</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +305,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="transformations-et-le-coefficient-de-corrélation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +328,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/03-reg_lin.Rmd",
 "text": "Edit"
 },
 "history": {

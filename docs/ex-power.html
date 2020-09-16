@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>2.6 Exercice | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="2.6 Exercice | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="2.6 Exercice | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="points-à-retenir.html"/>
+<link rel="next" href="corrélation-et-régression-linéaire-simple.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,18 +269,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="ex-power" class="section level2">
+<h2><span class="header-section-number">2.6</span> Exercice</h2>
+
+<div class="rmdcode">
+
 </div>
+
+<p>Les larves de mouches noires (Diptera: Simuliidae) ont été échantillonnées en février à l’émissaire de deux lacs des Cantons de l’Est (lacs Orford et Lovering).
+La longueur de chaque larve a été mesurée.
+Les données sont dans le fichier simulies.RData La relation entre la longueur (L, en mm) et la masse (M, en <span class="math inline">\(\mu\)</span>g) pour l’espèce dominante (<em>P. mixtum/fuscum</em>) est:</p>
+<p><span class="math display">\[
+M = 1.36 L^3.05
+\]</span></p>
+<ol style="list-style-type: decimal">
+<li>Calculer la masse moyenne et l’écart-type à chaque site.</li>
+<li>En utilisant la masse moyenne de <em>P. mixtum/fuscum</em> à Lovering comme référence et les écarts-types observés aux 2 sites, calculer la puissance d’un test de t bilatéral pour moyennes indépendantes
+<ol style="list-style-type: lower-alpha">
+<li>si la différence de masse est de 5 <span class="math inline">\(\mu\)</span>g, <span class="math inline">\(\alpha\)</span> = 0.05, et qu’on échantillonnait 100 larves à chaque site</li>
+<li>si la différence de masse est de 20 <span class="math inline">\(\mu\)</span>g, <span class="math inline">\(\alpha\)</span> = 0.05, et qu’on échantillonnait 100 larves à chaque site</li>
+<li>si la différence de masse est de 50<span class="math inline">\(\mu\)</span>g, <span class="math inline">\(\alpha\)</span> = 0.05, et qu’on échantillonnait 100 larves à chaque site</li>
+<li>Comment est-ce que la puissance varie avec la taille de l’effet?</li>
+</ol></li>
+<li>Calculer la taille d’échantillon requis pour pouvoir détecter, par un test de t bilatéral pour moyennes indépendantes en tenant compte des écarts-types observés, une différence de 50 <span class="math inline">\(\mu\)</span>g entre les moyennes
+<ol style="list-style-type: lower-alpha">
+<li>avec une puissance de 80% et <span class="math inline">\(\alpha\)</span> = 0.05</li>
+<li>avec une puissance de 80% et <span class="math inline">\(\alpha\)</span> = 0.001</li>
+<li>avec une puissance de 95% et <span class="math inline">\(\alpha\)</span> = 0.05</li>
+<li>Comment est-ce que la taille d’échantillon requise varie avec <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span>?</li>
+</ol></li>
+<li>Calculer la taille d’effet détectable (d) par un test de t bilatéral pour moyennes indépendantes, compte tenu des écarts-types observés
+<ol style="list-style-type: lower-alpha">
+<li>avec une puissance de 80%, <span class="math inline">\(\alpha\)</span> = 0.05, et des mesures sur 10 larves de chaque site</li>
+<li>avec une puissance de 80%, <span class="math inline">\(\alpha\)</span> = 0.05, et des mesures sur 200 larves à chaque site</li>
+<li>avec une puissance de 80%, <span class="math inline">\(\alpha\)</span> =0.05, et des mesures sur 20 larves d’un site et sur 380 larves au second site</li>
+<li>Comment est-ce que la taille d’effet détectable dépend de la taille d’échantillon dans les 2 groupes?</li>
+</ol></li>
+<li>Calculer la différence de masse, en <span class="math inline">\(\mu\)</span>g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c.</li>
+</ol>
+
+<!-- # (PART) Modèle univarié {-} -->
+</div>
+<!-- </div> -->
 <script src="js/solution.js"></script>
             </section>
 
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="points-à-retenir.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="corrélation-et-régression-linéaire-simple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +340,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/02-Gpower.Rmd",
 "text": "Edit"
 },
 "history": {

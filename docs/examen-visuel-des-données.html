@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>4.2 Examen visuel des données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="4.2 Examen visuel des données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="4.2 Examen visuel des données | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="set-t.html"/>
+<link rel="next" href="comparer-les-moyennes-de-deux-échantillons-indépendants.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="examen-visuel-des-données" class="section level2">
+<h2><span class="header-section-number">4.2</span> Examen visuel des données</h2>
+<p>Une des premières étapes dans toute analyse de données est l’examen visuel des données par des graphiques et statistiques sommaires pour détecter les distributions sous-jacentes, les valeurs extrêmes et les tendances dans vos données. Cela commence souvent avec des graphiques de vos données (histogrammes, diagrammes de probabilité, Box plots, etc.) qui vous permettent d’évaluer si vos données sont normales, si elles sont corrélées les unes aux autres, ou s’il y a des valeurs suspectes dans le fichier.</p>
+<p>Supposons que l’on veuille comparer la distribution en taille des esturgeons de The Pas et Cumberland House. La variable <code>fklngth</code> dans le fichier <code>sturgeon.csv</code> représente la longueur (en cm) à la fourche de chaque poisson mesurée de l’extrémité de la tête à la base de la fourche de la nageoire caudale. Pour commencer, examinons si cette variable est normalement distribuée. On ne va pas tester pour la normalité à ce stade-ci; la présomption de normalité dans les analyses paramétriques s’applique aux résidus et non aux données brutes. Cependant, si les données brutes ne sont pas normales, vous avez d’habitude une très bonne raison de soupçonner que les résidus vont aussi ne pas avoir une distribution normale.</p>
+<p>Une excellente façon de comparer visuellement une distribution à la distribution normale est de superposer un histogramme des données observées à une courbe normale. Pour ce faire, il faut procéder en deux étapes :</p>
+<ol style="list-style-type: decimal">
+<li>indiquer à R que nous voulons créer un histogramme superposé à une courbe normale</li>
+<li>spécifier qu’on veut que les graphiques soient faits pour les deux sites</li>
+</ol>
+<ul>
+<li>En utilisant les données du fichier <code>sturgeon.csv</code>, générez les histogrammes et les approximations des distributions normales ajustées aux données de <code>fklngth</code> à <code>The Pas</code> et <code>Cumberland House</code>.</li>
+</ul>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1"><span class="co"># use &quot;sturgeon&quot; dataframe to make plot called mygraph</span></a>
+<a class="sourceLine" id="cb307-2" title="2"><span class="co"># and define x axis as representing fklngth</span></a>
+<a class="sourceLine" id="cb307-3" title="3">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb307-4" title="4">  <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb307-5" title="5">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb307-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Fork length (cm)&quot;</span>)</a>
+<a class="sourceLine" id="cb307-7" title="7"><span class="co"># add data to the mygraph ggplot</span></a>
+<a class="sourceLine" id="cb307-8" title="8">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb307-9" title="9"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="co"># add data density smooth</span></a>
+<a class="sourceLine" id="cb307-10" title="10"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span><span class="st"> </span><span class="co"># add rug (bars at the bottom of the plot)</span></a>
+<a class="sourceLine" id="cb307-11" title="11"><span class="st">  </span><span class="kw">geom_histogram</span>( <span class="co"># add black semitransparent histogram</span></a>
+<a class="sourceLine" id="cb307-12" title="12">    <span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb307-13" title="13"><span class="st">  </span><span class="co"># add normal curve in red, with mean and sd from fklength</span></a>
+<a class="sourceLine" id="cb307-14" title="14"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb307-15" title="15">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb307-16" title="16">      <span class="dt">mean =</span> <span class="kw">mean</span>(sturgeon<span class="op">$</span>fklngth),</a>
+<a class="sourceLine" id="cb307-17" title="17">      <span class="dt">sd =</span> <span class="kw">sd</span>(sturgeon<span class="op">$</span>fklngth)</a>
+<a class="sourceLine" id="cb307-18" title="18">    ),</a>
+<a class="sourceLine" id="cb307-19" title="19">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb307-20" title="20"><span class="co">#display graph, by location</span></a>
+<a class="sourceLine" id="cb307-21" title="21">mygraph<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>location)</a></code></pre></div>
+<div class="figure"><span id="fig:t-1"></span>
+<img src="Labo_BIO4558_files/figure-html/t-1-1.svg" alt="Distribution de la longueur des esturgeons" width="672" />
+<p class="caption">
+Figure 4.1: Distribution de la longueur des esturgeons
+</p>
+</div>
+<p>Examinez ce graphique et essayez de déterminer si ces deux échantillons sont normalement distribués. À mon avis, cette variable est approximativement normalement distribuée dans les deux échantillons. Puisque ce qui nous intéresse est de comparer la taille des poissons de deux sites différents, c’est probablement une bonne idée de créer un graphique qui compare les deux groupes de données. Un Box plot convient très bien pour cette tâche.</p>
+<ul>
+<li>Tracez un boxplot de <code>fklngth</code> groupé par <code>location</code>. Que concluez-vous quant à la différence entre les deux sites?</li>
+</ul>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data=</span>sturgeon, <span class="kw">aes</span>(<span class="dt">x=</span>location,</a>
+<a class="sourceLine" id="cb308-2" title="2"><span class="dt">y=</span>fklngth))<span class="op">+</span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:t-2"></span>
+<img src="Labo_BIO4558_files/figure-html/t-2-1.svg" alt="Boxplot de la longueur des esturgeons" width="672" />
+<p class="caption">
+Figure 4.2: Boxplot de la longueur des esturgeons
+</p>
+</div>
+<p>Il n’y a pas de grande différence de taille entre les deux sites, mais la taille des poissons à The Pas est plus variable ayant une plus large étendue de taille et des valeurs extrêmes (définies par les valeurs qui sont &gt; 1.5*l’étendue interquartile) à chaque bout de la distribution.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +328,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="set-t.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="comparer-les-moyennes-de-deux-échantillons-indépendants.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +351,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/04-t_test.Rmd",
 "text": "Edit"
 },
 "history": {

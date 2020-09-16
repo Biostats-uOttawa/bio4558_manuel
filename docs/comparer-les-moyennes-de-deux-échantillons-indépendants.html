@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>4.3 Comparer les moyennes de deux échantillons indépendants | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="4.3 Comparer les moyennes de deux échantillons indépendants | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="4.3 Comparer les moyennes de deux échantillons indépendants | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="examen-visuel-des-données.html"/>
+<link rel="next" href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="comparer-les-moyennes-de-deux-échantillons-indépendants" class="section level2">
+<h2><span class="header-section-number">4.3</span> Comparer les moyennes de deux échantillons indépendants</h2>
+<p>Éprouvez l’hypothèse nulle d’égalité de la longueur à la fourche à The Pas et Cumberland House de 3 manières différentes:</p>
+<ol style="list-style-type: decimal">
+<li>paramétriques supposant des variances égales</li>
+<li>paramétriques supposant des variances différentes</li>
+<li>non-paramétriques</li>
+</ol>
+<p>Que concluez-vous?</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1"><span class="co"># t-test assuming equal variances</span></a>
+<a class="sourceLine" id="cb309-2" title="2"> <span class="kw">t.test</span>(</a>
+<a class="sourceLine" id="cb309-3" title="3">   fklngth<span class="op">~</span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb309-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb309-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Two Sample t-test
+## 
+## data:  fklngth by location
+## t = 2.1359, df = 184, p-value = 0.03401
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.1308307 3.2982615
+## sample estimates:
+## mean in group CUMBERLAND    mean in group THE_PAS 
+##                 45.08439                 43.36984</code></pre>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1"><span class="co"># t-test assuming unequal variances</span></a>
+<a class="sourceLine" id="cb311-2" title="2"> <span class="kw">t.test</span>(</a>
+<a class="sourceLine" id="cb311-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb311-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb311-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Welch Two Sample t-test
+## 
+## data:  fklngth by location
+## t = 2.2201, df = 169.8, p-value = 0.02774
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.1900117 3.2390804
+## sample estimates:
+## mean in group CUMBERLAND    mean in group THE_PAS 
+##                 45.08439                 43.36984</code></pre>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="co"># test non paramétrique</span></a>
+<a class="sourceLine" id="cb313-2" title="2"> <span class="kw">wilcox.test</span>(</a>
+<a class="sourceLine" id="cb313-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
+<a class="sourceLine" id="cb313-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  fklngth by location
+## W = 4973, p-value = 0.06296
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>En se fiant au test de t, on rejette donc l’hypothèse nulle. Il y a une différence significative entre les deux moyennes des longueurs à la fourche.</p>
+<p>Notez que si l’on se fie au test de <em>Wilcoxon</em>, il faut accepter l’hypothèse nulle. Les deux tests mènent donc à des conclusions contradictoires. La différence significative obtenue par le test de t peut provenir en partie d’une violation des conditions d’application du test (normalité et homoscédasticité). D’un autre côté, l’absence de différence significative selon le test de Wilcoxon pourrait être due au fait que, pour un effectif donné, la puissance du test non paramétrique est inférieure à celle du test paramétrique correspondant. Compte tenu 1) des valeurs de p obtenues pour les deux tests, et 2) le fait que pour des grands échantillons (des effectifs de 84 et 101 sont considérés grands) le test de t est considéré robuste, il est raisonnable de rejeter l’hypothèse nulle.</p>
+<p>Avant d’accepter les résultats du test de t et de rejeter l’hypothèse nulle qu’il n’y a pas de différences de taille entre les deux sites, il est important de déterminer si les données remplissent les conditions de normalité des résidus et d’égalité des variances. L’examen préliminaire suggérait que les données sont à peu près normales mais qu’il y avait peut-être des problèmes avec les variances (puisque l’étendue des données pour The Pas était beaucoup plus grande que celle pour Cumberland). On peut examiner ces conditions d’application plus en détail en examinant les résidus d’un modèle linéaire et en utilisant les graphiques diagnostiques:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" title="1">m1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data=</span>sturgeon)</a>
+<a class="sourceLine" id="cb315-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb315-3" title="3"><span class="kw">plot</span>(m1)</a></code></pre></div>
+<div class="figure"><span id="fig:t-6"></span>
+<img src="Labo_BIO4558_files/figure-html/t-6-1.svg" alt="Condition d'application du modèle linéaire" width="672" />
+<p class="caption">
+Figure 4.3: Condition d’application du modèle linéaire
+</p>
+</div>
+<p>Le premier graphique ci-dessus montre comment les résidus se distribuent autour des valeurs prédites (les moyennes) pour chaque site et permette de juger si il semble y avoir un problème de normalité ou d’homoscédasticité. Si les variances étaient égales dans les deux sites, l’étendue verticale des résidus tendrait à être la même. Sur le graphique, on voit que l’étendue des résidus est plus grande à gauche (le site où la taille moyenne est la plus faible), ce qui suggère un possible problème d’homogénéité des variances. On peut tester cela plus formellement en comparant la moyenne de la valeur absolue des résidus.(on y reviendra; c’est le test de Levene).</p>
+<p>Le second graphique est un graphique de probabilité (graphique Q-Q) des résidus. Comme ici, les points tombent près de la diagonale, il ne semble pas y avoir de problème important avec la normalité. On peut faire un test formel de la condition de normalité par le test de Shapiro- Wilk:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(m1))</a></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  residuals(m1)
+## W = 0.97469, p-value = 0.001857</code></pre>
+<p>Hummm. Ce test indique que les résidus ne sont pas normaux, ce qui contredit notre évaluation visuelle. Cependant, puisque (a) la distribution des résidus ne s’éloigne pas beaucoup de la normalité et (b) le nombre d’observations à chaque site est raisonnablement grand (i.e. &gt;30), on n’a pas à être trop inquiet quant à l’impact de cette violation de normalité sur la fiabilité du test.</p>
+<p>Qu’en est-il de l’égalité des variances?</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"> <span class="kw">leveneTest</span>(m1)</a></code></pre></div>
+<pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##        Df F value    Pr(&gt;F)    
+## group   1  11.514 0.0008456 ***
+##       184                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="kw">bptest</span>(m1)</a></code></pre></div>
+<pre><code>## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  m1
+## BP = 8.8015, df = 1, p-value = 0.00301</code></pre>
+<p>Les résultats qui précédents proviennent de 3 des tests disponibles en R (dans les package car et lmtest) qui éprouvent l’hypothèse de l’égalité des variances dans des tests de t ou des modèles linéaires ayant uniquement des variables indépendantes discontinues ou catégoriques. Il est redondant de faire les 2 tests. Si ils sont présentés ici, c’est que ces 2 tests sont usuels et qu’il n’y a pas consensus quant au meilleur des deux. Le test de Levene est le plus connu et utilisé. Il compare la moyenne des valeurs absolues des résidus dans les deux groupes. Le test Breusch-Pagan a l’avantage d’être applicable à une plus large gamme de modèles linéaires (il peut être utilisé également avec des variables indépendantes continues, comme en régression). Ici, les deux tests mènent à la même conclusion: la variance diffère entre les deux sites.</p>
+<p>Sur la base de ces résultats, on peut conclure qu’il y a évidence (mais faible) pour rejeter l’hypothèse nulle qu’il n’y a pas de différence dans la taille de poissons entre les deux sites. On a utilisé une modification du test de t pour tenir compte du fait que les variances ne sont pas égales et nous sommes satisfaits que la condition de normalité des résidus a été remplie. Alors, fklngth à Cumberland est plus grande que fklngth à The Pas.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +366,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="examen-visuel-des-données.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +389,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/04-t_test.Rmd",
 "text": "Edit"
 },
 "history": {

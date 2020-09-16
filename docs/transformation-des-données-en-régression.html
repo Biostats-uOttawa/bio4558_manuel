@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.7 Transformation des données en régression | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.7 Transformation des données en régression | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.7 Transformation des données en régression | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="régression-linéaire-simple.html"/>
+<link rel="next" href="traitement-des-valeurs-extrèmes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="transformation-des-données-en-régression" class="section level2">
+<h2><span class="header-section-number">3.7</span> Transformation des données en régression</h2>
+<p>La relation entre <code>fklngth</code> et <code>age</code> n’étant pas linéaire, on devrait donc essayer de transformer les données pour tenter de les linéariser :</p>
+<ul>
+<li>Voyons ce qu’une transformation log donne:</li>
+</ul>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">las=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-2" title="2"><span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb272-3" title="3">  <span class="dt">data =</span> sturgeon.male,</a>
+<a class="sourceLine" id="cb272-4" title="4">  <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">log10</span>(age), <span class="dt">y=</span><span class="kw">log10</span>(fklngth))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb272-5" title="5"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb272-6" title="6"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;green&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb272-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/sturtr-1-1.svg" width="672" /></p>
+<p>Ajustons maintenant une régression simple sur ces données transformées.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1">RegModel<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth)<span class="op">~</span><span class="kw">log10</span>(age), <span class="dt">data=</span>sturgeon.male)</a>
+<a class="sourceLine" id="cb273-2" title="2"><span class="kw">summary</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.082794 -0.016837 -0.000719  0.021102  0.087446 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.19199    0.02723   43.77   &lt;2e-16 ***
+## log10(age)   0.34086    0.02168   15.72   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.03015 on 73 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.772,	Adjusted R-squared:  0.7688 
+## F-statistic: 247.1 on 1 and 73 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Examinons maintenant les graphiques diagnostiques:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="dt">las=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb275-2" title="2"><span class="kw">plot</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/sturtr-3-1.svg" width="672" /></p>
+<p>Il y a une certaine amélioration, mais ce n’est pas encore parfait (la perfection n’est pas de ce monde….). Le graphique des résidus en fonction des valeurs prédites suggère encore une certaine non linéarité. Sur le graphique Q-Q les points se retrouvent plus près de la droite diagonale qu’avant, indiquant que les résidus sont encore plus près de la normalité après la transformation log-log. Il n’y a pas d’indice d’hétéroscédasticité. Finalement, même si il reste quelques points avec plus d’influence (leverage) que les autres, aucun n’a une distance de Cook au-delà de 0.5. En résumé, la transformation log a amélioré les choses: relation est plus linéaire, les résidus sont plus normaux, et il y a moins de points avec une influence relativement élevée.Est-ce que les tests formels supportent cette évaluation?</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1"><span class="kw">bptest</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
+<pre><code>## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  RegModel.2
+## BP = 0.14282, df = 1, p-value = 0.7055</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="kw">dwtest</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Durbin-Watson test
+## 
+## data:  RegModel.2
+## DW = 2.1777, p-value = 0.6134
+## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">resettest</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
+<pre><code>## 
+## 	RESET test
+## 
+## data:  RegModel.2
+## RESET = 4.4413, df1 = 2, df2 = 71, p-value = 0.01523</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(RegModel<span class="fl">.2</span>))</a></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  residuals(RegModel.2)
+## W = 0.98998, p-value = 0.8246</code></pre>
+<p>Oui, les conclusions sont les mêmes: les résidus sont encore homoscédastiques (test Breusch-Pagan), ne sont pas autocorrélés (test Durbin-Watson), sont normaux (test Shapiro-Wilk ), et sont plus linéaires (la valeur de P du test RESET est maintenant 0.015, au lieu de 0.000005). Donc la linéarité a augmenté, mais cette condition d’application semble encore légèrement violée.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +343,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="régression-linéaire-simple.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="traitement-des-valeurs-extrèmes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +366,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/03-reg_lin.Rmd",
 "text": "Edit"
 },
 "history": {

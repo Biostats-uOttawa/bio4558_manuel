@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="comment-utiliser-gpower.html"/>
+<link rel="next" href="points-à-retenir.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="puissance-pour-un-test-de-t-comparant-deux-moyennes" class="section level2">
+<h2><span class="header-section-number">2.4</span> Puissance pour un test de t comparant deux moyennes</h2>
+<p>L’objectif de cette séance de laboratoire est de vous familiariser avec G*Power et de vous aider à comprendre comment les quatre paramètres des analyses de puissance (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, effectif et taille de l’effet) sont reliés entre eux.
+On examinera seulement un des nombreux tests, le test de t permettant de comparer deux moyennes indépendantes.
+C’est le test le plus communément utilisé par les biologistes, vous l’avez tous déjà utilisé, et il conviendra très bien pour les besoins de la cause.
+Ce que vous apprendrez aujourd’hui s’appliquera à toutes les autres analyses de puissance que vous effectuerez à l’avenir.</p>
+<p>Jaynie Stephenson a étudié la productivité des ruisseaux de la région d’Ottawa.
+Elle a, entre autres, quantifié la biomasse des poissons dans 18 ruisseaux sur le Bouclier Canadien d’une part, et dans 18 autres ruisseaux de la vallée de la rivière des Outaouais et de la rivière Rideau d’autre part.
+Elle a observé une biomasse plus faible dans les ruisseaux de la vallée (2.64 <span class="math inline">\(g/m^2\)</span> , écart-type=3.28) que dans ceux du Bouclier (3.31 <span class="math inline">\(g/m^2\)</span> , écart-type=2.79).
+En faisant un test de t pour éprouver l’hypothèse nulle que la biomasse des poissons est la même dans les deux régions, elle obtient:</p>
+<pre><code>Pooled-Variance Two-Sample t-Test
+t = -0.5746, df = 34, p-value = 0.5693</code></pre>
+<p>Elle accepte l’hypothèse nulle (puisque p est plus élevé que 0.05) conclue donc que la biomasse moyenne des poissons est la même dans ces deux régions.</p>
+<div id="analyse-post-hoc" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Analyse post-hoc</h3>
+<p>Compte tenu des valeurs des moyennes observées et de leur écart- type, on peut utiliser G*Power pour calculer la puissance du test de t bilatéral pour deux moyennes indépendantes et pour la taille d’effet (i.e. la différence entre la biomasse entre les deux régions, pondérée par les écarts-type) à <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p>Démarrer G*Power.</p>
+<ol style="list-style-type: decimal">
+<li>À <strong>Test family</strong>, choisir: t tests</li>
+<li>À <strong>Statistical test</strong>, choisir: Means: Difference between two inde- pendent means (two groups)</li>
+<li>À <strong>Type of power analysis</strong>, choisir: Post hoc: Compute achieved power - given <span class="math inline">\(\alpha\)</span>, sample size, and effect size</li>
+<li>Dans <strong>Input Parameters</strong>,</li>
+</ol>
+<ul>
+<li>à la boîte <strong>Tail(s)</strong>, choisir: Two,</li>
+<li>vérifier que <span class="math inline">\(\alpha\)</span> <strong>err prob</strong> est égal à 0.05</li>
+<li>inscrire 18 pour <strong>Sample size group</strong> 1 et 2</li>
+<li>pour calculer la taille d’effet (Effect size d), cliquer sur le bouton <strong>Determine =&gt;</strong></li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li>Dans la fenêtre qui s’ouvre à droite, sélectionner <strong>n1 = n2</strong></li>
+</ol>
+<ul>
+<li>entrer les moyennes (<strong>Mean group</strong> 1 et 2)</li>
+<li>entrer les écarts types (<strong>SDs group</strong> 1 et 2)</li>
+<li>cliquer sur le bouton <strong>Calculate and transfer to main window</strong></li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>Cliquer sur le bouton Calculate dans la fenêtre principale et vous devriez obtenir ceci:</li>
+</ol>
+<div class="figure"><span id="fig:gpower-1"></span>
+<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" />
+<p class="caption">
+Figure 2.1: Analyse post-hoc avec la taille d’effet estimée
+</p>
+</div>
+<p>Étudions un peu ce graphique.</p>
+<ul>
+<li>La courbe de gauche, en rouge, correspond à la distribution de la statistique t si <span class="math inline">\(H_0\)</span> est vraie (i.e si les deux moyennes étaient égales) compte tenu de l’effectif (18 dans chaque région) et des écarts- types observés.</li>
+<li>Les lignes verticales vertes correspondent aux valeurs critiques de t pour une valeur <span class="math inline">\(\alpha = 0.05\)</span> et un effectif total de 36 (2x18).</li>
+<li>Les régions ombrées en rose correspondent aux zones de rejet de <span class="math inline">\(H_0\)</span>.
+Si Jaynie avait obtenu une valeur de t en dehors de l’intervalle délimité par les valeurs critiques allant de -2.03224 à 2.03224, alors elle aurait rejeté <span class="math inline">\(H_0\)</span> , l’hypothèse nulle d’égalité des deux moyennes.
+En fait, elle a obtenu une valeur de t égale à -0.5746 et conclu que la biomasse est la même dans les deux régions.</li>
+<li>La courbe de droite, en bleu, correspond à la distribution de la sta- tistique t si <span class="math inline">\(H_1\)</span> est vraie (ici <span class="math inline">\(H_1\)</span> correspond à une différence de biomasse entre les deux régions de <span class="math inline">\(3.33-2.64=0.69g/m^2\)</span> , compte tenu des écarts-types observés).
+Cette distribution correspond à ce qu’on devrait s’attendre à observer si <span class="math inline">\(H_1\)</span> était vraie et que l’on répétait un grand nombre de fois les mesures dans des échantillons aléatoires de 18 ruisseaux des deux régions en calculant la statistique t à chaque fois.
+En moyenne, on observerait une valeur de t d’environ 0.6.</li>
+<li>Notez que la distribution de droite chevauche considérablement celle de gauche, et une bonne partie de la surface sous la courbe de droite se retrouve à l’intérieur de l’intervalle d’acceptation de <span class="math inline">\(H_0\)</span>, délimité par les deux lignes vertes et allant de -2.03224 à 2.03224.
+Cette proportion, correspondant à la partie ombrée en bleu sous la courbe de droite et dénoté par <span class="math inline">\(\beta\)</span> correspond au risque d’erreur de type II qui est d’accepter <span class="math inline">\(H_0\)</span> quand <span class="math inline">\(H_1\)</span> est vraie.</li>
+<li>La puissance est simplement <span class="math inline">\(1-\beta\)</span>, et est ici de 0.098339.
+Donc, si la biomasse différait de 0.69<span class="math inline">\(g/m^2\)</span> entre les deux régions, Jaynie n’avait que 9.8% des chances d’être capable de détecter une différence statistiquement significative à <span class="math inline">\(\alpha=5%\)</span> en échantillonnant 18 ruisseaux de chaque région.</li>
+</ul>
+<p><strong>Récapitulons:</strong> La différence de biomasse entre les deux régions n’est pas statistiquement significative d’après le test de t.
+C’est donc que cette différence est relativement petite compte tenu de la précision des mesures.
+Il n’est donc pas très surprenant que la puissance, i.e. la probabilité de détecter une différence significative, soit faible.
+Toute cette analyse ne nous informe pas beaucoup.</p>
+<p><strong>Une analyse de puissance post hoc avec la taille de l’effet observé n’est pas très utile.</strong>
+On la fera plutôt pour une taille d’effet autre que celle observée quand H 0 est acceptée.
+Quelle taille d’effet utiliser? C’est la biologie du système étudié qui peut nous guider.
+Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s’attendre à ce qu’une différence de biomasse du simple au double (disons de 2.64 à 5.28 <span class="math inline">\(g/m^2\)</span> ) ait des conséquences écologiques.
+On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une différence aussi grande que celle-là avant d’accepter ses conclusions que la biomasse est la même entre les deux régions.
+Quelles étaient les chances de Jaynie de détecter une différence de 2.64 <span class="math inline">\(g/m^2\)</span> entre les deux régions? G*Power peut nous le dire.</p>
+
+<div class="rmdcode">
+Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#fig:gpower-2">2.2</a>).
+</div>
+
+<div class="figure"><span id="fig:gpower-2"></span>
+<img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
+<p class="caption">
+Figure 2.2: Analyse post-hoc avec une taille d’effet différente
+</p>
+</div>
+<p>La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.</p>
+<p>Notez que cette analyse de puissance post hoc pour une taille d’effet jugée biologiquement significative est bien plus informative que l’analyse précédente pour la taille d’effet observée (qui est celle effectuée par défaut par bien des néophytes et de trop nombreux logiciels qui essaient de penser pour nous).
+En effet, Jaynie n’a pu détecter de différences significatives entre les deux régions.
+Cela pourrait être pour deux raisons: soit qu’il n’y a pas de différences entre les régions, ou soit parce que la précision des mesures est si faible et l’effort d’échantillonnage était si limité qu’il était très peu probable de détecter même d’énormes différences.
+La deuxième analyse de puissance permet d’éliminer cette seconde possibilité puisque Jaynie avait 71% des chances de détecter une différence du simple au double.</p>
+</div>
+<div id="analyse-à-priori" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Analyse à priori</h3>
+<p>Supposons qu’on puisse défendre la position qu’une différence de biomasse observée par Jaynie entre les deux régions, <span class="math inline">\(3.31- 2.64=0.67g/m^2\)</span> , soit écologiquement signifiante.
+On devrait donc planifier la prochaine saison d’échantillonnage de manière à avoir de bonnes chances de détecter une différence de cette taille.
+Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chances de la détecter (compte tenu de la variabilité observée)?</p>
+
+<div class="rmdcode">
+Changer le type d’analyse de puissance dans G*Power à <strong>A priori</strong>: <strong>Compute sample size - given <span class="math inline">\(\alpha\)</span> , power, and effect size.</strong>
+Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance.
+</div>
+
+<div class="figure"><span id="fig:gpower-3"></span>
+<img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
+<p class="caption">
+Figure 2.3: Analyse à priori
+</p>
+</div>
+<p><strong>Ouch!</strong> Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
+Sans cela, on ne pourrait échantillonner que quelques dizaines de ruisseaux, et il serait peu probable que l’on puisse détecter une si faible différence de biomasse entre les deux régions.
+Ce serait vraisemblablement en vain et pourrait être considéré comme une perte de temps: pourquoi tant d’efforts et de dépenses si les chances de succès sont si faibles.</p>
+<p>Si on refait le même calcul pour une puissance de 95%, on obtient 538 ruisseaux par région.
+Augmenter la puissance ça demande plus d’effort.</p>
+</div>
+<div id="analyse-de-sensitivité---calculer-la-taille-deffet-détectable" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Analyse de sensitivité - Calculer la taille d’effet détectable</h3>
+<p>Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 18 ruisseaux par région, et en conservant <span class="math inline">\(\alpha=0.05\)</span>, quelle est la taille d’effet que Jaynie pouvait détecter avec 80% de chances <span class="math inline">\(\beta=0.2\)</span>)?</p>
+
+<div class="rmdcode">
+Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <strong>Compute required effect size - given <span class="math inline">\(\alpha\)</span> , power, and sample size</strong> et assurez-vous que la taille des échantillons est de 18 dans chaque région.
+</div>
+
+<div class="figure"><span id="fig:gpower-4"></span>
+<img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
+<p class="caption">
+Figure 2.4: Analyse de sensitivité
+</p>
+</div>
+<p>La taille d’effet détectable pour cette taille d’échantillon, <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (ou une puissance de 80%) est de 0.961296.</p>
+
+<div class="rmdcaution">
+cette valeur est l’indice <code>d</code> de la taille de l’effet et est pondérée par la variabilité des mesures.
+</div>
+
+<p>Dans ce cas ci, <code>d</code> est approximativement égal à
+<span class="math display">\[ d = \frac{| \bar{X_1} \bar{X_2} |} {\sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}}\]</span>
+Pour convertir cette valeur de d sans unités en une valeur de différence de biomasse détectable (i.e <span class="math inline">\(| \bar{X_1} \bar{X_2} |\)</span>), il suffit de multiplier <code>d</code> par le dénominateur de l’équation.
+<span class="math display">\[
+| \bar{X_1} \bar{X_2} | = d * \sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}
+\]</span>
+Donc, avec 18 ruisseaux dans chaque région, pour <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (une puissance de 80%), Jaynie pouvait détecter une différence de biomasse de 2.93<span class="math inline">\(g/m^2\)</span> entre les régions, un peu plus que du simple au double.</p>
+</div>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +415,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comment-utiliser-gpower.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="points-à-retenir.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +438,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/02-Gpower.Rmd",
 "text": "Edit"
 },
 "history": {

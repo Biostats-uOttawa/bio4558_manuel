@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.8 Traitement des valeurs extrèmes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.8 Traitement des valeurs extrèmes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.8 Traitement des valeurs extrèmes | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="transformation-des-données-en-régression.html"/>
+<link rel="next" href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="traitement-des-valeurs-extrèmes" class="section level2">
+<h2><span class="header-section-number">3.8</span> Traitement des valeurs extrèmes</h2>
+<p>Dans cet exemple, il n’y a pas de valeur vraiment extrème. Oui, je sais, R a quand même identifié les observations 8, 24, et 112 dans le dernier graphique diagnostique. Mais ces valeurs sont encore dans la fourchette de valeurs que je juge “acceptables”. Mais comment déterminer objectivement ce qui est acceptable? À quel moment juge t’on qu’une valeur extrême est vraiment trop invraisemblable pour ne pas l’exclure? Il n’y a malheureusement pas de règle absolue là-dessus. Les opinions varient, mais je penche vers le conservatisme sur cette question.</p>
+<p>Ma position est que, à moins que la valeur soit biologiquement impossible ou clairement une erreur d’entrée de données, je n’élimine pas les valeurs extrêmes et j’utilise toutes mes données dans leur analyse. Pourquoi?</p>
+<p>Parce que je veux que mes données reflètent bien la variabilité naturelle ou réelle. C’est d’ailleurs parfois cette variabilité qui est intéressante.</p>
+<p>L’approche conservatrice qui consiste à conserver toutes les valeurs extrêmes possibles est possiblement la plus honnête, mais elle peut causer certains problèmes. Ces valeurs extrêmes sont souvent la cause des violations des conditions d’application des tests statistiques. La solution suggérée à ce dilemme est de faire l’analyse avec et sans les valeurs extrêmes et de comparer les conclusions. Dans bien des cas, les conclusions seront qualitativement les mêmes et les tailles d’effet ne seront pas très différentes. Toutefois, dans certains cas, la présence des valeurs extrêmes change complètement les conclusions. Dans ces cas, il faut simplement accepter que les conclusions dépendent entièrement de la présence des valeurs extrêmes et sont donc peu concluantes.</p>
+<p>Suivant cette approche comparative, refaisons donc l’analyse après
+avoir enlevé les observations 8, 24, et 112.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1">RegModel<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth)<span class="op">~</span><span class="kw">log10</span>(age), <span class="dt">data=</span>sturgeon.male, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;8&#39;</span>,<span class="st">&#39;24&#39;</span>,<span class="st">&#39;112&#39;</span>)))</a>
+<a class="sourceLine" id="cb284-2" title="2"><span class="kw">summary</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male, 
+##     subset = !(rownames(sturgeon.male) %in% c(&quot;8&quot;, &quot;24&quot;, &quot;112&quot;)))
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.069163 -0.017390  0.000986  0.018590  0.047647 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.22676    0.02431   50.46   &lt;2e-16 ***
+## log10(age)   0.31219    0.01932   16.16   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.02554 on 70 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.7885,	Adjusted R-squared:  0.7855 
+## F-statistic:   261 on 1 and 70 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>L’ordonnée à l’origine (Intercept), la pente, et le R carré sont presque les mêmes, et la valeur de p est encore astronomiquement petite. Enlever les valeurs extrêmes a peu d’effet dans ce cas.</p>
+<p>Les graphiques diagnostiques des résidus et les tests formels des conditions d’application sur ce sous-ensemble de données donnent:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb286-2" title="2"><span class="kw">plot</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/sturtr-6-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1">sturgeon.male.subset &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, <span class="dt">subset=</span><span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;8&#39;</span>,<span class="st">&#39;24&#39;</span>,<span class="st">&#39;112&#39;</span>)))</a>
+<a class="sourceLine" id="cb287-2" title="2"><span class="kw">bptest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<pre><code>## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  RegModel.3
+## BP = 0.3001, df = 1, p-value = 0.5838</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1"><span class="kw">dwtest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Durbin-Watson test
+## 
+## data:  RegModel.3
+## DW = 2.0171, p-value = 0.5074
+## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1"><span class="kw">resettest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<pre><code>## 
+## 	RESET test
+## 
+## data:  RegModel.3
+## RESET = 3.407, df1 = 2, df2 = 68, p-value = 0.0389</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(RegModel<span class="fl">.3</span>))</a></code></pre></div>
+<pre><code>## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  residuals(RegModel.3)
+## W = 0.98318, p-value = 0.4502</code></pre>
+<p>Il n’y a pas vraiment de différence ici non plus avec l’analyse des données en entier. Bref, tout pointe vers la conclusion que les valeurs les plus extrêmes de cet ensemble de donnée n’influencent pas indûment les résultats statistiques.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="transformation-des-données-en-régression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +361,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/03-reg_lin.Rmd",
 "text": "Edit"
 },
 "history": {

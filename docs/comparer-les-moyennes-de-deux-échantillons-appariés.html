@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>4.5 Comparer les moyennes de deux échantillons appariés | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="4.5 Comparer les moyennes de deux échantillons appariés | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="4.5 Comparer les moyennes de deux échantillons appariés | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"/>
+<link rel="next" href="références.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="comparer-les-moyennes-de-deux-échantillons-appariés" class="section level2">
+<h2><span class="header-section-number">4.5</span> Comparer les moyennes de deux échantillons appariés</h2>
+<p>Dans certaines expériences les mêmes individus sont mesurés deux fois, par exemple avant et après un traitement ou encore à deux moments au cours de leur développement. Les mesures obtenues lors de ces deux événements ne sont pas indépendantes, et des comparaisons de ces mesures appariées doivent être faites.</p>
+<p>Le fichier <code>skulldat.csv</code> contient des mesures de la partie inférieure du visage de jeunes filles d’Amérique du Nord prises à 5 ans, puis à 6 ans (données de Newman and Meredith, 1956).</p>
+<ul>
+<li>Pour débuter, éprouvons l’hypothèse que la largeur de la figure est la même à 5 ans et à 6 ans en assumant que les mesures viennent d’échantillons indépendants.</li>
+</ul>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1">skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb333-2" title="2"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb333-3" title="3">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb333-4" title="4">  <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Welch Two Sample t-test
+## 
+## data:  width by age
+## t = -1.7812, df = 27.93, p-value = 0.08576
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.43002624  0.03002624
+## sample estimates:
+## mean in group 5 mean in group 6 
+##        7.461333        7.661333</code></pre>
+<p>Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com- ment les résultats diffèrent-ils de la première analyse? Pourquoi?</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb335-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb335-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Paired t-test
+## 
+## data:  width by age
+## t = -19.72, df = 14, p-value = 1.301e-11
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.2217521 -0.1782479
+## sample estimates:
+## mean of the differences 
+##                    -0.2</code></pre>
+<p>La première analyse a comme supposition que les deux échantillons de filles de 5 et 6 ans sont indépendants, alors que la deuxième analyse a comme supposition que la même fille a été mesurée deux fois, une fois à 5 ans, et la deuxième fois à 6 ans.</p>
+<p>Notez que, dans le premier cas, on accepte l’hypothèse nulle, mais que le test apparié rejette l’hypothèse nulle. Donc, le test qui est approprié (le test apparié) indique un effet très significatif de l’âge, mais le test inapproprié suggère que l’âge n’importe pas. C’est parce qu’il y a une très forte corrélation entre la largeur du visage à 5 et 6 ans:</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1">graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb337-5" title="5"><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low=</span><span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb337-6" title="6">graphskull</a></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span id="fig:tpaired-3"></span>
+<img src="Labo_BIO4558_files/figure-html/tpaired-3-1.svg" alt="Relation entre la taille de la tête à 5 et 6 ans" width="672" />
+<p class="caption">
+Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
+</p>
+</div>
+<p>Avec <em>r</em> = NA. En présence d’une si forte corrélation, l’erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l’erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.</p>
+<ul>
+<li>Répétez l’analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. ( Que concluez-vous?</li>
+</ul>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb339-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb339-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  width by age
+## V = 0, p-value = 0.0007193
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>Donc on tire la même conclusion qu’avec le test de t apparié et conclue qu’il y a des différences significatives entre la taille des crânes de filles âgées de 5 et 6 ans (quelle surprise!).</p>
+<p>Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte tenu de s connaissances sur la croissance des enfants, une hypothèse unilatérale serait préférable. Ceci peut être accommodé en modifiant l’option “alternative”. On utilise l’hypothèse alternative pour décider entre “less” ou “greater”. Ici on s’attends que si il y a une différence, width5 va être inférieur à width6, donc on utiliserait “less”.</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb342-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
+<a class="sourceLine" id="cb342-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## 
+## 	Paired t-test
+## 
+## data:  width by age
+## t = -19.72, df = 14, p-value = 6.507e-12
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##        -Inf -0.1821371
+## sample estimates:
+## mean of the differences 
+##                    -0.2</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
+<a class="sourceLine" id="cb344-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
+<a class="sourceLine" id="cb344-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
+## cannot compute exact p-value with ties</code></pre>
+<pre><code>## 
+## 	Wilcoxon signed rank test with continuity correction
+## 
+## data:  width by age
+## V = 0, p-value = 0.0003597
+## alternative hypothesis: true location shift is less than 0</code></pre>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="références.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +393,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/04-t_test.Rmd",
 "text": "Edit"
 },
 "history": {

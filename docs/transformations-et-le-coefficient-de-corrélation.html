@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.3 Transformations et le coefficient de corrélation | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.3 Transformations et le coefficient de corrélation | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Petit guide pour Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.3 Transformations et le coefficient de corrélation | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="test-de-permutation.html"/>
-<link rel="next" href="syntaxe-markdown.html"/>
+<link rel="prev" href="diagrammes-de-dispersion.html"/>
+<link rel="next" href="matrices-de-corrélations-et-correction-de-bonferroni.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,9 +269,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="petit-guide-pour-rmarkdown" class="section level1">
-<h1><span class="header-section-number">A</span> Petit guide pour Rmarkdown</h1>
-<!-- ajouter note sur installation de tinitex pour faire des pdf-->
+<div id="transformations-et-le-coefficient-de-corrélation" class="section level2">
+<h2><span class="header-section-number">3.3</span> Transformations et le coefficient de corrélation</h2>
+<p>Une autre condition préalable à l’analyse de corrélation est que les deux variables concernées suivent une distribution normale bidimensionnelle.
+On peut aisément vérifier la normalité de chacune des 2 variables séparément tel que décrit dans le laboratoire précédent.
+Si les deux variables sont normalement distribuées, on présume généralement qu’elles suivent une distribution normale bidimensionnelle lorsqu’analysées simultanément (notez que ce n’est pas toujours le cas cependant).</p>
+<ul>
+<li>Examinez la distribution des quatre variables (les deux variables originales et les variables transformées). Que concluez-vous de l’inspection visuelle de ces graphiques ?</li>
+</ul>
+<p>Les figures ci-dessous sont les diagrammes de probabilité (<code>qqplot()</code>).
+Le code pour produire des graphiques multiples sur une page, comme
+on voit ci-dessous, est:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># divise le graphique en 4 sections</span></a>
+<a class="sourceLine" id="cb243-2" title="2"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth,<span class="dt">ylab=</span><span class="st">&quot;fklngth&quot;</span>)</a>
+<a class="sourceLine" id="cb243-3" title="3"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a>
+<a class="sourceLine" id="cb243-4" title="4"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth),<span class="dt">ylab=</span><span class="st">&quot;log10(fklngth)&quot;</span>)</a>
+<a class="sourceLine" id="cb243-5" title="5"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth))</a>
+<a class="sourceLine" id="cb243-6" title="6"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>rdwght,<span class="dt">ylab=</span><span class="st">&quot;rdwght&quot;</span>)</a>
+<a class="sourceLine" id="cb243-7" title="7"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>rdwght)</a>
+<a class="sourceLine" id="cb243-8" title="8"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght),<span class="dt">ylab=</span><span class="st">&quot;log10(rdwgth)&quot;</span>)</a>
+<a class="sourceLine" id="cb243-9" title="9"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght))</a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/stur-4hist-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co">#redéfinie la zone de graphique par défaut</span></a></code></pre></div>
+<p>Il n’y a pas grand-chose à redire: aucune des distributions n’est
+parfaitement normale, mais les déviations semblent mineures.</p>
+<ul>
+<li>Générez une matrice de graphiques de dispersion améliorés en utilisant la commande <code>scatterplotMatrix</code> de la librairie <code>car</code>.</li>
+</ul>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="kw">scatterplotMatrix</span>(</a>
+<a class="sourceLine" id="cb245-2" title="2">  <span class="op">~</span>fklngth<span class="op">+</span><span class="kw">log10</span>(fklngth)<span class="op">+</span>rdwght<span class="op">+</span><span class="kw">log10</span>(rdwght),</a>
+<a class="sourceLine" id="cb245-3" title="3">  <span class="dt">data=</span> sturgeon,</a>
+<a class="sourceLine" id="cb245-4" title="4">  <span class="dt">smooth=</span><span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="st">&#39;density&#39;</span>)</a></code></pre></div>
+<pre><code>## Warning in applyDefaults(diagonal, defaults = list(method =
+## &quot;adaptiveDensity&quot;), : unnamed diag arguments, will be ignored</code></pre>
+<p><img src="Labo_BIO4558_files/figure-html/stur-scatmat-1.svg" width="672" /></p>
+<ul>
+<li>Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées ) en utilisant la commande <code>cor()</code>.
+Avant de commencer, on va cependant ajouter les variables transformées au tableau de données sturgeon:</li>
+</ul>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1">sturgeon<span class="op">$</span>lfklngth &lt;-<span class="st"> </span><span class="kw">with</span>(sturgeon, <span class="kw">log10</span>(fklngth))</a>
+<a class="sourceLine" id="cb247-2" title="2">sturgeon<span class="op">$</span>lrdwght &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght)</a></code></pre></div>
+<p>Vous pouvez ensuite obtenir la matrice de corrélation par:</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" title="1"><span class="kw">cor</span>(sturgeon[,<span class="kw">c</span>(<span class="st">&quot;fklngth&quot;</span>,<span class="st">&quot;lfklngth&quot;</span>,<span class="st">&quot;lrdwght&quot;</span>,<span class="st">&quot;rdwght&quot;</span>)], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
+<p>Fréquemment, il y a des données manquantes dans un échantillon.
+En choisissant <code>use="complete.obs"</code>, toutes les lignes du fichier pour lesquelles les variables ne sont pas toutes mesurées sont éliminées.
+Dans ce cas, toutes les corrélations seront calculées avec le même nombre de cas.
+Par contre, en utilisant <code>use="pairwise.complete.obs"</code> ,
+R élimine une observation que lorsqu’un des deux membres de la paire a une valeur manquante.
+Dans ce cas, si les données manquantes pour différentes variables se retrouvent dans un groupe différent d’observation, les corrélations ne seront pas nécessairement calculées sur le même nombre de cas ni sur le même sous-ensemble de cas.
+En général, vous devriez utiliser l’option <code>use="complete.obs"</code> à moins que vous ayez un très grand nombre de données manquantes et que cette façon de procéder élimine la plus grande partie de vos
+observations.</p>
+<p>Pourquoi la corrélation entre les variables originales est-elle la plus faible des trois ?</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">cor</span>(sturgeon[,<span class="kw">c</span>(<span class="st">&quot;fklngth&quot;</span>,<span class="st">&quot;lfklngth&quot;</span>,<span class="st">&quot;lrdwght&quot;</span>,<span class="st">&quot;rdwght&quot;</span>)], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
+<pre><code>##            fklngth  lfklngth   lrdwght    rdwght
+## fklngth  1.0000000 0.9921435 0.9645108 0.9175435
+## lfklngth 0.9921435 1.0000000 0.9670139 0.8756203
+## lrdwght  0.9645108 0.9670139 1.0000000 0.9265513
+## rdwght   0.9175435 0.8756203 0.9265513 1.0000000</code></pre>
+<p>Il y a plusieurs choses à noter ici.</p>
+<ul>
+<li>Premièrement, la corrélation entre la longueur à la fourche et le poids rond est élevée, peu importe la transformation: les poissons lourds ont tendance à être longs.</li>
+<li>Deuxièmement, la corrélation est plus forte pour les données
+transformées que pour les données brutes.</li>
+</ul>
+<p><strong>Pourquoi?</strong> Parce que le coefficient de corrélation est inversement proportionnel au bruit autour de la relation linéaire.
+Si la relation est curvilinéaire (comme dans le cas des données non transformées), le bruit est plus grand que si la relation est parfaitement linéaire.
+Par conséquent, la corrélation est plus faible.</p>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -279,8 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="test-de-permutation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntaxe-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="diagrammes-de-dispersion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="matrices-de-corrélations-et-correction-de-bonferroni.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -302,7 +365,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/03-reg_lin.Rmd",
 "text": "Edit"
 },
 "history": {
