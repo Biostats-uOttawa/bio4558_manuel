@@ -171,3 +171,9 @@ ggplot(diamonds, aes(carat)) +
 ggplot(diamonds, aes(carat)) +
   geom_histogram(bins = 200)
 ```
+
+# Resources pour en apprendre plus sur rmarkdown
+
+https://statistique-et-logiciel-r.com/guide-de-demarrage-en-r-markdown/
+
+https://rmarkdown.rstudio.com/
