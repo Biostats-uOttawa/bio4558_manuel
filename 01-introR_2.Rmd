@@ -14,7 +14,7 @@ Dans les deux cas, tout un tas de messages devraient s'afficher dans la console.
 
 Pour plus d'informations sur les extensions et leur installation, voir la section \@ref(packages).
 
-Le jeu de données que nous allons utiliser est un extrait de l'enquête *Histoire de vie* réalisée par l'INSEE en 2003. Il contient 2000 individus et 20 variables. Pour une description plus complète et une liste des variables, voir la section \@ref(hdv2003).
+Le jeu de données que nous allons utiliser est un extrait de l'enquête *Histoire de vie* réalisée par l'INSEE en 2003. Il contient 2000 individus et 20 variables.
 
 Pour pouvoir utiliser ces données, il faut d'abord charger l'extension `questionr` (après l'avoir installée, bien entendu) :
 
@@ -67,7 +67,7 @@ Dans les deux cas votre tableau devrait s'afficher dans RStudio avec une interfa
 Il est important de comprendre que l'objet `hdv2003` contient *l'intégralité* des données du tableau.
 On voit donc qu'un objet peut contenir des données de types très différents (simple nombre, texte, vecteur, tableau de données entier), et être potentiellement de très grande taille^[La seule limite pour la taille d'un objet étant la mémoire vive (RAM) de la machine sur laquelle tourne la session R.].
 
-```{block, type='rmdnote'}
+```{block2, type='rmdnote'}
 Sous R, on peut importer ou créer autant de tableaux de données qu'on le souhaite, dans les limites des capacités de sa machine.
 ```
 
@@ -302,7 +302,9 @@ hist(d$age, col = "skyblue",
      ylab = "Effectif")
 ```
 
-La fonction `hist` fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques dans la partie \@ref(ggplot2) de ce document, consacrée à l'extension `ggplot2`, qui fait partie du *tidyverse* et qui permet la production et la personnalisation de graphiques complexes.
+La fonction `hist` fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques
+<!-- dans la partie \@ref(ggplot2) de ce document, consacrée à l'extension -->
+avec l'extension `ggplot2` qui permet la production et la personnalisation de graphiques complexes.
 
 
 #### Analyser une variable qualitative
@@ -332,7 +334,7 @@ tab <- table(d$qualif)
 sort(tab)
 ```
 
-```{block, type='rmdimportant'}
+```{block2, type='rmdimportant'}
 Attention, par défaut la fonction `table` n'affiche pas les valeurs manquantes (`NA`). Si on souhaite les inclure il faut utiliser l'argument `useNA = "always"`, soit : `table(d$qualif, useNA = "always")`.
 ```
 

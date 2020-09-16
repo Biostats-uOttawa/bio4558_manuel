@@ -5,7 +5,7 @@
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
 Les fichiers `.csv` sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, ...) et les tableurs (e.g. MS Excel, LO Calc).
-Les fichiers `.Rdata` sont utilisés pour stocker n'importe quelle objet R pas uniquement des données.
+Les fichiers `.Rdata` sont utilisés pour stocker n'importe quel objet R pas uniquement des données.
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
 
 Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format `.csv`.
@@ -144,33 +144,37 @@ Cet histogramme est la représentation classique.
 Mais les histogrammes ne sont pas parfaits.
 Leur forme dépend en partie du nombre de catégories utilisées, surtout pour les petits échantillons.
 On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
-Mais il faut programmer un peu (ou savoir copier-coller...)
+Mais il faut programmer un peu (ou savoir copier-coller...).
+Le code suivant est un histogramme fait avec l'extension `ggplot2`.
 
 ```{block2, type = "rmdcode"}
 Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
 ```
 
 ```{r stur-g1, warning = FALSE, message =  FALSE}
+## Chargez l'extension ggplot si besoin
 library(ggplot2)
-#  use "sturgeon" dataframe to make plot called mygraph
-#  and define x axis as representing fklngth
-mygraph <- ggplot(sturgeon, aes(x = fklngth))
-#  add data to the mygraph ggplot
+##  créer un graphique `mygraph` utilisant les données de "sturgeon"
+## et définir l'axe des X comme la longueur `fklngth`
+mygraph <- ggplot(data = sturgeon, aes(x = fklngth))
+
+## ajouter différentes parties au graphique
 mygraph <- mygraph +
-#  add data density smooth
-    geom_density() +
-#  add rug (bars at the bottom of the plot)
-    geom_rug() +
-#  add black semitransparent histogram
+## histogramme semi-transparent
     geom_histogram(aes(y = ..density..), bins = 30, color = "black",   alpha = 0.3) +
-#  add normal curve in red, with mean and sd from fklength
+##  line de densité
+    geom_density() +
+##  localisation des observations
+    geom_rug() +
+##  courbe de distribution normale approximé au données
     stat_function(fun = dnorm,
                    args = list(
                      mean = mean(sturgeon$fklngth),
                      sd = sd(sturgeon$fklngth) ),
                    color = "red")
-# display graph
-    mygraph
+
+## montrer le graphique
+mygraph
 ```
 
 Chaque observation est représentée par une barre sous l’axe des x (rug).
@@ -212,7 +216,7 @@ La commande `boxplot()` peut produire un boxplot de fklngth pour chaque niveau d
 boxplot(fklngth ~ sex, data = sturgeon, notch = TRUE)
 ```
 
-La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
+La ligne un peu plus épaisse dans la boîte de la Figure indique la médiane.
 La coche est proportionnelle à l’incertitude quant à la position de la médiane.
 On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n’y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
 Les boîtes s’étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s’étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l’intérieur de 1.5x la largeur de l’étendue interquartile .
@@ -313,10 +317,9 @@ sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 
 ### Exercice sur R
 
-```{block2, type = "rmdcode"}
-Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
-Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
-```
+Vous trouverez dans le fichier `salmonella.csv`, des valeurs numériques du ratio d'infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
+Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.
+
 
 ```{r intror-exer, echo = FALSE, warning = FALSE, message =  FALSE}
 salmonella <- read.csv("data/salmonella.csv")
@@ -336,3 +339,35 @@ mygraph <- mygraph +
                 color = "red")
 mygraph
 ```
+
+\iffalse
+<div class="solution">
+```{r eval=FALSE}
+## Charger les données
+salmonella <- read.csv("data/salmonella.csv")
+
+##creer le graph en utilisant juste la souche sauvage et définir x
+mygraph <- ggplot(subset(salmonella, souche == "SAUVAGE"), aes(x = ratio))
+##ajouter des composants graphiques
+mygraph <- mygraph +
+# line densité
+  geom_density() +
+# position des observations
+  geom_rug() +
+# histogramme
+  geom_histogram(aes(y = ..density..),
+                 bins = 30,
+                 color = "black",
+                 alpha = 0.3) +
+# distribution normal ajustée
+  stat_function(fun = dnorm,
+                args = list(
+                  mean = mean(subset(salmonella, souche == "SAUVAGE")$ratio),
+                  sd = sd(subset(salmonella, souche == "SAUVAGE")$ratio)
+                ),
+                color = "red")
+## faire le graphique
+mygraph
+```
+</div>
+\fi

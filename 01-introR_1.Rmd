@@ -143,7 +143,7 @@ resultat <- x + y
 resultat
 ```
 
-```{block, type='rmdimportant'}
+```{block2, type='rmdimportant'}
 Les noms d'objets peuvent contenir des lettres, des chiffres, les symboles `.` et `_`. Ils ne peuvent pas commencer par un chiffre. Attention, R fait la différence entre minuscules et majuscules dans les noms d'objets, ce qui signifie que `x` et `X` seront deux objets différents, tout comme `resultat` et `Resultat`.
 
 De manière générale, il est préférable d'éviter les majuscules (pour les risques d'erreur) et les caractères accentués (pour des questions d'encodage) dans les noms d'objets.
@@ -237,7 +237,7 @@ imc
 Un vecteur peut contenir des nombres, mais il peut aussi contenir du texte. Imaginons qu'on a demandé aux 5 mêmes personnes leur niveau de diplôme : on peut regrouper l'information dans un vecteur de *chaînes de caractères*. Une chaîne de caractère contient du texte libre, délimité par des guillemets simples ou doubles :
 
 ```{r}
-diplome <- c("CAP", "Bac", "Bac+2", "CAP", "Bac+3")
+diplome <- c("PHD", "Bac", "MSc", "MSc", "Bac")
 diplome
 ```
 
@@ -265,7 +265,7 @@ Dernière remarque, si on affiche dans la console un vecteur avec beaucoup d'él
 
 On remarque que R ajoute systématiquement un nombre entre crochets au début de chaque ligne : il s'agit en fait de la position du premier élément de la ligne dans le vecteur. Ainsi, le 848 de la deuxième ligne est le 14e élément du vecteur, le 914 de la dernière ligne est le 40e, etc.
 
-Ceci explique le `[1]` qu'on obtient quand on affiche un simple nombre^[Et permet de constater que pour R, un nombre est un vecteur à un seul élément.] :
+Ceci explique le `[1]` qu'on obtient quand on affiche un simple nombre et permet de constater que pour R, un nombre est un vecteur à un seul élément :
 
      [1] 4
 
@@ -318,7 +318,7 @@ range(tailles)
 Ou encore, la fonction `unique`, qui supprime toutes les valeurs en double dans un vecteur, qu'il s'agisse de nombres ou de chaînes de caractères :
 
 ```{r}
-diplome <- c("CAP", "Bac", "Bac+2", "CAP", "Bac+3")
+diplome
 unique(diplome)
 ```
 
@@ -343,7 +343,7 @@ tailles <- c(156, 164, 197, NA, 173)
 tailles
 ```
 
-```{block, type='rmdnote'}
+```{block2, type='rmdnote'}
 `NA` est l'abbréviation de *Not available*, non disponible. Cette valeur particulière peut être utilisée pour indiquer une valeur manquante, qu'il s'agisse d'un nombre, d'une chaîne de caractères, etc.
 ```
 
