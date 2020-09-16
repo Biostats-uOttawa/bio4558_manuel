@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{04-09-2020}
+\date{15-09-2020}
 
 \begin{document}
 \maketitle
@@ -467,11 +467,11 @@ Ce document est mis à disposition selon les termes de la \href{http://creativec
 \caption{Licence Creative Commons}
 \end{figure}
 
-\hypertarget{part-introduction-uxe0-r}{%
-\part{Introduction à R}\label{part-introduction-uxe0-r}}
+\hypertarget{introduction-uxe0-r}{%
+\chapter{Introduction à R}\label{introduction-uxe0-r}}
 
 \hypertarget{objectifs-labo-1}{%
-\chapter{Objectifs Labo 1}\label{objectifs-labo-1}}
+\section{Objectifs Labo 1}\label{objectifs-labo-1}}
 
 Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Ouvrir des fichiers de données R déjà existants
@@ -484,7 +484,7 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Effectuer des transformations de données
 
 \hypertarget{set-intro}{%
-\section{Paquets et données requises pour le labo}\label{set-intro}}
+\subsection{Paquets et données requises pour le labo}\label{set-intro}}
 
 Ce laboratoire nécessite:
 
@@ -513,17 +513,17 @@ Ce laboratoire nécessite:
 \end{itemize}
 
 \hypertarget{premier-pas-avec-r}{%
-\chapter{Premier pas avec R}\label{premier-pas-avec-r}}
+\section{Premier pas avec R}\label{premier-pas-avec-r}}
 
 Une fois R et RStudio installés sur votre machine, nous n'allons pas lancer R mais plutôt RStudio.
 
 RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière ``classique'' via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un \emph{Environnement de développement intégré} (IDE) qui facilite l'utilisation de R et le développement de scripts (voir section \ref{rstudio}).
 
 \hypertarget{la-console}{%
-\section{La console}\label{la-console}}
+\subsection{La console}\label{la-console}}
 
 \hypertarget{linvite-de-commandes}{%
-\subsection{L'invite de commandes}\label{linvite-de-commandes}}
+\subsubsection{L'invite de commandes}\label{linvite-de-commandes}}
 
 Au premier lancement de RStudio, l'écran principal est découpé en trois grandes zones~:
 
@@ -614,7 +614,7 @@ R nous répond immédiatement, et nous pouvons constater avec soulagement qu'il 
 Cette dernière opération utilise le symbole \texttt{\^{}} qui représente l'opération \emph{puissance}. \texttt{5\^{}2} signifie donc ``5 au carré'', soit 25.
 
 \hypertarget{pruxe9cisions-concernant-la-saisie-des-commandes}{%
-\subsection{Précisions concernant la saisie des commandes}\label{pruxe9cisions-concernant-la-saisie-des-commandes}}
+\subsubsection{Précisions concernant la saisie des commandes}\label{pruxe9cisions-concernant-la-saisie-des-commandes}}
 
 Lorsqu'on saisit une commande, les espaces autour des opérateurs n'ont pas d'importance. Les trois commandes suivantes sont donc équivalentes, mais on privilégie en général la deuxième pour des raisons de lisibilité du code.
 
@@ -640,10 +640,10 @@ Enfin, il peut arriver qu'on saisisse une commande de manière incomplète~: oub
 Cela signifie qu'il ``attend la suite''. On peut alors soit compléter la commande sur cette nouvelle ligne et appuyer sur \texttt{Entrée}, soit, si on est perdu, tout annuler et revenir à l'invite de commandes normal en appuyant sur \texttt{Esc} ou \texttt{Échap}.
 
 \hypertarget{objets}{%
-\section{Objets}\label{objets}}
+\subsection{Objets}\label{objets}}
 
 \hypertarget{objets-simples}{%
-\subsection{Objets simples}\label{objets-simples}}
+\subsubsection{Objets simples}\label{objets-simples}}
 
 Faire des calculs c'est bien, mais il serait intéressant de pouvoir stocker un résultat quelque part pour pouvoir le réutiliser ultérieurement sans avoir à faire du copier/coller.
 
@@ -929,10 +929,10 @@ Ceci explique le \texttt{{[}1{]}} qu'on obtient quand on affiche un simple nombr
 \end{verbatim}
 
 \hypertarget{fonctions}{%
-\section{Fonctions}\label{fonctions}}
+\subsection{Fonctions}\label{fonctions}}
 
 \hypertarget{principe}{%
-\subsection{Principe}\label{principe}}
+\subsubsection{Principe}\label{principe}}
 
 Nous savons désormais effectuer des opérations arithmétiques de base sur des nombres et des vecteurs, et stocker des valeurs dans des objets pour pouvoir les réutiliser plus tard.
 
@@ -1026,7 +1026,7 @@ Ou encore, la fonction \texttt{unique}, qui supprime toutes les valeurs en doubl
 \end{verbatim}
 
 \hypertarget{arguments}{%
-\subsection{Arguments}\label{arguments}}
+\subsubsection{Arguments}\label{arguments}}
 
 Une fonction peut prendre plusieurs arguments, dans ce cas on les indique toujours entre parenthèses, séparés par des virgules.
 
@@ -1110,13 +1110,11 @@ Si on ne dit rien à la fonction \texttt{mean}, cet argument a une valeur par d�
 \end{verbatim}
 
 \begin{rmdnote}
-Lorsqu'on passe un argument à une fonction de cette manière,
-c'est-à-dire sous la forme \texttt{nom\ =\ valeur}, on parle
-d'\emph{argument nommé}.
+Lorsqu'on passe un argument à une fonction de cette manière, c'est-à-dire sous la forme \texttt{nom\ =\ valeur}, on parle d'\emph{argument nommé}.
 \end{rmdnote}
 
 \hypertarget{aide-sur-une-fonction}{%
-\subsection{Aide sur une fonction}\label{aide-sur-une-fonction}}
+\subsubsection{Aide sur une fonction}\label{aide-sur-une-fonction}}
 
 Il est fréquent de ne pas savoir (ou d'avoir oublié) quels sont les arguments d'une fonction, ou comment ils se nomment. On peut à tout moment faire appel à l'aide intégrée à R en passant le nom de la fonction (entre guillemets) à la fonction \texttt{help}~:
 
@@ -1134,7 +1132,7 @@ Dans RStudio, les pages d'aide en ligne s'ouvriront par défaut dans la zone en 
 sous l'onglet \emph{Help}. Un clic sur l'icône en forme de maison vous affichera la page d'accueil de l'aide.
 
 \hypertarget{regrouper-ses-commandes-dans-des-scripts}{%
-\section{Regrouper ses commandes dans des scripts}\label{regrouper-ses-commandes-dans-des-scripts}}
+\subsection{Regrouper ses commandes dans des scripts}\label{regrouper-ses-commandes-dans-des-scripts}}
 
 Jusqu'ici on a utilisé R de manière ``interactive'', en saisissant des commandes directement dans la console. Ça n'est cependant pas la manière dont on va utiliser R au quotidien, pour une raison simple~: lorsque R redémarre, tout ce qui a été effectué dans la console est perdu.
 
@@ -1163,7 +1161,7 @@ Au final, un script pourra ressembler à quelque chose comme ça~:
 \end{Shaded}
 
 \hypertarget{commentaires}{%
-\subsection{Commentaires}\label{commentaires}}
+\subsubsection{Commentaires}\label{commentaires}}
 
 Les commentaires sont un élément très important d'un script. Il s'agit de texte libre, ignoré par R, et qui permet de décrire les étapes du script, sa logique, les raisons pour lesquelles on a procédé de telle ou telle manière\ldots{} Il est primordial de documenter ses scripts à l'aide de commentaires, car il est très facile de ne plus se retrouver dans un programme qu'on a produit soi-même, même après une courte interruption.
 
@@ -1190,7 +1188,7 @@ On peut donc documenter le script précédent~:
 \end{Shaded}
 
 \hypertarget{packages}{%
-\section{\texorpdfstring{Installer et charger des extensions (\emph{packages})}{Installer et charger des extensions (packages)}}\label{packages}}
+\subsection{\texorpdfstring{Installer et charger des extensions (\emph{packages})}{Installer et charger des extensions (packages)}}\label{packages}}
 
 R étant un logiciel libre, il bénéficie d'un développement communautaire riche et dynamique. L'installation de base de R permet de faire énormément de choses, mais le langage dispose en plus d'un système d'extensions permettant d'ajouter facilement de nouvelles fonctionnalités. La plupart des extensions sont développées et maintenues par la communauté des utilisateurs de R, et diffusées via un réseau de serveurs nommé CRAN (\emph{Comprehensive R Archive Network}).
 
@@ -1241,7 +1239,7 @@ Ainsi, bien souvent, on regroupe en début de script toute une série d'appels �
 Si vous essayez d'exécuter une fonction d'une extension et que vous obtenez le message d'erreur \texttt{impossible\ de\ trouver\ la\ fonction}, c'est certainement parce que vous n'avez pas exécuté la commande \texttt{library} correspondante.
 
 \hypertarget{ex-introR}{%
-\section{Exercices}\label{ex-introR}}
+\subsection{Exercices}\label{ex-introR}}
 
 \textbf{Exercice 1}
 
@@ -1495,10 +1493,10 @@ Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vou
 \fi
 
 \hypertarget{premier-travail-avec-des-donnuxe9es}{%
-\chapter{Premier travail avec des données}\label{premier-travail-avec-des-donnuxe9es}}
+\section{Premier travail avec des données}\label{premier-travail-avec-des-donnuxe9es}}
 
 \hypertarget{jeu-de-donnuxe9es-dexemple}{%
-\section{Jeu de données d'exemple}\label{jeu-de-donnuxe9es-dexemple}}
+\subsection{Jeu de données d'exemple}\label{jeu-de-donnuxe9es-dexemple}}
 
 Dans cette partie nous allons (enfin) travailler sur des ``vraies'' données, et utiliser un jeu de données présent dans l'extension \texttt{questionr}. Nous devons donc avant toute chose installer cette extension.
 
@@ -1547,7 +1545,7 @@ Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), ma
 Cet objet est d'un type nouveau~: il s'agit d'un tableau de données.
 
 \hypertarget{tableau-de-donnuxe9es-data-frame}{%
-\section{\texorpdfstring{Tableau de données (\emph{data frame})}{Tableau de données (data frame)}}\label{tableau-de-donnuxe9es-data-frame}}
+\subsection{\texorpdfstring{Tableau de données (\emph{data frame})}{Tableau de données (data frame)}}\label{tableau-de-donnuxe9es-data-frame}}
 
 Un \emph{data frame} (ou tableau de données, ou table) est un type d'objet R qui contient des données au format tabulaire, avec les observations en ligne et les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel.
 
@@ -1617,7 +1615,7 @@ ce qui va entraîner la copie de l'ensemble de nos données dans un nouvel objet
 \end{Shaded}
 
 \hypertarget{structure-du-tableau}{%
-\subsection{Structure du tableau}\label{structure-du-tableau}}
+\subsubsection{Structure du tableau}\label{structure-du-tableau}}
 
 Un tableau étant un objet comme un autre, on peut lui appliquer des fonctions. Par exemple, \texttt{nrow} et \texttt{ncol} retournent le nombre de lignes et de colonnes du tableau~:
 
@@ -1710,7 +1708,7 @@ Sous RStudio, on peut afficher à tout moment la structure d'un objet en cliquan
 \end{figure}
 
 \hypertarget{accuxe9der-aux-variables-dun-tableau}{%
-\subsection{Accéder aux variables d'un tableau}\label{accuxe9der-aux-variables-dun-tableau}}
+\subsubsection{Accéder aux variables d'un tableau}\label{accuxe9der-aux-variables-dun-tableau}}
 
 Une opération très importante est l'accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l'opérateur \texttt{\$}, qui permet d'accéder aux colonnes du tableau. Ainsi, si l'on tape~:
 
@@ -1771,7 +1769,7 @@ Si on souhaite afficher seulement les premières ou dernières valeurs d'une var
 Le deuxième argument numérique permet d'indiquer le nombre de valeurs à afficher.
 
 \hypertarget{cruxe9er-une-nouvelle-variable}{%
-\subsection{Créer une nouvelle variable}\label{cruxe9er-une-nouvelle-variable}}
+\subsubsection{Créer une nouvelle variable}\label{cruxe9er-une-nouvelle-variable}}
 
 On peut aussi utiliser l'opérateur \texttt{\$} pour créer une nouvelle variable dans notre tableau~: pour cela, il suffit de lui assigner une valeur.
 
@@ -1808,19 +1806,19 @@ On peut alors constater, soit visuellement soit dans la console, qu'une nouvelle
 \end{verbatim}
 
 \hypertarget{analyse-univariuxe9e}{%
-\section{Analyse univariée}\label{analyse-univariuxe9e}}
+\subsection{Analyse univariée}\label{analyse-univariuxe9e}}
 
 On a donc désormais accès à un tableau de données \texttt{d}, dont les lignes sont des observations (des individus enquêtés), et les colonnes des variables (des caractéristiques de chacun de ces individus), et on sait accéder à ces variables grâce à l'opérateur \texttt{\$}.
 
 Si on souhaite analyser ces variables, les méthodes et fonctions utilisées seront différentes selon qu'il s'agit d'une variable \emph{quantitative} (variable numérique pouvant prendre un grand nombre de valeurs~: l'âge, le revenu, un pourcentage\ldots{}) ou d'une variable \emph{qualitative} (variable pouvant prendre un nombre limité de valeurs appelées modalités~: le sexe, la profession, le dernier diplôme obtenu, etc.).
 
 \hypertarget{analyser-une-variable-quantitative}{%
-\subsection{Analyser une variable quantitative}\label{analyser-une-variable-quantitative}}
+\subsubsection{Analyser une variable quantitative}\label{analyser-une-variable-quantitative}}
 
 Une variable quantitative est une variable de type numérique (un nombre) qui peut prendre un grand nombre de valeurs. On en a plusieurs dans notre jeu de données, notamment l'âge (variable \texttt{age}) ou le nombre d'heures passées devant la télé (\texttt{heures.tv}).
 
 \hypertarget{indicateurs-de-centralituxe9}{%
-\subsubsection{Indicateurs de centralité}\label{indicateurs-de-centralituxe9}}
+\paragraph{Indicateurs de centralité}\label{indicateurs-de-centralituxe9}}
 
 Caractériser une variable quantitative, c'est essayer de décrire la manière dont ses valeurs se répartissent, ou se distribuent.
 
@@ -1883,7 +1881,7 @@ Il existe aussi la médiane, qui est la valeur qui sépare notre population en d
 Une différence entre les deux indicateurs est que la médiane est beaucoup moins sensible aux valeurs ``extrêmes''~: on dit qu'elle est plus \emph{robuste}. Ainsi, en 2013, le salaire net \emph{moyen} des salariés à temps plein en France était de 2202 euros, tandis que le salaire net \emph{médian} n'était que de 1772 euros. La différence étant due à des très hauts salaires qui ``tirent'' la moyenne vers le haut.
 
 \hypertarget{indicateurs-de-dispersion}{%
-\subsubsection{Indicateurs de dispersion}\label{indicateurs-de-dispersion}}
+\paragraph{Indicateurs de dispersion}\label{indicateurs-de-dispersion}}
 
 Les indicateurs de dispersion permettent de mesurer si les valeurs sont plutôt regroupées ou au contraire plutôt dispersées.
 
@@ -1939,7 +1937,7 @@ On peut les calculer avec la fonction \texttt{quantile}~:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{## Premier quartile}
+\CommentTok{### Premier quartile}
 \KeywordTok{quantile}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{prob =} \FloatTok{0.25}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1977,7 +1975,7 @@ Notons enfin que la fonction \texttt{summary} permet d'obtenir d'un coup plusieu
 \end{verbatim}
 
 \hypertarget{repruxe9sentation-graphique}{%
-\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique}}
+\paragraph{Représentation graphique}\label{repruxe9sentation-graphique}}
 
 L'outil le plus utile pour étudier la distribution des valeurs d'une variable quantitative reste la représentation graphique.
 
@@ -2029,14 +2027,14 @@ Les arguments de \texttt{hist} permettent également de modifier la présentatio
 La fonction \texttt{hist} fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques dans la partie \ref{ggplot2} de ce document, consacrée à l'extension \texttt{ggplot2}, qui fait partie du \emph{tidyverse} et qui permet la production et la personnalisation de graphiques complexes.
 
 \hypertarget{analyser-une-variable-qualitative}{%
-\subsection{Analyser une variable qualitative}\label{analyser-une-variable-qualitative}}
+\subsubsection{Analyser une variable qualitative}\label{analyser-une-variable-qualitative}}
 
 Une variable qualitative est une variable qui ne peut prendre qu'un nombre limité de valeurs, appelées modalités. Dans notre jeu de données on trouvera par exemple le sexe (\texttt{sexe}), le niveau d'études (\texttt{nivetud}), la catégorie socio-professionnelle (\texttt{qualif})\ldots{}
 
 À noter qu'une variable qualitative peut tout-à-fait être numérique, et que certaines variables peuvent être traitées soit comme quantitatives, soit comme qualitatives~: c'est le cas par exemple du nombre d'enfants ou du nombre de frères et soeurs.
 
 \hypertarget{tri-uxe0-plat}{%
-\subsubsection{Tri à plat}\label{tri-uxe0-plat}}
+\paragraph{Tri à plat}\label{tri-uxe0-plat}}
 
 L'outil le plus utilisé pour représenter la répartition des valeurs d'une variable qualitative est le \emph{tri à plat}~: il s'agit simplement de compter, pour chacune des valeurs possibles de la variable (pour chacune des modalités), le nombre d'observations ayant cette valeur. Un tri à plat s'obtient sous R à l'aide de la fonction \texttt{table}~:
 
@@ -2178,7 +2176,7 @@ La colonne \texttt{n} représente les effectifs de chaque catégorie, la colonne
 \end{verbatim}
 
 \hypertarget{repruxe9sentations-graphiques}{%
-\subsubsection{Représentations graphiques}\label{repruxe9sentations-graphiques}}
+\paragraph{Représentations graphiques}\label{repruxe9sentations-graphiques}}
 
 On peut représenter graphiquement le tri à plat d'une variable qualitative avec un diagramme en barres, obtenu avec la fonction \texttt{barplot}. Attention, contrairement à \texttt{hist} cette fonction ne s'applique pas directement à la variable mais au résultat du tri à plat de cette variable, calculé avec \texttt{table}. Il faut donc procéder en deux étapes~:
 
@@ -2221,7 +2219,7 @@ Là aussi, pour améliorer la lisibilité du graphique il est préférable de tr
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 \hypertarget{ex-introR-univ}{%
-\section{Exercices}\label{ex-introR-univ}}
+\subsection{Exercices}\label{ex-introR-univ}}
 
 \textbf{Exercice 1}
 
@@ -2361,7 +2359,7 @@ C'est une blague, hein~! Cela dit \texttt{moccasin} ou \texttt{palevioletred} so
 \fi
 
 \hypertarget{analyse-de-2-variables}{%
-\chapter{Analyse de 2 variables}\label{analyse-de-2-variables}}
+\section{Analyse de 2 variables}\label{analyse-de-2-variables}}
 
 Faire une analyse bivariée, c'est étudier la relation entre deux variables~: sont-elles liées ? les valeurs de l'une influencent-elles les valeurs de l'autre ? ou sont-elles au contraire indépendantes ?
 
@@ -2370,10 +2368,10 @@ Faire une analyse bivariée, c'est étudier la relation entre deux variables~: s
 Là encore, le type d'analyse ou de visualisation est déterminé par la nature qualitative ou quantitative des deux variables.
 
 \hypertarget{croisement-de-deux-variables-qualitatives}{%
-\section{Croisement de deux variables qualitatives}\label{croisement-de-deux-variables-qualitatives}}
+\subsection{Croisement de deux variables qualitatives}\label{croisement-de-deux-variables-qualitatives}}
 
 \hypertarget{tableaux-croisuxe9s}{%
-\subsection{Tableaux croisés}\label{tableaux-croisuxe9s}}
+\subsubsection{Tableaux croisés}\label{tableaux-croisuxe9s}}
 
 On va continuer à travailler avec le jeu de données tiré de l'enquête \emph{Histoire de vie} inclus dans l'extension \texttt{questionr}. On commence donc par charger l'extension, le jeu de données, et à le renommer en un nom plus court pour gagner un peu de temps de saisie au clavier~:
 
@@ -2475,7 +2473,7 @@ socio-professionnelles.
 \end{rmdnote}
 
 \hypertarget{repruxe9sentation-graphique}{%
-\subsection{Représentation graphique}\label{repruxe9sentation-graphique}}
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique}}
 
 Il est possible de faire une représentation graphique d'un tableau croisé, par exemple avec la fonction \texttt{mosaicplot}~:
 
@@ -2500,10 +2498,10 @@ On peut améliorer ce graphique en colorant les cases selon les résidus du test
 Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y'a beaucoup d'employés et d'ouvriers et très peu d'``autres''). Sa hauteur correspond aux pourcentages colonnes~: la proportion d'hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant~: les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l'hypothèse d'indépendance.
 
 \hypertarget{croisement-dune-variable-quantitative-et-dune-variable-qualitative}{%
-\section{Croisement d'une variable quantitative et d'une variable qualitative}\label{croisement-dune-variable-quantitative-et-dune-variable-qualitative}}
+\subsection{Croisement d'une variable quantitative et d'une variable qualitative}\label{croisement-dune-variable-quantitative-et-dune-variable-qualitative}}
 
 \hypertarget{repruxe9sentation-graphique-1}{%
-\subsection{Représentation graphique}\label{repruxe9sentation-graphique-1}}
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-1}}
 
 Croiser une variable quantitative et une variable qualitative, c'est essayer de voir si les valeurs de la variable quantitative se répartissent différemment selon la catégorie d'appartenance de la variable qualitative.
 
@@ -2543,7 +2541,7 @@ sous forme de points (symbolisant des valeurs considérées comme
 Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cours des douze derniers mois ont l'air d'être sensiblement plus jeunes que les autres.
 
 \hypertarget{calculs-dindicateurs}{%
-\subsection{Calculs d'indicateurs}\label{calculs-dindicateurs}}
+\subsubsection{Calculs d'indicateurs}\label{calculs-dindicateurs}}
 
 On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d'une variable quantitative selon les modalités d'une variable qualitative. Si on reprend l'exemple précédent, on peut calculer la moyenne d'âge pour ceux qui pratiquent un sport et pour ceux qui n'en pratiquent pas.
 
@@ -2664,7 +2662,7 @@ La valeur \emph{p} étant à nouveau extrêmement petite, on peut rejeter l'hypo
 --\textgreater{}
 
 \hypertarget{croisement-de-deux-variables-quantitatives}{%
-\section{Croisement de deux variables quantitatives}\label{croisement-de-deux-variables-quantitatives}}
+\subsection{Croisement de deux variables quantitatives}\label{croisement-de-deux-variables-quantitatives}}
 
 Le jeu de données \texttt{hdv2003} comportant assez peu de variables quantitatives, on va s'intéresser maintenant à un autre jeu de données comportant des informations du recensement de la population de 2012. On le charge avec~:
 
@@ -2677,7 +2675,7 @@ Le jeu de données \texttt{hdv2003} comportant assez peu de variables quantitati
 Un nouveau tableau de données \texttt{rp2012} devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section \ref{rp2012}.
 
 \hypertarget{repruxe9sentation-graphique-2}{%
-\subsection{Représentation graphique}\label{repruxe9sentation-graphique-2}}
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-2}}
 
 Quand on croise deux variables quantitatives, l'idéal est de faire une représentation graphique sous forme de nuage de points à l'aide de la fonction \texttt{plot}. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune~:
 
@@ -2718,7 +2716,7 @@ Pour calculer une corrélation de Spearman, on utilise la fonction \texttt{cor} 
 \end{verbatim}
 
 \hypertarget{ruxe9gression-linuxe9aire}{%
-\subsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
+\subsubsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
 
 Quand on est en présence d'une association linéaire entre deux variables, on peut vouloir faire la régression linéaire d'une des variables sur l'autres.
 
@@ -2807,7 +2805,7 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 --\textgreater{}
 
 \hypertarget{ex-introR-biv}{%
-\section{Exercices}\label{ex-introR-biv}}
+\subsection{Exercices}\label{ex-introR-biv}}
 
 \textbf{Exercice 1}
 
@@ -2904,10 +2902,10 @@ Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant
 \fi
 
 \hypertarget{guxe9rer-les-donnuxe9es}{%
-\chapter{Gérer les données}\label{guxe9rer-les-donnuxe9es}}
+\section{Gérer les données}\label{guxe9rer-les-donnuxe9es}}
 
 \hypertarget{importer-et-exporter-des-donnuxe9es}{%
-\section{Importer et exporter des données}\label{importer-et-exporter-des-donnuxe9es}}
+\subsection{Importer et exporter des données}\label{importer-et-exporter-des-donnuxe9es}}
 
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont \texttt{.csv} et \texttt{.Rdata}.
 Les fichiers \texttt{.csv} sont utilisés pour stocker des données.
@@ -2918,7 +2916,7 @@ Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
 Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format \texttt{.csv}.
 
 \hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}{%
-\subsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.Rdata}}{Ouvrir un fichier de données en format .Rdata}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}}
+\subsubsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.Rdata}}{Ouvrir un fichier de données en format .Rdata}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}}
 
 Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d'exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
 
@@ -2941,7 +2939,7 @@ Par exemple,
 \end{Shaded}
 
 \hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}{%
-\subsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.csv}}{Ouvrir un fichier de données en format .csv}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}}
+\subsubsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.csv}}{Ouvrir un fichier de données en format .csv}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}}
 
 Pour importer ces données en format \texttt{.csv} dans R, il faut utiliser la commande \texttt{read.csv()}.
 Par exemple, pour créer un objet R \texttt{erables} qui contient les données du fichier \texttt{ErablesGatineau.csv}, il faut utiliser la commande suivant.
@@ -2999,7 +2997,7 @@ R confirme avoir en mémoire l'objet \texttt{erables}.
 \texttt{erables} est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): \texttt{station}, une variable de type Facteur avec 2 niveaux, et \texttt{diam} et \texttt{biom} qui sont 2 variables numériques.
 
 \hypertarget{entrer-des-donnuxe9es}{%
-\subsection{Entrer des données}\label{entrer-des-donnuxe9es}}
+\subsubsection{Entrer des données}\label{entrer-des-donnuxe9es}}
 
 R n'est pas un environnement idéal pour entrer des données.
 C'est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
@@ -3007,7 +3005,7 @@ Utilisez votre chiffrier préféré pour faire l'entrée de données.
 Ce sera plus efficace et moins frustrant.
 
 \hypertarget{nettoyercorriger-des-donnuxe9es}{%
-\subsection{Nettoyer/corriger des données}\label{nettoyercorriger-des-donnuxe9es}}
+\subsubsection{Nettoyer/corriger des données}\label{nettoyercorriger-des-donnuxe9es}}
 
 Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
@@ -3016,7 +3014,7 @@ Il est finalement plus simple de refaire exécuter les quelques lignes de code p
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
 
 \hypertarget{exporter-des-donnuxe9es-uxe0-partir-de-r.}{%
-\subsection{Exporter des données à partir de R.}\label{exporter-des-donnuxe9es-uxe0-partir-de-r.}}
+\subsubsection{Exporter des données à partir de R.}\label{exporter-des-donnuxe9es-uxe0-partir-de-r.}}
 
 Vous pouvez utiliser la fonction,
 
@@ -3030,7 +3028,7 @@ où \texttt{mydata} est le nom du base de données à exporter et \texttt{outfil
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à \texttt{File\textgreater{}Change\ dir}, ou par la commande \texttt{setwd()})
 
 \hypertarget{examen-pruxe9liminaire-des-donnuxe9es}{%
-\section{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
+\subsection{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
 
 La première étape de toute analyse est l'examen des données.
 Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
@@ -3068,7 +3066,7 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 \end{verbatim}
 
 \hypertarget{sommaire-statistique}{%
-\subsection{Sommaire statistique}\label{sommaire-statistique}}
+\subsubsection{Sommaire statistique}\label{sommaire-statistique}}
 
 Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
 
@@ -3116,7 +3114,7 @@ On y reviendra, mais prenez l'habitude de noter mentalement si il y a des donné
 \end{rmdwarning}
 
 \hypertarget{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}{%
-\subsection{Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité}\label{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}}
+\subsubsection{Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité}\label{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}}
 
 Examinons maintenant de plus près la distribution de fklngth.
 La commande \texttt{hist()} permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.
@@ -3243,7 +3241,7 @@ Les boîtes s'étendent du premier au troisième quartile (du 25ième au 75ième
 Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l'étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.
 
 \hypertarget{diagrammes-de-dispersion-bivariuxe9s}{%
-\subsection{Diagrammes de dispersion bivariés}\label{diagrammes-de-dispersion-bivariuxe9s}}
+\subsubsection{Diagrammes de dispersion bivariés}\label{diagrammes-de-dispersion-bivariuxe9s}}
 
 En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d'oeil aux diagrammes de dispersion .
 La commande \texttt{plot(y\textasciitilde{}x)} permet de faire le graphique de y sur l'axe vertical (l'ordonnée) en fonction de x sur l'axe horizontal (l'abscisse).
@@ -3275,7 +3273,7 @@ Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les v
 \includegraphics{Labo_BIO4558_files/figure-latex/pairs-stur-1.pdf}
 
 \hypertarget{cruxe9er-des-sous-ensembles-de-cas}{%
-\section{Créer des sous-ensembles de cas}\label{cruxe9er-des-sous-ensembles-de-cas}}
+\subsection{Créer des sous-ensembles de cas}\label{cruxe9er-des-sous-ensembles-de-cas}}
 
 Il arrive fréquemment qu'une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
 Les cas sont d'habitude sélectionnés selon un critère en particulier.
@@ -3333,7 +3331,7 @@ En utilisant les commandes \texttt{subset()} et \texttt{hist()}, essayez de fair
 \end{rmdcode}
 
 \hypertarget{transformations-de-donnuxe9es}{%
-\section{Transformations de données}\label{transformations-de-donnuxe9es}}
+\subsection{Transformations de données}\label{transformations-de-donnuxe9es}}
 
 Il est très fréquemment nécessaire d'effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d'application de tests statistiques.
 R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
@@ -3385,7 +3383,7 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 \end{Shaded}
 
 \hypertarget{exercice-sur-r}{%
-\section{Exercice sur R}\label{exercice-sur-r}}
+\subsection{Exercice sur R}\label{exercice-sur-r}}
 
 \begin{rmdcode}
 Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
@@ -3393,9 +3391,6 @@ Examinez les données pour ratio et faites des graphiques pour évaluer la norma
 \end{rmdcode}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/intror-exer-1.pdf}
-
-\hypertarget{part-analyse-de-puissance}{%
-\part{Analyse de puissance}\label{part-analyse-de-puissance}}
 
 \hypertarget{analyse-de-puissance-avec-r-et-gpower}{%
 \chapter{Analyse de puissance avec R et G*Power}\label{analyse-de-puissance-avec-r-et-gpower}}
@@ -3896,9 +3891,6 @@ M = 1.36 L^3.05
 \item
   Calculer la différence de masse, en \(\mu\)g, qui est détectable d'après vos estimés de la taille minimale d'effet détectable à 4a, b, et c.
 \end{enumerate}
-
-\hypertarget{part-moduxe8le-univariuxe9}{%
-\part{Modèle univarié}\label{part-moduxe8le-univariuxe9}}
 
 \hypertarget{corruxe9lation-et-ruxe9gression-linuxe9aire-simple}{%
 \chapter{Corrélation et régression linéaire simple}\label{corruxe9lation-et-ruxe9gression-linuxe9aire-simple}}
@@ -4900,9 +4892,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0009165474  0.03313900
-## t2* 0.3408557 -0.0006764283  0.02629528
+##      original       bias    std. error
+## t1* 1.1919926  0.003200715  0.03406614
+## t2* 0.3408557 -0.002409885  0.02717557
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4959,10 +4951,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.126,  1.256 )   ( 1.128,  1.254 )  
+## 95%   ( 1.122,  1.256 )   ( 1.122,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.130,  1.256 )   ( 1.118,  1.247 )  
+## 95%   ( 1.127,  1.262 )   ( 1.113,  1.253 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -4987,10 +4979,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2900,  0.3931 )   ( 0.2911,  0.3917 )  
+## 95%   ( 0.2900,  0.3965 )   ( 0.2890,  0.3982 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2900,  0.3906 )   ( 0.2968,  0.4041 )  
+## 95%   ( 0.2835,  0.3927 )   ( 0.2925,  0.4029 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5335,9 +5327,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 45.084391  0.01086395   0.4094873
-## t2* -1.714546 -0.02878882   0.7456108
+##      original       bias    std. error
+## t1* 45.084391 -0.004829833   0.4417675
+## t2* -1.714546 -0.002795033   0.7566737
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5370,7 +5362,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.071, -0.187 )  
+## 95%   (-3.169, -0.265 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5412,7 +5404,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000   0.0168 *
+## location1   0.8573 1372   0.0685 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6034,18 +6026,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5959
+## Quantile = 2.5949
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2743   3.6488
-##  1965 -  1954 == 0  -5.5077 -10.0013  -1.0140
-##  1966 -  1954 == 0  -3.3127  -6.3459  -0.2795
-##  1965 -  1958 == 0  -5.6949 -10.4155  -0.9742
-##  1966 -  1958 == 0  -3.4999  -6.8603  -0.1395
-##  1966 -  1965 == 0   2.1950  -2.2212   6.6111
+##  1958 -  1954 == 0   0.1872  -3.2730   3.6474
+##  1965 -  1954 == 0  -5.5077  -9.9996  -1.0158
+##  1966 -  1954 == 0  -3.3127  -6.3447  -0.2807
+##  1965 -  1958 == 0  -5.6949 -10.4137  -0.9760
+##  1966 -  1958 == 0  -3.4999  -6.8590  -0.1408
+##  1966 -  1965 == 0   2.1950  -2.2195   6.6094
 \end{verbatim}
 
 \begin{Shaded}
@@ -6537,6 +6529,13 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-3.pdf}
 \caption{\label{fig:unnamed-chunk-180-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
+
+\hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%
+\chapter{Resources pour en apprendre plus sur rmarkdown}\label{resources-pour-en-apprendre-plus-sur-rmarkdown}}
+
+\url{https://statistique-et-logiciel-r.com/guide-de-demarrage-en-r-markdown/}
+
+\url{https://rmarkdown.rstudio.com/}
 
 \printindex
 

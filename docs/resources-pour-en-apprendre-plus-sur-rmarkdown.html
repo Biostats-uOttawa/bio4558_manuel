@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Préface | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>B Resources pour en apprendre plus sur rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Préface | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="B Resources pour en apprendre plus sur rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Préface | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="B Resources pour en apprendre plus sur rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="introduction-à-r.html"/>
+<link rel="prev" href="petit-guide-pour-rmarkdown.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -269,185 +269,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="préface" class="section level1 unnumbered">
-<h1>Préface</h1>
-<!-- {-} pour enlever num/rotation -->
-<p>Les exercices de laboratoire que vous retrouverez dans les pages qui suivent sont conçus de manière à vous permettre de développer une expérience pratique en analyse de données à l’aide d’un logiciel (R).
-R est un logiciel très puissant, mais comme tous les logiciels, il a des limites.
-En particulier il ne peut réfléchir à votre place, vous dire si l’analyse que vous tentez d’effectuer est appropriée ou sensée, ou interpréter biologiquement les résultats.</p>
-<div id="quelques-points-importants-à-retenir" class="section level2 unnumbered">
-<h2>Quelques points importants à retenir</h2>
-<ul>
-<li>Avant de commencer une analyse statistique, il faut d’abord vous familiariser son fonctionnement.
-Cela ne veut pas dire que vous devez connaître les outils mathématiques qui la sous-tendent, mais vous devriez au moins comprendre les principes utilisés lors de cette analyse.
-Avant de faire un exercice de laboratoire, lisez donc la section correspondante dans les notes de cours.
-Sans cette lecture préalable, il est très probable que les résultats produits par le logiciel, même si l’analyse a été effectuée correctement, seront indéchiffrables.</li>
-<li>Les laboratoires sont conçus pour compléter les cours théoriques et vice versa.
-À cause des contraintes d’horaires, il se pourrait que le cours et le laboratoire ne soient pas parfaitement synchronisés.
-N’hésitez donc pas à poser des questions sur le labo en classe ou des questions théoriques au laboratoire.</li>
-<li>Travaillez sur les exercices de laboratoire à votre propre rythme.
-Certains exercices prennent beaucoup moins de temps que d’autres et il n’est pas nécessaire de compléter un exercice par séance de laboratoire.
-En fait deux séances de laboratoire sont prévues pour certains des exercices.
-Même si vous n’êtes pas notés sur les exercices de laboratoire, soyez conscient que ces exercices
-sont essentiels.
-Si vous ne les faites pas, il est très peu probable que vous serez capable de compléter les devoirs et le projet de session.
-Prenez donc ces exercices de laboratoire au sérieux !</li>
-<li><p>Les 2 premier laboratoires sont conçu pour vous permettre d’acquérir ou de réviser le minimum de connaissances requises pour vous permettre de réaliser les exercices de laboratoires avec R.
-Il y a presque toujours de multiples façons de faire les choses avec R et vous ne trouverez ici que des méthodes simples.
-Ceux et celles d’entre vous qui y sont enclins pourront trouver en ligne des instructions plus détaillées et complexes.
-En particulier, je vous conseille :</p>
-<ul>
-<li>R pour les débutants
-<a href="http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf" class="uri">http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf</a></li>
-<li>An introduction to R
-<a href="http://cran.r-project.org/doc/manuals/R-intro.html" class="uri">http://cran.r-project.org/doc/manuals/R-intro.html</a></li>
-<li>Si vous préférez des manuels, le site web de CRAN en garde une liste commentée à :
-<a href="http://www.r-project.org/doc/bib/R-books.html" class="uri">http://www.r-project.org/doc/bib/R-books.html</a></li>
-<li>Une liste impressionnante de très bon livre sur R
-<a href="https://www.bigbookofr.com/" class="uri">https://www.bigbookofr.com/</a></li>
-<li>Finalement, comme aide-mémoire à garder sous la main, je vous recommande R reference card par Tom Short
-<a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf" class="uri">http://cran.r-project.org/doc/contrib/Short-refcard.pdf</a></li>
-</ul></li>
-</ul>
-</div>
-<div id="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours" class="section level2 unnumbered">
-<h2>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</h2>
-<p>R est un logiciel libre et multi-plateforme formant un système statistique et graphique.
-R est également un langage de programmation spécialisé pour les statistiques.</p>
-<p>R a deux très grands avantages pour ce cours, et un inconvénient embêtant initialement mais qui vous forcera à acquérir des excellentes habitudes de travail.
-Le premier avantage est que vous pouvez tous l’installer sur votre (ou vos) ordinateurs personnel gratuitement.
-C’est important parce que c’est à l’usage que vous apprendrez et maîtriserez réellement les biostatistiques et cela implique que vous devez avoir un accès facile et illimité à un logiciel statistique.
-Le deuxième avantage est que R peut tout faire en statistiques.
-R est conçu pour être extensible et est devenu l’outil de prédilection des statisticiens mondialement.
-La question n’est plus : " Est-ce que R peut faire ceci? “, mais devient” Comment faire ceci avec R ".
-Et la recherche internet est votre ami.
-Aucun autre logiciel n’offre ces deux avantages.</p>
-<p>L’inconvénient embêtant initialement est que l’on doit opérer R en tapant des instructions (ou en copiant des sections de code) plutôt qu’en utilisant des menus et en cliquant sur différentes options.
-Si on ne sait pas quelle commande taper, rien ne se passe.
-Ce n’est donc pas facile d’utilisation à priori.
-Cependant, il est possible d’apprendre rapidement à faire certaines des opérations de base (ouvrir un fichier de données, faire un graphique pour examiner ces données, effectuer un test statistique simple).
-Et une fois que l’on comprend le principe de la chose, on peut assez facilement trouver sur le web des exemples d’analyses ou de graphiques plus complexes et adapter le code à nos propres besoins.
-C’est ce que vous ferez dans le premier laboratoire pour vous familiariser avec R.</p>
-<p>Pourquoi cet inconvénient est-il d’une certaine façon un avantage? Parce que vous allez sauver du temps en fin de compte.
-Garanti.
-Croyez-moi, on ne fait jamais une analyse une seule fois.
-En cours de route, on découvre des erreurs d’entrée de données, ou que l’on doit faire l’analyse séparément pour des sous-groupes, ou on obtient des données supplémentaires, ou on fait une erreur.
-On doit alors recommencer l’analyse.
-Avec une interface graphique et des menus, cela implique recommencer à cliquer ici, entre des paramètres dans des boîtes et sélectionner des boutons.
-Chaque fois avec possibilité d’erreur.
-Avec une série de commandes écrites, il suffit de corriger ce qui doit l’être puis de copier-coller l’ensemble pour répéter instantanément.
-Et vous avez la possibilité de parfaitement documenter ce que vous avez fait.
-C’est comme cela que les professionnels travaillent et offrent une assurance de qualité de leurs résultats.</p>
-</div>
-<div id="installation-des-logiciels-nécessaires" class="section level2 unnumbered">
-<h2>Installation des logiciels nécessaires</h2>
-<div id="r" class="section level3 unnumbered">
-<h3>R</h3>
-<p>Pour installer R sur un nouvel ordinateur, allez au site <a href="http://cran.r-project.org/" class="uri">http://cran.r-project.org/</a>.
-Vous y trouverez des versions compilées (binaries) ou non (sources) pour votre système d’exploitation de prédilection (Windows, MacOS, Linux).</p>
-<p>Note : R a déjà été installé sur les ordinateurs du laboratoire (la version pourrait être un peu plus ancienne, mais cela devrait être sans conséquences).</p>
-</div>
-<div id="rstudio" class="section level3 unnumbered">
-<h3>Rstudio</h3>
-<p>RStudio est un environnement de développement intégré (IDE) créé spécifiquement pour travailler avec R. Sa popularité connaît une progression foudroyante depuis 2014.
-Il permet de consulter dans une interface conviviale ses fichiers de script, la ligne de commande R, les rubriques d’aide,
-les graphiques, etc.</p>
-<p>RStudio est disponible à l’identique pour les plateformes Windows, OS X et Linux.
-Pour une utilisation locale sur son poste de travail, on installera la version libre (Open Source) de RStudio Desktop depuis le site
-<a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
-</div>
-<div id="paquets-pour-r" class="section level3 unnumbered">
-<h3>Paquets pour R</h3>
-<ul>
-<li>Rmarkdown</li>
-<li>tinytex</li>
-</ul>
-<p>Ces 2 paquets devrait être installé automatiquement avec RStudio, mais pas toujours. Je vous recommande donc de les installer manuellement. Pour ce faire, simplement copier-coller le texte suivant dans le terminal R.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;tinytex&quot;</span>))</a></code></pre></div>
-</div>
-<div id="gpower" class="section level3 unnumbered">
-<h3>G*Power</h3>
-<p>G*Power est un programme gratuit, développé par des psychologues de l’Université de Dusseldorf en Allemagne.
-Le programme existe en version Mac et Windows.
-Il peut cependant être utilisé sous linux via Wine.
-G*Power vous permettra d’effectuer une analyse de puissance pour la majorité des tests que nous verrons au cours de la session sans avoir à effectuer des calculs complexes ou farfouiller dans des tableaux ou des figures décrivant des distributions ou des courbes de puissance.</p>
-<p>Téléchargez le programme sur le site <a href="https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html" class="uri">https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html</a></p>
-</div>
-</div>
-<div id="instructions-générales-pour-les-laboratoires" class="section level2 unnumbered">
-<h2>Instructions générales pour les laboratoires</h2>
-<ul>
-<li>Apporter une clé USB ou son équivalent à chaque séance de laboratoire pour sauvegarder votre travail.</li>
-<li>Lire l’exercice de laboratoire AVANT la séance, lire le code R correspondant et préparer vos questions sur le code.</li>
-<li>Durant les pré-labs, écouter les instructions et posez vos questions au moment approprié.</li>
-<li>Faites les exercices du manuel de laboratoire à votre rythme, en équipe, puis je vous recommande de commencer (compléter?) le devoir.
-Profitez de la présence du démonstrateur et du prof…</li>
-<li>Pendant vos analyses, copiez-collez des fragments de sorties de R dans un document (par exemple dans votre traitement de texte favori) et annotez abondamment.</li>
-<li>Ne tapez pas directement vos commandes dans R mais plutôt dans un script.
-Vous pourrez ainsi refaire le labo instantanément, récupérer des fragments de code, ou plus facilement identifier les erreurs dans vos analyses.</li>
-<li>Créez votre propre librairie de fragments de codes (snippets).
-Annotez-là abondamment.
-Vous vous en féliciterez plus tard.</li>
-</ul>
-</div>
-<div id="notes-sur-le-manuel" class="section level2 unnumbered">
-<h2>Notes sur le manuel</h2>
-<p>Vous trouverez dans le manuel des explications sur la théorie, du code R, des explications sur R et des exercises.</p>
-<p>Le manuel essaie aussi de mettre en évidence le texte de différentes manières.</p>
+<div id="resources-pour-en-apprendre-plus-sur-rmarkdown" class="section level1">
+<h1><span class="header-section-number">B</span> Resources pour en apprendre plus sur rmarkdown</h1>
+<p><a href="https://statistique-et-logiciel-r.com/guide-de-demarrage-en-r-markdown/" class="uri">https://statistique-et-logiciel-r.com/guide-de-demarrage-en-r-markdown/</a></p>
+<p><a href="https://rmarkdown.rstudio.com/" class="uri">https://rmarkdown.rstudio.com/</a></p>
 
-<div class="rmdcode">
-Avec des sections à vous de jouer, ui indique un exercise à faire, idéalement sans regarder la solution qui se trouve plus bas.
 </div>
 
 
-<div class="rmdcaution">
-des avertissements
-</div>
 
 
-<div class="rmdwarning">
-des avertissements
-</div>
 
 
-<div class="rmdimportant">
-des points importants
-</div>
 
 
-<div class="rmdnote">
-des notes
-</div>
 
 
-<div class="rmdtip">
-et des conseils
-</div>
 
-<div id="resources" class="section level3 unnumbered">
-<h3>Resources</h3>
-<p>Ce document est généré par l’excellente extension <a href="https://bookdown.org/">bookdown</a> de <a href="https://yihui.name/">Yihui Xie</a>. Il est basé sur le précédent manuel de laboratoire <em>BIO4558 manuel de laboratoire</em> par Antoine Morin. L’introduction à R est largement reprise de l’excellent manuel de <strong>Julien Barnier</strong> intitulé <a href="https://juba.github.io/tidyverse/"><em>Introduction à R et au tidyverse</em></a></p>
-</div>
-<div id="licence" class="section level3 unnumbered">
-<h3>Licence</h3>
-<p>Ce document est mis à disposition selon les termes de la <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International</a>.</p>
-<div class="figure">
-<img src="images/icons/license_cc.png" alt="Licence Creative Commons" />
-<p class="caption">Licence Creative Commons</p>
-</div>
-
-<!-- # (PART) Introduction à R {-} -->
-</div>
-</div>
-</div>
 <script src="js/solution.js"></script>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-à-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="petit-guide-pour-rmarkdown.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -469,7 +315,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/index.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/10-notebook.Rmd",
 "text": "Edit"
 },
 "history": {
