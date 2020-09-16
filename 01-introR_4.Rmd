@@ -1,6 +1,6 @@
-# Gérer les données
+## Gérer les données
 
-## Importer et exporter des données
+### Importer et exporter des données
 
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
 Les fichiers `.csv` sont utilisés pour stocker des données.
@@ -11,7 +11,7 @@ Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
 Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format `.csv`.
 
 
-### Ouvrir un fichier de données en format `.Rdata`
+#### Ouvrir un fichier de données en format `.Rdata`
 
 Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
 ```{r load-choose, eval = FALSE}
@@ -27,7 +27,7 @@ load("ErablesGatineau.Rdata")
 ```
 
 
-### Ouvrir un fichier de données en format `.csv`
+#### Ouvrir un fichier de données en format `.csv`
 
 Pour importer ces données en format `.csv` dans R, il faut utiliser la commande `read.csv()`.
 Par exemple, pour créer un objet R `erables` qui contient les données du fichier `ErablesGatineau.csv`, il faut utiliser la commande suivant.
@@ -58,7 +58,7 @@ R confirme avoir en mémoire l’objet `erables`.
 `erables` est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): `station`, une variable de type Facteur avec 2 niveaux, et `diam` et `biom` qui sont 2 variables numériques.
 
 
-### Entrer des données
+#### Entrer des données
 
 R n’est pas un environnement idéal pour entrer des données.
 C’est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
@@ -66,7 +66,7 @@ Utilisez votre chiffrier préféré pour faire l’entrée de données.
 Ce sera plus efficace et moins frustrant.
 
 
-### Nettoyer/corriger des données
+#### Nettoyer/corriger des données
 
 Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
@@ -75,7 +75,7 @@ Il est finalement plus simple de refaire exécuter les quelques lignes de code p
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
 
 
-### Exporter des données à partir de R.
+#### Exporter des données à partir de R.
 
 Vous pouvez utiliser la fonction,
 
@@ -87,7 +87,7 @@ où `mydata` est le nom du base de données à exporter et `outfilename.csv` est
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à `File>Change dir`, ou par la commande `setwd()`)
 
 
-## Examen préliminaire des données
+### Examen préliminaire des données
 
 La première étape de toute analyse est l’examen des données.
 Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
@@ -106,7 +106,7 @@ sturgeon <- read.csv("data/sturgeon.csv")
 str(sturgeon)
 ```
 
-### Sommaire statistique
+#### Sommaire statistique
 
 Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
 
@@ -124,7 +124,7 @@ Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses
 On y reviendra, mais prenez l’habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l’analyse.
 ```
 
-### Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité
+#### Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité
 
 Examinons maintenant de plus près la distribution de fklngth.
 La commande `hist()` permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.
@@ -218,7 +218,7 @@ On peut visuellement interpréter approximativement les différences entre médi
 Les boîtes s’étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s’étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l’intérieur de 1.5x la largeur de l’étendue interquartile .
 Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l’étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.
 
-### Diagrammes de dispersion bivariés
+#### Diagrammes de dispersion bivariés
 
 En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d’oeil aux diagrammes de dispersion .
 La commande `plot(y~x)` permet de faire le graphique de y sur l’axe vertical (l’ordonnée) en fonction de x sur l’axe horizontal (l’abscisse).
@@ -241,7 +241,7 @@ Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les v
 pairs(sturgeon[,1:6], panel = panel.smooth)
 ```
 
-## Créer des sous-ensembles de cas
+### Créer des sous-ensembles de cas
 
 Il arrive fréquemment qu'une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
 Les cas sont d’habitude sélectionnés selon un critère en particulier.
@@ -273,7 +273,7 @@ En utilisant les commandes `subset()` et `hist()`, essayez de faire un histogram
 ```
 
 
-## Transformations de données
+### Transformations de données
 
 Il est très fréquemment nécessaire d’effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d’application de tests statistiques.
 R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
@@ -311,7 +311,7 @@ sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 ```
 
 
-## Exercice sur R
+### Exercice sur R
 
 ```{block2, type = "rmdcode"}
 Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.

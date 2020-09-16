@@ -1,4 +1,4 @@
-# Analyse de 2 variables
+## Analyse de 2 variables
 
 Faire une analyse bivariée, c'est étudier la relation entre deux variables : sont-elles liées ? les valeurs de l'une influencent-elles les valeurs de l'autre ? ou sont-elles au contraire indépendantes ?
 
@@ -7,9 +7,9 @@ Faire une analyse bivariée, c'est étudier la relation entre deux variables : 
 Là encore, le type d'analyse ou de visualisation est déterminé par la nature qualitative ou quantitative des deux variables.
 
 
-## Croisement de deux variables qualitatives
+### Croisement de deux variables qualitatives
 
-### Tableaux croisés
+#### Tableaux croisés
 
 On va continuer à travailler avec le jeu de données tiré de l'enquête *Histoire de vie* inclus dans l'extension `questionr`. On commence donc par charger l'extension, le jeu de données, et à le renommer en un nom plus court pour gagner un peu de temps de saisie au clavier :
 
@@ -84,7 +84,7 @@ L'interprétation des résidus est la suivante :
 Les résidus peuvent être une aide utile à l'interprétation, notamment pour des tableaux de grande dimension.
 -->
 
-### Représentation graphique
+#### Représentation graphique
 
 Il est possible de faire une représentation graphique d'un tableau croisé, par exemple avec la fonction `mosaicplot` :
 
@@ -103,9 +103,9 @@ mosaicplot(tab, las = 3, shade = TRUE)
 Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y'a beaucoup d'employés et d'ouvriers et très peu d'"autres"). Sa hauteur correspond aux pourcentages colonnes : la proportion d'hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant : les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l'hypothèse d'indépendance.
 
 
-## Croisement d'une variable quantitative et d'une variable qualitative
+### Croisement d'une variable quantitative et d'une variable qualitative
 
-### Représentation graphique
+#### Représentation graphique
 
 Croiser une variable quantitative et une variable qualitative, c'est essayer de voir si les valeurs de la variable quantitative se répartissent différemment selon la catégorie d'appartenance de la variable qualitative.
 
@@ -133,7 +133,7 @@ L'interprétation d'un boxplot est la suivante : Les bords inférieurs et supé
 Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cours des douze derniers mois ont l'air d'être sensiblement plus jeunes que les autres.
 
 
-### Calculs d'indicateurs
+#### Calculs d'indicateurs
 
 On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d'une variable quantitative selon les modalités d'une variable qualitative. Si on reprend l'exemple précédent, on peut calculer la moyenne d'âge pour ceux qui pratiquent un sport et pour ceux qui n'en pratiquent pas.
 
@@ -216,7 +216,7 @@ La valeur *p* étant à nouveau extrêmement petite, on peut rejeter l'hypothès
 -->
 
 
-## Croisement de deux variables quantitatives
+### Croisement de deux variables quantitatives
 
 Le jeu de données `hdv2003` comportant assez peu de variables quantitatives, on va s'intéresser maintenant à un autre jeu de données comportant des informations du recensement de la population de 2012. On le charge avec :
 
@@ -227,7 +227,7 @@ data(rp2012)
 Un nouveau tableau de données `rp2012` devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section \@ref(rp2012).
 
 
-### Représentation graphique
+#### Représentation graphique
 
 Quand on croise deux variables quantitatives, l'idéal est de faire une représentation graphique sous forme de nuage de points à l'aide de la fonction `plot`. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune :
 
@@ -284,7 +284,7 @@ plot(rp2012$cadres, rp2012$dipl_sup)
 
 En plus d'une représentation graphique, on peut calculer certains indicateurs permettant de mesurer le degré d'association de deux variables quantitatives.
 
-#### Corrélation linéaire (Pearson)
+##### Corrélation linéaire (Pearson)
 
 La corrélation est une mesure du lien d'association *linéaire* entre deux variables quantitatives. Sa valeur varie entre -1 et 1. Si la corrélation vaut -1, il s'agit d'une association linéaire négative parfaite. Si elle vaut 1, il s'agit d'une association linéaire positive parfaite. Si elle vaut 0, il n'y a aucune association linéaire entre les variables.
 
@@ -309,7 +309,7 @@ Ce qui indique, pour nos données, une absence de liaison linéaire entre les de
 
 
 
-#### Corrélation des rangs (Spearman)
+##### Corrélation des rangs (Spearman)
 
 Le coefficient de corrélation de Pearson ci-dessus fait une hypothèse forte sur les données : elles doivent être liées par une association linéaire. Quand ça n'est pas le cas mais qu'on est en présence d'une association monotone, on peut utiliser un autre coefficient, le coefficient de corrélation des rangs de Spearman.
 
@@ -383,7 +383,7 @@ Pour calculer une corrélation de Spearman, on utilise la fonction `cor` mais av
 cor(rp2012$cadres, rp2012$dipl_sup, method = "spearman")
 ```
 
-### Régression linéaire
+#### Régression linéaire
 
 Quand on est en présence d'une association linéaire entre deux variables, on peut vouloir faire la régression linéaire d'une des variables sur l'autres.
 
@@ -421,7 +421,7 @@ abline(reg, col="red")
 -->
 
 
-## Exercices {#ex-introR-biv}
+### Exercices {#ex-introR-biv}
 
 **Exercice 1**
 

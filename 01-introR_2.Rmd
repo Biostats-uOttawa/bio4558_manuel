@@ -1,7 +1,7 @@
-# Premier travail avec des données
+## Premier travail avec des données
 
 
-## Jeu de données d'exemple
+### Jeu de données d'exemple
 
 Dans cette partie nous allons (enfin) travailler sur des "vraies" données, et utiliser un jeu de données présent dans l'extension `questionr`. Nous devons donc avant toute chose installer cette extension.
 
@@ -37,7 +37,7 @@ Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), ma
 Cet objet est d'un type nouveau : il s'agit d'un tableau de données.
 
 
-## Tableau de données (*data frame*)
+### Tableau de données (*data frame*)
 
 
 Un *data frame* (ou tableau de données, ou table) est un type d'objet R qui contient des données au format tabulaire, avec les observations en ligne et les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel.
@@ -92,7 +92,7 @@ d <- hdv2003
 ```
 
 
-### Structure du tableau
+#### Structure du tableau
 
 Un tableau étant un objet comme un autre, on peut lui appliquer des fonctions. Par exemple, `nrow` et `ncol` retournent le nombre de lignes et de colonnes du tableau :
 
@@ -128,7 +128,7 @@ Sous RStudio, on peut afficher à tout moment la structure d'un objet en cliquan
 ![Structure d'un objet](images/screenshots/rstudio_environment_str.png)
 
 
-### Accéder aux variables d'un tableau
+#### Accéder aux variables d'un tableau
 
 Une opération très importante est l'accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l'opérateur `$`, qui permet d'accéder aux colonnes du tableau. Ainsi, si l'on tape :
 
@@ -158,7 +158,7 @@ tail(d$age, 10)
 
 Le deuxième argument numérique permet d'indiquer le nombre de valeurs à afficher.
 
-### Créer une nouvelle variable
+#### Créer une nouvelle variable
 
 On peut aussi utiliser l'opérateur `$` pour créer une nouvelle variable dans notre tableau : pour cela, il suffit de lui assigner une valeur.
 
@@ -182,18 +182,18 @@ head(d$minutes.tv)
 
 
 
-## Analyse univariée
+### Analyse univariée
 
 On a donc désormais accès à un tableau de données `d`, dont les lignes sont des observations (des individus enquêtés), et les colonnes des variables (des caractéristiques de chacun de ces individus), et on sait accéder à ces variables grâce à l'opérateur `$`.
 
 Si on souhaite analyser ces variables, les méthodes et fonctions utilisées seront différentes selon qu'il s'agit d'une variable *quantitative* (variable numérique pouvant prendre un grand nombre de valeurs : l'âge, le revenu, un pourcentage...) ou d'une variable *qualitative* (variable pouvant prendre un nombre limité de valeurs appelées modalités : le sexe, la profession, le dernier diplôme obtenu, etc.).
 
-### Analyser une variable quantitative
+#### Analyser une variable quantitative
 
 Une variable quantitative est une variable de type numérique (un nombre) qui peut prendre un grand nombre de valeurs. On en a plusieurs dans notre jeu de données, notamment l'âge (variable `age`) ou le nombre d'heures passées devant la télé (`heures.tv`).
 
 
-#### Indicateurs de centralité
+##### Indicateurs de centralité
 
 Caractériser une variable quantitative, c'est essayer de décrire la manière dont ses valeurs se répartissent, ou se distribuent.
 
@@ -220,7 +220,7 @@ median(d$age)
 Une différence entre les deux indicateurs est que la médiane est beaucoup moins sensible aux valeurs "extrêmes" : on dit qu'elle est plus *robuste*. Ainsi, en 2013, le salaire net *moyen* des salariés à temps plein en France était de 2202 euros, tandis que le salaire net *médian* n'était que de 1772 euros. La différence étant due à des très hauts salaires qui "tirent" la moyenne vers le haut.
 
 
-#### Indicateurs de dispersion
+##### Indicateurs de dispersion
 
 Les indicateurs de dispersion permettent de mesurer si les valeurs sont plutôt regroupées ou au contraire plutôt dispersées.
 
@@ -251,7 +251,7 @@ Une autre manière de mesurer la dispersion est de calculer les quartiles :
 On peut les calculer avec la fonction `quantile` :
 
 ```{r}
-## Premier quartile
+### Premier quartile
 quantile(d$age, prob = 0.25)
 ```
 
@@ -268,7 +268,7 @@ Notons enfin que la fonction `summary` permet d'obtenir d'un coup plusieurs indi
 summary(d$age)
 ```
 
-#### Représentation graphique
+##### Représentation graphique
 
 L'outil le plus utile pour étudier la distribution des valeurs d'une variable quantitative reste la représentation graphique.
 
@@ -305,13 +305,13 @@ hist(d$age, col = "skyblue",
 La fonction `hist` fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques dans la partie \@ref(ggplot2) de ce document, consacrée à l'extension `ggplot2`, qui fait partie du *tidyverse* et qui permet la production et la personnalisation de graphiques complexes.
 
 
-### Analyser une variable qualitative
+#### Analyser une variable qualitative
 
 Une variable qualitative est une variable qui ne peut prendre qu'un nombre limité de valeurs, appelées modalités. Dans notre jeu de données on trouvera par exemple le sexe (`sexe`), le niveau d'études (`nivetud`), la catégorie socio-professionnelle (`qualif`)...
 
 À noter qu'une variable qualitative peut tout-à-fait être numérique, et que certaines variables peuvent être traitées soit comme quantitatives, soit comme qualitatives : c'est le cas par exemple du nombre d'enfants ou du nombre de frères et soeurs.
 
-#### Tri à plat
+##### Tri à plat
 
 L'outil le plus utilisé pour représenter la répartition des valeurs d'une variable qualitative est le *tri à plat* : il s'agit simplement de compter, pour chacune des valeurs possibles de la variable (pour chacune des modalités), le nombre d'observations ayant cette valeur. Un tri à plat s'obtient sous R à l'aide de la fonction `table` :
 
@@ -378,7 +378,7 @@ print(freq(d$qualif, valid= FALSE, total = TRUE, sort = "dec"))
 
 
 
-#### Représentations graphiques
+##### Représentations graphiques
 
 On peut représenter graphiquement le tri à plat d'une variable qualitative avec un diagramme en barres, obtenu avec la fonction `barplot`. Attention, contrairement à `hist` cette fonction ne s'applique pas directement à la variable mais au résultat du tri à plat de cette variable, calculé avec `table`. Il faut donc procéder en deux étapes :
 
@@ -405,7 +405,7 @@ Là aussi, pour améliorer la lisibilité du graphique il est préférable de tr
 dotchart(sort(table(d$qualif)))
 ```
 
-## Exercices {#ex-introR-univ}
+### Exercices {#ex-introR-univ}
 
 **Exercice 1**
 
