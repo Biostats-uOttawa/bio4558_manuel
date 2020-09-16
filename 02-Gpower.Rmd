@@ -1,4 +1,4 @@
-# (PART) Analyse de puissance {-}
+<!-- # (PART) Analyse de puissance {-} -->
 
 # Analyse de puissance avec R et G\*Power
 

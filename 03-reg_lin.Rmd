@@ -1,4 +1,4 @@
-# (PART) Modèle univarié {-}
+<!-- # (PART) Modèle univarié {-} -->
 
 # Corrélation et régression linéaire simple
 
