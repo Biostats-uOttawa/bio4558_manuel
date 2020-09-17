@@ -28,7 +28,7 @@ Ce laboratoire nécessite:
 
 Une fois R et RStudio installés sur votre machine, nous n'allons pas lancer R mais plutôt RStudio.
 
-RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière "classique" via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un *Environnement de développement intégré* (IDE) qui facilite l'utilisation de R et le développement de scripts (voir section \@ref(rstudio)).
+RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière "classique" via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un *Environnement de développement intégré* (IDE) qui facilite l'utilisation de R et le développement de scripts.
 
 ### La console
 
@@ -43,7 +43,7 @@ La zone de gauche se nomme *Console*. À son démarrage, RStudio a lancé une no
 La *Console* doit normalement afficher un texte de bienvenue ressemblant à ceci :
 
 ```
-R version 4.0.0 (2020-04-24) -- "Arbor Day"
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 

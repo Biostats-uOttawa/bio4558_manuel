@@ -5,25 +5,51 @@
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont `.csv` et `.Rdata`.
 Les fichiers `.csv` sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, ...) et les tableurs (e.g. MS Excel, LO Calc).
+Ils sont lus avec la fonction `read.csv` et créés avec `write.csv`.
 Les fichiers `.Rdata` sont utilisés pour stocker n'importe quel objet R pas uniquement des données.
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+Ces fichiers sont lus avec la fonction `load` et créés avec la fonction `save`.
 
-Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format `.csv`.
+Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies en format `.csv`.
+
+
+#### Répertoire de travail
+
+```{block2, type='rmdwarning'}
+Une des erreurs les plus communes lorsque l'on débute avec R est lié au chargement des données et la lecture de fichier externe à R.
+```
+Un message d'erreur typique est:
+
+``
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'ou_est_mon_fichier.csv': No such file or directory
+``
+
+L'erreur est du au fait que R ne sache pas où trouver le fichier. Par défaut lorsqu'on ouvre R, R utilise le dossier utilisateur sur l'ordinateur comme dossier de travail. Cela signifie que R va cherhcer à lire les fichiers dans ce dossier et écrire les nouveaux fichiers dans ce dossier. Ceci n'est pas toujours pratique surtout lorsque l'on débute avec R.
+Pour lire/écrire un fichier dans un endroit particulier sur l'ordinateur, il faut spécifier à R le chemin de cet endroit. Cela peut ce faire de 3 manières différentes:
+
+1. avec la fonction `file.choose()`. La fonction ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur. Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque fois que l'on souhaite l'utiliser.
+2. en spécifiant le chemin complet du fichier dans la commande. Par example `"/home/julien/Documents/cours/BIO4558/labo/data/monfichier.csv"`. C'est assez long à taper et surtout cela ne permet pas de facilement utliser le code sur un autre ordinateur.
+3. en spécifiant un répertoire de travail avec la fonction `setwd()`. Ceci indique à R de chercher et d'écrire les fichiers dans un dossier en particulier. Le chemin des fichiers est toujours interprété de manière relative au répertoire de travail. Cela à l'avantage de pouvoir facilement utiliser le même code sur plusieurs ordinateur ssi la structure du dossier est la même.
+
+POur connaitre le répertoire de travail de R il faut utiliser la fonction `getwd()`. La fonction `setwd()` permet de spécifier le chemin du dossier à utiliser comme répertoire de travail.
+
+```{block2, type='rmdtip'}
+Si vous ouvrez `RStudio` en double-cliquant sur un fichier `.R` alors `Rstudio` utlisera le dossier où ce fichier est présent comme répertoire de travail. Plutôt pratique car cela évite d'avoir à utiliser la fonction `setwd()`.
+```
+
+Pour l'ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d'analyses et de saugeardés tous les fichiers de données dans un sous dossier `data`. Le code du labo est structuré de cette manière. C'est pourqoui tous les codes de chargement ou d'cériture de données seront du type `data/mon_fichier.xxx`.
 
 
 #### Ouvrir un fichier de données en format `.Rdata`
 
-Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
-```{r load-choose, eval = FALSE}
-load(file.choose())
-```
-ce qui ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur.
-Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque que l'on souhaite l'utiliser.
+Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, utliser la fonction `load` avec le nom et le chemin du fichier de données.
+Par example, pour ouvrir le fichier `ErablesGatineau.Rdata` qui se situe dans le dossier `data` du dossier de travail, il faut taper:
 
-Vous pouvez aussi directement taper le nom du fichier entre guillemet `"nom du fichier avec l'extension"`.
-Par exemple,
 ```{r load, eval = FALSE}
-load("ErablesGatineau.Rdata")
+load("data/ErablesGatineau.Rdata")
 ```
 
 
@@ -303,7 +329,7 @@ logfklngth <- log10(sturgeon$fklngth)
 Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole `$`, par exemple, pour ajouter une variable nommée `lfkl` contenant le log10 de fklngth au tableau sturgeon, on peut écrire:
 
 ```{r translog-stur-dat, eval = FALSE}
-sturgeon$logfkl <- log10(sturgeonfklngth)
+sturgeon$logfkl <- log10(sturgeon$fklngth)
 ```
 
 N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.

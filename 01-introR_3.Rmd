@@ -137,21 +137,21 @@ Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cour
 
 On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d'une variable quantitative selon les modalités d'une variable qualitative. Si on reprend l'exemple précédent, on peut calculer la moyenne d'âge pour ceux qui pratiquent un sport et pour ceux qui n'en pratiquent pas.
 
-Une première méthode pour cela est d'extraire de notre population autant de sous-populations qu'il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction `filter` du package `dplyr`.
+Une première méthode pour cela est d'extraire de notre population autant de sous-populations qu'il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction `subset`.
 
 <!-- ^[Le package en question est présenté en détail dans la partie \@ref(dplyr).]. -->
 
-On commence par charger `dplyr` (en l'ayant préalablement installé) :
+<!-- On commence par charger `dplyr` (en l'ayant préalablement installé) :
 
 ```{r, message=FALSE}
 library(dplyr)
-```
+``` -->
 
-Puis on applique `filter` pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données :
+On applique `subset` pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données :
 
 ```{r}
-d_sport <- filter(d, sport == "Oui")
-d_nonsport <- filter(d, sport == "Non")
+d_sport <- subset(d, sport == "Oui")
+d_nonsport <- subset(d, sport == "Non")
 ```
 
 On peut ensuite utiliser ces deux nouveaux tableaux de données comme on en a l'habitude, et calculer les deux moyennes d'âge :
