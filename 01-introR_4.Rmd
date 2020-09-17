@@ -20,12 +20,12 @@ Une des erreurs les plus communes lorsque l'on débute avec R est lié au charge
 ```
 Un message d'erreur typique est:
 
-``
+```
 Error in file(file, "rt") : cannot open the connection
 In addition: Warning message:
 In file(file, "rt") :
   cannot open file 'ou_est_mon_fichier.csv': No such file or directory
-``
+```
 
 L'erreur est du au fait que R ne sache pas où trouver le fichier. Par défaut lorsqu'on ouvre R, R utilise le dossier utilisateur sur l'ordinateur comme dossier de travail. Cela signifie que R va cherhcer à lire les fichiers dans ce dossier et écrire les nouveaux fichiers dans ce dossier. Ceci n'est pas toujours pratique surtout lorsque l'on débute avec R.
 Pour lire/écrire un fichier dans un endroit particulier sur l'ordinateur, il faut spécifier à R le chemin de cet endroit. Cela peut ce faire de 3 manières différentes:
@@ -40,8 +40,9 @@ POur connaitre le répertoire de travail de R il faut utiliser la fonction `getw
 Si vous ouvrez `RStudio` en double-cliquant sur un fichier `.R` alors `Rstudio` utlisera le dossier où ce fichier est présent comme répertoire de travail. Plutôt pratique car cela évite d'avoir à utiliser la fonction `setwd()`.
 ```
 
-Pour l'ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d'analyses et de saugeardés tous les fichiers de données dans un sous dossier `data`. Le code du labo est structuré de cette manière. C'est pourqoui tous les codes de chargement ou d'cériture de données seront du type `data/mon_fichier.xxx`.
-
+```{block2, type = "rmdimportant"}
+Pour l'ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d'analyses et de sauvegardés tous les fichiers de données dans un sous dossier `data`. Le code du labo est structuré de cette manière. C'est pourquoi tous les codes de chargement ou d'écriture de données seront du type `data/mon_fichier.xxx`.
+```
 
 #### Ouvrir un fichier de données en format `.Rdata`
 

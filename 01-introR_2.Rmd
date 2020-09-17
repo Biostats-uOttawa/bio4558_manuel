@@ -398,12 +398,12 @@ barplot(sort(tab))
 
 Une alternative au graphique en barres est le *diagramme de Cleveland*, qu'on peut obtenir avec la fonction `dotchart`. Celle-ci s'applique elle aussi au tri à plat de la variable calculé avec `table`.
 
-```{r warning = FALSE}
+```{r, warning = FALSE}
 dotchart(table(d$qualif))
 ```
 Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter :
 
-```{r warning = FALSE}
+```{r, warning = FALSE}
 dotchart(sort(table(d$qualif)))
 ```
 
