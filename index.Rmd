@@ -23,6 +23,8 @@ library(lmtest)
 library(boot)
 library(lmPerm)
 library(multcomp)
+library(questionr)
+#svglite
 ```
 # Note {-}
 Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.

@@ -275,21 +275,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Répétez l’ANOVA originale sur fklngth et year mais faites le avec un sous-ensemble de données sans les valeurs extrêmes. Est-ce que les conclusions ont changé?</li>
 </ul>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),] <span class="co">#removes obs 23, 59 and 87</span></a>
-<a class="sourceLine" id="cb381-2" title="2">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
-<a class="sourceLine" id="cb381-3" title="3"><span class="kw">summary</span>(aov.Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),] <span class="co">#removes obs 23, 59 and 87</span></a>
+<a class="sourceLine" id="cb380-2" title="2">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
+<a class="sourceLine" id="cb380-3" title="3"><span class="kw">summary</span>(aov.Damsubset)</a></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## as.factor(year)   3  367.5  122.50   6.894 0.000267 ***
 ## Residuals       111 1972.4   17.77                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  residuals(aov.Damsubset)
 ## W = 0.98533, p-value = 0.2448</code></pre>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value   Pr(&gt;F)   
 ## group   3  4.6237 0.004367 **
@@ -298,12 +298,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.</p>
 <p>Commandes R pour refaire l’ANOVA sur le sous-ensemble de données</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),]</a>
-<a class="sourceLine" id="cb387-2" title="2"><span class="co"># removes obs 23, 59 and 87</span></a>
-<a class="sourceLine" id="cb387-3" title="3">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
-<a class="sourceLine" id="cb387-4" title="4"><span class="kw">summary</span>(aov.Damsubset)</a>
-<a class="sourceLine" id="cb387-5" title="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a>
-<a class="sourceLine" id="cb387-6" title="6"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),]</a>
+<a class="sourceLine" id="cb386-2" title="2"><span class="co"># removes obs 23, 59 and 87</span></a>
+<a class="sourceLine" id="cb386-3" title="3">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
+<a class="sourceLine" id="cb386-4" title="4"><span class="kw">summary</span>(aov.Damsubset)</a>
+<a class="sourceLine" id="cb386-5" title="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a>
+<a class="sourceLine" id="cb386-6" title="6"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
 </div>
 <script src="js/solution.js"></script>
             </section>

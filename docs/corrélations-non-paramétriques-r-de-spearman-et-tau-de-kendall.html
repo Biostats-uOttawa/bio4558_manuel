@@ -281,10 +281,10 @@ Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kend
 <ul>
 <li>Dans R, testez la corrélation entre <code>fklngth</code> et <code>rdwght</code> en utilisant Spearman et Kendall’s .</li>
 </ul>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb253-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb253-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb253-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb252-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb252-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb252-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning in cor.test.default(sturgeon$lfklngth, sturgeon$rdwght, alternative =
 ## &quot;two.sided&quot;, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -296,10 +296,10 @@ Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kend
 ## sample estimates:
 ##       rho 
 ## 0.9522546</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb256-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb256-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb256-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb255-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb255-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb255-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 

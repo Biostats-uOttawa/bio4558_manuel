@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{16-09-2020}
+\date{17-09-2020}
 
 \begin{document}
 \maketitle
@@ -517,7 +517,7 @@ Ce laboratoire nécessite:
 
 Une fois R et RStudio installés sur votre machine, nous n'allons pas lancer R mais plutôt RStudio.
 
-RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière ``classique'' via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un \emph{Environnement de développement intégré} (IDE) qui facilite l'utilisation de R et le développement de scripts (voir section \ref{rstudio}).
+RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière ``classique'' via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un \emph{Environnement de développement intégré} (IDE) qui facilite l'utilisation de R et le développement de scripts.
 
 \hypertarget{la-console}{%
 \subsection{La console}\label{la-console}}
@@ -538,7 +538,7 @@ La zone de gauche se nomme \emph{Console}. À son démarrage, RStudio a lancé u
 La \emph{Console} doit normalement afficher un texte de bienvenue ressemblant à ceci~:
 
 \begin{verbatim}
-R version 4.0.0 (2020-04-24) -- "Arbor Day"
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
 Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
@@ -2538,22 +2538,14 @@ Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cour
 
 On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d'une variable quantitative selon les modalités d'une variable qualitative. Si on reprend l'exemple précédent, on peut calculer la moyenne d'âge pour ceux qui pratiquent un sport et pour ceux qui n'en pratiquent pas.
 
-Une première méthode pour cela est d'extraire de notre population autant de sous-populations qu'il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction \texttt{filter} du package \texttt{dplyr}.
+Une première méthode pour cela est d'extraire de notre population autant de sous-populations qu'il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction \texttt{subset}.
 
-On commence par charger \texttt{dplyr} (en l'ayant préalablement installé)~:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(dplyr)}
-\end{Highlighting}
-\end{Shaded}
-
-Puis on applique \texttt{filter} pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données~:
+On applique \texttt{subset} pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données~:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{d_sport <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(d, sport }\OperatorTok{==}\StringTok{ "Oui"}\NormalTok{)}
-\NormalTok{d_nonsport <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(d, sport }\OperatorTok{==}\StringTok{ "Non"}\NormalTok{)}
+\NormalTok{d_sport <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(d, sport }\OperatorTok{==}\StringTok{ "Oui"}\NormalTok{)}
+\NormalTok{d_nonsport <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(d, sport }\OperatorTok{==}\StringTok{ "Non"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2903,31 +2895,61 @@ Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont \texttt{.csv} et \texttt{.Rdata}.
 Les fichiers \texttt{.csv} sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g.~Word, Writer, atom, \ldots{}) et les tableurs (e.g.~MS Excel, LO Calc).
+Ils sont lus avec la fonction \texttt{read.csv} et créés avec \texttt{write.csv}.
 Les fichiers \texttt{.Rdata} sont utilisés pour stocker n'importe quel objet R pas uniquement des données.
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+Ces fichiers sont lus avec la fonction \texttt{load} et créés avec la fonction \texttt{save}.
 
-Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format \texttt{.csv}.
+Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies en format \texttt{.csv}.
+
+\hypertarget{ruxe9pertoire-de-travail}{%
+\subsubsection{Répertoire de travail}\label{ruxe9pertoire-de-travail}}
+
+\begin{rmdwarning}
+Une des erreurs les plus communes lorsque l'on débute avec R est lié au chargement des données et la lecture de fichier externe à R.
+\end{rmdwarning}
+Un message d'erreur typique est:
+
+\begin{verbatim}
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'ou_est_mon_fichier.csv': No such file or directory
+\end{verbatim}
+
+L'erreur est du au fait que R ne sache pas où trouver le fichier. Par défaut lorsqu'on ouvre R, R utilise le dossier utilisateur sur l'ordinateur comme dossier de travail. Cela signifie que R va cherhcer à lire les fichiers dans ce dossier et écrire les nouveaux fichiers dans ce dossier. Ceci n'est pas toujours pratique surtout lorsque l'on débute avec R.
+Pour lire/écrire un fichier dans un endroit particulier sur l'ordinateur, il faut spécifier à R le chemin de cet endroit. Cela peut ce faire de 3 manières différentes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  avec la fonction \texttt{file.choose()}. La fonction ouvrira une boîte de dialogue vous permettant d'aller choisir un fichier sur votre ordinateur. Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque fois que l'on souhaite l'utiliser.
+\item
+  en spécifiant le chemin complet du fichier dans la commande. Par example \texttt{"/home/julien/Documents/cours/BIO4558/labo/data/monfichier.csv"}. C'est assez long à taper et surtout cela ne permet pas de facilement utliser le code sur un autre ordinateur.
+\item
+  en spécifiant un répertoire de travail avec la fonction \texttt{setwd()}. Ceci indique à R de chercher et d'écrire les fichiers dans un dossier en particulier. Le chemin des fichiers est toujours interprété de manière relative au répertoire de travail. Cela à l'avantage de pouvoir facilement utiliser le même code sur plusieurs ordinateur ssi la structure du dossier est la même.
+\end{enumerate}
+
+POur connaitre le répertoire de travail de R il faut utiliser la fonction \texttt{getwd()}. La fonction \texttt{setwd()} permet de spécifier le chemin du dossier à utiliser comme répertoire de travail.
+
+\begin{rmdtip}
+Si vous ouvrez \texttt{RStudio} en double-cliquant sur un fichier \texttt{.R} alors \texttt{Rstudio} utlisera le dossier où ce fichier est présent comme répertoire de travail. Plutôt pratique car cela évite d'avoir à utiliser la fonction \texttt{setwd()}.
+\end{rmdtip}
+
+\begin{rmdimportant}
+Pour l'ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d'analyses et de sauvegardés tous les fichiers de données dans un sous dossier \texttt{data}. Le code du labo est structuré de cette manière. C'est pourquoi tous les codes de chargement ou d'écriture de données seront du type \texttt{data/mon\_fichier.xxx}.
+\end{rmdimportant}
 
 \hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}{%
 \subsubsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.Rdata}}{Ouvrir un fichier de données en format .Rdata}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}}
 
-Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d'exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
+Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d'exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, utliser la fonction \texttt{load} avec le nom et le chemin du fichier de données.
+Par example, pour ouvrir le fichier \texttt{ErablesGatineau.Rdata} qui se situe dans le dossier \texttt{data} du dossier de travail, il faut taper:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\KeywordTok{file.choose}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-ce qui ouvrira une boîte de dialogue vous permettant d'aller choisir un fichier sur votre ordinateur.
-Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque que l'on souhaite l'utiliser.
-
-Vous pouvez aussi directement taper le nom du fichier entre guillemet \texttt{"nom\ du\ fichier\ avec\ l\textquotesingle{}extension"}.
-Par exemple,
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"ErablesGatineau.Rdata"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"data/ErablesGatineau.Rdata"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3365,7 +3387,7 @@ Si on veut ajouter cette variable transformée à un tableau de données (data.f
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sturgeon}\OperatorTok{$}\NormalTok{logfkl <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(sturgeonfklngth)}
+\NormalTok{sturgeon}\OperatorTok{$}\NormalTok{logfkl <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4926,8 +4948,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.003373672  0.03401772
-## t2* 0.3408557 -0.002506418  0.02686500
+## t1* 1.1919926  0.002890118  0.03439853
+## t2* 0.3408557 -0.002163735  0.02727204
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4984,10 +5006,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.255 )   ( 1.121,  1.254 )  
+## 95%   ( 1.122,  1.257 )   ( 1.121,  1.259 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.130,  1.263 )   ( 1.117,  1.250 )  
+## 95%   ( 1.125,  1.263 )   ( 1.114,  1.247 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -5013,10 +5035,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2907,  0.3960 )   ( 0.2900,  0.3971 )  
+## 95%   ( 0.2896,  0.3965 )   ( 0.2869,  0.3952 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2846,  0.3917 )   ( 0.2956,  0.4004 )  
+## 95%   ( 0.2866,  0.3948 )   ( 0.2972,  0.4041 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -5363,8 +5385,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391 -0.007771507   0.4385274
-## t2* -1.714546  0.007445734   0.7763190
+## t1* 45.084391 -0.002415972   0.4275201
+## t2* -1.714546  0.006266086   0.7512931
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5397,7 +5419,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.150, -0.151 )  
+## 95%   (-3.127, -0.179 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5439,7 +5461,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 2070   0.0464 *
+## location1   0.8573 5000    0.016 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6061,18 +6083,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5944
+## Quantile = 2.5955
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2723   3.6467
-##  1965 -  1954 == 0  -5.5077  -9.9986  -1.0167
-##  1966 -  1954 == 0  -3.3127  -6.3441  -0.2813
-##  1965 -  1958 == 0  -5.6949 -10.4128  -0.9770
-##  1966 -  1958 == 0  -3.4999  -6.8584  -0.1415
-##  1966 -  1965 == 0   2.1950  -2.2186   6.6085
+##  1958 -  1954 == 0   0.1872  -3.2737   3.6482
+##  1965 -  1954 == 0  -5.5077 -10.0005  -1.0148
+##  1966 -  1954 == 0  -3.3127  -6.3453  -0.2801
+##  1965 -  1958 == 0  -5.6949 -10.4147  -0.9750
+##  1966 -  1958 == 0  -3.4999  -6.8597  -0.1401
+##  1966 -  1965 == 0   2.1950  -2.2204   6.6103
 \end{verbatim}
 
 \begin{Shaded}
@@ -6535,8 +6557,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-1.pdf}
-\caption{\label{fig:unnamed-chunk-180-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-183-1.pdf}
+\caption{\label{fig:unnamed-chunk-183-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -6548,8 +6570,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-2.pdf}
-\caption{\label{fig:unnamed-chunk-180-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-183-2.pdf}
+\caption{\label{fig:unnamed-chunk-183-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -6561,8 +6583,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-180-3.pdf}
-\caption{\label{fig:unnamed-chunk-180-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-183-3.pdf}
+\caption{\label{fig:unnamed-chunk-183-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

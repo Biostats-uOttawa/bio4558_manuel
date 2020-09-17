@@ -276,24 +276,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont <code>.csv</code> et <code>.Rdata</code>.
 Les fichiers <code>.csv</code> sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, …) et les tableurs (e.g. MS Excel, LO Calc).
+Ils sont lus avec la fonction <code>read.csv</code> et créés avec <code>write.csv</code>.
 Les fichiers <code>.Rdata</code> sont utilisés pour stocker n’importe quel objet R pas uniquement des données.
-Cependant, ces fichiers ne peuvent être lus et utilisés que par R.</p>
-<p>Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format <code>.csv</code>.</p>
+Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+Ces fichiers sont lus avec la fonction <code>load</code> et créés avec la fonction <code>save</code>.</p>
+<p>Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies en format <code>.csv</code>.</p>
+<div id="répertoire-de-travail" class="section level4">
+<h4><span class="header-section-number">1.5.1.1</span> Répertoire de travail</h4>
+
+<div class="rmdwarning">
+Une des erreurs les plus communes lorsque l’on débute avec R est lié au chargement des données et la lecture de fichier externe à R.
+</div>
+
+<p>Un message d’erreur typique est:</p>
+<pre><code>Error in file(file, &quot;rt&quot;) : cannot open the connection
+In addition: Warning message:
+In file(file, &quot;rt&quot;) :
+  cannot open file &#39;ou_est_mon_fichier.csv&#39;: No such file or directory</code></pre>
+<p>L’erreur est du au fait que R ne sache pas où trouver le fichier. Par défaut lorsqu’on ouvre R, R utilise le dossier utilisateur sur l’ordinateur comme dossier de travail. Cela signifie que R va cherhcer à lire les fichiers dans ce dossier et écrire les nouveaux fichiers dans ce dossier. Ceci n’est pas toujours pratique surtout lorsque l’on débute avec R.
+Pour lire/écrire un fichier dans un endroit particulier sur l’ordinateur, il faut spécifier à R le chemin de cet endroit. Cela peut ce faire de 3 manières différentes:</p>
+<ol style="list-style-type: decimal">
+<li>avec la fonction <code>file.choose()</code>. La fonction ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur. Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s’en servir car elle ne permet pas de reproduire l’analyse facilement. En effet, elle nécessite de choisir le document chaque fois que l’on souhaite l’utiliser.</li>
+<li>en spécifiant le chemin complet du fichier dans la commande. Par example <code>"/home/julien/Documents/cours/BIO4558/labo/data/monfichier.csv"</code>. C’est assez long à taper et surtout cela ne permet pas de facilement utliser le code sur un autre ordinateur.</li>
+<li>en spécifiant un répertoire de travail avec la fonction <code>setwd()</code>. Ceci indique à R de chercher et d’écrire les fichiers dans un dossier en particulier. Le chemin des fichiers est toujours interprété de manière relative au répertoire de travail. Cela à l’avantage de pouvoir facilement utiliser le même code sur plusieurs ordinateur ssi la structure du dossier est la même.</li>
+</ol>
+<p>POur connaitre le répertoire de travail de R il faut utiliser la fonction <code>getwd()</code>. La fonction <code>setwd()</code> permet de spécifier le chemin du dossier à utiliser comme répertoire de travail.</p>
+
+<div class="rmdtip">
+Si vous ouvrez <code>RStudio</code> en double-cliquant sur un fichier <code>.R</code> alors <code>Rstudio</code> utlisera le dossier où ce fichier est présent comme répertoire de travail. Plutôt pratique car cela évite d’avoir à utiliser la fonction <code>setwd()</code>.
+</div>
+
+
+<div class="rmdimportant">
+Pour l’ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d’analyses et de sauvegardés tous les fichiers de données dans un sous dossier <code>data</code>. Le code du labo est structuré de cette manière. C’est pourquoi tous les codes de chargement ou d’écriture de données seront du type <code>data/mon_fichier.xxx</code>.
+</div>
+
+</div>
 <div id="ouvrir-un-fichier-de-données-en-format-.rdata" class="section level4">
-<h4><span class="header-section-number">1.5.1.1</span> Ouvrir un fichier de données en format <code>.Rdata</code></h4>
-<p>Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">load</span>(<span class="kw">file.choose</span>())</a></code></pre></div>
-<p>ce qui ouvrira une boîte de dialogue vous permettant d’aller choisir un fichier sur votre ordinateur.
-Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s’en servir car elle ne permet pas de reproduire l’analyse facilement. En effet, elle nécessite de choisir le document chaque que l’on souhaite l’utiliser.</p>
-<p>Vous pouvez aussi directement taper le nom du fichier entre guillemet <code>"nom du fichier avec l'extension"</code>.
-Par exemple,</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="kw">load</span>(<span class="st">&quot;ErablesGatineau.Rdata&quot;</span>)</a></code></pre></div>
+<h4><span class="header-section-number">1.5.1.2</span> Ouvrir un fichier de données en format <code>.Rdata</code></h4>
+<p>Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, utliser la fonction <code>load</code> avec le nom et le chemin du fichier de données.
+Par example, pour ouvrir le fichier <code>ErablesGatineau.Rdata</code> qui se situe dans le dossier <code>data</code> du dossier de travail, il faut taper:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">load</span>(<span class="st">&quot;data/ErablesGatineau.Rdata&quot;</span>)</a></code></pre></div>
 </div>
 <div id="ouvrir-un-fichier-de-données-en-format-.csv" class="section level4">
-<h4><span class="header-section-number">1.5.1.2</span> Ouvrir un fichier de données en format <code>.csv</code></h4>
+<h4><span class="header-section-number">1.5.1.3</span> Ouvrir un fichier de données en format <code>.csv</code></h4>
 <p>Pour importer ces données en format <code>.csv</code> dans R, il faut utiliser la commande <code>read.csv()</code>.
 Par exemple, pour créer un objet R <code>erables</code> qui contient les données du fichier <code>ErablesGatineau.csv</code>, il faut utiliser la commande suivant.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">erables &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ErablesGatineau.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1">erables &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ErablesGatineau.csv&quot;</span>)</a></code></pre></div>
 
 <div class="rmdwarning">
 Attention si vous travaillez dans une langue utilisant la virgule au lieu du point décimal.
@@ -308,7 +337,7 @@ Googlez-la si vous en avez besoin.
 Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d’objet dans l’environnement R. Je vous suggère donc d’utliser <code>ls()</code> et ensuite <code>str()</code> sur l’objet qui vous intéresse.
 </div>
 
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="kw">ls</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">ls</span>()</a></code></pre></div>
 <pre><code>##  [1] &quot;anglais&quot;        &quot;chien&quot;          &quot;d&quot;              &quot;d_nonsport&quot;    
 ##  [5] &quot;d_sport&quot;        &quot;diplome&quot;        &quot;erables&quot;        &quot;hdv2003&quot;       
 ##  [9] &quot;imc&quot;            &quot;maths&quot;          &quot;p&quot;              &quot;poids&quot;         
@@ -317,7 +346,7 @@ Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut 
 ## [21] &quot;taille2&quot;        &quot;taille3&quot;        &quot;taille4&quot;        &quot;taille5&quot;       
 ## [25] &quot;tailles&quot;        &quot;tailles_m&quot;      &quot;temperature&quot;    &quot;title&quot;         
 ## [29] &quot;x&quot;              &quot;y&quot;</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="kw">str</span>(erables)</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">str</span>(erables)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	100 obs. of  3 variables:
 ##  $ station: chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ diam   : num  22.4 36.1 44.4 24.6 17.7 ...
@@ -326,14 +355,14 @@ Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut 
 <code>erables</code> est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): <code>station</code>, une variable de type Facteur avec 2 niveaux, et <code>diam</code> et <code>biom</code> qui sont 2 variables numériques.</p>
 </div>
 <div id="entrer-des-données" class="section level4">
-<h4><span class="header-section-number">1.5.1.3</span> Entrer des données</h4>
+<h4><span class="header-section-number">1.5.1.4</span> Entrer des données</h4>
 <p>R n’est pas un environnement idéal pour entrer des données.
 C’est possible, mais la syntaxe est lourde et peut inciter à s’arracher les cheveux.
 Utilisez votre chiffrier préféré pour faire l’entrée de données.
 Ce sera plus efficace et moins frustrant.</p>
 </div>
 <div id="nettoyercorriger-des-données" class="section level4">
-<h4><span class="header-section-number">1.5.1.4</span> Nettoyer/corriger des données</h4>
+<h4><span class="header-section-number">1.5.1.5</span> Nettoyer/corriger des données</h4>
 <p>Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
 Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
@@ -341,9 +370,9 @@ Il est finalement plus simple de refaire exécuter les quelques lignes de code p
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.</p>
 </div>
 <div id="exporter-des-données-à-partir-de-r." class="section level4">
-<h4><span class="header-section-number">1.5.1.5</span> Exporter des données à partir de R.</h4>
+<h4><span class="header-section-number">1.5.1.6</span> Exporter des données à partir de R.</h4>
 <p>Vous pouvez utiliser la fonction,</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1">  <span class="kw">write.csv</span>(mydata, <span class="dt">file =</span> <span class="st">&quot;outfilename.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">  <span class="kw">write.csv</span>(mydata, <span class="dt">file =</span> <span class="st">&quot;outfilename.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>où <code>mydata</code> est le nom du base de données à exporter et <code>outfilename.csv</code> est le nom du fichier à produire.
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à <code>File&gt;Change dir</code>, ou par la commande <code>setwd()</code>)</p>
 </div>
@@ -361,8 +390,8 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 <li>Chargez les données du fichier <code>sturgeon.csv</code> dans un objet <code>sturgeon</code>.</li>
 <li>Pour obtenir un aperçu des éléments du fichier qui ont été chargés en mémoire, taper la commande <code>str(sturgeon)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb218-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb217-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	186 obs. of  9 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
@@ -376,7 +405,7 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 <div id="sommaire-statistique" class="section level4">
 <h4><span class="header-section-number">1.5.2.1</span> Sommaire statistique</h4>
 <p>Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">summary</span>(sturgeon)</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1"><span class="kw">summary</span>(sturgeon)</a></code></pre></div>
 <pre><code>##     fklngth         totlngth        drlngth          rdwght     
 ##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73  
 ##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09  
@@ -416,7 +445,7 @@ On y reviendra, mais prenez l’habitude de noter mentalement si il y a des donn
 <h4><span class="header-section-number">1.5.2.2</span> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</h4>
 <p>Examinons maintenant de plus près la distribution de fklngth.
 La commande <code>hist()</code> permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="kw">hist</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">hist</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/hist-stur-1.svg" width="672" /></p>
 <p>Les données semblent suivre approximativement une distribution normale.</p>
 
@@ -436,41 +465,41 @@ Le code suivant est un histogramme fait avec l’extension <code>ggplot2</code>.
 Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-&gt;New script, ou Ctrl-n dans Windows), puis exécutez le.
 </div>
 
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="co">## Chargez l&#39;extension ggplot si besoin</span></a>
-<a class="sourceLine" id="cb223-2" title="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb223-3" title="3"><span class="co">##  créer un graphique `mygraph` utilisant les données de &quot;sturgeon&quot;</span></a>
-<a class="sourceLine" id="cb223-4" title="4"><span class="co">## et définir l&#39;axe des X comme la longueur `fklngth`</span></a>
-<a class="sourceLine" id="cb223-5" title="5">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> sturgeon, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth))</a>
-<a class="sourceLine" id="cb223-6" title="6"></a>
-<a class="sourceLine" id="cb223-7" title="7"><span class="co">## ajouter différentes parties au graphique</span></a>
-<a class="sourceLine" id="cb223-8" title="8">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
-<a class="sourceLine" id="cb223-9" title="9"><span class="co">## histogramme semi-transparent</span></a>
-<a class="sourceLine" id="cb223-10" title="10"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">bins =</span> <span class="dv">30</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,   <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb223-11" title="11"><span class="co">##  line de densité</span></a>
-<a class="sourceLine" id="cb223-12" title="12"><span class="st">    </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb223-13" title="13"><span class="co">##  localisation des observations</span></a>
-<a class="sourceLine" id="cb223-14" title="14"><span class="st">    </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb223-15" title="15"><span class="co">##  courbe de distribution normale approximé au données</span></a>
-<a class="sourceLine" id="cb223-16" title="16"><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
-<a class="sourceLine" id="cb223-17" title="17">                   <span class="dt">args =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb223-18" title="18">                     <span class="dt">mean =</span> <span class="kw">mean</span>(sturgeon<span class="op">$</span>fklngth),</a>
-<a class="sourceLine" id="cb223-19" title="19">                     <span class="dt">sd =</span> <span class="kw">sd</span>(sturgeon<span class="op">$</span>fklngth) ),</a>
-<a class="sourceLine" id="cb223-20" title="20">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb223-21" title="21"></a>
-<a class="sourceLine" id="cb223-22" title="22"><span class="co">## montrer le graphique</span></a>
-<a class="sourceLine" id="cb223-23" title="23">mygraph</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="co">## Chargez l&#39;extension ggplot si besoin</span></a>
+<a class="sourceLine" id="cb222-2" title="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb222-3" title="3"><span class="co">##  créer un graphique `mygraph` utilisant les données de &quot;sturgeon&quot;</span></a>
+<a class="sourceLine" id="cb222-4" title="4"><span class="co">## et définir l&#39;axe des X comme la longueur `fklngth`</span></a>
+<a class="sourceLine" id="cb222-5" title="5">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> sturgeon, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth))</a>
+<a class="sourceLine" id="cb222-6" title="6"></a>
+<a class="sourceLine" id="cb222-7" title="7"><span class="co">## ajouter différentes parties au graphique</span></a>
+<a class="sourceLine" id="cb222-8" title="8">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-9" title="9"><span class="co">## histogramme semi-transparent</span></a>
+<a class="sourceLine" id="cb222-10" title="10"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">bins =</span> <span class="dv">30</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,   <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-11" title="11"><span class="co">##  line de densité</span></a>
+<a class="sourceLine" id="cb222-12" title="12"><span class="st">    </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-13" title="13"><span class="co">##  localisation des observations</span></a>
+<a class="sourceLine" id="cb222-14" title="14"><span class="st">    </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-15" title="15"><span class="co">##  courbe de distribution normale approximé au données</span></a>
+<a class="sourceLine" id="cb222-16" title="16"><span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb222-17" title="17">                   <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb222-18" title="18">                     <span class="dt">mean =</span> <span class="kw">mean</span>(sturgeon<span class="op">$</span>fklngth),</a>
+<a class="sourceLine" id="cb222-19" title="19">                     <span class="dt">sd =</span> <span class="kw">sd</span>(sturgeon<span class="op">$</span>fklngth) ),</a>
+<a class="sourceLine" id="cb222-20" title="20">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb222-21" title="21"></a>
+<a class="sourceLine" id="cb222-22" title="22"><span class="co">## montrer le graphique</span></a>
+<a class="sourceLine" id="cb222-23" title="23">mygraph</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/stur-g1-1.svg" width="672" /></p>
 <p>Chaque observation est représentée par une barre sous l’axe des x (rug).
 En rouge est la distribution normale de données avec la même moyenne et écart-type que les observations.
 Et l’autre ligne est la densité de probabilité empirique, « lissée » à partir des observations.
 Si vous êtes plus aventureux, vous pouvez examiner la distribution des observations de fklngth par sous-groupes (par exemple sex et year) avec :</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>sex)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>sex)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/aventure-1.svg" width="672" /></p>
 <p>Chaque panneau illustre la distribution pour un sexe cette année-là, et la courbe en rouge récurrente représente la distribution normale pour l’ensemble des données.
 Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
 Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes <code>qqnorm()</code> et <code>qqline()</code>.</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth)</a>
-<a class="sourceLine" id="cb225-2" title="2"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth)</a>
+<a class="sourceLine" id="cb224-2" title="2"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/stur-norm-1.svg" width="672" /></p>
 <p>Des données parfaitement normales suivraient la ligne droite diagonale.
 Ici, il y a des déviations dans les queues de la distribution, et un peu à droite du centre.
@@ -481,7 +510,7 @@ De plus, on peut facilement éprouver statistiquement l’hypothèse que les don
 Si oui, alors W=1.
 Si W s’éloigne de 1 (vers 0), alors les données s’éloignent de la normalité.
 Ici,</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="kw">shapiro.test</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1"><span class="kw">shapiro.test</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
@@ -491,7 +520,7 @@ Ici,</p>
 L’examen visuel des grands échantillons est souvent compliqué par le fait que plusieurs points se superposent et qu’il devient plus difficile de bien visualiser la tendance centrale.
 Les boxplots avec “moustaches” (box and whiskers plots) offrent une alternative intéressante.
 La commande <code>boxplot()</code> peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> sturgeon, <span class="dt">notch =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> sturgeon, <span class="dt">notch =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/boxplot-stur-1.svg" width="672" /></p>
 <p>La ligne un peu plus épaisse dans la boîte de la Figure indique la médiane.
 La coche est proportionnelle à l’incertitude quant à la position de la médiane.
@@ -509,12 +538,12 @@ Faites un graphique de fklngth en fonction de age avec la commande plot.
 </div>
 
 <p>Vous devriez obtenir:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">plot</span>(fklngth <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">plot</span>(fklngth <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/stur-biv-plot-1.svg" width="672" /></p>
 <p>R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (<code>pairs()</code>).
 Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
 Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande <code>pairs(sturgeon[,1:6], panel=panel.smooth)</code> et vous devriez obtenir</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1"><span class="kw">pairs</span>(sturgeon[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">panel =</span> panel.smooth)</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">pairs</span>(sturgeon[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">panel =</span> panel.smooth)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/pairs-stur-1.svg" width="672" /></p>
 </div>
 </div>
@@ -524,8 +553,8 @@ Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les v
 Les cas sont d’habitude sélectionnés selon un critère en particulier.
 Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande <code>subset()</code>.
 Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui ne contient que les femelles capturées en 1978, on peut écrire :</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1">sturgeon.female<span class="fl">.1978</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, sex <span class="op">==</span><span class="st"> &quot;FEMALE&quot;</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">==</span><span class="st"> &quot;1978&quot;</span>)</a>
-<a class="sourceLine" id="cb231-2" title="2">sturgeon.female<span class="fl">.1978</span></a></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1">sturgeon.female<span class="fl">.1978</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, sex <span class="op">==</span><span class="st"> &quot;FEMALE&quot;</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">==</span><span class="st"> &quot;1978&quot;</span>)</a>
+<a class="sourceLine" id="cb230-2" title="2">sturgeon.female<span class="fl">.1978</span></a></code></pre></div>
 <pre><code>##      fklngth totlngth  drlngth rdwght age girth    sex   location year
 ## 2   50.19685 54.13386 31.49606     NA  24  53.5 FEMALE    THE_PAS 1978
 ## 4   50.19685 53.14961 32.28346     NA  23  52.5 FEMALE    THE_PAS 1978
@@ -615,15 +644,15 @@ Les fonctions les plus fréquemment utilisées sont:</p>
 </ul>
 <p>On peut employer ces fonctions directement dans les lignes de commandes, ou encore créer de nouvelles variables orphelines ou faisant partie d’un data.frame.
 Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1"><span class="kw">plot</span>(<span class="kw">log</span>(fklngth)<span class="op">~</span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1"><span class="kw">plot</span>(<span class="kw">log</span>(fklngth)<span class="op">~</span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
 <p>Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1">logfklngth &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1">logfklngth &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
 <p>Si on veut ajouter cette variable transformée à un tableau de données (data.frame), alors, on doit préfixer le nom de la variable par le nom du base de données et du symbole <code>$</code>, par exemple, pour ajouter une variable nommée <code>lfkl</code> contenant le log10 de fklngth au tableau sturgeon, on peut écrire:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1">sturgeon<span class="op">$</span>logfkl &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeonfklngth)</a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1">sturgeon<span class="op">$</span>logfkl &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
 <p>N’oubliez pas de sauvegarder ce tableau modifié si vous voulez avoir accès à cette nouvelle variable dans le futur.
 Pour les transformations conditionnelles, on peut utiliser la fonction <code>ifelse()</code>.
 Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1">sturgeon<span class="op">$</span>dummy &lt;-<span class="st"> </span><span class="kw">ifelse</span>(sturgeon<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;MALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1">sturgeon<span class="op">$</span>dummy &lt;-<span class="st"> </span><span class="kw">ifelse</span>(sturgeon<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;MALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</a></code></pre></div>
 </div>
 <div id="exercice-sur-r" class="section level3">
 <h3><span class="header-section-number">1.5.5</span> Exercice sur R</h3>
@@ -632,31 +661,31 @@ Examinez les données pour le ratio et faites des graphiques pour évaluer la no
 <p><img src="Labo_BIO4558_files/figure-html/intror-exer-1.svg" width="672" /></p>
 
 <div class="solution">
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1"><span class="co">## Charger les données</span></a>
-<a class="sourceLine" id="cb237-2" title="2">salmonella &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/salmonella.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb237-3" title="3"></a>
-<a class="sourceLine" id="cb237-4" title="4"><span class="co">##creer le graph en utilisant juste la souche sauvage et définir x</span></a>
-<a class="sourceLine" id="cb237-5" title="5">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">subset</span>(salmonella, souche <span class="op">==</span><span class="st"> &quot;SAUVAGE&quot;</span>), <span class="kw">aes</span>(<span class="dt">x =</span> ratio))</a>
-<a class="sourceLine" id="cb237-6" title="6"><span class="co">##ajouter des composants graphiques</span></a>
-<a class="sourceLine" id="cb237-7" title="7">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
-<a class="sourceLine" id="cb237-8" title="8"><span class="co"># line densité</span></a>
-<a class="sourceLine" id="cb237-9" title="9"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb237-10" title="10"><span class="co"># position des observations</span></a>
-<a class="sourceLine" id="cb237-11" title="11"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb237-12" title="12"><span class="co"># histogramme</span></a>
-<a class="sourceLine" id="cb237-13" title="13"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</a>
-<a class="sourceLine" id="cb237-14" title="14">                 <span class="dt">bins =</span> <span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb237-15" title="15">                 <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb237-16" title="16">                 <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb237-17" title="17"><span class="co"># distribution normal ajustée</span></a>
-<a class="sourceLine" id="cb237-18" title="18"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
-<a class="sourceLine" id="cb237-19" title="19">                <span class="dt">args =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb237-20" title="20">                  <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">subset</span>(salmonella, souche <span class="op">==</span><span class="st"> &quot;SAUVAGE&quot;</span>)<span class="op">$</span>ratio),</a>
-<a class="sourceLine" id="cb237-21" title="21">                  <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">subset</span>(salmonella, souche <span class="op">==</span><span class="st"> &quot;SAUVAGE&quot;</span>)<span class="op">$</span>ratio)</a>
-<a class="sourceLine" id="cb237-22" title="22">                ),</a>
-<a class="sourceLine" id="cb237-23" title="23">                <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb237-24" title="24"><span class="co">## faire le graphique</span></a>
-<a class="sourceLine" id="cb237-25" title="25">mygraph</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="co">## Charger les données</span></a>
+<a class="sourceLine" id="cb236-2" title="2">salmonella &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/salmonella.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb236-3" title="3"></a>
+<a class="sourceLine" id="cb236-4" title="4"><span class="co">##creer le graph en utilisant juste la souche sauvage et définir x</span></a>
+<a class="sourceLine" id="cb236-5" title="5">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">subset</span>(salmonella, souche <span class="op">==</span><span class="st"> &quot;SAUVAGE&quot;</span>), <span class="kw">aes</span>(<span class="dt">x =</span> ratio))</a>
+<a class="sourceLine" id="cb236-6" title="6"><span class="co">##ajouter des composants graphiques</span></a>
+<a class="sourceLine" id="cb236-7" title="7">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb236-8" title="8"><span class="co"># line densité</span></a>
+<a class="sourceLine" id="cb236-9" title="9"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb236-10" title="10"><span class="co"># position des observations</span></a>
+<a class="sourceLine" id="cb236-11" title="11"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb236-12" title="12"><span class="co"># histogramme</span></a>
+<a class="sourceLine" id="cb236-13" title="13"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</a>
+<a class="sourceLine" id="cb236-14" title="14">                 <span class="dt">bins =</span> <span class="dv">30</span>,</a>
+<a class="sourceLine" id="cb236-15" title="15">                 <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb236-16" title="16">                 <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb236-17" title="17"><span class="co"># distribution normal ajustée</span></a>
+<a class="sourceLine" id="cb236-18" title="18"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb236-19" title="19">                <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb236-20" title="20">                  <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">subset</span>(salmonella, souche <span class="op">==</span><span class="st"> &quot;SAUVAGE&quot;</span>)<span class="op">$</span>ratio),</a>
+<a class="sourceLine" id="cb236-21" title="21">                  <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">subset</span>(salmonella, souche <span class="op">==</span><span class="st"> &quot;SAUVAGE&quot;</span>)<span class="op">$</span>ratio)</a>
+<a class="sourceLine" id="cb236-22" title="22">                ),</a>
+<a class="sourceLine" id="cb236-23" title="23">                <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb236-24" title="24"><span class="co">## faire le graphique</span></a>
+<a class="sourceLine" id="cb236-25" title="25">mygraph</a></code></pre></div>
 </div>
 
 

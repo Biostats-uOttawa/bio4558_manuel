@@ -423,20 +423,26 @@ L’interprétation d’un boxplot est la suivante : Les bords inférieurs et s
 <div id="calculs-dindicateurs" class="section level4">
 <h4><span class="header-section-number">1.4.2.2</span> Calculs d’indicateurs</h4>
 <p>On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d’une variable quantitative selon les modalités d’une variable qualitative. Si on reprend l’exemple précédent, on peut calculer la moyenne d’âge pour ceux qui pratiquent un sport et pour ceux qui n’en pratiquent pas.</p>
-<p>Une première méthode pour cela est d’extraire de notre population autant de sous-populations qu’il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction <code>filter</code> du package <code>dplyr</code>.</p>
-<!-- ^[Le package en question est présenté en détail dans la partie \@ref(dplyr).]. -->
-<p>On commence par charger <code>dplyr</code> (en l’ayant préalablement installé) :</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-<p>Puis on applique <code>filter</code> pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données :</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1">d_sport &lt;-<span class="st"> </span><span class="kw">filter</span>(d, sport <span class="op">==</span><span class="st"> &quot;Oui&quot;</span>)</a>
-<a class="sourceLine" id="cb195-2" title="2">d_nonsport &lt;-<span class="st"> </span><span class="kw">filter</span>(d, sport <span class="op">==</span><span class="st"> &quot;Non&quot;</span>)</a></code></pre></div>
+<p>Une première méthode pour cela est d’extraire de notre population autant de sous-populations qu’il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction <code>subset</code>.</p>
+<!-- ^[Le package en question est présenté en détail dans la partie \@ref(dplyr).].
+
+On commence par charger `dplyr` (en l'ayant préalablement installé) :
+
+
+```r
+library(dplyr)
+```
+-->
+<p>On applique <code>subset</code> pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données :</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">d_sport &lt;-<span class="st"> </span><span class="kw">subset</span>(d, sport <span class="op">==</span><span class="st"> &quot;Oui&quot;</span>)</a>
+<a class="sourceLine" id="cb194-2" title="2">d_nonsport &lt;-<span class="st"> </span><span class="kw">subset</span>(d, sport <span class="op">==</span><span class="st"> &quot;Non&quot;</span>)</a></code></pre></div>
 <p>On peut ensuite utiliser ces deux nouveaux tableaux de données comme on en a l’habitude, et calculer les deux moyennes d’âge :</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">mean</span>(d_sport<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">mean</span>(d_sport<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## [1] 40.92531</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">mean</span>(d_nonsport<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">mean</span>(d_nonsport<span class="op">$</span>age)</a></code></pre></div>
 <pre><code>## [1] 52.25137</code></pre>
 <p>Une autre possibilité est d’utiliser la fonction <code>tapply</code>, qui prend en paramètre une variable quantitative, une variable qualitative et une fonction, puis applique automatiquement la fonction aux valeurs de la variables quantitative pour chaque niveau de la variable qualitative :</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">tapply</span>(d<span class="op">$</span>age, d<span class="op">$</span>sport, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">tapply</span>(d<span class="op">$</span>age, d<span class="op">$</span>sport, mean)</a></code></pre></div>
 <pre><code>##      Non      Oui 
 ## 52.25137 40.92531</code></pre>
 <!-- ### Tests statistiques
@@ -538,17 +544,17 @@ La valeur *p* étant à nouveau extrêmement petite, on peut rejeter l'hypothès
 <div id="croisement-de-deux-variables-quantitatives" class="section level3">
 <h3><span class="header-section-number">1.4.3</span> Croisement de deux variables quantitatives</h3>
 <p>Le jeu de données <code>hdv2003</code> comportant assez peu de variables quantitatives, on va s’intéresser maintenant à un autre jeu de données comportant des informations du recensement de la population de 2012. On le charge avec :</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">data</span>(rp2012)</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="kw">data</span>(rp2012)</a></code></pre></div>
 <p>Un nouveau tableau de données <code>rp2012</code> devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section <a href="#rp2012"><strong>??</strong></a>.</p>
 <div id="représentation-graphique-2" class="section level4">
 <h4><span class="header-section-number">1.4.3.1</span> Représentation graphique</h4>
 <p>Quand on croise deux variables quantitatives, l’idéal est de faire une représentation graphique sous forme de nuage de points à l’aide de la fonction <code>plot</code>. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune :</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>proprio)</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>proprio)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-143-1.svg" width="672" /></p>
 <p>Une représentation graphique est l’idéal pour visualiser l’existence d’un lien entre les deux variables. Voici quelques exemples d’interprétation :</p>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-144-1.svg" width="576" /></p>
 <p>Dans ce premier graphique généré sur nos données, il semble difficile de mettre en évidence une relation de dépendance. Si par contre on croise le pourcentage de cadres et celui de diplômés du supérieur, on obtient une belle relation de dépendance linéaire.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>dipl_sup)</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>dipl_sup)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-145-1.svg" width="672" /></p>
 <!-- ### Calcul d'indicateurs
 
@@ -693,13 +699,13 @@ abline(reg, col="red")
 <p>Dans le jeu de données <code>hdv2003</code>, faire le tableau croisé entre la catégorie socio-professionnelle (variable <code>qualif</code>) et le fait de croire ou non en l’existence des classes sociales (variable <code>clso</code>). Identifier la variable indépendante et la variable dépendante, et calculer les pourcentages ligne ou colonne. Interpréter le résultat.</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="kw">library</span>(questionr)</a>
-<a class="sourceLine" id="cb205-2" title="2"><span class="kw">data</span>(hdv2003)</a>
-<a class="sourceLine" id="cb205-3" title="3">tab &lt;-<span class="st"> </span><span class="kw">table</span>(hdv2003<span class="op">$</span>qualif, hdv2003<span class="op">$</span>clso)</a>
-<a class="sourceLine" id="cb205-4" title="4"></a>
-<a class="sourceLine" id="cb205-5" title="5"><span class="co">## Ici la variable indépendante est `qualif`, on calcule donc</span></a>
-<a class="sourceLine" id="cb205-6" title="6"><span class="co">## les pourcentages lignes</span></a>
-<a class="sourceLine" id="cb205-7" title="7"><span class="kw">lprop</span>(tab)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">library</span>(questionr)</a>
+<a class="sourceLine" id="cb204-2" title="2"><span class="kw">data</span>(hdv2003)</a>
+<a class="sourceLine" id="cb204-3" title="3">tab &lt;-<span class="st"> </span><span class="kw">table</span>(hdv2003<span class="op">$</span>qualif, hdv2003<span class="op">$</span>clso)</a>
+<a class="sourceLine" id="cb204-4" title="4"></a>
+<a class="sourceLine" id="cb204-5" title="5"><span class="co">## Ici la variable indépendante est `qualif`, on calcule donc</span></a>
+<a class="sourceLine" id="cb204-6" title="6"><span class="co">## les pourcentages lignes</span></a>
+<a class="sourceLine" id="cb204-7" title="7"><span class="kw">lprop</span>(tab)</a></code></pre></div>
 </div>
 
 <!--
@@ -720,29 +726,29 @@ chisq.test(tab)
 <p>Représenter ce tableau croisé sous la forme d’un <code>mosaicplot</code> en colorant les cases selon les résidus du test du χ².</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">mosaicplot</span>(tab, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="kw">mosaicplot</span>(tab, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 
 <p><strong>Exercice 2</strong></p>
 <p>Toujours sur le jeu de données <code>hdv2003</code>, faire le boxplot qui croise le nombre d’heures passées devant la télévision (variable <code>heures.tv</code>) avec le statut d’occupation (variable <code>occup</code>).</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="kw">boxplot</span>(hdv2003<span class="op">$</span>heures.tv <span class="op">~</span><span class="st"> </span>hdv2003<span class="op">$</span>occup)</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">boxplot</span>(hdv2003<span class="op">$</span>heures.tv <span class="op">~</span><span class="st"> </span>hdv2003<span class="op">$</span>occup)</a></code></pre></div>
 </div>
 
 <p>Calculer la durée moyenne devant la télévision en fonction du statut d’occupation à l’aide de <code>tapply</code>.</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">tapply</span>(hdv2003<span class="op">$</span>heures.tv, hdv2003<span class="op">$</span>occup, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="kw">tapply</span>(hdv2003<span class="op">$</span>heures.tv, hdv2003<span class="op">$</span>occup, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 
 <p><strong>Exercice 3</strong></p>
 <p>Sur le jeu de données <code>rp2012</code>, représenter le nuage de points croisant le pourcentage de personnes sans diplôme (variable <code>dipl_aucun</code>) et le pourcentage de propriétaires (variable <code>proprio</code>).</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1"><span class="kw">library</span>(questionr)</a>
-<a class="sourceLine" id="cb209-2" title="2"><span class="kw">data</span>(rp2012)</a>
-<a class="sourceLine" id="cb209-3" title="3"><span class="kw">plot</span>(rp2012<span class="op">$</span>dipl_aucun, rp2012<span class="op">$</span>proprio)</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">library</span>(questionr)</a>
+<a class="sourceLine" id="cb208-2" title="2"><span class="kw">data</span>(rp2012)</a>
+<a class="sourceLine" id="cb208-3" title="3"><span class="kw">plot</span>(rp2012<span class="op">$</span>dipl_aucun, rp2012<span class="op">$</span>proprio)</a></code></pre></div>
 </div>
 
 <!--
