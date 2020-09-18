@@ -88,7 +88,7 @@ Les résidus peuvent être une aide utile à l'interprétation, notamment pour d
 
 Il est possible de faire une représentation graphique d'un tableau croisé, par exemple avec la fonction `mosaicplot` :
 
-```{r fig.height=6, fig.width=6}
+```{r fig.height=6, fig.width=6,fig.cap = "Graphique mosaique"}
 mosaicplot(tab)
 ```
 
@@ -96,7 +96,7 @@ mosaicplot(tab)
 
 On peut améliorer ce graphique en colorant les cases selon les résidus du test du χ² (argument `shade = TRUE`) et en orientant verticalement les labels de colonnes (argument `las = 3`) :
 
-```{r fig.height=6, fig.width=6}
+```{r fig.height=6, fig.width=6, fig.cap = "Graphique mosaique modifié"}
 mosaicplot(tab, las = 3, shade = TRUE)
 ```
 
@@ -111,8 +111,8 @@ Croiser une variable quantitative et une variable qualitative, c'est essayer de 
 
 Pour cela, l'idéal est de commencer par une représentation graphique de type "boîte à moustache" à l'aide de la fonction `boxplot`. Par exemple, si on veut visualiser la répartition des âges selon la pratique ou non d'un sport, on va utiliser la syntaxe suivante :
 
-```{r eval=FALSE}
-boxplot(d$age ~ d$sport)
+```{r eval=FALSE, fig.cap = "Graphique en boites à moustaches"}
+boxplot(age ~ sport, data = d)
 ```
 
 ```{block type='rmdnote'}
@@ -121,8 +121,8 @@ Cette syntaxe de `boxplot` utilise une nouvelle notation de type "formule". Cell
 
 Ce qui va nous donner le résultat suivant :
 
-```{r echo=FALSE}
-boxplot(d$age ~ d$sport)
+```{r echo=FALSE, fig.cap = "Graphique en boites à moustaches"}
+boxplot(age ~ sport, data = d)
 ```
 
 
@@ -232,13 +232,13 @@ Un nouveau tableau de données `rp2012` devrait apparaître dans votre environne
 
 Quand on croise deux variables quantitatives, l'idéal est de faire une représentation graphique sous forme de nuage de points à l'aide de la fonction `plot`. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune :
 
-```{r}
+```{r, fig.cap = "Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre"}
 plot(rp2012$cadres, rp2012$proprio)
 ```
 
 Une représentation graphique est l'idéal pour visualiser l'existence d'un lien entre les deux variables. Voici quelques exemples d'interprétation :
 
-```{r, echo = FALSE, fig.height=10, fig.width=6}
+```{r, echo = FALSE, fig.height=10, fig.width=6, fig.cap = "Illustration des relations bivariées"}
 par(mfrow=c(3,2))
 
 x <- rnorm(100)
@@ -276,8 +276,8 @@ plot(x, y, main = "Indépendance",
 
 Dans ce premier graphique généré sur nos données, il semble difficile de mettre en évidence une relation de dépendance. Si par contre on croise le pourcentage de cadres et celui de diplômés du supérieur, on obtient une belle relation de dépendance linéaire.
 
-```{r}
-plot(rp2012$cadres, rp2012$dipl_sup)
+```{r, fig.cap = "Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre"}
+plot(dipl_sup ~ cadres, data = rp2012)
 ```
 
 
@@ -517,6 +517,8 @@ Sur le jeu de données `rp2012`, représenter le nuage de points croisant le pou
 library(questionr)
 data(rp2012)
 plot(rp2012$dipl_aucun, rp2012$proprio)
+## ou
+plot(proprio ~ dipl_aucun, data = rp2012)
 ```
 </div>
 \fi

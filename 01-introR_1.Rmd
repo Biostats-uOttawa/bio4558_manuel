@@ -36,7 +36,13 @@ RStudio n'est pas à proprement parler une interface graphique qui permettrait d
 
 Au premier lancement de RStudio, l'écran principal est découpé en trois grandes zones :
 
-![Interface de Rstudio](images/screenshots/rstudio_start.png)
+<!-- ![Interface de Rstudio](images/screenshots/rstudio_start.png) -->
+
+
+```{r, fig.cap = "Interface de RStudio", out.width = "100%", echo = FALSE }
+knitr::include_graphics("images/screenshots/rstudio_start.png")
+```
+
 
 La zone de gauche se nomme *Console*. À son démarrage, RStudio a lancé une nouvelle session de R et c'est dans cette fenêtre que nous allons pouvoir interagir avec lui.
 
@@ -450,13 +456,21 @@ R étant un logiciel libre, il bénéficie d'un développement communautaire ric
 
 Pour installer une extension, si on dispose d'une connexion Internet, on peut utiliser le bouton *Install* de l'onglet *Packages* de RStudio.
 
-![Installer une extension](images/screenshots/rstudio_package_install.png)
+<!-- ![Installer une extension](images/screenshots/rstudio_package_install.png) -->
 
+```{r, fig.cap = "Installer une extension", out.width = "50%", echo = FALSE }
+knitr::include_graphics("images/screenshots/rstudio_package_install.png")
+```
 
 Il suffit alors d'indiquer le nom de l'extension dans le champ *Package* et de cliquer sur *Install*.
 
-![Installation d'une extension](images/screenshots/rstudio_package_install2.png)
+<!-- ![Installation d'une extension](images/screenshots/rstudio_package_install2.png) -->
 
+```{r, fig.cap = "Installation une extension", out.width = "50%", echo = FALSE }
+knitr::include_graphics("images/screenshots/rstudio_package_install2.png")
+```
+
+images/screenshots/rstudio_package_install.png
 On peut aussi installer des extensions en utilisant la fonction `install.packages()` directement dans la console. Par exemple, pour installer le *package* `questionr` on peut exécuter la commande :
 
 ```{r, eval = FALSE}
