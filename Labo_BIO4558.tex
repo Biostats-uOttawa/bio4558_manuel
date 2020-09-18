@@ -528,9 +528,7 @@ RStudio n'est pas à proprement parler une interface graphique qui permettrait d
 Au premier lancement de RStudio, l'écran principal est découpé en trois grandes zones~:
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_start.png}
-\caption{Interface de Rstudio}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_start} \caption{Interface de RStudio}\label{fig:unnamed-chunk-7}
 \end{figure}
 
 La zone de gauche se nomme \emph{Console}. À son démarrage, RStudio a lancé une nouvelle session de R et c'est dans cette fenêtre que nous allons pouvoir interagir avec lui.
@@ -1191,19 +1189,16 @@ R étant un logiciel libre, il bénéficie d'un développement communautaire ric
 Pour installer une extension, si on dispose d'une connexion Internet, on peut utiliser le bouton \emph{Install} de l'onglet \emph{Packages} de RStudio.
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_package_install.png}
-\caption{Installer une extension}
+\includegraphics[width=0.5\linewidth]{images/screenshots/rstudio_package_install} \caption{Installer une extension}\label{fig:unnamed-chunk-46}
 \end{figure}
 
 Il suffit alors d'indiquer le nom de l'extension dans le champ \emph{Package} et de cliquer sur \emph{Install}.
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_package_install2.png}
-\caption{Installation d'une extension}
+\includegraphics[width=0.5\linewidth]{images/screenshots/rstudio_package_install2} \caption{Installation une extension}\label{fig:unnamed-chunk-47}
 \end{figure}
 
+images/screenshots/rstudio\_package\_install.png
 On peut aussi installer des extensions en utilisant la fonction \texttt{install.packages()} directement dans la console. Par exemple, pour installer le \emph{package} \texttt{questionr} on peut exécuter la commande~:
 
 \begin{Shaded}
@@ -1533,9 +1528,7 @@ Nous devons ensuite indiquer à R que nous souhaitons accéder au jeu de donnée
 Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), mais vous devriez voir apparaître dans l'onglet \emph{Environment} de RStudio un nouvel objet nommé \texttt{hdv2003}~:
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_environment.png}
-\caption{Onglet \emph{Environment}}
+\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_environment} \caption{Onglet Environment}\label{fig:unnamed-chunk-71}
 \end{figure}
 
 Cet objet est d'un type nouveau~: il s'agit d'un tableau de données.
@@ -1558,9 +1551,7 @@ R va, comme à son habitude, nous l'afficher dans la console, ce qui est tout sa
 Une autre manière d'afficher le contenu du tableau est de cliquer sur l'icône en forme de tableau à droite du nom de l'objet dans l'onglet \emph{Environment}~:
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_view_icon.png}
-\caption{View icon}
+\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_view_icon} \caption{Icone view}\label{fig:unnamed-chunk-73}
 \end{figure}
 
 Ou d'utiliser la fonction \texttt{View}~:
@@ -1574,9 +1565,7 @@ Ou d'utiliser la fonction \texttt{View}~:
 Dans les deux cas votre tableau devrait s'afficher dans RStudio avec une interface de type tableur~:
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_view.png}
-\caption{Interface ``View''}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_view} \caption{Interface View}\label{fig:unnamed-chunk-75}
 \end{figure}
 
 Il est important de comprendre que l'objet \texttt{hdv2003} contient \emph{l'intégralité} des données du tableau.
@@ -1697,9 +1686,7 @@ Enfin, la fonction \texttt{str} renvoie un descriptif plus détaillé de la stru
 Sous RStudio, on peut afficher à tout moment la structure d'un objet en cliquant sur l'icône de triangle sur fond bleu à gauche du nom de l'objet dans l'onglet \emph{Environment}~:
 
 \begin{figure}
-\centering
-\includegraphics{images/screenshots/rstudio_environment_str.png}
-\caption{Structure d'un objet}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_environment_str} \caption{Structure d'un objet}\label{fig:unnamed-chunk-84}
 \end{figure}
 
 \hypertarget{accuxe9der-aux-variables-dun-tableau}{%
@@ -1982,7 +1969,11 @@ La représentation la plus courante est sans doute l'histogramme. On peut l'obte
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-94-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-101-1.pdf}
+\caption{\label{fig:unnamed-chunk-101}Histogramme de l'age par défaut}
+\end{figure}
 
 Cette fonction n'a pas pour effet direct d'effectuer un calcul ou de nous renvoyer un résultat~: elle génère un graphique qui va s'afficher dans l'onglet \emph{Plots} de RStudio.
 
@@ -1990,19 +1981,27 @@ On peut personnaliser l'apparence de l'histogramme en ajoutant des arguments sup
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{breaks =} \DecValTok{10}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{breaks =} \DecValTok{10}\NormalTok{, }\DataTypeTok{main =} \StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-95-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-102-1.pdf}
+\caption{\label{fig:unnamed-chunk-102}Histogramme de l'age avec 10 classes}
+\end{figure}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{breaks =} \DecValTok{70}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{breaks =} \DecValTok{70}\NormalTok{, }\DataTypeTok{main =} \StringTok{""}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-96-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-103-1.pdf}
+\caption{\label{fig:unnamed-chunk-103}Histogramme de l'age avec 70 classes}
+\end{figure}
 
 Le choix d'un ``bon'' nombre de classes pour un histogramme n'est pas un problème simple~: si on a trop peu de classes, on risque d'effacer quasiment toutes les variations, et si on en a trop on risque d'avoir trop de détails et de masquer les grandes tendances.
 
@@ -2017,7 +2016,11 @@ Les arguments de \texttt{hist} permettent également de modifier la présentatio
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-97-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-104-1.pdf}
+\caption{\label{fig:unnamed-chunk-104}Histogramme modifié}
+\end{figure}
 
 La fonction \texttt{hist} fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques
 avec l'extension \texttt{ggplot2} qui permet la production et la personnalisation de graphiques complexes.
@@ -2180,7 +2183,11 @@ On peut représenter graphiquement le tri à plat d'une variable qualitative ave
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-108-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-115-1.pdf}
+\caption{\label{fig:unnamed-chunk-115}Graphique en barre}
+\end{figure}
 
 On peut aussi trier le tri à plat avec la fonction \texttt{sort} avant de le représenter graphiquement, ce qui peut faciliter la lecture du graphique~:
 
@@ -2190,7 +2197,11 @@ On peut aussi trier le tri à plat avec la fonction \texttt{sort} avant de le re
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-109-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-116-1.pdf}
+\caption{\label{fig:unnamed-chunk-116}Graphique en barre trié}
+\end{figure}
 
 Une alternative au graphique en barres est le \emph{diagramme de Cleveland}, qu'on peut obtenir avec la fonction \texttt{dotchart}. Celle-ci s'applique elle aussi au tri à plat de la variable calculé avec \texttt{table}.
 
@@ -2200,7 +2211,7 @@ Une alternative au graphique en barres est le \emph{diagramme de Cleveland}, qu'
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-110-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-117-1.pdf}
 Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter~:
 
 \begin{Shaded}
@@ -2209,7 +2220,11 @@ Là aussi, pour améliorer la lisibilité du graphique il est préférable de tr
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-111-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-118-1.pdf}
+\caption{\label{fig:unnamed-chunk-118}Graphique de Cleveland trié}
+\end{figure}
 
 \hypertarget{ex-introR-univ}{%
 \subsection{Exercices}\label{ex-introR-univ}}
@@ -2476,7 +2491,11 @@ Il est possible de faire une représentation graphique d'un tableau croisé, par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-125-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-132-1.pdf}
+\caption{\label{fig:unnamed-chunk-132}Graphique mosaique}
+\end{figure}
 
 On peut améliorer ce graphique en colorant les cases selon les résidus du test du χ² (argument \texttt{shade\ =\ TRUE}) et en orientant verticalement les labels de colonnes (argument \texttt{las\ =\ 3})~:
 
@@ -2486,7 +2505,11 @@ On peut améliorer ce graphique en colorant les cases selon les résidus du test
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-126-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-133-1.pdf}
+\caption{\label{fig:unnamed-chunk-133}Graphique mosaique modifié}
+\end{figure}
 
 Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y'a beaucoup d'employés et d'ouvriers et très peu d'``autres''). Sa hauteur correspond aux pourcentages colonnes~: la proportion d'hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant~: les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l'hypothèse d'indépendance.
 
@@ -2502,7 +2525,7 @@ Pour cela, l'idéal est de commencer par une représentation graphique de type `
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{boxplot}\NormalTok{(d}\OperatorTok{$}\NormalTok{age }\OperatorTok{~}\StringTok{ }\NormalTok{d}\OperatorTok{$}\NormalTok{sport)}
+\KeywordTok{boxplot}\NormalTok{(age }\OperatorTok{~}\StringTok{ }\NormalTok{sport, }\DataTypeTok{data =}\NormalTok{ d)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2516,7 +2539,11 @@ fonction du sport.
 
 Ce qui va nous donner le résultat suivant~:
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-129-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-136-1.pdf}
+\caption{\label{fig:unnamed-chunk-136}Graphique en boites à moustaches}
+\end{figure}
 
 \begin{rmdnote}
 L'interprétation d'un boxplot est la suivante~: Les bords inférieurs et
@@ -2590,7 +2617,7 @@ Une autre possibilité est d'utiliser la fonction \texttt{tapply}, qui prend en 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-138-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 Si l'âge dans le groupe des non sportifs se rapproche d'une distribution normale, celui des sportifs en semble assez éloigné, notamment du fait de la limite d'âge à 18 ans imposée par construction de l'enquête.
 
@@ -2670,21 +2697,33 @@ Quand on croise deux variables quantitatives, l'idéal est de faire une représe
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-143-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-150-1.pdf}
+\caption{\label{fig:unnamed-chunk-150}Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre}
+\end{figure}
 
 Une représentation graphique est l'idéal pour visualiser l'existence d'un lien entre les deux variables. Voici quelques exemples d'interprétation~:
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-144-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-151-1.pdf}
+\caption{\label{fig:unnamed-chunk-151}Illustration des relations bivariées}
+\end{figure}
 
 Dans ce premier graphique généré sur nos données, il semble difficile de mettre en évidence une relation de dépendance. Si par contre on croise le pourcentage de cadres et celui de diplômés du supérieur, on obtient une belle relation de dépendance linéaire.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres, rp2012}\OperatorTok{$}\NormalTok{dipl_sup)}
+\KeywordTok{plot}\NormalTok{(dipl_sup }\OperatorTok{~}\StringTok{ }\NormalTok{cadres, }\DataTypeTok{data =}\NormalTok{ rp2012)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-145-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-152-1.pdf}
+\caption{\label{fig:unnamed-chunk-152}Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre}
+\end{figure}
 
 La corrélation des rangs a aussi pour avantage d'être moins sensibles aux valeurs extrêmes ou aux points isolés. On dit qu'elle est plus ``robuste''.
 
@@ -2786,7 +2825,7 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-153-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-160-1.pdf}
 --\textgreater{}
 
 \hypertarget{ex-introR-biv}{%
@@ -2879,6 +2918,8 @@ Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant
 \KeywordTok{library}\NormalTok{(questionr)}
 \KeywordTok{data}\NormalTok{(rp2012)}
 \KeywordTok{plot}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{dipl_aucun, rp2012}\OperatorTok{$}\NormalTok{proprio)}
+\CommentTok{## ou}
+\KeywordTok{plot}\NormalTok{(proprio }\OperatorTok{~}\StringTok{ }\NormalTok{dipl_aucun, }\DataTypeTok{data =}\NormalTok{ rp2012)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4947,9 +4988,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.002890118  0.03439853
-## t2* 0.3408557 -0.002163735  0.02727204
+##      original        bias    std. error
+## t1* 1.1919926  0.0010733269  0.03368802
+## t2* 0.3408557 -0.0005904597  0.02666333
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5006,12 +5047,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.257 )   ( 1.121,  1.259 )  
+## 95%   ( 1.125,  1.257 )   ( 1.123,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.125,  1.263 )   ( 1.114,  1.247 )  
+## 95%   ( 1.127,  1.261 )   ( 1.115,  1.251 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -5035,12 +5075,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2896,  0.3965 )   ( 0.2869,  0.3952 )  
+## 95%   ( 0.2892,  0.3937 )   ( 0.2892,  0.3949 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2866,  0.3948 )   ( 0.2972,  0.4041 )  
+## 95%   ( 0.2868,  0.3925 )   ( 0.2928,  0.3994 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5384,9 +5423,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 -0.002415972   0.4275201
-## t2* -1.714546  0.006266086   0.7512931
+##      original     bias    std. error
+## t1* 45.084391 0.01735004    0.435033
+## t2* -1.714546 0.02505251    0.756778
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5419,7 +5458,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.127, -0.179 )  
+## 95%   (-3.282, -0.330 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5461,7 +5500,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000    0.016 *
+## location1   0.8573 4045   0.0242 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6083,18 +6122,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5955
+## Quantile = 2.5925
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2737   3.6482
-##  1965 -  1954 == 0  -5.5077 -10.0005  -1.0148
-##  1966 -  1954 == 0  -3.3127  -6.3453  -0.2801
-##  1965 -  1958 == 0  -5.6949 -10.4147  -0.9750
-##  1966 -  1958 == 0  -3.4999  -6.8597  -0.1401
-##  1966 -  1965 == 0   2.1950  -2.2204   6.6103
+##  1958 -  1954 == 0   0.1872  -3.2698   3.6442
+##  1965 -  1954 == 0  -5.5077  -9.9953  -1.0200
+##  1966 -  1954 == 0  -3.3127  -6.3419  -0.2835
+##  1965 -  1958 == 0  -5.6949 -10.4093  -0.9804
+##  1966 -  1958 == 0  -3.4999  -6.8559  -0.1439
+##  1966 -  1965 == 0   2.1950  -2.2154   6.6053
 \end{verbatim}
 
 \begin{Shaded}
@@ -6557,8 +6596,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-183-1.pdf}
-\caption{\label{fig:unnamed-chunk-183-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-190-1.pdf}
+\caption{\label{fig:unnamed-chunk-190-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -6570,8 +6609,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-183-2.pdf}
-\caption{\label{fig:unnamed-chunk-183-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-190-2.pdf}
+\caption{\label{fig:unnamed-chunk-190-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -6583,8 +6622,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-183-3.pdf}
-\caption{\label{fig:unnamed-chunk-183-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-190-3.pdf}
+\caption{\label{fig:unnamed-chunk-190-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%
