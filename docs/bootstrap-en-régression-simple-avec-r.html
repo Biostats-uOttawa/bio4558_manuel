@@ -197,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="2.6" data-path="ex-power.html"><a href="ex-power.html"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
@@ -241,14 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
-<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
-<li class="chapter" data-level="A.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+<li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
-<li class="chapter" data-level="A.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
-<li class="chapter" data-level="A.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+<li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="B.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>B.3</b> Concernant le code dans notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Resources pour en apprendre plus sur rmarkdown</a></li>
+<li class="chapter" data-level="C" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>C</b> Resources pour en apprendre plus sur rmarkdown</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
 
@@ -272,21 +272,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bootstrap-en-régression-simple-avec-r" class="section level2">
 <h2><span class="header-section-number">3.10</span> Bootstrap en régression simple avec R</h2>
 <p>Un test non paramétrique pour l’ordonnée à l’origine et la pente d’une régression simple peut être effectué par bootstrap.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1"><span class="co">#charger le paquet boot</span></a>
-<a class="sourceLine" id="cb296-2" title="2"><span class="kw">library</span>(boot)</a>
-<a class="sourceLine" id="cb296-3" title="3"><span class="co"># obtenir les poids de régression</span></a>
-<a class="sourceLine" id="cb296-4" title="4">bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</a>
-<a class="sourceLine" id="cb296-5" title="5">  d &lt;-<span class="st"> </span>data[indices,] <span class="co"># allows boot to select sample</span></a>
-<a class="sourceLine" id="cb296-6" title="6">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</a>
-<a class="sourceLine" id="cb296-7" title="7">  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</a>
-<a class="sourceLine" id="cb296-8" title="8">}</a>
-<a class="sourceLine" id="cb296-9" title="9"><span class="co"># bootstrapping with 1000 replications</span></a>
-<a class="sourceLine" id="cb296-10" title="10">results &lt;-<span class="st"> </span><span class="kw">boot</span>(</a>
-<a class="sourceLine" id="cb296-11" title="11">  <span class="dt">data =</span> sturgeon.male,</a>
-<a class="sourceLine" id="cb296-12" title="12">  <span class="dt">statistic =</span> bs,</a>
-<a class="sourceLine" id="cb296-13" title="13">  <span class="dt">R=</span><span class="dv">1000</span>, <span class="dt">formula=</span><span class="kw">log10</span>(fklngth)<span class="op">~</span><span class="kw">log10</span>(age))</a>
-<a class="sourceLine" id="cb296-14" title="14"><span class="co"># view results</span></a>
-<a class="sourceLine" id="cb296-15" title="15">results</a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" title="1"><span class="co">#charger le paquet boot</span></a>
+<a class="sourceLine" id="cb309-2" title="2"><span class="kw">library</span>(boot)</a>
+<a class="sourceLine" id="cb309-3" title="3"><span class="co"># obtenir les poids de régression</span></a>
+<a class="sourceLine" id="cb309-4" title="4">bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</a>
+<a class="sourceLine" id="cb309-5" title="5">  d &lt;-<span class="st"> </span>data[indices,] <span class="co"># allows boot to select sample</span></a>
+<a class="sourceLine" id="cb309-6" title="6">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</a>
+<a class="sourceLine" id="cb309-7" title="7">  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</a>
+<a class="sourceLine" id="cb309-8" title="8">}</a>
+<a class="sourceLine" id="cb309-9" title="9"><span class="co"># bootstrapping with 1000 replications</span></a>
+<a class="sourceLine" id="cb309-10" title="10">results &lt;-<span class="st"> </span><span class="kw">boot</span>(</a>
+<a class="sourceLine" id="cb309-11" title="11">  <span class="dt">data =</span> sturgeon.male,</a>
+<a class="sourceLine" id="cb309-12" title="12">  <span class="dt">statistic =</span> bs,</a>
+<a class="sourceLine" id="cb309-13" title="13">  <span class="dt">R=</span><span class="dv">1000</span>, <span class="dt">formula=</span><span class="kw">log10</span>(fklngth)<span class="op">~</span><span class="kw">log10</span>(age))</a>
+<a class="sourceLine" id="cb309-14" title="14"><span class="co"># view results</span></a>
+<a class="sourceLine" id="cb309-15" title="15">results</a></code></pre></div>
 <pre><code>## 
 ## ORDINARY NONPARAMETRIC BOOTSTRAP
 ## 
@@ -298,8 +298,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002487648  0.03477561
-## t2* 0.3408557 -0.001823905  0.02759938</code></pre>
+## t1* 1.1919926  0.001977879  0.03444860
+## t2* 0.3408557 -0.001469535  0.02737191</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -307,14 +307,14 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 <li><code>bias</code> la différence entre la valeur moyenne des estimés par bootstrap et la valeur originale sur tout l’échantillon</li>
 <li><code>std. error</code> l’erreur-type de l’estimé bootstrap</li>
 </ol>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb298-2" title="2"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">1</span>) <span class="co"># intercept</span></a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb311-2" title="2"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">1</span>) <span class="co"># intercept</span></a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">2</span>) <span class="co"># log10(age)</span></a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">2</span>) <span class="co"># log10(age)</span></a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-2.svg" width="672" /></p>
 <p>La distribution des estimés obtenus par bootstrap est assez normale dans cet exemple, avec de petites déviations dans les queuee de la distribution (là où ça compte pour les intervalles de confiance…). On pourrait utiliser l’erreur-type des estimés bootstrap pour calculer un intervalle de confiance symétrique (moyenne +- t ET). Cependant, comme R peut facilement calculer des intervalles de confiance qui corrigent pour le biais (BCa) ou encore des intervalle empiriques à partir des distributions simulées (méthode Percentile) il peut être aussi simple de les calculer selon les 3 méthodes:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1"><span class="co"># interval de confiance pour l&#39;ordonnée à l&#39;origine</span></a>
-<a class="sourceLine" id="cb300-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" title="1"><span class="co"># interval de confiance pour l&#39;ordonnée à l&#39;origine</span></a>
+<a class="sourceLine" id="cb313-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## Warning in boot.ci(results, type = &quot;all&quot;, index = 1): bootstrap variances needed
 ## for studentized intervals</code></pre>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -325,13 +325,14 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.121,  1.258 )   ( 1.122,  1.260 )  
+## 95%   ( 1.122,  1.258 )   ( 1.124,  1.263 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.124,  1.262 )   ( 1.114,  1.254 )  
-## Calculations and Intervals on Original Scale</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
-<a class="sourceLine" id="cb303-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
+## 95%   ( 1.121,  1.260 )   ( 1.108,  1.244 )  
+## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
+<a class="sourceLine" id="cb316-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## Warning in boot.ci(results, type = &quot;all&quot;, index = 2): bootstrap variances needed
 ## for studentized intervals</code></pre>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -342,11 +343,12 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2886,  0.3968 )   ( 0.2862,  0.3971 )  
+## 95%   ( 0.2887,  0.3960 )   ( 0.2851,  0.3949 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2846,  0.3955 )   ( 0.2926,  0.4022 )  
-## Calculations and Intervals on Original Scale</code></pre>
+## 95%   ( 0.2869,  0.3966 )   ( 0.2981,  0.4100 )  
+## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 
 </div>

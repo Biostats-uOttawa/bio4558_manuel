@@ -197,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="2.6" data-path="ex-power.html"><a href="ex-power.html"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
@@ -241,14 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
-<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
-<li class="chapter" data-level="A.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+<li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
-<li class="chapter" data-level="A.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
-<li class="chapter" data-level="A.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+<li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="B.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>B.3</b> Concernant le code dans notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Resources pour en apprendre plus sur rmarkdown</a></li>
+<li class="chapter" data-level="C" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>C</b> Resources pour en apprendre plus sur rmarkdown</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
 
@@ -282,8 +282,8 @@ corrélation est que la relation entre les deux variables est linéaire. Pour
 <li>Les données sur les esturgeons son disponibles dans le fichier <code>sturgeon.csv</code>.
 Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un diagramme de dispersion avec une droite de régression et une courbe LOWESS de la longueur en fonction du poids.</li>
 </ul>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb238-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb251-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	186 obs. of  9 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
@@ -294,16 +294,16 @@ Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un
 ##  $ sex     : chr  &quot;MALE&quot; &quot;FEMALE&quot; &quot;MALE&quot; &quot;FEMALE&quot; ...
 ##  $ location: chr  &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; ...
 ##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">mygraph&lt;-<span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb240-2" title="2">  <span class="dt">data =</span> sturgeon[<span class="op">!</span><span class="kw">is.na</span>(sturgeon<span class="op">$</span>rdwght),], <span class="co"># source of data</span></a>
-<a class="sourceLine" id="cb240-3" title="3">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth, <span class="dt">y =</span> rdwght))</a>
-<a class="sourceLine" id="cb240-4" title="4"><span class="co"># plot data points, regression, loess trace</span></a>
-<a class="sourceLine" id="cb240-5" title="5">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
-<a class="sourceLine" id="cb240-6" title="6"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># add linear regression, but no SE shading</span></a>
-<a class="sourceLine" id="cb240-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co">#add loess</span></a>
-<a class="sourceLine" id="cb240-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></a>
-<a class="sourceLine" id="cb240-9" title="9"></a>
-<a class="sourceLine" id="cb240-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1">mygraph&lt;-<span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb253-2" title="2">  <span class="dt">data =</span> sturgeon[<span class="op">!</span><span class="kw">is.na</span>(sturgeon<span class="op">$</span>rdwght),], <span class="co"># source of data</span></a>
+<a class="sourceLine" id="cb253-3" title="3">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth, <span class="dt">y =</span> rdwght))</a>
+<a class="sourceLine" id="cb253-4" title="4"><span class="co"># plot data points, regression, loess trace</span></a>
+<a class="sourceLine" id="cb253-5" title="5">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb253-6" title="6"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># add linear regression, but no SE shading</span></a>
+<a class="sourceLine" id="cb253-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co">#add loess</span></a>
+<a class="sourceLine" id="cb253-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></a>
+<a class="sourceLine" id="cb253-9" title="9"></a>
+<a class="sourceLine" id="cb253-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
 <div class="figure"><span id="fig:stur-2"></span>
 <img src="Labo_BIO4558_files/figure-html/stur-2-1.svg" alt="Graphique du poids en fonction de la longueur des esturgeons" width="672" />
 <p class="caption">
@@ -321,8 +321,8 @@ Malgré tout, il semble y avoir une forte corrélation entre les deux variables.
 <ul>
 <li>Refaites le diagramme de dispersion avec des axes logarithmiques.</li>
 </ul>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="co"># apply log transformation on defined graph</span></a>
-<a class="sourceLine" id="cb241-2" title="2">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="co"># apply log transformation on defined graph</span></a>
+<a class="sourceLine" id="cb254-2" title="2">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <div class="figure"><span id="fig:stur-log"></span>
 <img src="Labo_BIO4558_files/figure-html/stur-log-1.svg" alt="Graphique poids-longueur avec une échelle log" width="672" />
 <p class="caption">

@@ -197,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="2.6" data-path="ex-power.html"><a href="ex-power.html"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
@@ -241,14 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
-<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
-<li class="chapter" data-level="A.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+<li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
-<li class="chapter" data-level="A.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
-<li class="chapter" data-level="A.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+<li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="B.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>B.3</b> Concernant le code dans notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Resources pour en apprendre plus sur rmarkdown</a></li>
+<li class="chapter" data-level="C" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>C</b> Resources pour en apprendre plus sur rmarkdown</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
 
@@ -315,7 +315,43 @@ t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 Figure 2.1: Analyse post-hoc avec la taille d’effet estimée
 </p>
 </div>
-<p>Étudions un peu ce graphique.</p>
+<p>La même analyse peut être faites en utlisant R. Pour l’analyse avec R, il faut définir d’abord calculer la taille d’effet <code>d</code> pour un test de t comparant deux moyennes, puis utiliser la fonction <code>pwr.t.test</code> de l’extension <code>pwr</code>.
+Le plus simple comme nous allons estimer la taille d’effet <code>d</code> plusieurs fois et de créer une petite fonction qui estime <code>d</code> basé sur les paramètres nécessaires.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" title="1"><span class="co">#charger l&#39;extension pwr</span></a>
+<a class="sourceLine" id="cb238-2" title="2"><span class="kw">library</span>(pwr)</a>
+<a class="sourceLine" id="cb238-3" title="3"><span class="co"># définir une fonction pour d</span></a>
+<a class="sourceLine" id="cb238-4" title="4">d &lt;-<span class="st"> </span><span class="cf">function</span>(u1, u2, sd1, sd2) {<span class="kw">abs</span>(u1<span class="op">-</span>u2)<span class="op">/</span><span class="kw">sqrt</span>((sd1<span class="op">^</span><span class="dv">2</span><span class="op">+</span>sd2<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)}</a>
+<a class="sourceLine" id="cb238-5" title="5"></a>
+<a class="sourceLine" id="cb238-6" title="6"><span class="co">#analyse de puissance</span></a>
+<a class="sourceLine" id="cb238-7" title="7"><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">18</span>, <span class="dt">d =</span> <span class="kw">d</span>(<span class="dt">u1=</span><span class="fl">2.64</span>, <span class="dt">sd1=</span><span class="fl">3.28</span>, <span class="dt">u2=</span><span class="fl">3.31</span>, <span class="dt">sd2=</span><span class="fl">2.79</span>), <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 18
+##               d = 0.220042
+##       sig.level = 0.05
+##           power = 0.09833902
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1"><span class="co">#graphique comme g*Power</span></a>
+<a class="sourceLine" id="cb240-2" title="2">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dt">length=</span><span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb240-3" title="3"><span class="kw">plot</span>(x, <span class="kw">dnorm</span>(x), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb240-4" title="4">qc &lt;-<span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.025</span>, <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb240-5" title="5"><span class="kw">abline</span>(<span class="dt">v=</span>qc, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</a>
+<a class="sourceLine" id="cb240-6" title="6"><span class="kw">abline</span>(<span class="dt">v=</span><span class="op">-</span>qc, <span class="dt">col=</span><span class="st">&quot;green&quot;</span>)</a>
+<a class="sourceLine" id="cb240-7" title="7"><span class="kw">lines</span>(x, <span class="kw">dnorm</span>(x, <span class="dt">mean=</span>(<span class="fl">3.31-2.64</span>)), <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb240-8" title="8"></a>
+<a class="sourceLine" id="cb240-9" title="9"><span class="co">#power corresponds to the shaded area</span></a>
+<a class="sourceLine" id="cb240-10" title="10">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean=</span>(<span class="fl">3.31-2.64</span>))</a>
+<a class="sourceLine" id="cb240-11" title="11"><span class="kw">polygon</span>(<span class="kw">c</span>( x[x<span class="op">&lt;=-</span>qc], <span class="op">-</span>qc),  <span class="kw">c</span>(y[x<span class="op">&lt;=-</span>qc],<span class="dv">0</span>), <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dt">red =</span> <span class="dv">0</span>, <span class="dt">green =</span> <span class="fl">0.2</span>, <span class="dt">blue =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:r-power"></span>
+<img src="Labo_BIO4558_files/figure-html/r-power-1.svg" alt="Graphique de l'analyse de puissance dans R" width="672" />
+<p class="caption">
+Figure 2.2: Graphique de l’analyse de puissance dans R
+</p>
+</div>
+<p>Étudions un peu la figure <a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#fig:gpower-1">2.1</a>.</p>
 <ul>
 <li>La courbe de gauche, en rouge, correspond à la distribution de la statistique t si <span class="math inline">\(H_0\)</span> est vraie (i.e si les deux moyennes étaient égales) compte tenu de l’effectif (18 dans chaque région) et des écarts- types observés.</li>
 <li>Les lignes verticales vertes correspondent aux valeurs critiques de t pour une valeur <span class="math inline">\(\alpha = 0.05\)</span> et un effectif total de 36 (2x18).</li>
@@ -342,15 +378,26 @@ On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une diff
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 <span class="math inline">\(g/m^2\)</span> entre les deux régions? G*Power peut nous le dire.</p>
 
 <div class="rmdcode">
-Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#fig:gpower-2">2.2</a>).
+Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#fig:gpower-2">2.3</a>).
 </div>
 
 <div class="figure"><span id="fig:gpower-2"></span>
 <img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
 <p class="caption">
-Figure 2.2: Analyse post-hoc avec une taille d’effet différente
+Figure 2.3: Analyse post-hoc avec une taille d’effet différente
 </p>
 </div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">18</span>, <span class="dt">d =</span> <span class="kw">d</span>(<span class="dt">u1=</span><span class="fl">2.64</span>, <span class="dt">sd1=</span><span class="fl">3.28</span>, <span class="dt">u2=</span><span class="fl">5.28</span>, <span class="dt">sd2=</span><span class="fl">2.79</span>), <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 18
+##               d = 0.8670313
+##       sig.level = 0.05
+##           power = 0.7146763
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
 <p>La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.</p>
 <p>Notez que cette analyse de puissance post hoc pour une taille d’effet jugée biologiquement significative est bien plus informative que l’analyse précédente pour la taille d’effet observée (qui est celle effectuée par défaut par bien des néophytes et de trop nombreux logiciels qui essaient de penser pour nous).
 En effet, Jaynie n’a pu détecter de différences significatives entre les deux régions.
@@ -371,14 +418,36 @@ Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles
 <div class="figure"><span id="fig:gpower-3"></span>
 <img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
 <p class="caption">
-Figure 2.3: Analyse à priori
+Figure 2.4: Analyse à priori
 </p>
 </div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">0.8</span>, <span class="dt">d =</span> <span class="kw">d</span>(<span class="dt">u1=</span><span class="fl">2.64</span>, <span class="dt">sd1=</span><span class="fl">3.28</span>, <span class="dt">u2=</span><span class="fl">3.31</span>, <span class="dt">sd2=</span><span class="fl">2.79</span>), <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 325.1723
+##               d = 0.220042
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
 <p><strong>Ouch!</strong> Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
 Sans cela, on ne pourrait échantillonner que quelques dizaines de ruisseaux, et il serait peu probable que l’on puisse détecter une si faible différence de biomasse entre les deux régions.
 Ce serait vraisemblablement en vain et pourrait être considéré comme une perte de temps: pourquoi tant d’efforts et de dépenses si les chances de succès sont si faibles.</p>
 <p>Si on refait le même calcul pour une puissance de 95%, on obtient 538 ruisseaux par région.
 Augmenter la puissance ça demande plus d’effort.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">0.95</span>, <span class="dt">d =</span> <span class="kw">d</span>(<span class="dt">u1=</span><span class="fl">2.64</span>, <span class="dt">sd1=</span><span class="fl">3.28</span>, <span class="dt">u2=</span><span class="fl">3.31</span>, <span class="dt">sd2=</span><span class="fl">2.79</span>), <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 537.7286
+##               d = 0.220042
+##       sig.level = 0.05
+##           power = 0.95
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
 </div>
 <div id="analyse-de-sensitivité---calculer-la-taille-deffet-détectable" class="section level3">
 <h3><span class="header-section-number">2.4.3</span> Analyse de sensitivité - Calculer la taille d’effet détectable</h3>
@@ -391,9 +460,20 @@ Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <stron
 <div class="figure"><span id="fig:gpower-4"></span>
 <img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
 <p class="caption">
-Figure 2.4: Analyse de sensitivité
+Figure 2.5: Analyse de sensitivité
 </p>
 </div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">0.8</span>, <span class="dt">n=</span><span class="dv">18</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 18
+##               d = 0.9612854
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group</code></pre>
 <p>La taille d’effet détectable pour cette taille d’échantillon, <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (ou une puissance de 80%) est de 0.961296.</p>
 
 <div class="rmdcaution">
@@ -406,7 +486,10 @@ Pour convertir cette valeur de d sans unités en une valeur de différence de bi
 <span class="math display">\[
 | \bar{X_1} \bar{X_2} | = d * \sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}
 \]</span>
-Donc, avec 18 ruisseaux dans chaque région, pour <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (une puissance de 80%), Jaynie pouvait détecter une différence de biomasse de 2.93<span class="math inline">\(g/m^2\)</span> entre les régions, un peu plus que du simple au double.</p>
+Dans R, on peut estimer cela avec:</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">power =</span> <span class="fl">0.8</span>, <span class="dt">n=</span><span class="dv">18</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>)<span class="op">$</span>d<span class="op">*</span><span class="kw">sqrt</span>((<span class="fl">3.28</span><span class="op">^</span><span class="dv">2</span><span class="fl">+2.79</span><span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 2.926992</code></pre>
+<p>Donc, avec 18 ruisseaux dans chaque région, pour <span class="math inline">\(\alpha=0.05\)</span> et <span class="math inline">\(\beta=0.2\)</span> (une puissance de 80%), Jaynie pouvait détecter une différence de biomasse de 2.93<span class="math inline">\(g/m^2\)</span> entre les régions, un peu plus que du simple au double.</p>
 </div>
 </div>
 <script src="js/solution.js"></script>

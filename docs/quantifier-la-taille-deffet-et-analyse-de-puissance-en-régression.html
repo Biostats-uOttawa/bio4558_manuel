@@ -197,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="2.6" data-path="ex-power.html"><a href="ex-power.html"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
@@ -241,14 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
-<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
-<li class="chapter" data-level="A.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+<li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
-<li class="chapter" data-level="A.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
-<li class="chapter" data-level="A.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+<li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="B.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>B.3</b> Concernant le code dans notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Resources pour en apprendre plus sur rmarkdown</a></li>
+<li class="chapter" data-level="C" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>C</b> Resources pour en apprendre plus sur rmarkdown</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
 
@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 où <span class="math inline">\(b\)</span> est l’estimé de la pente, <span class="math inline">\(s_b\)</span> est l’erreur type de la pente, <span class="math inline">\(n\)</span> est le nombre d’observations, et <span class="math inline">\(k\)</span> est le nombre de variables indépendantes (1 pour la régression linéaire simple).</p>
 <p>Vous pouvez calculer approximativement la puissance avec G*Power pour une valeur de pente que vous jugez assez grande pour mériter d’être détectée. Allez à <strong>Tests: Means: One group: difference from constant</strong>, là, vous devrez remplacer la valeur de <span class="math inline">\(b\)</span> dans l’équation pour la taille d’effet (d) par la pente que vous voudriez détecter, mais utiliser l’erreur type calculée à partir de vos données.</p>
 <p>Par exemple, supposons que les ichthyologues considèrent qu’une pente de 0.1 pour la relation entre log10(fklngth) et log10(age) est signifiante biologiquement, et qu’ils désirent estimer la puissance de détecter une telle pente à partir d’un échantillon de 20 esturgeons. Les résultats de la régression log-log nous fournissent ce dont on a besoin:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1"><span class="kw">summary</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" title="1"><span class="kw">summary</span>(RegModel<span class="fl">.2</span>)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male)

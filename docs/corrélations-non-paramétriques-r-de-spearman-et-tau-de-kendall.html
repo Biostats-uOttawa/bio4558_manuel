@@ -197,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
-<li class="chapter" data-level="2.6" data-path="ex-power.html"><a href="ex-power.html"><i class="fa fa-check"></i><b>2.6</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
@@ -241,14 +240,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
-<li class="chapter" data-level="A" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="A.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>A.1</b> Syntaxe Markdown</a><ul>
-<li class="chapter" data-level="A.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>A.1.1</b> Titre 3</a></li>
+<li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
-<li class="chapter" data-level="A.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>A.2</b> À propos de LaTex</a></li>
-<li class="chapter" data-level="A.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>A.3</b> Concernant le code dans notebook</a></li>
+<li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
+<li class="chapter" data-level="B.3" data-path="concernant-le-code-dans-notebook.html"><a href="concernant-le-code-dans-notebook.html"><i class="fa fa-check"></i><b>B.3</b> Concernant le code dans notebook</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Resources pour en apprendre plus sur rmarkdown</a></li>
+<li class="chapter" data-level="C" data-path="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><a href="resources-pour-en-apprendre-plus-sur-rmarkdown.html"><i class="fa fa-check"></i><b>C</b> Resources pour en apprendre plus sur rmarkdown</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Publié avec bookdown</a></li>
 
@@ -281,10 +281,10 @@ Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kend
 <ul>
 <li>Dans R, testez la corrélation entre <code>fklngth</code> et <code>rdwght</code> en utilisant Spearman et Kendall’s .</li>
 </ul>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb252-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb252-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb252-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb265-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb265-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb265-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning in cor.test.default(sturgeon$lfklngth, sturgeon$rdwght, alternative =
 ## &quot;two.sided&quot;, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -296,10 +296,10 @@ Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kend
 ## sample estimates:
 ##       rho 
 ## 0.9522546</code></pre>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb255-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb255-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb255-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb268-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb268-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb268-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 

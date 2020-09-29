@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{04-09-2020}
+\date{29-09-2020}
 
 \begin{document}
 \maketitle
@@ -244,13 +244,13 @@
 }
 \hypertarget{note}{%
 \chapter*{Note}\label{note}}
-
+\addcontentsline{toc}{chapter}{Note}
 
 Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.
 
 \hypertarget{pruxe9face}{%
 \chapter*{Préface}\label{pruxe9face}}
-
+\addcontentsline{toc}{chapter}{Préface}
 
 Les exercices de laboratoire que vous retrouverez dans les pages qui suivent sont conçus de manière à vous permettre de développer une expérience pratique en analyse de données à l'aide d'un logiciel (R).
 R est un logiciel très puissant, mais comme tous les logiciels, il a des limites.
@@ -258,7 +258,7 @@ En particulier il ne peut réfléchir à votre place, vous dire si l'analyse que
 
 \hypertarget{quelques-points-importants-uxe0-retenir}{%
 \section*{Quelques points importants à retenir}\label{quelques-points-importants-uxe0-retenir}}
-
+\addcontentsline{toc}{section}{Quelques points importants à retenir}
 
 \begin{itemize}
 \item
@@ -306,12 +306,10 @@ En particulier il ne peut réfléchir à votre place, vous dire si l'analyse que
 
 \hypertarget{quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours}{%
 \section*{Qu'est-ce que R et pourquoi l'utiliser dans ce cours?}\label{quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours}}
+\addcontentsline{toc}{section}{Qu'est-ce que R et pourquoi l'utiliser dans ce cours?}
 
-
-R est un logiciel libre et multiplateforme formant un système statistique et graphique.
+R est un logiciel libre et multi-plateforme formant un système statistique et graphique.
 R est également un langage de programmation spécialisé pour les statistiques.
-C'est un dialecte du langage S.
-S-Plus est un autre dialecte, très semblable, et forme un produit commercial qui a un interface graphique que certains trouvent plus convivial.
 
 R a deux très grands avantages pour ce cours, et un inconvénient embêtant initialement mais qui vous forcera à acquérir des excellentes habitudes de travail.
 Le premier avantage est que vous pouvez tous l'installer sur votre (ou vos) ordinateurs personnel gratuitement.
@@ -342,11 +340,11 @@ C'est comme cela que les professionnels travaillent et offrent une assurance de 
 
 \hypertarget{installation-des-logiciels-nuxe9cessaires}{%
 \section*{Installation des logiciels nécessaires}\label{installation-des-logiciels-nuxe9cessaires}}
-
+\addcontentsline{toc}{section}{Installation des logiciels nécessaires}
 
 \hypertarget{r}{%
 \subsection*{R}\label{r}}
-
+\addcontentsline{toc}{subsection}{R}
 
 Pour installer R sur un nouvel ordinateur, allez au site \url{http://cran.r-project.org/}.
 Vous y trouverez des versions compilées (binaries) ou non (sources) pour votre système d'exploitation de prédilection (Windows, MacOS, Linux).
@@ -355,7 +353,7 @@ Note : R a déjà été installé sur les ordinateurs du laboratoire (la version
 
 \hypertarget{rstudio}{%
 \subsection*{Rstudio}\label{rstudio}}
-
+\addcontentsline{toc}{subsection}{Rstudio}
 
 RStudio est un environnement de développement intégré (IDE) créé spécifiquement pour travailler avec R. Sa popularité connaît une progression foudroyante depuis 2014.
 Il permet de consulter dans une interface conviviale ses fichiers de script, la ligne de commande R, les rubriques d'aide,
@@ -367,7 +365,7 @@ Pour une utilisation locale sur son poste de travail, on installera la version l
 
 \hypertarget{paquets-pour-r}{%
 \subsection*{Paquets pour R}\label{paquets-pour-r}}
-
+\addcontentsline{toc}{subsection}{Paquets pour R}
 
 \begin{itemize}
 \tightlist
@@ -385,9 +383,20 @@ Ces 2 paquets devrait être installé automatiquement avec RStudio, mais pas tou
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{gpower}{%
+\subsection*{G*Power}\label{gpower}}
+\addcontentsline{toc}{subsection}{G*Power}
+
+G*Power est un programme gratuit, développé par des psychologues de l'Université de Dusseldorf en Allemagne.
+Le programme existe en version Mac et Windows.
+Il peut cependant être utilisé sous linux via Wine.
+G*Power vous permettra d'effectuer une analyse de puissance pour la majorité des tests que nous verrons au cours de la session sans avoir à effectuer des calculs complexes ou farfouiller dans des tableaux ou des figures décrivant des distributions ou des courbes de puissance.
+
+Téléchargez le programme sur le site \url{https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html}
+
 \hypertarget{instructions-guxe9nuxe9rales-pour-les-laboratoires}{%
 \section*{Instructions générales pour les laboratoires}\label{instructions-guxe9nuxe9rales-pour-les-laboratoires}}
-
+\addcontentsline{toc}{section}{Instructions générales pour les laboratoires}
 
 \begin{itemize}
 \tightlist
@@ -413,7 +422,7 @@ Ces 2 paquets devrait être installé automatiquement avec RStudio, mais pas tou
 
 \hypertarget{notes-sur-le-manuel}{%
 \section*{Notes sur le manuel}\label{notes-sur-le-manuel}}
-
+\addcontentsline{toc}{section}{Notes sur le manuel}
 
 Vous trouverez dans le manuel des explications sur la théorie, du code R, des explications sur R et des exercises.
 
@@ -442,9 +451,27 @@ des notes
 \begin{rmdtip}
 et des conseils
 \end{rmdtip}
+\#\#\# Resources \{-\}
 
-\hypertarget{introductionR}{%
-\chapter{Introduction à R}\label{introductionR}}
+Ce document est généré par l'excellente extension \href{https://bookdown.org/}{bookdown} de \href{https://yihui.name/}{Yihui Xie}. Il est basé sur le précédent manuel de laboratoire \emph{BIO4558 manuel de laboratoire} par Antoine Morin. L'introduction à R est largement reprise de l'excellent manuel de \textbf{Julien Barnier} intitulé \href{https://juba.github.io/tidyverse/}{\emph{Introduction à R et au tidyverse}}
+
+\hypertarget{licence}{%
+\subsection*{Licence}\label{licence}}
+\addcontentsline{toc}{subsection}{Licence}
+
+Ce document est mis à disposition selon les termes de la \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage dans les Mêmes Conditions 4.0 International}.
+
+\begin{figure}
+\centering
+\includegraphics{images/icons/license_cc.png}
+\caption{Licence Creative Commons}
+\end{figure}
+
+\hypertarget{introduction-uxe0-r}{%
+\chapter{Introduction à R}\label{introduction-uxe0-r}}
+
+\hypertarget{objectifs-labo-1}{%
+\section{Objectifs Labo 1}\label{objectifs-labo-1}}
 
 Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Ouvrir des fichiers de données R déjà existants
@@ -457,7 +484,7 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Effectuer des transformations de données
 
 \hypertarget{set-intro}{%
-\section{Paquets et données requises pour le labo}\label{set-intro}}
+\subsection{Paquets et données requises pour le labo}\label{set-intro}}
 
 Ce laboratoire nécessite:
 
@@ -469,13 +496,9 @@ Ce laboratoire nécessite:
   \begin{itemize}
   \tightlist
   \item
-    car
+    questionr
   \item
-    lmtest
-  \item
-    boot
-  \item
-    lmPerm
+    ggplot2
   \end{itemize}
 \item
   les fichiers de données
@@ -483,46 +506,2496 @@ Ce laboratoire nécessite:
   \begin{itemize}
   \tightlist
   \item
+    ErablesGatineau.csv
+  \item
     sturgeon.csv
   \end{itemize}
 \end{itemize}
 
+\hypertarget{premier-pas-avec-r}{%
+\section{Premier pas avec R}\label{premier-pas-avec-r}}
+
+Une fois R et RStudio installés sur votre machine, nous n'allons pas lancer R mais plutôt RStudio.
+
+RStudio n'est pas à proprement parler une interface graphique qui permettrait d'utiliser R de manière ``classique'' via la souris, des menus et des boîtes de dialogue. Il s'agit plutôt de ce qu'on appelle un \emph{Environnement de développement intégré} (IDE) qui facilite l'utilisation de R et le développement de scripts.
+
+\hypertarget{la-console}{%
+\subsection{La console}\label{la-console}}
+
+\hypertarget{linvite-de-commandes}{%
+\subsubsection{L'invite de commandes}\label{linvite-de-commandes}}
+
+Au premier lancement de RStudio, l'écran principal est découpé en trois grandes zones~:
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_start} \caption{Interface de RStudio}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+La zone de gauche se nomme \emph{Console}. À son démarrage, RStudio a lancé une nouvelle session de R et c'est dans cette fenêtre que nous allons pouvoir interagir avec lui.
+
+La \emph{Console} doit normalement afficher un texte de bienvenue ressemblant à ceci~:
+
+\begin{verbatim}
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R est un logiciel libre livré sans AUCUNE GARANTIE.
+Vous pouvez le redistribuer sous certaines conditions.
+Tapez 'license()' ou 'licence()' pour plus de détails.
+
+R est un projet collaboratif avec de nombreux contributeurs.
+Tapez 'contributors()' pour plus d'information et
+'citation()' pour la façon de le citer dans les publications.
+
+Tapez 'demo()' pour des démonstrations, 'help()' pour l'aide
+en ligne ou 'help.start()' pour obtenir l'aide au format HTML.
+Tapez 'q()' pour quitter R.
+\end{verbatim}
+
+suivi d'une ligne commençant par le caractère \texttt{\textgreater{}} et sur laquelle devrait se trouver votre curseur. Cette ligne est appelée l'\emph{invite de commande} (ou \emph{prompt} en anglais). Elle signifie que R est disponible et en attente de votre prochaine commande.
+
+Nous pouvons tout de suite lui fournir une première commande, en saisissant le texte suivant puis en appuyant sur \texttt{Entrée}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+R nous répond immédiatement, et nous pouvons constater avec soulagement qu'il sait faire des additions à un chiffre\footnote{On peut ignorer pour le moment la présence du \texttt{{[}1{]}} en début de ligne.}. On peut donc continuer avec d'autres opérations~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5} \OperatorTok{-}\StringTok{ }\DecValTok{7}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \OperatorTok{*}\StringTok{ }\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 48
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{-10} \OperatorTok{/}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -3.333333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5}\OperatorTok{^}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25
+\end{verbatim}
+
+Cette dernière opération utilise le symbole \texttt{\^{}} qui représente l'opération \emph{puissance}. \texttt{5\^{}2} signifie donc ``5 au carré'', soit 25.
+
+\hypertarget{pruxe9cisions-concernant-la-saisie-des-commandes}{%
+\subsubsection{Précisions concernant la saisie des commandes}\label{pruxe9cisions-concernant-la-saisie-des-commandes}}
+
+Lorsqu'on saisit une commande, les espaces autour des opérateurs n'ont pas d'importance. Les trois commandes suivantes sont donc équivalentes, mais on privilégie en général la deuxième pour des raisons de lisibilité du code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{10}\OperatorTok{+}\DecValTok{2}
+\DecValTok{10} \OperatorTok{+}\StringTok{ }\DecValTok{2}
+\DecValTok{10}       \OperatorTok{+}\StringTok{       }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Quand vous êtes dans la console, vous pouvez utiliser les flèches vers le haut et vers le bas pour naviguer dans l'historique des commandes que vous avez tapées précédemment. Vous pouvez à tout moment modifier la commande affichée, et l'exécuter en appuyant sur \texttt{Entrée}.
+
+Enfin, il peut arriver qu'on saisisse une commande de manière incomplète~: oubli d'une parenthèse, faute de frappe, etc. Dans ce cas, R remplace l'invite de commande habituel par un signe \texttt{+}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{4} \OperatorTok{*}
+\OperatorTok{+}
+\end{Highlighting}
+\end{Shaded}
+
+Cela signifie qu'il ``attend la suite''. On peut alors soit compléter la commande sur cette nouvelle ligne et appuyer sur \texttt{Entrée}, soit, si on est perdu, tout annuler et revenir à l'invite de commandes normal en appuyant sur \texttt{Esc} ou \texttt{Échap}.
+
+\hypertarget{objets}{%
+\subsection{Objets}\label{objets}}
+
+\hypertarget{objets-simples}{%
+\subsubsection{Objets simples}\label{objets-simples}}
+
+Faire des calculs c'est bien, mais il serait intéressant de pouvoir stocker un résultat quelque part pour pouvoir le réutiliser ultérieurement sans avoir à faire du copier/coller.
+
+Pour conserver le résultat d'une opération, on peut le stocker dans un \emph{objet} à l'aide de l'opérateur d'assignation \texttt{\textless{}-}. Cette ``flèche'' stocke ce qu'il y a à sa droite dans un objet dont le nom est indiqué à sa gauche.
+
+Prenons tout de suite un exemple~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+Cette commande peut se lire \emph{``prend la valeur 2 et mets la dans un objet qui s'appelle \texttt{x}''}.
+
+Si on exécute une commande comportant juste le nom d'un objet, R affiche son contenu~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+On voit donc que notre objet \texttt{x} contient bien la valeur 2.
+
+On peut évidemment réutiliser cet objet dans d'autres opérations. R le remplacera alors par sa valeur~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+On peut créer autant d'objets qu'on le souhaite.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{2}
+\NormalTok{y <-}\StringTok{ }\DecValTok{5}
+\NormalTok{resultat <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\NormalTok{resultat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{rmdimportant}
+Les noms d'objets peuvent contenir des lettres, des chiffres, les symboles \texttt{.} et \texttt{\_}. Ils ne peuvent pas commencer par un chiffre. Attention, R fait la différence entre minuscules et majuscules dans les noms d'objets, ce qui signifie que \texttt{x} et \texttt{X} seront deux objets différents, tout comme \texttt{resultat} et \texttt{Resultat}.
+
+De manière générale, il est préférable d'éviter les majuscules (pour les risques d'erreur) et les caractères accentués (pour des questions d'encodage) dans les noms d'objets.
+
+De même, il faut essayer de trouver un équilibre entre clarté du nom (comprendre à quoi sert l'objet, ce qu'il contient) et sa longueur. Par exemple, on préfèrera comme nom d'objet \texttt{taille\_conj1} à \texttt{taille\_du\_conjoint\_numero\_1} (trop long) ou à \texttt{t1} (pas assez explicite).
+\end{rmdimportant}
+
+Quand on assigne une nouvelle valeur à un objet déjà existant, la valeur précédente est perdue. Les objets n'ont pas de mémoire.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{2}
+\NormalTok{x <-}\StringTok{ }\DecValTok{5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+De la même manière, assigner un objet à un autre ne crée pas de ``lien'' entre les deux. Cela copie juste la valeur de l'objet de droite dans celui de gauche~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\NormalTok{y <-}\StringTok{ }\DecValTok{3}
+\NormalTok{x <-}\StringTok{ }\NormalTok{y}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Si on modifie y, cela ne modifie pas x}
+\NormalTok{y <-}\StringTok{ }\DecValTok{4}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+On le verra, les objets peuvent contenir tout un tas d'informations. Jusqu'ici on n'a stocké que des nombres, mais ils peuvent aussi contenir des chaînes de caractères (du texte), qu'on délimite avec des guillemets simples ou doubles (\texttt{\textquotesingle{}} ou \texttt{"})~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chien <-}\StringTok{ "Chihuahua"}
+\NormalTok{chien}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Chihuahua"
+\end{verbatim}
+
+\hypertarget{vecteurs}{%
+\subsection{Vecteurs}\label{vecteurs}}
+
+Imaginons maintenant qu'on a demandé la taille en centimètres de 5 personnes et qu'on souhaite calculer leur taille moyenne. On pourrait créer autant d'objets que de tailles et faire l'opération mathématique qui va bien~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{taille1 <-}\StringTok{ }\DecValTok{156}
+\NormalTok{taille2 <-}\StringTok{ }\DecValTok{164}
+\NormalTok{taille3 <-}\StringTok{ }\DecValTok{197}
+\NormalTok{taille4 <-}\StringTok{ }\DecValTok{147}
+\NormalTok{taille5 <-}\StringTok{ }\DecValTok{173}
+\NormalTok{(taille1 }\OperatorTok{+}\StringTok{ }\NormalTok{taille2 }\OperatorTok{+}\StringTok{ }\NormalTok{taille3 }\OperatorTok{+}\StringTok{ }\NormalTok{taille4 }\OperatorTok{+}\StringTok{ }\NormalTok{taille5) }\OperatorTok{/}\StringTok{ }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 167.4
+\end{verbatim}
+
+Cette manière de faire n'est évidemment pas pratique du tout. On va plutôt stocker l'ensemble de nos tailles dans un seul objet, de type \emph{vecteur}, avec la syntaxe suivante~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{156}\NormalTok{, }\DecValTok{164}\NormalTok{, }\DecValTok{197}\NormalTok{, }\DecValTok{147}\NormalTok{, }\DecValTok{173}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Si on affiche le contenu de cet objet, on voit qu'il contient bien l'ensemble des tailles saisies~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 156 164 197 147 173
+\end{verbatim}
+
+Un \emph{vecteur} dans R est un objet qui peut contenir plusieurs informations du même type, potentiellement en très grand nombre.
+
+L'avantage d'un vecteur est que lorsqu'on lui applique une opération, celle-ci s'applique à toutes les valeurs qu'il contient. Ainsi, si on veut la taille en mètres plutôt qu'en centimètres, on peut faire~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles_m <-}\StringTok{ }\NormalTok{tailles }\OperatorTok{/}\StringTok{ }\DecValTok{100}
+\NormalTok{tailles_m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.56 1.64 1.97 1.47 1.73
+\end{verbatim}
+
+Cela fonctionne pour toutes les opérations de base~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles }\OperatorTok{+}\StringTok{ }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 166 174 207 157 183
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles}\OperatorTok{^}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 24336 26896 38809 21609 29929
+\end{verbatim}
+
+Imaginons maintenant qu'on a aussi demandé aux cinq mêmes personnes leur poids en kilos. On peut alors créer un deuxième vecteur~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poids <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{45}\NormalTok{, }\DecValTok{59}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{44}\NormalTok{, }\DecValTok{88}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+On peut alors effectuer des calculs utilisant nos deux vecteurs \texttt{tailles} et \texttt{poids}. On peut par exemple calculer l'indice de masse corporelle (IMC) de chacun de nos enquêtés en divisant leur poids en kilo par leur taille en mètre au carré~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{imc <-}\StringTok{ }\NormalTok{poids }\OperatorTok{/}\StringTok{ }\NormalTok{(tailles }\OperatorTok{/}\StringTok{ }\DecValTok{100}\NormalTok{) }\OperatorTok{^}\StringTok{ }\DecValTok{2}
+\NormalTok{imc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.49112 21.93635 28.34394 20.36189 29.40292
+\end{verbatim}
+
+Un vecteur peut contenir des nombres, mais il peut aussi contenir du texte. Imaginons qu'on a demandé aux 5 mêmes personnes leur niveau de diplôme~: on peut regrouper l'information dans un vecteur de \emph{chaînes de caractères}. Une chaîne de caractère contient du texte libre, délimité par des guillemets simples ou doubles~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diplome <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"PHD"}\NormalTok{, }\StringTok{"Bac"}\NormalTok{, }\StringTok{"MSc"}\NormalTok{, }\StringTok{"MSc"}\NormalTok{, }\StringTok{"Bac"}\NormalTok{)}
+\NormalTok{diplome}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "PHD" "Bac" "MSc" "MSc" "Bac"
+\end{verbatim}
+
+L'opérateur \texttt{:}, lui, permet de générer rapidement un vecteur comprenant tous les nombres entre deux valeurs, opération assez courante sous R~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+Enfin, notons qu'on peut accéder à un élément particulier d'un vecteur en faisant suivre le nom du vecteur de crochets contenant le numéro de l'élément désiré. Par exemple~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diplome[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Bac"
+\end{verbatim}
+
+Cette opération, qui utilise l'opérateur \texttt{{[}{]}}, permet donc la sélection d'éléments d'un vecteur.
+
+Dernière remarque, si on affiche dans la console un vecteur avec beaucoup d'éléments, ceux-ci seront répartis sur plusieurs lignes. Par exemple, si on a un vecteur de 50 nombres on peut obtenir quelque chose comme~:
+
+\begin{verbatim}
+ [1] 294 425 339 914 114 896 716 648 915 587 181 926 489
+[14] 848 583 182 662 888 417 133 146 322 400 698 506 944
+[27] 237 324 333 443 487 658 793 288 897 588 697 439 697
+[40] 914 694 126 969 744 927 337 439 226 704 635
+\end{verbatim}
+
+On remarque que R ajoute systématiquement un nombre entre crochets au début de chaque ligne~: il s'agit en fait de la position du premier élément de la ligne dans le vecteur. Ainsi, le 848 de la deuxième ligne est le 14e élément du vecteur, le 914 de la dernière ligne est le 40e, etc.
+
+Ceci explique le \texttt{{[}1{]}} qu'on obtient quand on affiche un simple nombre et permet de constater que pour R, un nombre est un vecteur à un seul élément~:
+
+\begin{verbatim}
+ [1] 4
+\end{verbatim}
+
+\hypertarget{fonctions}{%
+\subsection{Fonctions}\label{fonctions}}
+
+\hypertarget{principe}{%
+\subsubsection{Principe}\label{principe}}
+
+Nous savons désormais effectuer des opérations arithmétiques de base sur des nombres et des vecteurs, et stocker des valeurs dans des objets pour pouvoir les réutiliser plus tard.
+
+Pour aller plus loin, nous devons aborder les \emph{fonctions} qui sont, avec les objets, un deuxième concept de base de R. On utilise des fonctions pour effectuer des calculs, obtenir des résultats et accomplir des actions.
+
+Formellement, une fonction a un \emph{nom}, elle prend en entrée entre parenthèses un ou plusieurs \emph{arguments} (ou \emph{paramètres}), et retourne un \emph{résultat}.
+
+Prenons tout de suite un exemple. Si on veut connaître le nombre d'éléments du vecteur \texttt{tailles} que nous avons construit précédemment, on peut utiliser la fonction \texttt{length}, de cette manière~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+Ici, \texttt{length} est le nom de la fonction, on l'appelle en lui passant un argument entre parenthèses (en l'occurrence notre vecteur \texttt{tailles}), et elle nous renvoie un résultat, à savoir le nombre d'éléments du vecteur passé en paramètre.
+
+Autre exemple, les fonctions \texttt{min} et \texttt{max} retournent respectivement les valeurs minimales et maximales d'un vecteur de nombres~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{min}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 147
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{max}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 197
+\end{verbatim}
+
+La fonction \texttt{mean} calcule et retourne la moyenne d'un vecteur de nombres~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 167.4
+\end{verbatim}
+
+La fonction \texttt{sum} retourne la somme de tous les éléments du vecteur~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 837
+\end{verbatim}
+
+Jusqu'à présent on n'a vu que des fonctions qui calculent et retournent un unique nombre. Mais une fonction peut renvoyer d'autres types de résultats. Par exemple, la fonction \texttt{range} (étendue) renvoie un vecteur de deux nombres, le minimum et le maximum~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{range}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 147 197
+\end{verbatim}
+
+Ou encore, la fonction \texttt{unique}, qui supprime toutes les valeurs en double dans un vecteur, qu'il s'agisse de nombres ou de chaînes de caractères~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diplome}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "PHD" "Bac" "MSc" "MSc" "Bac"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(diplome)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "PHD" "Bac" "MSc"
+\end{verbatim}
+
+\hypertarget{arguments}{%
+\subsubsection{Arguments}\label{arguments}}
+
+Une fonction peut prendre plusieurs arguments, dans ce cas on les indique toujours entre parenthèses, séparés par des virgules.
+
+On a déjà rencontré un exemple de fonction acceptant plusieurs arguments~: la fonction \texttt{c}, qui combine l'ensemble de ses arguments en un vecteur\footnote{\texttt{c} est l'abbréviation de \emph{combine}, son nom est très court car on l'utilise très souvent}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{156}\NormalTok{, }\DecValTok{164}\NormalTok{, }\DecValTok{197}\NormalTok{, }\DecValTok{181}\NormalTok{, }\DecValTok{173}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ici, \texttt{c} est appelée en lui passant cinq arguments, les cinq tailles séparées par des virgules, et elle renvoie un vecteur numérique regroupant ces cinq valeurs.
+
+Supposons maintenant que dans notre vecteur \texttt{tailles} nous avons une valeur manquante (une personne a refusé de répondre, ou notre mètre mesureur était en panne). On symbolise celle-ci dans R avec le code interne \texttt{NA}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{156}\NormalTok{, }\DecValTok{164}\NormalTok{, }\DecValTok{197}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{173}\NormalTok{)}
+\NormalTok{tailles}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 156 164 197  NA 173
+\end{verbatim}
+
+\begin{rmdnote}
+\texttt{NA} est l'abbréviation de \emph{Not available}, non disponible. Cette valeur particulière peut être utilisée pour indiquer une valeur manquante, qu'il s'agisse d'un nombre, d'une chaîne de caractères, etc.
+\end{rmdnote}
+
+Si je calcule maintenant la taille moyenne à l'aide de la fonction \texttt{mean}, j'obtiens~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+En effet, R considère par défaut qu'il ne peut pas calculer la moyenne si une des valeurs n'est pas disponible. Il considère alors que cette moyenne est elle-même ``non disponible'' et renvoie donc comme résultat \texttt{NA}.
+
+On peut cependant indiquer à \texttt{mean} d'effectuer le calcul en ignorant les valeurs manquantes. Ceci se fait en ajoutant un argument supplémentaire, nommé \texttt{na.rm} (abbréviation de \emph{NA remove}, ``enlever les NA''), et de lui attribuer la valeur \texttt{TRUE} (code interne de R signifiant \emph{vrai})~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(tailles, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 172.5
+\end{verbatim}
+
+Positionner le paramètre \texttt{na.rm} à \texttt{TRUE} indique à la fonction \texttt{mean} de ne pas tenir compte des valeurs manquantes dans le calcul.
+
+Si on ne dit rien à la fonction \texttt{mean}, cet argument a une valeur par défaut, en l'occurrence \texttt{FALSE} (faux), qui fait qu'il ne supprime pas les valeurs manquantes. Les deux commandes suivantes sont donc rigoureusement équivalentes~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(tailles)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(tailles, }\DataTypeTok{na.rm =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+\begin{rmdnote}
+Lorsqu'on passe un argument à une fonction de cette manière, c'est-à-dire sous la forme \texttt{nom\ =\ valeur}, on parle d'\emph{argument nommé}.
+\end{rmdnote}
+
+\hypertarget{aide-sur-une-fonction}{%
+\subsubsection{Aide sur une fonction}\label{aide-sur-une-fonction}}
+
+Il est fréquent de ne pas savoir (ou d'avoir oublié) quels sont les arguments d'une fonction, ou comment ils se nomment. On peut à tout moment faire appel à l'aide intégrée à R en passant le nom de la fonction (entre guillemets) à la fonction \texttt{help}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(}\StringTok{"mean"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+On peut aussi utiliser le raccourci \texttt{?mean}.
+
+Ces deux commandes affichent une page (en anglais) décrivant la fonction, ses paramètres, son résultat, le tout accompagné de diverses notes, références et exemples. Ces pages d'aide contiennent à peu près tout ce que vous pourrez chercher à savoir, mais elles ne sont pas toujours d'une lecture aisée.
+
+Dans RStudio, les pages d'aide en ligne s'ouvriront par défaut dans la zone en bas à droite,
+sous l'onglet \emph{Help}. Un clic sur l'icône en forme de maison vous affichera la page d'accueil de l'aide.
+
+\hypertarget{regrouper-ses-commandes-dans-des-scripts}{%
+\subsection{Regrouper ses commandes dans des scripts}\label{regrouper-ses-commandes-dans-des-scripts}}
+
+Jusqu'ici on a utilisé R de manière ``interactive'', en saisissant des commandes directement dans la console. Ça n'est cependant pas la manière dont on va utiliser R au quotidien, pour une raison simple~: lorsque R redémarre, tout ce qui a été effectué dans la console est perdu.
+
+Plutôt que de saisir nos commandes dans la console, on va donc les regrouper dans des scripts (de simples fichiers texte), qui vont garder une trace de toutes les opérations effectuées, et ce sont ces scripts, sauvegardés régulièrement, qui seront le ``coeur'' de notre travail. C'est en rouvrant les scripts et en réexécutant les commandes qu'ils contiennent qu'on pourra ``reproduire'' les données, leur traitement, les analyses et leurs résultats.
+
+Pour créer un script, il suffit de sélectionner le menu \emph{File}, puis \emph{New file} et \emph{R script}. Une quatrième zone apparaît alors en haut à gauche de l'interface de RStudio. On peut enregistrer notre script à tout moment dans un fichier avec l'extension \texttt{.R}, en cliquant sur l'icône de disquette ou en choissant \emph{File} puis \emph{Save}.
+
+Un script est un fichier texte brut, qui s'édite de la manière habituelle. À la différence de la console, quand on appuie sur \texttt{Entrée}, cela n'exécute pas la commande en cours mais insère un saut de ligne (comme on pouvait s'y attendre).
+
+Pour exécuter une commande saisie dans un script, il suffit de positionner le curseur sur la ligne de la commande en question, et de cliquer sur le bouton \emph{Run} dans la barre d'outils juste au-dessus de la zone d'édition du script. On peut aussi utiliser le raccourci clavier \texttt{Ctrl\ +\ Entrée} (\texttt{Cmd\ +\ Entrée} sous Mac). On peut enfin sélectionner plusieurs lignes avec la souris ou le clavier et cliquer sur \emph{Run} (ou utiliser le raccourci clavier), et l'ensemble des lignes est exécuté d'un coup.
+
+Au final, un script pourra ressembler à quelque chose comme ça~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tailles <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{156}\NormalTok{, }\DecValTok{164}\NormalTok{, }\DecValTok{197}\NormalTok{, }\DecValTok{147}\NormalTok{, }\DecValTok{173}\NormalTok{)}
+\NormalTok{poids <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{45}\NormalTok{, }\DecValTok{59}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{44}\NormalTok{, }\DecValTok{88}\NormalTok{)}
+
+\KeywordTok{mean}\NormalTok{(tailles)}
+\KeywordTok{mean}\NormalTok{(poids)}
+
+\NormalTok{imc <-}\StringTok{ }\NormalTok{poids }\OperatorTok{/}\StringTok{ }\NormalTok{(tailles }\OperatorTok{/}\StringTok{ }\DecValTok{100}\NormalTok{) }\OperatorTok{^}\StringTok{ }\DecValTok{2}
+\KeywordTok{min}\NormalTok{(imc)}
+\KeywordTok{max}\NormalTok{(imc)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{commentaires}{%
+\subsubsection{Commentaires}\label{commentaires}}
+
+Les commentaires sont un élément très important d'un script. Il s'agit de texte libre, ignoré par R, et qui permet de décrire les étapes du script, sa logique, les raisons pour lesquelles on a procédé de telle ou telle manière\ldots{} Il est primordial de documenter ses scripts à l'aide de commentaires, car il est très facile de ne plus se retrouver dans un programme qu'on a produit soi-même, même après une courte interruption.
+
+Pour ajouter un commentaire, il suffit de le faire précéder d'un ou plusieurs symboles \texttt{\#}. En effet, dès que R rencontre ce caractère, il ignore tout ce qui se trouve derrière, jussqu'à la fin de la ligne.
+
+On peut donc documenter le script précédent~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Saisie des tailles et poids des enquêtés}
+\NormalTok{tailles <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{156}\NormalTok{, }\DecValTok{164}\NormalTok{, }\DecValTok{197}\NormalTok{, }\DecValTok{147}\NormalTok{, }\DecValTok{173}\NormalTok{)}
+\NormalTok{poids <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{45}\NormalTok{, }\DecValTok{59}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{44}\NormalTok{, }\DecValTok{88}\NormalTok{)}
+
+\CommentTok{# Calcul des tailles et poids moyens}
+\KeywordTok{mean}\NormalTok{(tailles)}
+\KeywordTok{mean}\NormalTok{(poids)}
+
+\CommentTok{# Calcul de l'IMC (poids en kilo divisé par les tailles en mètre au carré)}
+\NormalTok{imc <-}\StringTok{ }\NormalTok{poids }\OperatorTok{/}\StringTok{ }\NormalTok{(tailles }\OperatorTok{/}\StringTok{ }\DecValTok{100}\NormalTok{) }\OperatorTok{^}\StringTok{ }\DecValTok{2}
+\CommentTok{# Valeurs extrêmes de l'IMC}
+\KeywordTok{min}\NormalTok{(imc)}
+\KeywordTok{max}\NormalTok{(imc)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{packages}{%
+\subsection{\texorpdfstring{Installer et charger des extensions (\emph{packages})}{Installer et charger des extensions (packages)}}\label{packages}}
+
+R étant un logiciel libre, il bénéficie d'un développement communautaire riche et dynamique. L'installation de base de R permet de faire énormément de choses, mais le langage dispose en plus d'un système d'extensions permettant d'ajouter facilement de nouvelles fonctionnalités. La plupart des extensions sont développées et maintenues par la communauté des utilisateurs de R, et diffusées via un réseau de serveurs nommé CRAN (\emph{Comprehensive R Archive Network}).
+
+Pour installer une extension, si on dispose d'une connexion Internet, on peut utiliser le bouton \emph{Install} de l'onglet \emph{Packages} de RStudio.
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/screenshots/rstudio_package_install} \caption{Installer une extension}\label{fig:unnamed-chunk-46}
+\end{figure}
+
+Il suffit alors d'indiquer le nom de l'extension dans le champ \emph{Package} et de cliquer sur \emph{Install}.
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{images/screenshots/rstudio_package_install2} \caption{Installation une extension}\label{fig:unnamed-chunk-47}
+\end{figure}
+
+images/screenshots/rstudio\_package\_install.png
+On peut aussi installer des extensions en utilisant la fonction \texttt{install.packages()} directement dans la console. Par exemple, pour installer le \emph{package} \texttt{questionr} on peut exécuter la commande~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"questionr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Installer une extension via l'une des deux méthodes précédentes va télécharger l'ensemble des fichiers nécessaires depuis l'une des machines du CRAN, puis installer tout ça sur le disque dur de votre ordinateur. Vous n'avez besoin de le faire qu'une fois, comme vous le faites pour installer un programme sur votre Mac ou PC.
+
+Une fois l'extension installée, il faut la ``charger'' avant de pouvoir utiliser les fonctions qu'elle propose. Ceci se fait avec la fonction \texttt{library}. Par exemple, pour pouvoir utiliser les fonctions de \texttt{questionr}, vous devrez exécuter la commande suivante~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(questionr)}
+\end{Highlighting}
+\end{Shaded}
+
+Ainsi, bien souvent, on regroupe en début de script toute une série d'appels à \texttt{library} qui permettent de charger tous les packages utilisés dans le script. Quelque chose comme~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(questionr)}
+\end{Highlighting}
+\end{Shaded}
+
+Si vous essayez d'exécuter une fonction d'une extension et que vous obtenez le message d'erreur \texttt{impossible\ de\ trouver\ la\ fonction}, c'est certainement parce que vous n'avez pas exécuté la commande \texttt{library} correspondante.
+
+\hypertarget{ex-introR}{%
+\subsection{Exercices}\label{ex-introR}}
+
+\textbf{Exercice 1}
+
+Construire le vecteur \texttt{x} suivant~:
+
+\begin{verbatim}
+## [1] 120 134 256  12
+\end{verbatim}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{120}\NormalTok{, }\DecValTok{134}\NormalTok{, }\DecValTok{256}\NormalTok{, }\DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Utiliser ce vecteur \texttt{x} pour générer les deux vecteurs suivants~:
+
+\begin{verbatim}
+## [1] 220 234 356 112
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 240 268 512  24
+\end{verbatim}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{100}
+\NormalTok{x }\OperatorTok{*}\StringTok{ }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 2}
+
+On a demandé à 4 ménages le revenu des deux conjoints, et le nombre de personnes du ménage~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conjoint1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1200}\NormalTok{, }\DecValTok{1180}\NormalTok{, }\DecValTok{1750}\NormalTok{, }\DecValTok{2100}\NormalTok{)}
+\NormalTok{conjoint2 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1450}\NormalTok{, }\DecValTok{1870}\NormalTok{, }\DecValTok{1690}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{nb_personnes <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculer le revenu total de chaque ménage, puis diviser par le nombre de personnes pour obtenir le revenu par personne de chaque ménage.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{revenu_total <-}\StringTok{ }\NormalTok{conjoint1 }\OperatorTok{+}\StringTok{ }\NormalTok{conjoint2}
+\NormalTok{revenu_total }\OperatorTok{/}\StringTok{ }\NormalTok{nb_personnes}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 3}
+
+Dans l'exercice précédent, calculer le revenu minimum et maximum parmi ceux du premier conjoint.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conjoint1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1200}\NormalTok{, }\DecValTok{1180}\NormalTok{, }\DecValTok{1750}\NormalTok{, }\DecValTok{2100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{range}\NormalTok{(conjoint1)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Recommencer avec les revenus suivants, parmi lesquels l'un des enquetés n'a pas voulu répondre~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conjoint1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1200}\NormalTok{, }\DecValTok{1180}\NormalTok{, }\DecValTok{1750}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{range}\NormalTok{(conjoint1, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 4}
+
+Les deux vecteurs suivants représentent les précipitations (en mm) et la température (en °C) moyennes sur la ville de Lyon, pour chaque mois de l'année, entre 1981 et 2010~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{temperature <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{3.4}\NormalTok{, }\FloatTok{4.8}\NormalTok{, }\FloatTok{8.4}\NormalTok{, }\FloatTok{11.4}\NormalTok{, }\FloatTok{15.8}\NormalTok{, }\FloatTok{19.4}\NormalTok{, }\FloatTok{22.2}\NormalTok{, }\FloatTok{21.6}\NormalTok{, }\FloatTok{17.6}\NormalTok{, }\FloatTok{13.4}\NormalTok{, }\FloatTok{7.6}\NormalTok{, }\FloatTok{4.4}\NormalTok{)}
+\NormalTok{precipitations <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{47.2}\NormalTok{, }\FloatTok{44.1}\NormalTok{, }\FloatTok{50.4}\NormalTok{, }\FloatTok{74.9}\NormalTok{, }\FloatTok{90.8}\NormalTok{, }\FloatTok{75.6}\NormalTok{, }\FloatTok{63.7}\NormalTok{, }\DecValTok{62}\NormalTok{, }\FloatTok{87.5}\NormalTok{, }\FloatTok{98.6}\NormalTok{, }\FloatTok{81.9}\NormalTok{, }\FloatTok{55.2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculer la température moyenne sur l'année.
+
+Calculer la quantité totale de précipitations sur l'année.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(temperature)}
+\KeywordTok{sum}\NormalTok{(precipitations)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+À quoi correspond et comment peut-on interpréter le résultat de la fonction suivante~? Vous pouvez vous aider de la page d'aide de la fonction si nécessaire.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cumsum}\NormalTok{(precipitations)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  47.2  91.3 141.7 216.6 307.4 383.0 446.7 508.7 596.2 694.8 776.7 831.9
+\end{verbatim}
+
+Même question pour :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{diff}\NormalTok{(temperature)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1.4  3.6  3.0  4.4  3.6  2.8 -0.6 -4.0 -4.2 -5.8 -3.2
+\end{verbatim}
+
+\iffalse
+
+\begin{solution}
+
+\texttt{cumsum(precipitations)} correspond à la somme cumulée des précipitations sur l'année. Par exemple, la 6e valeur du vecteur résultat correspond au total de précipitations de janvier à juin.
+
+\texttt{diff(temperature)} correspond à la différence de température d'un mois sur l'autre. Par exemple, la 2e valeur de ce vecteur correspond à l'écart de température entre le mois de février et le mois de janvier.
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 5}
+
+On a relevé les notes en maths, anglais et sport d'une classe de 6 élèves et on a stocké ces données dans trois vecteurs :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maths <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{12}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{anglais <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{14}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+\NormalTok{sport <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Calculer la moyenne des élèves de la classe en anglais.
+
+Calculer la moyenne générale de chaque élève.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(anglais)}
+\NormalTok{(maths }\OperatorTok{+}\StringTok{ }\NormalTok{anglais }\OperatorTok{+}\StringTok{ }\NormalTok{sport) }\OperatorTok{/}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vous aider de la page d'aide de ces fonctions) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pmin}\NormalTok{(maths, anglais, sport)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12  9  8 10  6 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pmax}\NormalTok{(maths, anglais, sport)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18 16 14 18 17 12
+\end{verbatim}
+
+\iffalse
+
+\begin{solution}
+
+\texttt{pmin} et \texttt{pmax} renvoient les minimum et maximum ``parallèles'' des trois vecteurs passés en argument. Ainsi, \texttt{pmin} renvoie pour chaque élève la note minimale dans les trois matières, et \texttt{pmax} la note maximale.
+
+\end{solution}
+
+\fi
+
+\hypertarget{premier-travail-avec-des-donnuxe9es}{%
+\section{Premier travail avec des données}\label{premier-travail-avec-des-donnuxe9es}}
+
+\hypertarget{jeu-de-donnuxe9es-dexemple}{%
+\subsection{Jeu de données d'exemple}\label{jeu-de-donnuxe9es-dexemple}}
+
+Dans cette partie nous allons (enfin) travailler sur des ``vraies'' données, et utiliser un jeu de données présent dans l'extension \texttt{questionr}. Nous devons donc avant toute chose installer cette extension.
+
+Pour installer ce package, deux possibilités~:
+
+\begin{itemize}
+\tightlist
+\item
+  Dans l'onglet \emph{Packages} de la zone de l'écran en bas à droite, cliquez sur le bouton \emph{Install}. Dans le dialogue qui s'ouvre, entrez ``questionr'' dans le champ \emph{Packages} puis cliquez sur \emph{Install}.
+\item
+  Saisissez directement la commande suivante dans la console~: \texttt{install.packages("questionr")}
+\end{itemize}
+
+Dans les deux cas, tout un tas de messages devraient s'afficher dans la console. Attendez que l'invite de commandes \texttt{\textgreater{}} apparaisse à nouveau.
+
+Pour plus d'informations sur les extensions et leur installation, voir la section \ref{packages}.
+
+Le jeu de données que nous allons utiliser est un extrait de l'enquête \emph{Histoire de vie} réalisée par l'INSEE en 2003. Il contient 2000 individus et 20 variables.
+
+Pour pouvoir utiliser ces données, il faut d'abord charger l'extension \texttt{questionr} (après l'avoir installée, bien entendu)~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(questionr)}
+\end{Highlighting}
+\end{Shaded}
+
+L'utilisation de \texttt{library} permet de rendre ``disponibles'', dans notre session R, les fonctions et jeux de données inclus dans l'extension.
+
+Nous devons ensuite indiquer à R que nous souhaitons accéder au jeu de données à l'aide de la commande \texttt{data}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(hdv2003)}
+\end{Highlighting}
+\end{Shaded}
+
+Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), mais vous devriez voir apparaître dans l'onglet \emph{Environment} de RStudio un nouvel objet nommé \texttt{hdv2003}~:
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_environment} \caption{Onglet Environment}\label{fig:unnamed-chunk-71}
+\end{figure}
+
+Cet objet est d'un type nouveau~: il s'agit d'un tableau de données.
+
+\hypertarget{tableau-de-donnuxe9es-data-frame}{%
+\subsection{\texorpdfstring{Tableau de données (\emph{data frame})}{Tableau de données (data frame)}}\label{tableau-de-donnuxe9es-data-frame}}
+
+Un \emph{data frame} (ou tableau de données, ou table) est un type d'objet R qui contient des données au format tabulaire, avec les observations en ligne et les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel.
+
+Si on se contente d'exécuter le nom de notre tableau de données~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hdv2003}
+\end{Highlighting}
+\end{Shaded}
+
+R va, comme à son habitude, nous l'afficher dans la console, ce qui est tout sauf utile.
+
+Une autre manière d'afficher le contenu du tableau est de cliquer sur l'icône en forme de tableau à droite du nom de l'objet dans l'onglet \emph{Environment}~:
+
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_view_icon} \caption{Icone view}\label{fig:unnamed-chunk-73}
+\end{figure}
+
+Ou d'utiliser la fonction \texttt{View}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(hdv2003)}
+\end{Highlighting}
+\end{Shaded}
+
+Dans les deux cas votre tableau devrait s'afficher dans RStudio avec une interface de type tableur~:
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_view} \caption{Interface View}\label{fig:unnamed-chunk-75}
+\end{figure}
+
+Il est important de comprendre que l'objet \texttt{hdv2003} contient \emph{l'intégralité} des données du tableau.
+On voit donc qu'un objet peut contenir des données de types très différents (simple nombre, texte, vecteur, tableau de données entier), et être potentiellement de très grande taille\footnote{La seule limite pour la taille d'un objet étant la mémoire vive (RAM) de la machine sur laquelle tourne la session R.}.
+
+\begin{rmdnote}
+Sous R, on peut importer ou créer autant de tableaux de données qu'on le souhaite, dans les limites des capacités de sa machine.
+\end{rmdnote}
+
+Un \emph{data frame} peut être manipulé comme les autres objets vus précédemment. On peut par exemple faire~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d <-}\StringTok{ }\NormalTok{hdv2003}
+\end{Highlighting}
+\end{Shaded}
+
+ce qui va entraîner la copie de l'ensemble de nos données dans un nouvel objet nommé \texttt{d}. Ceci peut paraître parfaitement inutile mais a en fait l'avantage de fournir un objet avec un nom beaucoup plus court, ce qui diminuera la quantité de texte à saisir par la suite.
+
+\textbf{Pour résumer}, comme nous avons désormais décidé de saisir nos commandes dans un script et non plus directement dans la console, les premières lignes de notre fichier de travail sur les données de l'enquête \emph{Histoire de vie} pourraient donc ressembler à ceci~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Chargement des extensions nécessaires}
+\KeywordTok{library}\NormalTok{(questionr)}
+
+\CommentTok{## Jeu de données hdv2003}
+\KeywordTok{data}\NormalTok{(hdv2003)}
+\NormalTok{d <-}\StringTok{ }\NormalTok{hdv2003}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{structure-du-tableau}{%
+\subsubsection{Structure du tableau}\label{structure-du-tableau}}
+
+Un tableau étant un objet comme un autre, on peut lui appliquer des fonctions. Par exemple, \texttt{nrow} et \texttt{ncol} retournent le nombre de lignes et de colonnes du tableau~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ncol}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+La fonction \texttt{dim} renvoie ses dimensions, donc les deux nombres précédents~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2000   20
+\end{verbatim}
+
+La fonction \texttt{names} retourne les noms des colonnes du tableau, c'est-à-dire la liste de nos \emph{variables}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "id"            "age"           "sexe"          "nivetud"      
+##  [5] "poids"         "occup"         "qualif"        "freres.soeurs"
+##  [9] "clso"          "relig"         "trav.imp"      "trav.satisf"  
+## [13] "hard.rock"     "lecture.bd"    "peche.chasse"  "cuisine"      
+## [17] "bricol"        "cinema"        "sport"         "heures.tv"
+\end{verbatim}
+
+Enfin, la fonction \texttt{str} renvoie un descriptif plus détaillé de la structure du tableau. Elle liste les différentes variables, indique leur type \footnote{Les différents types de variables seront décrits plus en détail dans le chapitre \ref{vectorfactor} sur les recodages.} et affiche les premières valeurs~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':	2000 obs. of  20 variables:
+##  $ id           : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ age          : int  28 23 59 34 71 35 60 47 20 28 ...
+##  $ sexe         : Factor w/ 2 levels "Homme","Femme": 2 2 1 1 2 2 2 1 2 1 ...
+##  $ nivetud      : Factor w/ 8 levels "N'a jamais fait d'etudes",..: 8 NA 3 8 3 6 3 6 NA 7 ...
+##  $ poids        : num  2634 9738 3994 5732 4329 ...
+##  $ occup        : Factor w/ 7 levels "Exerce une profession",..: 1 3 1 1 4 1 6 1 3 1 ...
+##  $ qualif       : Factor w/ 7 levels "Ouvrier specialise",..: 6 NA 3 3 6 6 2 2 NA 7 ...
+##  $ freres.soeurs: int  8 2 2 1 0 5 1 5 4 2 ...
+##  $ clso         : Factor w/ 3 levels "Oui","Non","Ne sait pas": 1 1 2 2 1 2 1 2 1 2 ...
+##  $ relig        : Factor w/ 6 levels "Pratiquant regulier",..: 4 4 4 3 1 4 3 4 3 2 ...
+##  $ trav.imp     : Factor w/ 4 levels "Le plus important",..: 4 NA 2 3 NA 1 NA 4 NA 3 ...
+##  $ trav.satisf  : Factor w/ 3 levels "Satisfaction",..: 2 NA 3 1 NA 3 NA 2 NA 1 ...
+##  $ hard.rock    : Factor w/ 2 levels "Non","Oui": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ lecture.bd   : Factor w/ 2 levels "Non","Oui": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ peche.chasse : Factor w/ 2 levels "Non","Oui": 1 1 1 1 1 1 2 2 1 1 ...
+##  $ cuisine      : Factor w/ 2 levels "Non","Oui": 2 1 1 2 1 1 2 2 1 1 ...
+##  $ bricol       : Factor w/ 2 levels "Non","Oui": 1 1 1 2 1 1 1 2 1 1 ...
+##  $ cinema       : Factor w/ 2 levels "Non","Oui": 1 2 1 2 1 2 1 1 2 2 ...
+##  $ sport        : Factor w/ 2 levels "Non","Oui": 1 2 2 2 1 2 1 1 1 2 ...
+##  $ heures.tv    : num  0 1 0 2 3 2 2.9 1 2 2 ...
+\end{verbatim}
+
+Sous RStudio, on peut afficher à tout moment la structure d'un objet en cliquant sur l'icône de triangle sur fond bleu à gauche du nom de l'objet dans l'onglet \emph{Environment}~:
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_environment_str} \caption{Structure d'un objet}\label{fig:unnamed-chunk-84}
+\end{figure}
+
+\hypertarget{accuxe9der-aux-variables-dun-tableau}{%
+\subsubsection{Accéder aux variables d'un tableau}\label{accuxe9der-aux-variables-dun-tableau}}
+
+Une opération très importante est l'accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l'opérateur \texttt{\$}, qui permet d'accéder aux colonnes du tableau. Ainsi, si l'on tape~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d}\OperatorTok{$}\NormalTok{sexe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme
+##  [13] Femme Femme Femme Femme Homme Femme Homme Femme Femme Homme Femme Femme
+##  [25] Femme Homme Femme Homme Homme Homme Homme Homme Homme Homme Femme Femme
+##  [37] Homme Femme Femme Homme Femme Homme Homme Femme Femme Homme Femme Femme
+##  [49] Femme Femme Homme Femme Homme Femme Homme Femme Femme Femme Homme Femme
+##  [61] Femme Homme Homme Homme Homme Femme Homme Homme Femme Femme Homme Homme
+##  [73] Femme Femme Femme Femme Homme Femme Femme Femme Femme Femme Femme Homme
+##  [85] Homme Femme Homme Homme Homme Homme Homme Femme Homme Femme Femme Femme
+##  [97] Homme Homme Femme Femme Femme Homme Femme Homme Homme Femme Femme Femme
+## [109] Femme Homme Homme Homme Homme Homme Femme Homme Homme Femme Homme Homme
+## [121] Femme Femme Femme Homme Femme Femme Homme Femme Femme Homme Femme Homme
+## [133] Femme Femme Femme Homme Homme Homme Homme Homme Homme Homme Homme Femme
+## [145] Homme Homme Homme Femme Femme Femme Homme Femme Femme Femme Femme Homme
+## [157] Femme Homme Homme Homme Femme Homme Femme Homme Femme Homme Homme Femme
+## [169] Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Femme
+## [181] Homme Femme Femme Homme Homme Femme Femme Femme Femme Femme Homme Homme
+## [193] Femme Homme Homme Femme Homme Femme Homme Femme
+##  [ reached getOption("max.print") -- omitted 1800 entries ]
+## Levels: Homme Femme
+\end{verbatim}
+
+R va nous afficher l'ensemble des valeurs de notre variable \texttt{sexe} dans la console, ce qui est à nouveau fort peu utile. Mais cela nous permet de constater que \texttt{d\$sexe} est un vecteur de chaînes de caractères tels qu'on en a déjà rencontré précédemment.
+
+La fonction \texttt{table\$colonne} renvoie donc la colonne nommée \texttt{colonne} du tableau \texttt{table}, c'est-à-dire un vecteur, en général de nombres ou de chaînes de caractères.
+
+Si on souhaite afficher seulement les premières ou dernières valeurs d'une variable, on peut utiliser les fonctions \texttt{head} et \texttt{tail}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28 23 59 34 71 35
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 52 42 50 41 46 45 46 24 24 66
+\end{verbatim}
+
+Le deuxième argument numérique permet d'indiquer le nombre de valeurs à afficher.
+
+\hypertarget{cruxe9er-une-nouvelle-variable}{%
+\subsubsection{Créer une nouvelle variable}\label{cruxe9er-une-nouvelle-variable}}
+
+On peut aussi utiliser l'opérateur \texttt{\$} pour créer une nouvelle variable dans notre tableau~: pour cela, il suffit de lui assigner une valeur.
+
+Par exemple, la variable \texttt{heures.tv} contient le nombre d'heures passées quotidiennement devant la télé~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(d}\OperatorTok{$}\NormalTok{heures.tv, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0.0 1.0 0.0 2.0 3.0 2.0 2.9 1.0 2.0 2.0
+\end{verbatim}
+
+On peut vouloir créer une nouvelle variable dans notre tableau qui contienne la même durée mais en minutes. On va donc créer une nouvelle variables \texttt{minutes.tv} de la manière suivante~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d}\OperatorTok{$}\NormalTok{minutes.tv <-}\StringTok{ }\NormalTok{d}\OperatorTok{$}\NormalTok{heures.tv }\OperatorTok{*}\StringTok{ }\DecValTok{60}
+\end{Highlighting}
+\end{Shaded}
+
+On peut alors constater, soit visuellement soit dans la console, qu'une nouvelle variable (une nouvelle colonne) a bien été ajoutée au tableau~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(d}\OperatorTok{$}\NormalTok{minutes.tv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   0  60   0 120 180 120
+\end{verbatim}
+
+\hypertarget{analyse-univariuxe9e}{%
+\subsection{Analyse univariée}\label{analyse-univariuxe9e}}
+
+On a donc désormais accès à un tableau de données \texttt{d}, dont les lignes sont des observations (des individus enquêtés), et les colonnes des variables (des caractéristiques de chacun de ces individus), et on sait accéder à ces variables grâce à l'opérateur \texttt{\$}.
+
+Si on souhaite analyser ces variables, les méthodes et fonctions utilisées seront différentes selon qu'il s'agit d'une variable \emph{quantitative} (variable numérique pouvant prendre un grand nombre de valeurs~: l'âge, le revenu, un pourcentage\ldots{}) ou d'une variable \emph{qualitative} (variable pouvant prendre un nombre limité de valeurs appelées modalités~: le sexe, la profession, le dernier diplôme obtenu, etc.).
+
+\hypertarget{analyser-une-variable-quantitative}{%
+\subsubsection{Analyser une variable quantitative}\label{analyser-une-variable-quantitative}}
+
+Une variable quantitative est une variable de type numérique (un nombre) qui peut prendre un grand nombre de valeurs. On en a plusieurs dans notre jeu de données, notamment l'âge (variable \texttt{age}) ou le nombre d'heures passées devant la télé (\texttt{heures.tv}).
+
+\hypertarget{indicateurs-de-centralituxe9}{%
+\paragraph{Indicateurs de centralité}\label{indicateurs-de-centralituxe9}}
+
+Caractériser une variable quantitative, c'est essayer de décrire la manière dont ses valeurs se répartissent, ou se distribuent.
+
+Pour cela on peut commencer par regarder les valeurs extrêmes, avec les fonctions \texttt{min}, \texttt{max} ou \texttt{range}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{min}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{max}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 97
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{range}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18 97
+\end{verbatim}
+
+On peut aussi calculer des indicateurs de \emph{centralité}~: ceux-ci indiquent autour de quel nombre se répartissent les valeurs de la variable. Il y en a plusieurs, le plus connu étant la moyenne, qu'on peut calculer avec la fonction \texttt{mean}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 48.157
+\end{verbatim}
+
+Il existe aussi la médiane, qui est la valeur qui sépare notre population en deux~: on a la moitié de nos observations en-dessous, et la moitié au-dessus. Elle se calcule avec la fonction \texttt{median}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{median}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 48
+\end{verbatim}
+
+Une différence entre les deux indicateurs est que la médiane est beaucoup moins sensible aux valeurs ``extrêmes''~: on dit qu'elle est plus \emph{robuste}. Ainsi, en 2013, le salaire net \emph{moyen} des salariés à temps plein en France était de 2202 euros, tandis que le salaire net \emph{médian} n'était que de 1772 euros. La différence étant due à des très hauts salaires qui ``tirent'' la moyenne vers le haut.
+
+\hypertarget{indicateurs-de-dispersion}{%
+\paragraph{Indicateurs de dispersion}\label{indicateurs-de-dispersion}}
+
+Les indicateurs de dispersion permettent de mesurer si les valeurs sont plutôt regroupées ou au contraire plutôt dispersées.
+
+L'indicateur le plus simple est l'étendue de la distribution, qui décrit l'écart maximal observé entre les observations~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{max}\NormalTok{(d}\OperatorTok{$}\NormalTok{age) }\OperatorTok{-}\StringTok{ }\KeywordTok{min}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 79
+\end{verbatim}
+
+Les indicateurs de dispersion les plus utilisés sont la variance ou, de manière équivalente, l'écart-type (qui est égal à la racine carrée de la variance). On obtient la première avec la fonction \texttt{var}, et le second avec \texttt{sd} (abbréviation de \emph{standard deviation})~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 287.0249
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16.94181
+\end{verbatim}
+
+Plus la variance ou l'écart-type sont élevés, plus les valeurs sont dispersées autour de la moyenne. À l'inverse, plus ils sont faibles et plus les valeurs sont regroupées.
+
+Une autre manière de mesurer la dispersion est de calculer les quartiles~:
+
+\begin{itemize}
+\tightlist
+\item
+  le premier quartile est la valeur pour laquelle on a 25\% des observations en dessous et 75\% au dessus
+\item
+  le deuxième quartile est la valeur pour laquelle on a 50\% des observations en dessous et 50\% au dessus (c'est donc la médiane)
+\item
+  le troisième quartile est la valeur pour laquelle on a 75\% des observations en dessous et 25\% au dessus
+\end{itemize}
+
+On peut les calculer avec la fonction \texttt{quantile}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{### Premier quartile}
+\KeywordTok{quantile}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{prob =} \FloatTok{0.25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 25% 
+##  35
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Troisième quartile}
+\KeywordTok{quantile}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{prob =} \FloatTok{0.75}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+##  60
+\end{verbatim}
+
+\texttt{quantile} prend deux arguments principaux~: le vecteur dont on veut calculer le quantile, et un argument \texttt{prob} qui indique quel quantile on souhaite obtenir. \texttt{prob} prend une valeur entre 0 et 1~: 0.5 est la médiane, 0.25 le premier quartile, 0.1 le premier décile, etc.
+
+Notons enfin que la fonction \texttt{summary} permet d'obtenir d'un coup plusieurs indicateurs classiques~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   35.00   48.00   48.16   60.00   97.00
+\end{verbatim}
+
+\hypertarget{repruxe9sentation-graphique}{%
+\paragraph{Représentation graphique}\label{repruxe9sentation-graphique}}
+
+L'outil le plus utile pour étudier la distribution des valeurs d'une variable quantitative reste la représentation graphique.
+
+La représentation la plus courante est sans doute l'histogramme. On peut l'obtenir avec la fonction \texttt{hist}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-101-1.pdf}
+\caption{\label{fig:unnamed-chunk-101}Histogramme de l'age par défaut}
+\end{figure}
+
+Cette fonction n'a pas pour effet direct d'effectuer un calcul ou de nous renvoyer un résultat~: elle génère un graphique qui va s'afficher dans l'onglet \emph{Plots} de RStudio.
+
+On peut personnaliser l'apparence de l'histogramme en ajoutant des arguments supplémentaires à la fonction \texttt{hist}. L'argument le plus important est \texttt{breaks}, qui permet d'indiquer le nombre de classes que l'on souhaite.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{breaks =} \DecValTok{10}\NormalTok{, }\DataTypeTok{main =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-102-1.pdf}
+\caption{\label{fig:unnamed-chunk-102}Histogramme de l'age avec 10 classes}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{breaks =} \DecValTok{70}\NormalTok{, }\DataTypeTok{main =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-103-1.pdf}
+\caption{\label{fig:unnamed-chunk-103}Histogramme de l'age avec 70 classes}
+\end{figure}
+
+Le choix d'un ``bon'' nombre de classes pour un histogramme n'est pas un problème simple~: si on a trop peu de classes, on risque d'effacer quasiment toutes les variations, et si on en a trop on risque d'avoir trop de détails et de masquer les grandes tendances.
+
+Les arguments de \texttt{hist} permettent également de modifier la présentation du graphique. On peut ainsi changer la couleur des barres avec \texttt{col}\footnote{Les différentes manières de spécifier des couleurs sont indiquées dans l'encadré de la section \ref{scalecolor}.}, le titre avec \texttt{main}, les étiquettes des axes avec \texttt{xlab} et \texttt{ylab}, etc.~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, }\DataTypeTok{col =} \StringTok{"skyblue"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"Répartition des âges des enquêtés"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Âge"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"Effectif"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-104-1.pdf}
+\caption{\label{fig:unnamed-chunk-104}Histogramme modifié}
+\end{figure}
+
+La fonction \texttt{hist} fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques
+avec l'extension \texttt{ggplot2} qui permet la production et la personnalisation de graphiques complexes.
+
+\hypertarget{analyser-une-variable-qualitative}{%
+\subsubsection{Analyser une variable qualitative}\label{analyser-une-variable-qualitative}}
+
+Une variable qualitative est une variable qui ne peut prendre qu'un nombre limité de valeurs, appelées modalités. Dans notre jeu de données on trouvera par exemple le sexe (\texttt{sexe}), le niveau d'études (\texttt{nivetud}), la catégorie socio-professionnelle (\texttt{qualif})\ldots{}
+
+À noter qu'une variable qualitative peut tout-à-fait être numérique, et que certaines variables peuvent être traitées soit comme quantitatives, soit comme qualitatives~: c'est le cas par exemple du nombre d'enfants ou du nombre de frères et soeurs.
+
+\hypertarget{tri-uxe0-plat}{%
+\paragraph{Tri à plat}\label{tri-uxe0-plat}}
+
+L'outil le plus utilisé pour représenter la répartition des valeurs d'une variable qualitative est le \emph{tri à plat}~: il s'agit simplement de compter, pour chacune des valeurs possibles de la variable (pour chacune des modalités), le nombre d'observations ayant cette valeur. Un tri à plat s'obtient sous R à l'aide de la fonction \texttt{table}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{sexe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Homme Femme 
+##   899  1101
+\end{verbatim}
+
+Ce tableau nous indique donc que parmi nos enquêtés on trouve 899 hommes et 1101 femmes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                      203                      292                       86 
+## Profession intermediaire                    Cadre                  Employe 
+##                      160                      260                      594 
+##                    Autre 
+##                       58
+\end{verbatim}
+
+Un tableau de ce type peut être affiché ou stocké dans un objet, et on peut à son tour lui appliquer des fonctions. Par exemple, la fonction \texttt{sort} permet de trier le tableau selon la valeur de l'effectif. On peut donc faire~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab <-}\StringTok{ }\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif)}
+\KeywordTok{sort}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##                    Autre               Technicien Profession intermediaire 
+##                       58                       86                      160 
+##       Ouvrier specialise                    Cadre         Ouvrier qualifie 
+##                      203                      260                      292 
+##                  Employe 
+##                      594
+\end{verbatim}
+
+\begin{rmdimportant}
+Attention, par défaut la fonction \texttt{table} n'affiche pas les valeurs manquantes (\texttt{NA}). Si on souhaite les inclure il faut utiliser l'argument \texttt{useNA\ =\ "always"}, soit~: \texttt{table(d\$qualif,\ useNA\ =\ "always")}.
+\end{rmdimportant}
+
+À noter qu'on peut aussi appliquer \texttt{summary} à une variable qualitative. Le résultat est également le tri à plat de la variable, avec en plus le nombre de valeurs manquantes éventuelles~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                      203                      292                       86 
+## Profession intermediaire                    Cadre                  Employe 
+##                      160                      260                      594 
+##                    Autre                     NA's 
+##                       58                      347
+\end{verbatim}
+
+Par défaut ces tris à plat sont en effectifs et ne sont donc pas toujours très lisibles, notamment quand on a des effectifs importants. On leur rajoute donc en général la répartition en pourcentages. Pour cela, nous allons utiliser la fonction \texttt{freq} de l'extension \texttt{questionr}, qui devra donc avoir précédemment été chargée avec \texttt{library(questionr)}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## À rajouter en haut de script et à exécuter}
+\KeywordTok{library}\NormalTok{(questionr)}
+\end{Highlighting}
+\end{Shaded}
+
+On peut alors utiliser la fonction~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{freq}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                            n    % val%
+## Ouvrier specialise       203 10.2 12.3
+## Ouvrier qualifie         292 14.6 17.7
+## Technicien                86  4.3  5.2
+## Profession intermediaire 160  8.0  9.7
+## Cadre                    260 13.0 15.7
+## Employe                  594 29.7 35.9
+## Autre                     58  2.9  3.5
+## NA                       347 17.3   NA
+\end{verbatim}
+
+La colonne \texttt{n} représente les effectifs de chaque catégorie, la colonne \texttt{\%} le pourcentage, et la colonne \texttt{val\%} le pourcentage calculé sur les valeurs valides, donc en excluant les \texttt{NA}. Une ligne a également été rajoutée pour indiquer le nombre et la proportion de \texttt{NA}.
+
+\texttt{freq} accepte un certain nombre d'arguments pour personnaliser son affichage. Par exemple~:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{valid} indique si on souhaite ou non afficher les pourcentages sur les valeurs valides
+\item
+  \texttt{cum} indique si on souhaite ou non afficher les pourcentages cumulés
+\item
+  \texttt{total} permet d'ajouter une ligne avec les effectifs totaux
+\item
+  \texttt{sort} permet de trier le tableau par fréquence croissante (\texttt{sort="inc"}) ou décroissante (\texttt{sort="dec"}).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{freq}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif, }\DataTypeTok{valid=} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{total =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sort =} \StringTok{"dec"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                             n     %
+## Employe                   594  29.7
+## Ouvrier qualifie          292  14.6
+## Cadre                     260  13.0
+## Ouvrier specialise        203  10.2
+## Profession intermediaire  160   8.0
+## Technicien                 86   4.3
+## Autre                      58   2.9
+## NA                        347  17.3
+## Total                    2000 100.0
+\end{verbatim}
+
+\hypertarget{repruxe9sentations-graphiques}{%
+\paragraph{Représentations graphiques}\label{repruxe9sentations-graphiques}}
+
+On peut représenter graphiquement le tri à plat d'une variable qualitative avec un diagramme en barres, obtenu avec la fonction \texttt{barplot}. Attention, contrairement à \texttt{hist} cette fonction ne s'applique pas directement à la variable mais au résultat du tri à plat de cette variable, calculé avec \texttt{table}. Il faut donc procéder en deux étapes~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab <-}\StringTok{ }\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{clso)}
+\KeywordTok{barplot}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-115-1.pdf}
+\caption{\label{fig:unnamed-chunk-115}Graphique en barre}
+\end{figure}
+
+On peut aussi trier le tri à plat avec la fonction \texttt{sort} avant de le représenter graphiquement, ce qui peut faciliter la lecture du graphique~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{sort}\NormalTok{(tab))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-116-1.pdf}
+\caption{\label{fig:unnamed-chunk-116}Graphique en barre trié}
+\end{figure}
+
+Une alternative au graphique en barres est le \emph{diagramme de Cleveland}, qu'on peut obtenir avec la fonction \texttt{dotchart}. Celle-ci s'applique elle aussi au tri à plat de la variable calculé avec \texttt{table}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dotchart}\NormalTok{(}\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-117-1.pdf}
+Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dotchart}\NormalTok{(}\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-118-1.pdf}
+\caption{\label{fig:unnamed-chunk-118}Graphique de Cleveland trié}
+\end{figure}
+
+\hypertarget{ex-introR-univ}{%
+\subsection{Exercices}\label{ex-introR-univ}}
+
+\textbf{Exercice 1}
+
+Créer un nouveau script qui effectue les actions suivantes~:
+
+\begin{itemize}
+\tightlist
+\item
+  charger l'extension \texttt{questionr}
+\item
+  charger le jeu de données nommé \texttt{hdv2003}
+\item
+  copier le jeu de données dans un nouvel objet nommé \texttt{df}
+\item
+  afficher les dimensions et la liste des variables de \texttt{df}
+\end{itemize}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(questionr)}
+
+\KeywordTok{data}\NormalTok{(hdv2003)}
+\NormalTok{df <-}\StringTok{ }\NormalTok{hdv2003}
+
+\KeywordTok{dim}\NormalTok{(df)}
+\KeywordTok{names}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 2}
+
+On souhaite étudier la répartition du temps passé devant la télévision par les enquêtés (variable \texttt{heures.tv}). Pour cela, affichez les principaux indicateurs de cette variable~: valeur minimale, maximale, moyenne, médiane et écart-type. Représentez ensuite sa distribution par un histogramme en 10 classes.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{heures.tv)}
+\KeywordTok{sd}\NormalTok{(df}\OperatorTok{$}\NormalTok{heures.tv)}
+
+\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{heures.tv, }\DataTypeTok{breaks =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 3}
+
+On s'intéresse maintenant à l'importance accordée par les enquêtés à leur travail (variable \texttt{trav.imp}). Faites un tri à plat des effectifs des modalités de cette variable avec la commande \texttt{table}.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{trav.imp)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Faites un tri à plat affichant à la fois les effectifs et les pourcentages de chaque modalité. Y'a-t-il des valeurs manquantes ?
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{freq}\NormalTok{(df}\OperatorTok{$}\NormalTok{trav.imp)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Représentez graphiquement les effectifs des modalités à l'aide d'un graphique en barres.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{trav.imp))}
+\KeywordTok{barplot}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Utilisez l'argument \texttt{col} de la fonction \texttt{barplot} pour modifier la couleur du graphique en
+\texttt{tomato}.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(tab, }\DataTypeTok{col =} \StringTok{"tomato"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Tapez \texttt{colors()} dans la console pour afficher l'ensemble des noms de couleurs disponibles dans R. Testez chaque couleur une à une pour trouver votre couleur préférée.
+
+\iffalse
+
+\begin{solution}
+
+C'est une blague, hein~! Cela dit \texttt{moccasin} ou \texttt{palevioletred} sont pas mal, si vous voulez essayer :-)
+
+\end{solution}
+
+\fi
+
+\hypertarget{analyse-de-2-variables}{%
+\section{Analyse de 2 variables}\label{analyse-de-2-variables}}
+
+Faire une analyse bivariée, c'est étudier la relation entre deux variables~: sont-elles liées ? les valeurs de l'une influencent-elles les valeurs de l'autre ? ou sont-elles au contraire indépendantes ?
+
+À noter qu'on va parler ici d'influence ou de lien, mais pas de relation de cause à effet~: les outils présentés permettent de visualiser ou de déterminer une relation, mais des liens de causalité proprement dit sont plus difficiles à mettre en évidence. Il faut en effet vérifier que c'est bien telle variable qui influence telle autre et pas l'inverse, qu'il n'y a pas de ``variable cachée'', etc.
+
+Là encore, le type d'analyse ou de visualisation est déterminé par la nature qualitative ou quantitative des deux variables.
+
+\hypertarget{croisement-de-deux-variables-qualitatives}{%
+\subsection{Croisement de deux variables qualitatives}\label{croisement-de-deux-variables-qualitatives}}
+
+\hypertarget{tableaux-croisuxe9s}{%
+\subsubsection{Tableaux croisés}\label{tableaux-croisuxe9s}}
+
+On va continuer à travailler avec le jeu de données tiré de l'enquête \emph{Histoire de vie} inclus dans l'extension \texttt{questionr}. On commence donc par charger l'extension, le jeu de données, et à le renommer en un nom plus court pour gagner un peu de temps de saisie au clavier~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(questionr)}
+\KeywordTok{data}\NormalTok{(hdv2003)}
+\NormalTok{d <-}\StringTok{ }\NormalTok{hdv2003}
+\end{Highlighting}
+\end{Shaded}
+
+Quand on veut croiser deux variables qualitatives, on fait un \emph{tableau croisé}. Comme pour un tri à plat ceci s'obtient avec la fonction \texttt{table} de R, mais à laquelle on passe cette fois deux variables en argument. Par exemple, si on veut croiser la catégorie socio-professionnelle et le sexe des enquêtés~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif, d}\OperatorTok{$}\NormalTok{sexe)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                           
+##                            Homme Femme
+##   Ouvrier specialise          96   107
+##   Ouvrier qualifie           229    63
+##   Technicien                  66    20
+##   Profession intermediaire    88    72
+##   Cadre                      145   115
+##   Employe                     96   498
+##   Autre                       21    37
+\end{verbatim}
+
+Pour pouvoir interpréter ce tableau on doit passer du tableau en effectifs au tableau en pourcentages ligne ou colonne. Pour cela, on peut utiliser les fonctions \texttt{lprop} et \texttt{cprop} de l'extension \texttt{questionr}, qu'on applique au tableau croisé précédent.
+
+Pour calculer les pourcentages ligne~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab <-}\StringTok{ }\KeywordTok{table}\NormalTok{(d}\OperatorTok{$}\NormalTok{qualif, d}\OperatorTok{$}\NormalTok{sexe)}
+\KeywordTok{lprop}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                           
+##                            Homme Femme Total
+##   Ouvrier specialise        47.3  52.7 100.0
+##   Ouvrier qualifie          78.4  21.6 100.0
+##   Technicien                76.7  23.3 100.0
+##   Profession intermediaire  55.0  45.0 100.0
+##   Cadre                     55.8  44.2 100.0
+##   Employe                   16.2  83.8 100.0
+##   Autre                     36.2  63.8 100.0
+##   All                       44.8  55.2 100.0
+\end{verbatim}
+
+Et pour les pourcentages colonne~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cprop}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                           
+##                            Homme Femme All  
+##   Ouvrier specialise        13.0  11.7  12.3
+##   Ouvrier qualifie          30.9   6.9  17.7
+##   Technicien                 8.9   2.2   5.2
+##   Profession intermediaire  11.9   7.9   9.7
+##   Cadre                     19.6  12.6  15.7
+##   Employe                   13.0  54.6  35.9
+##   Autre                      2.8   4.1   3.5
+##   Total                    100.0 100.0 100.0
+\end{verbatim}
+
+\begin{rmdnote}
+Pour savoir si on doit faire des pourcentages ligne ou colonne, on
+pourra se référer à l'article suivant~:
+
+\url{http://alain-leger.lescigales.org/textes/lignecolonne.pdf}
+
+En résumé, quand on fait un tableau croisé, celui-ci est parfaitement
+symétrique~: on peut inverser les lignes et les colonnes, ça ne change
+pas son interprétation. Par contre, on a toujours en tête un ``sens'' de
+lecture dans le sens où on considère que l'une des variables
+\emph{dépend} de l'autre. Par exemple, si on croise sexe et type de
+profession, on dira que le type de profession dépend du sexe, et non
+l'inverse~: le type de profession est alors la variable
+\emph{dépendante} (à expliquer), et le sexe la variable
+\emph{indépendante} (explicative).
+
+Pour faciliter la lecture d'un tableau croisé, il est recommandé de
+\textbf{faire les pourcentages sur la variable indépendante}. Dans notre
+exemple, la variable indépendante est le sexe, elle est en colonne, on
+calcule donc les pourcentages colonnes qui permettent de comparer
+directement, pour chaque sexe, la répartition des catégories
+socio-professionnelles.
+\end{rmdnote}
+
+\hypertarget{repruxe9sentation-graphique}{%
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique}}
+
+Il est possible de faire une représentation graphique d'un tableau croisé, par exemple avec la fonction \texttt{mosaicplot}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaicplot}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-132-1.pdf}
+\caption{\label{fig:unnamed-chunk-132}Graphique mosaique}
+\end{figure}
+
+On peut améliorer ce graphique en colorant les cases selon les résidus du test du χ² (argument \texttt{shade\ =\ TRUE}) et en orientant verticalement les labels de colonnes (argument \texttt{las\ =\ 3})~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaicplot}\NormalTok{(tab, }\DataTypeTok{las =} \DecValTok{3}\NormalTok{, }\DataTypeTok{shade =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-133-1.pdf}
+\caption{\label{fig:unnamed-chunk-133}Graphique mosaique modifié}
+\end{figure}
+
+Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y'a beaucoup d'employés et d'ouvriers et très peu d'``autres''). Sa hauteur correspond aux pourcentages colonnes~: la proportion d'hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant~: les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l'hypothèse d'indépendance.
+
+\hypertarget{croisement-dune-variable-quantitative-et-dune-variable-qualitative}{%
+\subsection{Croisement d'une variable quantitative et d'une variable qualitative}\label{croisement-dune-variable-quantitative-et-dune-variable-qualitative}}
+
+\hypertarget{repruxe9sentation-graphique-1}{%
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-1}}
+
+Croiser une variable quantitative et une variable qualitative, c'est essayer de voir si les valeurs de la variable quantitative se répartissent différemment selon la catégorie d'appartenance de la variable qualitative.
+
+Pour cela, l'idéal est de commencer par une représentation graphique de type ``boîte à moustache'' à l'aide de la fonction \texttt{boxplot}. Par exemple, si on veut visualiser la répartition des âges selon la pratique ou non d'un sport, on va utiliser la syntaxe suivante~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(age }\OperatorTok{~}\StringTok{ }\NormalTok{sport, }\DataTypeTok{data =}\NormalTok{ d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{rmdnote}
+Cette syntaxe de \texttt{boxplot} utilise une nouvelle notation de type
+``formule''. Celle-ci est utilisée notamment pour la spécification des
+modèles de régression. Ici le \texttt{\textasciitilde{}} peut se lire
+comme ``en fonction de''~: on veut représenter le boxplot de l'âge en
+fonction du sport.
+\end{rmdnote}
+
+Ce qui va nous donner le résultat suivant~:
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-136-1.pdf}
+\caption{\label{fig:unnamed-chunk-136}Graphique en boites à moustaches}
+\end{figure}
+
+\begin{rmdnote}
+L'interprétation d'un boxplot est la suivante~: Les bords inférieurs et
+supérieurs du carré central représentent le premier et le troisième
+quartile de la variable représentée sur l'axe vertical. On a donc 50\%
+de nos observations dans cet intervalle. Le trait horizontal dans le
+carré représente la médiane. Enfin, des ``moustaches'' s'étendent de
+chaque côté du carré, jusqu'aux valeurs minimales et maximales, avec une
+exception~: si des valeurs sont éloignées du carré de plus de 1,5 fois
+l'écart interquartile (la hauteur du carré), alors on les représente
+sous forme de points (symbolisant des valeurs considérées comme
+``extrêmes'').
+\end{rmdnote}
+
+Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cours des douze derniers mois ont l'air d'être sensiblement plus jeunes que les autres.
+
+\hypertarget{calculs-dindicateurs}{%
+\subsubsection{Calculs d'indicateurs}\label{calculs-dindicateurs}}
+
+On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d'une variable quantitative selon les modalités d'une variable qualitative. Si on reprend l'exemple précédent, on peut calculer la moyenne d'âge pour ceux qui pratiquent un sport et pour ceux qui n'en pratiquent pas.
+
+Une première méthode pour cela est d'extraire de notre population autant de sous-populations qu'il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction \texttt{subset}.
+
+On applique \texttt{subset} pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d_sport <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(d, sport }\OperatorTok{==}\StringTok{ "Oui"}\NormalTok{)}
+\NormalTok{d_nonsport <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(d, sport }\OperatorTok{==}\StringTok{ "Non"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+On peut ensuite utiliser ces deux nouveaux tableaux de données comme on en a l'habitude, et calculer les deux moyennes d'âge~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(d_sport}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 40.92531
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(d_nonsport}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 52.25137
+\end{verbatim}
+
+Une autre possibilité est d'utiliser la fonction \texttt{tapply}, qui prend en paramètre une variable quantitative, une variable qualitative et une fonction, puis applique automatiquement la fonction aux valeurs de la variables quantitative pour chaque niveau de la variable qualitative~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(d}\OperatorTok{$}\NormalTok{age, d}\OperatorTok{$}\NormalTok{sport, mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Non      Oui 
+## 52.25137 40.92531
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(d_nonsport}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-145-1.pdf}
+
+Si l'âge dans le groupe des non sportifs se rapproche d'une distribution normale, celui des sportifs en semble assez éloigné, notamment du fait de la limite d'âge à 18 ans imposée par construction de l'enquête.
+
+On peut tester cette normalité à l'aide du test de Shapiro-Wilk et de la fonction \texttt{shapiro.test}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(d_sport}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  d_sport$age
+## W = 0.96203, p-value = 9.734e-13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(d_nonsport}\OperatorTok{$}\NormalTok{age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  d_nonsport$age
+## W = 0.98844, p-value = 1.654e-08
+\end{verbatim}
+
+Le test est significatif dans les deux cas et rejette l'hypothèse d'une normalité des deux distributions.
+
+Dans ce cas on peut faire appel à un test non-paramétrique, qui ne fait donc pas d'hypothèses sur les lois de distribution des variables testées, en l'occurrence le test des rangs de Wilcoxon, à l'aide de la fonction \texttt{wilcox.test}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{wilcox.test}\NormalTok{(d}\OperatorTok{$}\NormalTok{age }\OperatorTok{~}\StringTok{ }\NormalTok{d}\OperatorTok{$}\NormalTok{sport)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Wilcoxon rank sum test with continuity correction
+## 
+## data:  d$age by d$sport
+## W = 640577, p-value < 2.2e-16
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+La valeur \emph{p} étant à nouveau extrêmement petite, on peut rejeter l'hypothèse d'indépendance et considérer que les distributions des âges dans les deux sous-populations sont différentes.
+--\textgreater{}
+
+\hypertarget{croisement-de-deux-variables-quantitatives}{%
+\subsection{Croisement de deux variables quantitatives}\label{croisement-de-deux-variables-quantitatives}}
+
+Le jeu de données \texttt{hdv2003} comportant assez peu de variables quantitatives, on va s'intéresser maintenant à un autre jeu de données comportant des informations du recensement de la population de 2012. On le charge avec~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(rp2012)}
+\end{Highlighting}
+\end{Shaded}
+
+Un nouveau tableau de données \texttt{rp2012} devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section \ref{rp2012}.
+
+\hypertarget{repruxe9sentation-graphique-2}{%
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-2}}
+
+Quand on croise deux variables quantitatives, l'idéal est de faire une représentation graphique sous forme de nuage de points à l'aide de la fonction \texttt{plot}. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres, rp2012}\OperatorTok{$}\NormalTok{proprio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-150-1.pdf}
+\caption{\label{fig:unnamed-chunk-150}Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre}
+\end{figure}
+
+Une représentation graphique est l'idéal pour visualiser l'existence d'un lien entre les deux variables. Voici quelques exemples d'interprétation~:
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-151-1.pdf}
+\caption{\label{fig:unnamed-chunk-151}Illustration des relations bivariées}
+\end{figure}
+
+Dans ce premier graphique généré sur nos données, il semble difficile de mettre en évidence une relation de dépendance. Si par contre on croise le pourcentage de cadres et celui de diplômés du supérieur, on obtient une belle relation de dépendance linéaire.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(dipl_sup }\OperatorTok{~}\StringTok{ }\NormalTok{cadres, }\DataTypeTok{data =}\NormalTok{ rp2012)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-152-1.pdf}
+\caption{\label{fig:unnamed-chunk-152}Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre}
+\end{figure}
+
+La corrélation des rangs a aussi pour avantage d'être moins sensibles aux valeurs extrêmes ou aux points isolés. On dit qu'elle est plus ``robuste''.
+
+Pour calculer une corrélation de Spearman, on utilise la fonction \texttt{cor} mais avec l'argument \texttt{method\ =\ "spearman"}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres, rp2012}\OperatorTok{$}\NormalTok{dipl_sup, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9036273
+\end{verbatim}
+
+\hypertarget{ruxe9gression-linuxe9aire}{%
+\subsubsection{Régression linéaire}\label{ruxe9gression-linuxe9aire}}
+
+Quand on est en présence d'une association linéaire entre deux variables, on peut vouloir faire la régression linéaire d'une des variables sur l'autres.
+
+Une régression linéaire simple se fait à l'aide de la fonction \texttt{lm}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres }\OperatorTok{~}\StringTok{ }\NormalTok{rp2012}\OperatorTok{$}\NormalTok{dipl_sup)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = rp2012$cadres ~ rp2012$dipl_sup)
+## 
+## Coefficients:
+##     (Intercept)  rp2012$dipl_sup  
+##          0.9217           1.0816
+\end{verbatim}
+
+\begin{rmdnote}
+On retrouve avec \texttt{lm} la syntaxe ``formule'' déjà rencontrée avec
+\texttt{boxplot}. Elle permet ici de spécifier des modèles de
+régression~: la variable dépendante se place à gauche du
+\texttt{\textasciitilde{}}, et la variable indépendante à droite. Si on
+souhaite faire une régression multiple avec plusieurs variables
+indépendantes, on aura une formule du type
+\texttt{dep\ \textasciitilde{}\ indep1\ +\ indep2}. Il est également
+possible de spécifier des termes plus complexes, des interactions, etc.
+\end{rmdnote}
+
+\texttt{lm} nous renvoie par défaut les coefficients de la droite de régression~:
+
+\begin{itemize}
+\tightlist
+\item
+  l'ordonnée à l'origine \texttt{(Intercept)} vaut 0.92
+\item
+  le coefficient associé à \texttt{dipl\_sup} vaut 1.08
+\end{itemize}
+
+Pour des résultats plus détaillés, on peut stocker le résultat de la régression dans un objet et utiliser la fonction \texttt{summary}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{reg <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{cadres }\OperatorTok{~}\StringTok{ }\NormalTok{rp2012}\OperatorTok{$}\NormalTok{dipl_sup)}
+\KeywordTok{summary}\NormalTok{(reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = rp2012$cadres ~ rp2012$dipl_sup)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -33.218  -1.606  -0.172   1.491  13.001 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     0.921661   0.071814   12.83   <2e-16 ***
+## rp2012$dipl_sup 1.081636   0.005601  193.10   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.701 on 5168 degrees of freedom
+## Multiple R-squared:  0.8783,	Adjusted R-squared:  0.8783 
+## F-statistic: 3.729e+04 on 1 and 5168 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+Ces résultats montrent notamment que les coefficients sont significativement
+différents de 0. La part de cadres augmente donc bien avec celle de diplômés du supérieur.
+
+On peut enfin représenter la droite de régression sur notre nuage de points à l'aide de la fonction \texttt{abline}~:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{dipl_sup, rp2012}\OperatorTok{$}\NormalTok{cadres)}
+\KeywordTok{abline}\NormalTok{(reg, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-160-1.pdf}
+--\textgreater{}
+
+\hypertarget{ex-introR-biv}{%
+\subsection{Exercices}\label{ex-introR-biv}}
+
+\textbf{Exercice 1}
+
+Dans le jeu de données \texttt{hdv2003}, faire le tableau croisé entre la catégorie socio-professionnelle (variable \texttt{qualif}) et le fait de croire ou non en l'existence des classes sociales (variable \texttt{clso}). Identifier la variable indépendante et la variable dépendante, et calculer les pourcentages ligne ou colonne. Interpréter le résultat.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(questionr)}
+\KeywordTok{data}\NormalTok{(hdv2003)}
+\NormalTok{tab <-}\StringTok{ }\KeywordTok{table}\NormalTok{(hdv2003}\OperatorTok{$}\NormalTok{qualif, hdv2003}\OperatorTok{$}\NormalTok{clso)}
+
+\CommentTok{## Ici la variable indépendante est `qualif`, on calcule donc}
+\CommentTok{## les pourcentages lignes}
+\KeywordTok{lprop}\NormalTok{(tab)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Représenter ce tableau croisé sous la forme d'un \texttt{mosaicplot} en colorant les cases selon les résidus du test du χ².
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaicplot}\NormalTok{(tab, }\DataTypeTok{shade =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 2}
+
+Toujours sur le jeu de données \texttt{hdv2003}, faire le boxplot qui croise le nombre d'heures passées devant la télévision (variable \texttt{heures.tv}) avec le statut d'occupation (variable \texttt{occup}).
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(hdv2003}\OperatorTok{$}\NormalTok{heures.tv }\OperatorTok{~}\StringTok{ }\NormalTok{hdv2003}\OperatorTok{$}\NormalTok{occup)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+Calculer la durée moyenne devant la télévision en fonction du statut d'occupation à l'aide de \texttt{tapply}.
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tapply}\NormalTok{(hdv2003}\OperatorTok{$}\NormalTok{heures.tv, hdv2003}\OperatorTok{$}\NormalTok{occup, mean, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\textbf{Exercice 3}
+
+Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant le pourcentage de personnes sans diplôme (variable \texttt{dipl\_aucun}) et le pourcentage de propriétaires (variable \texttt{proprio}).
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(questionr)}
+\KeywordTok{data}\NormalTok{(rp2012)}
+\KeywordTok{plot}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{dipl_aucun, rp2012}\OperatorTok{$}\NormalTok{proprio)}
+\CommentTok{## ou}
+\KeywordTok{plot}\NormalTok{(proprio }\OperatorTok{~}\StringTok{ }\NormalTok{dipl_aucun, }\DataTypeTok{data =}\NormalTok{ rp2012)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
+
+\hypertarget{guxe9rer-les-donnuxe9es}{%
+\section{Gérer les données}\label{guxe9rer-les-donnuxe9es}}
+
 \hypertarget{importer-et-exporter-des-donnuxe9es}{%
-\section{Importer et exporter des données}\label{importer-et-exporter-des-donnuxe9es}}
+\subsection{Importer et exporter des données}\label{importer-et-exporter-des-donnuxe9es}}
 
 Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont \texttt{.csv} et \texttt{.Rdata}.
 Les fichiers \texttt{.csv} sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g.~Word, Writer, atom, \ldots{}) et les tableurs (e.g.~MS Excel, LO Calc).
-Les fichiers \texttt{.Rdata} sont utilisés pour stocker n'importe quelle objet R pas uniquement des données.
+Ils sont lus avec la fonction \texttt{read.csv} et créés avec \texttt{write.csv}.
+Les fichiers \texttt{.Rdata} sont utilisés pour stocker n'importe quel objet R pas uniquement des données.
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
+Ces fichiers sont lus avec la fonction \texttt{load} et créés avec la fonction \texttt{save}.
 
-Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies déjà en format \texttt{.csv}.
+Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies en format \texttt{.csv}.
+
+\hypertarget{ruxe9pertoire-de-travail}{%
+\subsubsection{Répertoire de travail}\label{ruxe9pertoire-de-travail}}
+
+\begin{rmdwarning}
+Une des erreurs les plus communes lorsque l'on débute avec R est lié au chargement des données et la lecture de fichier externe à R.
+\end{rmdwarning}
+Un message d'erreur typique est:
+
+\begin{verbatim}
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'ou_est_mon_fichier.csv': No such file or directory
+\end{verbatim}
+
+L'erreur est du au fait que R ne sache pas où trouver le fichier. Par défaut lorsqu'on ouvre R, R utilise le dossier utilisateur sur l'ordinateur comme dossier de travail. Cela signifie que R va cherhcer à lire les fichiers dans ce dossier et écrire les nouveaux fichiers dans ce dossier. Ceci n'est pas toujours pratique surtout lorsque l'on débute avec R.
+Pour lire/écrire un fichier dans un endroit particulier sur l'ordinateur, il faut spécifier à R le chemin de cet endroit. Cela peut ce faire de 3 manières différentes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  avec la fonction \texttt{file.choose()}. La fonction ouvrira une boîte de dialogue vous permettant d'aller choisir un fichier sur votre ordinateur. Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque fois que l'on souhaite l'utiliser.
+\item
+  en spécifiant le chemin complet du fichier dans la commande. Par example \texttt{"/home/julien/Documents/cours/BIO4558/labo/data/monfichier.csv"}. C'est assez long à taper et surtout cela ne permet pas de facilement utliser le code sur un autre ordinateur.
+\item
+  en spécifiant un répertoire de travail avec la fonction \texttt{setwd()}. Ceci indique à R de chercher et d'écrire les fichiers dans un dossier en particulier. Le chemin des fichiers est toujours interprété de manière relative au répertoire de travail. Cela à l'avantage de pouvoir facilement utiliser le même code sur plusieurs ordinateur ssi la structure du dossier est la même.
+\end{enumerate}
+
+POur connaitre le répertoire de travail de R il faut utiliser la fonction \texttt{getwd()}. La fonction \texttt{setwd()} permet de spécifier le chemin du dossier à utiliser comme répertoire de travail.
+
+\begin{rmdtip}
+Si vous ouvrez \texttt{RStudio} en double-cliquant sur un fichier \texttt{.R} alors \texttt{Rstudio} utlisera le dossier où ce fichier est présent comme répertoire de travail. Plutôt pratique car cela évite d'avoir à utiliser la fonction \texttt{setwd()}.
+\end{rmdtip}
+
+\begin{rmdimportant}
+Pour l'ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d'analyses et de sauvegardés tous les fichiers de données dans un sous dossier \texttt{data}. Le code du labo est structuré de cette manière. C'est pourquoi tous les codes de chargement ou d'écriture de données seront du type \texttt{data/mon\_fichier.xxx}.
+\end{rmdimportant}
 
 \hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}{%
-\subsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.Rdata}}{Ouvrir un fichier de données en format .Rdata}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}}
+\subsubsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.Rdata}}{Ouvrir un fichier de données en format .Rdata}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.rdata}}
 
-Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d'exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, taper sur une ligne de commande :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\KeywordTok{file.choose}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-ce qui ouvrira une boîte de dialogue vous permettant d'aller choisir un fichier sur votre ordinateur.
-Si cette option semble très attirante de part sa simplicité, je ne recommande pas de s'en servir car elle ne permet pas de reproduire l'analyse facilement. En effet, elle nécessite de choisir le document chaque que l'on souhaite l'utiliser.
-
-Vous pouvez aussi directement taper le nom du fichier entre guillemet \texttt{"nom\ du\ fichier\ avec\ l\textquotesingle{}extension"}.
-Par exemple,
+Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d'exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, utliser la fonction \texttt{load} avec le nom et le chemin du fichier de données.
+Par example, pour ouvrir le fichier \texttt{ErablesGatineau.Rdata} qui se situe dans le dossier \texttt{data} du dossier de travail, il faut taper:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"ErablesGatineau.Rdata"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"data/ErablesGatineau.Rdata"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}{%
-\subsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.csv}}{Ouvrir un fichier de données en format .csv}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}}
+\subsubsection{\texorpdfstring{Ouvrir un fichier de données en format \texttt{.csv}}{Ouvrir un fichier de données en format .csv}}\label{ouvrir-un-fichier-de-donnuxe9es-en-format-.csv}}
 
 Pour importer ces données en format \texttt{.csv} dans R, il faut utiliser la commande \texttt{read.csv()}.
 Par exemple, pour créer un objet R \texttt{erables} qui contient les données du fichier \texttt{ErablesGatineau.csv}, il faut utiliser la commande suivant.
@@ -553,7 +3026,14 @@ Je vous déconseille cependant, la fonction \texttt{ls.str()} car elle peut prod
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "erables"
+##  [1] "anglais"        "chien"          "d"              "d_nonsport"    
+##  [5] "d_sport"        "diplome"        "erables"        "hdv2003"       
+##  [9] "imc"            "maths"          "p"              "poids"         
+## [13] "precipitations" "reg"            "resultat"       "rp2012"        
+## [17] "s"              "sport"          "tab"            "taille1"       
+## [21] "taille2"        "taille3"        "taille4"        "taille5"       
+## [25] "tailles"        "tailles_m"      "temperature"    "title"         
+## [29] "x"              "y"
 \end{verbatim}
 
 \begin{Shaded}
@@ -573,7 +3053,7 @@ R confirme avoir en mémoire l'objet \texttt{erables}.
 \texttt{erables} est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): \texttt{station}, une variable de type Facteur avec 2 niveaux, et \texttt{diam} et \texttt{biom} qui sont 2 variables numériques.
 
 \hypertarget{entrer-des-donnuxe9es}{%
-\subsection{Entrer des données}\label{entrer-des-donnuxe9es}}
+\subsubsection{Entrer des données}\label{entrer-des-donnuxe9es}}
 
 R n'est pas un environnement idéal pour entrer des données.
 C'est possible, mais la syntaxe est lourde et peut inciter à s'arracher les cheveux.
@@ -581,7 +3061,7 @@ Utilisez votre chiffrier préféré pour faire l'entrée de données.
 Ce sera plus efficace et moins frustrant.
 
 \hypertarget{nettoyercorriger-des-donnuxe9es}{%
-\subsection{Nettoyer/corriger des données}\label{nettoyercorriger-des-donnuxe9es}}
+\subsubsection{Nettoyer/corriger des données}\label{nettoyercorriger-des-donnuxe9es}}
 
 Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
@@ -590,17 +3070,21 @@ Il est finalement plus simple de refaire exécuter les quelques lignes de code p
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.
 
 \hypertarget{exporter-des-donnuxe9es-uxe0-partir-de-r.}{%
-\subsection{Exporter des données à partir de R.}\label{exporter-des-donnuxe9es-uxe0-partir-de-r.}}
+\subsubsection{Exporter des données à partir de R.}\label{exporter-des-donnuxe9es-uxe0-partir-de-r.}}
 
 Vous pouvez utiliser la fonction,
 
-\texttt{\{r\ write,\ eval\ =FALSE)\ \ \ write.csv(mydata,\ file\ =\ "outfilename.csv",\ row.names\ =\ FALSE)}
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{write.csv}\NormalTok{(mydata, }\DataTypeTok{file =} \StringTok{"outfilename.csv"}\NormalTok{, }\DataTypeTok{row.names =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 où \texttt{mydata} est le nom du base de données à exporter et \texttt{outfilename.csv} est le nom du fichier à produire.
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à \texttt{File\textgreater{}Change\ dir}, ou par la commande \texttt{setwd()})
 
 \hypertarget{examen-pruxe9liminaire-des-donnuxe9es}{%
-\section{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
+\subsection{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
 
 La première étape de toute analyse est l'examen des données.
 Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
@@ -611,8 +3095,6 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 
 \begin{itemize}
 \tightlist
-\item
-  Pour recommencer avec une ardoise vide, videz la mémoire de R de tout son contenu en tapant la commande \texttt{rm(list=ls())}
 \item
   Chargez les données du fichier \texttt{sturgeon.csv} dans un objet \texttt{sturgeon}.
 \item
@@ -640,7 +3122,7 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 \end{verbatim}
 
 \hypertarget{sommaire-statistique}{%
-\subsection{Sommaire statistique}\label{sommaire-statistique}}
+\subsubsection{Sommaire statistique}\label{sommaire-statistique}}
 
 Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande
 
@@ -688,7 +3170,7 @@ On y reviendra, mais prenez l'habitude de noter mentalement si il y a des donné
 \end{rmdwarning}
 
 \hypertarget{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}{%
-\subsection{Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité}\label{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}}
+\subsubsection{Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité}\label{histogramme-densituxe9-de-probabilituxe9-empirique-boxplot-et-examen-visuel-de-la-normalituxe9}}
 
 Examinons maintenant de plus près la distribution de fklngth.
 La commande \texttt{hist()} permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.
@@ -702,15 +3184,18 @@ La commande \texttt{hist()} permet de tracer un histogramme de la variable fklng
 \includegraphics{Labo_BIO4558_files/figure-latex/hist-stur-1.pdf}
 
 Les données semblent suivre approximativement une distribution normale.
-C'est bon à savoir.
-Cette syntaxe est un peu lourde puisqu'on doit ajouter le préfixe \texttt{sturgeon\$} devant chaque nom de variable.
+
+\begin{rmdnote}
+Cette syntaxe peut paraître un peu lourde puisqu'on doit ajouter le préfixe \texttt{sturgeon\$} devant chaque nom de variable.
 On pourrait se faciliter la tâche en utilisant la commande \texttt{attach()} \textbf{mais cela est fortement déconseillé} et jamais utilisé dans ce document.
+\end{rmdnote}
 
 Cet histogramme est la représentation classique.
 Mais les histogrammes ne sont pas parfaits.
 Leur forme dépend en partie du nombre de catégories utilisées, surtout pour les petits échantillons.
 On peut faire mieux, particulièrement si on est intéressé à comparer visuellement la distribution des observations à une distribution normale.
-Mais il faut programmer un peu (ou savoir copier-coller\ldots{})
+Mais il faut programmer un peu (ou savoir copier-coller\ldots{}).
+Le code suivant est un histogramme fait avec l'extension \texttt{ggplot2}.
 
 \begin{rmdcode}
 Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgreater{}New script, ou Ctrl-n dans Windows), puis exécutez le.
@@ -718,26 +3203,29 @@ Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-\textgrea
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{## Chargez l'extension ggplot si besoin}
 \KeywordTok{library}\NormalTok{(ggplot2)}
-\CommentTok{#  use "sturgeon" dataframe to make plot called mygraph}
-\CommentTok{#  and define x axis as representing fklngth}
-\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(sturgeon, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fklngth))}
-\CommentTok{#  add data to the mygraph ggplot}
+\CommentTok{##  créer un graphique `mygraph` utilisant les données de "sturgeon"}
+\CommentTok{## et définir l'axe des X comme la longueur `fklngth`}
+\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ sturgeon, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ fklngth))}
+
+\CommentTok{## ajouter différentes parties au graphique}
 \NormalTok{mygraph <-}\StringTok{ }\NormalTok{mygraph }\OperatorTok{+}
-\CommentTok{#  add data density smooth}
-\StringTok{    }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
-\CommentTok{#  add rug (bars at the bottom of the plot)}
-\StringTok{    }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
-\CommentTok{#  add black semitransparent histogram}
+\CommentTok{## histogramme semi-transparent}
 \StringTok{    }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..), }\DataTypeTok{bins =} \DecValTok{30}\NormalTok{, }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{,   }\DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\CommentTok{#  add normal curve in red, with mean and sd from fklength}
+\CommentTok{##  line de densité}
+\StringTok{    }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
+\CommentTok{##  localisation des observations}
+\StringTok{    }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
+\CommentTok{##  courbe de distribution normale approximé au données}
 \StringTok{    }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm,}
                    \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}
                      \DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth),}
                      \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth) ),}
                    \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
-\CommentTok{# display graph}
-\NormalTok{    mygraph}
+
+\CommentTok{## montrer le graphique}
+\NormalTok{mygraph}
 \end{Highlighting}
 \end{Shaded}
 
@@ -806,14 +3294,14 @@ La commande \texttt{boxplot()} peut produire un boxplot de fklngth pour chaque n
 
 \includegraphics{Labo_BIO4558_files/figure-latex/boxplot-stur-1.pdf}
 
-La ligne un peu plus épaisse dans la boîte de la Fig.7 indique la médiane.
+La ligne un peu plus épaisse dans la boîte de la Figure indique la médiane.
 La coche est proportionnelle à l'incertitude quant à la position de la médiane.
 On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n'y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
 Les boîtes s'étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s'étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l'intérieur de 1.5x la largeur de l'étendue interquartile .
 Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l'étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.
 
 \hypertarget{diagrammes-de-dispersion-bivariuxe9s}{%
-\subsection{Diagrammes de dispersion bivariés}\label{diagrammes-de-dispersion-bivariuxe9s}}
+\subsubsection{Diagrammes de dispersion bivariés}\label{diagrammes-de-dispersion-bivariuxe9s}}
 
 En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d'oeil aux diagrammes de dispersion .
 La commande \texttt{plot(y\textasciitilde{}x)} permet de faire le graphique de y sur l'axe vertical (l'ordonnée) en fonction de x sur l'axe horizontal (l'abscisse).
@@ -845,7 +3333,7 @@ Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les v
 \includegraphics{Labo_BIO4558_files/figure-latex/pairs-stur-1.pdf}
 
 \hypertarget{cruxe9er-des-sous-ensembles-de-cas}{%
-\section{Créer des sous-ensembles de cas}\label{cruxe9er-des-sous-ensembles-de-cas}}
+\subsection{Créer des sous-ensembles de cas}\label{cruxe9er-des-sous-ensembles-de-cas}}
 
 Il arrive fréquemment qu'une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
 Les cas sont d'habitude sélectionnés selon un critère en particulier.
@@ -898,14 +3386,12 @@ Operateur & Explication & Operateur & Explication\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{itemize}
-\tightlist
-\item
-  En utilisant les commandes \texttt{subset()} et \texttt{hist()}, essayez de faire un histogramme pour le sous-ensemble de cas correspondant aux femelles capturées en 1979 et 1980 (donc \texttt{sex\ ==\ "FEMALE"\ \&\ (year\ ==\ "1979"\ \textbar{}\ year\ ==\ "1980")})
-\end{itemize}
+\begin{rmdcode}
+En utilisant les commandes \texttt{subset()} et \texttt{hist()}, essayez de faire un histogramme pour le sous-ensemble de cas correspondant aux femelles capturées en 1979 et 1980 (donc \texttt{sex\ ==\ "FEMALE"\ \&\ (year\ ==\ "1979"\ \textbar{}\ year\ ==\ "1980")})
+\end{rmdcode}
 
 \hypertarget{transformations-de-donnuxe9es}{%
-\section{Transformations de données}\label{transformations-de-donnuxe9es}}
+\subsection{Transformations de données}\label{transformations-de-donnuxe9es}}
 
 Il est très fréquemment nécessaire d'effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d'application de tests statistiques.
 R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
@@ -942,7 +3428,7 @@ Si on veut ajouter cette variable transformée à un tableau de données (data.f
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sturgeon}\OperatorTok{$}\NormalTok{logfkl <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(sturgeonfklngth)}
+\NormalTok{sturgeon}\OperatorTok{$}\NormalTok{logfkl <-}\StringTok{ }\KeywordTok{log10}\NormalTok{(sturgeon}\OperatorTok{$}\NormalTok{fklngth)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -957,14 +3443,50 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 \end{Shaded}
 
 \hypertarget{exercice-sur-r}{%
-\section{Exercice sur R}\label{exercice-sur-r}}
+\subsection{Exercice sur R}\label{exercice-sur-r}}
 
-\begin{rmdcode}
-Vous trouverez dans le fichier salmonella, des valeurs numériques du ratio pour deux milieux (IN VITRO et IN VIVO) pour trois souches.
-Examinez les données pour ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE.
-\end{rmdcode}
+Vous trouverez dans le fichier \texttt{salmonella.csv}, des valeurs numériques du ratio d'infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
+Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.
 
 \includegraphics{Labo_BIO4558_files/figure-latex/intror-exer-1.pdf}
+
+\iffalse
+
+\begin{solution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Charger les données}
+\NormalTok{salmonella <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/salmonella.csv"}\NormalTok{)}
+
+\CommentTok{##creer le graph en utilisant juste la souche sauvage et définir x}
+\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ ratio))}
+\CommentTok{##ajouter des composants graphiques}
+\NormalTok{mygraph <-}\StringTok{ }\NormalTok{mygraph }\OperatorTok{+}
+\CommentTok{# line densité}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
+\CommentTok{# position des observations}
+\StringTok{  }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
+\CommentTok{# histogramme}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..),}
+                 \DataTypeTok{bins =} \DecValTok{30}\NormalTok{,}
+                 \DataTypeTok{color =} \StringTok{"black"}\NormalTok{,}
+                 \DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
+\CommentTok{# distribution normal ajustée}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm,}
+                \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}
+                  \DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{)}\OperatorTok{$}\NormalTok{ratio),}
+                  \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{)}\OperatorTok{$}\NormalTok{ratio)}
+\NormalTok{                ),}
+                \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
+\CommentTok{## faire le graphique}
+\NormalTok{mygraph}
+\end{Highlighting}
+\end{Shaded}
+
+\end{solution}
+
+\fi
 
 \hypertarget{analyse-de-puissance-avec-r-et-gpower}{%
 \chapter{Analyse de puissance avec R et G*Power}\label{analyse-de-puissance-avec-r-et-gpower}}
@@ -998,21 +3520,21 @@ Après avoir complété cet exercice de laboratoire, vous devriez :
 
 \hypertarget{uxe9valuer-luxe9vidence}{%
 \subsubsection*{Évaluer l'évidence}\label{uxe9valuer-luxe9vidence}}
-
+\addcontentsline{toc}{subsubsection}{Évaluer l'évidence}
 
 L'analyse de puissance effectuée après avoir accepté une hypothèse nulle permet de calculer la probabilité que l'hypothèse nulle soit rejetée si elle était fausse et que la taille de l'effet était d'une valeur donnée.
 Ce type d'analyse a posteriori est très commun.
 
 \hypertarget{planifier-de-meilleures-expuxe9riences}{%
 \subsubsection*{Planifier de meilleures expériences}\label{planifier-de-meilleures-expuxe9riences}}
-
+\addcontentsline{toc}{subsubsection}{Planifier de meilleures expériences}
 
 L'analyse de puissance effectuée avant de réaliser une expérience (le plus souvent après une expérience préliminaire cependant), permet de déterminer le nombre d'observations nécessaires pour détecter un effet d'une taille donnée à un niveau fixe de probabilité (la puissance).
 Ce type d'analyse a priori devrait être réalisé plus souvent.
 
 \hypertarget{estimer-la-limite-de-duxe9tection-statistique}{%
 \subsubsection*{Estimer la ``limite de détection'' statistique}\label{estimer-la-limite-de-duxe9tection-statistique}}
-
+\addcontentsline{toc}{subsubsection}{Estimer la ``limite de détection'' statistique}
 
 L'effort d'échantillonnage est souvent déterminé à l'avance (par exemple lorsque vous héritez de données récoltées par quelqu'un d'autre), ou très sévèrement limité (lorsque les contraintes logistiques prévalent).
 Que ce soit a priori ou a posteriori l'analyse de puissance vous permet d'estimer, pour un effort d'échantillonnage donné et un niveau de puissance fixe, quelle est la taille minimale de l'effet qui peut être détecté (comme étant statistiquement significatif).
@@ -1024,21 +3546,21 @@ Il y a 3 facteurs qui affectent la puissance d'un test statistique.
 
 \hypertarget{le-crituxe8re-de-duxe9cision}{%
 \subsubsection*{Le critère de décision}\label{le-crituxe8re-de-duxe9cision}}
-
+\addcontentsline{toc}{subsubsection}{Le critère de décision}
 
 La puissance dépend de \(\alpha\), le seuil de probabilité auquel on rejette l'hypothèse nulle.
 Si ce seuil est très strict (\emph{i.e.} si \(\alpha\) est fixé à une valeur très basse, comme 0.1\% ou p = 0.001), alors la puissance sera plus faible que si le seuil était moins strict.
 
 \hypertarget{la-taille-de-luxe9chantillon}{%
 \subsubsection*{La taille de l'échantillon}\label{la-taille-de-luxe9chantillon}}
-
+\addcontentsline{toc}{subsubsection}{La taille de l'échantillon}
 
 Plus l'échantillon est grand, plus la puissance est élevée.
 La capacité d'un test à détecter de petites différences comme étant statistiquement significatives augmente avec une augmentation du nombre d'observations.
 
 \hypertarget{la-taille-de-leffet}{%
 \subsubsection*{La taille de l'effet}\label{la-taille-de-leffet}}
-
+\addcontentsline{toc}{subsubsection}{La taille de l'effet}
 
 Plus la taille de l'effet est grande, plus un test a de puissance.
 Pour un échantillon de taille fixe, la capacité d'un test à détecter un effet comme étant statistiquement significatif est plus élevée si l'effet est grand que s'il est petit.
@@ -1054,11 +3576,9 @@ G*Power vous permettra d'effectuer une analyse de puissance pour la majorité de
 Il est possible de faire tous les analyses de G*power avec R, mais cela est nettement plus complexes, car il faut tous coder à la main. Dans les cas les plus simple le code R est aussi fourni.
 G*power est vraiment un outil très utile que vous devrez maîtriser.
 
-\begin{itemize}
-\tightlist
-\item
-  Téléchargez le programme \textbf{\href{https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html}{ici}} et installez-le sur votre ordi et votre station de travail au laboratoire (si ce n'est déjà fait).*
-\end{itemize}
+\begin{rmdcode}
+Téléchargez le programme \textbf{\href{https://www.psychologie.hhu.de/arbeitsgruppen/allgemeine-psychologie-und-arbeitspsychologie/gpower.html}{ici}} et installez-le sur votre ordi et votre station de travail au laboratoire (si ce n'est déjà fait).
+\end{rmdcode}
 
 \hypertarget{comment-utiliser-gpower}{%
 \section{Comment utiliser G*Power}\label{comment-utiliser-gpower}}
@@ -1084,21 +3604,21 @@ L'utilisation de G*Power implique généralement en trois étapes:
 
 \hypertarget{a-priori}{%
 \subsubsection*{A priori}\label{a-priori}}
-
+\addcontentsline{toc}{subsubsection}{A priori}
 
 Calcule l'effectif requis pour une valeur de \(\alpha\), \(\beta\) et de taille d'effet donnée.
 Ce type d'analyse est utile à l'étape de planification des expériences.
 
 \hypertarget{compromis}{%
 \subsubsection*{Compromis}\label{compromis}}
-
+\addcontentsline{toc}{subsubsection}{Compromis}
 
 Calcule \(\alpha\) et \(\beta\) pour un rapport \(\beta / \alpha\) donné, un effectif fixe, et une taille d'effet donnée.
 Ce type d'analyse est plus rarement utilisé (je ne l'ai jamais fait), mais peut être utile lorsque le rapport \(\beta / \alpha\) est d'intérêt, par exemple lorsque le coût d'une erreur de type I et de type II peut être quantifié.
 
 \hypertarget{crituxe8re}{%
 \subsubsection*{Critère}\label{crituxe8re}}
-
+\addcontentsline{toc}{subsubsection}{Critère}
 
 Calcule \(\alpha\) pour \(\beta\), effectif et taille d'effet donné.
 En pratique, je vois peu d'utilité pour ce type de calcul.
@@ -1106,7 +3626,7 @@ Contactez-moi si vous en voyez une!
 
 \hypertarget{post-hoc}{%
 \subsubsection*{Post-hoc}\label{post-hoc}}
-
+\addcontentsline{toc}{subsubsection}{Post-hoc}
 
 Calcule la puissance (1 - \(\beta\)) pour \(\alpha\), une taille d'effet et un effectif donné.
 Très utilisée pour interpréter les résultats d'une analyse statistique non-significative, mais seulement si l'on utilise une taille d'effet biologiquement significative (et non la taille d'effet observée).
@@ -1114,7 +3634,7 @@ Peu pertinente lorsque le test est significatif.
 
 \hypertarget{sensitivituxe9}{%
 \subsubsection*{Sensitivité}\label{sensitivituxe9}}
-
+\addcontentsline{toc}{subsubsection}{Sensitivité}
 
 Calcule la taille d'effet détectable pour une valeur d'\(\alpha\), \(\beta\) et un effectif donné.
 Très utile également au stade de planification des expériences.
@@ -1279,7 +3799,57 @@ Démarrer G*Power.
 \includegraphics[width=1\linewidth]{images/gpower_1} \caption{Analyse post-hoc avec la taille d'effet estimée}\label{fig:gpower-1}
 \end{figure}
 
-Étudions un peu ce graphique.
+La même analyse peut être faites en utlisant R. Pour l'analyse avec R, il faut définir d'abord calculer la taille d'effet \texttt{d} pour un test de t comparant deux moyennes, puis utiliser la fonction \texttt{pwr.t.test} de l'extension \texttt{pwr}.
+Le plus simple comme nous allons estimer la taille d'effet \texttt{d} plusieurs fois et de créer une petite fonction qui estime \texttt{d} basé sur les paramètres nécessaires.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#charger l'extension pwr}
+\KeywordTok{library}\NormalTok{(pwr)}
+\CommentTok{# définir une fonction pour d}
+\NormalTok{d <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(u1, u2, sd1, sd2) \{}\KeywordTok{abs}\NormalTok{(u1}\OperatorTok{-}\NormalTok{u2)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{((sd1}\OperatorTok{^}\DecValTok{2}\OperatorTok{+}\NormalTok{sd2}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\DecValTok{2}\NormalTok{)\}}
+
+\CommentTok{#analyse de puissance}
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{n =} \DecValTok{18}\NormalTok{, }\DataTypeTok{d =} \KeywordTok{d}\NormalTok{(}\DataTypeTok{u1=}\FloatTok{2.64}\NormalTok{, }\DataTypeTok{sd1=}\FloatTok{3.28}\NormalTok{, }\DataTypeTok{u2=}\FloatTok{3.31}\NormalTok{, }\DataTypeTok{sd2=}\FloatTok{2.79}\NormalTok{), }\DataTypeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 18
+##               d = 0.220042
+##       sig.level = 0.05
+##           power = 0.09833902
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#graphique comme g*Power}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DataTypeTok{length=}\DecValTok{200}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, }\KeywordTok{dnorm}\NormalTok{(x), }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\NormalTok{qc <-}\StringTok{ }\KeywordTok{qt}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DecValTok{16}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{qc, }\DataTypeTok{col=}\StringTok{"green"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\OperatorTok{-}\NormalTok{qc, }\DataTypeTok{col=}\StringTok{"green"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(x, }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{(}\FloatTok{3.31-2.64}\NormalTok{)), }\DataTypeTok{type=}\StringTok{"l"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{#power corresponds to the shaded area}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{(}\FloatTok{3.31-2.64}\NormalTok{))}
+\KeywordTok{polygon}\NormalTok{(}\KeywordTok{c}\NormalTok{( x[x}\OperatorTok{<=-}\NormalTok{qc], }\OperatorTok{-}\NormalTok{qc),  }\KeywordTok{c}\NormalTok{(y[x}\OperatorTok{<=-}\NormalTok{qc],}\DecValTok{0}\NormalTok{), }\DataTypeTok{col=}\KeywordTok{rgb}\NormalTok{(}\DataTypeTok{red =} \DecValTok{0}\NormalTok{, }\DataTypeTok{green =} \FloatTok{0.2}\NormalTok{, }\DataTypeTok{blue =} \DecValTok{1}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/r-power-1.pdf}
+\caption{\label{fig:r-power}Graphique de l'analyse de puissance dans R}
+\end{figure}
+
+Étudions un peu la figure \ref{fig:gpower-1}.
 
 \begin{itemize}
 \tightlist
@@ -1316,15 +3886,32 @@ Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s'attendre
 On voudrait s'assurer que Jaynie avait de bonnes chances de détecter une différence aussi grande que celle-là avant d'accepter ses conclusions que la biomasse est la même entre les deux régions.
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 \(g/m^2\) entre les deux régions? G*Power peut nous le dire.
 
-\begin{itemize}
-\tightlist
-\item
-  Changer la moyenne du groupe 2 à 5.28, recalculer la taille d'effet, et cliquer sur Calculate pour obtenir (\ref{fig:gpower-2}):
-\end{itemize}
+\begin{rmdcode}
+Changer la moyenne du groupe 2 à 5.28, recalculer la taille d'effet, et cliquer sur Calculate pour obtenir (\ref{fig:gpower-2}).
+\end{rmdcode}
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{images/gpower_2} \caption{Analyse post-hoc avec une taille d'effet différente}\label{fig:gpower-2}
 \end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{n =} \DecValTok{18}\NormalTok{, }\DataTypeTok{d =} \KeywordTok{d}\NormalTok{(}\DataTypeTok{u1=}\FloatTok{2.64}\NormalTok{, }\DataTypeTok{sd1=}\FloatTok{3.28}\NormalTok{, }\DataTypeTok{u2=}\FloatTok{5.28}\NormalTok{, }\DataTypeTok{sd2=}\FloatTok{2.79}\NormalTok{), }\DataTypeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 18
+##               d = 0.8670313
+##       sig.level = 0.05
+##           power = 0.7146763
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
 
 La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.
 
@@ -1340,16 +3927,33 @@ Supposons qu'on puisse défendre la position qu'une différence de biomasse obse
 On devrait donc planifier la prochaine saison d'échantillonnage de manière à avoir de bonnes chances de détecter une différence de cette taille.
 Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80\% des chances de la détecter (compte tenu de la variabilité observée)?
 
-\begin{itemize}
-\tightlist
-\item
-  Changer le type d'analyse de puissance dans G*Power à \textbf{A priori}: \textbf{Compute sample size - given \(\alpha\) , power, and effect size.}
-  Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu'a obtenu Jaynie, recalculez la taille de l'effet, et inscrivez 0.8 pour la puissance et vous obtiendrez:
-\end{itemize}
+\begin{rmdcode}
+Changer le type d'analyse de puissance dans G*Power à \textbf{A priori}: \textbf{Compute sample size - given \(\alpha\) , power, and effect size.}
+Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu'a obtenu Jaynie, recalculez la taille de l'effet, et inscrivez 0.8 pour la puissance.
+\end{rmdcode}
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{images/gpower_3} \caption{Analyse à priori}\label{fig:gpower-3}
 \end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{power =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{d =} \KeywordTok{d}\NormalTok{(}\DataTypeTok{u1=}\FloatTok{2.64}\NormalTok{, }\DataTypeTok{sd1=}\FloatTok{3.28}\NormalTok{, }\DataTypeTok{u2=}\FloatTok{3.31}\NormalTok{, }\DataTypeTok{sd2=}\FloatTok{2.79}\NormalTok{), }\DataTypeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 325.1723
+##               d = 0.220042
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
 
 \textbf{Ouch!} Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
 Sans cela, on ne pourrait échantillonner que quelques dizaines de ruisseaux, et il serait peu probable que l'on puisse détecter une si faible différence de biomasse entre les deux régions.
@@ -1358,30 +3962,81 @@ Ce serait vraisemblablement en vain et pourrait être considéré comme une pert
 Si on refait le même calcul pour une puissance de 95\%, on obtient 538 ruisseaux par région.
 Augmenter la puissance ça demande plus d'effort.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{power =} \FloatTok{0.95}\NormalTok{, }\DataTypeTok{d =} \KeywordTok{d}\NormalTok{(}\DataTypeTok{u1=}\FloatTok{2.64}\NormalTok{, }\DataTypeTok{sd1=}\FloatTok{3.28}\NormalTok{, }\DataTypeTok{u2=}\FloatTok{3.31}\NormalTok{, }\DataTypeTok{sd2=}\FloatTok{2.79}\NormalTok{), }\DataTypeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 537.7286
+##               d = 0.220042
+##       sig.level = 0.05
+##           power = 0.95
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
 \hypertarget{analyse-de-sensitivituxe9---calculer-la-taille-deffet-duxe9tectable}{%
 \subsection{Analyse de sensitivité - Calculer la taille d'effet détectable}\label{analyse-de-sensitivituxe9---calculer-la-taille-deffet-duxe9tectable}}
 
 Compte tenu de la variabilité observée, d'un effort d'échantillonnage de 18 ruisseaux par région, et en conservant \(\alpha=0.05\), quelle est la taille d'effet que Jaynie pouvait détecter avec 80\% de chances \(\beta=0.2\))?
 
-\begin{itemize}
-\tightlist
-\item
-  Changez le type d'analyse dans G*Power à \textbf{Sensitivity}: \textbf{Compute required effect size - given \(\alpha\) , power, and sample size} et assurez-vous que la taille des échantillons est de 18 dans chaque région.
-  Vous obtiendrez:
-\end{itemize}
+\begin{rmdcode}
+Changez le type d'analyse dans G*Power à \textbf{Sensitivity}: \textbf{Compute required effect size - given \(\alpha\) , power, and sample size} et assurez-vous que la taille des échantillons est de 18 dans chaque région.
+\end{rmdcode}
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{images/gpower_4} \caption{Analyse de sensitivité}\label{fig:gpower-4}
 \end{figure}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{power =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{n=}\DecValTok{18}\NormalTok{, }\DataTypeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 18
+##               d = 0.9612854
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
 La taille d'effet détectable pour cette taille d'échantillon, \(\alpha=0.05\) et \(\beta=0.2\) (ou une puissance de 80\%) est de 0.961296.
-\textbf{Attention}, cette valeur est l'indice \texttt{d} de la taille de l'effet et est pondérée par la variabilité des mesures.
+
+\begin{rmdcaution}
+cette valeur est l'indice \texttt{d} de la taille de l'effet et est pondérée par la variabilité des mesures.
+\end{rmdcaution}
+
 Dans ce cas ci, \texttt{d} est approximativement égal à
 \[ d = \frac{| \bar{X_1} \bar{X_2} |} {\sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}}\]
-Pour convertir cette valeur de d sans unités en une valeur de différence de biomasse détectable (i.e \(| \bar{X_1} \bar{X_2} |\)), il suffit de multiplier d par le dénominateur de l'équation.
+Pour convertir cette valeur de d sans unités en une valeur de différence de biomasse détectable (i.e \(| \bar{X_1} \bar{X_2} |\)), il suffit de multiplier \texttt{d} par le dénominateur de l'équation.
 \[
 | \bar{X_1} \bar{X_2} | = d * \sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}
 \]
+Dans R, on peut estimer cela avec:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{power =} \FloatTok{0.8}\NormalTok{, }\DataTypeTok{n=}\DecValTok{18}\NormalTok{, }\DataTypeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{)}\OperatorTok{$}\NormalTok{d}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{((}\FloatTok{3.28}\OperatorTok{^}\DecValTok{2}\FloatTok{+2.79}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.926992
+\end{verbatim}
+
 Donc, avec 18 ruisseaux dans chaque région, pour \(\alpha=0.05\) et \(\beta=0.2\) (une puissance de 80\%), Jaynie pouvait détecter une différence de biomasse de 2.93\(g/m^2\) entre les régions, un peu plus que du simple au double.
 
 \hypertarget{points-uxe0-retenir}{%
@@ -1402,73 +4057,6 @@ Donc, avec 18 ruisseaux dans chaque région, pour \(\alpha=0.05\) et \(\beta=0.2
   Le choix de \(\beta\) est quelque peu arbitraire.
   On considère que \(\beta=0.2\) (puissance de 80\%) est relativement élevé.
 \end{itemize}
-
-\hypertarget{exercice-sur-la-puissance}{%
-\section{Exercice sur la puissance}\label{exercice-sur-la-puissance}}
-
-\begin{rmdcode}
-Les larves de mouches noires (Diptera: Simuliidae) ont été échantillonnées en février à l'émissaire de deux lacs des Cantons de l'Est (lacs Orford et Lovering).
-La longueur de chaque larve a été mesurée.
-Les données sont dans le fichier simulies.RData La relation entre la longueur (L, en mm) et la masse (M, en \(\mu\)g) pour l'espèce dominante (\emph{P. mixtum/fuscum}) est:
-
-\[
-M = 1.36 L^3.05
-\]
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Calculer la masse moyenne et l'écart-type à chaque site.
-\item
-  En utilisant la masse moyenne de \emph{P. mixtum/fuscum} à Lovering comme référence et les écarts-types observés aux 2 sites, calculer la puissance d'un test de t bilatéral pour moyennes indépendantes
-
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii})}
-  \tightlist
-  \item
-    si la différence de masse est de 5 \(\mu\)g, \(\alpha\) = 0.05, et qu'on échantillonnait 100 larves à chaque site
-  \item
-    si la différence de masse est de 20 \(\mu\)g, \(\alpha\) = 0.05, et qu'on échantillonnait 100 larves à chaque site
-  \item
-    si la différence de masse est de 50\(\mu\)g, \(\alpha\) = 0.05, et qu'on échantillonnait 100 larves à chaque site
-  \item
-    Comment est-ce que la puissance varie avec la taille de l'effet?
-  \end{enumerate}
-\item
-  Calculer la taille d'échantillon requis pour pouvoir détecter, par un test de t bilatéral pour moyennes indépendantes en tenant compte des écarts-types observés, une différence de 50 \(\mu\)g entre les moyennes
-
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii})}
-  \tightlist
-  \item
-    avec une puissance de 80\% et \(\alpha\) = 0.05
-  \item
-    avec une puissance de 80\% et \(\alpha\) = 0.001
-  \item
-    avec une puissance de 95\% et \(\alpha\) = 0.05
-  \item
-    Comment est-ce que la taille d'échantillon requise varie avec \(\alpha\) et \(\beta\)?
-  \end{enumerate}
-\item
-  Calculer la taille d'effet détectable (d) par un test de t bilatéral pour moyennes indépendantes, compte tenu des écarts-types observés
-
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii})}
-  \tightlist
-  \item
-    avec une puissance de 80\%, \(\alpha\) = 0.05, et des mesures sur 10 larves de chaque site
-  \item
-    avec une puissance de 80\%, \(\alpha\) = 0.05, et des mesures sur 200 larves à chaque site
-  \item
-    avec une puissance de 80\%, \(\alpha\) =0.05, et des mesures sur 20 larves d'un site et sur 380 larves au second site
-  \item
-    Comment est-ce que la taille d'effet détectable dépend de la taille d'échantillon dans les 2 groupes?
-  \end{enumerate}
-\item
-  Calculer la différence de masse, en \(\mu\)g, qui est détectable d'après vos estimés de la taille minimale d'effet détectable à 4a, b, et c.
-\end{enumerate}
-\end{rmdcode}
 
 \hypertarget{corruxe9lation-et-ruxe9gression-linuxe9aire-simple}{%
 \chapter{Corrélation et régression linéaire simple}\label{corruxe9lation-et-ruxe9gression-linuxe9aire-simple}}
@@ -2471,8 +5059,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.001817578  0.03382908
-## t2* 0.3408557 -0.001411900  0.02680257
+## t1* 1.1919926  0.001262318  0.03346056
+## t2* 0.3408557 -0.001009874  0.02640828
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -2529,12 +5117,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.256 )   ( 1.124,  1.259 )  
+## 95%   ( 1.125,  1.256 )   ( 1.121,  1.255 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.125,  1.260 )   ( 1.115,  1.250 )  
+## 95%   ( 1.129,  1.263 )   ( 1.120,  1.252 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -2558,10 +5145,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2897,  0.3948 )   ( 0.2908,  0.3938 )  
+## 95%   ( 0.2901,  0.3936 )   ( 0.2888,  0.3956 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2879,  0.3909 )   ( 0.2953,  0.4051 )  
+## 95%   ( 0.2861,  0.3929 )   ( 0.2936,  0.3984 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2906,9 +5493,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 45.084391 -0.01071599   0.4219215
-## t2* -1.714546  0.03221483   0.7613399
+##      original       bias    std. error
+## t1* 45.084391  0.007171511   0.4354547
+## t2* -1.714546 -0.021985933   0.7547951
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -2941,7 +5528,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.289, -0.255 )  
+## 95%   (-3.16, -0.18 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -2983,7 +5570,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1966   0.0488 *
+## location1   0.8573 2976   0.0326 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -3605,18 +6192,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5955
+## Quantile = 2.5954
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2738   3.6482
-##  1965 -  1954 == 0  -5.5077 -10.0006  -1.0148
-##  1966 -  1954 == 0  -3.3127  -6.3454  -0.2800
-##  1965 -  1958 == 0  -5.6949 -10.4148  -0.9749
-##  1966 -  1958 == 0  -3.4999  -6.8598  -0.1400
-##  1966 -  1965 == 0   2.1950  -2.2205   6.6104
+##  1958 -  1954 == 0   0.1872  -3.2736   3.6481
+##  1965 -  1954 == 0  -5.5077 -10.0003  -1.0150
+##  1966 -  1954 == 0  -3.3127  -6.3453  -0.2801
+##  1965 -  1958 == 0  -5.6949 -10.4146  -0.9752
+##  1966 -  1958 == 0  -3.4999  -6.8596  -0.1402
+##  1966 -  1965 == 0   2.1950  -2.2203   6.6102
 \end{verbatim}
 
 \begin{Shaded}
@@ -3884,6 +6471,22 @@ Version lmPerm du test de permutation.
 \appendix \addcontentsline{toc}{chapter}{\appendixname}}
 
 
+\hypertarget{note-sur-les-devoirs-et-rmarkdown}{%
+\chapter{Note sur les devoirs et Rmarkdown}\label{note-sur-les-devoirs-et-rmarkdown}}
+
+Pour les devoirs, veuillez soumettre les rapports en utilisant le fichier Rmarkdown fourni.
+Le fichier inclue l'énoncé du devoir, les questions et la structure pour intégrer le code R, les sorties R et vos interprétations.
+
+Après avoir modifié et sauvegardé le fichier \texttt{Rmd}, il faut générer le rapport dynamique en format \texttt{pdf}.
+Pour ce faire, il faut avoir installer une distribution de latex. Le plus simple est d'installer \texttt{tinytex}. Pour ce faire il faut installer l'extension R \texttt{tinytex} et à partir de decette extension installer la distribution latex \texttt{tinytex}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tinytex"}\NormalTok{)}
+\NormalTok{tinytex}\OperatorTok{::}\KeywordTok{install_tinytex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{petit-guide-pour-rmarkdown}{%
 \chapter{Petit guide pour Rmarkdown}\label{petit-guide-pour-rmarkdown}}
 
@@ -4079,8 +6682,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-18-1.pdf}
-\caption{\label{fig:unnamed-chunk-18-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-196-1.pdf}
+\caption{\label{fig:unnamed-chunk-196-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -4092,8 +6695,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-18-2.pdf}
-\caption{\label{fig:unnamed-chunk-18-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-196-2.pdf}
+\caption{\label{fig:unnamed-chunk-196-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -4105,9 +6708,16 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-18-3.pdf}
-\caption{\label{fig:unnamed-chunk-18-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-196-3.pdf}
+\caption{\label{fig:unnamed-chunk-196-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
+
+\hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%
+\chapter{Resources pour en apprendre plus sur rmarkdown}\label{resources-pour-en-apprendre-plus-sur-rmarkdown}}
+
+\url{https://statistique-et-logiciel-r.com/guide-de-demarrage-en-r-markdown/}
+
+\url{https://rmarkdown.rstudio.com/}
 
 \printindex
 
