@@ -2,6 +2,21 @@
 
 # (APPENDIX) Appendice {-}
 
+# Note sur les devoirs et Rmarkdown
+
+Pour les devoirs, veuillez soumettre les rapports en utilisant le fichier Rmarkdown fourni.
+Le fichier inclue l'énoncé du devoir, les questions et la structure pour intégrer le code R, les sorties R et vos interprétations.
+
+Après avoir modifié et sauvegardé le fichier `Rmd`, il faut générer le rapport dynamique en format `pdf`.
+Pour ce faire, il faut avoir installer une distribution de latex. Le plus simple est d'installer `tinytex`. Pour ce faire il faut installer l'extension R `tinytex` et à partir de decette extension installer la distribution latex `tinytex`.
+
+```{r, eval=FALSE}
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+
+
 # Petit guide pour Rmarkdown
 
 <!-- ajouter note sur installation de tinitex pour faire des pdf-->
