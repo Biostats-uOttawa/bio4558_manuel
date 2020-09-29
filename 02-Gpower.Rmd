@@ -145,8 +145,32 @@ Démarrer G\*Power.
 ```{r, gpower-1, fig.cap = "Analyse post-hoc avec la taille d'effet estimée", out.width = "100%", echo = FALSE  }
 knitr::include_graphics("images/gpower_1.png")
 ```
+La même analyse peut être faites en utlisant R. Pour l'analyse avec R, il faut définir d'abord calculer la taille d'effet `d` pour un test de t comparant deux moyennes, puis utiliser la fonction `pwr.t.test` de l'extension `pwr`.
+Le plus simple comme nous allons estimer la taille d'effet `d` plusieurs fois et de créer une petite fonction qui estime `d` basé sur les paramètres nécessaires.
 
-Étudions un peu ce graphique.
+```{r, r-power, fig.cap = "Graphique de l'analyse de puissance dans R"}
+#charger l'extension pwr
+library(pwr)
+# définir une fonction pour d
+d <- function(u1, u2, sd1, sd2) {abs(u1-u2)/sqrt((sd1^2+sd2^2)/2)}
+
+#analyse de puissance
+pwr.t.test(n = 18, d = d(u1=2.64, sd1=3.28, u2=3.31, sd2=2.79), sig.level = 0.05, type = "two.sample")
+
+#graphique comme g*Power
+x <- seq(-4, 4, length=200)
+plot(x, dnorm(x), type="l", col="red", lwd=2)
+qc <- qt(0.025, 16)
+abline(v=qc, col="green")
+abline(v=-qc, col="green")
+lines(x, dnorm(x, mean=(3.31-2.64)), type="l", col="blue", lwd=2)
+
+#power corresponds to the shaded area
+y <- dnorm(x, mean=(3.31-2.64))
+polygon(c( x[x<=-qc], -qc),  c(y[x<=-qc],0), col=rgb(red = 0, green = 0.2, blue = 1, alpha = 0.5))
+```
+
+Étudions un peu la figure \@ref(fig:gpower-1).
 
 - La courbe de gauche, en rouge, correspond à la distribution de la statistique t si $H_0$ est vraie (i.e si les deux moyennes étaient égales) compte tenu de l’effectif (18 dans chaque région) et des écarts- types observés.
 - Les lignes verticales vertes correspondent aux valeurs critiques de t pour une valeur $\alpha = 0.05$ et un effectif total de 36 (2x18).
@@ -181,6 +205,10 @@ Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliqu
 knitr::include_graphics("images/gpower_2.png")
 ```
 
+```{r}
+pwr.t.test(n = 18, d = d(u1=2.64, sd1=3.28, u2=5.28, sd2=2.79), sig.level = 0.05, type = "two.sample")
+```
+
 La puissance est de 0.71, donc Jaynie avait une chance raisonnable de détecter une différence du simple au double avec 18 ruisseaux dans chaque région.
 
 Notez que cette analyse de puissance post hoc pour une taille d’effet jugée biologiquement significative est bien plus informative que l’analyse précédente pour la taille d’effet observée (qui est celle effectuée par défaut par bien des néophytes et de trop nombreux logiciels qui essaient de penser pour nous).
@@ -202,6 +230,10 @@ Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles
 knitr::include_graphics("images/gpower_3.png")
 ```
 
+```{r}
+pwr.t.test(power = 0.8, d = d(u1=2.64, sd1=3.28, u2=3.31, sd2=2.79), sig.level = 0.05, type = "two.sample")
+
+```
 
 **Ouch!** Il faudrait échantillonner 326 ruisseaux dans chaque région! Cela coûterait une fortune et exigerait de nombreuses équipes de travail.
 Sans cela, on ne pourrait échantillonner que quelques dizaines de ruisseaux, et il serait peu probable que l’on puisse détecter une si faible différence de biomasse entre les deux régions.
@@ -209,6 +241,12 @@ Ce serait vraisemblablement en vain et pourrait être considéré comme une pert
 
 Si on refait le même calcul pour une puissance de 95%, on obtient 538 ruisseaux par région.
 Augmenter la puissance ça demande plus d’effort.
+
+```{r}
+pwr.t.test(power = 0.95, d = d(u1=2.64, sd1=3.28, u2=3.31, sd2=2.79), sig.level = 0.05, type = "two.sample")
+
+```
+
 
 ### Analyse de sensitivité - Calculer la taille d’effet détectable
 Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 18 ruisseaux par région, et en conservant $\alpha=0.05$, quelle est la taille d’effet que Jaynie pouvait détecter avec 80% de chances $\beta=0.2$)?
@@ -219,6 +257,11 @@ Changez le type d’analyse dans G\*Power à **Sensitivity**: **Compute required
 
 ```{r, gpower-4, fig.cap = "Analyse de sensitivité", out.width = "100%", echo = FALSE }
 knitr::include_graphics("images/gpower_4.png")
+```
+
+```{r}
+pwr.t.test(power = 0.8, n=18, sig.level = 0.05, type = "two.sample")
+
 ```
 
 La taille d’effet détectable pour cette taille d’échantillon, $\alpha=0.05$ et $\beta=0.2$ (ou une puissance de 80%) est de 0.961296.
@@ -233,6 +276,12 @@ Pour convertir cette valeur de d sans unités en une valeur de différence de bi
 $$
 | \bar{X_1} \bar{X_2} | = d * \sqrt{\frac{{s_1}^2 +{s_2}^2}{2}}
 $$
+Dans R, on peut estimer cela avec:
+
+```{r}
+pwr.t.test(power = 0.8, n=18, sig.level = 0.05, type = "two.sample")$d*sqrt((3.28^2+2.79^2)/2)
+```
+
 Donc, avec 18 ruisseaux dans chaque région, pour $\alpha=0.05$ et $\beta=0.2$ (une puissance de 80%), Jaynie pouvait détecter une différence de biomasse de 2.93$g/m^2$ entre les régions, un peu plus que du simple au double.
 
 ## Points à retenir
@@ -245,6 +294,7 @@ Il est en effet impossible de faire une erreur de type II quand on rejette $H_0$
 - Le choix de $\beta$ est quelque peu arbitraire.
 On considère que $\beta=0.2$ (puissance de 80%) est relativement élevé.
 
+<!--
 ## Exercice {#ex-power}
 
 ```{block2, type = "rmdcode"}
@@ -278,4 +328,4 @@ $$
     c) avec une puissance de 80%, $\alpha$ =0.05, et des mesures sur 20 larves d’un site et sur 380 larves au second site
     d) Comment est-ce que la taille d'effet détectable dépend de la taille d'échantillon dans les 2 groupes?
 
-5. Calculer la différence de masse, en $\mu$g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c.
+5. Calculer la différence de masse, en $\mu$g, qui est détectable d’après vos estimés de la taille minimale d’effet détectable à 4a, b, et c. -->
