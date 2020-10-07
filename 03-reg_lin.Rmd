@@ -14,15 +14,35 @@ trer la relation entre deux variables avec trace lowess
 * Utiliser R pour évaluer si un ensemble de données remplit les conditions d'application d'une analyse de régression simple.
 * Quantifier la taille de l’effet d’une régression simple et effectuer une analyse de puissance avec G\*Power.
 
-## Paquets et données requises pour le labo {#set-lm}
+## Extensions R et données requises pour le labo {#set-lm}
 Ce laboratoire nécessite:
 
 * les paquets R:
   * car
   * lmtest
   * boot
+  * pwr
+  * ggplot
 * les fichiers de données
   * sturgeon.csv
+
+Il ne faut pas oublier de charge les extensions avec `library()` et de les installer au besoin avec `install.packages()`
+Pour les données, il faut les lire et les assigner à un objet R.
+
+```{r,setup-3, eval = FALSE}
+library(car)
+library(lmtest)
+library(boot)
+library(ggplot)
+library(pwr)
+
+sturgeon <- read.csv("data/sturgeon.csv")
+```
+
+```{block2, type ="rmdnote"}
+Notez que la ligne de code pour lire les données considère que le fichier de données se trouve dans un dossier `data` au sein de votre répertoire de travail. Si ce n'est pas le cas veuillez ajuster la ligne de commande.
+```
+
 
 ## Diagrammes de dispersion
 Les analyses de corrélation et de régression devraient toujours commencer par un examen des données.C'est une étape critique qui sert à évaluer si ce type d'analyse est approprié pour un ensemble de données.
@@ -160,7 +180,7 @@ cor.test(
   method="pearson")
 ```
 
-On voit ici que la corrélation est hautement significative (p< 2.2e-16),ce qui n’est pas surprenant étant donné la valeur du coefficient de corrélation (0.8756).
+On voit ici que la corrélation est hautement significative ($p < 2.2e-16$),ce qui n’est pas surprenant étant donné la valeur du coefficient de corrélation (0.8756).
 Il est important de réaliser que si une matrice contient un grand nombre de corrélations, il n'est pas surprenant d'en trouver au moins une qui soit “significative”.
 En effet, on s'attend à en trouver 5% en moyenne lorsqu'il n'y a en fait aucune corrélation entre les paires de moyennes.
 Une façon de corriger pour cette tendance est d'ajuster le niveau $\alpha$ critique auquel on attribue une signification statistique en divisant $\alpha$ par le nombre $k$ de corrélations qui sont examinées : $\alpha' =
@@ -169,14 +189,14 @@ Donc, afin de rejeter l’hypothèse nulle, la valeur de p devra être plus peti
 Dans l’exemple qui précède, on devrait donc ajuster $\alpha$ critique en divisant par le nombre total de corrélations dans la matrice (6 dans ce cas, donc $\alpha'=0.00833$).
 Cette correction modifie-t-elle votre conclusion quant à la corrélation entre `lkfl` et `rdwght`?
 
-## Corrélations non paramétriques: r de Spearman et tau de Kendall
+## Corrélations non paramétriques: *r* de Spearman et $\tau$ de Kendall
 L'analyse faite à la section précédente avec les esturgeons suggère que l'une des conditions préalables à l'analyse de corrélation, soit la distribution normale bidimensionnelle de données, pourrait ne pas être remplie pour `fklngth` et `rdwght`, ni pour les paires de variables transformées.
 La recherche d'une transformation appropriée peut parfois être difficile.
 Pire encore, pour certaines distributions il n'existe pas de transformation qui va normaliser les données.
 Dans ces cas-là, la meilleure option est de faire une analyse non
 paramétrique qui ne présume ni de la normalité ni de la linéarité.
 Ces analyses sont basées sur les rangs.
-Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kendall.
+Les deux plus communes sont le coefficient de rang de Spearman et le $\tau$ (tau) de Kendall.
 
 - Dans R, testez la corrélation entre `fklngth` et `rdwght` en utilisant Spearman et Kendall’s .
 
@@ -192,7 +212,7 @@ cor.test(
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
   alternative="two.sided",
-  method="pearson")
+  method="kendall")
 ```
 
 Comparer les résultats de cette analyse à l'analyse paramétrique.
@@ -256,13 +276,15 @@ Pour voir les résultats, tapez:
 summary(RegModel.1)
 ```
 
-1. Le modèle qui a été ajusté et les données utilisées.
-2. Un sommaire statistique des résidus autour du modèle estimé.
-3. Valeurs estimées des paramètres du modèle, erreurs-types, statistiques t et probabilités associées.
-4. Racine carrée de la variance résiduelle.
-5. Coefficient de détermination. Il correspond à la proportion de la variabilité de la variable dépendante qui peut être expliquée par la régression.
-6. Le R-carré ajusté tient compte du nombre de paramètres du modèle. Si vous voulez comparer différents modèles qui n’ont pas le même nombre de paramètres, c’est ce qu’il faut utiliser.
-7. C’est le test de signification omnibus du modèle. Dans le cas de la régression simple, il est équivalent au test sur la pente de la régression.
+la sortie R donne:
+
+1. `Call:` Le modèle qui a été ajusté et les données utilisées.
+2. `Residuals:` Un sommaire statistique des résidus autour du modèle estimé.
+3. `Coefficients:` Valeurs estimées des paramètres du modèle, erreurs-types, statistiques t et probabilités associées.
+4. `Residual standard error:` Racine carrée de la variance résiduelle.
+5. `Multiple R-squared:` Coefficient de détermination. Il correspond à la proportion de la variabilité de la variable dépendante qui peut être expliquée par la régression.
+6. `Adjusted R-squared:` Le R-carré ajusté tient compte du nombre de paramètres du modèle. Si vous voulez comparer différents modèles qui n’ont pas le même nombre de paramètres, c’est ce qu’il faut utiliser.
+7. `F-statistic:` C’est le test de signification omnibus du modèle. Dans le cas de la régression simple, il est équivalent au test sur la pente de la régression.
 
 
 La régression estimée est donc:
@@ -460,6 +482,15 @@ Armés de cette taille d’effet (une pente présumée de 0.1 et une variabilit�
 knitr::include_graphics("images/lm_pow_1.png")
 ```
 
+Dans R, il est possible de faire cette analyse avec le code suivant:
+
+```{r, lm_r-pow-1}
+library(pwr)
+
+#analyse de puissance
+pwr.t.test(n = 20, d = 0.54, sig.level = 0.05, type = "one.sample")
+```
+
 La puissance de détecter une pente comme étant statistiquement significative (au niveau alpha), si la pente est 0.1, que la variabilité résiduelle autour de la régression est semblable à celle de notre échantillon (ce qui revient à une taille d’effet de 0.54, pour un échantillon de 20 esturgeons et alpha=0.05) est de 0.629. Seulement environ 2/3 des échantillons de cette taille détecteraient un effet significatif de l’âge sur `fklngth`.
 
 ### Effectif requis pour atteindre une puissance désirée (test A-priori)
@@ -468,7 +499,18 @@ Pour estimer la taille d’échantillon (effectif) requis pour avoir une puissan
 ```{r, lm-pow-fig-2, fig.cap = "Analyse à priori pour déterminer la taille d'échantillon pour une puissance de 0.99", out.width = "100%", echo = FALSE  }
 knitr::include_graphics("images/lm_pow_2.png")
 ```
+
+Dans R, il est possible de faire cette analyse avec le code suivant:
+
+```{r, lm_r-pow-1}
+library(pwr)
+
+#analyse de puissance
+pwr.t.test(n = 65, d = 0.54, sig.level = 0.05, type = "one.sample")
+```
+
 En augmentant la taille de l’échantillon à 65, selon le même scénario que précédemment, la puissance augmente à 99%.
+
 
 ## Bootstrap en régression simple avec R
 
