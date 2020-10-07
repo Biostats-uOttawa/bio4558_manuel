@@ -484,7 +484,7 @@ knitr::include_graphics("images/lm_pow_1.png")
 
 Dans R, il est possible de faire cette analyse avec le code suivant:
 
-```{r, lm_r-pow-1}
+```{r, rlm_r-pow-1}
 library(pwr)
 
 #analyse de puissance

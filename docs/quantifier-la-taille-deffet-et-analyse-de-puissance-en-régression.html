@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et <span class="math inline">\(\tau\)</span> de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -308,6 +308,19 @@ où <span class="math inline">\(b\)</span> est l’estimé de la pente, <span cl
 Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 </p>
 </div>
+<p>Dans R, il est possible de faire cette analyse avec le code suivant:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1"><span class="kw">library</span>(pwr)</a>
+<a class="sourceLine" id="cb310-2" title="2"></a>
+<a class="sourceLine" id="cb310-3" title="3"><span class="co">#analyse de puissance</span></a>
+<a class="sourceLine" id="cb310-4" title="4"><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">d =</span> <span class="fl">0.54</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      One-sample t test power calculation 
+## 
+##               n = 20
+##               d = 0.54
+##       sig.level = 0.05
+##           power = 0.6299804
+##     alternative = two.sided</code></pre>
 <p>La puissance de détecter une pente comme étant statistiquement significative (au niveau alpha), si la pente est 0.1, que la variabilité résiduelle autour de la régression est semblable à celle de notre échantillon (ce qui revient à une taille d’effet de 0.54, pour un échantillon de 20 esturgeons et alpha=0.05) est de 0.629. Seulement environ 2/3 des échantillons de cette taille détecteraient un effet significatif de l’âge sur <code>fklngth</code>.</p>
 </div>
 <div id="effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori" class="section level3">
@@ -319,6 +332,19 @@ Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 Figure 3.4: Analyse à priori pour déterminer la taille d’échantillon pour une puissance de 0.99
 </p>
 </div>
+<p>Dans R, il est possible de faire cette analyse avec le code suivant:</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="kw">library</span>(pwr)</a>
+<a class="sourceLine" id="cb312-2" title="2"></a>
+<a class="sourceLine" id="cb312-3" title="3"><span class="co">#analyse de puissance</span></a>
+<a class="sourceLine" id="cb312-4" title="4"><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">65</span>, <span class="dt">d =</span> <span class="fl">0.54</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>)</a></code></pre></div>
+<pre><code>## 
+##      One-sample t test power calculation 
+## 
+##               n = 65
+##               d = 0.54
+##       sig.level = 0.05
+##           power = 0.9900297
+##     alternative = two.sided</code></pre>
 <p>En augmentant la taille de l’échantillon à 65, selon le même scénario que précédemment, la puissance augmente à 99%.</p>
 </div>
 </div>

@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et <span class="math inline">\(\tau\)</span> de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -278,9 +278,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>À partir des données, vous devez d’abord changer le type de donnée de la variable <code>year</code>, pour que R traite <code>year</code> comme une variable discontinue (factor) plutôt que continue.</li>
 </ul>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1">Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb360-2" title="2">Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</a>
-<a class="sourceLine" id="cb360-3" title="3"><span class="kw">str</span>(Dam10dat)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1">Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb364-2" title="2">Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</a>
+<a class="sourceLine" id="cb364-3" title="3"><span class="kw">str</span>(Dam10dat)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	118 obs. of  21 variables:
 ##  $ year    : Factor w/ 4 levels &quot;1954&quot;,&quot;1958&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
@@ -306,21 +306,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Ensuite, visualisez les données comme dans le labo pour les tests de t. Créez un histogramme avec ligne de densité, un diagramme de probabilité, et un Box plot par année. Que vous révèlent ces données?</li>
 </ul>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" title="1">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Dam10dat, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-2" title="2"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Fork length (cm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-4" title="4"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</a>
-<a class="sourceLine" id="cb362-6" title="6">    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
-<a class="sourceLine" id="cb362-7" title="7">    <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-8" title="8"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
-<a class="sourceLine" id="cb362-9" title="9">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb362-10" title="10">      <span class="dt">mean =</span> <span class="kw">mean</span>(Dam10dat<span class="op">$</span>fklngth),</a>
-<a class="sourceLine" id="cb362-11" title="11">      <span class="dt">sd =</span> <span class="kw">sd</span>(Dam10dat<span class="op">$</span>fklngth)),</a>
-<a class="sourceLine" id="cb362-12" title="12">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb362-13" title="13"></a>
-<a class="sourceLine" id="cb362-14" title="14"><span class="co">#display graph, by year</span></a>
-<a class="sourceLine" id="cb362-15" title="15">mygraph<span class="op">+</span><span class="kw">facet_wrap</span>(<span class="op">~</span>year,<span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1">mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Dam10dat, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-2" title="2"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Fork length (cm)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-4" title="4"><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</a>
+<a class="sourceLine" id="cb366-6" title="6">    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</a>
+<a class="sourceLine" id="cb366-7" title="7">    <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb366-8" title="8"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</a>
+<a class="sourceLine" id="cb366-9" title="9">    <span class="dt">args =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb366-10" title="10">      <span class="dt">mean =</span> <span class="kw">mean</span>(Dam10dat<span class="op">$</span>fklngth),</a>
+<a class="sourceLine" id="cb366-11" title="11">      <span class="dt">sd =</span> <span class="kw">sd</span>(Dam10dat<span class="op">$</span>fklngth)),</a>
+<a class="sourceLine" id="cb366-12" title="12">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb366-13" title="13"></a>
+<a class="sourceLine" id="cb366-14" title="14"><span class="co">#display graph, by year</span></a>
+<a class="sourceLine" id="cb366-15" title="15">mygraph<span class="op">+</span><span class="kw">facet_wrap</span>(<span class="op">~</span>year,<span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-2"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" />
 <p class="caption">
@@ -335,10 +335,10 @@ Figure 5.1: Distribution de la longueur des esturgeons par année
 <ul>
 <li>Faites une ANOVA à un critère de classification sur fklngth par année et produisez les graphiques diagnostiques</li>
 </ul>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="co"># Fit anova model and plot residual diagnostics</span></a>
-<a class="sourceLine" id="cb363-2" title="2">anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a>
-<a class="sourceLine" id="cb363-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb363-4" title="4"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="co"># Fit anova model and plot residual diagnostics</span></a>
+<a class="sourceLine" id="cb367-2" title="2">anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a>
+<a class="sourceLine" id="cb367-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb367-4" title="4"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-3"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" />
 <p class="caption">
@@ -350,7 +350,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <ul>
 <li>Faites un test de normalité sur les résidus de l’ANOVA.</li>
 </ul>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</a></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
@@ -360,7 +360,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <ul>
 <li>Ensuite, éprouvez l’hypothèse d’égalité des variances (homoscedasticité):</li>
 </ul>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value  Pr(&gt;F)  
 ## group   3  2.8159 0.04234 *
@@ -374,7 +374,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <ul>
 <li>Faites une ANOVA de fklnght en choisissant / en présumant pour l’instant que les conditions d’application sont suffisamment remplies. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" title="1"><span class="kw">summary</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="kw">summary</span>(anova.model1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fklngth ~ year, data = Dam10dat)
@@ -402,7 +402,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <li>La p-valeur associée au test “omnibus” que toutes les moyennes sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0 pour conclure que fklngth varie selon les années.</li>
 </ol>
 <p>La commande <code>anova()</code> produit le tableau d’ANOVA standard qui contient la plupart de cette information:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">anova</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">anova</span>(anova.model1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: fklngth
@@ -419,8 +419,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <li>La fonction <code>pairwise.t.test()</code> peut être utilisée pour comparer des moyennes et ajuster (ou non, si désiré) les probabilités pour le nombre de comparaisons en utilisant l’une des options pour p.adj:</li>
 </ul>
 <p>Compare toutes les moyennes sans ajuster les probabilités</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb372-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb376-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -433,8 +433,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ## 
 ## P value adjustment method: none</code></pre>
 <p>Option <code>bonf</code> ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 p-valeurs calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la p-valeur ajustée est 1).</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb374-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb378-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -447,8 +447,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ## 
 ## P value adjustment method: bonferroni</code></pre>
 <p>Option “holm” is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc <span class="math inline">\(0.0019*(6-1+1)=0.011\)</span>. La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p- valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb376-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb380-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -461,8 +461,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ## 
 ## P value adjustment method: holm</code></pre>
 <p>L’option “fdr” sert à contrôler le “false discovery rate”.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
-<a class="sourceLine" id="cb378-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
+<a class="sourceLine" id="cb382-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -477,8 +477,8 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 <p>Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus gros après la construction du barrage et toutes les comparaisons entre les années 50 et 60 sont significatives alors que les différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne dépend pas du choix de méthode.</p>
 <p>Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.</p>
 <p>La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a une sale petit bogue qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans mon code):</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" title="1">Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste</span>(<span class="st">&quot;&quot;</span>, Dam10dat<span class="op">$</span>year))</a>
-<a class="sourceLine" id="cb380-2" title="2"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1">Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste</span>(<span class="st">&quot;&quot;</span>, Dam10dat<span class="op">$</span>year))</a>
+<a class="sourceLine" id="cb384-2" title="2"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -492,7 +492,7 @@ Figure 5.2: Conditions d’applications de l’ANOVA
 ##  1965- 1958 -5.6948718 -10.436304 -0.9534397 0.0116943
 ##  1966- 1958 -3.4999106  -6.875104 -0.1247171 0.0390011
 ##  1966- 1965  2.1949612  -2.240630  6.6305526 0.5710111</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</a></code></pre></div>
 <div class="figure"><span id="fig:ano-13"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
@@ -501,14 +501,14 @@ Figure 5.3: Différence anuelles dans la longueur des esturgeons
 </div>
 <p>Les intervalles de confiance, corrigés pour les comparaisons multiples par la méthode de Tukey, sont illustrés pour les différences entre années. Malheureusement les légendes ne sont pas complètes, mais l’ordre est le même que dans le tableau précédent.</p>
 <p>Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu plus de code:</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1"><span class="co"># Alternative way to compute Tukey multiple comparisons</span></a>
-<a class="sourceLine" id="cb383-2" title="2"><span class="co"># set up a one-way ANOVA</span></a>
-<a class="sourceLine" id="cb383-3" title="3">anova.fkl.vs.year &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a>
-<a class="sourceLine" id="cb383-4" title="4"><span class="co"># set up all-pairs comparisons for factor `year&#39;</span></a>
-<a class="sourceLine" id="cb383-5" title="5"></a>
-<a class="sourceLine" id="cb383-6" title="6">meandiff &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
-<a class="sourceLine" id="cb383-7" title="7"><span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb383-8" title="8"><span class="kw">confint</span>(meandiff)</a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1"><span class="co"># Alternative way to compute Tukey multiple comparisons</span></a>
+<a class="sourceLine" id="cb387-2" title="2"><span class="co"># set up a one-way ANOVA</span></a>
+<a class="sourceLine" id="cb387-3" title="3">anova.fkl.vs.year &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a>
+<a class="sourceLine" id="cb387-4" title="4"><span class="co"># set up all-pairs comparisons for factor `year&#39;</span></a>
+<a class="sourceLine" id="cb387-5" title="5"></a>
+<a class="sourceLine" id="cb387-6" title="6">meandiff &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
+<a class="sourceLine" id="cb387-7" title="7"><span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb387-8" title="8"><span class="kw">confint</span>(meandiff)</a></code></pre></div>
 <pre><code>## 
 ## 	 Simultaneous Confidence Intervals
 ## 
@@ -517,43 +517,43 @@ Figure 5.3: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5973
+## Quantile = 2.5926
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2762   3.6507
-##  1965 -  1954 == 0  -5.5077 -10.0037  -1.0116
-##  1966 -  1954 == 0  -3.3127  -6.3475  -0.2779
-##  1965 -  1958 == 0  -5.6949 -10.4181  -0.9716
-##  1966 -  1958 == 0  -3.4999  -6.8621  -0.1377
-##  1966 -  1965 == 0   2.1950  -2.2236   6.6135</code></pre>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb385-2" title="2"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
+##  1958 -  1954 == 0   0.1872  -3.2699   3.6443
+##  1965 -  1954 == 0  -5.5077  -9.9955  -1.0198
+##  1966 -  1954 == 0  -3.3127  -6.3420  -0.2834
+##  1965 -  1958 == 0  -5.6949 -10.4094  -0.9803
+##  1966 -  1958 == 0  -3.4999  -6.8560  -0.1438
+##  1966 -  1965 == 0   2.1950  -2.2155   6.6054</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb389-2" title="2"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 5.4: Différence anuelles dans la longueur des esturgeons
 </p>
 </div>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>C’est un peu mieux, mais ce qui le serait encore plus c’est un graphique des moyennes, avec leurs intervalles de confiance ajustés pour les comparaisons multiples:</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1"><span class="co"># Compute and plot means and Tukey CI</span></a>
-<a class="sourceLine" id="cb387-2" title="2">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
-<a class="sourceLine" id="cb387-3" title="3"><span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb387-4" title="4">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
-<a class="sourceLine" id="cb387-5" title="5"><span class="co"># use sufficiently large upper margin</span></a>
-<a class="sourceLine" id="cb387-6" title="6">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb387-7" title="7"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb387-8" title="8"><span class="kw">plot</span>(cimeans)</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="co"># Compute and plot means and Tukey CI</span></a>
+<a class="sourceLine" id="cb391-2" title="2">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span></a>
+<a class="sourceLine" id="cb391-3" title="3"><span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb391-4" title="4">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
+<a class="sourceLine" id="cb391-5" title="5"><span class="co"># use sufficiently large upper margin</span></a>
+<a class="sourceLine" id="cb391-6" title="6">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb391-7" title="7"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb391-8" title="8"><span class="kw">plot</span>(cimeans)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-15"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 5.5: Différence anuelles dans la longueur des esturgeons
 </p>
 </div>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>Notez les lettres au dessus du graphique: les années étiquetées avec la même lettre ne diffèrent pas significativement l’une de l’autre.</p>
 </div>
 </div>

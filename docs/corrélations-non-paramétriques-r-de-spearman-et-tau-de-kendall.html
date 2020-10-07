@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.5 Corrélations non paramétriques: r de Spearman et tau de Kendall | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.5 Corrélations non paramétriques: r de Spearman et \(\tau\) de Kendall | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.5 Corrélations non paramétriques: r de Spearman et tau de Kendall | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.5 Corrélations non paramétriques: r de Spearman et \(\tau\) de Kendall | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.5 Corrélations non paramétriques: r de Spearman et tau de Kendall | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.5 Corrélations non paramétriques: r de Spearman et \(\tau\) de Kendall | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et <span class="math inline">\(\tau\)</span> de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -270,21 +270,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall" class="section level2">
-<h2><span class="header-section-number">3.5</span> Corrélations non paramétriques: r de Spearman et tau de Kendall</h2>
+<h2><span class="header-section-number">3.5</span> Corrélations non paramétriques: <em>r</em> de Spearman et <span class="math inline">\(\tau\)</span> de Kendall</h2>
 <p>L’analyse faite à la section précédente avec les esturgeons suggère que l’une des conditions préalables à l’analyse de corrélation, soit la distribution normale bidimensionnelle de données, pourrait ne pas être remplie pour <code>fklngth</code> et <code>rdwght</code>, ni pour les paires de variables transformées.
 La recherche d’une transformation appropriée peut parfois être difficile.
 Pire encore, pour certaines distributions il n’existe pas de transformation qui va normaliser les données.
 Dans ces cas-là, la meilleure option est de faire une analyse non
 paramétrique qui ne présume ni de la normalité ni de la linéarité.
 Ces analyses sont basées sur les rangs.
-Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kendall.</p>
+Les deux plus communes sont le coefficient de rang de Spearman et le <span class="math inline">\(\tau\)</span> (tau) de Kendall.</p>
 <ul>
 <li>Dans R, testez la corrélation entre <code>fklngth</code> et <code>rdwght</code> en utilisant Spearman et Kendall’s .</li>
 </ul>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb265-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb265-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb265-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb266-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb266-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb266-4" title="4">  <span class="dt">method=</span><span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning in cor.test.default(sturgeon$lfklngth, sturgeon$rdwght, alternative =
 ## &quot;two.sided&quot;, : Cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -296,21 +296,19 @@ Les deux plus communes sont le coefficient de rang de Spearman et le tau de Kend
 ## sample estimates:
 ##       rho 
 ## 0.9522546</code></pre>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb268-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb268-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb268-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb269-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb269-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb269-4" title="4">  <span class="dt">method=</span><span class="st">&quot;kendall&quot;</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Pearson&#39;s product-moment correlation
+## 	Kendall&#39;s rank correlation tau
 ## 
 ## data:  sturgeon$lfklngth and sturgeon$rdwght
-## t = 24.322, df = 180, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.8367345 0.9057199
+## z = 16.358, p-value &lt; 2.2e-16
+## alternative hypothesis: true tau is not equal to 0
 ## sample estimates:
-##       cor 
-## 0.8756203</code></pre>
+##       tau 
+## 0.8208065</code></pre>
 <p>Comparer les résultats de cette analyse à l’analyse paramétrique.
 Pourquoi y-a-t’il une différence ?</p>
 <p>Calculez les corrélations non paramétriques sur les paires de variables transformées.
