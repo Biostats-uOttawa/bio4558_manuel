@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -277,8 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>L’approche conservatrice qui consiste à conserver toutes les valeurs extrêmes possibles est possiblement la plus honnête, mais elle peut causer certains problèmes. Ces valeurs extrêmes sont souvent la cause des violations des conditions d’application des tests statistiques. La solution suggérée à ce dilemme est de faire l’analyse avec et sans les valeurs extrêmes et de comparer les conclusions. Dans bien des cas, les conclusions seront qualitativement les mêmes et les tailles d’effet ne seront pas très différentes. Toutefois, dans certains cas, la présence des valeurs extrêmes change complètement les conclusions. Dans ces cas, il faut simplement accepter que les conclusions dépendent entièrement de la présence des valeurs extrêmes et sont donc peu concluantes.</p>
 <p>Suivant cette approche comparative, refaisons donc l’analyse après
 avoir enlevé les observations 8, 24, et 112.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" title="1">RegModel<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth)<span class="op">~</span><span class="kw">log10</span>(age), <span class="dt">data=</span>sturgeon.male, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;8&#39;</span>,<span class="st">&#39;24&#39;</span>,<span class="st">&#39;112&#39;</span>)))</a>
-<a class="sourceLine" id="cb296-2" title="2"><span class="kw">summary</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1">RegModel<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth)<span class="op">~</span><span class="kw">log10</span>(age), <span class="dt">data=</span>sturgeon.male, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;8&#39;</span>,<span class="st">&#39;24&#39;</span>,<span class="st">&#39;112&#39;</span>)))</a>
+<a class="sourceLine" id="cb297-2" title="2"><span class="kw">summary</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male, 
@@ -301,30 +301,30 @@ avoir enlevé les observations 8, 24, et 112.</p>
 ## F-statistic:   261 on 1 and 70 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>L’ordonnée à l’origine (Intercept), la pente, et le R carré sont presque les mêmes, et la valeur de p est encore astronomiquement petite. Enlever les valeurs extrêmes a peu d’effet dans ce cas.</p>
 <p>Les graphiques diagnostiques des résidus et les tests formels des conditions d’application sur ce sous-ensemble de données donnent:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb298-2" title="2"><span class="kw">plot</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb299-2" title="2"><span class="kw">plot</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/sturtr-6-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1">sturgeon.male.subset &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, <span class="dt">subset=</span><span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;8&#39;</span>,<span class="st">&#39;24&#39;</span>,<span class="st">&#39;112&#39;</span>)))</a>
-<a class="sourceLine" id="cb299-2" title="2"><span class="kw">bptest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" title="1">sturgeon.male.subset &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, <span class="dt">subset=</span><span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;8&#39;</span>,<span class="st">&#39;24&#39;</span>,<span class="st">&#39;112&#39;</span>)))</a>
+<a class="sourceLine" id="cb300-2" title="2"><span class="kw">bptest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	studentized Breusch-Pagan test
 ## 
 ## data:  RegModel.3
 ## BP = 0.3001, df = 1, p-value = 0.5838</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1"><span class="kw">dwtest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" title="1"><span class="kw">dwtest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Durbin-Watson test
 ## 
 ## data:  RegModel.3
 ## DW = 2.0171, p-value = 0.5074
 ## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1"><span class="kw">resettest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1"><span class="kw">resettest</span>(RegModel<span class="fl">.3</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	RESET test
 ## 
 ## data:  RegModel.3
 ## RESET = 3.407, df1 = 2, df2 = 68, p-value = 0.0389</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(RegModel<span class="fl">.3</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(RegModel<span class="fl">.3</span>))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 

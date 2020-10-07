@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -280,26 +280,26 @@ Si les deux variables sont normalement distribuées, on présume généralement 
 <p>Les figures ci-dessous sont les diagrammes de probabilité (<code>qqplot()</code>).
 Le code pour produire des graphiques multiples sur une page, comme
 on voit ci-dessous, est:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># divise le graphique en 4 sections</span></a>
-<a class="sourceLine" id="cb255-2" title="2"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth,<span class="dt">ylab=</span><span class="st">&quot;fklngth&quot;</span>)</a>
-<a class="sourceLine" id="cb255-3" title="3"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a>
-<a class="sourceLine" id="cb255-4" title="4"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth),<span class="dt">ylab=</span><span class="st">&quot;log10(fklngth)&quot;</span>)</a>
-<a class="sourceLine" id="cb255-5" title="5"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth))</a>
-<a class="sourceLine" id="cb255-6" title="6"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>rdwght,<span class="dt">ylab=</span><span class="st">&quot;rdwght&quot;</span>)</a>
-<a class="sourceLine" id="cb255-7" title="7"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>rdwght)</a>
-<a class="sourceLine" id="cb255-8" title="8"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght),<span class="dt">ylab=</span><span class="st">&quot;log10(rdwgth)&quot;</span>)</a>
-<a class="sourceLine" id="cb255-9" title="9"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght))</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># divise le graphique en 4 sections</span></a>
+<a class="sourceLine" id="cb256-2" title="2"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth,<span class="dt">ylab=</span><span class="st">&quot;fklngth&quot;</span>)</a>
+<a class="sourceLine" id="cb256-3" title="3"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a>
+<a class="sourceLine" id="cb256-4" title="4"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth),<span class="dt">ylab=</span><span class="st">&quot;log10(fklngth)&quot;</span>)</a>
+<a class="sourceLine" id="cb256-5" title="5"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>fklngth))</a>
+<a class="sourceLine" id="cb256-6" title="6"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>rdwght,<span class="dt">ylab=</span><span class="st">&quot;rdwght&quot;</span>)</a>
+<a class="sourceLine" id="cb256-7" title="7"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>rdwght)</a>
+<a class="sourceLine" id="cb256-8" title="8"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght),<span class="dt">ylab=</span><span class="st">&quot;log10(rdwgth)&quot;</span>)</a>
+<a class="sourceLine" id="cb256-9" title="9"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght))</a></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/stur-4hist-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co">#redéfinie la zone de graphique par défaut</span></a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co">#redéfinie la zone de graphique par défaut</span></a></code></pre></div>
 <p>Il n’y a pas grand-chose à redire: aucune des distributions n’est
 parfaitement normale, mais les déviations semblent mineures.</p>
 <ul>
 <li>Générez une matrice de graphiques de dispersion améliorés en utilisant la commande <code>scatterplotMatrix</code> de la librairie <code>car</code>.</li>
 </ul>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">scatterplotMatrix</span>(</a>
-<a class="sourceLine" id="cb257-2" title="2">  <span class="op">~</span>fklngth<span class="op">+</span><span class="kw">log10</span>(fklngth)<span class="op">+</span>rdwght<span class="op">+</span><span class="kw">log10</span>(rdwght),</a>
-<a class="sourceLine" id="cb257-3" title="3">  <span class="dt">data=</span> sturgeon,</a>
-<a class="sourceLine" id="cb257-4" title="4">  <span class="dt">smooth=</span><span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="st">&#39;density&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" title="1"><span class="kw">scatterplotMatrix</span>(</a>
+<a class="sourceLine" id="cb258-2" title="2">  <span class="op">~</span>fklngth<span class="op">+</span><span class="kw">log10</span>(fklngth)<span class="op">+</span>rdwght<span class="op">+</span><span class="kw">log10</span>(rdwght),</a>
+<a class="sourceLine" id="cb258-3" title="3">  <span class="dt">data=</span> sturgeon,</a>
+<a class="sourceLine" id="cb258-4" title="4">  <span class="dt">smooth=</span><span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="st">&#39;density&#39;</span>)</a></code></pre></div>
 <pre><code>## Warning in applyDefaults(diagonal, defaults = list(method =
 ## &quot;adaptiveDensity&quot;), : unnamed diag arguments, will be ignored</code></pre>
 <p><img src="Labo_BIO4558_files/figure-html/stur-scatmat-1.svg" width="672" /></p>
@@ -307,10 +307,10 @@ parfaitement normale, mais les déviations semblent mineures.</p>
 <li>Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées ) en utilisant la commande <code>cor()</code>.
 Avant de commencer, on va cependant ajouter les variables transformées au tableau de données sturgeon:</li>
 </ul>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" title="1">sturgeon<span class="op">$</span>lfklngth &lt;-<span class="st"> </span><span class="kw">with</span>(sturgeon, <span class="kw">log10</span>(fklngth))</a>
-<a class="sourceLine" id="cb259-2" title="2">sturgeon<span class="op">$</span>lrdwght &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1">sturgeon<span class="op">$</span>lfklngth &lt;-<span class="st"> </span><span class="kw">with</span>(sturgeon, <span class="kw">log10</span>(fklngth))</a>
+<a class="sourceLine" id="cb260-2" title="2">sturgeon<span class="op">$</span>lrdwght &lt;-<span class="st"> </span><span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght)</a></code></pre></div>
 <p>Vous pouvez ensuite obtenir la matrice de corrélation par:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" title="1"><span class="kw">cor</span>(sturgeon[,<span class="kw">c</span>(<span class="st">&quot;fklngth&quot;</span>,<span class="st">&quot;lfklngth&quot;</span>,<span class="st">&quot;lrdwght&quot;</span>,<span class="st">&quot;rdwght&quot;</span>)], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="kw">cor</span>(sturgeon[,<span class="kw">c</span>(<span class="st">&quot;fklngth&quot;</span>,<span class="st">&quot;lfklngth&quot;</span>,<span class="st">&quot;lrdwght&quot;</span>,<span class="st">&quot;rdwght&quot;</span>)], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
 <p>Fréquemment, il y a des données manquantes dans un échantillon.
 En choisissant <code>use="complete.obs"</code>, toutes les lignes du fichier pour lesquelles les variables ne sont pas toutes mesurées sont éliminées.
 Dans ce cas, toutes les corrélations seront calculées avec le même nombre de cas.
@@ -320,7 +320,7 @@ Dans ce cas, si les données manquantes pour différentes variables se retrouven
 En général, vous devriez utiliser l’option <code>use="complete.obs"</code> à moins que vous ayez un très grand nombre de données manquantes et que cette façon de procéder élimine la plus grande partie de vos
 observations.</p>
 <p>Pourquoi la corrélation entre les variables originales est-elle la plus faible des trois ?</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" title="1"><span class="kw">cor</span>(sturgeon[,<span class="kw">c</span>(<span class="st">&quot;fklngth&quot;</span>,<span class="st">&quot;lfklngth&quot;</span>,<span class="st">&quot;lrdwght&quot;</span>,<span class="st">&quot;rdwght&quot;</span>)], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" title="1"><span class="kw">cor</span>(sturgeon[,<span class="kw">c</span>(<span class="st">&quot;fklngth&quot;</span>,<span class="st">&quot;lfklngth&quot;</span>,<span class="st">&quot;lrdwght&quot;</span>,<span class="st">&quot;rdwght&quot;</span>)], <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
 <pre><code>##            fklngth  lfklngth   lrdwght    rdwght
 ## fklngth  1.0000000 0.9921435 0.9645108 0.9175435
 ## lfklngth 0.9921435 1.0000000 0.9670139 0.8756203

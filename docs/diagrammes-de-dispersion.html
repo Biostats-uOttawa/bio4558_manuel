@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -282,8 +282,8 @@ corrélation est que la relation entre les deux variables est linéaire. Pour
 <li>Les données sur les esturgeons son disponibles dans le fichier <code>sturgeon.csv</code>.
 Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un diagramme de dispersion avec une droite de régression et une courbe LOWESS de la longueur en fonction du poids.</li>
 </ul>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb251-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb252-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:	186 obs. of  9 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
@@ -294,16 +294,16 @@ Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un
 ##  $ sex     : chr  &quot;MALE&quot; &quot;FEMALE&quot; &quot;MALE&quot; &quot;FEMALE&quot; ...
 ##  $ location: chr  &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; ...
 ##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1">mygraph&lt;-<span class="kw">ggplot</span>(</a>
-<a class="sourceLine" id="cb253-2" title="2">  <span class="dt">data =</span> sturgeon[<span class="op">!</span><span class="kw">is.na</span>(sturgeon<span class="op">$</span>rdwght),], <span class="co"># source of data</span></a>
-<a class="sourceLine" id="cb253-3" title="3">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth, <span class="dt">y =</span> rdwght))</a>
-<a class="sourceLine" id="cb253-4" title="4"><span class="co"># plot data points, regression, loess trace</span></a>
-<a class="sourceLine" id="cb253-5" title="5">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
-<a class="sourceLine" id="cb253-6" title="6"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># add linear regression, but no SE shading</span></a>
-<a class="sourceLine" id="cb253-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co">#add loess</span></a>
-<a class="sourceLine" id="cb253-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></a>
-<a class="sourceLine" id="cb253-9" title="9"></a>
-<a class="sourceLine" id="cb253-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1">mygraph&lt;-<span class="kw">ggplot</span>(</a>
+<a class="sourceLine" id="cb254-2" title="2">  <span class="dt">data =</span> sturgeon[<span class="op">!</span><span class="kw">is.na</span>(sturgeon<span class="op">$</span>rdwght),], <span class="co"># source of data</span></a>
+<a class="sourceLine" id="cb254-3" title="3">  <span class="kw">aes</span>(<span class="dt">x =</span> fklngth, <span class="dt">y =</span> rdwght))</a>
+<a class="sourceLine" id="cb254-4" title="4"><span class="co"># plot data points, regression, loess trace</span></a>
+<a class="sourceLine" id="cb254-5" title="5">mygraph &lt;-<span class="st"> </span>mygraph <span class="op">+</span></a>
+<a class="sourceLine" id="cb254-6" title="6"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span>lm, <span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># add linear regression, but no SE shading</span></a>
+<a class="sourceLine" id="cb254-7" title="7"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co">#add loess</span></a>
+<a class="sourceLine" id="cb254-8" title="8"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></a>
+<a class="sourceLine" id="cb254-9" title="9"></a>
+<a class="sourceLine" id="cb254-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
 <div class="figure"><span id="fig:stur-2"></span>
 <img src="Labo_BIO4558_files/figure-html/stur-2-1.svg" alt="Graphique du poids en fonction de la longueur des esturgeons" width="672" />
 <p class="caption">
@@ -321,8 +321,8 @@ Malgré tout, il semble y avoir une forte corrélation entre les deux variables.
 <ul>
 <li>Refaites le diagramme de dispersion avec des axes logarithmiques.</li>
 </ul>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="co"># apply log transformation on defined graph</span></a>
-<a class="sourceLine" id="cb254-2" title="2">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="co"># apply log transformation on defined graph</span></a>
+<a class="sourceLine" id="cb255-2" title="2">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <div class="figure"><span id="fig:stur-log"></span>
 <img src="Labo_BIO4558_files/figure-html/stur-log-1.svg" alt="Graphique poids-longueur avec une échelle log" width="672" />
 <p class="caption">

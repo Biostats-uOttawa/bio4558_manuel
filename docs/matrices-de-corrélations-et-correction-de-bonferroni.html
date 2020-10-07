@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="transformations-et-le-coefficient-de-corrélation.html"/>
-<link rel="next" href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"/>
+<link rel="next" href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -276,10 +276,10 @@ Comme exemple, essayons de tester si la corrélation entre lfklngth et rdwght es
 <ul>
 <li>Estimer la correlation entre la longueur (fklngth) et le poids (rdwght) des esturgeons:</li>
 </ul>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" title="1"><span class="kw">cor.test</span>(</a>
-<a class="sourceLine" id="cb263-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
-<a class="sourceLine" id="cb263-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
-<a class="sourceLine" id="cb263-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" title="1"><span class="kw">cor.test</span>(</a>
+<a class="sourceLine" id="cb264-2" title="2">  sturgeon<span class="op">$</span>lfklngth, sturgeon<span class="op">$</span>rdwght,</a>
+<a class="sourceLine" id="cb264-3" title="3">  <span class="dt">alternative=</span><span class="st">&quot;two.sided&quot;</span>,</a>
+<a class="sourceLine" id="cb264-4" title="4">  <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
@@ -306,7 +306,7 @@ Cette correction modifie-t-elle votre conclusion quant à la corrélation entre 
         </div>
       </div>
 <a href="transformations-et-le-coefficient-de-corrélation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

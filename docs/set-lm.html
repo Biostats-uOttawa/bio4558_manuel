@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>3.1 Extensions R et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="3.1 Extensions R et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="3.1 Extensions R et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -270,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="set-lm" class="section level2">
-<h2><span class="header-section-number">3.1</span> Paquets et données requises pour le labo</h2>
+<h2><span class="header-section-number">3.1</span> Extensions R et données requises pour le labo</h2>
 <p>Ce laboratoire nécessite:</p>
 <ul>
 <li>les paquets R:
@@ -278,12 +278,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>car</li>
 <li>lmtest</li>
 <li>boot</li>
+<li>ggplot</li>
 </ul></li>
 <li>les fichiers de données
 <ul>
 <li>sturgeon.csv</li>
 </ul></li>
 </ul>
+<p>Il ne faut pas oublier de charge les extensions avec <code>library()</code> et de les installer au besoin avec <code>install.packages()</code>
+Pour les données, il faut les lire et les assigner à un objet R.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb251-2" title="2"><span class="kw">library</span>(lmtest)</a>
+<a class="sourceLine" id="cb251-3" title="3"><span class="kw">library</span>(boot)</a>
+<a class="sourceLine" id="cb251-4" title="4"><span class="kw">library</span>(ggplot)</a>
+<a class="sourceLine" id="cb251-5" title="5"></a>
+<a class="sourceLine" id="cb251-6" title="6">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a></code></pre></div>
+
+<div class="rmdnote">
+Notez que la ligne de code pour lire les données considère que le fichier de données se trouve dans un dossier <code>data</code> au sein de votre répertoire de travail. Si ce n’est pas le cas veuillez ajuster la ligne de commande.
+</div>
+
 </div>
 <script src="js/solution.js"></script>
             </section>

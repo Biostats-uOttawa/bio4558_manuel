@@ -199,11 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
-<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
-<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: r de Spearman et tau de Kendall</a></li>
+<li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et de Kendall</a></li>
 <li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
@@ -275,21 +275,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Répétez l’ANOVA originale sur fklngth et year mais faites le avec un sous-ensemble de données sans les valeurs extrêmes. Est-ce que les conclusions ont changé?</li>
 </ul>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),] <span class="co">#removes obs 23, 59 and 87</span></a>
-<a class="sourceLine" id="cb393-2" title="2">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
-<a class="sourceLine" id="cb393-3" title="3"><span class="kw">summary</span>(aov.Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),] <span class="co">#removes obs 23, 59 and 87</span></a>
+<a class="sourceLine" id="cb394-2" title="2">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
+<a class="sourceLine" id="cb394-3" title="3"><span class="kw">summary</span>(aov.Damsubset)</a></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## as.factor(year)   3  367.5  122.50   6.894 0.000267 ***
 ## Residuals       111 1972.4   17.77                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  residuals(aov.Damsubset)
 ## W = 0.98533, p-value = 0.2448</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" title="1"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value   Pr(&gt;F)   
 ## group   3  4.6237 0.004367 **
@@ -298,12 +298,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.</p>
 <p>Commandes R pour refaire l’ANOVA sur le sous-ensemble de données</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),]</a>
-<a class="sourceLine" id="cb399-2" title="2"><span class="co"># removes obs 23, 59 and 87</span></a>
-<a class="sourceLine" id="cb399-3" title="3">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
-<a class="sourceLine" id="cb399-4" title="4"><span class="kw">summary</span>(aov.Damsubset)</a>
-<a class="sourceLine" id="cb399-5" title="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a>
-<a class="sourceLine" id="cb399-6" title="6"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1">Damsubset&lt;-Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>,<span class="dv">59</span>,<span class="dv">87</span>),]</a>
+<a class="sourceLine" id="cb400-2" title="2"><span class="co"># removes obs 23, 59 and 87</span></a>
+<a class="sourceLine" id="cb400-3" title="3">aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</a>
+<a class="sourceLine" id="cb400-4" title="4"><span class="kw">summary</span>(aov.Damsubset)</a>
+<a class="sourceLine" id="cb400-5" title="5"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</a>
+<a class="sourceLine" id="cb400-6" title="6"><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</a></code></pre></div>
 </div>
 <script src="js/solution.js"></script>
             </section>
