@@ -33,7 +33,7 @@ Pour les données, il faut les lire et les assigner à un objet R.
 library(car)
 library(lmtest)
 library(boot)
-library(ggplot)
+library(ggplot2)
 library(pwr)
 
 sturgeon <- read.csv("data/sturgeon.csv")
@@ -359,6 +359,7 @@ library(lmtest)
 ```{block2, type = "rmdcode"}
 Exécutez les commandes suivantes
 ```
+
 ```{r, sturfor-2}
 bptest(RegModel.1)
 ```
