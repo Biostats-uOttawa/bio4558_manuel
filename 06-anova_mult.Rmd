@@ -1,4 +1,4 @@
-# (PART) Modèle multivarié {-}
+<!-- # (PART) Modèle multivarié {-} -->
 
 # ANOVA à critères multiples : plans factoriels et hiérarchiques
 
@@ -20,6 +20,18 @@ Ce laboratoire nécessite:
   * car
 * les fichiers de données
   * Stu2wdat.csv
+  * Stu2mdat.csv
+  * nr2wdat.csv
+  * nestdat.csv
+  * wmcdat2
+  * wmc2dat2
+
+```{r}
+library(multcomp)
+library(car)
+Stu2wdat <- read.csv("data/Stu2wdat.csv")
+Stu2mdat <- read.csv("data/Stu2mdat.csv")
+```
 
 ## Plan factoriel à deux facteurs de classification et réplication
 Il est fréquent de vouloir analyser l'effet de plusieurs facteurs simultanément. L'ANOVA factorielle à deux critères de classification permet d'examiner deux facteurs à la fois, mais la même approche peut être utilisée pour 3, 4 ou même 5 facteurs quoique l'interprétation des résultats devienne beaucoup plus complexe.
@@ -28,7 +40,7 @@ Il est fréquent de vouloir analyser l'effet de plusieurs facteurs simultanémen
 Supposons que vous êtes intéressés par l'effet de deux facteurs : site (location, Cumberland House ou The Pas) et sexe (sex, mâle ou femelle) sur la taille des esturgeons. Comme l'effectif n'est pas le même pour tous les groupes, c'est un plan qui n'est pas balancé. Notez aussi qu’il y a des valeurs manquantes pour certaines variables, ce qui veut dire que chaque mesure n’a pas été effectuée sur chaque poisson.
 
 ### ANOVA à effets fixes (Modèle I)
-* Examinez d’abord les données en faisant des box plots de rdwght pour sex et location des données du fichier Stu2wdat.Rdata .
+* Examinez d’abord les données en faisant des box plots de rdwght pour sex et location des données du fichier `Stu2wdat.csv` .
 
 
 Les graphiques montrent qu’aux deux sites les femelles sont probablement plus grandes que les mâles, mais que les tailles ne varient pas beaucoup d’un site à l’autre. La présence de valeurs extrêmes sur ces graphiques suggère qu’il y aura peut-être des problèmes avec la condition de normalité des résidus.
@@ -42,7 +54,7 @@ aggregate(rdwght~sex+location, data=Stu2wdat, FUN = "summary")
 ```
 Ces résultats supportent l’interprétation des box plots: Les femelles sont plus grosses que les mâles, et la différence de taille entre les deuxsites sont petites.
 
-* À l'aide du fichier Stu2wdat.Rdata faites une ANOVA factorielle à
+* À l'aide du fichier Stu2wdat.csv faites une ANOVA factorielle à
 deux critères de classification:
 
 ```{r}
@@ -91,6 +103,19 @@ Si les résidus étaient homoscédastiques, on accepterait l’hypothèse nulle 
 
 * Répétez la même analyse avec les données du fichier `stu2mdat.csv` . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?
 
+\iffalse
+<div class="solution">
+```{r}
+opar <- par(mfrow = c(2, 2))
+anova.model2 <- lm(
+  formula = rdwght ~ sex + location + sex:location,
+  contrasts = list(sex = contr.sum, location = contr.sum),
+  data = Stu2mdat)
+anova(anova.model2)
+```
+</div>
+\fi
+
 Notez que cette fois les femelles sont plus grandes que les mâles à Cumberland House, mais que c’est le contraire à The Pas. Quel est le résultat de l’ANOVA (n’oubliez pas qu’il faut des Type III sums of squares pour les résultats)?
 
 Anova Table (Type III tests)
@@ -106,10 +131,10 @@ allEffects(anova.model1)
 plot(allEffects(anova.model1), 'sex:location')
 allEffects(anova.model2)
 
-#plot(allEffects(anova.model2), 'sex:location')
+plot(allEffects(anova.model2), 'sex:location')
 ```
 
-Il y a une différence importante entre les résultats obtenus avec stu2wdat et `stu2mdat`. Dans le premier cas, puisqu’il n’y a pas d'interaction, on peut regrouper les données des deux niveaux d’un facteur (le site, par exemple) pour éprouver l’hypothèse d’un effet de l’autre facteur (le sexe). En fait, si on fait cela et que l’on calcule une ANOVA à un critère de classification (sex), on obtient:
+Il y a une différence importante entre les résultats obtenus avec `stu2wdat` et `stu2mdat`. Dans le premier cas, puisqu’il n’y a pas d'interaction, on peut regrouper les données des deux niveaux d’un facteur (le site, par exemple) pour éprouver l’hypothèse d’un effet de l’autre facteur (le sexe). En fait, si on fait cela et que l’on calcule une ANOVA à un critère de classification (sex), on obtient:
 
 ```{r}
 Anova(aov(rdwght ~ sex, data = Stu2wdat), type = 3)
@@ -149,7 +174,7 @@ Dans certains plans d'expérience il n'y a pas de réplicats pour chaque combina
 
 Comme il n'y a pas de réplicats, on ne peut estimer la variance du terme d'erreur. En effet on ne peut qu'estimer la somme des carrés associés à chacun des facteurs principaux, et la quantité de variabilité qui reste (Remainder Mean Square) représente la somme de la variabilité attribuable à l'interaction et au terme d'erreur. Cela a une implication importante : s'il y a une interaction, seul un modèle II d'ANOVA peut être entièrement testé et dans un modèle III d'ANOVA, seul l'effet fixe peut être testé (il est éprouvé en les comparant au carré moyen associé avec le remainder MS). Dans le cas d'un modèle I ou pour l'effet aléatoire d'un modèle III on ne peut tester les effets principaux que si on est sur qu'il n'y a pas d'interaction.
 
-Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend une seule mesure de température (temp,en degrés C) à 10 profondeurs différentes (depth, en m) à quatre dates (date) au cours de l'été. Ses données sont au fichier nr2wdat.Rdata.
+Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend une seule mesure de température (temp,en degrés C) à 10 profondeurs différentes (depth, en m) à quatre dates (date) au cours de l'été. Ses données sont au fichier nr2wdat.csv.
 
 - Effectuez une ANOVA à deux critères de classification en utilisant temp comme variable dépendante et date et depth comme variables indépendantes (vous devez changer le type de données pour DEPTH pour que R traite cette variable comme un facteur et non pas une vari- able continue).
 
@@ -184,11 +209,12 @@ Il y a donc un problème d’hétéroscédasticité, comme on peut très bien vo
 ## Plans hiérarchiques
 Un design expérimental fréquent implique la division de chaque groupe du facteur majeur en sous-groupes aléatoires. Par exemple, une généticienne intéressée par l'effet du génotype sur la résistance à la dessiccation chez la drosophile effectue une expérience. Pour chaque génotype (facteur principal) elle prépare trois chambres de croissance (sous-groupes) avec une température et humidité contrôlées. Dans chaque chambre de croissance, elle place cinq larves, puis mesure le nombre d'heures pendant lesquelles chaque larve survit.
 
-- Le fichier nestdat.Rdata contient les résultats d'une expérience sem- blable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.
+- Le fichier `nestdat.csv` contient les résultats d'une expérience sem- blable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.
 
 ```{r}
 nestdat <- read.csv("data/nestdat.csv")
 nestdat$chamber <- as.factor(nestdat$chamber)
+nestdat$genotype <- as.factor(nestdat$genotype)
 anova.nested <- lm(survival ~ genotype/chamber, data = nestdat)
 ```
 Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l'effet de Chamber / genotype n'est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N'oubliez pas de vérifier les conditions d'applications de l'ANOVA!
@@ -223,7 +249,7 @@ Le graphique de survival en fonction du génotype suggère que la résistance à
 par(mfrow=c(1,1))
 # Compute and plot means and Tukey CI
 means <- glht(anova.simple, linfct = mcp(genotype =
-"Tukey"))
+  "Tukey"))
 cimeans <- cld(means)
 # use sufficiently large upper margin
 old.par <- par(mai = c(1, 1, 1.25, 1))
@@ -242,7 +268,7 @@ Donc, toutes les conditions d’application semblent être remplies, et on peut 
 
 L'ANOVA non paramétrique à deux critères de classification est une extension de celle à un critère de classification vue précédemment. Elle débute par une ANOVA faite sur les données transformées en rangs. Elle peut se faire sur des données avec ou sans réplicats.
 
-À partir du fichier stu2wdat.Rdata, effectuez une ANOVA non paramétrique à deux facteurs de classification pour examiner l'effet de sex et location sur rank(rdwght).
+À partir du fichier stu2wdat.csv, effectuez une ANOVA non paramétrique à deux facteurs de classification pour examiner l'effet de sex et location sur rank(rdwght).
 
 ```{r}
 aov.rank <- aov(rank(rdwght) ~ sex * location,
@@ -280,7 +306,7 @@ Il y a toutefois une différence importante. Rappelez-vous que dans l’ANOVA pa
 ## Comparaisons multiples
 Les épreuves d'hypothèses subséquentes en ANOVA à plus d'un critère de classification dépendent des résultats initiaux de l'ANOVA. Si vous êtes intéressés à comparer des effets moyens d'un facteur pour tous les niveaux d'un autre facteur (par exemple l'effet du sexe sur la taille des esturgeons peu importe d'où ils viennent), alors vous pouvez procéder exactement tel que décrit dans la section sur les comparaisons multiples suivant l'ANOVA à un critère de classification. Pour comparer les moyennes des cellules entre elles, il faut spécifier l'interaction comme variable qui représente le groupe.
 
-Le fichier wmcdat2.Rdata contient des mesures de consommation d'oxygène ( o2cons ) de deux espèces ( species ) d'un mollusque (une patelle) à trois concentrations différentes d'eau de mer ( conc ) (ces données sont présentées à la p. 332 de Sokal et Rohlf 1995).
+Le fichier wmcdat2.csv contient des mesures de consommation d'oxygène ( o2cons ) de deux espèces ( species ) d'un mollusque (une patelle) à trois concentrations différentes d'eau de mer ( conc ) (ces données sont présentées à la p. 332 de Sokal et Rohlf 1995).
 
 Effectuez une ANOVA factorielle à deux critères de classification sur ces données en utilisant 02cons comme variable dépendante et species et conc comme les facteurs (il va probablement falloir changer le type de données du variable conc à facteur). Que concluez-vous ?
 
@@ -304,8 +330,9 @@ On conclue donc qu’il n’y a pas de différence entre les espèces et que l�
 
 ```{r}
 wmcdat2 <- read.csv("data/wmcdat2.csv")
+wmcdat2$conc <- as.factor(wmcdat2$conc)
 # fit simplified model
-anova.model6 <- lm(o2cons ~ conc, data = wmcdat2)
+anova.model6 <- aov(o2cons ~ conc, data = wmcdat2)
 # Make Tukey multiple comparisons
 TukeyHSD(anova.model6)
 
@@ -324,9 +351,9 @@ par(old.par)
 
 Il y a donc une différence de consommation d’oxygène significative lorsque la salinité est réduite de 50%, mais pas à 25% de réduction.
 
-- Répétez les deux analyses précédentes sur les données du fichier wmc2dat2.Rdata. Comment les résultats se comparent-ils à ceux obte- nus précédemment ?
+- Répétez les deux analyses précédentes sur les données du fichier wmc2dat2.csv. Comment les résultats se comparent-ils à ceux obte- nus précédemment ?
 
-En utilisant wmc2dat2.Rdata, on obtient:
+En utilisant wmc2dat2.csv, on obtient:
 
 Anova Table (Type III tests)
 
@@ -337,18 +364,16 @@ wmc2dat2 <- read.csv("data/wmc2dat2.csv")
 with(wmc2dat2, interaction.plot(conc, species, o2cons))
 ```
 
-- Toujours en utilisant les données de wmc2dat2.Rdata , comparez les 6 moyennes avec l’ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:
+- Toujours en utilisant les données de wmc2dat2.csv , comparez les 6 moyennes avec l’ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:
 
 ```{r}
-wmc2dat2$species.conc <- paste(wmc2dat2$species,
-wmc2dat2$conc)
+wmc2dat2$species.conc <- as.factor(paste(wmc2dat2$species,wmc2dat2$conc))
 ```
 
 ensuite on peut faire les comparaisons de Bonferroni:
 
 ```{r}
-with(wmcdat2, pairwise.t.test(o2cons, species.conc,
-p.adj = "bonf"))
+with(wmc2dat2, pairwise.t.test(o2cons, species.conc,p.adj = "bonf"))
 ```
 
 Ces comparaisons sont un peu plus difficiles à interpréter, mais l’analyse examine essentiellement les différences entre les concentrations de l’eau dans l’espèce A (nommé adj1) et pour les différences entre les concentrations dans l’espèce B (nommé adj2). Cette analyse indique que la différence principale est entre la concentration de 50% pour l’espèce B et les concentrations de 75 et 100% de l’espèce B, tandis qu’il n’y a aucunes différences significatives pour l’espèce A.
@@ -358,8 +383,7 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu’ils indiquent 
 ```{r}
 # fit one-way anova comparing all combinations of species.conc combinations
 anova.modelx <- aov(o2cons ~ species.conc, data = wmc2dat2)
-tuk2 <- glht(anova.modelx, linfct = mcp(species.conc =
-"Tukey"))
+tuk2 <- glht(anova.modelx, linfct = mcp(species.conc = "Tukey"))
 # extract information
 tuk2.cld <- cld(tuk2)
 # use sufficiently large upper margin
@@ -389,8 +413,7 @@ dependent <- Stu2wdat$rdwght
 factor1 <- as.factor(Stu2wdat$sex)
 factor2 <- as.factor(Stu2wdat$location)
 my.dataframe <- data.frame(dependent, factor1, factor2)
-my.dataframe.noNA <- my.dataframe[com -
-  plete.cases(my.dataframe), ]
+my.dataframe.noNA <- my.dataframe[complete.cases(my.dataframe), ]
 mod <- lm(dependent ~ factor1 + factor2 + factor1:factor2,
   data = my.dataframe.noNA
 )
@@ -475,8 +498,7 @@ dependent <- Stu2wdat$rdwght
 factor1 <- as.factor(Stu2wdat$sex)
 factor2 <- as.factor(Stu2wdat$location)
 my.dataframe <- data.frame(dependent, factor1, factor2)
-my.dataframe.noNA <- my.dataframe[com -
-  plete.cases(my.dataframe), ]
+my.dataframe.noNA <- my.dataframe[complete.cases(my.dataframe), ]
 require(boot)
 # Fit model on observed data
 mod1 <- aov(dependent ~ factor1 + factor2 + factor1:factor2,
