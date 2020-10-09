@@ -835,7 +835,7 @@ boot.ci(results, type="bca", index=2) # logarea
 Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
 
 
-## Test de permutation
+## Test de permutation {#perm_reg_mult}
 
 Les tests de permutations sont plus rarement effectués en régression multiple que le bootstrap. Voici un fragment de code pour le faire tout de même.
 
