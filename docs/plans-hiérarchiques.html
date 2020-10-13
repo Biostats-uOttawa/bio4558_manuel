@@ -321,10 +321,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Le fichier <code>nestdat.csv</code> contient les résultats d’une expérience sem- blable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.</li>
 </ul>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1">nestdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nestdat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb436-2" title="2">nestdat<span class="op">$</span>chamber &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>chamber)</a>
-<a class="sourceLine" id="cb436-3" title="3">nestdat<span class="op">$</span>genotype &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>genotype)</a>
-<a class="sourceLine" id="cb436-4" title="4">anova.nested &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype<span class="op">/</span>chamber, <span class="dt">data =</span> nestdat)</a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1">nestdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nestdat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb443-2" title="2">nestdat<span class="op">$</span>chamber &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>chamber)</a>
+<a class="sourceLine" id="cb443-3" title="3">nestdat<span class="op">$</span>genotype &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>genotype)</a>
+<a class="sourceLine" id="cb443-4" title="4">anova.nested &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype<span class="op">/</span>chamber, <span class="dt">data =</span> nestdat)</a></code></pre></div>
 <p>Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l’effet de Chamber / genotype n’est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N’oubliez pas de vérifier les conditions d’applications de l’ANOVA!</p>
 <p>Analysis of Variance Table
 Response: survival
@@ -340,8 +340,8 @@ Residuals
 5.04</p>
 <p>On conclue de cette analyse que la variation entre les chambres de croissance n’est pas significative, mais qu’on doit rejeter l’hypothèse nulle que tous les génotypes ont la même résistance à la dessiccation.</p>
 <p>Comme l’effet hiérarchique chamber / genotype n’est pas significatif, on peut regrouper les observations pour augmenter le nombre de degrés de liberté:</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1">anova.simple &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype, <span class="dt">data =</span> nestdat)</a>
-<a class="sourceLine" id="cb437-2" title="2"><span class="kw">anova</span>(anova.simple)</a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1">anova.simple &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype, <span class="dt">data =</span> nestdat)</a>
+<a class="sourceLine" id="cb444-2" title="2"><span class="kw">anova</span>(anova.simple)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: survival
@@ -352,16 +352,16 @@ Residuals
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Donc on conclue qu’il y a une variation significative de résistance à la dessiccation entre les trois génotypes.</p>
 <p>Le graphique de survival en fonction du génotype suggère que la résistance à la dessiccation varie entre chaque génotype. On peut combiner cela avec un test de Tukey.</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb439-2" title="2"><span class="co"># Compute and plot means and Tukey CI</span></a>
-<a class="sourceLine" id="cb439-3" title="3">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.simple, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">genotype =</span></a>
-<a class="sourceLine" id="cb439-4" title="4">  <span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb439-5" title="5">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
-<a class="sourceLine" id="cb439-6" title="6"><span class="co"># use sufficiently large upper margin</span></a>
-<a class="sourceLine" id="cb439-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb439-8" title="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb439-9" title="9"><span class="kw">plot</span>(cimeans, <span class="dt">las=</span><span class="dv">1</span>) <span class="co"># las option to put y-axis labels as God intended them</span></a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-212-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb446-2" title="2"><span class="co"># Compute and plot means and Tukey CI</span></a>
+<a class="sourceLine" id="cb446-3" title="3">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.simple, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">genotype =</span></a>
+<a class="sourceLine" id="cb446-4" title="4">  <span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb446-5" title="5">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
+<a class="sourceLine" id="cb446-6" title="6"><span class="co"># use sufficiently large upper margin</span></a>
+<a class="sourceLine" id="cb446-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb446-8" title="8"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb446-9" title="9"><span class="kw">plot</span>(cimeans, <span class="dt">las=</span><span class="dv">1</span>) <span class="co"># las option to put y-axis labels as God intended them</span></a></code></pre></div>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-214-1.svg" width="672" /></p>
 <p>On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) &gt; R(Aa) &gt; R(aa).</p>
 <p>Cependant, avant d’accepter cette conclusion, il faut éprouver les conditions d’application du test. Voici les diagnostics des résidus pour l’ANOVA à un critère de classification (non hiérarchique):</p>
 <p>Donc, toutes les conditions d’application semblent être remplies, et on peut donc accepter les conclusions. Notez que si l’on compare le carré moyen des résidus de l’ANOVA hiérarchique et de l’ANOVA à un critère de classification (5.045 vs 5.292), ils sont presque identiques. Cela n’est pas surprenant compte tenu de la faible variabilité associée aux chambres de croissance pour chaque génotype.</p>

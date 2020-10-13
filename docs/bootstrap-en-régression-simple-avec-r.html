@@ -344,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002063206  0.03471222
-## t2* 0.3408557 -0.001467103  0.02747541</code></pre>
+## t1* 1.1919926  0.003713358  0.03461635
+## t2* 0.3408557 -0.002804161  0.02741827</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -371,10 +371,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.258 )   ( 1.120,  1.258 )  
+## 95%   ( 1.120,  1.256 )   ( 1.121,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.126,  1.264 )   ( 1.103,  1.250 )  
+## 95%   ( 1.127,  1.263 )   ( 1.108,  1.249 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable</code></pre>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
@@ -389,10 +389,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2885,  0.3962 )   ( 0.2892,  0.3959 )  
+## 95%   ( 0.2899,  0.3974 )   ( 0.2852,  0.3974 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2859,  0.3925 )   ( 0.2948,  0.4113 )  
+## 95%   ( 0.2843,  0.3966 )   ( 0.2952,  0.4081 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>

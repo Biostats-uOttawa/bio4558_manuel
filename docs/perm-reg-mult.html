@@ -318,19 +318,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="perm_reg_mult" class="section level2">
 <h2><span class="header-section-number">7.11</span> Test de permutation</h2>
 <p>Les tests de permutations sont plus rarement effectués en régression multiple que le bootstrap. Voici un fragment de code pour le faire tout de même.</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" title="1"><span class="co">############################################################</span></a>
-<a class="sourceLine" id="cb483-2" title="2"><span class="co">##########</span></a>
-<a class="sourceLine" id="cb483-3" title="3"><span class="co"># Permutation in multiple regression</span></a>
-<a class="sourceLine" id="cb483-4" title="4"><span class="co">#</span></a>
-<a class="sourceLine" id="cb483-5" title="5"><span class="co"># using lmperm library</span></a>
-<a class="sourceLine" id="cb483-6" title="6"><span class="kw">require</span>(lmPerm)</a>
-<a class="sourceLine" id="cb483-7" title="7"><span class="co"># Fit desired model on the desired dataframe</span></a>
-<a class="sourceLine" id="cb483-8" title="8">mymodel&lt;-<span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb483-9" title="9"><span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb483-10" title="10">mymodelProb&lt;-<span class="kw">lmp</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span></a>
-<a class="sourceLine" id="cb483-11" title="11"><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mydata, <span class="dt">perm=</span><span class="st">&quot;Prob&quot;</span>)</a>
-<a class="sourceLine" id="cb483-12" title="12"><span class="kw">summary</span>(mymodel)</a>
-<a class="sourceLine" id="cb483-13" title="13"><span class="kw">summary</span>(mymodelProb)</a></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" title="1"><span class="co">############################################################</span></a>
+<a class="sourceLine" id="cb490-2" title="2"><span class="co">##########</span></a>
+<a class="sourceLine" id="cb490-3" title="3"><span class="co"># Permutation in multiple regression</span></a>
+<a class="sourceLine" id="cb490-4" title="4"><span class="co">#</span></a>
+<a class="sourceLine" id="cb490-5" title="5"><span class="co"># using lmperm library</span></a>
+<a class="sourceLine" id="cb490-6" title="6"><span class="kw">require</span>(lmPerm)</a>
+<a class="sourceLine" id="cb490-7" title="7"><span class="co"># Fit desired model on the desired dataframe</span></a>
+<a class="sourceLine" id="cb490-8" title="8">mymodel&lt;-<span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb490-9" title="9"><span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb490-10" title="10">mymodelProb&lt;-<span class="kw">lmp</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span></a>
+<a class="sourceLine" id="cb490-11" title="11"><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mydata, <span class="dt">perm=</span><span class="st">&quot;Prob&quot;</span>)</a>
+<a class="sourceLine" id="cb490-12" title="12"><span class="kw">summary</span>(mymodel)</a>
+<a class="sourceLine" id="cb490-13" title="13"><span class="kw">summary</span>(mymodelProb)</a></code></pre></div>
 
 </div>
 <!-- </div> -->

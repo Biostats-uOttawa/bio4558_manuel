@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>paramétriques supposant des variances égales</li>
 <li>paramétriques supposant des variances différentes</li>
-<li>non-paramétriques</li>
+<li>non-paramétrique (pas de conditions d’aplications sur la distribution et la variance)</li>
 </ol>
 <p>Que concluez-vous?</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" title="1"><span class="co"># t-test assuming equal variances</span></a>
@@ -388,7 +388,8 @@ Figure 4.3: Condition d’application du modèle linéaire
 ## W = 0.97469, p-value = 0.001857</code></pre>
 <p>Hummm. Ce test indique que les résidus ne sont pas normaux, ce qui contredit notre évaluation visuelle. Cependant, puisque (a) la distribution des résidus ne s’éloigne pas beaucoup de la normalité et (b) le nombre d’observations à chaque site est raisonnablement grand (i.e. &gt;30), on n’a pas à être trop inquiet quant à l’impact de cette violation de normalité sur la fiabilité du test.</p>
 <p>Qu’en est-il de l’égalité des variances?</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"> <span class="kw">leveneTest</span>(m1)</a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb335-2" title="2"> <span class="kw">leveneTest</span>(m1)</a></code></pre></div>
 <pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
 ## factor.</code></pre>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)

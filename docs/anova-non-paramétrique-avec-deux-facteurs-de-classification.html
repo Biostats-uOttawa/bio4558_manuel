@@ -319,10 +319,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.5</span> ANOVA non paramétrique avec deux facteurs de classification</h2>
 <p>L’ANOVA non paramétrique à deux critères de classification est une extension de celle à un critère de classification vue précédemment. Elle débute par une ANOVA faite sur les données transformées en rangs. Elle peut se faire sur des données avec ou sans réplicats.</p>
 <p>À partir du fichier stu2wdat.csv, effectuez une ANOVA non paramétrique à deux facteurs de classification pour examiner l’effet de sex et location sur rank(rdwght).</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1">aov.rank &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">rank</span>(rdwght) <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>location,</a>
-<a class="sourceLine" id="cb440-2" title="2"><span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum,</a>
-<a class="sourceLine" id="cb440-3" title="3"><span class="dt">location =</span> contr.sum), <span class="dt">data =</span> Stu2wdat)</a>
-<a class="sourceLine" id="cb440-4" title="4"><span class="kw">Anova</span>(aov.rank, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1">aov.rank &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">rank</span>(rdwght) <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>location,</a>
+<a class="sourceLine" id="cb447-2" title="2"><span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum,</a>
+<a class="sourceLine" id="cb447-3" title="3"><span class="dt">location =</span> contr.sum), <span class="dt">data =</span> Stu2wdat)</a>
+<a class="sourceLine" id="cb447-4" title="4"><span class="kw">Anova</span>(aov.rank, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rank(rdwght)

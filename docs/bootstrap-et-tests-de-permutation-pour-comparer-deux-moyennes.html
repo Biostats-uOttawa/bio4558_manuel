@@ -345,8 +345,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391 -0.001663211   0.4347949
-## t2* -1.714546  0.014247271   0.7852518</code></pre>
+## t1* 45.084391 -0.009507658   0.4345370
+## t2* -1.714546  0.021660579   0.7645059</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
@@ -365,7 +365,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.317, -0.255 )  
+## 95%   (-3.227, -0.244 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
@@ -376,7 +376,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 <a class="sourceLine" id="cb346-2" title="2">  fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
 <a class="sourceLine" id="cb346-3" title="3">  <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Settings:  unique SS &quot;</code></pre>
-<p>La fonction <code>lmp()</code> fait tout le travail pour nous. Ici, cette fonction est effectuée avec l’option perm pour choisir la règle utilisée pour stopper les calculs. L’option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C’est l’une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longthemps).</p>
+<p>La fonction <code>lmp()</code> fait tout le travail pour nous. Ici, cette fonction est effectuée avec l’option perm pour choisir la règle utilisée pour stopper les calculs. L’option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C’est l’une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longtemps).</p>
 <div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" title="1"><span class="kw">summary</span>(m1Perm)</a></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -387,8 +387,10 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## -18.40921  -3.75370  -0.08439   3.76598  23.48055 
 ## 
 ## Coefficients:
-##           Estimate Iter Pr(Prob)
-## location1   0.8573  730    0.121
+##           Estimate Iter Pr(Prob)  
+## location1   0.8573 4579   0.0214 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 5.454 on 184 degrees of freedom
 ## Multiple R-Squared: 0.02419,	Adjusted R-squared: 0.01889 

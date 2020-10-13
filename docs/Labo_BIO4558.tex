@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{09-10-2020}
+\date{13-10-2020}
 
 \begin{document}
 \maketitle
@@ -5038,8 +5038,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.003630635  0.03531789
-## t2* 0.3408557 -0.002747673  0.02790626
+## t1* 1.1919926  0.003361719  0.03335189
+## t2* 0.3408557 -0.002392507  0.02643509
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,10 +5096,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.119,  1.258 )   ( 1.115,  1.255 )  
+## 95%   ( 1.123,  1.254 )   ( 1.123,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.129,  1.269 )   ( 1.106,  1.253 )  
+## 95%   ( 1.128,  1.261 )   ( 1.105,  1.243 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -5125,11 +5125,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2889,  0.3983 )   ( 0.2902,  0.3998 )  
+## 95%   ( 0.2914,  0.3951 )   ( 0.2892,  0.3954 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2819,  0.3916 )   ( 0.2904,  0.4086 )  
+## 95%   ( 0.2863,  0.3925 )   ( 0.2973,  0.4071 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5276,7 +5277,7 @@ Il n'y a pas de grande différence de taille entre les deux sites, mais la taill
 \item
   paramétriques supposant des variances différentes
 \item
-  non-paramétriques
+  non-paramétrique (pas de conditions d'aplications sur la distribution et la variance)
 \end{enumerate}
 
 Que concluez-vous?
@@ -5391,6 +5392,7 @@ Qu'en est-il de l'égalité des variances?
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
  \KeywordTok{leveneTest}\NormalTok{(m1)}
 \end{Highlighting}
 \end{Shaded}
@@ -5474,8 +5476,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391  0.007398706   0.4363019
-## t2* -1.714546 -0.018685751   0.7518552
+## t1* 45.084391 -0.006077329   0.4300192
+## t2* -1.714546 -0.021013630   0.7556425
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5508,7 +5510,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.326, -0.289 )  
+## 95%   (-3.152, -0.315 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5531,7 +5533,7 @@ Les tests de permutation pour les modèles linéaires peuvent être effectués �
 ## [1] "Settings:  unique SS "
 \end{verbatim}
 
-La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction est effectuée avec l'option perm pour choisir la règle utilisée pour stopper les calculs. L'option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C'est l'une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longthemps).
+La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction est effectuée avec l'option perm pour choisir la règle utilisée pour stopper les calculs. L'option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C'est l'une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longtemps).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5550,7 +5552,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000   0.0168 *
+## location1   0.8573 4937   0.0201 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5586,7 +5588,7 @@ Le fichier \texttt{skulldat.csv} contient des mesures de la partie inférieure d
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{skull <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/skulldat.csv"}\NormalTok{)}
+\NormalTok{skull <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/skulldat_2020.csv"}\NormalTok{)}
 \KeywordTok{t.test}\NormalTok{(width}\OperatorTok{~}\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ skull,}
   \DataTypeTok{alternative=}\StringTok{'two.sided'}\NormalTok{,}
   \DataTypeTok{paired =} \OtherTok{FALSE}\NormalTok{)}
@@ -5607,11 +5609,63 @@ Le fichier \texttt{skulldat.csv} contient des mesures de la partie inférieure d
 ##        7.461333        7.661333
 \end{verbatim}
 
-Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com- ment les résultats diffèrent-ils de la première analyse? Pourquoi?
+Jusqu'à maintenant, nous avons spécifié le test de t en utilisant une notation de type \texttt{formule} avec \texttt{y\ \textasciitilde{}\ x} où \texttt{y} est la variable pour laquelle on souhaite comparer les moyennes et \texttt{x} correspond à une variable définissant les groupes.
+Cela marche bien lorsque les données de sont pas pairées et sont présentées dans un format de type \emph{long} où les données prise dans une même catégorie ou sur une même personne sont simplement les unes en-dessous des autres avec des colonnes indiquant l'appartenance des mesures aux différentes catégories (voir la structure de \texttt{skull} par exemple)
+Dans l'objet \texttt{skull}, il y a 3 colonnes:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{width}: largeur de la tête
+\item
+  \texttt{age}: age lors de la mesure
+\item
+  \texttt{id}: identité de la personne
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(width}\OperatorTok{~}\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ skull,}
+\KeywordTok{head}\NormalTok{(skull)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   width age id
+## 1  7.33   5  1
+## 2  7.53   6  1
+## 3  7.49   5  2
+## 4  7.70   6  2
+## 5  7.27   5  3
+## 6  7.46   6  3
+\end{verbatim}
+
+Quand les données sont pairées, il faut indiquer comment elle doivent être associées. Dans notre exemple, elles sont pairées par individu. Le format de données de type \emph{long} indique cet appariement via la colonne \texttt{id}. Cependant, la fonction \texttt{t.test} ne permet pas de le prendre en compte. Il faut donc transformer les données en format de type \emph{large} ou \emph{horizontale} ou il y a une colonne différente pour chaque catégorie.
+Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par age et où chaque ligne correspond à une personne différente. On peut modifier le format des données avec le code suivant.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{skull_h <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{id =} \KeywordTok{unique}\NormalTok{(skull}\OperatorTok{$}\NormalTok{id))}
+\NormalTok{skull_h}\OperatorTok{$}\NormalTok{width5 <-}\StringTok{ }\NormalTok{skull}\OperatorTok{$}\NormalTok{width[}\KeywordTok{match}\NormalTok{(skull_h}\OperatorTok{$}\NormalTok{id,skull}\OperatorTok{$}\NormalTok{id) }\OperatorTok{&}\StringTok{ }\NormalTok{skull}\OperatorTok{$}\NormalTok{age}\OperatorTok{==}\DecValTok{5}\NormalTok{]}
+\NormalTok{skull_h}\OperatorTok{$}\NormalTok{width6 <-}\StringTok{ }\NormalTok{skull}\OperatorTok{$}\NormalTok{width[}\KeywordTok{match}\NormalTok{(skull_h}\OperatorTok{$}\NormalTok{id,skull}\OperatorTok{$}\NormalTok{id) }\OperatorTok{&}\StringTok{ }\NormalTok{skull}\OperatorTok{$}\NormalTok{age}\OperatorTok{==}\DecValTok{6}\NormalTok{]}
+\KeywordTok{head}\NormalTok{(skull_h)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id width5 width6
+## 1  1   7.33   7.53
+## 2  2   7.49   7.70
+## 3  3   7.27   7.46
+## 4  4   7.93   8.21
+## 5  5   7.56   7.81
+## 6  6   7.81   8.01
+\end{verbatim}
+
+Maintenant, effectuons le test apparié qui est approprié: Que conclure? Comment les résultats diffèrent-ils de la première analyse? Pourquoi?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(skull_h}\OperatorTok{$}\NormalTok{width5, skull_h}\OperatorTok{$}\NormalTok{width6,}
   \DataTypeTok{alternative=}\StringTok{'two.sided'}\NormalTok{,}
   \DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
@@ -5621,7 +5675,7 @@ Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com- m
 ## 
 ## 	Paired t-test
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## t = -19.72, df = 14, p-value = 1.301e-11
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
@@ -5637,7 +5691,7 @@ Notez que, dans le premier cas, on accepte l'hypothèse nulle, mais que le test 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{graphskull <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ skull, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ width5, }\DataTypeTok{y =}\NormalTok{ width6)) }\OperatorTok{+}
+\NormalTok{graphskull <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ skull_h, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ width5, }\DataTypeTok{y =}\NormalTok{ width6)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Skull width at age 5"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"Skull width at age 6"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_smooth}\NormalTok{() }\OperatorTok{+}
@@ -5656,7 +5710,7 @@ Notez que, dans le premier cas, on accepte l'hypothèse nulle, mais que le test 
 \caption{\label{fig:tpaired-3}Relation entre la taille de la tête à 5 et 6 ans}
 \end{figure}
 
-Avec \emph{r} = NA. En présence d'une si forte corrélation, l'erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l'erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.
+Avec \emph{r} = 0.9930841. En présence d'une si forte corrélation, l'erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l'erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.
 
 \begin{itemize}
 \tightlist
@@ -5666,22 +5720,22 @@ Avec \emph{r} = NA. En présence d'une si forte corrélation, l'erreur-type de l
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(width}\OperatorTok{~}\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ skull,}
+\KeywordTok{wilcox.test}\NormalTok{(skull_h}\OperatorTok{$}\NormalTok{width5, skull_h}\OperatorTok{$}\NormalTok{width6,}
   \DataTypeTok{alternative=}\StringTok{'two.sided'}\NormalTok{,}
   \DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
-## cannot compute exact p-value with ties
+## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
+## "two.sided", : cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
 ## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0007193
 ## alternative hypothesis: true location shift is not equal to 0
 \end{verbatim}
@@ -5692,7 +5746,7 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{t.test}\NormalTok{(width}\OperatorTok{~}\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ skull,}
+\KeywordTok{t.test}\NormalTok{(skull_h}\OperatorTok{$}\NormalTok{width5, skull_h}\OperatorTok{$}\NormalTok{width6,}
   \DataTypeTok{alternative=}\StringTok{'less'}\NormalTok{,}
   \DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
@@ -5702,7 +5756,7 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 ## 
 ## 	Paired t-test
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## t = -19.72, df = 14, p-value = 6.507e-12
 ## alternative hypothesis: true difference in means is less than 0
 ## 95 percent confidence interval:
@@ -5714,22 +5768,22 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{wilcox.test}\NormalTok{(width}\OperatorTok{~}\NormalTok{age, }\DataTypeTok{data =}\NormalTok{ skull,}
+\KeywordTok{wilcox.test}\NormalTok{(skull_h}\OperatorTok{$}\NormalTok{width5, skull_h}\OperatorTok{$}\NormalTok{width6,}
   \DataTypeTok{alternative=}\StringTok{'less'}\NormalTok{,}
   \DataTypeTok{paired =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
-## cannot compute exact p-value with ties
+## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
+## "less", : cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
 ## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0003597
 ## alternative hypothesis: true location shift is less than 0
 \end{verbatim}
@@ -6172,18 +6226,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5947
+## Quantile = 2.5928
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2727   3.6472
-##  1965 -  1954 == 0  -5.5077  -9.9992  -1.0161
-##  1966 -  1954 == 0  -3.3127  -6.3445  -0.2809
-##  1965 -  1958 == 0  -5.6949 -10.4133  -0.9764
-##  1966 -  1958 == 0  -3.4999  -6.8588  -0.1411
-##  1966 -  1965 == 0   2.1950  -2.2191   6.6091
+##  1958 -  1954 == 0   0.1872  -3.2702   3.6446
+##  1965 -  1954 == 0  -5.5077  -9.9958  -1.0195
+##  1966 -  1954 == 0  -3.3127  -6.3422  -0.2832
+##  1965 -  1958 == 0  -5.6949 -10.4098  -0.9799
+##  1966 -  1958 == 0  -3.4999  -6.8563  -0.1436
+##  1966 -  1965 == 0   2.1950  -2.2159   6.6058
 \end{verbatim}
 
 \begin{Shaded}
@@ -6722,7 +6776,7 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6746,7 +6800,7 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-204-2.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-206-2.pdf}
 
 Il y a une différence importante entre les résultats obtenus avec \texttt{stu2wdat} et \texttt{stu2mdat}. Dans le premier cas, puisqu'il n'y a pas d'interaction, on peut regrouper les données des deux niveaux d'un facteur (le site, par exemple) pour éprouver l'hypothèse d'un effet de l'autre facteur (le sexe). En fait, si on fait cela et que l'on calcule une ANOVA à un critère de classification (sex), on obtient:
 
@@ -6854,7 +6908,7 @@ Si on suppose que c'est un modèle III d'ANOVA (date aléatoire, Depth fixe), qu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-210-1.pdf}
 
 La température diminue significativement en profondeur. Pour tester l'effet du mois (le facteur aléatoire), on doit présumer qu'il n'y a pas d'interaction entre la profondeur et le mois (donc que l'effet de la profondeur sur la température est le même à chaque mois). C'est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l'été, ce modèle ne fait pas de très bonnes prédictions.
 
@@ -6961,7 +7015,7 @@ Le graphique de survival en fonction du génotype suggère que la résistance à
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-214-1.pdf}
 
 On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) \textgreater{} R(Aa) \textgreater{} R(aa).
 
@@ -7092,7 +7146,7 @@ On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7121,7 +7175,7 @@ Dans ce cas ci, il y a une interaction significative, et il n'est par conséquen
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -7177,7 +7231,7 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent se
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-218-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-220-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9566,8 +9620,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-223-1.pdf}
-\caption{\label{fig:unnamed-chunk-223-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-225-1.pdf}
+\caption{\label{fig:unnamed-chunk-225-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9579,8 +9633,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-223-2.pdf}
-\caption{\label{fig:unnamed-chunk-223-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-225-2.pdf}
+\caption{\label{fig:unnamed-chunk-225-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9592,8 +9646,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-223-3.pdf}
-\caption{\label{fig:unnamed-chunk-223-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-225-3.pdf}
+\caption{\label{fig:unnamed-chunk-225-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

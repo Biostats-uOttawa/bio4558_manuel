@@ -322,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Pour débuter, éprouvons l’hypothèse que la largeur de la figure est la même à 5 ans et à 6 ans en assumant que les mesures viennent d’échantillons indépendants.</li>
 </ul>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" title="1">skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat.csv&quot;</span>)</a>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" title="1">skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat_2020.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb350-2" title="2"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
 <a class="sourceLine" id="cb350-3" title="3">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
 <a class="sourceLine" id="cb350-4" title="4">  <span class="dt">paired =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
@@ -337,14 +337,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean in group 5 mean in group 6 
 ##        7.461333        7.661333</code></pre>
-<p>Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com- ment les résultats diffèrent-ils de la première analyse? Pourquoi?</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb352-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb352-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Jusqu’à maintenant, nous avons spécifié le test de t en utilisant une notation de type <code>formule</code> avec <code>y ~ x</code> où <code>y</code> est la variable pour laquelle on souhaite comparer les moyennes et <code>x</code> correspond à une variable définissant les groupes.
+Cela marche bien lorsque les données de sont pas pairées et sont présentées dans un format de type <em>long</em> où les données prise dans une même catégorie ou sur une même personne sont simplement les unes en-dessous des autres avec des colonnes indiquant l’appartenance des mesures aux différentes catégories (voir la structure de <code>skull</code> par exemple)
+Dans l’objet <code>skull</code>, il y a 3 colonnes:</p>
+<ul>
+<li><code>width</code>: largeur de la tête</li>
+<li><code>age</code>: age lors de la mesure</li>
+<li><code>id</code>: identité de la personne</li>
+</ul>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1"><span class="kw">head</span>(skull)</a></code></pre></div>
+<pre><code>##   width age id
+## 1  7.33   5  1
+## 2  7.53   6  1
+## 3  7.49   5  2
+## 4  7.70   6  2
+## 5  7.27   5  3
+## 6  7.46   6  3</code></pre>
+<p>Quand les données sont pairées, il faut indiquer comment elle doivent être associées. Dans notre exemple, elles sont pairées par individu. Le format de données de type <em>long</em> indique cet appariement via la colonne <code>id</code>. Cependant, la fonction <code>t.test</code> ne permet pas de le prendre en compte. Il faut donc transformer les données en format de type <em>large</em> ou <em>horizontale</em> ou il y a une colonne différente pour chaque catégorie.
+Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par age et où chaque ligne correspond à une personne différente. On peut modifier le format des données avec le code suivant.</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" title="1">skull_h &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">unique</span>(skull<span class="op">$</span>id))</a>
+<a class="sourceLine" id="cb354-2" title="2">skull_h<span class="op">$</span>width5 &lt;-<span class="st"> </span>skull<span class="op">$</span>width[<span class="kw">match</span>(skull_h<span class="op">$</span>id,skull<span class="op">$</span>id) <span class="op">&amp;</span><span class="st"> </span>skull<span class="op">$</span>age<span class="op">==</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb354-3" title="3">skull_h<span class="op">$</span>width6 &lt;-<span class="st"> </span>skull<span class="op">$</span>width[<span class="kw">match</span>(skull_h<span class="op">$</span>id,skull<span class="op">$</span>id) <span class="op">&amp;</span><span class="st"> </span>skull<span class="op">$</span>age<span class="op">==</span><span class="dv">6</span>]</a>
+<a class="sourceLine" id="cb354-4" title="4"><span class="kw">head</span>(skull_h)</a></code></pre></div>
+<pre><code>##   id width5 width6
+## 1  1   7.33   7.53
+## 2  2   7.49   7.70
+## 3  3   7.27   7.46
+## 4  4   7.93   8.21
+## 5  5   7.56   7.81
+## 6  6   7.81   8.01</code></pre>
+<p>Maintenant, effectuons le test apparié qui est approprié: Que conclure? Comment les résultats diffèrent-ils de la première analyse? Pourquoi?</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1"><span class="kw">t.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</a>
+<a class="sourceLine" id="cb356-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb356-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Paired t-test
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## t = -19.72, df = 14, p-value = 1.301e-11
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
@@ -354,12 +383,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                    -0.2</code></pre>
 <p>La première analyse a comme supposition que les deux échantillons de filles de 5 et 6 ans sont indépendants, alors que la deuxième analyse a comme supposition que la même fille a été mesurée deux fois, une fois à 5 ans, et la deuxième fois à 6 ans.</p>
 <p>Notez que, dans le premier cas, on accepte l’hypothèse nulle, mais que le test apparié rejette l’hypothèse nulle. Donc, le test qui est approprié (le test apparié) indique un effet très significatif de l’âge, mais le test inapproprié suggère que l’âge n’importe pas. C’est parce qu’il y a une très forte corrélation entre la largeur du visage à 5 et 6 ans:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" title="1">graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb354-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb354-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb354-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb354-5" title="5"><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low=</span><span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high=</span><span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb354-6" title="6">graphskull</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" title="1">graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull_h, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-5" title="5"><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low=</span><span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb358-6" title="6">graphskull</a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <div class="figure"><span id="fig:tpaired-3"></span>
 <img src="Labo_BIO4558_files/figure-html/tpaired-3-1.svg" alt="Relation entre la taille de la tête à 5 et 6 ans" width="672" />
@@ -367,30 +396,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 </p>
 </div>
-<p>Avec <em>r</em> = NA. En présence d’une si forte corrélation, l’erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l’erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.</p>
+<p>Avec <em>r</em> = 0.9930841. En présence d’une si forte corrélation, l’erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l’erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.</p>
 <ul>
 <li>Répétez l’analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. ( Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb356-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
-<a class="sourceLine" id="cb356-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
-## cannot compute exact p-value with ties</code></pre>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" title="1"><span class="kw">wilcox.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</a>
+<a class="sourceLine" id="cb360-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;two.sided&#39;</span>,</a>
+<a class="sourceLine" id="cb360-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
+## &quot;two.sided&quot;, : cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0007193
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Donc on tire la même conclusion qu’avec le test de t apparié et conclue qu’il y a des différences significatives entre la taille des crânes de filles âgées de 5 et 6 ans (quelle surprise!).</p>
 <p>Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte tenu de s connaissances sur la croissance des enfants, une hypothèse unilatérale serait préférable. Ceci peut être accommodé en modifiant l’option “alternative”. On utilise l’hypothèse alternative pour décider entre “less” ou “greater”. Ici on s’attends que si il y a une différence, width5 va être inférieur à width6, donc on utiliserait “less”.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">t.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb359-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
-<a class="sourceLine" id="cb359-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">t.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</a>
+<a class="sourceLine" id="cb363-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
+<a class="sourceLine" id="cb363-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	Paired t-test
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## t = -19.72, df = 14, p-value = 6.507e-12
 ## alternative hypothesis: true difference in means is less than 0
 ## 95 percent confidence interval:
@@ -398,15 +427,15 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 ## sample estimates:
 ## mean of the differences 
 ##                    -0.2</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">wilcox.test</span>(width<span class="op">~</span>age, <span class="dt">data =</span> skull,</a>
-<a class="sourceLine" id="cb361-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
-<a class="sourceLine" id="cb361-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## Warning in wilcox.test.default(x = c(7.33, 7.49, 7.27, 7.93, 7.56, 7.81, :
-## cannot compute exact p-value with ties</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="kw">wilcox.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</a>
+<a class="sourceLine" id="cb365-2" title="2">  <span class="dt">alternative=</span><span class="st">&#39;less&#39;</span>,</a>
+<a class="sourceLine" id="cb365-3" title="3">  <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
+## &quot;less&quot;, : cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
 ## 	Wilcoxon signed rank test with continuity correction
 ## 
-## data:  width by age
+## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0003597
 ## alternative hypothesis: true location shift is less than 0</code></pre>
 </div>
