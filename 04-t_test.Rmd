@@ -74,7 +74,7 @@ Il n’y a pas de grande différence de taille entre les deux sites, mais la tai
 
 1. paramétriques supposant des variances égales
 2. paramétriques supposant des variances différentes
-3. non-paramétriques
+3. non-paramétrique (pas de conditions d'aplications sur la distribution et la variance)
 
 Que concluez-vous?
 
@@ -128,6 +128,7 @@ Qu’en est-il de l’égalité des variances?
 
 
 ```{r, t-8}
+library(car)
  leveneTest(m1)
 ```
 
@@ -188,7 +189,7 @@ m1Perm <- lmp(
   perm = "Prob")
 ```
 
-La fonction `lmp()` fait tout le travail pour nous. Ici, cette fonction est effectuée avec l’option perm pour choisir la règle utilisée pour stopper les calculs. L’option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C’est l’une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longthemps).
+La fonction `lmp()` fait tout le travail pour nous. Ici, cette fonction est effectuée avec l’option perm pour choisir la règle utilisée pour stopper les calculs. L’option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C’est l’une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longtemps).
 
 ```{r, tp-2}
 summary(m1Perm)
@@ -208,16 +209,38 @@ Le fichier `skulldat.csv` contient des mesures de la partie inférieure du visag
 - Pour débuter, éprouvons l'hypothèse que la largeur de la figure est la même à 5 ans et à 6 ans en assumant que les mesures viennent d'échantillons indépendants.
 
 ```{r, tpaired-1}
-skull <- read.csv("data/skulldat.csv")
+skull <- read.csv("data/skulldat_2020.csv")
 t.test(width~age, data = skull,
   alternative='two.sided',
   paired = FALSE)
 ```
 
-Maintenant, effectuons le test apparié qui est approprié: Que conclure? Com- ment les résultats diffèrent-ils de la première analyse? Pourquoi?
+Jusqu'à maintenant, nous avons spécifié le test de t en utilisant une notation de type `formule` avec `y ~ x` où `y` est la variable pour laquelle on souhaite comparer les moyennes et `x` correspond à une variable définissant les groupes.
+Cela marche bien lorsque les données de sont pas pairées et sont présentées dans un format de type *long* où les données prise dans une même catégorie ou sur une même personne sont simplement les unes en-dessous des autres avec des colonnes indiquant l'appartenance des mesures aux différentes catégories (voir la structure de `skull` par exemple)
+Dans l'objet `skull`, il y a 3 colonnes:
+
+* `width`: largeur de la tête
+* `age`: age lors de la mesure
+* `id`: identité de la personne
+
+```{r}
+head(skull)
+```
+
+Quand les données sont pairées, il faut indiquer comment elle doivent être associées. Dans notre exemple, elles sont pairées par individu. Le format de données de type *long* indique cet appariement via la colonne `id`. Cependant, la fonction `t.test` ne permet pas de le prendre en compte. Il faut donc transformer les données en format de type *large* ou *horizontale* ou il y a une colonne différente pour chaque catégorie.
+Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par age et où chaque ligne correspond à une personne différente. On peut modifier le format des données avec le code suivant.
+
+```{r}
+skull_h <- data.frame(id = unique(skull$id))
+skull_h$width5 <- skull$width[match(skull_h$id,skull$id) & skull$age==5]
+skull_h$width6 <- skull$width[match(skull_h$id,skull$id) & skull$age==6]
+head(skull_h)
+```
+
+Maintenant, effectuons le test apparié qui est approprié: Que conclure? Comment les résultats diffèrent-ils de la première analyse? Pourquoi?
 
 ```{r, tpaired-2}
-t.test(width~age, data = skull,
+t.test(skull_h$width5, skull_h$width6,
   alternative='two.sided',
   paired = TRUE)
 ```
@@ -227,7 +250,7 @@ La première analyse a comme supposition que les deux échantillons de filles de
 Notez que, dans le premier cas, on accepte l’hypothèse nulle, mais que le test apparié rejette l’hypothèse nulle. Donc, le test qui est approprié (le test apparié) indique un effet très significatif de l’âge, mais le test inapproprié suggère que l’âge n’importe pas. C’est parce qu’il y a une très forte corrélation entre la largeur du visage à 5 et 6 ans:
 
 ```{r, tpaired-3, warning = FALSE, fig.cap = "Relation entre la taille de la tête à 5 et 6 ans"}
-graphskull <- ggplot(data = skull, aes(x = width5, y = width6)) +
+graphskull <- ggplot(data = skull_h, aes(x = width5, y = width6)) +
   geom_point() +
   labs(x = "Skull width at age 5", y = "Skull width at age 6") +
   geom_smooth() +
@@ -235,12 +258,12 @@ graphskull <- ggplot(data = skull, aes(x = width5, y = width6)) +
 graphskull
 ```
 
-Avec *r* = `r cor(skull$width5,skull$width6)`. En présence d’une si forte corrélation, l’erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l’erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.
+Avec *r* = `r cor(skull_h$width5,skull_h$width6)`. En présence d’une si forte corrélation, l’erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l’erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.
 
 - Répétez l'analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. ( Que concluez-vous?
 
 ```{r, tpaired-4}
-wilcox.test(width~age, data = skull,
+wilcox.test(skull_h$width5, skull_h$width6,
   alternative='two.sided',
   paired = TRUE)
 ```
@@ -250,10 +273,10 @@ Donc on tire la même conclusion qu’avec le test de t apparié et conclue qu�
 Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte tenu de s connaissances sur la croissance des enfants, une hypothèse unilatérale serait préférable. Ceci peut être accommodé en modifiant l’option "alternative". On utilise l'hypothèse alternative pour décider entre "less" ou "greater". Ici on s’attends que si il y a une différence, width5 va être inférieur à width6, donc on utiliserait "less".
 
 ```{r, tpaired-5}
-t.test(width~age, data = skull,
+t.test(skull_h$width5, skull_h$width6,
   alternative='less',
   paired = TRUE)
-wilcox.test(width~age, data = skull,
+wilcox.test(skull_h$width5, skull_h$width6,
   alternative='less',
   paired = TRUE)
 ```
