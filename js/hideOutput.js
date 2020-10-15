@@ -1,17 +1,3 @@
-(function() {
-
-  $(".solution").each(function() {
-    $(this).before("<p class='solution-link'><a href='#'>la solution</a></p>");
-    $(this).hide();
-    console.log($(this).prev());
-    $(this).prev().on("click", function() {
-      $(this).next().slideToggle();
-      $(this).toggleClass("shown");
-    });
-  });
-})();
-
-// adding hiding source or r output
 $(document).ready(function() {
 // from https://stackoverflow.com/questions/37755037/how-to-add-code-folding-to-output-chunks-in-rmarkdown-html-documents
 
@@ -21,18 +7,18 @@ $(document).ready(function() {
 
     // add button to source code chunks
     if ( $(this).hasClass('s') ) {
-      $('pre.r', this).prepend("<div class=\"showopt\"><a href='#'></div>");
+      $('pre.r', this).prepend("<div class=\"showopt\">Afficher le code R</div><br style=\"line-height:22px;\"/>");
       $('pre.r', this).children('code').attr('class', 'folded');
     }
 
     // add button to output chunks
     if ( $(this).hasClass('o') ) {
-      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\"><a href='#'>la sortie R</div>");
+      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\">Afficher la sortie R</div><br style=\"line-height:22px;\"/>");
       $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
 
       // add button to plots
       $(this).find('img').wrap('<pre class=\"plot\"></pre>');
-      $('pre.plot', this).prepend("<div class=\"showopt\"></div>");
+      $('pre.plot', this).prepend("<div class=\"showopt\">Afficher le graphqiue</div><br style=\"line-height:22px;\"/>");
       $('pre.plot', this).children('img').addClass('folded');
 
     }
@@ -44,7 +30,11 @@ $(document).ready(function() {
   // function to toggle the visibility
   $('.showopt').click(function() {
     var label = $(this).html();
+    if (label.indexOf("Show") >= 0) {
+      $(this).html(label.replace("Afficher", "Cacher"));
+    } else {
+      $(this).html(label.replace("Afficher", "Cacher"));
+    }
     $(this).siblings('code, img').slideToggle('fast', 'swing');
-    $(this).toggleClass("shown");
   });
 });
