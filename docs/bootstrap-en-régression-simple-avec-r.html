@@ -242,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a><ul>
 <li class="chapter" data-level="6.1" data-path="set-anomul.html"><a href="set-anomul.html"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes-modèle-i"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes (Modèle I)</a></li>
-<li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes-modèle-iii"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes (Modèle III)</a></li>
+<li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"><i class="fa fa-check"></i><b>6.3</b> Plan factoriel à deux facteurs de classification sans réplication</a></li>
 <li class="chapter" data-level="6.4" data-path="plans-hiérarchiques.html"><a href="plans-hiérarchiques.html"><i class="fa fa-check"></i><b>6.4</b> Plans hiérarchiques</a></li>
@@ -344,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original        bias    std. error
-## t1* 1.1919926  0.0010301342  0.03286387
-## t2* 0.3408557 -0.0007794545  0.02626633</code></pre>
+## t1* 1.1919926  0.0007549090  0.03625350
+## t2* 0.3408557 -0.0002993053  0.02888159</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -371,10 +371,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.127,  1.255 )   ( 1.127,  1.256 )  
+## 95%   ( 1.120,  1.262 )   ( 1.114,  1.255 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.257 )   ( 1.119,  1.247 )  
+## 95%   ( 1.129,  1.270 )   ( 1.120,  1.262 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
 <a class="sourceLine" id="cb321-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
@@ -388,10 +388,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2902,  0.3931 )   ( 0.2906,  0.3929 )  
+## 95%   ( 0.2845,  0.3978 )   ( 0.2888,  0.4036 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2888,  0.3911 )   ( 0.2963,  0.3989 )  
+## 95%   ( 0.2781,  0.3929 )   ( 0.2845,  0.3979 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

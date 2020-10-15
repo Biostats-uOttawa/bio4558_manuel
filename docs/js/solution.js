@@ -1,5 +1,5 @@
 (function() {
-  
+
   $(".solution").each(function() {
     $(this).before("<p class='solution-link'><a href='#'>la solution</a></p>");
     $(this).hide();
@@ -8,9 +8,43 @@
       $(this).next().slideToggle();
       $(this).toggleClass("shown");
     });
-    
   });
-  
-  
-
 })();
+
+// adding hiding source or r output
+$(document).ready(function() {
+// from https://stackoverflow.com/questions/37755037/how-to-add-code-folding-to-output-chunks-in-rmarkdown-html-documents
+
+  $chunks = $('.fold');
+
+  $chunks.each(function () {
+
+    // add button to source code chunks
+    if ( $(this).hasClass('s') ) {
+      $('pre.r', this).prepend("<div class=\"showopt\"><a href='#'></div>");
+      $('pre.r', this).children('code').attr('class', 'folded');
+    }
+
+    // add button to output chunks
+    if ( $(this).hasClass('o') ) {
+      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\"><a href='#'>la sortie R</div>");
+      $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
+
+      // add button to plots
+      $(this).find('img').wrap('<pre class=\"plot\"></pre>');
+      $('pre.plot', this).prepend("<div class=\"showopt\"></div>");
+      $('pre.plot', this).children('img').addClass('folded');
+
+    }
+  });
+
+  // hide all chunks when document is loaded
+  $('.folded').css('display', 'none')
+
+  // function to toggle the visibility
+  $('.showopt').click(function() {
+    var label = $(this).html();
+    $(this).siblings('code, img').slideToggle('fast', 'swing');
+    $(this).toggleClass("shown");
+  });
+});

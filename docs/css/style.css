@@ -86,7 +86,7 @@ h1.title {
 }
 
 .solution {
-  margin-top: -1.3em;
+  margin-top: 1.3em;
   margin-bottom: 1.2em;
   padding-left: 1em;
   border-left: 6px solid #4183C4;
@@ -95,4 +95,39 @@ h1.title {
 
 .solution pre.sourceCode {
   background-color: #f0f4fd;
+}
+
+.showopt {
+  /* background-color: #004c93;
+  color: #FFFFFF;
+  width: 100px;
+  height: 20px;
+  font-size: 80%
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 8px; */
+  width: 100%;
+  text-align: right;
+  font-size: 80%;
+  margin-top: -0.3em;
+  margin-bottom: 1.8em;
+}
+/*
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+} */
+
+pre.plot {
+  background-color: white !important;
+}
+
+.showopt a:before {
+  content: "Afficher ";
+}
+
+.showopt.shown a:before {
+  content: "Masquer ";
 }

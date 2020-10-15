@@ -28,9 +28,8 @@
 <line x1='59.04' y1='151.73' x2='51.84' y2='151.73' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='109.60' x2='51.84' y2='109.60' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='67.47' x2='51.84' y2='67.47' style='stroke-width: 0.75;' />
-<text transform='translate(41.76,310.16) rotate(-90)' style='font-size: 12.00px; font-family: Arimo;' textLength='64.05px' lengthAdjust='spacingAndGlyphs'> 1966- 1965</text>
-<text transform='translate(41.76,225.89) rotate(-90)' style='font-size: 12.00px; font-family: Arimo;' textLength='64.05px' lengthAdjust='spacingAndGlyphs'> 1965- 1958</text>
-<text transform='translate(41.76,141.63) rotate(-90)' style='font-size: 12.00px; font-family: Arimo;' textLength='64.05px' lengthAdjust='spacingAndGlyphs'> 1965- 1954</text>
+<text transform='translate(41.76,316.82) rotate(-90)' style='font-size: 12.00px; font-family: Arimo;' textLength='77.38px' lengthAdjust='spacingAndGlyphs'>m1966-m1965</text>
+<text transform='translate(41.76,190.42) rotate(-90)' style='font-size: 12.00px; font-family: Arimo;' textLength='77.38px' lengthAdjust='spacingAndGlyphs'>m1966-m1954</text>
 <defs>
   <clipPath id='cpNTkuMDR8NDczLjc2fDI4Ni41Nnw1OS4wNA=='>
     <rect x='59.04' y='59.04' width='414.72' height='227.52' />

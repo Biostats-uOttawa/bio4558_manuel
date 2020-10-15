@@ -242,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a><ul>
 <li class="chapter" data-level="6.1" data-path="set-anomul.html"><a href="set-anomul.html"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes-modèle-i"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes (Modèle I)</a></li>
-<li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes-modèle-iii"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes (Modèle III)</a></li>
+<li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"><i class="fa fa-check"></i><b>6.3</b> Plan factoriel à deux facteurs de classification sans réplication</a></li>
 <li class="chapter" data-level="6.4" data-path="plans-hiérarchiques.html"><a href="plans-hiérarchiques.html"><i class="fa fa-check"></i><b>6.4</b> Plans hiérarchiques</a></li>
@@ -318,49 +318,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bootstrap-pour-lanova-à-deux-facteurs-de-classification" class="section level2">
 <h2><span class="header-section-number">6.8</span> Bootstrap pour l’ANOVA à deux facteurs de classification</h2>
 <p>Dans la plupart des cas, les tests de permutation seront plus appropriés que le bootstrap pour les designs d’ANOVA. J’ai quand même un bout de code qui pourra servir si vous en avez besoin:</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" title="1"><span class="co">############################################################</span></a>
-<a class="sourceLine" id="cb461-2" title="2"><span class="co">###########</span></a>
-<a class="sourceLine" id="cb461-3" title="3"><span class="co"># Bootstrap for two-way ANOVA</span></a>
-<a class="sourceLine" id="cb461-4" title="4"><span class="co"># You possibly want to edit bootfunction.mod1 to return other values</span></a>
-<a class="sourceLine" id="cb461-5" title="5"><span class="co"># Here it returns the standard coefficients of the fitted model</span></a>
-<a class="sourceLine" id="cb461-6" title="6"><span class="co"># Requires boot library</span></a>
-<a class="sourceLine" id="cb461-7" title="7"><span class="co">#</span></a>
-<a class="sourceLine" id="cb461-8" title="8">nreps &lt;-<span class="st"> </span><span class="dv">5000</span></a>
-<a class="sourceLine" id="cb461-9" title="9">dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</a>
-<a class="sourceLine" id="cb461-10" title="10">factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</a>
-<a class="sourceLine" id="cb461-11" title="11">factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</a>
-<a class="sourceLine" id="cb461-12" title="12">my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</a>
-<a class="sourceLine" id="cb461-13" title="13">my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</a>
-<a class="sourceLine" id="cb461-14" title="14"><span class="kw">require</span>(boot)</a>
-<a class="sourceLine" id="cb461-15" title="15"><span class="co"># Fit model on observed data</span></a>
-<a class="sourceLine" id="cb461-16" title="16">mod1 &lt;-<span class="st"> </span><span class="kw">aov</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</a>
-<a class="sourceLine" id="cb461-17" title="17">  <span class="dt">data =</span> my.dataframe.noNA</a>
-<a class="sourceLine" id="cb461-18" title="18">)</a>
-<a class="sourceLine" id="cb461-19" title="19"></a>
-<a class="sourceLine" id="cb461-20" title="20"></a>
-<a class="sourceLine" id="cb461-21" title="21"><span class="co"># Bootstrap 1000 time using the residuals bootstraping methods to</span></a>
-<a class="sourceLine" id="cb461-22" title="22"><span class="co"># keep the same unequal number of observations for each level of the indep. var.</span></a>
-<a class="sourceLine" id="cb461-23" title="23">fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(mod1)</a>
-<a class="sourceLine" id="cb461-24" title="24">e &lt;-<span class="st"> </span><span class="kw">residuals</span>(mod1)</a>
-<a class="sourceLine" id="cb461-25" title="25">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(mod1)</a>
-<a class="sourceLine" id="cb461-26" title="26">bootfunction.mod1 &lt;-<span class="st"> </span><span class="cf">function</span>(data, indices) {</a>
-<a class="sourceLine" id="cb461-27" title="27">  y &lt;-<span class="st"> </span>fit <span class="op">+</span><span class="st"> </span>e[indices]</a>
-<a class="sourceLine" id="cb461-28" title="28">  bootmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>X)</a>
-<a class="sourceLine" id="cb461-29" title="29">  <span class="kw">coefficients</span>(bootmod)</a>
-<a class="sourceLine" id="cb461-30" title="30">}</a>
-<a class="sourceLine" id="cb461-31" title="31">bootresults &lt;-<span class="st"> </span><span class="kw">boot</span>(my.dataframe.noNA, bootfunction.mod1,</a>
-<a class="sourceLine" id="cb461-32" title="32">  <span class="dt">R =</span> <span class="dv">1000</span></a>
-<a class="sourceLine" id="cb461-33" title="33">)</a>
-<a class="sourceLine" id="cb461-34" title="34">bootresults</a>
-<a class="sourceLine" id="cb461-35" title="35"><span class="co">## Calculate 90% CI and plot bootstrap estimates separately for each model parameter</span></a>
-<a class="sourceLine" id="cb461-36" title="36"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb461-37" title="37"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb461-38" title="38"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb461-39" title="39"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb461-40" title="40"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb461-41" title="41"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb461-42" title="42"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb461-43" title="43"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" title="1"><span class="co">############################################################</span></a>
+<a class="sourceLine" id="cb494-2" title="2"><span class="co">###########</span></a>
+<a class="sourceLine" id="cb494-3" title="3"><span class="co"># Bootstrap for two-way ANOVA</span></a>
+<a class="sourceLine" id="cb494-4" title="4"><span class="co"># You possibly want to edit bootfunction.mod1 to return other values</span></a>
+<a class="sourceLine" id="cb494-5" title="5"><span class="co"># Here it returns the standard coefficients of the fitted model</span></a>
+<a class="sourceLine" id="cb494-6" title="6"><span class="co"># Requires boot library</span></a>
+<a class="sourceLine" id="cb494-7" title="7"><span class="co">#</span></a>
+<a class="sourceLine" id="cb494-8" title="8">nreps &lt;-<span class="st"> </span><span class="dv">5000</span></a>
+<a class="sourceLine" id="cb494-9" title="9">dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</a>
+<a class="sourceLine" id="cb494-10" title="10">factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</a>
+<a class="sourceLine" id="cb494-11" title="11">factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</a>
+<a class="sourceLine" id="cb494-12" title="12">my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</a>
+<a class="sourceLine" id="cb494-13" title="13">my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</a>
+<a class="sourceLine" id="cb494-14" title="14"><span class="kw">library</span>(boot)</a>
+<a class="sourceLine" id="cb494-15" title="15"><span class="co"># Fit model on observed data</span></a>
+<a class="sourceLine" id="cb494-16" title="16">mod1 &lt;-<span class="st"> </span><span class="kw">aov</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</a>
+<a class="sourceLine" id="cb494-17" title="17">  <span class="dt">data =</span> my.dataframe.noNA</a>
+<a class="sourceLine" id="cb494-18" title="18">)</a>
+<a class="sourceLine" id="cb494-19" title="19"></a>
+<a class="sourceLine" id="cb494-20" title="20"></a>
+<a class="sourceLine" id="cb494-21" title="21"><span class="co"># Bootstrap 1000 time using the residuals bootstraping methods to</span></a>
+<a class="sourceLine" id="cb494-22" title="22"><span class="co"># keep the same unequal number of observations for each level of the indep. var.</span></a>
+<a class="sourceLine" id="cb494-23" title="23">fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(mod1)</a>
+<a class="sourceLine" id="cb494-24" title="24">e &lt;-<span class="st"> </span><span class="kw">residuals</span>(mod1)</a>
+<a class="sourceLine" id="cb494-25" title="25">X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(mod1)</a>
+<a class="sourceLine" id="cb494-26" title="26">bootfunction.mod1 &lt;-<span class="st"> </span><span class="cf">function</span>(data, indices) {</a>
+<a class="sourceLine" id="cb494-27" title="27">  y &lt;-<span class="st"> </span>fit <span class="op">+</span><span class="st"> </span>e[indices]</a>
+<a class="sourceLine" id="cb494-28" title="28">  bootmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>X)</a>
+<a class="sourceLine" id="cb494-29" title="29">  <span class="kw">coefficients</span>(bootmod)</a>
+<a class="sourceLine" id="cb494-30" title="30">}</a>
+<a class="sourceLine" id="cb494-31" title="31">bootresults &lt;-<span class="st"> </span><span class="kw">boot</span>(my.dataframe.noNA, bootfunction.mod1,</a>
+<a class="sourceLine" id="cb494-32" title="32">  <span class="dt">R =</span> <span class="dv">1000</span></a>
+<a class="sourceLine" id="cb494-33" title="33">)</a>
+<a class="sourceLine" id="cb494-34" title="34">bootresults</a>
+<a class="sourceLine" id="cb494-35" title="35"><span class="co">## Calculate 90% CI and plot bootstrap estimates separately for each model parameter</span></a>
+<a class="sourceLine" id="cb494-36" title="36"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb494-37" title="37"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb494-38" title="38"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb494-39" title="39"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb494-40" title="40"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb494-41" title="41"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb494-42" title="42"><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb494-43" title="43"><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">5</span>)</a></code></pre></div>
 
 </div>
 <!-- </div> -->
