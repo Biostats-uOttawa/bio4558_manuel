@@ -356,7 +356,7 @@ W = 0.9369, p-value = 0.01238</p>
 <a class="sourceLine" id="cb451-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb451-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb451-9" title="9"><span class="kw">plot</span>(tuk.cld)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-216-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-217-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>Il y a donc une différence de consommation d’oxygène significative lorsque la salinité est réduite de 50%, mais pas à 25% de réduction.</p>
 <ul>
@@ -367,7 +367,7 @@ W = 0.9369, p-value = 0.01238</p>
 <p>Dans ce cas ci, il y a une interaction significative, et il n’est par conséquent pas approprié de comparer les moyennes regroupées par espèce ou concentration. Ceci est clairement visualisé par un graphique d’interaction:</p>
 <div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1">wmc2dat2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/wmc2dat2.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb453-2" title="2"><span class="kw">with</span>(wmc2dat2, <span class="kw">interaction.plot</span>(conc, species, o2cons))</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-217-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-218-1.svg" width="672" /></p>
 <ul>
 <li>Toujours en utilisant les données de wmc2dat2.csv , comparez les 6 moyennes avec l’ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:</li>
 </ul>
@@ -398,7 +398,7 @@ W = 0.9369, p-value = 0.01238</p>
 <a class="sourceLine" id="cb457-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb457-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb457-9" title="9"><span class="kw">plot</span>(tuk2.cld)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-220-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-221-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>Dans cette analyse on a utilisé le CM = 9.474 du modèle d’ANOVA pour comparer les moyennes. En ce faisant, on présume qu’il s’agit d’une situation d’ANOVA de modèle I, ce qui n’est peut-être pas le cas (conc est certainement fixe, mais species peut être fixe ou aléatoire).</p>
 </div>

@@ -5037,9 +5037,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.003361719  0.03335189
-## t2* 0.3408557 -0.002392507  0.02643509
+##      original        bias    std. error
+## t1* 1.1919926 -0.0003993793  0.03502713
+## t2* 0.3408557  0.0005032483  0.02787926
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,12 +5096,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.123,  1.254 )   ( 1.123,  1.256 )  
+## 95%   ( 1.124,  1.261 )   ( 1.124,  1.255 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.261 )   ( 1.105,  1.243 )  
+## 95%   ( 1.129,  1.260 )   ( 1.124,  1.256 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -5125,12 +5124,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2914,  0.3951 )   ( 0.2892,  0.3954 )  
+## 95%   ( 0.2857,  0.3950 )   ( 0.2901,  0.3948 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2863,  0.3925 )   ( 0.2973,  0.4071 )  
+## 95%   ( 0.2869,  0.3916 )   ( 0.2884,  0.3933 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5476,8 +5474,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391 -0.006077329   0.4300192
-## t2* -1.714546 -0.021013630   0.7556425
+## t1* 45.084391  0.009639037   0.4390395
+## t2* -1.714546 -0.008043545   0.7931339
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5510,7 +5508,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.152, -0.315 )  
+## 95%   (-3.295, -0.190 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5552,7 +5550,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 4937   0.0201 *
+## location1   0.8573 4706   0.0208 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5576,9 +5574,13 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 \hypertarget{comparer-les-moyennes-de-deux-uxe9chantillons-appariuxe9s}{%
 \section{Comparer les moyennes de deux échantillons appariés}\label{comparer-les-moyennes-de-deux-uxe9chantillons-appariuxe9s}}
 
+\begin{rmdwarning}
+Pour la section suivante veuillez télécharger le nouveau fichier \texttt{skulldat\_2020.csv} qui a été récemment ajouté sur Brightspace.
+\end{rmdwarning}
+
 Dans certaines expériences les mêmes individus sont mesurés deux fois, par exemple avant et après un traitement ou encore à deux moments au cours de leur développement. Les mesures obtenues lors de ces deux événements ne sont pas indépendantes, et des comparaisons de ces mesures appariées doivent être faites.
 
-Le fichier \texttt{skulldat.csv} contient des mesures de la partie inférieure du visage de jeunes filles d'Amérique du Nord prises à 5 ans, puis à 6 ans (données de Newman and Meredith, 1956).
+Le fichier \texttt{skulldat\_2020.csv} contient des mesures de la partie inférieure du visage de jeunes filles d'Amérique du Nord prises à 5 ans, puis à 6 ans (données de Newman and Meredith, 1956).
 
 \begin{itemize}
 \tightlist
@@ -6226,18 +6228,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5928
+## Quantile = 2.593
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2702   3.6446
-##  1965 -  1954 == 0  -5.5077  -9.9958  -1.0195
-##  1966 -  1954 == 0  -3.3127  -6.3422  -0.2832
-##  1965 -  1958 == 0  -5.6949 -10.4098  -0.9799
-##  1966 -  1958 == 0  -3.4999  -6.8563  -0.1436
-##  1966 -  1965 == 0   2.1950  -2.2159   6.6058
+##  1958 -  1954 == 0   0.1872  -3.2705   3.6449
+##  1965 -  1954 == 0  -5.5077  -9.9963  -1.0190
+##  1966 -  1954 == 0  -3.3127  -6.3425  -0.2829
+##  1965 -  1958 == 0  -5.6949 -10.4103  -0.9794
+##  1966 -  1958 == 0  -3.4999  -6.8566  -0.1432
+##  1966 -  1965 == 0   2.1950  -2.2163   6.6062
 \end{verbatim}
 
 \begin{Shaded}
@@ -6756,6 +6758,25 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(effects)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 methods overwritten by 'lme4':
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car
+\end{verbatim}
+
+\begin{verbatim}
+## lattice theme set by effectsTheme()
+## See ?effectsTheme for details.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{allEffects}\NormalTok{(anova.model1)}
 \end{Highlighting}
 \end{Shaded}
@@ -6776,7 +6797,7 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-206-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-207-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6800,7 +6821,7 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-206-2.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-207-2.pdf}
 
 Il y a une différence importante entre les résultats obtenus avec \texttt{stu2wdat} et \texttt{stu2mdat}. Dans le premier cas, puisqu'il n'y a pas d'interaction, on peut regrouper les données des deux niveaux d'un facteur (le site, par exemple) pour éprouver l'hypothèse d'un effet de l'autre facteur (le sexe). En fait, si on fait cela et que l'on calcule une ANOVA à un critère de classification (sex), on obtient:
 
@@ -6908,7 +6929,7 @@ Si on suppose que c'est un modèle III d'ANOVA (date aléatoire, Depth fixe), qu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 La température diminue significativement en profondeur. Pour tester l'effet du mois (le facteur aléatoire), on doit présumer qu'il n'y a pas d'interaction entre la profondeur et le mois (donc que l'effet de la profondeur sur la température est le même à chaque mois). C'est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l'été, ce modèle ne fait pas de très bonnes prédictions.
 
@@ -7015,7 +7036,7 @@ Le graphique de survival en fonction du génotype suggère que la résistance à
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) \textgreater{} R(Aa) \textgreater{} R(aa).
 
@@ -7146,7 +7167,7 @@ On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-217-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7175,7 +7196,7 @@ Dans ce cas ci, il y a une interaction significative, et il n'est par conséquen
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-217-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-218-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -7231,7 +7252,7 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent se
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-220-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-221-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9620,8 +9641,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-225-1.pdf}
-\caption{\label{fig:unnamed-chunk-225-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-226-1.pdf}
+\caption{\label{fig:unnamed-chunk-226-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9633,8 +9654,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-225-2.pdf}
-\caption{\label{fig:unnamed-chunk-225-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-226-2.pdf}
+\caption{\label{fig:unnamed-chunk-226-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9646,8 +9667,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-225-3.pdf}
-\caption{\label{fig:unnamed-chunk-225-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-226-3.pdf}
+\caption{\label{fig:unnamed-chunk-226-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%
