@@ -265,9 +265,7 @@ observedF<- ANOVA[[1]]$"F value"[1] # Save observed F value
 # Print standard ANOVA results
 cat(" The standard ANOVA for these data follows ",
 "\n")
-print(ANOVA, "\n")
-cat("\n")
-cat("\n")
+print(ANOVA)
 print("Resampling as in Manly with unrestricted sampling of obser-
 vations. ")
 # Now start resampling
