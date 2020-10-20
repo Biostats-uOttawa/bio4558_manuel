@@ -27,7 +27,7 @@ library(multcomp)
 
 L'ANOVA à un critère de classification est l'analogue du test de t pour des comparaisons de moyennes de plus de deux échantillons. Les conditions d'application du test sont essentiellement les mêmes, et lorsque appliqué à deux échantillons ce test est mathématiquement équivalent au test de t.
 
-En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d'esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) et la masse ( rndwght ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier `Dam10dat.csv`.
+En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d'esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth )  furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier `Dam10dat.csv`.
 
 ### Visualiser les données
 - À partir des données, vous devez d’abord changer le type de donnée de la variable `year`, pour que R traite `year` comme une variable discontinue (factor) plutôt que continue.
@@ -151,7 +151,7 @@ Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus 
 
 Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.
 
-La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a un petit bug qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec `paste` dans mon code):
+La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a un petit bug qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec `paste0` dans le code):
 
 ```{r, ano-12}
 Dam10dat$myyear <- as.factor(paste0("m", Dam10dat$year))
@@ -254,16 +254,7 @@ leveneTest(fklngth ~ year, Damsubset)
 
 L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.
 
-Commandes R pour refaire l’ANOVA sur le sous-ensemble de données
 
-```{r, ano-22, eval = FALSE}
-Damsubset<-Dam10dat[-c(23,59,87),]
-# removes obs 23, 59 and 87
-aov.Damsubset <- aov(fklngth ~ as.factor(year), Damsubset)
-summary(aov.Damsubset)
-shapiro.test(residuals(aov.Damsubset))
-leveneTest(fklngth ~ year, Damsubset)
-```
 
 ## Test de permutation
 Commande R pour un test de permutation d’une ANOVA à un critère de classification.
@@ -293,10 +284,12 @@ observedF<- ANOVA[[1]]$"F value"[1] # Save observed F value
 # Print standard ANOVA results
 cat(" The standard ANOVA for these data follows ",
 "\n")
+
 print(ANOVA, "\n")
 cat("\n")
 cat("\n")
 print("Resampling as in Manly with unrestricted sampling of observations. ")
+
 # Now start resampling
 Fboot <- numeric(nreps) # initalize vector to receive permuted
 values
