@@ -235,16 +235,7 @@ leveneTest(fklngth ~ year, Damsubset)
 
 L’élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n’est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu’on tire de l’ANOVA originale ne change pas en enlevant les points renforce le fait qu’on n’a pas une bonne raison pour enlever les points.
 
-Commandes R pour refaire l’ANOVA sur le sous-ensemble de données
 
-```{r, ano-22, eval = FALSE}
-Damsubset<-Dam10dat[-c(23,59,87),]
-# removes obs 23, 59 and 87
-aov.Damsubset <- aov(fklngth ~ as.factor(year), Damsubset)
-summary(aov.Damsubset)
-shapiro.test(residuals(aov.Damsubset))
-leveneTest(fklngth ~ year, Damsubset)
-```
 
 ## Test de permutation
 Commande R pour un test de permutation d’une ANOVA à un critère de classification.
