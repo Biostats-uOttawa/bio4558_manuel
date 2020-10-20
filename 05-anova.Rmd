@@ -137,7 +137,7 @@ Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus 
 
 Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.
 
-La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a une sale petit bogue qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans mon code):
+La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a un petit bug qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec paste dans mon code):
 
 ```{r, ano-12}
 Dam10dat$myyear <- as.factor(paste("", Dam10dat$year))
