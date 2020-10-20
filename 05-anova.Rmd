@@ -8,7 +8,7 @@ Après avoir complété cet exercice de laboratoire, vous devriez être capable 
 Ce laboratoire nécessite:
 
 * les paquets R:
-  * multicomp
+  * multcomp 
   * car
 * les fichiers de données
   * Dam10dat.csv
