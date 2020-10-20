@@ -242,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a><ul>
 <li class="chapter" data-level="6.1" data-path="set-anomul.html"><a href="set-anomul.html"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes-modèle-i"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes (Modèle I)</a></li>
-<li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes-modèle-iii"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes (Modèle III)</a></li>
+<li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"><i class="fa fa-check"></i><b>6.3</b> Plan factoriel à deux facteurs de classification sans réplication</a></li>
 <li class="chapter" data-level="6.4" data-path="plans-hiérarchiques.html"><a href="plans-hiérarchiques.html"><i class="fa fa-check"></i><b>6.4</b> Plans hiérarchiques</a></li>
@@ -317,9 +317,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="transformations-de-données-et-anova-non-paramétrique" class="section level2">
 <h2><span class="header-section-number">5.3</span> Transformations de données et ANOVA non-paramétrique</h2>
-<p>Dans l’exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d’application de l’ANOVA n’étaient pas remplies. Si les données ne remplissent pas les conditions de l’ANOVA paramétrique, il y a 3 options : 1) Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d’application car l’ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d’homoscedasticité), 2) on peut transformer les données, ou 3) on peut faire une analyse non-paramétrique.</p>
+<p>Dans l’exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d’application de l’ANOVA n’étaient pas remplies. Si les données ne remplissent pas les conditions de l’ANOVA paramétrique, il y a 3 options :</p>
+<ol style="list-style-type: decimal">
+<li>Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d’application car l’ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d’homoscedasticité),</li>
+<li>on peut transformer les données</li>
+<li>on peut faire une analyse non-paramétrique.</li>
+</ol>
 <ul>
-<li>Refaites l’ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés dis- paraissent ?</li>
+<li>Refaites l’ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés disparaissent ?</li>
 </ul>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="co"># Fit anova model on log10 of fklngth and plot residual diagnostics</span></a>
 <a class="sourceLine" id="cb397-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
@@ -328,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure"><span id="fig:ano-16"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-16-1.svg" alt="Conditions d'application de l'ANOVA" width="672" />
 <p class="caption">
-Figure 5.6: Conditions d’application de l’ANOVA
+Figure 5.7: Conditions d’application de l’ANOVA
 </p>
 </div>
 <p>Les graphiques diagnostiques des résidus donnent:</p>
@@ -339,10 +344,14 @@ Figure 5.6: Conditions d’application de l’ANOVA
 ## 
 ## data:  residuals(anova.model2)
 ## W = 0.96199, p-value = 0.002048</code></pre>
-<p>Alors, on a toujours des problèmes avec la normalité et on est juste sur le seuil de décision pour l’égalité des variances. Vous avez le choix à ce point: 1) essayer de trouver une autre transformation pour mieux rencontrer les conditions d’application, 2) assumer que les données sont rencontrent suffisamment les conditions d’application, ou 3) faire une ANOVA non-paramétrique.</p>
+<p>Alors, on a toujours des problèmes avec la normalité et on est juste sur le seuil de décision pour l’égalité des variances. Vous avez le choix à ce point:</p>
+<ol style="list-style-type: decimal">
+<li>essayer de trouver une autre transformation pour mieux rencontrer les conditions d’application</li>
+<li>assumer que les données sont rencontrent suffisamment les conditions d’application</li>
+<li>faire une ANOVA non-paramétrique.</li>
+</ol>
 <ul>
-<li>L’analogue non-paramétrique de l’ANOVA à un critère de classifica-
-tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>fklngth</code> et comparez les résultats à ceux de l’analyse paramétrique. Que concluez-vous?</li>
+<li>L’analogue non-paramétrique de l’ANOVA à un critère de classification le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>fklngth</code> et comparez les résultats à ceux de l’analyse paramétrique. Que concluez-vous?</li>
 </ul>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" title="1"><span class="kw">kruskal.test</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data=</span>Dam10dat)</a></code></pre></div>
 <pre><code>## 

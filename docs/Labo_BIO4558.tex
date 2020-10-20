@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{13-10-2020}
+\date{15-10-2020}
 
 \begin{document}
 \maketitle
@@ -5038,8 +5038,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original        bias    std. error
-## t1* 1.1919926 -0.0003993793  0.03502713
-## t2* 0.3408557  0.0005032483  0.02787926
+## t1* 1.1919926  0.0007495654  0.03365813
+## t2* 0.3408557 -0.0005172540  0.02656415
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,10 +5096,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.261 )   ( 1.124,  1.255 )  
+## 95%   ( 1.125,  1.257 )   ( 1.119,  1.255 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.129,  1.260 )   ( 1.124,  1.256 )  
+## 95%   ( 1.129,  1.265 )   ( 1.116,  1.251 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5124,10 +5124,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2857,  0.3950 )   ( 0.2901,  0.3948 )  
+## 95%   ( 0.2893,  0.3934 )   ( 0.2907,  0.3979 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2869,  0.3916 )   ( 0.2884,  0.3933 )  
+## 95%   ( 0.2838,  0.3910 )   ( 0.2947,  0.4012 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5179,7 +5179,7 @@ Ce laboratoire nécessite:
   \item
     sturgeon.csv
   \item
-    skulldat.csv
+    skulldat\_2020.csv
   \end{itemize}
 \end{itemize}
 
@@ -5474,8 +5474,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391  0.009639037   0.4390395
-## t2* -1.714546 -0.008043545   0.7931339
+## t1* 45.084391 -0.001254396   0.4368312
+## t2* -1.714546  0.022888598   0.7812126
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5508,7 +5508,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.295, -0.190 )  
+## 95%   (-3.191, -0.054 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5550,7 +5550,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 4706   0.0208 *
+## location1   0.8573 3481   0.0282 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5805,7 +5805,13 @@ Après avoir complété cet exercice de laboratoire, vous devriez être capable 
 \begin{itemize}
 \tightlist
 \item
-  Utiliser R pour effectuer une analyse de variance paramétrique à un critère de classification, suivie de comparaisons multiples * Utiliser R pour vérifier si les conditions d'application de l'ANOVA paramétrique sont remplies * Utiliser R pour faire une ANOVA à un critère de classification non-paramétrique * Utiliser R pour transformer des données de manière à mieux rem- plir les conditions d'application de l'ANOVA paramétrique.
+  Utiliser R pour effectuer une analyse de variance paramétrique à un critère de classification, suivie de comparaisons multiples
+\item
+  Utiliser R pour vérifier si les conditions d'application de l'ANOVA paramétrique sont remplies
+\item
+  Utiliser R pour faire une ANOVA à un critère de classification non-paramétrique
+\item
+  Utiliser R pour transformer des données de manière à mieux remplir les conditions d'application de l'ANOVA paramétrique.
 \end{itemize}
 
 \hypertarget{set-ano}{%
@@ -5821,6 +5827,8 @@ Ce laboratoire nécessite:
   \begin{itemize}
   \tightlist
   \item
+    ggplot2
+  \item
     multicomp
   \item
     car
@@ -5834,6 +5842,14 @@ Ce laboratoire nécessite:
     Dam10dat.csv
   \end{itemize}
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(car)}
+\KeywordTok{library}\NormalTok{(multcomp)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{anova-uxe0-un-crituxe8re-de-classification-et-comparaisons-multiples}{%
 \section{ANOVA à un critère de classification et comparaisons multiples}\label{anova-uxe0-un-crituxe8re-de-classification-et-comparaisons-multiples}}
@@ -5887,7 +5903,7 @@ En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatche
 \begin{itemize}
 \tightlist
 \item
-  Ensuite, visualisez les données comme dans le labo pour les tests de t. Créez un histogramme avec ligne de densité, un diagramme de probabilité, et un Box plot par année. Que vous révèlent ces données?
+  Ensuite, visualisez les données comme dans le labo pour les tests de t. Créez un histogramme avec ligne de densité et un Box plot par année. Que vous révèlent ces données?
 \end{itemize}
 
 \begin{Shaded}
@@ -5914,6 +5930,18 @@ En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatche
 \centering
 \includegraphics{Labo_BIO4558_files/figure-latex/ano-2-1.pdf}
 \caption{\label{fig:ano-2}Distribution de la longueur des esturgeons par année}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(fklngth }\OperatorTok{~}\StringTok{ }\NormalTok{year, }\DataTypeTok{data =}\NormalTok{ Dam10dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-200-1.pdf}
+\caption{\label{fig:unnamed-chunk-200}Boxplot de la longueur pas annéee}
 \end{figure}
 
 Il semble que la taille des esturgeons est un peu plus petite après la construction du barrage, mais les données sont très variables et les effets ne sont pas parfaitement clairs. Il y a peut-être des problèmes de normalité avec les échantillons de 1954 et 1966, et il y a probablement des valeurs extrêmes dans les échantillons de 1958 et 1966. On va continuer en testant les conditions d'application de l'ANOVA. Il faut d'abord faire l'analyse et examiner les résidus.
@@ -6031,17 +6059,22 @@ La valeur de p vous dit que vous pouvez rejeter l'hypothèse nulle qu'il n'y a a
 ## F-statistic: 5.957 on 3 and 114 DF,  p-value: 0.0008246
 \end{verbatim}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
-  Les 4 coefficients peuvent être utilisés pour obtenir les valeurs prédites par le modèle (i.e.~les moyennes de chaque groupe). La fklngth moyenne de la première année (1954) est 48.0243. Les coefficients pour les 3 autres années sont la différence entre la moyenne de l'année en question et la moyenne de 1954. La moyenne pour 1965 est 48.0243-5.5077=42.5166. Pour chaque coefficient, on a également accès à l'erreur-type, une valeur de t et la probabilité qui lui est associée (H0 que le coefficient est 0). Les poissons étaient plus petits après la construction du barrage qu'en 1954. Vous devez prendre ces p-valeurs avec un grain de sel, car elles ne sont pas corrigées pour les comparaisons multiples et. En général, je porte peu d'attention à cette partie des résultats imprimés et me concentre sur ce qui suit.
+  \emph{Coefficients: Estimates} Les 4 coefficients peuvent être utilisés pour obtenir les valeurs prédites par le modèle (i.e.~les moyennes de chaque groupe). La fklngth moyenne de la première année (1954) est 48.0243. Les coefficients pour les 3 autres années sont la différence entre la moyenne de l'année en question et la moyenne de 1954. La moyenne pour 1965 est 48.0243-5.5077=42.5166. Pour chaque coefficient, on a également accès à l'erreur-type, une valeur de t et la probabilité qui lui est associée (H0 que le coefficient est 0). Les poissons étaient plus petits après la construction du barrage qu'en 1954. Vous devez prendre ces p-valeurs avec un grain de sel, car elles ne sont pas corrigées pour les comparaisons multiples et. En général, je porte peu d'attention à cette partie des résultats imprimés et me concentre sur ce qui suit.
 \item
-  La racine carrée de la variance des résidus (valeurs observées moins valeurs prédites) qui correspond à la variabilité inexpliquée par le modèle (variation de la taille des poissons capturés la même année).
+  \emph{Residual standard error}: La racine carrée de la variance des résidus (valeurs observées moins valeurs prédites) qui correspond à la variabilité inexpliquée par le modèle (variation de la taille des poissons capturés la même année).
 \item
-  Le R-carré est la proportion de la variabilité de la variable dépendante qui peut être expliquée par le modèle. Ici, le modèle explique 13.5\% de la variabilité. Les différences de taille d'une année à l'autre sont relativement petites lorsqu'on les compare à la variation de taille entre les poissons capturés la même année.
+  \emph{Mutiple R-squared} Le R-carré est la proportion de la variabilité de la variable dépendante qui peut être expliquée par le modèle. Ici, le modèle explique 13.5\% de la variabilité. Les différences de taille d'une année à l'autre sont relativement petites lorsqu'on les compare à la variation de taille entre les poissons capturés la même année.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
 \item
-  La p-valeur associée au test ``omnibus'' que toutes les moyennes sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0 pour conclure que fklngth varie selon les années.
+  \emph{F-Statistic} La p-valeur associée au test ``omnibus'' que toutes les moyennes sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0 pour conclure que fklngth varie selon les années.
 \end{enumerate}
 
 La commande \texttt{anova()} produit le tableau d'ANOVA standard qui contient la plupart de cette information:
@@ -6097,7 +6130,7 @@ Compare toutes les moyennes sans ajuster les probabilités
 ## P value adjustment method: none
 \end{verbatim}
 
-Option \texttt{bonf} ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 p-valeurs calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la p-valeur ajustée est 1).
+Option \texttt{bonf} ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 valeurs de p calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la \texttt{p-value} ajustée est 1).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6120,7 +6153,7 @@ Option \texttt{bonf} ajuste les p-valeurs avec la correction de Bonferroni. Ici,
 ## P value adjustment method: bonferroni
 \end{verbatim}
 
-Option ``holm'' is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc \(0.0019*(6-1+1)=0.011\). La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p- valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.
+Option ``holm'' is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc \(0.0019*(6-1+1)=0.011\). La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p-valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6170,11 +6203,11 @@ Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus 
 
 Dans d'autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu'il y a plusieurs comparaisons. D'un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu'il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu'il y a beaucoup de comparaisons.
 
-La méthode de Tukey est l'une des plus populaires et est facile à utiliser en R (notez cependant qu'il y a une sale petit bogue qui se manifeste quand la variable indépendante peut ressemble à un nombre plutôt qu'un facteur, ce qui explique la petite pirouette avec paste dans mon code):
+La méthode de Tukey est l'une des plus populaires et est facile à utiliser en R (notez cependant qu'il y a un sale petit bogue qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu'un facteur, ce qui explique la petite pirouette avec \texttt{paste} dans mon code):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Dam10dat}\OperatorTok{$}\NormalTok{myyear <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{""}\NormalTok{, Dam10dat}\OperatorTok{$}\NormalTok{year))}
+\NormalTok{Dam10dat}\OperatorTok{$}\NormalTok{myyear <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"m"}\NormalTok{, Dam10dat}\OperatorTok{$}\NormalTok{year))}
 \KeywordTok{TukeyHSD}\NormalTok{(}\KeywordTok{aov}\NormalTok{(fklngth }\OperatorTok{~}\StringTok{ }\NormalTok{myyear, }\DataTypeTok{data =}\NormalTok{ Dam10dat))}
 \end{Highlighting}
 \end{Shaded}
@@ -6187,12 +6220,12 @@ La méthode de Tukey est l'une des plus populaires et est facile à utiliser en 
 ## 
 ## $myyear
 ##                   diff        lwr        upr     p adj
-##  1958- 1954  0.1872141  -3.289570  3.6639986 0.9990071
-##  1965- 1954 -5.5076577 -10.021034 -0.9942809 0.0100528
-##  1966- 1954 -3.3126964  -6.359223 -0.2661701 0.0274077
-##  1965- 1958 -5.6948718 -10.436304 -0.9534397 0.0116943
-##  1966- 1958 -3.4999106  -6.875104 -0.1247171 0.0390011
-##  1966- 1965  2.1949612  -2.240630  6.6305526 0.5710111
+## m1958-m1954  0.1872141  -3.289570  3.6639986 0.9990071
+## m1965-m1954 -5.5076577 -10.021034 -0.9942809 0.0100528
+## m1966-m1954 -3.3126964  -6.359223 -0.2661701 0.0274077
+## m1965-m1958 -5.6948718 -10.436304 -0.9534397 0.0116943
+## m1966-m1958 -3.4999106  -6.875104 -0.1247171 0.0390011
+## m1966-m1965  2.1949612  -2.240630  6.6305526 0.5710111
 \end{verbatim}
 
 \begin{Shaded}
@@ -6228,23 +6261,22 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.593
+## Quantile = 2.5956
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-##  1958 -  1954 == 0   0.1872  -3.2705   3.6449
-##  1965 -  1954 == 0  -5.5077  -9.9963  -1.0190
-##  1966 -  1954 == 0  -3.3127  -6.3425  -0.2829
-##  1965 -  1958 == 0  -5.6949 -10.4103  -0.9794
-##  1966 -  1958 == 0  -3.4999  -6.8566  -0.1432
-##  1966 -  1965 == 0   2.1950  -2.2163   6.6062
+## m1958 - m1954 == 0   0.1872  -3.2739   3.6484
+## m1965 - m1954 == 0  -5.5077 -10.0007  -1.0146
+## m1966 - m1954 == 0  -3.3127  -6.3455  -0.2799
+## m1965 - m1958 == 0  -5.6949 -10.4150  -0.9748
+## m1966 - m1958 == 0  -3.4999  -6.8599  -0.1399
+## m1966 - m1965 == 0   2.1950  -2.2207   6.6106
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{old.par <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{mai =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.25}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{))}
 \KeywordTok{plot}\NormalTok{(meandiff)}
 \end{Highlighting}
 \end{Shaded}
@@ -6255,23 +6287,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 \caption{\label{fig:ano-14}Différence anuelles dans la longueur des esturgeons}
 \end{figure}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(old.par)}
-\end{Highlighting}
-\end{Shaded}
-
 C'est un peu mieux, mais ce qui le serait encore plus c'est un graphique des moyennes, avec leurs intervalles de confiance ajustés pour les comparaisons multiples:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Compute and plot means and Tukey CI}
-\NormalTok{means <-}\StringTok{ }\KeywordTok{glht}\NormalTok{(anova.fkl.vs.year, }\DataTypeTok{linfct =} \KeywordTok{mcp}\NormalTok{(}\DataTypeTok{myyear =}
-\StringTok{"Tukey"}\NormalTok{))}
+\NormalTok{means <-}\StringTok{ }\KeywordTok{glht}\NormalTok{(}
+\NormalTok{  anova.fkl.vs.year,}
+  \DataTypeTok{linfct =} \KeywordTok{mcp}\NormalTok{(}\DataTypeTok{myyear =} \StringTok{"Tukey"}\NormalTok{))}
 \NormalTok{cimeans <-}\StringTok{ }\KeywordTok{cld}\NormalTok{(means)}
 \CommentTok{# use sufficiently large upper margin}
-\NormalTok{old.par <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{mai =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{1.25}\NormalTok{, }\DecValTok{1}\NormalTok{))}
 \CommentTok{# plot}
+\NormalTok{old.par<-}\KeywordTok{par}\NormalTok{(}\DataTypeTok{mai=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{1.25}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{plot}\NormalTok{(cimeans)}
 \end{Highlighting}
 \end{Shaded}
@@ -6282,23 +6309,28 @@ C'est un peu mieux, mais ce qui le serait encore plus c'est un graphique des moy
 \caption{\label{fig:ano-15}Différence anuelles dans la longueur des esturgeons}
 \end{figure}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(old.par)}
-\end{Highlighting}
-\end{Shaded}
-
 Notez les lettres au dessus du graphique: les années étiquetées avec la même lettre ne diffèrent pas significativement l'une de l'autre.
 
 \hypertarget{transformations-de-donnuxe9es-et-anova-non-paramuxe9trique}{%
 \section{Transformations de données et ANOVA non-paramétrique}\label{transformations-de-donnuxe9es-et-anova-non-paramuxe9trique}}
 
-Dans l'exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d'application de l'ANOVA n'étaient pas remplies. Si les données ne remplissent pas les conditions de l'ANOVA paramétrique, il y a 3 options : 1) Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d'application car l'ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d'homoscedasticité), 2) on peut transformer les données, ou 3) on peut faire une analyse non-paramétrique.
+Dans l'exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d'application de l'ANOVA n'étaient pas remplies. Si les données ne remplissent pas les conditions de l'ANOVA paramétrique, il y a 3 options :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d'application car l'ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d'homoscedasticité),
+\item
+  on peut transformer les données
+\item
+  on peut faire une analyse non-paramétrique.
+\end{enumerate}
 
 \begin{itemize}
 \tightlist
 \item
-  Refaites l'ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés dis- paraissent ?
+  Refaites l'ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés disparaissent ?
 \end{itemize}
 
 \begin{Shaded}
@@ -6334,13 +6366,23 @@ Les graphiques sont à peine mieux ici. Si on fait le test Wilk-Shapiro sur les 
 ## W = 0.96199, p-value = 0.002048
 \end{verbatim}
 
-Alors, on a toujours des problèmes avec la normalité et on est juste sur le seuil de décision pour l'égalité des variances. Vous avez le choix à ce point: 1) essayer de trouver une autre transformation pour mieux rencontrer les conditions d'application, 2) assumer que les données sont rencontrent suffisamment les conditions d'application, ou 3) faire une ANOVA non-paramétrique.
+Alors, on a toujours des problèmes avec la normalité et on est juste sur le seuil de décision pour l'égalité des variances. Vous avez le choix à ce point:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  essayer de trouver une autre transformation pour mieux rencontrer les conditions d'application
+\item
+  assumer que les données sont rencontrent suffisamment les conditions d'application
+\item
+  faire une ANOVA non-paramétrique.
+\end{enumerate}
 
 \begin{itemize}
 \tightlist
 \item
-  L'analogue non-paramétrique de l'ANOVA à un critère de classifica-
-  tion le plus employé est le test de Kruskall-Wallis. Faites ce test sur \texttt{fklngth} et comparez les résultats à ceux de l'analyse paramétrique. Que concluez-vous?
+  L'analogue non-paramétrique de l'ANOVA à un critère de classification le plus employé est le test de Kruskall-Wallis. Faites ce test sur \texttt{fklngth} et comparez les résultats à ceux de l'analyse paramétrique. Que concluez-vous?
 \end{itemize}
 
 \begin{Shaded}
@@ -6464,8 +6506,7 @@ Commande R pour un test de permutation d'une ANOVA à un critère de classificat
 \KeywordTok{print}\NormalTok{(ANOVA, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(}\StringTok{"Resampling as in Manly with unrestricted sampling of obser-}
-\StringTok{vations. "}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(}\StringTok{"Resampling as in Manly with unrestricted sampling of observations. "}\NormalTok{)}
 \CommentTok{# Now start resampling}
 \NormalTok{Fboot <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(nreps) }\CommentTok{# initalize vector to receive permuted}
 \NormalTok{values}
@@ -6489,7 +6530,7 @@ Version lmPerm du test de permutation.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{## lmPerm version of permutation test}
-\KeywordTok{require}\NormalTok{(lmPerm2)}
+\KeywordTok{library}\NormalTok{(lmPerm)}
 \CommentTok{# for generality, copy desired dataframe to mydata}
 \CommentTok{# and model formula to myformula}
 \NormalTok{mydata <-}\StringTok{ }\NormalTok{Dam10dat}
@@ -6506,11 +6547,20 @@ Version lmPerm du test de permutation.
 
 Après avoir complété cet exercice de laboratoire, vous devriez être
 capable de:
-* Utiliser R pour faire une ANOVA paramétrique d'un plan factoriel avec deux facteurs de classification et réplication
-* Utiliser R pour faire une ANOVA paramétrique d'un plan factoriel avec deux facteurs de classification sans réplication
-* Utiliser R pour faire une ANOVA paramétrique d'un plan hiérarchique avec réplication
-* Utiliser R pour faire une ANOVA non paramétrique avec deux facteurs de classification
-* Utiliser R pour faire des comparaisons multiples
+
+\begin{itemize}
+\tightlist
+\item
+  Utiliser R pour faire une ANOVA paramétrique d'un plan factoriel avec deux facteurs de classification et réplication
+\item
+  Utiliser R pour faire une ANOVA paramétrique d'un plan factoriel avec deux facteurs de classification sans réplication
+\item
+  Utiliser R pour faire une ANOVA paramétrique d'un plan hiérarchique avec réplication
+\item
+  Utiliser R pour faire une ANOVA non paramétrique avec deux facteurs de classification
+\item
+  Utiliser R pour faire des comparaisons multiples
+\end{itemize}
 
 Il existe une très grande variété de plans (designs) d'ANOVA que R peut analyser. Cet exercice n'est qu'une introduction aux plans les plus communs.
 
@@ -6545,9 +6595,9 @@ Ce laboratoire nécessite:
   \item
     nestdat.csv
   \item
-    wmcdat2
+    wmcdat2.csv
   \item
-    wmc2dat2
+    wmc2dat2.csv
   \end{itemize}
 \end{itemize}
 
@@ -6555,8 +6605,6 @@ Ce laboratoire nécessite:
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(multcomp)}
 \KeywordTok{library}\NormalTok{(car)}
-\NormalTok{Stu2wdat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/Stu2wdat.csv"}\NormalTok{)}
-\NormalTok{Stu2mdat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/Stu2mdat.csv"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6567,8 +6615,8 @@ Il est fréquent de vouloir analyser l'effet de plusieurs facteurs simultanémen
 
 Supposons que vous êtes intéressés par l'effet de deux facteurs : site (location, Cumberland House ou The Pas) et sexe (sex, mâle ou femelle) sur la taille des esturgeons. Comme l'effectif n'est pas le même pour tous les groupes, c'est un plan qui n'est pas balancé. Notez aussi qu'il y a des valeurs manquantes pour certaines variables, ce qui veut dire que chaque mesure n'a pas été effectuée sur chaque poisson.
 
-\hypertarget{anova-uxe0-effets-fixes-moduxe8le-i}{%
-\subsection{ANOVA à effets fixes (Modèle I)}\label{anova-uxe0-effets-fixes-moduxe8le-i}}
+\hypertarget{anova-uxe0-effets-fixes}{%
+\subsection{ANOVA à effets fixes}\label{anova-uxe0-effets-fixes}}
 
 \begin{itemize}
 \tightlist
@@ -6641,14 +6689,14 @@ Ces résultats supportent l'interprétation des box plots: Les femelles sont plu
 \end{verbatim}
 
 \begin{rmdwarning}
-Attention, R imprime les sommes des carrés séquentielles(Type I) les carrés moyens et probabilités associés. Vous ne pouvez pas vous y fier si votre plan d'expérience n'est pas parfaitement balancé. Dans cet exemple, le nombre de poissons capturés change selon le site et le sexe et le plan d'expérience n'est donc pas balancé.
+Attention, R imprime les sommes des carrés séquentielles (Type I) les carrés moyens et probabilités associés. Vous ne pouvez pas vous y fier si votre plan d'expérience n'est pas parfaitement balancé. Dans cet exemple, le nombre de poissons capturés change selon le site et le sexe et le plan d'expérience n'est donc pas balancé.
 \end{rmdwarning}
 
-Vous devez extraire les sommes de carrés partielles (Type III). Le moyen le plus simple que j'ai trouvé est d'utiliser la fonction Anova()du package car (notez la différence subtile, Anova() n'est pas la même chose que anova(), R est impitoyable et distingue les majuscules des minuscules). Malheureusement, Anova() ne suffit pas; il faut également utiliser la commande \texttt{contrasts\ =\ list(sex\ =\ contr.sum,location\ =\ contr.sum)}
+Vous devez extraire les sommes de carrés partielles (Type III). Le moyen le plus simple que j'ai trouvé est d'utiliser la fonction Anova()du package \texttt{car} (notez la différence subtile, Anova() n'est pas la même chose que anova(), R est impitoyable et distingue les majuscules des minuscules). Malheureusement, Anova() ne suffit pas; il faut également spécifier le type de contraste dans le modèle avecl'argument \texttt{contrasts\ =\ list(sex\ =\ contr.sum,location\ =\ contr.sum)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{require}\NormalTok{(car)}
+\KeywordTok{library}\NormalTok{(car)}
 \KeywordTok{Anova}\NormalTok{(anova.model1, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -6669,7 +6717,18 @@ Vous devez extraire les sommes de carrés partielles (Type III). Le moyen le plu
 
 Suite à l'ANOVA, on accepte deux hypothèses nulles: (1) que l'effet du sexe ne varie pas entre les sites (pas d'interaction significative) et (2) qu'il n'y a pas de différence de taille des esturgeons (peu importe le sexe) entre les deux sites. D'un autre coté, on rejette l'hypothèse nulle qu'il n'y a pas de différence de taille entre les esturgeons mâles et les femelles, tel que suggéré par les graphiques.
 
-plot(anova.model1)
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(anova.model1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-206-1.pdf}
+\caption{\label{fig:unnamed-chunk-206}Conditions d'application ANOVA model1}
+\end{figure}
 
 Cependant, on ne peut se fier à ces résultats sans vérifier si les conditions d'application de l'ANOVA étaient remplies. Un examen des graphiques des résidus, en haut, montre que les résidus semblent être distribués plus ou moins normalement, si ce n'est des 3 valeurs extrêmes qui sont notées sur le diagramme de probabilité (cas 101, 24,\& 71). D'après le graphique des résidus vs les valeurs prédites, on voit que l'étendue des résidus est plus ou moins égale pour les valeurs estimées, sauf encore pour 2 ou 3 cas. Si on éprouve la normalité, on obtient:
 
@@ -6693,7 +6752,7 @@ Nous allons utiliser le test de Levene pour examiner l'homoscédasticité des r�
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{require}\NormalTok{(car)}
+\KeywordTok{library}\NormalTok{(car)}
 \KeywordTok{leveneTest}\NormalTok{(rdwght }\OperatorTok{~}\StringTok{ }\NormalTok{sex }\OperatorTok{*}\StringTok{ }\NormalTok{location, }\DataTypeTok{data =}\NormalTok{ Stu2wdat)}
 \end{Highlighting}
 \end{Shaded}
@@ -6719,40 +6778,39 @@ Si les résidus étaient homoscédastiques, on accepterait l'hypothèse nulle qu
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{opar <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{Stu2mdat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/Stu2mdat.csv"}\NormalTok{)}
 \NormalTok{anova.model2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
   \DataTypeTok{formula =}\NormalTok{ rdwght }\OperatorTok{~}\StringTok{ }\NormalTok{sex }\OperatorTok{+}\StringTok{ }\NormalTok{location }\OperatorTok{+}\StringTok{ }\NormalTok{sex}\OperatorTok{:}\NormalTok{location,}
   \DataTypeTok{contrasts =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{sex =}\NormalTok{ contr.sum, }\DataTypeTok{location =}\NormalTok{ contr.sum),}
   \DataTypeTok{data =}\NormalTok{ Stu2mdat)}
-\KeywordTok{anova}\NormalTok{(anova.model2)}
+\KeywordTok{Anova}\NormalTok{(anova.model2, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Analysis of Variance Table
-## 
-## Response: rdwght
-##               Df  Sum Sq Mean Sq F value    Pr(>F)    
-## sex            1   113.4  113.40  1.1514    0.2847    
-## location       1    33.7   33.75  0.3427    0.5590    
-## sex:location   1  1745.4 1745.36 17.7220 4.051e-05 ***
-## Residuals    178 17530.4   98.49                      
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
 
 \fi
 
 Notez que cette fois les femelles sont plus grandes que les mâles à Cumberland House, mais que c'est le contraire à The Pas. Quel est le résultat de l'ANOVA (n'oubliez pas qu'il faut des Type III sums of squares pour les résultats)?
 
-Anova Table (Type III tests)
+\begin{verbatim}
+## Anova Table (Type III tests)
+## 
+## Response: rdwght
+##              Sum Sq  Df   F value    Pr(>F)    
+## (Intercept)  106507   1 1081.4552 < 2.2e-16 ***
+## sex              49   1    0.4944    0.4829    
+## location          9   1    0.0891    0.7656    
+## sex:location   1745   1   17.7220 4.051e-05 ***
+## Residuals     17530 178                        
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
 Dans ce cas, le terme de l'interaction (sex:location) est maintenant significatif mais les effets principaux ne le sont pas.
 
 \begin{itemize}
 \tightlist
 \item
-  Vous trouverez utile ici de créer des graphiques pour les deux fichiers de données pour comparer les interactions entre sex et location. Le graphique d'interaction montre les relations entre les moyennes de chaque combinaison de facteurs (appelées aussi les moyennes des cel- lules).Générez un graphique illustrant les intéractions en utilisant la fonction allEffects du package effects :
+  Vous trouverez utile ici de créer des graphiques pour les deux fichiers de données pour comparer les interactions entre sex et location. Le graphique d'interaction montre les relations entre les moyennes de chaque combinaison de facteurs (appelées aussi les moyennes des ce\$lules).Générez un graphique illustrant les intéractions en utilisant la fonction allEffects du package effects :
 \end{itemize}
 
 \begin{Shaded}
@@ -6797,7 +6855,11 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-207-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-211-1.pdf}
+\caption{\label{fig:unnamed-chunk-211}Effet du sexe et du lieu sur le poids des esturgeons}
+\end{figure}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6821,7 +6883,11 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-207-2.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-212-1.pdf}
+\caption{\label{fig:unnamed-chunk-212}Effet du sexe et du lieu sur le poids des esturgeons}
+\end{figure}
 
 Il y a une différence importante entre les résultats obtenus avec \texttt{stu2wdat} et \texttt{stu2mdat}. Dans le premier cas, puisqu'il n'y a pas d'interaction, on peut regrouper les données des deux niveaux d'un facteur (le site, par exemple) pour éprouver l'hypothèse d'un effet de l'autre facteur (le sexe). En fait, si on fait cela et que l'on calcule une ANOVA à un critère de classification (sex), on obtient:
 
@@ -6843,11 +6909,10 @@ Il y a une différence importante entre les résultats obtenus avec \texttt{stu2
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-Notez que la somme des carrés des résidus (17583) est presque égale à celle du modèle complet (17530) de l'ANOVA factorielle à deux facteurs. C'est parce que dans cette anova factorielle, le terme d'interaction et le terme représentant l'effet du site n'expliquent qu'une partie infime de la variabilité. D'un autre coté, si on essaie le même truc avec stu2mdat, on obtient:
+Notez que la somme des carrés des résidus (17583) est presque égale à celle du modèle complet (17530) de l'ANOVA factorielle à deux facteurs. C'est parce que dans cette anova factorielle, le terme d'interaction et le terme représentant l'effet du site n'expliquent qu'une partie infime de la variabilité. D'un autre coté, si on essaie le même truc avec \texttt{stu2mdat}, on obtient:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Stu2mdat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/Stu2mdat.csv"}\NormalTok{)}
 \KeywordTok{Anova}\NormalTok{(}\KeywordTok{aov}\NormalTok{(rdwght }\OperatorTok{~}\StringTok{ }\NormalTok{sex, }\DataTypeTok{data =}\NormalTok{ Stu2mdat), }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -6866,44 +6931,83 @@ Notez que la somme des carrés des résidus (17583) est presque égale à celle 
 
 Ici la somme des carrées des résidus (19309) est beaucoup plus grande que celle de l'ANOVA factorielle (175306) parce qu'une partie importante de la variabilité expliquée par le modèle est associée à l'interaction. Notez que si on n'avait fait que cette analyse, on conclurait que les esturgeons mâles et femelles ont la même taille. Mais en fait leur taille diffère; seulement la différence est à l'avantage des mâles à un site et à l'avantage des femelles à l'autre. Il est donc délicat d'interpréter l'effet principal (sexe) en présence d'une interaction significative\ldots{}
 
-\hypertarget{anova-uxe0-effets-mixtes-moduxe8le-iii}{%
-\subsection{ANOVA à effets mixtes (Modèle III)}\label{anova-uxe0-effets-mixtes-moduxe8le-iii}}
+\hypertarget{anova-uxe0-effets-mixtes}{%
+\subsection{ANOVA à effets mixtes}\label{anova-uxe0-effets-mixtes}}
 
-Les analyses qui précèdent négligent un point important: location pourrait être traité comme un facteur aléatoire et sex est fixe. Par conséquent le modèle approprié d'ANOVA est de type III (mixte).
+Les analyses qui précèdent négligent un point important: \texttt{location} pourrait être traité comme un facteur aléatoire et \texttt{sex} est fixe. Par conséquent le modèle approprié d'ANOVA est de type mixte.
 
-Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle était de Type I, et les termes principaux et celui d'interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type III, ces effets devraient être testés en utilisant le carré moyen du terme d'interaction, ou en combinant la somme des carrés de l'erreur et de l'interaction (selon le statisticien consulté!).
+Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle etait de type effet fixe seulement, et les termes principaux et celui d'interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type mixte, ces effets devraient être testés en utilisant le carré moyen du terme d'interaction, ou en combinant la somme des carrés de l'erreur et de l'interaction (selon le statisticien consulté!).
 
-En utilisant stu2wdat , refaites un tableau d'ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l'interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c'est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d'ANOVA.
+En utilisant \texttt{Stu2wdat} , refaites un tableau d'ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l'interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c'est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d'ANOVA.
 
-Anova Table (Type III tests)
+\iffalse
 
-Pour sex, la nouvelle valeur de F (le rapport des carrés moyens) est de (1745/1)/(49/1)=35.6
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Anova}\NormalTok{(anova.model2, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Pour obtenir la p-valeur correspondant à c ette statistique F, allez à la fenêtre de commandes et tapez: 1-pf(F, df1, df2), où F est la valeur de F calculée, et df1 et df2 sont les degrés de liberté du numérateur (sex) et dénominateur(SEX:location)
+\fi
 
-1-pf(35.6,1,1)
+\begin{verbatim}
+## Anova Table (Type III tests)
+## 
+## Response: rdwght
+##              Sum Sq  Df   F value    Pr(>F)    
+## (Intercept)  106507   1 1081.4552 < 2.2e-16 ***
+## sex              49   1    0.4944    0.4829    
+## location          9   1    0.0891    0.7656    
+## sex:location   1745   1   17.7220 4.051e-05 ***
+## Residuals     17530 178                        
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+Pour \texttt{sex}, la nouvelle valeur de F (le rapport des carrés moyens) est de
+
+\[F = \frac{(1745/1)}{(49/1)} = 35.6\]
+
+Pour obtenir la valeur de p correspondant à cette statistique \texttt{F}, il faut utilisez la fonction de probabilité de la distribtuion de F \texttt{pf(F,\ df1,\ df2,\ lower.tail\ =\ FALSE)}, où F est la valeur de F calculée, et \texttt{df1} et \texttt{df2} sont les degrés de liberté du numérateur (sex) et dénominateur(SEX:location).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pf}\NormalTok{(}\FloatTok{35.6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =}  \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1057152
+\end{verbatim}
 
 Notez que maintenant la valeur de p pour sex n'est plus significative. C'est parce que le carré moyen de l'erreur dans l'ANOVA initiale est plus petit que celui associé à l'interaction, mais surtout parce que le nombre de degrés de liberté pour le dénominateur du test de F est passé de 178 à 1 seulement. En général, c'est beaucoup plus difficile d'obtenir des résultats significatifs quand les degrés de liberté pour le dénominateur sont petits.
+
+\begin{rmdnote}
+Les modèles mixtes qui sont une généralisation de l'ANOVA à effets mixtes sont maintenant extrêmement bien développé et sont à favoriser lors d'analyse incluant des effets dit aléatoires.
+\end{rmdnote}
 
 \hypertarget{plan-factoriel-uxe0-deux-facteurs-de-classification-sans-ruxe9plication}{%
 \section{Plan factoriel à deux facteurs de classification sans réplication}\label{plan-factoriel-uxe0-deux-facteurs-de-classification-sans-ruxe9plication}}
 
 Dans certains plans d'expérience il n'y a pas de réplicats pour chaque combinaison de facteurs, par exemple parce qu'il serait trop coûteux de faire plus d'une observation. L'ANOVA à deux critères de classification est quand même possible dans ces circonstances, mais il y a une limitation importante.
 
-Comme il n'y a pas de réplicats, on ne peut estimer la variance du terme d'erreur. En effet on ne peut qu'estimer la somme des carrés associés à chacun des facteurs principaux, et la quantité de variabilité qui reste (Remainder Mean Square) représente la somme de la variabilité attribuable à l'interaction et au terme d'erreur. Cela a une implication importante : s'il y a une interaction, seul un modèle II d'ANOVA peut être entièrement testé et dans un modèle III d'ANOVA, seul l'effet fixe peut être testé (il est éprouvé en les comparant au carré moyen associé avec le remainder MS). Dans le cas d'un modèle I ou pour l'effet aléatoire d'un modèle III on ne peut tester les effets principaux que si on est sur qu'il n'y a pas d'interaction.
+\begin{rmdwarning}
+Comme il n'y a pas de réplicats, on ne peut estimer la variance du terme d'erreur. En effet on ne peut qu'estimer la somme des carrés associés à chacun des facteurs principaux, et la quantité de variabilité qui reste (Remainder Mean Square) représente la somme de la variabilité attribuable à l'interaction et au terme d'erreur. Cela a une implication importante. Dans le cas d'un modèle avec uniquement des effets fixes ou pour l'effet aléatoire d'un modèle d'ANOVA mixtes on ne peut tester les effets principaux que si on est sur qu'il n'y a pas d'interaction.
+\end{rmdwarning}
 
-Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend une seule mesure de température (temp,en degrés C) à 10 profondeurs différentes (depth, en m) à quatre dates (date) au cours de l'été. Ses données sont au fichier nr2wdat.csv.
+Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend une seule mesure de température (temp,en degrés C) à 10 profondeurs différentes (depth, en m) à quatre dates (date) au cours de l'été. Ses données sont au fichier \texttt{nr2wdat.csv}.
 
 \begin{itemize}
 \tightlist
 \item
-  Effectuez une ANOVA à deux critères de classification en utilisant temp comme variable dépendante et date et depth comme variables indépendantes (vous devez changer le type de données pour DEPTH pour que R traite cette variable comme un facteur et non pas une vari- able continue).
+  Effectuez une ANOVA à deux critères de classification en utilisant temp comme variable dépendante et date et depth comme variables indépendantes (vous devez changer le type de données pour DEPTH pour que R traite cette variable comme un facteur et non pas une var\$able continue).
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{nr2wdat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/nr2wdat.csv"}\NormalTok{)}
-\NormalTok{anova.model4<-}\KeywordTok{lm}\NormalTok{(temp }\OperatorTok{~}\StringTok{ }\NormalTok{date }\OperatorTok{+}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(depth), }\DataTypeTok{data =}\NormalTok{ nr2wdat)}
+\NormalTok{nr2wdat}\OperatorTok{$}\NormalTok{depth <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(nr2wdat}\OperatorTok{$}\NormalTok{depth)}
+\NormalTok{anova.model4<-}\KeywordTok{lm}\NormalTok{(temp }\OperatorTok{~}\StringTok{ }\NormalTok{date }\OperatorTok{+}\StringTok{ }\NormalTok{depth, }\DataTypeTok{data =}\NormalTok{ nr2wdat)}
 \KeywordTok{Anova}\NormalTok{(anova.model4, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -6912,16 +7016,16 @@ Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend une seule me
 ## Anova Table (Type III tests)
 ## 
 ## Response: temp
-##                   Sum Sq Df  F value    Pr(>F)    
-## (Intercept)      1511.99  1 125.5652 1.170e-11 ***
-## date              591.15  3  16.3641 2.935e-06 ***
-## as.factor(depth) 1082.82  9   9.9916 1.450e-06 ***
-## Residuals         325.12 27                       
+##              Sum Sq Df  F value    Pr(>F)    
+## (Intercept) 1511.99  1 125.5652 1.170e-11 ***
+## date         591.15  3  16.3641 2.935e-06 ***
+## depth       1082.82  9   9.9916 1.450e-06 ***
+## Residuals    325.12 27                       
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-Si on suppose que c'est un modèle III d'ANOVA (date aléatoire, Depth fixe), que concluez vous? (Indice: faites un graphique d'interaction température en fonction de la profondeur et la date, pour voir ce qui se passe).
+Si on suppose que c'est un modèle d'ANOVA mixte (date aléatoire, Depth fixe), que concluez vous? (Indice: faites un graphique d'interaction température en fonction de la profondeur et la date, pour voir ce qui se passe).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6929,13 +7033,46 @@ Si on suppose que c'est un modèle III d'ANOVA (date aléatoire, Depth fixe), qu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-211-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-221-1.pdf}
+\caption{\label{fig:unnamed-chunk-221}Effet du mois et de la profondeur sur la température}
+\end{figure}
 
 La température diminue significativement en profondeur. Pour tester l'effet du mois (le facteur aléatoire), on doit présumer qu'il n'y a pas d'interaction entre la profondeur et le mois (donc que l'effet de la profondeur sur la température est le même à chaque mois). C'est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l'été, ce modèle ne fait pas de très bonnes prédictions.
 
 Jetez un coup d'oeil sur les graphiques des résidus:
 
-R
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(anova.model4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in xy.coords(x, y, xlabel, ylabel, log): 'x' and 'y' lengths differ
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-222-1.pdf}
+\caption{\label{fig:unnamed-chunk-222}Conditions d'applications du modèle anova.model4}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(anova.model4))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  residuals(anova.model4)
+## W = 0.95968, p-value = 0.1634
+\end{verbatim}
 
 Le test de normalité sur les résidus donne p = 0.16, donc l'hypothèse de normalité ne semble pas être sérieusement en doute. Pour l'égalité des variances, on peut seulement comparer entre les mois en utilisant les profondeurs comme réplicats (ou l'inverse). En utilisant les profondeurs comme réplicats, on obtient:
 
@@ -6964,12 +7101,12 @@ Il y a donc un problème d'hétéroscédasticité, comme on peut très bien voir
 \hypertarget{plans-hiuxe9rarchiques}{%
 \section{Plans hiérarchiques}\label{plans-hiuxe9rarchiques}}
 
-Un design expérimental fréquent implique la division de chaque groupe du facteur majeur en sous-groupes aléatoires. Par exemple, une généticienne intéressée par l'effet du génotype sur la résistance à la dessiccation chez la drosophile effectue une expérience. Pour chaque génotype (facteur principal) elle prépare trois chambres de croissance (sous-groupes) avec une température et humidité contrôlées. Dans chaque chambre de croissance, elle place cinq larves, puis mesure le nombre d'heures pendant lesquelles chaque larve survit.
+Un design expérimental fréquent implique la division de chaque groupe du facteur majeur en sous-groupes aléatoires. Par exemple, une généticienne intéressée par l'effet du génotype sur la résistance à la dessiccation chez la drosophile effectue une expérience. Pour chaque génotype (facteur principal) elle prépare trois chambres de croissance (sous-groupes) avec une température et humidité contrôlées. Dans chaque chambre de croissance, elle place cinq larves, puis mesure le nombre d'heures pendant lesquelles chaque larve survit. Les données ont donc un structure hiérarchique. Il ya des observations répétées dans chaque chambre au sein de chaque génotype.
 
 \begin{itemize}
 \tightlist
 \item
-  Le fichier \texttt{nestdat.csv} contient les résultats d'une expérience sem- blable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.
+  Le fichier \texttt{nestdat.csv} contient les résultats d'une expérience semblable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.
 \end{itemize}
 
 \begin{Shaded}
@@ -6983,18 +7120,29 @@ Un design expérimental fréquent implique la division de chaque groupe du facte
 
 Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l'effet de Chamber / genotype n'est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N'oubliez pas de vérifier les conditions d'applications de l'ANOVA!
 
-Analysis of Variance Table
-Response: survival
-Df Sum Sq Mean Sq F value Pr(\textgreater{}F)
-genotype
-2 2952.22 1476.11 292.6081 \textless{}2e-16 ***
-genotype:chamber 6
-40.65
-6.78
-1.3432 0.2639
-Residuals
-36 181.61
-5.04
+\iffalse
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(anova.nested)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(anova.nested)}
+\end{Highlighting}
+\end{Shaded}
+
+\fi
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Response: survival
+##                  Df  Sum Sq Mean Sq  F value Pr(>F)    
+## genotype          2 2952.22 1476.11 292.6081 <2e-16 ***
+## genotype:chamber  6   40.65    6.78   1.3432 0.2639    
+## Residuals        36  181.61    5.04                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
 On conclue de cette analyse que la variation entre les chambres de croissance n'est pas significative, mais qu'on doit rejeter l'hypothèse nulle que tous les génotypes ont la même résistance à la dessiccation.
 
@@ -7020,7 +7168,7 @@ Comme l'effet hiérarchique chamber / genotype n'est pas significatif, on peut r
 
 Donc on conclue qu'il y a une variation significative de résistance à la dessiccation entre les trois génotypes.
 
-Le graphique de survival en fonction du génotype suggère que la résistance à la dessiccation varie entre chaque génotype. On peut combiner cela avec un test de Tukey.
+Le graphique de \texttt{survival} en fonction du \texttt{génotype} suggère que la résistance à la dessiccation varie entre chaque génotype. On peut combiner cela avec un test de Tukey.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7036,11 +7184,32 @@ Le graphique de survival en fonction du génotype suggère que la résistance à
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-215-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-229-1.pdf}
+\caption{\label{fig:unnamed-chunk-229}Effet du genotype sur la résistance à la dessication avec un test de Tukey}
+\end{figure}
 
 On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) \textgreater{} R(Aa) \textgreater{} R(aa).
 
 Cependant, avant d'accepter cette conclusion, il faut éprouver les conditions d'application du test. Voici les diagnostics des résidus pour l'ANOVA à un critère de classification (non hiérarchique):
+
+\iffalse
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(anova.simple)}
+\end{Highlighting}
+\end{Shaded}
+
+\fi
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-231-1.pdf}
+\caption{\label{fig:unnamed-chunk-231}Conditions d'applications du modèle anova.simple}
+\end{figure}
 
 Donc, toutes les conditions d'application semblent être remplies, et on peut donc accepter les conclusions. Notez que si l'on compare le carré moyen des résidus de l'ANOVA hiérarchique et de l'ANOVA à un critère de classification (5.045 vs 5.292), ils sont presque identiques. Cela n'est pas surprenant compte tenu de la faible variabilité associée aux chambres de croissance pour chaque génotype.
 
@@ -7049,13 +7218,24 @@ Donc, toutes les conditions d'application semblent être remplies, et on peut do
 
 L'ANOVA non paramétrique à deux critères de classification est une extension de celle à un critère de classification vue précédemment. Elle débute par une ANOVA faite sur les données transformées en rangs. Elle peut se faire sur des données avec ou sans réplicats.
 
-À partir du fichier stu2wdat.csv, effectuez une ANOVA non paramétrique à deux facteurs de classification pour examiner l'effet de sex et location sur rank(rdwght).
+À partir du fichier \texttt{stu2wdat.csv}, effectuez une ANOVA non paramétrique à deux facteurs de classification pour examiner l'effet de \texttt{sex} et \texttt{location} sur \texttt{rank(rdwght)}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{aov.rank <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(}\KeywordTok{rank}\NormalTok{(rdwght) }\OperatorTok{~}\StringTok{ }\NormalTok{sex }\OperatorTok{*}\StringTok{ }\NormalTok{location,}
-\DataTypeTok{contrasts =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{sex =}\NormalTok{ contr.sum,}
-\DataTypeTok{location =}\NormalTok{ contr.sum), }\DataTypeTok{data =}\NormalTok{ Stu2wdat)}
+\NormalTok{aov.rank <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(}
+  \KeywordTok{rank}\NormalTok{(rdwght) }\OperatorTok{~}\StringTok{ }\NormalTok{sex }\OperatorTok{*}\StringTok{ }\NormalTok{location,}
+  \DataTypeTok{contrasts =} \KeywordTok{list}\NormalTok{(}
+    \DataTypeTok{sex =}\NormalTok{ contr.sum, }\DataTypeTok{location =}\NormalTok{ contr.sum),}
+  \DataTypeTok{data =}\NormalTok{ Stu2wdat)}
+\end{Highlighting}
+\end{Shaded}
+
+L'extension de Schreirer-Ray-Hare au test de Kruskall-Wallis se fait ensuite à la main. Il faut d'abord calculer la statistique H égale au rapport de la somme des carrées de l'effet testé, divisée par le carré moyen total. On calcule la statistique H pour chacun des termes. Les statistiques H sont ensuite comparées à une distribution théorique de \(\chi^2\) (chi-carré) en utilisant la commande \texttt{pchisq(H,\ df,\ lower.tail\ =\ FALSE)}, où \texttt{H} et \texttt{df} sont les statistiques H calculées et les degrés de libertés, respectivement.
+
+Testez l'effet de sex et location sur rdwght. Que concluez-vous ? Comment ce résultat se compare-t-il à celui obtenu en faisant l'ANOVA paramétrique faite précédemment ?
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{Anova}\NormalTok{(aov.rank, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -7074,50 +7254,152 @@ L'ANOVA non paramétrique à deux critères de classification est une extension 
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-L'extension de Schreirer-Ray-Hare au test de Kruskall-Wallis se fait ensuite à la main. Il faut d'abord calculer la statistique H égale au rapport de la somme des carrées de l'effet testé, divisée par le carré moyen total. On calcule la statistique H pour chacun des termes. Les statistiques H sont ensuite comparées à une distribution théorique c2 en utilisant la commande (dans la fenêtre Commands): 1-pchisq(H, df), où H et df sont les statistiques H calculées et les degrés de libertés, respectivement.
-
-Testez l'effet de sex et location sur rdwght. Que concluez-vous ? Comment ce résultat se compare-t-il à celui obtenu en faisant l'ANOVA paramétrique faite précédemment ?
-
-Pour calculer l'extension Schreirer-Ray-Hare au test de Kruskall- Wallis, on doit d'abord calculer le carré moyen total (MS), i.e.~la variance des données transformées en rang. Ici, on a 186 observations, donc des rangs; 1, 2, 3, \ldots{} 186. La variance de cette série de 186 valeurs peut être calculée simplement par var(1:186) (N'est-ce pas que R est fabuleux? Pas toujours évident, mais fabuleux tout de même, non?)
+Pour calculer l'extension Schreirer-Ray-Hare au test de Kruskall-Wallis, on doit d'abord calculer le carré moyen total (MS), i.e.~la variance des données transformées en rang. Ici, on a 186 observations, donc des rangs; 1, 2, 3, \ldots{} 186. La variance de cette série de 186 valeurs peut être calculée simplement par \texttt{var(1:186)}.
 
 Donc on peut calculer la statistique H pour chaque terme:
 
-Hsex = 58394/var(1:186) = 20.14
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Hsex <-}\StringTok{ }\DecValTok{58394} \OperatorTok{/}\StringTok{ }\KeywordTok{var}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{186}\NormalTok{)}
+\NormalTok{Hlocation <-}\StringTok{ }\DecValTok{1128} \OperatorTok{/}\StringTok{ }\KeywordTok{var}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{186}\NormalTok{)}
+\NormalTok{Hsexloc <-}\StringTok{ }\DecValTok{1230} \OperatorTok{/}\StringTok{ }\KeywordTok{var}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{186}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-Hlocation = 1128/var(1:186) = 0.39
+Et convertir ces statistiques en valeur de ps:
 
-Hsex:location = 1230/var(1:186) = 0.42
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sex}
+\NormalTok{Hsex}
+\end{Highlighting}
+\end{Shaded}
 
-Et convertir ces statistiques en p-valeurs:
+\begin{verbatim}
+## [1] 20.14628
+\end{verbatim}
 
-pour sex: 1-pchisq(20.14,1) = 7.197556e-06
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pchisq}\NormalTok{(Hsex, }\DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-location 1-pchisq(0.39, 1) = 0.5322994
+\begin{verbatim}
+## [1] 7.173954e-06
+\end{verbatim}
 
-sex:location 1-pchisq(0.42, 1) = 0.516937
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# location}
+\NormalTok{Hlocation}
+\end{Highlighting}
+\end{Shaded}
 
-Ces résultats sont semblables aux résultats de l'ANOVA non- paramétrique à deux critères de classification. Malgré la puissance réduite, il y a encore un effet significatif du sexe, mais ni interaction ni effet du site.
+\begin{verbatim}
+## [1] 0.3891668
+\end{verbatim}
 
-Il y a toutefois une différence importante. Rappelez-vous que dans l'ANOVA paramétrique il y avait un effet significatif de sex en considérant le problème comme un modèle I d'ANOVA. Cependant, si on traite le problème comme un modèle III, l'effet significatif de sex peut en principe disparaître parce que le nombre de dl associés au CM de l'interaction est plus faible que le nombre de dl du CM de l'erreur du modèle I. Dans ce cas ci, cependant, le CM de l'interaction est environ la moitié du CM de l'erreur. Par conséquent, l'effet significatif de sex pourrait devenir encore plus significatif si le problème est analysé (comme il se doit) comme une ANOVA de modèle III. Encore une fois on peut voir l'importance de spécifier le modèle adéquat en ANOVA.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pchisq}\NormalTok{(Hlocation, }\DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5327377
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# sex:location}
+\NormalTok{Hsexloc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4243574
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pchisq}\NormalTok{(Hsexloc, }\DecValTok{1}\NormalTok{, }\DataTypeTok{lower.tail =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5147707
+\end{verbatim}
+
+Ces résultats sont semblables aux résultats de l'ANOVA non-paramétrique à deux critères de classification. Malgré la puissance réduite, il y a encore un effet significatif du sexe, mais ni interaction ni effet du site.
+
+Il y a toutefois une différence importante. Rappelez-vous que dans l'ANOVA paramétrique il y avait un effet significatif de sex en considérant le problème comme un modèle ANOVA à effet fixe. Cependant, si on traite le problème comme un modèle d'ANOVA à effet mixte l'effet significatif de \texttt{sex} peut en principe disparaître parce que le nombre de degré de liberté (dl) associés au carré moyen (CM) de l'interaction est plus faible que le nombre de dl du CM de l'erreur du modèle à effet fixes. Dans ce cas ci, cependant, le CM de l'interaction est environ la moitié du CM de l'erreur. Par conséquent, l'effet significatif de \texttt{sex} pourrait devenir encore plus significatif si le problème est analysé (comme il se doit) comme une ANOVA mixte. Encore une fois on peut voir l'importance de spécifier le modèle adéquat en ANOVA.
 
 \hypertarget{comparaisons-multiples}{%
 \section{Comparaisons multiples}\label{comparaisons-multiples}}
 
 Les épreuves d'hypothèses subséquentes en ANOVA à plus d'un critère de classification dépendent des résultats initiaux de l'ANOVA. Si vous êtes intéressés à comparer des effets moyens d'un facteur pour tous les niveaux d'un autre facteur (par exemple l'effet du sexe sur la taille des esturgeons peu importe d'où ils viennent), alors vous pouvez procéder exactement tel que décrit dans la section sur les comparaisons multiples suivant l'ANOVA à un critère de classification. Pour comparer les moyennes des cellules entre elles, il faut spécifier l'interaction comme variable qui représente le groupe.
 
-Le fichier wmcdat2.csv contient des mesures de consommation d'oxygène ( o2cons ) de deux espèces ( species ) d'un mollusque (une patelle) à trois concentrations différentes d'eau de mer ( conc ) (ces données sont présentées à la p.~332 de Sokal et Rohlf 1995).
+Le fichier \texttt{wmcdat2.csv} contient des mesures de consommation d'oxygène, \texttt{o2cons}, de deux espèces, \texttt{species}, d'un mollusque (une patelle) à trois concentrations différentes d'eau de mer, \texttt{conc}. Ces données sont présentées à la p.~332 de Sokal et Rohlf 1995.
 
-Effectuez une ANOVA factorielle à deux critères de classification sur ces données en utilisant 02cons comme variable dépendante et species et conc comme les facteurs (il va probablement falloir changer le type de données du variable conc à facteur). Que concluez-vous ?
+\begin{itemize}
+\tightlist
+\item
+  Effectuez une ANOVA factorielle à deux critères de classification sur ces données en utilisant \texttt{o2cons} comme variable dépendante et \texttt{species} et \texttt{conc} comme les facteurs (il va probablement falloir changer le type de données de variable conc à facteur). Que concluez-vous ?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wmcdat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmcdat2.csv"}\NormalTok{)}
+\NormalTok{wmcdat2}\OperatorTok{$}\NormalTok{species <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmcdat2}\OperatorTok{$}\NormalTok{species)}
+\NormalTok{wmcdat2}\OperatorTok{$}\NormalTok{conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmcdat2}\OperatorTok{$}\NormalTok{conc)}
+\NormalTok{anova.model5 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(o2cons }\OperatorTok{~}\StringTok{ }\NormalTok{species }\OperatorTok{*}\StringTok{ }\NormalTok{conc, }\DataTypeTok{data =}\NormalTok{ wmcdat2)}
+\KeywordTok{Anova}\NormalTok{(anova.model5, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Anova Table (Type III tests)
+## 
+## Response: o2cons
+##               Sum Sq Df  F value    Pr(>F)    
+## (Intercept)  1185.60  1 124.0165 4.101e-14 ***
+## species         0.09  1   0.0097   0.92189    
+## conc           74.90  2   3.9172   0.02755 *  
+## species:conc   23.93  2   1.2514   0.29656    
+## Residuals     401.52 42                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
 Comme l'effectif dans chaque cellule est relativement petit, il faudrait idéalement refaire cette analyse avec une ANOVA non-paramétrique. Pour le moment, contentons nous de la version paramétrique.
 
 Examinons les graphiques diagnostiques:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(anova.model5)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-238-1.pdf}
+
 Les variances semblent donc égales. Le test de normalité donne:
 
-Shapiro-Wilk normality test
-data: residuals(anova.model5)
-W = 0.9369, p-value = 0.01238
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(anova.model5))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  residuals(anova.model5)
+## W = 0.93692, p-value = 0.01238
+\end{verbatim}
 
 Il y a donc évidence de non-normalité, mais à part ça tout semble aller. Comme l'ANOVA est relativement robuste à la non-normalité, on va regarder de l'autre coté. (Si vous voulez être plus confiants, vous pouvez tourner une ANOVA non paramétrique. Vous arriverez aux mêmes conclusions.)
 
@@ -7127,12 +7409,12 @@ Il y a donc évidence de non-normalité, mais à part ça tout semble aller. Com
   À la suite des résultats que vous venez d'obtenir, quelles moyennes voudriez-vous comparer ? Pourquoi?
 \end{itemize}
 
+ajouter une explication ici
+
 On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet de la concentration ne dépends pas de l'espèce (il n'y a pas d'interaction). Par conséquent, les seules comparaisons justifiables sont entre les concentrations:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wmcdat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmcdat2.csv"}\NormalTok{)}
-\NormalTok{wmcdat2}\OperatorTok{$}\NormalTok{conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmcdat2}\OperatorTok{$}\NormalTok{conc)}
 \CommentTok{# fit simplified model}
 \NormalTok{anova.model6 <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(o2cons }\OperatorTok{~}\StringTok{ }\NormalTok{conc, }\DataTypeTok{data =}\NormalTok{ wmcdat2)}
 \CommentTok{# Make Tukey multiple comparisons}
@@ -7167,7 +7449,11 @@ On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-217-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-240-1.pdf}
+\caption{\label{fig:unnamed-chunk-240}Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration}
+\end{figure}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7180,33 +7466,53 @@ Il y a donc une différence de consommation d'oxygène significative lorsque la 
 \begin{itemize}
 \tightlist
 \item
-  Répétez les deux analyses précédentes sur les données du fichier wmc2dat2.csv. Comment les résultats se comparent-ils à ceux obte- nus précédemment ?
+  Répétez les deux analyses précédentes sur les données du fichier \texttt{wmc2dat2.csv}. Comment les résultats se comparent-ils à ceux obt\$nus précédemment ?
 \end{itemize}
 
-En utilisant wmc2dat2.csv, on obtient:
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wmc2dat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmc2dat2.csv"}\NormalTok{)}
+\NormalTok{wmc2dat2}\OperatorTok{$}\NormalTok{species <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmc2dat2}\OperatorTok{$}\NormalTok{species)}
+\NormalTok{wmc2dat2}\OperatorTok{$}\NormalTok{conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmc2dat2}\OperatorTok{$}\NormalTok{conc)}
+\NormalTok{anova.model7 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(o2cons }\OperatorTok{~}\StringTok{ }\NormalTok{species }\OperatorTok{*}\StringTok{ }\NormalTok{conc, }\DataTypeTok{data =}\NormalTok{ wmcdat2)}
+\end{Highlighting}
+\end{Shaded}
 
-Anova Table (Type III tests)
+En utilisant \texttt{wmc2dat2.csv}, on obtient:
+
+\begin{verbatim}
+## Anova Table (Type III tests)
+## 
+## Response: o2cons
+##               Sum Sq Df  F value    Pr(>F)    
+## (Intercept)  1185.60  1 124.0165 4.101e-14 ***
+## species         0.09  1   0.0097   0.92189    
+## conc           74.90  2   3.9172   0.02755 *  
+## species:conc   23.93  2   1.2514   0.29656    
+## Residuals     401.52 42                       
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
 
 Dans ce cas ci, il y a une interaction significative, et il n'est par conséquent pas approprié de comparer les moyennes regroupées par espèce ou concentration. Ceci est clairement visualisé par un graphique d'interaction:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wmc2dat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmc2dat2.csv"}\NormalTok{)}
 \KeywordTok{with}\NormalTok{(wmc2dat2, }\KeywordTok{interaction.plot}\NormalTok{(conc, species, o2cons))}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-218-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 \begin{itemize}
 \tightlist
 \item
-  Toujours en utilisant les données de wmc2dat2.csv , comparez les 6 moyennes avec l'ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:
+  Toujours en utilisant les données de \texttt{wmc2dat2.csv} , comparez les 6 moyennes avec l'ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wmc2dat2}\OperatorTok{$}\NormalTok{species.conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{paste}\NormalTok{(wmc2dat2}\OperatorTok{$}\NormalTok{species,wmc2dat2}\OperatorTok{$}\NormalTok{conc))}
+\NormalTok{wmc2dat2}\OperatorTok{$}\NormalTok{species.conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(wmc2dat2}\OperatorTok{$}\NormalTok{species, wmc2dat2}\OperatorTok{$}\NormalTok{conc))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7224,19 +7530,19 @@ ensuite on peut faire les comparaisons de Bonferroni:
 ## 
 ## data:  o2cons and species.conc 
 ## 
-##       A 100  A 50   A 75   B 100  B 50  
-## A 50  0.1887 -      -      -      -     
-## A 75  1.0000 1.0000 -      -      -     
-## B 100 0.7223 1.0000 1.0000 -      -     
-## B 50  1.0000 0.0079 0.0929 0.0412 -     
-## B 75  0.6340 1.0000 1.0000 1.0000 0.0350
+##      A100   A50    A75    B100   B50   
+## A50  0.1887 -      -      -      -     
+## A75  1.0000 1.0000 -      -      -     
+## B100 0.7223 1.0000 1.0000 -      -     
+## B50  1.0000 0.0079 0.0929 0.0412 -     
+## B75  0.6340 1.0000 1.0000 1.0000 0.0350
 ## 
 ## P value adjustment method: bonferroni
 \end{verbatim}
 
 Ces comparaisons sont un peu plus difficiles à interpréter, mais l'analyse examine essentiellement les différences entre les concentrations de l'eau dans l'espèce A (nommé adj1) et pour les différences entre les concentrations dans l'espèce B (nommé adj2). Cette analyse indique que la différence principale est entre la concentration de 50\% pour l'espèce B et les concentrations de 75 et 100\% de l'espèce B, tandis qu'il n'y a aucunes différences significatives pour l'espèce A.
 
-Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent seulement les p-valeurs sans indices de la taille de l'effet. On peut obtenir à la fois le résultat des tests de comparaison multiple et un indice de la taille de l'effet à l'aide du code suivant:
+Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent seulement les valeur de ps sans indices de la taille de l'effet. On peut obtenir à la fois le résultat des tests de comparaison multiple et un indice de la taille de l'effet à l'aide du code suivant:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7252,7 +7558,7 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent se
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-221-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-246-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7260,12 +7566,12 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent se
 \end{Highlighting}
 \end{Shaded}
 
-Dans cette analyse on a utilisé le CM = 9.474 du modèle d'ANOVA pour comparer les moyennes. En ce faisant, on présume qu'il s'agit d'une situation d'ANOVA de modèle I, ce qui n'est peut-être pas le cas (conc est certainement fixe, mais species peut être fixe ou aléatoire).
+Dans cette analyse on a utilisé le CM = 9.474 du modèle d'ANOVA pour comparer les moyennes. En ce faisant, on présume qu'il s'agit d'une situation d'ANOVA à effet fixes, ce qui n'est peut-être pas le cas (conc est certainement fixe, mais species peut être fixe ou aléatoire).
 
 \hypertarget{test-de-permutation-pour-lanova-uxe0-deux-facteurs-de-classification}{%
 \section{Test de permutation pour l'ANOVA à deux facteurs de classification}\label{test-de-permutation-pour-lanova-uxe0-deux-facteurs-de-classification}}
 
-Quand les données ne rencontrent pas les conditions d'application des tests paramétriques d'ANOVA à un ou plusieurs facteurs de classification, il est possible d'utiliser les tests de permutation comme une alternative aux tests non-paramétriques pour calculer des p- valeurs. Le code suivant est pour un modèle I d'une ANOVA à deux facteurs de classification. Je vous laisse le soin d'adapter ce code pour d'autres modèles. (J'offre même des points boni pour une solution élégante pour des modèles à plusieurs facteurs de classification).
+Quand les données ne rencontrent pas les conditions d'application des tests paramétriques d'ANOVA à un ou plusieurs facteurs de classification, il est possible d'utiliser les tests de permutation comme une alternative aux tests non-paramétriques pour calculer des p-valeurs. Le code suivant est pour un modèle I d'une ANOVA à deux facteurs de classification. Je vous laisse le soin d'adapter ce code pour d'autres modèles. (J'offre même des points boni pour une solution élégante pour des modèles à plusieurs facteurs de classification).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7339,7 +7645,7 @@ Si vous avez la chance d'avoir accès au package lmPerm, vous pouvez effectuer l
 \begin{Highlighting}[]
 \CommentTok{#######################################################################}
 \CommentTok{## lmPerm version of permutation test}
-\KeywordTok{require}\NormalTok{(lmPerm2)}
+\KeywordTok{library}\NormalTok{(lmPerm)}
 \CommentTok{# for generality, copy desired dataframe to mydata}
 \CommentTok{# and model formula to myformula}
 \NormalTok{mydata <-}\StringTok{ }\NormalTok{Stu2wdat}
@@ -7371,7 +7677,7 @@ Dans la plupart des cas, les tests de permutation seront plus appropriés que le
 \NormalTok{factor2 <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(Stu2wdat}\OperatorTok{$}\NormalTok{location)}
 \NormalTok{my.dataframe <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(dependent, factor1, factor2)}
 \NormalTok{my.dataframe.noNA <-}\StringTok{ }\NormalTok{my.dataframe[}\KeywordTok{complete.cases}\NormalTok{(my.dataframe), ]}
-\KeywordTok{require}\NormalTok{(boot)}
+\KeywordTok{library}\NormalTok{(boot)}
 \CommentTok{# Fit model on observed data}
 \NormalTok{mod1 <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(dependent }\OperatorTok{~}\StringTok{ }\NormalTok{factor1 }\OperatorTok{+}\StringTok{ }\NormalTok{factor2 }\OperatorTok{+}\StringTok{ }\NormalTok{factor1}\OperatorTok{:}\NormalTok{factor2,}
   \DataTypeTok{data =}\NormalTok{ my.dataframe.noNA}
@@ -9641,8 +9947,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-226-1.pdf}
-\caption{\label{fig:unnamed-chunk-226-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-251-1.pdf}
+\caption{\label{fig:unnamed-chunk-251-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9654,8 +9960,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-226-2.pdf}
-\caption{\label{fig:unnamed-chunk-226-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-251-2.pdf}
+\caption{\label{fig:unnamed-chunk-251-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9667,8 +9973,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-226-3.pdf}
-\caption{\label{fig:unnamed-chunk-226-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-251-3.pdf}
+\caption{\label{fig:unnamed-chunk-251-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

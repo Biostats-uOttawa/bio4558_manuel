@@ -18,7 +18,7 @@ Ce laboratoire nécessite:
   * lmPerm
 * les fichiers de données
   * sturgeon.csv
-  * skulldat.csv
+  * skulldat_2020.csv
 
 ## Examen visuel des données
 Une des premières étapes dans toute analyse de données est l’examen visuel des données par des graphiques et statistiques sommaires pour détecter les distributions sous-jacentes, les valeurs extrêmes et les tendances dans vos données. Cela commence souvent avec des graphiques de vos données (histogrammes, diagrammes de probabilité, Box plots, etc.) qui vous permettent d’évaluer si vos données sont normales, si elles sont corrélées les unes aux autres, ou s’il y a des valeurs suspectes dans le fichier.
