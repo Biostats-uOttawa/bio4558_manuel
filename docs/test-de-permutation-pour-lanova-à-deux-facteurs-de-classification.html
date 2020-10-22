@@ -318,79 +318,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification" class="section level2">
 <h2><span class="header-section-number">6.7</span> Test de permutation pour l’ANOVA à deux facteurs de classification</h2>
 <p>Quand les données ne rencontrent pas les conditions d’application des tests paramétriques d’ANOVA à un ou plusieurs facteurs de classification, il est possible d’utiliser les tests de permutation comme une alternative aux tests non-paramétriques pour calculer des p-valeurs. Le code suivant est pour un modèle I d’une ANOVA à deux facteurs de classification. Je vous laisse le soin d’adapter ce code pour d’autres modèles. (J’offre même des points boni pour une solution élégante pour des modèles à plusieurs facteurs de classification).</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1"><span class="co">###########################################################</span></a>
-<a class="sourceLine" id="cb492-2" title="2"><span class="co"># Permutation test for two way ANOVA</span></a>
-<a class="sourceLine" id="cb492-3" title="3"><span class="co"># Ter Braak creates residuals from cell means and then permutes across</span></a>
-<a class="sourceLine" id="cb492-4" title="4"><span class="co"># all cells</span></a>
-<a class="sourceLine" id="cb492-5" title="5"><span class="co"># This can be accomplished by taking residuals from the full model</span></a>
-<a class="sourceLine" id="cb492-6" title="6"><span class="co"># modified from code written by David C. Howell</span></a>
-<a class="sourceLine" id="cb492-7" title="7"><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></a>
-<a class="sourceLine" id="cb492-8" title="8">nreps &lt;-<span class="st"> </span><span class="dv">500</span></a>
-<a class="sourceLine" id="cb492-9" title="9">dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</a>
-<a class="sourceLine" id="cb492-10" title="10">factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</a>
-<a class="sourceLine" id="cb492-11" title="11">factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</a>
-<a class="sourceLine" id="cb492-12" title="12">my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</a>
-<a class="sourceLine" id="cb492-13" title="13">my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</a>
-<a class="sourceLine" id="cb492-14" title="14">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</a>
-<a class="sourceLine" id="cb492-15" title="15">  <span class="dt">data =</span> my.dataframe.noNA</a>
-<a class="sourceLine" id="cb492-16" title="16">)</a>
-<a class="sourceLine" id="cb492-17" title="17">res &lt;-<span class="st"> </span>mod<span class="op">$</span>residuals</a>
-<a class="sourceLine" id="cb492-18" title="18">TBint &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
-<a class="sourceLine" id="cb492-19" title="19">TB1 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
-<a class="sourceLine" id="cb492-20" title="20">TB2 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
-<a class="sourceLine" id="cb492-21" title="21">ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod))</a>
-<a class="sourceLine" id="cb492-22" title="22"><span class="kw">cat</span>(</a>
-<a class="sourceLine" id="cb492-23" title="23">  <span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</a>
-<a class="sourceLine" id="cb492-24" title="24">  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb492-25" title="25">)</a>
-<a class="sourceLine" id="cb492-26" title="26">F1 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb492-27" title="27">F2 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb492-28" title="28">Finteract &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb492-29" title="29"><span class="kw">print</span>(ANOVA)</a>
-<a class="sourceLine" id="cb492-30" title="30"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb492-31" title="31"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb492-32" title="32">TBint[<span class="dv">1</span>] &lt;-<span class="st"> </span>Finteract</a>
-<a class="sourceLine" id="cb492-33" title="33"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</a>
-<a class="sourceLine" id="cb492-34" title="34">  newdat &lt;-<span class="st"> </span><span class="kw">sample</span>(res, <span class="kw">length</span>(res), <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb492-35" title="35">  modb &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(newdat <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span></a>
-<a class="sourceLine" id="cb492-36" title="36"><span class="st">    </span>factor1<span class="op">:</span>factor2,</a>
-<a class="sourceLine" id="cb492-37" title="37">  <span class="dt">data =</span> my.dataframe.noNA</a>
-<a class="sourceLine" id="cb492-38" title="38">  ))</a>
-<a class="sourceLine" id="cb492-39" title="39">  TBint[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb492-40" title="40">  TB1[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb492-41" title="41">  TB2[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb492-42" title="42">}</a>
-<a class="sourceLine" id="cb492-43" title="43">probInt &lt;-<span class="st"> </span><span class="kw">length</span>(TBint[TBint <span class="op">&gt;=</span><span class="st"> </span>Finteract]) <span class="op">/</span><span class="st"> </span>nreps</a>
-<a class="sourceLine" id="cb492-44" title="44">prob1 &lt;-<span class="st"> </span><span class="kw">length</span>(TB1[TB1 <span class="op">&gt;=</span><span class="st"> </span>F1]) <span class="op">/</span><span class="st"> </span>nreps</a>
-<a class="sourceLine" id="cb492-45" title="45">prob2 &lt;-<span class="st"> </span><span class="kw">length</span>(TB2[TB1 <span class="op">&gt;=</span><span class="st"> </span>F2]) <span class="op">/</span><span class="st"> </span>nreps</a>
-<a class="sourceLine" id="cb492-46" title="46"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb492-47" title="47"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb492-48" title="48"><span class="kw">print</span>(<span class="st">&quot;Resampling as in ter Braak with unrestricted sampling</span></a>
-<a class="sourceLine" id="cb492-49" title="49"><span class="st">of cell residuals. &quot;</span>)</a>
-<a class="sourceLine" id="cb492-50" title="50"><span class="kw">cat</span>(</a>
-<a class="sourceLine" id="cb492-51" title="51">  <span class="st">&quot;The probability for the effect of Interaction is &quot;</span>,</a>
-<a class="sourceLine" id="cb492-52" title="52">  probInt, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb492-53" title="53">)</a>
-<a class="sourceLine" id="cb492-54" title="54"><span class="kw">cat</span>(</a>
-<a class="sourceLine" id="cb492-55" title="55">  <span class="st">&quot;The probability for the effect of Factor 1 is &quot;</span>,</a>
-<a class="sourceLine" id="cb492-56" title="56">  prob1, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb492-57" title="57">)</a>
-<a class="sourceLine" id="cb492-58" title="58"><span class="kw">cat</span>(</a>
-<a class="sourceLine" id="cb492-59" title="59">  <span class="st">&quot;The probability for the effect of Factor 2 is &quot;</span>,</a>
-<a class="sourceLine" id="cb492-60" title="60">  prob2, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb492-61" title="61">)</a></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1"><span class="co">###########################################################</span></a>
+<a class="sourceLine" id="cb491-2" title="2"><span class="co"># Permutation test for two way ANOVA</span></a>
+<a class="sourceLine" id="cb491-3" title="3"><span class="co"># Ter Braak creates residuals from cell means and then permutes across</span></a>
+<a class="sourceLine" id="cb491-4" title="4"><span class="co"># all cells</span></a>
+<a class="sourceLine" id="cb491-5" title="5"><span class="co"># This can be accomplished by taking residuals from the full model</span></a>
+<a class="sourceLine" id="cb491-6" title="6"><span class="co"># modified from code written by David C. Howell</span></a>
+<a class="sourceLine" id="cb491-7" title="7"><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></a>
+<a class="sourceLine" id="cb491-8" title="8">nreps &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb491-9" title="9">dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</a>
+<a class="sourceLine" id="cb491-10" title="10">factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</a>
+<a class="sourceLine" id="cb491-11" title="11">factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</a>
+<a class="sourceLine" id="cb491-12" title="12">my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</a>
+<a class="sourceLine" id="cb491-13" title="13">my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</a>
+<a class="sourceLine" id="cb491-14" title="14">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</a>
+<a class="sourceLine" id="cb491-15" title="15">  <span class="dt">data =</span> my.dataframe.noNA</a>
+<a class="sourceLine" id="cb491-16" title="16">)</a>
+<a class="sourceLine" id="cb491-17" title="17">res &lt;-<span class="st"> </span>mod<span class="op">$</span>residuals</a>
+<a class="sourceLine" id="cb491-18" title="18">TBint &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
+<a class="sourceLine" id="cb491-19" title="19">TB1 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
+<a class="sourceLine" id="cb491-20" title="20">TB2 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
+<a class="sourceLine" id="cb491-21" title="21">ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod))</a>
+<a class="sourceLine" id="cb491-22" title="22"><span class="kw">cat</span>(</a>
+<a class="sourceLine" id="cb491-23" title="23">  <span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</a>
+<a class="sourceLine" id="cb491-24" title="24">  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb491-25" title="25">)</a>
+<a class="sourceLine" id="cb491-26" title="26">F1 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb491-27" title="27">F2 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb491-28" title="28">Finteract &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb491-29" title="29"><span class="kw">print</span>(ANOVA)</a>
+<a class="sourceLine" id="cb491-30" title="30"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb491-31" title="31"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb491-32" title="32">TBint[<span class="dv">1</span>] &lt;-<span class="st"> </span>Finteract</a>
+<a class="sourceLine" id="cb491-33" title="33"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</a>
+<a class="sourceLine" id="cb491-34" title="34">  newdat &lt;-<span class="st"> </span><span class="kw">sample</span>(res, <span class="kw">length</span>(res), <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb491-35" title="35">  modb &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(newdat <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span></a>
+<a class="sourceLine" id="cb491-36" title="36"><span class="st">    </span>factor1<span class="op">:</span>factor2,</a>
+<a class="sourceLine" id="cb491-37" title="37">  <span class="dt">data =</span> my.dataframe.noNA</a>
+<a class="sourceLine" id="cb491-38" title="38">  ))</a>
+<a class="sourceLine" id="cb491-39" title="39">  TBint[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb491-40" title="40">  TB1[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb491-41" title="41">  TB2[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb491-42" title="42">}</a>
+<a class="sourceLine" id="cb491-43" title="43">probInt &lt;-<span class="st"> </span><span class="kw">length</span>(TBint[TBint <span class="op">&gt;=</span><span class="st"> </span>Finteract]) <span class="op">/</span><span class="st"> </span>nreps</a>
+<a class="sourceLine" id="cb491-44" title="44">prob1 &lt;-<span class="st"> </span><span class="kw">length</span>(TB1[TB1 <span class="op">&gt;=</span><span class="st"> </span>F1]) <span class="op">/</span><span class="st"> </span>nreps</a>
+<a class="sourceLine" id="cb491-45" title="45">prob2 &lt;-<span class="st"> </span><span class="kw">length</span>(TB2[TB1 <span class="op">&gt;=</span><span class="st"> </span>F2]) <span class="op">/</span><span class="st"> </span>nreps</a>
+<a class="sourceLine" id="cb491-46" title="46"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb491-47" title="47"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb491-48" title="48"><span class="kw">print</span>(<span class="st">&quot;Resampling as in ter Braak with unrestricted sampling</span></a>
+<a class="sourceLine" id="cb491-49" title="49"><span class="st">of cell residuals. &quot;</span>)</a>
+<a class="sourceLine" id="cb491-50" title="50"><span class="kw">cat</span>(</a>
+<a class="sourceLine" id="cb491-51" title="51">  <span class="st">&quot;The probability for the effect of Interaction is &quot;</span>,</a>
+<a class="sourceLine" id="cb491-52" title="52">  probInt, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb491-53" title="53">)</a>
+<a class="sourceLine" id="cb491-54" title="54"><span class="kw">cat</span>(</a>
+<a class="sourceLine" id="cb491-55" title="55">  <span class="st">&quot;The probability for the effect of Factor 1 is &quot;</span>,</a>
+<a class="sourceLine" id="cb491-56" title="56">  prob1, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb491-57" title="57">)</a>
+<a class="sourceLine" id="cb491-58" title="58"><span class="kw">cat</span>(</a>
+<a class="sourceLine" id="cb491-59" title="59">  <span class="st">&quot;The probability for the effect of Factor 2 is &quot;</span>,</a>
+<a class="sourceLine" id="cb491-60" title="60">  prob2, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb491-61" title="61">)</a></code></pre></div>
 <p>Si vous avez la chance d’avoir accès au package lmPerm, vous pouvez effectuer le test de permutation beaucoup plus rapidement et facilement:</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1"><span class="co">#######################################################################</span></a>
-<a class="sourceLine" id="cb493-2" title="2"><span class="co">## lmPerm version of permutation test</span></a>
-<a class="sourceLine" id="cb493-3" title="3"><span class="kw">library</span>(lmPerm)</a>
-<a class="sourceLine" id="cb493-4" title="4"><span class="co"># for generality, copy desired dataframe to mydata</span></a>
-<a class="sourceLine" id="cb493-5" title="5"><span class="co"># and model formula to myformula</span></a>
-<a class="sourceLine" id="cb493-6" title="6">mydata &lt;-<span class="st"> </span>Stu2wdat</a>
-<a class="sourceLine" id="cb493-7" title="7">myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;rdwght ~ sex+location+sex:location&quot;</span>)</a>
-<a class="sourceLine" id="cb493-8" title="8"><span class="co"># Fit desired model on the desired dataframe</span></a>
-<a class="sourceLine" id="cb493-9" title="9">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb493-10" title="10"><span class="co"># Calculate permutation p-value</span></a>
-<a class="sourceLine" id="cb493-11" title="11"><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center =</span> <span class="ot">FALSE</span>, <span class="dt">Ca =</span> <span class="fl">0.001</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1"><span class="co">#######################################################################</span></a>
+<a class="sourceLine" id="cb492-2" title="2"><span class="co">## lmPerm version of permutation test</span></a>
+<a class="sourceLine" id="cb492-3" title="3"><span class="kw">library</span>(lmPerm)</a>
+<a class="sourceLine" id="cb492-4" title="4"><span class="co"># for generality, copy desired dataframe to mydata</span></a>
+<a class="sourceLine" id="cb492-5" title="5"><span class="co"># and model formula to myformula</span></a>
+<a class="sourceLine" id="cb492-6" title="6">mydata &lt;-<span class="st"> </span>Stu2wdat</a>
+<a class="sourceLine" id="cb492-7" title="7">myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;rdwght ~ sex+location+sex:location&quot;</span>)</a>
+<a class="sourceLine" id="cb492-8" title="8"><span class="co"># Fit desired model on the desired dataframe</span></a>
+<a class="sourceLine" id="cb492-9" title="9">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb492-10" title="10"><span class="co"># Calculate permutation p-value</span></a>
+<a class="sourceLine" id="cb492-11" title="11"><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center =</span> <span class="ot">FALSE</span>, <span class="dt">Ca =</span> <span class="fl">0.001</span>))</a></code></pre></div>
 </div>
 <script src="js/solution.js"></script>
             </section>

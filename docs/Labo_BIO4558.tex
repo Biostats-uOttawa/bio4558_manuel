@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{15-10-2020}
+\date{20-10-2020}
 
 \begin{document}
 \maketitle
@@ -5037,9 +5037,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0007495654  0.03365813
-## t2* 0.3408557 -0.0005172540  0.02656415
+##      original       bias    std. error
+## t1* 1.1919926  0.001692018  0.03301405
+## t2* 0.3408557 -0.001233020  0.02628814
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,10 +5096,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.257 )   ( 1.119,  1.255 )  
+## 95%   ( 1.126,  1.255 )   ( 1.128,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.129,  1.265 )   ( 1.116,  1.251 )  
+## 95%   ( 1.127,  1.256 )   ( 1.116,  1.249 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5124,10 +5124,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2893,  0.3934 )   ( 0.2907,  0.3979 )  
+## 95%   ( 0.2906,  0.3936 )   ( 0.2885,  0.3918 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2838,  0.3910 )   ( 0.2947,  0.4012 )  
+## 95%   ( 0.2899,  0.3932 )   ( 0.2932,  0.3976 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5473,9 +5473,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 -0.001254396   0.4368312
-## t2* -1.714546  0.022888598   0.7812126
+##      original      bias    std. error
+## t1* 45.084391 0.005768392   0.4171042
+## t2* -1.714546 0.025554313   0.7590840
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5508,7 +5508,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.191, -0.054 )  
+## 95%   (-3.223, -0.246 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5550,7 +5550,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 3481   0.0282 *
+## location1   0.8573 1411   0.0666 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5829,7 +5829,7 @@ Ce laboratoire nécessite:
   \item
     ggplot2
   \item
-    multicomp
+    multcomp
   \item
     car
   \end{itemize}
@@ -5856,7 +5856,7 @@ Ce laboratoire nécessite:
 
 L'ANOVA à un critère de classification est l'analogue du test de t pour des comparaisons de moyennes de plus de deux échantillons. Les conditions d'application du test sont essentiellement les mêmes, et lorsque appliqué à deux échantillons ce test est mathématiquement équivalent au test de t.
 
-En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d'esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) et la masse ( rndwght ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier \texttt{Dam10dat.csv}.
+En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d'esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier \texttt{Dam10dat.csv}.
 
 \hypertarget{visualiser-les-donnuxe9es}{%
 \subsection{Visualiser les données}\label{visualiser-les-donnuxe9es}}
@@ -6203,7 +6203,7 @@ Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus 
 
 Dans d'autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu'il y a plusieurs comparaisons. D'un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu'il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu'il y a beaucoup de comparaisons.
 
-La méthode de Tukey est l'une des plus populaires et est facile à utiliser en R (notez cependant qu'il y a un sale petit bogue qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu'un facteur, ce qui explique la petite pirouette avec \texttt{paste} dans mon code):
+La méthode de Tukey est l'une des plus populaires et est facile à utiliser en R (notez cependant qu'il y a un petit bug qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu'un facteur, ce qui explique la petite pirouette avec \texttt{paste0} dans le code):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6261,18 +6261,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5956
+## Quantile = 2.5924
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2739   3.6484
-## m1965 - m1954 == 0  -5.5077 -10.0007  -1.0146
-## m1966 - m1954 == 0  -3.3127  -6.3455  -0.2799
-## m1965 - m1958 == 0  -5.6949 -10.4150  -0.9748
-## m1966 - m1958 == 0  -3.4999  -6.8599  -0.1399
-## m1966 - m1965 == 0   2.1950  -2.2207   6.6106
+## m1958 - m1954 == 0   0.1872  -3.2697   3.6441
+## m1965 - m1954 == 0  -5.5077  -9.9953  -1.0201
+## m1966 - m1954 == 0  -3.3127  -6.3418  -0.2836
+## m1965 - m1958 == 0  -5.6949 -10.4092  -0.9805
+## m1966 - m1958 == 0  -3.4999  -6.8558  -0.1440
+## m1966 - m1965 == 0   2.1950  -2.2153   6.6052
 \end{verbatim}
 
 \begin{Shaded}
@@ -6459,19 +6459,6 @@ Vous devriez avoir remarqué au cours des analyses précédentes qu'il y avait p
 
 L'élimination de trois valeurs extrêmes améliore un peu les choses, mais ce n'est pas parfait. On a toujours une problème avec les variances, mais les résidus sont maintenant normaux. Cependant, le fait que la conclusion qu'on tire de l'ANOVA originale ne change pas en enlevant les points renforce le fait qu'on n'a pas une bonne raison pour enlever les points.
 
-Commandes R pour refaire l'ANOVA sur le sous-ensemble de données
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Damsubset<-Dam10dat[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{,}\DecValTok{59}\NormalTok{,}\DecValTok{87}\NormalTok{),]}
-\CommentTok{# removes obs 23, 59 and 87}
-\NormalTok{aov.Damsubset <-}\StringTok{ }\KeywordTok{aov}\NormalTok{(fklngth }\OperatorTok{~}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(year), Damsubset)}
-\KeywordTok{summary}\NormalTok{(aov.Damsubset)}
-\KeywordTok{shapiro.test}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(aov.Damsubset))}
-\KeywordTok{leveneTest}\NormalTok{(fklngth }\OperatorTok{~}\StringTok{ }\NormalTok{year, Damsubset)}
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{test-de-permutation}{%
 \section{Test de permutation}\label{test-de-permutation}}
 
@@ -6503,10 +6490,12 @@ Commande R pour un test de permutation d'une ANOVA à un critère de classificat
 \CommentTok{# Print standard ANOVA results}
 \KeywordTok{cat}\NormalTok{(}\StringTok{" The standard ANOVA for these data follows "}\NormalTok{,}
 \StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
 \KeywordTok{print}\NormalTok{(ANOVA, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \KeywordTok{print}\NormalTok{(}\StringTok{"Resampling as in Manly with unrestricted sampling of observations. "}\NormalTok{)}
+
 \CommentTok{# Now start resampling}
 \NormalTok{Fboot <-}\StringTok{ }\KeywordTok{numeric}\NormalTok{(nreps) }\CommentTok{# initalize vector to receive permuted}
 \NormalTok{values}

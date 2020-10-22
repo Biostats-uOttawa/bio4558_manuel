@@ -321,16 +321,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Le fichier <code>nestdat.csv</code> contient les résultats d’une expérience semblable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.</li>
 </ul>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1">nestdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nestdat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb452-2" title="2">nestdat<span class="op">$</span>chamber &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>chamber)</a>
-<a class="sourceLine" id="cb452-3" title="3">nestdat<span class="op">$</span>genotype &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>genotype)</a>
-<a class="sourceLine" id="cb452-4" title="4">anova.nested &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype<span class="op">/</span>chamber, <span class="dt">data =</span> nestdat)</a></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" title="1">nestdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nestdat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb451-2" title="2">nestdat<span class="op">$</span>chamber &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>chamber)</a>
+<a class="sourceLine" id="cb451-3" title="3">nestdat<span class="op">$</span>genotype &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>genotype)</a>
+<a class="sourceLine" id="cb451-4" title="4">anova.nested &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype<span class="op">/</span>chamber, <span class="dt">data =</span> nestdat)</a></code></pre></div>
 <p>Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l’effet de Chamber / genotype n’est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N’oubliez pas de vérifier les conditions d’applications de l’ANOVA!</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1"><span class="kw">anova</span>(anova.nested)</a>
-<a class="sourceLine" id="cb453-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb453-3" title="3"><span class="kw">plot</span>(anova.nested)</a></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1"><span class="kw">anova</span>(anova.nested)</a>
+<a class="sourceLine" id="cb452-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb452-3" title="3"><span class="kw">plot</span>(anova.nested)</a></code></pre></div>
 </div>
 
 <pre><code>## Analysis of Variance Table
@@ -344,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>On conclue de cette analyse que la variation entre les chambres de croissance n’est pas significative, mais qu’on doit rejeter l’hypothèse nulle que tous les génotypes ont la même résistance à la dessiccation.</p>
 <p>Comme l’effet hiérarchique chamber / genotype n’est pas significatif, on peut regrouper les observations pour augmenter le nombre de degrés de liberté:</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1">anova.simple &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype, <span class="dt">data =</span> nestdat)</a>
-<a class="sourceLine" id="cb455-2" title="2"><span class="kw">anova</span>(anova.simple)</a></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" title="1">anova.simple &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype, <span class="dt">data =</span> nestdat)</a>
+<a class="sourceLine" id="cb454-2" title="2"><span class="kw">anova</span>(anova.simple)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: survival
@@ -356,15 +356,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Donc on conclue qu’il y a une variation significative de résistance à la dessiccation entre les trois génotypes.</p>
 <p>Le graphique de <code>survival</code> en fonction du <code>génotype</code> suggère que la résistance à la dessiccation varie entre chaque génotype. On peut combiner cela avec un test de Tukey.</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb457-2" title="2"><span class="co"># Compute and plot means and Tukey CI</span></a>
-<a class="sourceLine" id="cb457-3" title="3">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.simple, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">genotype =</span></a>
-<a class="sourceLine" id="cb457-4" title="4">  <span class="st">&quot;Tukey&quot;</span>))</a>
-<a class="sourceLine" id="cb457-5" title="5">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
-<a class="sourceLine" id="cb457-6" title="6"><span class="co"># use sufficiently large upper margin</span></a>
-<a class="sourceLine" id="cb457-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb457-8" title="8"><span class="co"># plot</span></a>
-<a class="sourceLine" id="cb457-9" title="9"><span class="kw">plot</span>(cimeans, <span class="dt">las=</span><span class="dv">1</span>) <span class="co"># las option to put y-axis labels as God intended them</span></a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb456-2" title="2"><span class="co"># Compute and plot means and Tukey CI</span></a>
+<a class="sourceLine" id="cb456-3" title="3">means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.simple, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">genotype =</span></a>
+<a class="sourceLine" id="cb456-4" title="4">  <span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb456-5" title="5">cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</a>
+<a class="sourceLine" id="cb456-6" title="6"><span class="co"># use sufficiently large upper margin</span></a>
+<a class="sourceLine" id="cb456-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb456-8" title="8"><span class="co"># plot</span></a>
+<a class="sourceLine" id="cb456-9" title="9"><span class="kw">plot</span>(cimeans, <span class="dt">las=</span><span class="dv">1</span>) <span class="co"># las option to put y-axis labels as God intended them</span></a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-229"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-229-1.svg" alt="Effet du genotype sur la résistance à la dessication avec un test de Tukey " width="672" />
 <p class="caption">
@@ -375,8 +375,8 @@ Figure 6.6: Effet du genotype sur la résistance à la dessication avec un test 
 <p>Cependant, avant d’accepter cette conclusion, il faut éprouver les conditions d’application du test. Voici les diagnostics des résidus pour l’ANOVA à un critère de classification (non hiérarchique):</p>
 
 <div class="solution">
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb458-2" title="2"><span class="kw">plot</span>(anova.simple)</a></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb457-2" title="2"><span class="kw">plot</span>(anova.simple)</a></code></pre></div>
 </div>
 
 <div class="figure"><span id="fig:unnamed-chunk-231"></span>

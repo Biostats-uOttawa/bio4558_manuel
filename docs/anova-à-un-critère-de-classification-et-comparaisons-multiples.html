@@ -318,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="anova-à-un-critère-de-classification-et-comparaisons-multiples" class="section level2">
 <h2><span class="header-section-number">5.2</span> ANOVA à un critère de classification et comparaisons multiples</h2>
 <p>L’ANOVA à un critère de classification est l’analogue du test de t pour des comparaisons de moyennes de plus de deux échantillons. Les conditions d’application du test sont essentiellement les mêmes, et lorsque appliqué à deux échantillons ce test est mathématiquement équivalent au test de t.</p>
-<p>En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d’esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) et la masse ( rndwght ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier <code>Dam10dat.csv</code>.</p>
+<p>En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d’esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche ( frklngth ) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier <code>Dam10dat.csv</code>.</p>
 <div id="visualiser-les-données" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Visualiser les données</h3>
 <ul>
@@ -531,7 +531,7 @@ Figure 5.3: Conditions d’applications de l’ANOVA
 ## P value adjustment method: fdr</code></pre>
 <p>Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus gros après la construction du barrage et toutes les comparaisons entre les années 50 et 60 sont significatives alors que les différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne dépend pas du choix de méthode.</p>
 <p>Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.</p>
-<p>La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a un sale petit bogue qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec <code>paste</code> dans mon code):</p>
+<p>La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a un petit bug qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec <code>paste0</code> dans le code):</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" title="1">Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste0</span>(<span class="st">&quot;m&quot;</span>, Dam10dat<span class="op">$</span>year))</a>
 <a class="sourceLine" id="cb390-2" title="2"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</a></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
@@ -572,18 +572,18 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5944
+## Quantile = 2.5951
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2724   3.6468
-## m1965 - m1954 == 0  -5.5077  -9.9987  -1.0166
-## m1966 - m1954 == 0  -3.3127  -6.3442  -0.2812
-## m1965 - m1958 == 0  -5.6949 -10.4129  -0.9769
-## m1966 - m1958 == 0  -3.4999  -6.8584  -0.1414
-## m1966 - m1965 == 0   2.1950  -2.2187   6.6086</code></pre>
+## m1958 - m1954 == 0   0.1872  -3.2733   3.6477
+## m1965 - m1954 == 0  -5.5077  -9.9999  -1.0154
+## m1966 - m1954 == 0  -3.3127  -6.3450  -0.2804
+## m1965 - m1958 == 0  -5.6949 -10.4141  -0.9756
+## m1966 - m1958 == 0  -3.4999  -6.8593  -0.1405
+## m1966 - m1965 == 0   2.1950  -2.2199   6.6098</code></pre>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
