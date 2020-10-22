@@ -343,8 +343,8 @@ Comme il n’y a pas de réplicats, on ne peut estimer la variance du terme d’
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Si on suppose que c’est un modèle d’ANOVA mixte (date aléatoire, Depth fixe), que concluez vous? (Indice: faites un graphique d’interaction température en fonction de la profondeur et la date, pour voir ce qui se passe).</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">interaction.plot</span>(nr2wdat<span class="op">$</span>depth, nr2wdat<span class="op">$</span>date, nr2wdat<span class="op">$</span>temp)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-221"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-221-1.svg" alt="Effet du mois et de la profondeur sur la température" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-222"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-222-1.svg" alt="Effet du mois et de la profondeur sur la température" width="672" />
 <p class="caption">
 Figure 6.4: Effet du mois et de la profondeur sur la température
 </p>
@@ -354,8 +354,8 @@ Figure 6.4: Effet du mois et de la profondeur sur la température
 <div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb444-2" title="2"><span class="kw">plot</span>(anova.model4)</a></code></pre></div>
 <pre><code>## Error in xy.coords(x, y, xlabel, ylabel, log): &#39;x&#39; and &#39;y&#39; lengths differ</code></pre>
-<div class="figure"><span id="fig:unnamed-chunk-222"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-222-1.svg" alt="Conditions d'applications du modèle anova.model4" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-223"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-223-1.svg" alt="Conditions d'applications du modèle anova.model4" width="672" />
 <p class="caption">
 Figure 6.5: Conditions d’applications du modèle anova.model4
 </p>

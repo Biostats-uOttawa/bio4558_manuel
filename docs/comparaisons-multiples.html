@@ -345,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="fold s">
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb476-2" title="2"><span class="kw">plot</span>(anova.model5)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-238-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-239-1.svg" width="672" /></p>
 </div>
 <p>Les variances semblent donc égales. Le test de normalité donne:</p>
 <div class="fold s">
@@ -387,8 +387,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb481-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb481-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb481-9" title="9"><span class="kw">plot</span>(tuk.cld)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-240"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-240-1.svg" alt="Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-241"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-241-1.svg" alt="Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration" width="672" />
 <p class="caption">
 Figure 6.8: Comparaison de Tukey des moyennes de consommation d’oxygèn en fonction del la concentration
 </p>
@@ -418,7 +418,7 @@ Figure 6.8: Comparaison de Tukey des moyennes de consommation d’oxygèn en fon
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Dans ce cas ci, il y a une interaction significative, et il n’est par conséquent pas approprié de comparer les moyennes regroupées par espèce ou concentration. Ceci est clairement visualisé par un graphique d’interaction:</p>
 <div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" title="1"><span class="kw">with</span>(wmc2dat2, <span class="kw">interaction.plot</span>(conc, species, o2cons))</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-243-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-244-1.svg" width="672" /></p>
 <ul>
 <li>Toujours en utilisant les données de <code>wmc2dat2.csv</code> , comparez les 6 moyennes avec l’ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:</li>
 </ul>
@@ -449,7 +449,7 @@ Figure 6.8: Comparaison de Tukey des moyennes de consommation d’oxygèn en fon
 <a class="sourceLine" id="cb489-7" title="7">old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb489-8" title="8"><span class="co"># plot</span></a>
 <a class="sourceLine" id="cb489-9" title="9"><span class="kw">plot</span>(tuk2.cld)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-246-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-247-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" title="1"><span class="kw">par</span>(old.par)</a></code></pre></div>
 <p>Dans cette analyse on a utilisé le CM = 9.474 du modèle d’ANOVA pour comparer les moyennes. En ce faisant, on présume qu’il s’agit d’une situation d’ANOVA à effet fixes, ce qui n’est peut-être pas le cas (conc est certainement fixe, mais species peut être fixe ou aléatoire).</p>
 </div>

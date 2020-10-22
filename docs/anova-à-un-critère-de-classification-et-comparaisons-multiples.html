@@ -398,6 +398,13 @@ Figure 5.2: Boxplot de la longueur pas annéee
 Figure 5.3: Conditions d’applications de l’ANOVA
 </p>
 </div>
+
+<div class="rmdwarning">
+<p>Faire attention dans le cadre d’une ANOVA à ce que la variable indépendante soit bien un facteur <strong>factor</strong>. Si la variable indépendante est reconnu comme du texte <strong>character</strong> alors vous n’obtiendrez que 3 graphiques et un message d’erreur du type:</p>
+<p>`hat values (leverages) are all = 0.1</p>
+and there are no factor predictors; no plot no. 5`
+</div>
+
 <p>D’après les graphiques, on peut douter de la normalité et de l’homogénéité des variances. Notez qu’il y a un point qui ressort vraiment avec une forte valeur résiduelle (cas numéro 59) et qu’il ne s’aligne pas bien avec les autres valeurs: c’est la valeur extrême qui avait été détectée plus tôt. Ce point fera sans doute gonfler la variance résiduelle du groupe auquel il appartient.</p>
 <p>Des tests formels nous confirmeront ou infirmeront nos conclusions faites à partir de ces graphiques.</p>
 <ul>
@@ -572,18 +579,18 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5951
+## Quantile = 2.5925
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2733   3.6477
-## m1965 - m1954 == 0  -5.5077  -9.9999  -1.0154
-## m1966 - m1954 == 0  -3.3127  -6.3450  -0.2804
-## m1965 - m1958 == 0  -5.6949 -10.4141  -0.9756
-## m1966 - m1958 == 0  -3.4999  -6.8593  -0.1405
-## m1966 - m1965 == 0   2.1950  -2.2199   6.6098</code></pre>
+## m1958 - m1954 == 0   0.1872  -3.2698   3.6442
+## m1965 - m1954 == 0  -5.5077  -9.9954  -1.0200
+## m1966 - m1954 == 0  -3.3127  -6.3419  -0.2835
+## m1965 - m1958 == 0  -5.6949 -10.4093  -0.9804
+## m1966 - m1958 == 0  -3.4999  -6.8559  -0.1439
+## m1966 - m1965 == 0   2.1950  -2.2154   6.6053</code></pre>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
