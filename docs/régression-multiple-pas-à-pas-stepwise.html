@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.3 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>7.4 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.3 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="7.4 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.3 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="7.4 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -253,17 +253,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"><i class="fa fa-check"></i><b>6.8</b> Bootstrap pour l’ANOVA à deux facteurs de classification</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
-<li class="chapter" data-level="7.1" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.1</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.2" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.2</b> Examen préliminaire des données</a></li>
-<li class="chapter" data-level="7.3" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.3</b> Régression multiple pas-à-pas (stepwise)</a></li>
-<li class="chapter" data-level="7.4" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.4</b> Détecter la multicolinéarité</a></li>
-<li class="chapter" data-level="7.5" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.5</b> Régression polynomiale</a></li>
-<li class="chapter" data-level="7.6" data-path="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html"><i class="fa fa-check"></i><b>7.6</b> Vérifier les conditions d’application de modèles de régression multiple</a></li>
-<li class="chapter" data-level="7.7" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.7</b> Visualiser la taille d’effet</a></li>
-<li class="chapter" data-level="7.8" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.8</b> Tester la présence d’interactions</a></li>
-<li class="chapter" data-level="7.9" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.9</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
-<li class="chapter" data-level="7.10" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.10</b> Bootstrapping multiple regression</a></li>
-<li class="chapter" data-level="7.11" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.11</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
+<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
+<li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
+<li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
+<li class="chapter" data-level="7.7" data-path="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html"><i class="fa fa-check"></i><b>7.7</b> Vérifier les conditions d’application de modèles de régression multiple</a></li>
+<li class="chapter" data-level="7.8" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.8</b> Visualiser la taille d’effet</a></li>
+<li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
+<li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
+<li class="chapter" data-level="7.11" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrapping multiple regression</a></li>
+<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
 <li class="chapter" data-level="8.1" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>8.1</b> GLM</a></li>
@@ -316,157 +317,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="régression-multiple-pas-à-pas-stepwise" class="section level2">
-<h2><span class="header-section-number">7.3</span> Régression multiple pas-à-pas (stepwise)</h2>
+<h2><span class="header-section-number">7.4</span> Régression multiple pas-à-pas (stepwise)</h2>
 <p>Quand le nombre de variables prédictives est restreint, comme dans l’exemple précédent, il est aisé de comparer manuellement les modèles pour sélectionner le plus adéquat. Cependant, lorsque le nombre de variables indépendantes augmente, cette approche n’est rapidement plus utilisable et il est alors utile d’utiliser une méthode automatisée.</p>
-<p>La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike Information Criterion, AIC=n ln(RSS) + 2K où K le nombre de variables indépendantes, n est le nombre d’observations, et RSS est la somme des carrés des résidus) comme mesure de la qualité d’ajustement des modèles. Cette mesure favorise la précision des prédictions et pénalise la complexité. Lorsque l’on compare des modèles par AIC, le modèle avec le plus petit AIC est le modèle à préférer.</p>
-<p> Refaite la régression précédente ( logherp vs logarea cpfor2 et thtden ), mais cette fois en utilisant la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes:</p>
-<pre><code>model.loga.cpfor2.thtden&lt;-lm(logherp ~ logarea + cpfor2 +
-thtden, data = mydata)
-# Stepwise Regression
-library(MASS)
-step &lt;- stepAIC(model.loga.cpfor2.thtden, direction=&quot;both&quot;)
-step$anova # display results
-Start:
-AIC=-98.27
-logherp ~ logarea + cpfor2 + thtden
-Df Sum of Sq
-- cpfor2
-&lt;none&gt;
-- thtden
-- logarea
-1 0.016
-1
-1 0.136
-0.412
-RSS AIC
-0.645
-0.629
-0.765
-1.041 -99.576
--98.267
--94.794
--86.167
-Step: AIC=-99.58
-logherp ~ logarea + thtden
-Df Sum of Sq
-&lt;none&gt;
-+ cpfor2
-- thtden
-- logarea
-
-
-1
-1
-1
-0.016
-0.251
-0.402
-RSS AIC
-0.645
-0.629
-0.896
-1.047 -99.576
--98.267
--92.376
--88.013L ABO - R ÉGRESSION MULTIPLE - 131
-&gt; step$anova # display results
-Stepwise Model Path
-Analysis of Deviance Table
-Initial Model:
-logherp ~ logarea + cpfor2 + thtden
-Final Model:
-logherp ~ logarea + thtden
-Step Df
-Deviance Resid. Df Resid. Dev
-AIC
-1
-24 0.6293717 -98.26666
-2 - cpfor2 1 0.01570813
-25 0.6450798 -99.57640
-&gt;</code></pre>
+<p>La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike Information Criterion, <span class="math inline">\(AIC = 2* ln(RSS) + 2K\)</span> où K le nombre de variables indépendantes, n est le nombre d’observations, et <em>RSS</em> est la somme des carrés des résidus) comme mesure de la qualité d’ajustement des modèles. Cette mesure favorise la précision des prédictions et pénalise la complexité. <strong>Lorsque l’on compare des modèles par AIC, le modèle avec le plus petit AIC est le modèle à préférer.</strong></p>
+<ul>
+<li>Utiliser la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes sur le modèles de régression incluant <code>logarea</code>, <code>cpfor2</code> et <code>thtden</code>:</li>
+</ul>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1"><span class="co"># Stepwise Regression</span></a>
+<a class="sourceLine" id="cb506-2" title="2"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb506-3" title="3">step.mtri &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(model.mtri, <span class="dt">direction=</span><span class="st">&quot;both&quot;</span>)</a></code></pre></div>
+<pre><code>## Start:  AIC=-98.27
+## logherp ~ logarea + cpfor2 + thtden
+## 
+##           Df Sum of Sq     RSS     AIC
+## - cpfor2   1   0.01571 0.64508 -99.576
+## &lt;none&gt;                 0.62937 -98.267
+## - thtden   1   0.13585 0.76522 -94.794
+## - logarea  1   0.41198 1.04135 -86.167
+## 
+## Step:  AIC=-99.58
+## logherp ~ logarea + thtden
+## 
+##           Df Sum of Sq     RSS     AIC
+## &lt;none&gt;                 0.64508 -99.576
+## + cpfor2   1   0.01571 0.62937 -98.267
+## - thtden   1   0.25092 0.89600 -92.376
+## - logarea  1   0.40204 1.04712 -88.013</code></pre>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1">step.mtri<span class="op">$</span>anova <span class="co"># display results</span></a></code></pre></div>
+<pre><code>## Stepwise Model Path 
+## Analysis of Deviance Table
+## 
+## Initial Model:
+## logherp ~ logarea + cpfor2 + thtden
+## 
+## Final Model:
+## logherp ~ logarea + thtden
+## 
+## 
+##       Step Df   Deviance Resid. Df Resid. Dev       AIC
+## 1                               24  0.6293717 -98.26666
+## 2 - cpfor2  1 0.01570813        25  0.6450798 -99.57640</code></pre>
 <p>R nous donne::
 1. L’ajustement (mesuré par AIC) du modèle complet en premier lieu.
 2. L’AIC des modèles dans lesquels une variable a été enlevée du modèle complet. Notez que c’est seulement en enlevant cpfor2 du modèle qu’on peut réduire l’AIC
 3. La valeur de AIC pour les modèles auxquels on enlève ou on ajoute une variable au modèle sélectionné à la première étape.(i.e. logherp ~ logarea + thtden). Notez qu’aucun des modèles n’a un AIC inférieur à ce modèle.</p>
 <p>Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on peut commencer par le modèle nul et ajouter des termes:</p>
-<pre><code># Forward selection approach
-model.null&lt;-lm(logherp ~ 1, data = mydata)
-step &lt;- stepAIC(model.null, scope=~. + logarea + cpfor2 +
-thtden, direction=&quot;forward&quot;)
-step$anova # display results
-Start: AIC=-82.09
-logherp ~ 1
-Df Sum of Sq
-1
-0.494
-1
-0.342
-1
-0.129
-+ logarea
-+ thtden
-+ cpfor2
-&lt;none&gt;
-RSS
-0.896
-1.047
-1.260
-1.390
-AIC
--92.376
--88.013
--82.820
--82.091
-Step: AIC=-92.38
-logherp ~ logarea
-+ thtden
-+ cpfor2
-&lt;none&gt;
-Df Sum of Sq
-1
-0.251
-1
-0.131
-RSS
-AIC
-0.645 -99.576
-0.765 -94.794
-0.896 -92.376
-Step: AIC=-99.58
-logherp ~ logarea + thtden
-Df Sum of Sq
-&lt;none&gt;
-+ cpfor2
-1
-0.016
-RSS
-AIC
-0.645 -99.576
-0.629 -98.267
-
-
-&gt; step$anova # display results
-Stepwise Model Path
-Analysis of Deviance Table
-Initial Model:
-logherp ~ 1
-Final Model:
-logherp ~ logarea + thtden
-Step Df Deviance Resid. Df Resid. Dev
-AIC
-1
-27 1.3895281 -82.09073
-2 + logarea 1 0.4935233
-26 0.8960048 -92.37639
-3 + thtden 1 0.2509250
-25 0.6450798 -99.57640
-&gt;</code></pre>
-<p>Le résultat final est le même, mais la trajectoire est différente. Dans ce cas, R débute avec le modèle le plus simple et ajoute une variable indépendante à chaque étape, sélectionnant la variable minimisant AIC à cette étape. Le modèle de départ a donc seulement une ordonnée à l’origine. Puis, logarea est ajouté, suivi de thtden. cpfor2 n’est pas ajouté au modèle, car son addition fait augmenter l’AIC.</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" title="1"><span class="co"># Forward selection approach</span></a>
+<a class="sourceLine" id="cb510-2" title="2">model.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb510-3" title="3">step.f &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(</a>
+<a class="sourceLine" id="cb510-4" title="4">  model.null,</a>
+<a class="sourceLine" id="cb510-5" title="5">  <span class="dt">scope =</span> <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span>)</a></code></pre></div>
+<pre><code>## Start:  AIC=-82.09
+## logherp ~ 1
+## 
+##           Df Sum of Sq    RSS     AIC
+## + logarea  1   0.49352 0.8960 -92.376
+## + thtden   1   0.34241 1.0471 -88.013
+## + cpfor2   1   0.12907 1.2605 -82.820
+## &lt;none&gt;                 1.3895 -82.091
+## 
+## Step:  AIC=-92.38
+## logherp ~ logarea
+## 
+##          Df Sum of Sq     RSS     AIC
+## + thtden  1   0.25093 0.64508 -99.576
+## + cpfor2  1   0.13078 0.76522 -94.794
+## &lt;none&gt;                0.89600 -92.376
+## 
+## Step:  AIC=-99.58
+## logherp ~ logarea + thtden
+## 
+##          Df Sum of Sq     RSS     AIC
+## &lt;none&gt;                0.64508 -99.576
+## + cpfor2  1  0.015708 0.62937 -98.267</code></pre>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" title="1">step.f<span class="op">$</span>anova <span class="co"># display results</span></a></code></pre></div>
+<pre><code>## Stepwise Model Path 
+## Analysis of Deviance Table
+## 
+## Initial Model:
+## logherp ~ 1
+## 
+## Final Model:
+## logherp ~ logarea + thtden
+## 
+## 
+##        Step Df  Deviance Resid. Df Resid. Dev       AIC
+## 1                               27  1.3895281 -82.09073
+## 2 + logarea  1 0.4935233        26  0.8960048 -92.37639
+## 3  + thtden  1 0.2509250        25  0.6450798 -99.57640</code></pre>
+<p>Le résultat final est le même, mais la trajectoire est différente. Dans ce cas, R débute avec le modèle le plus simple et ajoute une variable indépendante à chaque étape, sélectionnant la variable minimisant AIC à cette étape. Le modèle de départ a donc seulement une ordonnée à l’origine. Puis, <code>logarea</code> est ajouté, suivi de <code>thtden</code>. <code>cpfor2</code> n’est pas ajouté au modèle, car son addition fait augmenter l’AIC.</p>
 <p>Il est recommandé de comparer le résultat final de plusieurs approches. Si le modèle retenu diffère selon l’approche utilisée, c’est un signe que le “meilleur” modèle est possiblement difficile à identifier et que vous devriez être circonspects dans vos inférences. Dans notre exemple, pas de problème: toutes les méthodes convergent sur le même modèle final.</p>
 <p>Pour conclure cette section, quelques conseils concernant les méthodes automatisées de sélection des variables indépendantes:</p>
 <ol style="list-style-type: decimal">
 <li>Les différentes méthodes de sélection des variables indépendantes peuvent mener à des modèles différents. Il est souvent utile d’essayer plus d’une méthode et de comparer les résultats. Si les résultats diffèrent, c’est presque toujours à cause de multicolinéarité entre les variables indépendantes.</li>
-<li>Attention à la régression pas-à-pas. Les auteurs de SYSTAT en disent: “Stepwise regression is probably the most abused computerized statistical technique ever devised. If you think you need automated stepwise regression to solve a particular problem, you probably don’t. Professional statisticians rarely use automated stepwise regression because it does not necessarily find the”best" fitting model, the “real” model, or alternative “plausible” models. Furthermore, the order in which variables enter or leave a stepwise program is usually of no theoretical signficance. You are always better off thinking about why a model could generate your data and then testing that model.” En bref, on abuse trop souvent de cette technique.</li>
+<li>Attention à la régression pas-à-pas. Les auteurs de SYSTAT en disent:</li>
+</ol>
+<blockquote>
+<p>Stepwise regression is probably the most abused computerized statistical technique ever devised. If you think you need automated stepwise regression to solve a particular problem, you probably don’t. Professional statisticians rarely use automated stepwise regression because it does not necessarily find the “best” fitting model, the “real” model, or alternative “plausible” models. Furthermore, the order in which variables enter or leave a stepwise program is usually of no theoretical significance. You are always better off thinking about why a model could generate your data and then testing that model.</p>
+</blockquote>
+<p>En bref, on abuse trop souvent de cette technique.</p>
+<ol start="3" style="list-style-type: decimal">
 <li>Il faut toujours garder à l’esprit que l’existence d’une régression significative n’est pas suffisante pour prouver une relation causale.</li>
 </ol>
 </div>

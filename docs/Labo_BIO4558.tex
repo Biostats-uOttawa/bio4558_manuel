@@ -222,7 +222,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{22-10-2020}
+\date{26-10-2020}
 
 \begin{document}
 \maketitle
@@ -5037,9 +5037,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  2.591634e-04  0.03414289
-## t2* 0.3408557 -8.174073e-06  0.02704263
+##      original       bias    std. error
+## t1* 1.1919926  0.002569658  0.03314378
+## t2* 0.3408557 -0.001866195  0.02625861
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,11 +5096,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.259 )   ( 1.123,  1.259 )  
+## 95%   ( 1.124,  1.254 )   ( 1.123,  1.254 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.125,  1.261 )   ( 1.121,  1.254 )  
+## 95%   ( 1.130,  1.261 )   ( 1.109,  1.245 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -5124,11 +5125,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2879,  0.3939 )   ( 0.2881,  0.3951 )  
+## 95%   ( 0.2913,  0.3942 )   ( 0.2913,  0.3945 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2866,  0.3936 )   ( 0.2899,  0.3966 )  
+## 95%   ( 0.2872,  0.3904 )   ( 0.2992,  0.4054 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5474,8 +5476,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391  0.003011076   0.4323156
-## t2* -1.714546 -0.003823043   0.7849926
+## t1* 45.084391 -0.010714771   0.4202628
+## t2* -1.714546  0.006574537   0.7719081
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5508,7 +5510,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.264, -0.250 )  
+## 95%   (-3.201, -0.285 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5550,7 +5552,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 2428     0.04 *
+## location1   0.8573 3375    0.029 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6269,18 +6271,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5931
+## Quantile = 2.5964
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2706   3.6450
-## m1965 - m1954 == 0  -5.5077  -9.9964  -1.0189
-## m1966 - m1954 == 0  -3.3127  -6.3426  -0.2828
-## m1965 - m1958 == 0  -5.6949 -10.4104  -0.9793
-## m1966 - m1958 == 0  -3.4999  -6.8567  -0.1431
-## m1966 - m1965 == 0   2.1950  -2.2164   6.6063
+## m1958 - m1954 == 0   0.1872  -3.2750   3.6494
+## m1965 - m1954 == 0  -5.5077 -10.0021  -1.0132
+## m1966 - m1954 == 0  -3.3127  -6.3464  -0.2789
+## m1965 - m1958 == 0  -5.6949 -10.4164  -0.9733
+## m1966 - m1958 == 0  -3.4999  -6.8610  -0.1389
+## m1966 - m1965 == 0   2.1950  -2.2220   6.6120
 \end{verbatim}
 
 \begin{Shaded}
@@ -6813,25 +6815,6 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(effects)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Registered S3 methods overwritten by 'lme4':
-##   method                          from
-##   cooks.distance.influence.merMod car 
-##   influence.merMod                car 
-##   dfbeta.influence.merMod         car 
-##   dfbetas.influence.merMod        car
-\end{verbatim}
-
-\begin{verbatim}
-## lattice theme set by effectsTheme()
-## See ?effectsTheme for details.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{allEffects}\NormalTok{(anova.model1)}
 \end{Highlighting}
 \end{Shaded}
@@ -7724,6 +7707,47 @@ Après avoir complété cet exercice de laboratoire, vous devriez pouvoir :
   Utiliser R pour effectuer une régression curvilinéaire (polynomiale).
 \end{itemize}
 
+\hypertarget{set-reg-mul}{%
+\section{Paquets et données requises pour le labo}\label{set-reg-mul}}
+
+Ce laboratoire nécessite:
+
+\begin{itemize}
+\tightlist
+\item
+  les paquets R:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ggplot2
+  \item
+    car
+  \item
+    lmtest
+  \item
+    mysimpleboot
+  \item
+    boot
+  \item
+    MuMIn
+  \end{itemize}
+\item
+  les fichiers de données
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Mregdat.csv
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{conseils-guxe9nuxe9raux}{%
 \section{Conseils généraux}\label{conseils-guxe9nuxe9raux}}
 
@@ -7745,210 +7769,281 @@ Il est important de réaliser que la maîtrise de la régression multiple ne s'a
 \hypertarget{examen-pruxe9liminaire-des-donnuxe9es}{%
 \section{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
 
-Le fichier Mregdat.csv contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont la richesse spécifique des oiseaux ( bird , et son logarithme base 10 logbird ), des mammifères ( mammal , logmam ), des amphibiens et reptiles ( herptile , logherp ) et celle des vertébrés ( totsp , logtot ) ; les coordonnées des sites ( lat , long ) ; la superficie du marais ( logarea ), le pourcentage du marais inondé toute l'année ( swamp ) le pourcentage des terres couvertes par des forêts dans un rayon de 1km du marais ( cpfor2 ) et la densité des routes pavées (en m/ha) dans un rayon de 1km du marais ( thtden ). Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d'examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
+Le fichier \texttt{Mregdat.csv} contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont:
 
-require(car)
-scatterplotMatrix(\textasciitilde{}logherp + logarea + cpfor2 + thtden +
-swamp,
-reg.line = lm, smooth = TRUE, span = 0.5, diagonal = ``density'',
-data = mydata)
+\begin{itemize}
+\tightlist
+\item
+  la richesse spécifique:
 
- En utilisant les données de ce fichier, faites la régression simple de logherp sur logarea . Que concluez-vous à partir de cette analyse?
+  \begin{itemize}
+  \tightlist
+  \item
+    des oiseaux ( bird , et son logarithme base 10 logbird )
+  \item
+    des mammifères ( mammal , logmam )
+  \item
+    des amphibiens et reptiles ( herptile , logherp )
+  \item
+    des vertébrés ( totsp , logtot )
+  \end{itemize}
+\item
+  les coordonnées des sites ( lat , long )
+\item
+  la superficie du marais ( logarea )
+\item
+  le pourcentage du marais inondé toute l'année ( swamp )
+\item
+  le pourcentage des terres couvertes par des forêts dans un rayon de 1km du marais ( cpfor2 )
+\item
+  la densité des routes pavées (en m/ha) dans un rayon de 1km du marais ( thtden ).
+\end{itemize}
 
-model.loga\textless{}-lm(logherp \textasciitilde{} logarea, data = mydata)
-summary(model.loga)
+Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d'examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
 
-opar \textless{}- par(mfrow(2,2))
-plot(model.loga)
-opar
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/Mregdat.csv"}\NormalTok{)}
+\KeywordTok{scatterplotMatrix}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{logherp }\OperatorTok{+}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp,}
+  \DataTypeTok{regLine =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{smooth =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{diagonal =} \OtherTok{TRUE}\NormalTok{,}
+  \DataTypeTok{data =}\NormalTok{ mydata}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-249-1.pdf}
+\caption{\label{fig:unnamed-chunk-249}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  En utilisant les données de ce fichier, faites la régression simple de \texttt{logherp} en fonction de \texttt{logarea} . Que concluez-vous à partir de cette analyse?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.loga <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.loga)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = logherp ~ logarea, data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.38082 -0.09265  0.00763  0.10409  0.46977 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.18503    0.15725   1.177 0.249996    
+## logarea      0.24736    0.06536   3.784 0.000818 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1856 on 26 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.3552,	Adjusted R-squared:  0.3304 
+## F-statistic: 14.32 on 1 and 26 DF,  p-value: 0.0008185
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(model.loga)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-250-1.pdf}
+\caption{\label{fig:unnamed-chunk-250}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
+\end{figure}
 
 Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n'explique cependant qu'environ le tiers de la variabilité (R 2 =0.355). L'analyse des résidus indique qu'il n'y a pas de problème avec la normalité , l'homoscédasticité, ni l'indépendance.
 
- Faites ensuite la régression de logherp sur cpfor2 . Que concluezvous?
+\begin{itemize}
+\tightlist
+\item
+  Faites ensuite la régression de \texttt{logherp} en fonction de \texttt{cpfor2} . Que concluez-vous?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.logcp <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{cpfor2, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.logcp)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-Call:
-lm(formula = logherp ~ cpfor2, data = mydata)
-Residuals:
-Min
-1Q
--0.4909 -0.1027
-Median
-0.0588
-3Q
-0.1603
-Max
-0.2516
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) 0.609197
-0.104233
-5.845 3.68e-06 ***
-cpfor2
-0.002706
-0.001658
-1.632
-0.115
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.2202 on 26 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.09289,
-Adjusted R-squared: 0.058
-F-statistic: 2.662 on 1 and 26 DF, p-value: 0.1148
+## 
+## Call:
+## lm(formula = logherp ~ cpfor2, data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.49095 -0.10266  0.05881  0.16027  0.25159 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.609197   0.104233   5.845 3.68e-06 ***
+## cpfor2      0.002706   0.001658   1.632    0.115    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.2202 on 26 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.09289,	Adjusted R-squared:  0.058 
+## F-statistic: 2.662 on 1 and 26 DF,  p-value: 0.1148
 \end{verbatim}
 
-Ici, on doit accepter l'hypothèse nulle et conclure qu'il n'y a pas de relation entre la richesse spécifique dans les marais et la proportion de forêts sur les terres adjacentes. Qu'est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?
+Ici, on doit accepter l'hypothèse nulle et conclure qu'il n'y a pas de relation entre la richesse spécifique dans les marais (\texttt{logherp}) et la proportion de forêts sur les terres adjacentes (\texttt{cpfor2}). Qu'est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?
 
- Refaites la régression de logherp sur logarea et cpfor2 à la fois, soit que logherp\textasciitilde{}logarea+cpfor2 . Que concluez-vous?
+\begin{itemize}
+\tightlist
+\item
+  Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.mcp <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.mcp)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-Call:
-lm(formula = logherp ~ logarea + cpfor2, data = mydata)
-Residuals:
-Min
-1Q
--0.40438 -0.11512
-Median
-0.01774
-3Q
-0.08187
-Max
-0.36179
-Coefficients:
-Estimate Std. Error t value
-(Intercept) 0.027058
-0.166749
-0.162
-logarea
-0.247789
-0.061603
-4.022
-cpfor2
-0.002724
-0.001318
-2.067
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01
-Pr(>|t|)
-0.872398
-0.000468 ***
-0.049232 *
-‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.175 on 25 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.4493,
-Adjusted R-squared: 0.4052
-F-statistic: 10.2 on 2 and 25 DF, p-value: 0.0005774
-Residual standard error: 0.175 on 25 degrees of freedom
-Multiple R-Squared: 0.4493
-F-statistic: 10.2 on 2 and 25 degrees of freedom, the p-value is 0.0005774
+## 
+## Call:
+## lm(formula = logherp ~ logarea + cpfor2, data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.40438 -0.11512  0.01774  0.08187  0.36179 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.027058   0.166749   0.162 0.872398    
+## logarea     0.247789   0.061603   4.022 0.000468 ***
+## cpfor2      0.002724   0.001318   2.067 0.049232 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.175 on 25 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.4493,	Adjusted R-squared:  0.4052 
+## F-statistic:  10.2 on 2 and 25 DF,  p-value: 0.0005774
 \end{verbatim}
 
-On voit donc qu'on peut rejeter les 2 hypothèses nulles que la pente de la régression de logherp sur logarea est zéro et que la pente de la régression de logherp sur cpfor2 est zéro. Pourquoi cpfor2 devient-il un facteur significatif dans la régression multiple alors qu'il n'est pas significatif dans la régression simple? Parce qu'il est parfois nécessaire de contrôler pour l'effet d'une variable pour pouvoir détecter les effets plus subtils d'autres variables. Ici, il y a une relation significative entre logherp et logarea qui masque l'effet de cpfor2 sur logherp . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l'effet de cpfor2 .
+On voit donc qu'on peut rejeter les 2 hypothèses nulles que la pente de la régression de \texttt{logherp} sur \texttt{logarea} est zéro et que la pente de la régression de \texttt{logherp} sur \texttt{cpfor2} est zéro. Pourquoi \texttt{cpfor2} devient-il un facteur significatif dans la régression multiple alors qu'il n'est pas significatif dans la régression simple? Parce qu'il est parfois nécessaire de contrôler pour l'effet d'une variable pour pouvoir détecter les effets plus subtils d'autres variables. Ici, il y a une relation significative entre \texttt{logherp} et \texttt{logarea} qui masque l'effet de \texttt{cpfor2} sur \texttt{logherp} . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l'effet de \texttt{cpfor2} .
 
- Ajustez un autre modèle, cette fois en remplaçant cpfor2 par thtden ( Logherp\textasciitilde{}Logarea+thtden ). Que concluez-vous?
+\begin{itemize}
+\tightlist
+\item
+  Ajustez un autre modèle, cette fois en remplaçant \texttt{cpfor2} par \texttt{thtden} ( logherp \textasciitilde{} logarea + thtden ). Que concluez-vous?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.mden <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.mden)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-lm(formula = logherp ~ logarea + thtden, data = mydata)
-Residuals:
-Min
-1Q
--0.31583 -0.12326
-Median
-0.02095
-3Q
-0.13201
-Max
-0.31674
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) 0.37634
-0.14926
-2.521 0.018437 *
-logarea
-0.22504
-0.05701
-3.947 0.000567 ***
-
-
-thtden
--0.04196
-0.01345 -3.118 0.004535 **
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1606 on 25 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.5358,
-Adjusted R-squared: 0.4986
-F-statistic: 14.43 on 2 and 25 DF, p-value: 6.829e-05
+## 
+## Call:
+## lm(formula = logherp ~ logarea + thtden, data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.31583 -0.12326  0.02095  0.13201  0.31674 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.37634    0.14926   2.521 0.018437 *  
+## logarea      0.22504    0.05701   3.947 0.000567 ***
+## thtden      -0.04196    0.01345  -3.118 0.004535 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1606 on 25 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.5358,	Adjusted R-squared:  0.4986 
+## F-statistic: 14.43 on 2 and 25 DF,  p-value: 6.829e-05
 \end{verbatim}
 
-On rejette donc l'hypothèse nulle que la richesse spécifique n'est pas influencée par la taille des marais (logarea) ni par la densité des routes (thtden). Notez qu'ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( cpfor2 ; résultat de la dernière régression).
+On rejette donc l'hypothèse nulle que la richesse spécifique n'est pas influencée par la taille des marais (\texttt{logarea}) ni par la densité des routes (\texttt{thtden}). Notez qu'ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( \texttt{cpfor2} ; résultat de la dernière régression).
 
-Le R 2 de ce modèle est plus élevé que pour le précédent, reflétant une corrélation plus forte entre logherp et thtden qu'entre logherp et cpfor2 .
+Le \(R^2\) de ce modèle est plus élevé que pour le précédent, reflétant une corrélation plus forte entre logherp et thtden qu'entre \texttt{logherp} et \texttt{cpfor2} .
 
-La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais ( logarea ), la densité des routes ( thtden ), et possiblement au couvert forestier sur les terres adjacentes aux marais ( cpfor2 ). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons cpfor2 et thtden ) sont parfaitement corrélées, alors l'effet de thtden ne serait rien de plus que celui de cpfor2 (et vice-versa) et un modèle incluant l'une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de logarea ).
+La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais ( \texttt{logarea} ), la densité des routes ( \texttt{thtden} ), et possiblement au couvert forestier sur les terres adjacentes aux marais ( \texttt{cpfor2} ). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons \texttt{cpfor2} et \texttt{thtden} ) sont parfaitement corrélées, alors l'effet de \texttt{thtden} ne serait rien de plus que celui de \texttt{cpfor2} (et vice-versa) et un modèle incluant l'une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de \texttt{logarea} ).
 
- Estimez un modèle de régression avec logherp comme variable dépendante et logarea , cpfor2 et thtden comme variables indépendantes. Que concluez-vous?
+\begin{itemize}
+\tightlist
+\item
+  Estimez un modèle de régression avec \texttt{logherp} comme variable dépendante et \texttt{logarea} , \texttt{cpfor2} et \texttt{thtden} comme variables indépendantes. Que concluez-vous?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.mtri <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.mtri)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-Call:
-lm(formula = logherp ~ logarea + cpfor2 + thtden, data = mydata)
-Residuals:
-Min
-1Q
--0.30729 -0.13779
-Median
-0.02627
-3Q
-0.11441
-Max
-0.29582
-Coefficients:
-(Intercept)
-logarea Estimate Std. Error t value Pr(>|t|)
-0.284765
-0.191420
-1.488 0.149867
-0.228490
-0.057647
-3.964 0.000578 ***
-cpfor2 0.001095
-0.001414
-0.774 0.446516
-thtden
--0.035794
-0.015726 -2.276 0.032055 *
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1619 on 24 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.5471
-
-
-,
-Adjusted R-squared: 0.4904L ABO - R ÉGRESSION MULTIPLE - 129
-F-statistic: 9.662 on 3 and 24 DF,
-p-value: 0.0002291
+## 
+## Call:
+## lm(formula = logherp ~ logarea + cpfor2 + thtden, data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.30729 -0.13779  0.02627  0.11441  0.29582 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.284765   0.191420   1.488 0.149867    
+## logarea      0.228490   0.057647   3.964 0.000578 ***
+## cpfor2       0.001095   0.001414   0.774 0.446516    
+## thtden      -0.035794   0.015726  -2.276 0.032055 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1619 on 24 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.5471,	Adjusted R-squared:  0.4904 
+## F-statistic: 9.662 on 3 and 24 DF,  p-value: 0.0002291
 \end{verbatim}
 
 Plusieurs choses sont à noter ici:
-1. Tel que prédit, le coefficient de régression pour cpfor2 n'est plus significativement différent de 0. Une fois que la variabilité attribuable à logarea et thtden est enlevée, il ne reste qu'une fraction nonsignificative de la variabilité attribuable à cpfor2 .
-2. Le R 2 pour ce modèle(0.547) n'est que légèrement supérieur au R 2 du modèle avec seulement logarea et thtden (.536), ce qui confirme que cpfor2 n'explique pas grand-chose de plus.
+1. Tel que prédit, le coefficient de régression pour \texttt{cpfor2} n'est plus significativement différent de 0. Une fois que la variabilité attribuable à \texttt{logarea} et \texttt{thtden} est enlevée, il ne reste qu'une fraction nonsignificative de la variabilité attribuable à \texttt{cpfor2} .
+2. Le \(R^2\) pour ce modèle(0.547) n'est que légèrement supérieur au \(R^2\) du modèle avec seulement \texttt{logarea} et \texttt{thtden} (.536), ce qui confirme que \texttt{cpfor2} n'explique pas grand-chose de plus.
 
-Notez aussi que même si le coefficient de régression pour thtden n'a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul thtden et logarea étaient dans le modèle (0-.036 vs -0.042), l'erreur type pour l'estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre thtden et cpfor2 était plus forte, la décroissance de la précision serait encore plus grande.
+Notez aussi que même si le coefficient de régression pour \texttt{thtden} n'a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul \texttt{thtden} et \texttt{logarea} étaient dans le modèle (0-.036 vs -0.042), l'erreur type pour l'estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre \texttt{thtden} et \texttt{cpfor2} était plus forte, la décroissance de la précision serait encore plus grande.
 
 On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 variables et celui avec seulement logarea and thtden ) pour décider lequel privilégier.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(model.mtri, model.mden)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-anova(model.loga.cpfor2.thtden, model.loga.thtden)
-Analysis of Variance Table
-Model 1: logherp ~ logarea + cpfor2 + thtden
-Model 2: logherp ~ logarea + thtden
-Res.Df
-RSS Df Sum of Sq
-F Pr(>F)
-1
-24 0.62937
-2
-25 0.64508 -1 -0.01571 0.599 0.4465
+## Analysis of Variance Table
+## 
+## Model 1: logherp ~ logarea + cpfor2 + thtden
+## Model 2: logherp ~ logarea + thtden
+##   Res.Df     RSS Df Sum of Sq     F Pr(>F)
+## 1     24 0.62937                          
+## 2     25 0.64508 -1 -0.015708 0.599 0.4465
 \end{verbatim}
 
 Cette comparaison révèle que le modèle à 3 variables ne fait pas de prédictions significativement meilleures que le modèle avec seulement Logarea et thtden . Ce résultat n'est pas surprenant puisque le test de signification pour cpfor2 dans le modèle complet indique qu'il faut accepter l'hypothèse nulle.
@@ -7965,75 +8060,62 @@ Notez que le ``meilleur'' modèle n'est pas nécessairement le modèle parfait, 
 
 Quand le nombre de variables prédictives est restreint, comme dans l'exemple précédent, il est aisé de comparer manuellement les modèles pour sélectionner le plus adéquat. Cependant, lorsque le nombre de variables indépendantes augmente, cette approche n'est rapidement plus utilisable et il est alors utile d'utiliser une méthode automatisée.
 
-La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike Information Criterion, AIC=n ln(RSS) + 2K où K le nombre de variables indépendantes, n est le nombre d'observations, et RSS est la somme des carrés des résidus) comme mesure de la qualité d'ajustement des modèles. Cette mesure favorise la précision des prédictions et pénalise la complexité. Lorsque l'on compare des modèles par AIC, le modèle avec le plus petit AIC est le modèle à préférer.
+La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike Information Criterion, \(AIC = 2* ln(RSS) + 2K\) où K le nombre de variables indépendantes, n est le nombre d'observations, et \emph{RSS} est la somme des carrés des résidus) comme mesure de la qualité d'ajustement des modèles. Cette mesure favorise la précision des prédictions et pénalise la complexité. \textbf{Lorsque l'on compare des modèles par AIC, le modèle avec le plus petit AIC est le modèle à préférer.}
 
- Refaite la régression précédente ( logherp vs logarea cpfor2 et thtden ), mais cette fois en utilisant la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes:
+\begin{itemize}
+\tightlist
+\item
+  Utiliser la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes sur le modèles de régression incluant \texttt{logarea}, \texttt{cpfor2} et \texttt{thtden}:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Stepwise Regression}
+\KeywordTok{library}\NormalTok{(MASS)}
+\NormalTok{step.mtri <-}\StringTok{ }\KeywordTok{stepAIC}\NormalTok{(model.mtri, }\DataTypeTok{direction=}\StringTok{"both"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-model.loga.cpfor2.thtden<-lm(logherp ~ logarea + cpfor2 +
-thtden, data = mydata)
-# Stepwise Regression
-library(MASS)
-step <- stepAIC(model.loga.cpfor2.thtden, direction="both")
-step$anova # display results
-Start:
-AIC=-98.27
-logherp ~ logarea + cpfor2 + thtden
-Df Sum of Sq
-- cpfor2
-<none>
-- thtden
-- logarea
-1 0.016
-1
-1 0.136
-0.412
-RSS AIC
-0.645
-0.629
-0.765
-1.041 -99.576
--98.267
--94.794
--86.167
-Step: AIC=-99.58
-logherp ~ logarea + thtden
-Df Sum of Sq
-<none>
-+ cpfor2
-- thtden
-- logarea
+## Start:  AIC=-98.27
+## logherp ~ logarea + cpfor2 + thtden
+## 
+##           Df Sum of Sq     RSS     AIC
+## - cpfor2   1   0.01571 0.64508 -99.576
+## <none>                 0.62937 -98.267
+## - thtden   1   0.13585 0.76522 -94.794
+## - logarea  1   0.41198 1.04135 -86.167
+## 
+## Step:  AIC=-99.58
+## logherp ~ logarea + thtden
+## 
+##           Df Sum of Sq     RSS     AIC
+## <none>                 0.64508 -99.576
+## + cpfor2   1   0.01571 0.62937 -98.267
+## - thtden   1   0.25092 0.89600 -92.376
+## - logarea  1   0.40204 1.04712 -88.013
+\end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{step.mtri}\OperatorTok{$}\NormalTok{anova }\CommentTok{# display results}
+\end{Highlighting}
+\end{Shaded}
 
-1
-1
-1
-0.016
-0.251
-0.402
-RSS AIC
-0.645
-0.629
-0.896
-1.047 -99.576
--98.267
--92.376
--88.013L ABO - R ÉGRESSION MULTIPLE - 131
-> step$anova # display results
-Stepwise Model Path
-Analysis of Deviance Table
-Initial Model:
-logherp ~ logarea + cpfor2 + thtden
-Final Model:
-logherp ~ logarea + thtden
-Step Df
-Deviance Resid. Df Resid. Dev
-AIC
-1
-24 0.6293717 -98.26666
-2 - cpfor2 1 0.01570813
-25 0.6450798 -99.57640
->
+\begin{verbatim}
+## Stepwise Model Path 
+## Analysis of Deviance Table
+## 
+## Initial Model:
+## logherp ~ logarea + cpfor2 + thtden
+## 
+## Final Model:
+## logherp ~ logarea + thtden
+## 
+## 
+##       Step Df   Deviance Resid. Df Resid. Dev       AIC
+## 1                               24  0.6293717 -98.26666
+## 2 - cpfor2  1 0.01570813        25  0.6450798 -99.57640
 \end{verbatim}
 
 R nous donne::
@@ -8043,82 +8125,66 @@ R nous donne::
 
 Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on peut commencer par le modèle nul et ajouter des termes:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Forward selection approach}
+\NormalTok{model.null <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\NormalTok{step.f <-}\StringTok{ }\KeywordTok{stepAIC}\NormalTok{(}
+\NormalTok{  model.null,}
+  \DataTypeTok{scope =} \OperatorTok{~}\StringTok{ }\NormalTok{. }\OperatorTok{+}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden, }\DataTypeTok{direction =} \StringTok{"forward"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-# Forward selection approach
-model.null<-lm(logherp ~ 1, data = mydata)
-step <- stepAIC(model.null, scope=~. + logarea + cpfor2 +
-thtden, direction="forward")
-step$anova # display results
-Start: AIC=-82.09
-logherp ~ 1
-Df Sum of Sq
-1
-0.494
-1
-0.342
-1
-0.129
-+ logarea
-+ thtden
-+ cpfor2
-<none>
-RSS
-0.896
-1.047
-1.260
-1.390
-AIC
--92.376
--88.013
--82.820
--82.091
-Step: AIC=-92.38
-logherp ~ logarea
-+ thtden
-+ cpfor2
-<none>
-Df Sum of Sq
-1
-0.251
-1
-0.131
-RSS
-AIC
-0.645 -99.576
-0.765 -94.794
-0.896 -92.376
-Step: AIC=-99.58
-logherp ~ logarea + thtden
-Df Sum of Sq
-<none>
-+ cpfor2
-1
-0.016
-RSS
-AIC
-0.645 -99.576
-0.629 -98.267
-
-
-> step$anova # display results
-Stepwise Model Path
-Analysis of Deviance Table
-Initial Model:
-logherp ~ 1
-Final Model:
-logherp ~ logarea + thtden
-Step Df Deviance Resid. Df Resid. Dev
-AIC
-1
-27 1.3895281 -82.09073
-2 + logarea 1 0.4935233
-26 0.8960048 -92.37639
-3 + thtden 1 0.2509250
-25 0.6450798 -99.57640
->
+## Start:  AIC=-82.09
+## logherp ~ 1
+## 
+##           Df Sum of Sq    RSS     AIC
+## + logarea  1   0.49352 0.8960 -92.376
+## + thtden   1   0.34241 1.0471 -88.013
+## + cpfor2   1   0.12907 1.2605 -82.820
+## <none>                 1.3895 -82.091
+## 
+## Step:  AIC=-92.38
+## logherp ~ logarea
+## 
+##          Df Sum of Sq     RSS     AIC
+## + thtden  1   0.25093 0.64508 -99.576
+## + cpfor2  1   0.13078 0.76522 -94.794
+## <none>                0.89600 -92.376
+## 
+## Step:  AIC=-99.58
+## logherp ~ logarea + thtden
+## 
+##          Df Sum of Sq     RSS     AIC
+## <none>                0.64508 -99.576
+## + cpfor2  1  0.015708 0.62937 -98.267
 \end{verbatim}
 
-Le résultat final est le même, mais la trajectoire est différente. Dans ce cas, R débute avec le modèle le plus simple et ajoute une variable indépendante à chaque étape, sélectionnant la variable minimisant AIC à cette étape. Le modèle de départ a donc seulement une ordonnée à l'origine. Puis, logarea est ajouté, suivi de thtden. cpfor2 n'est pas ajouté au modèle, car son addition fait augmenter l'AIC.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{step.f}\OperatorTok{$}\NormalTok{anova }\CommentTok{# display results}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Stepwise Model Path 
+## Analysis of Deviance Table
+## 
+## Initial Model:
+## logherp ~ 1
+## 
+## Final Model:
+## logherp ~ logarea + thtden
+## 
+## 
+##        Step Df  Deviance Resid. Df Resid. Dev       AIC
+## 1                               27  1.3895281 -82.09073
+## 2 + logarea  1 0.4935233        26  0.8960048 -92.37639
+## 3  + thtden  1 0.2509250        25  0.6450798 -99.57640
+\end{verbatim}
+
+Le résultat final est le même, mais la trajectoire est différente. Dans ce cas, R débute avec le modèle le plus simple et ajoute une variable indépendante à chaque étape, sélectionnant la variable minimisant AIC à cette étape. Le modèle de départ a donc seulement une ordonnée à l'origine. Puis, \texttt{logarea} est ajouté, suivi de \texttt{thtden}. \texttt{cpfor2} n'est pas ajouté au modèle, car son addition fait augmenter l'AIC.
 
 Il est recommandé de comparer le résultat final de plusieurs approches. Si le modèle retenu diffère selon l'approche utilisée, c'est un signe que le ``meilleur'' modèle est possiblement difficile à identifier et que vous devriez être circonspects dans vos inférences. Dans notre exemple, pas de problème: toutes les méthodes convergent sur le même modèle final.
 
@@ -8130,7 +8196,19 @@ Pour conclure cette section, quelques conseils concernant les méthodes automati
 \item
   Les différentes méthodes de sélection des variables indépendantes peuvent mener à des modèles différents. Il est souvent utile d'essayer plus d'une méthode et de comparer les résultats. Si les résultats diffèrent, c'est presque toujours à cause de multicolinéarité entre les variables indépendantes.
 \item
-  Attention à la régression pas-à-pas. Les auteurs de SYSTAT en disent: ``Stepwise regression is probably the most abused computerized statistical technique ever devised. If you think you need automated stepwise regression to solve a particular problem, you probably don't. Professional statisticians rarely use automated stepwise regression because it does not necessarily find the''best" fitting model, the ``real'' model, or alternative ``plausible'' models. Furthermore, the order in which variables enter or leave a stepwise program is usually of no theoretical signficance. You are always better off thinking about why a model could generate your data and then testing that model.'' En bref, on abuse trop souvent de cette technique.
+  Attention à la régression pas-à-pas. Les auteurs de SYSTAT en disent:
+\end{enumerate}
+
+\begin{quote}
+Stepwise regression is probably the most abused computerized statistical technique ever devised. If you think you need automated stepwise regression to solve a particular problem, you probably don't. Professional statisticians rarely use automated stepwise regression because it does not necessarily find the ``best'' fitting model, the ``real'' model, or alternative ``plausible'' models. Furthermore, the order in which variables enter or leave a stepwise program is usually of no theoretical significance. You are always better off thinking about why a model could generate your data and then testing that model.
+\end{quote}
+
+En bref, on abuse trop souvent de cette technique.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
 \item
   Il faut toujours garder à l'esprit que l'existence d'une régression significative n'est pas suffisante pour prouver une relation causale.
 \end{enumerate}
@@ -8142,21 +8220,26 @@ La multicolinéarité est la présence de corrélations entre les variables ind�
 
 Un des indices les plus utilisés pour quantifier la multicolinéarité et le facteur d'inflation de la variance (VIF, variance inflation factor). Le fichier d'aide du package HH explique ainsi son calcul:
 
-A simple diagnostic of collinearity is the variance inflation factor, VIF one for each regression coefficient (other than the intercept). Since the condition of collinearity involves the predictors but not the response, this measure is a function of the X's but not of Y. The VIF for predictor i is 1/(1-R\_i\^{}2), where R\_i\^{}2 is the R\^{}2 from a regression of predictor i against the remaining predictors. If R\_i\^{}2 is close to 1, this means that predictor i is well explained by a linear function of the remaining predictors, and, therefore, the presence of predictor i in the model is redundant. Values of VIF exceeding 5 are considered evidence of collinearity: The information carried by a predictor having such a VIF is contained in a subset of the remaining predictors. If, however, all of a model's regression coefficients differ significantly from 0 (p-value \textless{} .05), a somewhat larger VIF may be tolerable.
+\begin{quote}
+A simple diagnostic of collinearity is the variance inflation factor, VIF one for each regression coefficient (other than the intercept). Since the condition of collinearity involves the predictors but not the response, this measure is a function of the X's but not of Y. The VIF for predictor i is \(1/(1-R_i^2)\), where \(R_i^2\) is the \(R^2\) from a regression of predictor i against the remaining predictors. If \(R_i^2\) is close to 1, this means that predictor i is well explained by a linear function of the remaining predictors, and, therefore, the presence of predictor i in the model is redundant. Values of VIF exceeding 5 are considered evidence of collinearity: The information carried by a predictor having such a VIF is contained in a subset of the remaining predictors. If, however, all of a model's regression coefficients differ significantly from 0 (p-value \textless{} .05), a somewhat larger VIF may be tolerable.
+\end{quote}
 
 Bref, les VIF indiquent de combien l'incertitude de chaque coefficient de régression est augmentée par la multicolinéarité.
 
-\textbf{Attrappe.} Il y a plusieurs fonctions vif() (j'en connais au moins trois dans les packages car, HH et DAAG), et je ne sais pas en quoi elles diffèrent.
+\textbf{Attrappe.} Il y a plusieurs fonctions vif() (j'en connais au moins trois dans les extensions \texttt{car}, \texttt{HH} et \texttt{DAAG}), et je ne sais pas en quoi elles diffèrent.
 
-On peut calculer les VIF avec la fonction vif() du package car: :
+On peut calculer les VIF avec la fonction \texttt{vif()} de l'extension \texttt{car}: :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\KeywordTok{vif}\NormalTok{(model.mtri)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-require(car)
-vif(model.loga.cpfor2.thtden)
-logarea
-cpfor2
-thtden
-1.022127 1.344455 1.365970
+##  logarea   cpfor2   thtden 
+## 1.022127 1.344455 1.365970
 \end{verbatim}
 
 Ici, il n'y a pas d'évidence de multicolinéarité car toutes les valeurs de VIF sont près de 1.
@@ -8164,169 +8247,211 @@ Ici, il n'y a pas d'évidence de multicolinéarité car toutes les valeurs de VI
 \hypertarget{ruxe9gression-polynomiale}{%
 \section{Régression polynomiale}\label{ruxe9gression-polynomiale}}
 
-La régression requiert la linéarité de la relation entre les variables dépendante et indépendante(s). Lorsque la relation n'est pas linéaire, il est parfois possible de linéariser la relation en effectuant une transformation sur une ou plusieurs variables. Cependant, dans bien des cas il est impossible de transformer les axes pour rendre la relation linéaire. On doit alors utiliser une forme ou l'autre de régression nonlinéaire. La forme la plus simple de régression non-linéaire est la régression polynomiale dans laquelle les variables indépendantes sont à une puissance plus grande que 1 (Ex : X 2 ou X 3 ).
+La régression requiert la linéarité de la relation entre les variables dépendante et indépendante(s). Lorsque la relation n'est pas linéaire, il est parfois possible de linéariser la relation en effectuant une transformation sur une ou plusieurs variables. Cependant, dans bien des cas il est impossible de transformer les axes pour rendre la relation linéaire. On doit alors utiliser une forme ou l'autre de régression nonlinéaire. La forme la plus simple de régression non-linéaire est la régression polynomiale dans laquelle les variables indépendantes sont à une puissance plus grande que 1 (Ex : \(X^2\) ou \(X^3\) ).
 
- Faites un diagramme de dispersion des résidus ( residual) de la régression logherp - logarea en fonction de swamp .
+\begin{itemize}
+\tightlist
+\item
+  Faites un diagramme de dispersion des résidus (residual) de la régression \texttt{logherp\ \textasciitilde{}\ logarea} en fonction de swamp .
+\end{itemize}
 
-Figure 3.
-
- L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#problème avec les données de manquantes dans logherp}
+\NormalTok{mysub <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(logherp))}
+\CommentTok{# ajouter les résidus dans les donnée}
+\NormalTok{mysub}\OperatorTok{$}\NormalTok{resloga <-}\StringTok{ }\KeywordTok{residuals}\NormalTok{(model.loga)}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mysub, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ resloga, }\DataTypeTok{x =}\NormalTok{ swamp)) }\OperatorTok{+}
+\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-Call:
-lm(formula = myresiduals ~ swamp, data = mydata.noNA)
-Residuals:
-Min
-1Q
--0.350880 -0.138189
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+\end{verbatim}
 
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-259-1.pdf}
+\caption{\label{fig:unnamed-chunk-259}Relation entre swamp et les résidus de la régression entre logherp et logarea}
+\end{figure}
 
-Median
-0.003131
-3Q
-0.108485
-Max
-0.458021L ABO - R ÉGRESSION MULTIPLE - 135
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) 0.084571
-0.109265
-0.774
-0.446
-swamp
--0.001145
-0.001403 -0.816
-0.422
-Residual standard error: 0.1833 on 26 degrees of freedom
-Multiple R-squared: 0.02498,
-Adjusted R-squared: -0.01252
-F-statistic: 0.666 on 1 and 26 DF, p-value: 0.4219
+\begin{itemize}
+\tightlist
+\item
+  L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.resloga <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(resloga }\OperatorTok{~}\NormalTok{swamp, mysub)}
+\KeywordTok{summary}\NormalTok{(model.resloga)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = resloga ~ swamp, data = mysub)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.35088 -0.13819  0.00313  0.10849  0.45802 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept)  0.084571   0.109265   0.774    0.446
+## swamp       -0.001145   0.001403  -0.816    0.422
+## 
+## Residual standard error: 0.1833 on 26 degrees of freedom
+## Multiple R-squared:  0.02498,	Adjusted R-squared:  -0.01252 
+## F-statistic: 0.666 on 1 and 26 DF,  p-value: 0.4219
 \end{verbatim}
 
 En deux mots, l'ajustement est épouvantable! Malgré le fait que le graphique suggère une relation très forte entre les deux variables. Cependant, cette relation n'est pas linéaire\ldots{} (ce qui est également apparent si vous examinez les résidus du modèle linéaire).
 
- Refaites la régression d'en haut, mais cette fois incluez un terme pour représenter ( swamp ) 2 . L'expression devrait apparaître comme: residuals\textasciitilde{}SWAMP+SWAMP\^{}2 . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
+\begin{itemize}
+\tightlist
+\item
+  Refaites la régression d'en haut, mais cette fois incluez un terme pour représenter \(swamp^2\) . L'expression devrait apparaître comme: `Y \textasciitilde{} X + I(X\^{}2) . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.resloga2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(resloga }\OperatorTok{~}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{), mysub)}
+\KeywordTok{summary}\NormalTok{(model.resloga2)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-Call:
-lm(formula = myresiduals ~ swamp + I(swamp^2), data = mydata.noNA)
-Residuals:
-Min
-1Q
--0.181185 -0.085350
-Median
-0.007377
-3Q
-0.067327
-Max
-0.242455
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) -7.804e-01 1.569e-01 -4.975 3.97e-05 ***
-swamp
-3.398e-02 5.767e-03
-5.892 3.79e-06 ***
-I(swamp^2) -2.852e-04 4.624e-05 -6.166 1.90e-06 ***
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1177 on 25 degrees of freedom
-Multiple R-squared: 0.6132,
-Adjusted R-squared: 0.5823
-F-statistic: 19.82 on 2 and 25 DF, p-value: 6.972e-06
+## 
+## Call:
+## lm(formula = resloga ~ swamp + I(swamp^2), data = mysub)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.181185 -0.085350  0.007377  0.067327  0.242455 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -7.804e-01  1.569e-01  -4.975 3.97e-05 ***
+## swamp        3.398e-02  5.767e-03   5.892 3.79e-06 ***
+## I(swamp^2)  -2.852e-04  4.624e-05  -6.166 1.90e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1177 on 25 degrees of freedom
+## Multiple R-squared:  0.6132,	Adjusted R-squared:  0.5823 
+## F-statistic: 19.82 on 2 and 25 DF,  p-value: 6.972e-06
 \end{verbatim}
 
 Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp , selon une relation quadratique. Si vous examinez les résidus, vous observerez que l'ajustement est nettement meilleur qu'avec le modèle linéaire.
 
- En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d'après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(model.resloga2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-262-1.pdf}
+\caption{\label{fig:unnamed-chunk-262}Relation}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d'après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.
+\end{itemize}
 
 Suite à ces analyses, il semble opportun d'essayer d'ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp\^{}2 :
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.poly1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
+\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
+  \DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.poly1)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-Call:
-lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2),
-data = mydata)
-
-
-Residuals:
-Min
-1Q
-Median
--0.201797 -0.056170 -0.002072
-3Q
-0.051814
-Max
-0.205626
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) -3.203e-01 1.813e-01 -1.766
-0.0912 .
-logarea
-2.202e-01 3.893e-02
-5.656 1.09e-05 ***
-cpfor2
--7.864e-04 9.955e-04 -0.790
-0.4380
-thtden
--2.929e-02 1.048e-02 -2.795
-0.0106 *
-swamp
-3.113e-02 5.898e-03
-5.277 2.70e-05 ***
-I(swamp^2) -2.618e-04 4.727e-05 -5.538 1.45e-05 ***
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1072 on 22 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.8181,
-Adjusted R-squared: 0.7767
-F-statistic: 19.78 on 5 and 22 DF, p-value: 1.774e-07
-he p-value is 1.774e-007
-2 observations deleted due to missing values
+## 
+## Call:
+## lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2), 
+##     data = mydata)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.201797 -0.056170 -0.002072  0.051814  0.205626 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -3.203e-01  1.813e-01  -1.766   0.0912 .  
+## logarea      2.202e-01  3.893e-02   5.656 1.09e-05 ***
+## cpfor2      -7.864e-04  9.955e-04  -0.790   0.4380    
+## thtden      -2.929e-02  1.048e-02  -2.795   0.0106 *  
+## swamp        3.113e-02  5.898e-03   5.277 2.70e-05 ***
+## I(swamp^2)  -2.618e-04  4.727e-05  -5.538 1.45e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1072 on 22 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.8181,	Adjusted R-squared:  0.7767 
+## F-statistic: 19.78 on 5 and 22 DF,  p-value: 1.774e-07
 \end{verbatim}
 
-Les résultats de cette analyse suggèrent qu'on devrait probablement exclure cpfor2 du modèle:
+Les résultats de cette analyse suggèrent qu'on devrait probablement exclure \texttt{cpfor2} du modèle:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.poly2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
+\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
+  \DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(model.poly2)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-lm(formula = logherp ~ logarea + thtden + swamp + I(swamp^2),
-data = mydata)
-Residuals:
-Min
-1Q
-Median
--0.19621 -0.05444 -0.01202
-3Q
-0.07116
-Max
-0.21295
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) -3.461e-01 1.769e-01 -1.957
-0.0626 .
-logarea
-2.232e-01 3.842e-02
-5.810 6.40e-06 ***
-thtden
--2.570e-02 9.364e-03 -2.744
-0.0116 *
-swamp
-2.956e-02 5.510e-03
-5.365 1.89e-05 ***
-I(swamp^2) -2.491e-04 4.409e-05 -5.649 9.46e-06 ***
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1063 on 23 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.8129,
-Adjusted R-squared: 0.7804
-F-statistic: 24.98 on 4 and 23 DF, p-value: 4.405e-08
+## 
+## Call:
+## lm(formula = logherp ~ logarea + thtden + swamp + I(swamp^2), 
+##     data = mydata)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.19621 -0.05444 -0.01202  0.07116  0.21295 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -3.461e-01  1.769e-01  -1.957   0.0626 .  
+## logarea      2.232e-01  3.842e-02   5.810 6.40e-06 ***
+## thtden      -2.570e-02  9.364e-03  -2.744   0.0116 *  
+## swamp        2.956e-02  5.510e-03   5.365 1.89e-05 ***
+## I(swamp^2)  -2.491e-04  4.409e-05  -5.649 9.46e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1063 on 23 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.8129,	Adjusted R-squared:  0.7804 
+## F-statistic: 24.98 on 4 and 23 DF,  p-value: 4.405e-08
 \end{verbatim}
 
 Est-ce qu'il y a possiblement un problème de multicolinéarité?
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{vif}\NormalTok{(model.poly2)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-vif(model.polynomial.reduced)
-logarea
-thtden
-swamp I(swamp^2)
-1.053193
-1.123491 45.845845 45.656453
+##    logarea     thtden      swamp I(swamp^2) 
+##   1.053193   1.123491  45.845845  45.656453
 \end{verbatim}
 
 Les valeurs d'inflation de la variance (VIF) pour les deux termes de swamp sont beaucoup plus élevés que le seuil de 5. Cependant, c'est la norme pour les termes polynomiaux et on ne doit pas s'en préoccuper outre mesure, surtout quand les deux termes sont hautement significatifs dans le modèle. Les fortes valeurs de VIF indiquent que les coefficients pour ces deux termes ne sont pas estimés précisément, mais leur utilisation dans le modèle permet tout de même de faire de bonnes prédictions (i.e.~ils décrivent la réponse à swamp).
@@ -8338,23 +8463,84 @@ Toutes les techniques de sélection des modèles présument que les conditions d
 
 Examinons donc les graphiques diagnostiques du modèle final:
 
-Figure 4.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(model.poly2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-266-1.pdf}
+\caption{\label{fig:unnamed-chunk-266}Conditions d'application du modèle \texttt{model.poly2}}
+\end{figure}
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d'application:
 
-shapiro.test(residuals(model.polynomial.reduced))
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(model.poly2))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Shapiro-Wilk normality test
+## 
+## data:  residuals(model.poly2)
+## W = 0.9837, p-value = 0.9278
+\end{verbatim}
 
 Les résidus ne dévient pas significativement de la normalité. Bien.
 
-bptest(model.polynomial.reduced)
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lmtest)}
+\KeywordTok{bptest}\NormalTok{(model.poly2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	studentized Breusch-Pagan test
+## 
+## data:  model.poly2
+## BP = 3.8415, df = 4, p-value = 0.4279
+\end{verbatim}
 
 Pas de déviation d'homoscédasticité non plus. Bien.
 
-dwtest(model.polynomial.reduced)
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dwtest}\NormalTok{(model.poly2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Durbin-Watson test
+## 
+## data:  model.poly2
+## DW = 1.725, p-value = 0.2095
+## alternative hypothesis: true autocorrelation is greater than 0
+\end{verbatim}
 
 Pas de corrélation sérielle des résidus, donc pas d'évidence de nonindépendance.
 
-resettest(model.polynomial.reduced, type = ``regressor'', data = mydata)
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{resettest}\NormalTok{(model.poly2, }\DataTypeTok{type =} \StringTok{"regressor"}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ mydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	RESET test
+## 
+## data:  model.poly2
+## RESET = 0.9823, df1 = 8, df2 = 15, p-value = 0.4859
+\end{verbatim}
 
 Et finalement, pas de déviation significative de la linéarité. Donc tout semble acceptable.
 
@@ -8363,25 +8549,53 @@ Et finalement, pas de déviation significative de la linéarité. Donc tout semb
 
 Les coefficients de la régression multiple peuvent mesurer la taille d'effet, quoiqu'il puisse être nécessaire de les standardiser pour qu'ils ne soient pas influencés par les unités de mesure. Mais un graphique est souvent plus informatif. Dans ce contexte, les graphiques des résidus partiels (appelés components+residual plots dans R) sont particulièrement utiles. Ces graphique illustrent comment la variable dépendante, corrigée pour l'effet des autres variables dans le modèle, varie avec chacune des variables indépendantes du modèle. Voyons voir:
 
-\begin{verbatim}
-# Evaluate visually linearity and effect size
-# component + residual plot
-cr.plots(model.polynomial.reduced, one.page=TRUE, ask=FALSE)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Evaluate visually linearity and effect size}
+\CommentTok{# component + residual plot}
+\KeywordTok{crPlots}\NormalTok{(model.poly2)}
+\end{Highlighting}
+\end{Shaded}
 
-Figure 5.
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-271-1.pdf}
+\caption{\label{fig:unnamed-chunk-271}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
+\end{figure}
 
 Notez que l'échelle de l'axe des y varie sur chaque graphique. Pour thtden, la variable dépendante (log10(richesse des herptiles)) varie d'environ 0.4 unités entre la valeur minimum et maximum de thtden. Pour logarea, la variation est d'environ 0.6 unité log. Pour swamp, l'interprétation est plus compliquée parce qu'il y a deux termes qui quantifient son effet, et que ces termes ont des signes opposés (positif pour swamp et négatif pour swamp\^{}2) ce qui donne une relation curvilinéaire de type parabole. Le graphique ne permet pas de bien visualiser cela. Ceci dit, ces graphique n'indiquent pas vraiment de violation de linéarité.
 
 Pour illustrer ce qui serait visible sur ces graphiques si il y avait une déviation de linéarité, enlevons le terme du second degré pour swamp, puis on va refaire ces graphiques et effectuer le test RESET.
 
-Figure 6.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model.nopoly <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
+\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp,}
+  \DataTypeTok{data =}\NormalTok{ mydata)}
+\KeywordTok{crPlots}\NormalTok{(model.nopoly)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-272-1.pdf}
+\caption{\label{fig:unnamed-chunk-272}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
+\end{figure}
+
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{resettest}\NormalTok{(model.nopoly, }\DataTypeTok{type=}\StringTok{"regressor"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-RESET test
-data: g
-RESET = 6.7588, df1 = 6, df2 = 18, p-value = 0.0007066
+## 
+## 	RESET test
+## 
+## data:  model.nopoly
+## RESET = 6.7588, df1 = 6, df2 = 18, p-value = 0.0007066
 \end{verbatim}
 
 \hypertarget{tester-la-pruxe9sence-dinteractions}{%
@@ -8389,55 +8603,207 @@ RESET = 6.7588, df1 = 6, df2 = 18, p-value = 0.0007066
 
 Lorsqu'il y a plusieurs variables indépendantes, vous devriez toujours garder à l'esprit la possibilité d'interactions. Dans la majorité des situations de régression multiple cela n'est pas évident parce que l'addition de termes d'interaction augmente la multicolinéarité des termes du modèle, et parce qu'il n'y a souvent pas assez d'observations pour éprouver toutes les interactions ou que les observations ne sont pas suffisamment balancées pour faire des tests puissants pour les interactions. Retournons à notre modèle ``final'' et voyons ce qui se passe si on essaie d'ajuster un modèle saturé avec toutes les interactions:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fullmodel.withinteractions <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
+\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{*}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{*}\StringTok{ }\NormalTok{thtden }\OperatorTok{*}\StringTok{ }\NormalTok{swamp }\OperatorTok{*}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
+  \DataTypeTok{data=}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(fullmodel.withinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-fullmodel.withinteractions<-lm(logherp ~ logarea * cpfor2 *
-thtden * swamp * I(swamp^2), data= Mregdat)
-summary(fullmodel.withinteractions)
+## 
+## Call:
+## lm(formula = logherp ~ logarea * cpfor2 * thtden * swamp * I(swamp^2), 
+##     data = mydata)
+## 
+## Residuals:
+## ALL 28 residuals are 0: no residual degrees of freedom!
+## 
+## Coefficients: (4 not defined because of singularities)
+##                                          Estimate Std. Error t value Pr(>|t|)
+## (Intercept)                            -5.948e+03         NA      NA       NA
+## logarea                                 3.293e+03         NA      NA       NA
+## cpfor2                                  7.080e+01         NA      NA       NA
+## thtden                                  9.223e+02         NA      NA       NA
+## swamp                                   1.176e+02         NA      NA       NA
+## I(swamp^2)                             -3.517e-01         NA      NA       NA
+## logarea:cpfor2                         -3.771e+01         NA      NA       NA
+## logarea:thtden                         -4.781e+02         NA      NA       NA
+## cpfor2:thtden                          -1.115e+01         NA      NA       NA
+## logarea:swamp                          -7.876e+01         NA      NA       NA
+## cpfor2:swamp                           -1.401e+00         NA      NA       NA
+## thtden:swamp                           -1.920e+01         NA      NA       NA
+## logarea:I(swamp^2)                      5.105e-01         NA      NA       NA
+## cpfor2:I(swamp^2)                       3.825e-03         NA      NA       NA
+## thtden:I(swamp^2)                       7.826e-02         NA      NA       NA
+## swamp:I(swamp^2)                       -2.455e-03         NA      NA       NA
+## logarea:cpfor2:thtden                   5.359e+00         NA      NA       NA
+## logarea:cpfor2:swamp                    8.743e-01         NA      NA       NA
+## logarea:thtden:swamp                    1.080e+01         NA      NA       NA
+## cpfor2:thtden:swamp                     2.620e-01         NA      NA       NA
+## logarea:cpfor2:I(swamp^2)              -5.065e-03         NA      NA       NA
+## logarea:thtden:I(swamp^2)              -6.125e-02         NA      NA       NA
+## cpfor2:thtden:I(swamp^2)               -1.551e-03         NA      NA       NA
+## logarea:swamp:I(swamp^2)               -4.640e-04         NA      NA       NA
+## cpfor2:swamp:I(swamp^2)                 3.352e-05         NA      NA       NA
+## thtden:swamp:I(swamp^2)                 2.439e-04         NA      NA       NA
+## logarea:cpfor2:thtden:swamp            -1.235e-01         NA      NA       NA
+## logarea:cpfor2:thtden:I(swamp^2)        7.166e-04         NA      NA       NA
+## logarea:cpfor2:swamp:I(swamp^2)                NA         NA      NA       NA
+## logarea:thtden:swamp:I(swamp^2)                NA         NA      NA       NA
+## cpfor2:thtden:swamp:I(swamp^2)                 NA         NA      NA       NA
+## logarea:cpfor2:thtden:swamp:I(swamp^2)         NA         NA      NA       NA
+## 
+## Residual standard error: NaN on 0 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+## F-statistic:   NaN on 27 and 0 DF,  p-value: NA
 \end{verbatim}
 
 Notez les coefficients manquants aux dernières lignes: on ne peut inclure les 32 termes si on a seulement 28 observations. Il manque des observations, le R carré est 1, et le modèle ``prédit'' parfaitement les données.
 
 Si on essaie une méthode automatique pour identifier le ``meilleur'' modèle dans ce gâchis, R refuse:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{step}\NormalTok{(fullmodel.withinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-step(fullmodel.withinteractions)
+## Error in step(fullmodel.withinteractions): AIC is -infinity for this model, so 'step' cannot proceed
 \end{verbatim}
 
 Bon, est-ce qu'on oublie tout ça et qu'on accepte le modèle final sans ce soucier des interactions? Non, pas encore. Il y a un compromis possible: comparer notre modèle ``final'' à un modèle qui contient au moins un sous-ensemble des interactions, par exemple toutes les interactions du second degré, pour éprouver si l'addition de ces interactions améliore beaucoup l'ajustement du modèle.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{full.model}\FloatTok{.2}\NormalTok{ndinteractions<-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
+\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+    \OperatorTok{+}\StringTok{ }\NormalTok{logarea}\OperatorTok{:}\NormalTok{cpfor2}
+    \OperatorTok{+}\StringTok{ }\NormalTok{logarea}\OperatorTok{:}\NormalTok{thtden}
+    \OperatorTok{+}\StringTok{ }\NormalTok{logarea}\OperatorTok{:}\NormalTok{swamp}
+    \OperatorTok{+}\StringTok{ }\NormalTok{cpfor2}\OperatorTok{:}\NormalTok{thtden}
+    \OperatorTok{+}\StringTok{ }\NormalTok{cpfor2}\OperatorTok{:}\NormalTok{swamp}
+    \OperatorTok{+}\StringTok{ }\NormalTok{thtden}\OperatorTok{:}\NormalTok{swamp}
+\NormalTok{  , }\DataTypeTok{data=}\NormalTok{ mydata)}
+\KeywordTok{summary}\NormalTok{(full.model}\FloatTok{.2}\NormalTok{ndinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-full.model.2ndinteractions<- lm(logherp ~ logarea + cpfor2 +
-thtden + swamp + I(swamp^2)
-+ logarea:cpfor2 + logarea:thtden + logarea:swamp
-+ cpfor2:thtden + cpfor2:swamp
-+ thtden:swamp
-, data= mydata)
-summary(full.model.2ndinteractions)
+## 
+## Call:
+## lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2) + 
+##     logarea:cpfor2 + logarea:thtden + logarea:swamp + cpfor2:thtden + 
+##     cpfor2:swamp + thtden:swamp, data = mydata)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.216880 -0.036534  0.003506  0.042990  0.175490 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     4.339e-01  6.325e-01   0.686 0.502581    
+## logarea        -1.254e-01  2.684e-01  -0.467 0.646654    
+## cpfor2         -9.344e-03  7.205e-03  -1.297 0.213032    
+## thtden         -1.833e-01  9.035e-02  -2.028 0.059504 .  
+## swamp           3.569e-02  7.861e-03   4.540 0.000334 ***
+## I(swamp^2)     -3.090e-04  7.109e-05  -4.347 0.000500 ***
+## logarea:cpfor2  2.582e-03  2.577e-03   1.002 0.331132    
+## logarea:thtden  7.017e-02  3.359e-02   2.089 0.053036 .  
+## logarea:swamp  -5.290e-04  2.249e-03  -0.235 0.816981    
+## cpfor2:thtden  -2.095e-04  6.120e-04  -0.342 0.736544    
+## cpfor2:swamp    4.651e-05  5.431e-05   0.856 0.404390    
+## thtden:swamp    2.248e-04  4.764e-04   0.472 0.643336    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.108 on 16 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.8658,	Adjusted R-squared:  0.7735 
+## F-statistic: 9.382 on 11 and 16 DF,  p-value: 4.829e-05
 \end{verbatim}
 
 Ce modèle s'ajuste un peu mieux aux données que les modèle ``final'' (il explique 86.6\% de la variance de logherp, comparé à 81.2\% pour le modèle ``final'' sans interactions), mais il compte deux fois plus de paramètres. De plus, si vous examinez les coefficients, il se passe d'étranges choses: le signe pour logare a changé par exemple. C'est un des symptômes de la multicolinéarité. Allons voir les facteurs d'inflation de la variance:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{vif}\NormalTok{(full.model}\FloatTok{.2}\NormalTok{ndinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-vif(full.model.2ndinteractions)
+##        logarea         cpfor2         thtden          swamp     I(swamp^2) 
+##       49.86060       78.49622      101.42437       90.47389      115.08457 
+## logarea:cpfor2 logarea:thtden  logarea:swamp  cpfor2:thtden   cpfor2:swamp 
+##       66.97792       71.69894       67.27034       14.66814       29.41422 
+##   thtden:swamp 
+##       20.04410
 \end{verbatim}
 
 Aie! tous les VIF sont plus grands que 5, pas seulement les termes incluant swamp. Cette forte multicolinéarité empêche de quantifier avec précision l'effet de ces interactions. De plus, ce modèle avec interactions n'est pas plus informatif que le modèle ``final'' puisque son AIC est plus élevé (souvenez-vous qu'on privilégie le modèle avec la valeur d'AIC la plus basse):
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(model.poly1)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-AIC(full.model)
-AIC(full.model.2ndinteractions)
+## [1] -38.3433
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{AIC}\NormalTok{(full.model}\FloatTok{.2}\NormalTok{ndinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -34.86123
 \end{verbatim}
 
 On peut également utiliser la fonction anova() pour comparer l'ajustement des deux modèles et vérifier si l'addition des termes d'intération améliore significativement l'ajustement:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(model.poly1, full.model}\FloatTok{.2}\NormalTok{ndinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-anova(full.model, full.model.2ndinteractions)
+## Analysis of Variance Table
+## 
+## Model 1: logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2)
+## Model 2: logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2) + logarea:cpfor2 + 
+##     logarea:thtden + logarea:swamp + cpfor2:thtden + cpfor2:swamp + 
+##     thtden:swamp
+##   Res.Df     RSS Df Sum of Sq      F Pr(>F)
+## 1     22 0.25282                           
+## 2     16 0.18651  6  0.066314 0.9481  0.489
 \end{verbatim}
 
 Ici, l'addition des termes d'interaction ne réduit pas significativement la variabilité résiduelle du modèle ``complet''. Qu'en est-il de la si on compare le modèle avec interaction et notre modèle ``final''?
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{anova}\NormalTok{(model.poly2, full.model}\FloatTok{.2}\NormalTok{ndinteractions)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-anova(model.polynomial.reduced, full.model.2ndinteractions)
+## Analysis of Variance Table
+## 
+## Model 1: logherp ~ logarea + thtden + swamp + I(swamp^2)
+## Model 2: logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2) + logarea:cpfor2 + 
+##     logarea:thtden + logarea:swamp + cpfor2:thtden + cpfor2:swamp + 
+##     thtden:swamp
+##   Res.Df     RSS Df Sum of Sq      F Pr(>F)
+## 1     23 0.25999                           
+## 2     16 0.18651  7  0.073486 0.9006 0.5294
 \end{verbatim}
 
 Le test indique que ces deux modèles ont des variances résiduelles comparables, et donc que l'addition des termes d'interaction et de cpfor2 au modèle final n'apporte pas grand chose.
@@ -8449,21 +8815,92 @@ Une des principales critiques des méthodes pas-à-pas (stepwise) est que les p-
 
 Une alternative, élégamment défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d'utiliser l'AIC (ou mieux encore AICc qui est plus approprié quand le nombre d'observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.
 
-Cette approche a été suivie dans le package \texttt{MuMIn}.
+Cette approche a été suivie dans le package \texttt{MuMIn}. Les comparaisons de modèle par \texttt{AIC}doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
+Il faut donc s'arrurer d'enlever les données manquantes et de spécifier dans la fonction \texttt{lm} de ne pas marcher s'il y a des données manquantes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# refaire le modèle en s'assurant qu'il n'y a pas de "NA" et en spécificant na.action}
+\NormalTok{full.model}\FloatTok{.2}\NormalTok{ndinteractions <-}\StringTok{ }\KeywordTok{update}\NormalTok{(}
+\NormalTok{  full.model}\FloatTok{.2}\NormalTok{ndinteractions,}
+\NormalTok{  .}\OperatorTok{~}\NormalTok{.,}
+  \DataTypeTok{data =}\NormalTok{ mysub,}
+  \DataTypeTok{na.action =} \StringTok{"na.fail"}\NormalTok{)}
+
+\KeywordTok{library}\NormalTok{(MuMIn)}
+\NormalTok{dd <-}\StringTok{ }\KeywordTok{dredge}\NormalTok{(full.model}\FloatTok{.2}\NormalTok{ndinteractions)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-library(MuMIn)
-dd <- dredge(full.model.2ndinteractions)
+## Fixed term is "(Intercept)"
 \end{verbatim}
 
-L'objet dd contient tous les modèles possibles (i.e.~ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l'objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 2 unités d'AICc du meilleur modèle ont peu de support empirique).
+L'objet \texttt{dd} contient tous les modèles possibles (i.e.~ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l'objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 2 unités d'AICc du meilleur modèle ont peu de support empirique).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get models within 2 units of AICc from the best model}
+\NormalTok{top.models}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{get.models}\NormalTok{(dd, }\DataTypeTok{subset =}\NormalTok{ delta }\OperatorTok{<}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{avgmodel1<-}\KeywordTok{model.avg}\NormalTok{(top.models}\FloatTok{.1}\NormalTok{) }\CommentTok{# compute average parameters}
+\KeywordTok{summary}\NormalTok{(avgmodel1) }\CommentTok{#display averaged model}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-# get models within 2 units of AICc from the best model
-top.models.1 <- get.models(dd, subset = delta < 2)
-avgmodel1<-model.avg(top.models.1) # compute average parameters
-summary(avgmodel1) #display averaged model
-confint(avgmodel1) #display CI for averaged coefficients
+## 
+## Call:
+## model.avg(object = top.models.1)
+## 
+## Component model call: 
+## lm(formula = logherp ~ <2 unique rhs>, data = mysub, na.action = 
+##      na.fail)
+## 
+## Component models: 
+##       df logLik   AICc delta weight
+## 12345  7  27.78 -35.95  0.00   0.55
+## 1234   6  25.78 -35.56  0.39   0.45
+## 
+## Term codes: 
+##     I(swamp^2)        logarea          swamp         thtden logarea:thtden 
+##              1              2              3              4              5 
+## 
+## Model-averaged coefficients:  
+## (full average) 
+##                  Estimate Std. Error Adjusted SE z value Pr(>|z|)    
+## (Intercept)    -2.145e-01  2.308e-01   2.406e-01   0.891    0.373    
+## logarea         1.356e-01  1.089e-01   1.119e-01   1.213    0.225    
+## swamp           3.180e-02  5.971e-03   6.273e-03   5.070    4e-07 ***
+## I(swamp^2)     -2.669e-04  4.770e-05   5.011e-05   5.326    1e-07 ***
+## thtden         -6.985e-02  5.233e-02   5.361e-02   1.303    0.193    
+## logarea:thtden  2.131e-02  2.487e-02   2.545e-02   0.837    0.403    
+##  
+## (conditional average) 
+##                  Estimate Std. Error Adjusted SE z value Pr(>|z|)    
+## (Intercept)    -2.145e-01  2.308e-01   2.406e-01   0.891   0.3727    
+## logarea         1.356e-01  1.089e-01   1.119e-01   1.213   0.2253    
+## swamp           3.180e-02  5.971e-03   6.273e-03   5.070    4e-07 ***
+## I(swamp^2)     -2.669e-04  4.770e-05   5.011e-05   5.326    1e-07 ***
+## thtden         -6.985e-02  5.233e-02   5.361e-02   1.303   0.1927    
+## logarea:thtden  3.882e-02  2.114e-02   2.237e-02   1.735   0.0827 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{confint}\NormalTok{(avgmodel1) }\CommentTok{#display CI for averaged coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                        2.5 %       97.5 %
+## (Intercept)    -0.6860022996  0.257064603
+## logarea        -0.0836067896  0.354883299
+## swamp           0.0195105703  0.044099316
+## I(swamp^2)     -0.0003650809 -0.000168656
+## thtden         -0.1749296690  0.035236794
+## logarea:thtden -0.0050266778  0.082666701
 \end{verbatim}
 
 \begin{enumerate}
@@ -8490,50 +8927,70 @@ Le code qui suit, utilisant le package simpleboot, a été conçu pour être fac
 \CommentTok{#######}
 \CommentTok{# Bootstrap analysis the simple way with library simpleboot}
 \CommentTok{# Define model to be bootstrapped and the data source used}
-\NormalTok{mymodel<-}\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
-\DataTypeTok{data =}\NormalTok{ mydata)}
+\NormalTok{mymodel <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ mydata)}
 \CommentTok{# Set the number of bootstrap iterations}
 \NormalTok{nboot<-}\DecValTok{1000}
-\KeywordTok{require}\NormalTok{(simpleboot)}
+\KeywordTok{library}\NormalTok{(simpleboot)}
 \CommentTok{# R is the number of bootstrap iterations}
 \CommentTok{# Setting rows to FALSE indicates resampling of residuals}
-\NormalTok{mysimpleboot<-}\KeywordTok{lm.boot}\NormalTok{(mymodel, }\DataTypeTok{R =}\NormalTok{ nboot, }\DataTypeTok{rows =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{mysimpleboot <-}\StringTok{ }\KeywordTok{lm.boot}\NormalTok{(mymodel, }\DataTypeTok{R =}\NormalTok{ nboot, }\DataTypeTok{rows =} \OtherTok{FALSE}\NormalTok{)}
 \CommentTok{# Extract bootstrap coefficients}
-\NormalTok{myresults<-}\KeywordTok{sapply}\NormalTok{(mysimpleboot}\OperatorTok{$}\NormalTok{boot.list, }\ControlFlowTok{function}\NormalTok{ (x)}
-\NormalTok{x}\OperatorTok{$}\NormalTok{coef)}
-\CommentTok{# Transpose matrix so that lines are bootstrap iterations}
-\NormalTok{and columns are coefficients}
+\NormalTok{myresults <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(mysimpleboot}\OperatorTok{$}\NormalTok{boot.list, }\ControlFlowTok{function}\NormalTok{ (x) x}\OperatorTok{$}\NormalTok{coef)}
+\CommentTok{# Transpose matrix so that lines are bootstrap iterations and columns are coefficients}
 \NormalTok{tmyresults<-}\KeywordTok{t}\NormalTok{(myresults)}
-\CommentTok{#}
-\NormalTok{Plot histograms of bootstrapped coefficients}
-\NormalTok{ncoefs<-}\KeywordTok{length}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(tmyresults))}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{mai=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{ask =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Vous pouvez ensuite faire des graphiques pour voir les résultats.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot histograms of bootstrapped coefficients}
+\NormalTok{ncoefs <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(tmyresults))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{mai =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{ask =} \OtherTok{TRUE}\NormalTok{)}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1} \OperatorTok{:}\StringTok{ }\NormalTok{ncoefs) \{}
-\NormalTok{lab<-}\KeywordTok{colnames}\NormalTok{(tmyresults)[i]}
-\NormalTok{x<-tmyresults[,i]}
-\KeywordTok{plot}\NormalTok{(}\KeywordTok{density}\NormalTok{(x),}\DataTypeTok{main=}\NormalTok{lab, }\DataTypeTok{xlab=}\StringTok{""}\NormalTok{)}
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{mymodel}\OperatorTok{$}\NormalTok{coef[i], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
-\KeywordTok{hist}\NormalTok{(x, }\DataTypeTok{main=}\NormalTok{lab, }\DataTypeTok{xlab=}\StringTok{""}\NormalTok{)}
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{mymodel}\OperatorTok{$}\NormalTok{coef[i], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\NormalTok{  lab <-}\StringTok{ }\KeywordTok{colnames}\NormalTok{(tmyresults)[i]}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{tmyresults[,i]}
+  \KeywordTok{plot}\NormalTok{(}\KeywordTok{density}\NormalTok{(x),}\DataTypeTok{main=}\NormalTok{lab, }\DataTypeTok{xlab=}\StringTok{""}\NormalTok{)}
+  \KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{mymodel}\OperatorTok{$}\NormalTok{coef[i], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+  \KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
+  \KeywordTok{hist}\NormalTok{(x, }\DataTypeTok{main=}\NormalTok{lab, }\DataTypeTok{xlab=}\StringTok{""}\NormalTok{)}
+  \KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\KeywordTok{quantile}\NormalTok{(x, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\FloatTok{0.975}\NormalTok{)))}
+  \KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\NormalTok{mymodel}\OperatorTok{$}\NormalTok{coef[i], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
 \NormalTok{\}}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\DataTypeTok{ask =} \OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d'examiner la distribution pour chaque coefficient du modèle sur des graphiques:
 
-Figure 7.
-Le graphique du haut illustre la densité lissée (kernel density) et celui du bas est l'histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l'intervalle de confiance à 95\%. Ici l'IC ne contient pas 0, et donc on peut conclure que l'effet de logarea sur logherp est significativement positif.
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-285-1.pdf}
+\caption{\label{fig:unnamed-chunk-285}Distribution des estimé par bootstrap pour \texttt{logarea}}
+\end{figure}
+
+Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l'histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l'intervalle de confiance à 95\%. Ici l'IC ne contient pas 0, et donc on peut conclure que l'effet de logarea sur logherp est significativement positif.
 
 Les limites précises peuvent être obtenues par:
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Display empirical bootstrap quantiles (not corrected for bias)}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.005}\NormalTok{,}\FloatTok{0.01}\NormalTok{, }\FloatTok{0.025}\NormalTok{, }\FloatTok{0.05}\NormalTok{, }\FloatTok{0.95}\NormalTok{, }\FloatTok{0.975}\NormalTok{, }\FloatTok{0.99}\NormalTok{, }\FloatTok{0.995}\NormalTok{)}
+\KeywordTok{apply}\NormalTok{(tmyresults, }\DecValTok{2}\NormalTok{, quantile, p)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-# Display empirical bootstrap quantiles (not corrected
-for bias)
-p <- c(0.005,0.01, 0.025, 0.05, 0.95, 0.975, 0.99, 0.995)
-apply(tmyresults, 2, quantile, p)
+##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
+## 0.5%  -0.71499574 0.1331337 -0.047915811 0.01687699 -0.0003465067
+## 1%    -0.68830466 0.1419176 -0.044400277 0.01772179 -0.0003388953
+## 2.5%  -0.63510615 0.1584012 -0.041794945 0.01935212 -0.0003230369
+## 5%    -0.59082091 0.1646999 -0.039783820 0.02090203 -0.0003100371
+## 95%   -0.06570970 0.2814622 -0.011455874 0.03712205 -0.0001808533
+## 97.5% -0.01066592 0.2903061 -0.009304164 0.03861963 -0.0001689553
+## 99%    0.01927518 0.3049747 -0.005947527 0.04081077 -0.0001560370
+## 99.5%  0.06514956 0.3124886 -0.003130526 0.04106368 -0.0001480806
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8545,20 +9002,24 @@ Ces intervalles de confiances ne sont pas fiables si la distribution des estimé
 \CommentTok{# Preferable when parameter distribution is far from normal}
 \CommentTok{# Bootstrap 95% BCa CI for regression coefficients}
 
-
 \KeywordTok{library}\NormalTok{(boot)}
 \CommentTok{# function to obtain regression coefficients for each iteration}
 \NormalTok{bs <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(formula, data, indices) \{}
-\NormalTok{d <-}\StringTok{ }\NormalTok{data[indices,] }\CommentTok{# allows boot to select sample}
-\NormalTok{fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(formula, }\DataTypeTok{data=}\NormalTok{d)}
-\KeywordTok{return}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit))}
+\NormalTok{  d <-}\StringTok{ }\NormalTok{data[indices,] }\CommentTok{# allows boot to select sample}
+\NormalTok{  fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(formula, }\DataTypeTok{data=}\NormalTok{d)}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit))}
 \NormalTok{\}}
 \CommentTok{# bootstrapping with 1000 replications}
-\NormalTok{results <-}\StringTok{ }\KeywordTok{boot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mydata, }\DataTypeTok{statistic=}\NormalTok{bs,}
-\DataTypeTok{R=}\DecValTok{1000}\NormalTok{, }\DataTypeTok{formula=}\NormalTok{logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}
-\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{boot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{statistic =}\NormalTok{ bs, }\DataTypeTok{R =} \DecValTok{1000}\NormalTok{,}
+  \DataTypeTok{formula =}\NormalTok{ logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
 \CommentTok{# view results}
-\NormalTok{results}
+\end{Highlighting}
+\end{Shaded}
+
+Pour obtenir les résultats, le code suivant va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l'intervalle de confiance
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(results, }\DataTypeTok{index=}\DecValTok{1}\NormalTok{) }\CommentTok{# intercept}
 \KeywordTok{plot}\NormalTok{(results, }\DataTypeTok{index=}\DecValTok{2}\NormalTok{) }\CommentTok{# logarea}
 \KeywordTok{plot}\NormalTok{(results, }\DataTypeTok{index=}\DecValTok{3}\NormalTok{) }\CommentTok{# thtden}
@@ -8574,11 +9035,22 @@ Ces intervalles de confiances ne sont pas fiables si la distribution des estimé
 \end{Highlighting}
 \end{Shaded}
 
-Ce code va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l'intervalle de confiance. Pour logarea, cela donne:
+Pour logarea, cela donne:
 
 \begin{verbatim}
-boot.ci(results, type="bca", index=2) # logarea
+## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 1000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = results, type = "bca", index = 2)
+## 
+## Intervals : 
+## Level       BCa          
+## 95%   ( 0.1136,  0.3116 )  
+## Calculations and Intervals on Original Scale
 \end{verbatim}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-289-1.pdf}
 
 Notez que l'intervalle BCa va de 0.12 à 0.32, alors que l'intervalle standard était de 0.16 à 0.29. L'intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
 
@@ -8594,12 +9066,13 @@ Les tests de permutations sont plus rarement effectués en régression multiple 
 \CommentTok{# Permutation in multiple regression}
 \CommentTok{#}
 \CommentTok{# using lmperm library}
-\KeywordTok{require}\NormalTok{(lmPerm)}
+\KeywordTok{library}\NormalTok{(lmPerm)}
 \CommentTok{# Fit desired model on the desired dataframe}
 \NormalTok{mymodel<-}\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
-\DataTypeTok{data =}\NormalTok{ mydata)}
-\NormalTok{mymodelProb<-}\KeywordTok{lmp}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}
-\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{perm=}\StringTok{"Prob"}\NormalTok{)}
+  \DataTypeTok{data =}\NormalTok{ mydata)}
+\NormalTok{mymodelProb<-}\KeywordTok{lmp}\NormalTok{(}
+\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
+  \DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{perm=}\StringTok{"Prob"}\NormalTok{)}
 \KeywordTok{summary}\NormalTok{(mymodel)}
 \KeywordTok{summary}\NormalTok{(mymodelProb)}
 \end{Highlighting}
@@ -9944,8 +10417,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-252-1.pdf}
-\caption{\label{fig:unnamed-chunk-252-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-1.pdf}
+\caption{\label{fig:unnamed-chunk-292-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9957,8 +10430,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-252-2.pdf}
-\caption{\label{fig:unnamed-chunk-252-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-2.pdf}
+\caption{\label{fig:unnamed-chunk-292-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -9970,8 +10443,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-252-3.pdf}
-\caption{\label{fig:unnamed-chunk-252-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-3.pdf}
+\caption{\label{fig:unnamed-chunk-292-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%
