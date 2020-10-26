@@ -7,6 +7,23 @@ Après avoir complété cet exercice de laboratoire, vous devriez pouvoir :
 * Utiliser R pour évaluer la multicolinéarité entre les variables indépendantes et en évaluer ses effets
 * Utiliser R pour effectuer une régression curvilinéaire (polynomiale).
 
+## Paquets et données requises pour le labo {#set-reg-mul}
+Ce laboratoire nécessite:
+
+* les paquets R:
+  * ggplot2
+  * car
+  * lmtest
+  * mysimpleboot
+  * boot
+  * MuMIn
+* les fichiers de données
+  * Mregdat.csv
+
+```{r}
+library(car)
+```
+
 ## Conseils généraux
 Les variables qui intéressent les biologistes sont généralement influencées par plusieurs facteurs, et une description exacte ou une prédiction de la variable dépendante requiert que plus d'une variable soit incluse dans le modèle. La régression multiple permet de quantifier l'effet de plusieurs variables continues sur la variable dépendante.
 
@@ -18,212 +35,102 @@ Il est important de réaliser que la maîtrise de la régression multiple ne s'a
 
 
 ## Examen préliminaire des données
-Le fichier Mregdat.csv contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont la richesse spécifique des oiseaux ( bird , et son logarithme base 10 logbird ), des mammifères ( mammal , logmam ), des amphibiens et reptiles ( herptile , logherp ) et celle des vertébrés ( totsp , logtot ) ; les coordonnées des sites ( lat , long ) ; la superficie du marais ( logarea ), le pourcentage du marais inondé toute l'année ( swamp ) le pourcentage des terres couvertes par des forêts dans un rayon de 1km du marais ( cpfor2 ) et la densité des routes pavées (en m/ha) dans un rayon de 1km du marais ( thtden ). Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
+Le fichier `Mregdat.csv` contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont:
 
-require(car)
-scatterplotMatrix(~logherp + logarea + cpfor2 + thtden +
-swamp,
-reg.line = lm, smooth = TRUE, span = 0.5, diagonal = "density",
-data = mydata)
+* la richesse spécifique:
+    *  des oiseaux ( bird , et son logarithme base 10 logbird )
+    *  des mammifères ( mammal , logmam )
+    *  des amphibiens et reptiles ( herptile , logherp )
+    *  des vertébrés ( totsp , logtot )
+*  les coordonnées des sites ( lat , long )
+*  la superficie du marais ( logarea )
+*  le pourcentage du marais inondé toute l'année ( swamp )
+*  le pourcentage des terres couvertes par des forêts dans un rayon de 1km du marais ( cpfor2 )
+*  la densité des routes pavées (en m/ha) dans un rayon de 1km du marais ( thtden ).
+
+Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
+
+```{r, fig.cap = "Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles"}
+mydata <- read.csv("data/Mregdat.csv")
+scatterplotMatrix(
+  ~logherp + logarea + cpfor2 + thtden + swamp,
+  regLine = TRUE, smooth = TRUE, diagonal = TRUE,
+  data = mydata
+)
+```
 
 
+- En utilisant les données de ce fichier, faites la régression simple de `logherp` en fonction de `logarea` . Que concluez-vous à partir de cette analyse?
 
- En utilisant les données de ce fichier, faites la régression simple de logherp sur logarea . Que concluez-vous à partir de cette analyse?
-
-model.loga<-lm(logherp ~ logarea, data = mydata)
+```{r, fig.cap = "Conditions d'applications de la régression de *logherp* sur *logarea*"}
+model.loga <- lm(logherp ~ logarea, data = mydata)
 summary(model.loga)
 
-opar <- par(mfrow(2,2))
+par(mfrow = c(2,2))
 plot(model.loga)
-opar
-
+```
 
 Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n’explique cependant qu’environ le tiers de la variabilité (R 2 =0.355). L’analyse des résidus indique qu’il n’y a pas de problème avec la normalité , l’homoscédasticité, ni l’indépendance.
 
- Faites ensuite la régression de logherp sur cpfor2 . Que concluezvous?
+-  Faites ensuite la régression de `logherp` en fonction de `cpfor2` . Que concluez-vous?
 
+<div class="fold s">
+```{r}
+model.logcp <- lm(logherp ~ cpfor2, data = mydata)
+summary(model.logcp)
 ```
-Call:
-lm(formula = logherp ~ cpfor2, data = mydata)
-Residuals:
-Min
-1Q
--0.4909 -0.1027
-Median
-0.0588
-3Q
-0.1603
-Max
-0.2516
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) 0.609197
-0.104233
-5.845 3.68e-06 ***
-cpfor2
-0.002706
-0.001658
-1.632
-0.115
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.2202 on 26 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.09289,
-Adjusted R-squared: 0.058
-F-statistic: 2.662 on 1 and 26 DF, p-value: 0.1148
+</div>
+
+
+Ici, on doit accepter l’hypothèse nulle et conclure qu’il n’y a pas de relation entre la richesse spécifique dans les marais (`logherp`) et la proportion de forêts sur les terres adjacentes (`cpfor2`). Qu’est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?
+
+-  Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?
+
+
+<div class="fold s">
+```{r}
+model.mcp <- lm(logherp ~ logarea + cpfor2, data = mydata)
+summary(model.mcp)
 ```
+</div>
 
-Ici, on doit accepter l’hypothèse nulle et conclure qu’il n’y a pas de relation entre la richesse spécifique dans les marais et la proportion de forêts sur les terres adjacentes. Qu’est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?
 
- Refaites la régression de logherp sur logarea et cpfor2 à la fois, soit que logherp~logarea+cpfor2 . Que concluez-vous?
+On voit donc qu’on peut rejeter les 2 hypothèses nulles que la pente de la régression de `logherp` sur `logarea` est zéro et que la pente de la régression de `logherp` sur `cpfor2` est zéro. Pourquoi `cpfor2` devient-il un facteur significatif dans la régression multiple alors qu’il n’est pas significatif dans la régression simple? Parce qu’il est parfois nécessaire de contrôler pour l’effet d’une variable pour pouvoir détecter les effets plus subtils d’autres variables. Ici, il y a une relation significative entre `logherp` et `logarea` qui masque l’effet de `cpfor2` sur `logherp` . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l’effet de `cpfor2` .
 
+-  Ajustez un autre modèle, cette fois en remplaçant `cpfor2` par `thtden` ( logherp ~ logarea + thtden ). Que concluez-vous?
+
+<div class="fold s">
+```{r}
+model.mden <- lm(logherp ~ logarea + thtden, data = mydata)
+summary(model.mden)
 ```
-Call:
-lm(formula = logherp ~ logarea + cpfor2, data = mydata)
-Residuals:
-Min
-1Q
--0.40438 -0.11512
-Median
-0.01774
-3Q
-0.08187
-Max
-0.36179
-Coefficients:
-Estimate Std. Error t value
-(Intercept) 0.027058
-0.166749
-0.162
-logarea
-0.247789
-0.061603
-4.022
-cpfor2
-0.002724
-0.001318
-2.067
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01
-Pr(>|t|)
-0.872398
-0.000468 ***
-0.049232 *
-‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.175 on 25 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.4493,
-Adjusted R-squared: 0.4052
-F-statistic: 10.2 on 2 and 25 DF, p-value: 0.0005774
-Residual standard error: 0.175 on 25 degrees of freedom
-Multiple R-Squared: 0.4493
-F-statistic: 10.2 on 2 and 25 degrees of freedom, the p-value is 0.0005774
+</div>
+
+On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (`logarea`) ni par la densité des routes (`thtden`). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( `cpfor2` ; résultat de la dernière régression).
+
+Le $R^2$ de ce modèle est plus élevé que pour le précédent, reflétant une corrélation plus forte entre logherp et thtden qu’entre `logherp` et `cpfor2` .
+
+La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais ( `logarea` ), la densité des routes ( `thtden` ), et possiblement au couvert forestier sur les terres adjacentes aux marais ( `cpfor2` ). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons `cpfor2` et `thtden` ) sont parfaitement corrélées, alors l’effet de `thtden` ne serait rien de plus que celui de `cpfor2` (et vice-versa) et un modèle incluant l’une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de `logarea` ).
+
+-  Estimez un modèle de régression avec `logherp` comme variable dépendante et `logarea` , `cpfor2` et `thtden` comme variables indépendantes. Que concluez-vous?
+
+<div class="fold s">
+```{r}
+model.mtri <- lm(logherp ~ logarea + cpfor2 + thtden, data = mydata)
+summary(model.mtri)
 ```
-
-On voit donc qu’on peut rejeter les 2 hypothèses nulles que la pente de la régression de logherp sur logarea est zéro et que la pente de la régression de logherp sur cpfor2 est zéro. Pourquoi cpfor2 devient-il un facteur significatif dans la régression multiple alors qu’il n’est pas significatif dans la régression simple? Parce qu’il est parfois nécessaire de contrôler pour l’effet d’une variable pour pouvoir détecter les effets plus subtils d’autres variables. Ici, il y a une relation significative entre logherp et logarea qui masque l’effet de cpfor2 sur logherp . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l’effet de cpfor2 .
-
- Ajustez un autre modèle, cette fois en remplaçant cpfor2 par thtden ( Logherp~Logarea+thtden ). Que concluez-vous?
-
-```Call:
-lm(formula = logherp ~ logarea + thtden, data = mydata)
-Residuals:
-Min
-1Q
--0.31583 -0.12326
-Median
-0.02095
-3Q
-0.13201
-Max
-0.31674
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) 0.37634
-0.14926
-2.521 0.018437 *
-logarea
-0.22504
-0.05701
-3.947 0.000567 ***
-
-
-thtden
--0.04196
-0.01345 -3.118 0.004535 **
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1606 on 25 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.5358,
-Adjusted R-squared: 0.4986
-F-statistic: 14.43 on 2 and 25 DF, p-value: 6.829e-05
-```
-On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (logarea) ni par la densité des routes (thtden). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( cpfor2 ; résultat de la dernière régression).
-
-Le R 2 de ce modèle est plus élevé que pour le précédent, reflétant une corrélation plus forte entre logherp et thtden qu’entre logherp et cpfor2 .
-
-La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais ( logarea ), la densité des routes ( thtden ), et possiblement au couvert forestier sur les terres adjacentes aux marais ( cpfor2 ). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons cpfor2 et thtden ) sont parfaitement corrélées, alors l’effet de thtden ne serait rien de plus que celui de cpfor2 (et vice-versa) et un modèle incluant l’une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de logarea ).
-
- Estimez un modèle de régression avec logherp comme variable dépendante et logarea , cpfor2 et thtden comme variables indépendantes. Que concluez-vous?
-
-```
-Call:
-lm(formula = logherp ~ logarea + cpfor2 + thtden, data = mydata)
-Residuals:
-Min
-1Q
--0.30729 -0.13779
-Median
-0.02627
-3Q
-0.11441
-Max
-0.29582
-Coefficients:
-(Intercept)
-logarea Estimate Std. Error t value Pr(>|t|)
-0.284765
-0.191420
-1.488 0.149867
-0.228490
-0.057647
-3.964 0.000578 ***
-cpfor2 0.001095
-0.001414
-0.774 0.446516
-thtden
--0.035794
-0.015726 -2.276 0.032055 *
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1619 on 24 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.5471
-
-
-,
-Adjusted R-squared: 0.4904L ABO - R ÉGRESSION MULTIPLE - 129
-F-statistic: 9.662 on 3 and 24 DF,
-p-value: 0.0002291
-```
+</div>
 
 Plusieurs choses sont à noter ici:
-1. Tel que prédit, le coefficient de régression pour cpfor2 n’est plus significativement différent de 0. Une fois que la variabilité attribuable à logarea et thtden est enlevée, il ne reste qu’une fraction nonsignificative de la variabilité attribuable à cpfor2 .
-2. Le R 2 pour ce modèle(0.547) n’est que légèrement supérieur au R 2 du modèle avec seulement logarea et thtden (.536), ce qui confirme que cpfor2 n’explique pas grand-chose de plus.
+1. Tel que prédit, le coefficient de régression pour `cpfor2` n’est plus significativement différent de 0. Une fois que la variabilité attribuable à `logarea` et `thtden` est enlevée, il ne reste qu’une fraction nonsignificative de la variabilité attribuable à `cpfor2` .
+2. Le $R^2$ pour ce modèle(0.547) n’est que légèrement supérieur au $R^2$ du modèle avec seulement `logarea` et `thtden` (.536), ce qui confirme que `cpfor2` n’explique pas grand-chose de plus.
 
-Notez aussi que même si le coefficient de régression pour thtden n’a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul thtden et logarea étaient dans le modèle (0-.036 vs -0.042), l’erreur type pour l’estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre thtden et cpfor2 était plus forte, la décroissance de la précision serait encore plus grande.
+Notez aussi que même si le coefficient de régression pour `thtden` n’a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul `thtden` et `logarea` étaient dans le modèle (0-.036 vs -0.042), l’erreur type pour l’estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre `thtden` et `cpfor2` était plus forte, la décroissance de la précision serait encore plus grande.
 
 On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 variables et celui avec seulement logarea and thtden ) pour décider lequel privilégier.
 
-```
-anova(model.loga.cpfor2.thtden, model.loga.thtden)
-Analysis of Variance Table
-Model 1: logherp ~ logarea + cpfor2 + thtden
-Model 2: logherp ~ logarea + thtden
-Res.Df
-RSS Df Sum of Sq
-F Pr(>F)
-1
-24 0.62937
-2
-25 0.64508 -1 -0.01571 0.599 0.4465
+```{r}
+anova(model.mtri, model.mden)
 ```
 
 Cette comparaison révèle que le modèle à 3 variables ne fait pas de prédictions significativement meilleures que le modèle avec seulement Logarea et thtden . Ce résultat n’est pas surprenant puisque le test de signification pour cpfor2 dans le modèle complet indique qu’il faut accepter l’hypothèse nulle.
@@ -238,75 +145,15 @@ Notez que le “meilleur” modèle n’est pas nécessairement le modèle parfa
 ## Régression multiple pas-à-pas (stepwise)
 Quand le nombre de variables prédictives est restreint, comme dans l’exemple précédent, il est aisé de comparer manuellement les modèles pour sélectionner le plus adéquat. Cependant, lorsque le nombre de variables indépendantes augmente, cette approche n’est rapidement plus utilisable et il est alors utile d’utiliser une méthode automatisée.
 
-La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike Information Criterion, AIC=n ln(RSS) + 2K où K le nombre de variables indépendantes, n est le nombre d’observations, et RSS est la somme des carrés des résidus) comme mesure de la qualité d’ajustement des modèles. Cette mesure favorise la précision des prédictions et pénalise la complexité. Lorsque l’on compare des modèles par AIC, le modèle avec le plus petit AIC est le modèle à préférer.
+La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike Information Criterion, $AIC = 2* ln(RSS) + 2K$ où K le nombre de variables indépendantes, n est le nombre d’observations, et *RSS* est la somme des carrés des résidus) comme mesure de la qualité d’ajustement des modèles. Cette mesure favorise la précision des prédictions et pénalise la complexité. **Lorsque l’on compare des modèles par AIC, le modèle avec le plus petit AIC est le modèle à préférer.**
 
- Refaite la régression précédente ( logherp vs logarea cpfor2 et thtden ), mais cette fois en utilisant la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes:
+-  Utiliser la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes sur le modèles de régression incluant `logarea`, `cpfor2` et `thtden`:
 
-```
-model.loga.cpfor2.thtden<-lm(logherp ~ logarea + cpfor2 +
-thtden, data = mydata)
+```{r}
 # Stepwise Regression
 library(MASS)
-step <- stepAIC(model.loga.cpfor2.thtden, direction="both")
-step$anova # display results
-Start:
-AIC=-98.27
-logherp ~ logarea + cpfor2 + thtden
-Df Sum of Sq
-- cpfor2
-<none>
-- thtden
-- logarea
-1 0.016
-1
-1 0.136
-0.412
-RSS AIC
-0.645
-0.629
-0.765
-1.041 -99.576
--98.267
--94.794
--86.167
-Step: AIC=-99.58
-logherp ~ logarea + thtden
-Df Sum of Sq
-<none>
-+ cpfor2
-- thtden
-- logarea
-
-
-1
-1
-1
-0.016
-0.251
-0.402
-RSS AIC
-0.645
-0.629
-0.896
-1.047 -99.576
--98.267
--92.376
--88.013L ABO - R ÉGRESSION MULTIPLE - 131
-> step$anova # display results
-Stepwise Model Path
-Analysis of Deviance Table
-Initial Model:
-logherp ~ logarea + cpfor2 + thtden
-Final Model:
-logherp ~ logarea + thtden
-Step Df
-Deviance Resid. Df Resid. Dev
-AIC
-1
-24 0.6293717 -98.26666
-2 - cpfor2 1 0.01570813
-25 0.6450798 -99.57640
->
+step.mtri <- stepAIC(model.mtri, direction="both")
+step.mtri$anova # display results
 ```
 
 R nous donne::
@@ -316,89 +163,28 @@ R nous donne::
 
 Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on peut commencer par le modèle nul et ajouter des termes:
 
-```
+```{r}
 # Forward selection approach
-model.null<-lm(logherp ~ 1, data = mydata)
-step <- stepAIC(model.null, scope=~. + logarea + cpfor2 +
-thtden, direction="forward")
-step$anova # display results
-Start: AIC=-82.09
-logherp ~ 1
-Df Sum of Sq
-1
-0.494
-1
-0.342
-1
-0.129
-+ logarea
-+ thtden
-+ cpfor2
-<none>
-RSS
-0.896
-1.047
-1.260
-1.390
-AIC
--92.376
--88.013
--82.820
--82.091
-Step: AIC=-92.38
-logherp ~ logarea
-+ thtden
-+ cpfor2
-<none>
-Df Sum of Sq
-1
-0.251
-1
-0.131
-RSS
-AIC
-0.645 -99.576
-0.765 -94.794
-0.896 -92.376
-Step: AIC=-99.58
-logherp ~ logarea + thtden
-Df Sum of Sq
-<none>
-+ cpfor2
-1
-0.016
-RSS
-AIC
-0.645 -99.576
-0.629 -98.267
-
-
-> step$anova # display results
-Stepwise Model Path
-Analysis of Deviance Table
-Initial Model:
-logherp ~ 1
-Final Model:
-logherp ~ logarea + thtden
-Step Df Deviance Resid. Df Resid. Dev
-AIC
-1
-27 1.3895281 -82.09073
-2 + logarea 1 0.4935233
-26 0.8960048 -92.37639
-3 + thtden 1 0.2509250
-25 0.6450798 -99.57640
->
+model.null <- lm(logherp ~ 1, data = mydata)
+step.f <- stepAIC(
+  model.null,
+  scope = ~ . + logarea + cpfor2 + thtden, direction = "forward")
+step.f$anova # display results
 ```
 
-Le résultat final est le même, mais la trajectoire est différente. Dans ce cas, R débute avec le modèle le plus simple et ajoute une variable indépendante à chaque étape, sélectionnant la variable minimisant AIC à cette étape. Le modèle de départ a donc seulement une ordonnée à l’origine. Puis, logarea est ajouté, suivi de thtden. cpfor2 n’est pas ajouté au modèle, car son addition fait augmenter l’AIC.
+Le résultat final est le même, mais la trajectoire est différente. Dans ce cas, R débute avec le modèle le plus simple et ajoute une variable indépendante à chaque étape, sélectionnant la variable minimisant AIC à cette étape. Le modèle de départ a donc seulement une ordonnée à l’origine. Puis, `logarea` est ajouté, suivi de `thtden`. `cpfor2` n’est pas ajouté au modèle, car son addition fait augmenter l’AIC.
 
 Il est recommandé de comparer le résultat final de plusieurs approches. Si le modèle retenu diffère selon l’approche utilisée, c’est un signe que le “meilleur” modèle est possiblement difficile à identifier et que vous devriez être circonspects dans vos inférences. Dans notre exemple, pas de problème: toutes les méthodes convergent sur le même modèle final.
 
 Pour conclure cette section, quelques conseils concernant les méthodes automatisées de sélection des variables indépendantes:
 
 1. Les différentes méthodes de sélection des variables indépendantes peuvent mener à des modèles différents. Il est souvent utile d’essayer plus d’une méthode et de comparer les résultats. Si les résultats diffèrent, c’est presque toujours à cause de multicolinéarité entre les variables indépendantes.
-2. Attention à la régression pas-à-pas. Les auteurs de SYSTAT en disent: “Stepwise regression is probably the most abused computerized statistical technique ever devised. If you think you need automated stepwise regression to solve a particular problem, you probably don't. Professional statisticians rarely use automated stepwise regression because it does not necessarily find the "best" fitting model, the "real" model, or alternative "plausible" models. Furthermore, the order in which variables enter or leave a stepwise program is usually of no theoretical signficance. You are always better off thinking about why a model could generate your data and then testing that model.” En bref, on abuse trop souvent de cette technique.
+2. Attention à la régression pas-à-pas. Les auteurs de SYSTAT en disent:
+
+  > Stepwise regression is probably the most abused computerized statistical technique ever devised. If you think you need automated stepwise regression to solve a particular problem, you probably don't. Professional statisticians rarely use automated stepwise regression because it does not necessarily find the "best" fitting model, the "real" model, or alternative "plausible" models. Furthermore, the order in which variables enter or leave a stepwise program is usually of no theoretical significance. You are always better off thinking about why a model could generate your data and then testing that model.
+
+En bref, on abuse trop souvent de cette technique.
+
 3. Il faut toujours garder à l’esprit que l’existence d’une régression significative n’est pas suffisante pour prouver une relation causale.
 
 ## Détecter la multicolinéarité
@@ -407,189 +193,96 @@ La multicolinéarité est la présence de corrélations entre les variables ind�
 
 Un des indices les plus utilisés pour quantifier la multicolinéarité et le facteur d’inflation de la variance (VIF, variance inflation factor). Le fichier d’aide du package HH explique ainsi son calcul:
 
-  A simple diagnostic of collinearity is the variance inflation factor, VIF one for each regression coefficient (other than the intercept). Since the condition of collinearity involves the predictors but not the response, this measure is a function of the X's but not of Y. The VIF for predictor i is 1/(1-R_i^2), where R_i^2 is the R^2 from a regression of predictor i against the remaining predictors. If R_i^2 is close to 1, this means that predictor i is well explained by a linear function of the remaining predictors, and, therefore, the presence of predictor i in the model is redundant. Values of VIF exceeding 5 are considered evidence of collinearity: The information carried by a predictor having such a VIF is contained in a subset of the remaining predictors. If, however, all of a model's regression coefficients differ significantly from 0 (p-value < .05), a somewhat larger VIF may be tolerable.
+> A simple diagnostic of collinearity is the variance inflation factor, VIF one for each regression coefficient (other than the intercept). Since the condition of collinearity involves the predictors but not the response, this measure is a function of the X's but not of Y. The VIF for predictor i is $1/(1-R_i^2)$, where $R_i^2$ is the $R^2$ from a regression of predictor i against the remaining predictors. If $R_i^2$ is close to 1, this means that predictor i is well explained by a linear function of the remaining predictors, and, therefore, the presence of predictor i in the model is redundant. Values of VIF exceeding 5 are considered evidence of collinearity: The information carried by a predictor having such a VIF is contained in a subset of the remaining predictors. If, however, all of a model's regression coefficients differ significantly from 0 (p-value < .05), a somewhat larger VIF may be tolerable.
 
 Bref, les VIF indiquent de combien l’incertitude de chaque coefficient de régression est augmentée par la multicolinéarité.
 
-**Attrappe.** Il y a plusieurs fonctions vif() (j’en connais au moins trois dans les packages car, HH et DAAG), et je ne sais pas en quoi elles diffèrent.
+**Attrappe.** Il y a plusieurs fonctions vif() (j’en connais au moins trois dans les extensions `car`, `HH` et `DAAG`), et je ne sais pas en quoi elles diffèrent.
 
-On peut calculer les VIF avec la fonction vif() du package car: :
+On peut calculer les VIF avec la fonction `vif()` de l'extension `car`: :
 
-```
-require(car)
-vif(model.loga.cpfor2.thtden)
-logarea
-cpfor2
-thtden
-1.022127 1.344455 1.365970
+```{r}
+library(car)
+vif(model.mtri)
 ```
 
 Ici, il n’y a pas d’évidence de multicolinéarité car toutes les valeurs de VIF sont près de 1.
 
 
 ## Régression polynomiale
-La régression requiert la linéarité de la relation entre les variables dépendante et indépendante(s). Lorsque la relation n'est pas linéaire, il est parfois possible de linéariser la relation en effectuant une transformation sur une ou plusieurs variables. Cependant, dans bien des cas il est impossible de transformer les axes pour rendre la relation linéaire. On doit alors utiliser une forme ou l'autre de régression nonlinéaire. La forme la plus simple de régression non-linéaire est la régression polynomiale dans laquelle les variables indépendantes sont à une puissance plus grande que 1 (Ex : X 2 ou X 3 ).
+La régression requiert la linéarité de la relation entre les variables dépendante et indépendante(s). Lorsque la relation n'est pas linéaire, il est parfois possible de linéariser la relation en effectuant une transformation sur une ou plusieurs variables. Cependant, dans bien des cas il est impossible de transformer les axes pour rendre la relation linéaire. On doit alors utiliser une forme ou l'autre de régression nonlinéaire. La forme la plus simple de régression non-linéaire est la régression polynomiale dans laquelle les variables indépendantes sont à une puissance plus grande que 1 (Ex : $X^2$ ou $X^3$ ).
 
- Faites un diagramme de dispersion des résidus ( residual) de la régression logherp - logarea en fonction de swamp .
+-  Faites un diagramme de dispersion des résidus (residual) de la régression `logherp ~ logarea` en fonction de swamp .
 
-Figure 3.
-
- L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
-
+<div class="fold s">
+```{r, fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
+#problème avec les données de manquantes dans logherp
+mysub <- subset(mydata, !is.na(logherp))
+# ajouter les résidus dans les donnée
+mysub$resloga <- residuals(model.loga)
+ggplot(data = mysub, aes(y = resloga, x = swamp)) +
+geom_point() + geom_smooth()
 ```
-Call:
-lm(formula = myresiduals ~ swamp, data = mydata.noNA)
-Residuals:
-Min
-1Q
--0.350880 -0.138189
+</div>
 
+-  L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
 
-Median
-0.003131
-3Q
-0.108485
-Max
-0.458021L ABO - R ÉGRESSION MULTIPLE - 135
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) 0.084571
-0.109265
-0.774
-0.446
-swamp
--0.001145
-0.001403 -0.816
-0.422
-Residual standard error: 0.1833 on 26 degrees of freedom
-Multiple R-squared: 0.02498,
-Adjusted R-squared: -0.01252
-F-statistic: 0.666 on 1 and 26 DF, p-value: 0.4219
+<div class="fold s">
+```{r, fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
+model.resloga <- lm(resloga ~swamp, mysub)
+summary(model.resloga)
 ```
+</div>
+
 
 En deux mots, l’ajustement est épouvantable! Malgré le fait que le graphique suggère une relation très forte entre les deux variables. Cependant, cette relation n’est pas linéaire... (ce qui est également apparent si vous examinez les résidus du modèle linéaire).
 
- Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter ( swamp ) 2 . L’expression devrait apparaître comme: residuals~SWAMP+SWAMP^2 . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
+-  Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter $swamp^2$ . L’expression devrait apparaître comme: `Y ~ X + I(X^2) . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
 
+<div class="fold s">
+```{r}
+model.resloga2 <- lm(resloga ~ swamp + I(swamp^2), mysub)
+summary(model.resloga2)
 ```
-Call:
-lm(formula = myresiduals ~ swamp + I(swamp^2), data = mydata.noNA)
-Residuals:
-Min
-1Q
--0.181185 -0.085350
-Median
-0.007377
-3Q
-0.067327
-Max
-0.242455
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) -7.804e-01 1.569e-01 -4.975 3.97e-05 ***
-swamp
-3.398e-02 5.767e-03
-5.892 3.79e-06 ***
-I(swamp^2) -2.852e-04 4.624e-05 -6.166 1.90e-06 ***
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1177 on 25 degrees of freedom
-Multiple R-squared: 0.6132,
-Adjusted R-squared: 0.5823
-F-statistic: 19.82 on 2 and 25 DF, p-value: 6.972e-06
-```
+</div>
 
 Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp , selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.
 
- En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d'après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.
+<div class="fold s">
+```{r, fig.cap = "Relation "}
+par(mfrow = c(2, 2))
+plot(model.resloga2)
+```
+</div>
+
+-  En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d'après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.
 
 Suite à ces analyses, il semble opportun d’essayer d’ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp^2 :
 
+<div class="fold s">
+```{r}
+model.poly1 <- lm(
+  logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2),
+  data = mydata)
+summary(model.poly1)
 ```
-Call:
-lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2),
-data = mydata)
+</div>
 
+Les résultats de cette analyse suggèrent qu’on devrait probablement exclure `cpfor2` du modèle:
 
-Residuals:
-Min
-1Q
-Median
--0.201797 -0.056170 -0.002072
-3Q
-0.051814
-Max
-0.205626
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) -3.203e-01 1.813e-01 -1.766
-0.0912 .
-logarea
-2.202e-01 3.893e-02
-5.656 1.09e-05 ***
-cpfor2
--7.864e-04 9.955e-04 -0.790
-0.4380
-thtden
--2.929e-02 1.048e-02 -2.795
-0.0106 *
-swamp
-3.113e-02 5.898e-03
-5.277 2.70e-05 ***
-I(swamp^2) -2.618e-04 4.727e-05 -5.538 1.45e-05 ***
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1072 on 22 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.8181,
-Adjusted R-squared: 0.7767
-F-statistic: 19.78 on 5 and 22 DF, p-value: 1.774e-07
-he p-value is 1.774e-007
-2 observations deleted due to missing values
+<div class="fold s">
+```{r}
+model.poly2 <- lm(
+  logherp ~ logarea + thtden + swamp + I(swamp^2),
+  data = mydata)
+summary(model.poly2)
 ```
+</div>
 
-Les résultats de cette analyse suggèrent qu’on devrait probablement exclure cpfor2 du modèle:
-
-```Call:
-lm(formula = logherp ~ logarea + thtden + swamp + I(swamp^2),
-data = mydata)
-Residuals:
-Min
-1Q
-Median
--0.19621 -0.05444 -0.01202
-3Q
-0.07116
-Max
-0.21295
-Coefficients:
-Estimate Std. Error t value Pr(>|t|)
-(Intercept) -3.461e-01 1.769e-01 -1.957
-0.0626 .
-logarea
-2.232e-01 3.842e-02
-5.810 6.40e-06 ***
-thtden
--2.570e-02 9.364e-03 -2.744
-0.0116 *
-swamp
-2.956e-02 5.510e-03
-5.365 1.89e-05 ***
-I(swamp^2) -2.491e-04 4.409e-05 -5.649 9.46e-06 ***
---Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-Residual standard error: 0.1063 on 23 degrees of freedom
-(2 observations deleted due to missingness)
-Multiple R-squared: 0.8129,
-Adjusted R-squared: 0.7804
-F-statistic: 24.98 on 4 and 23 DF, p-value: 4.405e-08
-```
 Est-ce qu’il y a possiblement un problème de multicolinéarité?
 
-```
-vif(model.polynomial.reduced)
-logarea
-thtden
-swamp I(swamp^2)
-1.053193
-1.123491 45.845845 45.656453
+```{r}
+vif(model.poly2)
 ```
 
 Les valeurs d’inflation de la variance (VIF) pour les deux termes de swamp sont beaucoup plus élevés que le seuil de 5. Cependant, c’est la norme pour les termes polynomiaux et on ne doit pas s’en préoccuper outre mesure, surtout quand les deux termes sont hautement significatifs dans le modèle. Les fortes valeurs de VIF indiquent que les coefficients pour ces deux termes ne sont pas estimés précisément, mais leur utilisation dans le modèle permet tout de même de faire de bonnes prédictions (i.e. ils décrivent la réponse à swamp).
@@ -600,60 +293,76 @@ Les valeurs d’inflation de la variance (VIF) pour les deux termes de swamp son
 Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.
 
 Examinons donc les graphiques diagnostiques du modèle final:
+<div class="fold s">
+```{r, fig.cap = "Conditions d'application du modèle `model.poly2`"}
+par(mfrow = c(2,2))
+plot(model.poly2)
+```
+</div>
 
-Figure 4.
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:
 
-shapiro.test(residuals(model.polynomial.reduced))
+```{r}
+shapiro.test(residuals(model.poly2))
+```
 
 Les résidus ne dévient pas significativement de la normalité. Bien.
 
-bptest(model.polynomial.reduced)
-
+```{r}
+library(lmtest)
+bptest(model.poly2)
+```
 Pas de déviation d’homoscédasticité non plus. Bien.
 
-dwtest(model.polynomial.reduced)
-
+```{r}
+dwtest(model.poly2)
+```
 Pas de corrélation sérielle des résidus, donc pas d’évidence de nonindépendance.
 
-resettest(model.polynomial.reduced, type = "regressor", data = mydata)
-
+```{r}
+resettest(model.poly2, type = "regressor", data = mydata)
+```
 Et finalement, pas de déviation significative de la linéarité. Donc tout semble acceptable.
 
 ## Visualiser la taille d’effet
 
 Les coefficients de la régression multiple peuvent mesurer la taille d’effet, quoiqu’il puisse être nécessaire de les standardiser pour qu’ils ne soient pas influencés par les unités de mesure. Mais un graphique est souvent plus informatif. Dans ce contexte, les graphiques des résidus partiels (appelés components+residual plots dans R) sont particulièrement utiles. Ces graphique illustrent comment la variable dépendante, corrigée pour l’effet des autres variables dans le modèle, varie avec chacune des variables indépendantes du modèle. Voyons voir:
 
-```
+```{r, fig.cap = "Graphiques de résidus partiels du modèle `model.poly2`"}
 # Evaluate visually linearity and effect size
 # component + residual plot
-cr.plots(model.polynomial.reduced, one.page=TRUE, ask=FALSE)
+crPlots(model.poly2)
 ```
-
-Figure 5.
 
 Notez que l’échelle de l’axe des y varie sur chaque graphique. Pour thtden, la variable dépendante (log10(richesse des herptiles)) varie d’environ 0.4 unités entre la valeur minimum et maximum de thtden. Pour logarea, la variation est d’environ 0.6 unité log. Pour swamp, l’interprétation est plus compliquée parce qu’il y a deux termes qui quantifient son effet, et que ces termes ont des signes opposés (positif pour swamp et négatif pour swamp^2) ce qui donne une relation curvilinéaire de type parabole. Le graphique ne permet pas de bien visualiser cela. Ceci dit, ces graphique n’indiquent pas vraiment de violation de linéarité.
 
 Pour illustrer ce qui serait visible sur ces graphiques si il y avait une déviation de linéarité, enlevons le terme du second degré pour swamp, puis on va refaire ces graphiques et effectuer le test RESET.
 
 
-Figure 6.
+<div class="fold s">
+```{r, fig.cap = "Graphiques de résidus partiels du modèle `model.nopoly`"}
+model.nopoly <- lm(
+  logherp ~ logarea + thtden + swamp,
+  data = mydata)
+crPlots(model.nopoly)
+```
+</div>
+
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
 
-```
-RESET test
-data: g
-RESET = 6.7588, df1 = 6, df2 = 18, p-value = 0.0007066
+```{r}
+resettest(model.nopoly, type="regressor")
 ```
 
 ## Tester la présence d'interactions
 
 Lorsqu’il y a plusieurs variables indépendantes, vous devriez toujours garder à l’esprit la possibilité d'interactions. Dans la majorité des situations de régression multiple cela n’est pas évident parce que l’addition de termes d’interaction augmente la multicolinéarité des termes du modèle, et parce qu’il n’y a souvent pas assez d’observations pour éprouver toutes les interactions ou que les observations ne sont pas suffisamment balancées pour faire des tests puissants pour les interactions. Retournons à notre modèle "final" et voyons ce qui se passe si on essaie d’ajuster un modèle saturé avec toutes les interactions:
 
-```
-fullmodel.withinteractions<-lm(logherp ~ logarea * cpfor2 *
-thtden * swamp * I(swamp^2), data= Mregdat)
+```{r}
+fullmodel.withinteractions <- lm(
+  logherp ~ logarea * cpfor2 * thtden * swamp * I(swamp^2),
+  data= mydata)
 summary(fullmodel.withinteractions)
 ```
 
@@ -661,45 +370,56 @@ Notez les coefficients manquants aux dernières lignes: on ne peut inclure les 3
 
 Si on essaie une méthode automatique pour identifier le "meilleur" modèle dans ce gâchis, R refuse:
 
+```{r error-on07, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
 ```
+
+```{r}
 step(fullmodel.withinteractions)
+```
+
+```{r error-off07, echo = FALSE}
+knitr::opts_chunk$set(error = FALSE)
 ```
 
 Bon, est-ce qu’on oublie tout ça et qu’on accepte le modèle final sans ce soucier des interactions? Non, pas encore. Il y a un compromis possible: comparer notre modèle "final" à un modèle qui contient au moins un sous-ensemble des interactions, par exemple toutes les interactions du second degré, pour éprouver si l’addition de ces interactions améliore beaucoup l’ajustement du modèle.
 
-```
-full.model.2ndinteractions<- lm(logherp ~ logarea + cpfor2 +
-thtden + swamp + I(swamp^2)
-+ logarea:cpfor2 + logarea:thtden + logarea:swamp
-+ cpfor2:thtden + cpfor2:swamp
-+ thtden:swamp
-, data= mydata)
+```{r}
+full.model.2ndinteractions<- lm(
+  logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2)
+    + logarea:cpfor2
+    + logarea:thtden
+    + logarea:swamp
+    + cpfor2:thtden
+    + cpfor2:swamp
+    + thtden:swamp
+  , data= mydata)
 summary(full.model.2ndinteractions)
 ```
 
 Ce modèle s’ajuste un peu mieux aux données que les modèle "final" (il explique 86.6% de la variance de logherp, comparé à 81.2% pour le modèle "final" sans interactions), mais il compte deux fois plus de paramètres. De plus, si vous examinez les coefficients, il se passe d’étranges choses: le signe pour logare a changé par exemple. C’est un des symptômes de la multicolinéarité. Allons voir les facteurs d’inflation de la variance:
 
-```
+```{r}
 vif(full.model.2ndinteractions)
 ```
 
 Aie! tous les VIF sont plus grands que 5, pas seulement les termes incluant swamp. Cette forte multicolinéarité empêche de quantifier avec précision l’effet de ces interactions. De plus, ce modèle avec interactions n’est pas plus informatif que le modèle "final" puisque son AIC est plus élevé (souvenez-vous qu’on privilégie le modèle avec la valeur d’AIC la plus basse):
 
-```
-AIC(full.model)
+```{r}
+AIC(model.poly1)
 AIC(full.model.2ndinteractions)
 ```
 
 On peut également utiliser la fonction anova() pour comparer l’ajustement des deux modèles et vérifier si l’addition des termes d’intération améliore significativement l’ajustement:
 
-```
-anova(full.model, full.model.2ndinteractions)
+```{r}
+anova(model.poly1, full.model.2ndinteractions)
 ```
 
 Ici, l’addition des termes d’interaction ne réduit pas significativement la variabilité résiduelle du modèle "complet". Qu’en est-il de la si on compare le modèle avec interaction et notre modèle "final"?
 
-```
-anova(model.polynomial.reduced, full.model.2ndinteractions)
+```{r}
+anova(model.poly2, full.model.2ndinteractions)
 ```
 
 Le test indique que ces deux modèles ont des variances résiduelles comparables, et donc que l’addition des termes d’interaction et de cpfor2 au modèle final n’apporte pas grand chose.
@@ -711,16 +431,24 @@ Une des principales critiques des méthodes pas-à-pas (stepwise) est que les p-
 
 Une alternative, élégamment défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d’utiliser l’AIC (ou mieux encore AICc qui est plus approprié quand le nombre d’observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.
 
-Cette approche a été suivie dans le package `MuMIn`.
+Cette approche a été suivie dans le package `MuMIn`. Les comparaisons de modèle par `AIC`doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
+Il faut donc s'arrurer d'enlever les données manquantes et de spécifier dans la fonction `lm` de ne pas marcher s'il y a des données manquantes
 
-```
+```{r}
+# refaire le modèle en s'assurant qu'il n'y a pas de "NA" et en spécificant na.action
+full.model.2ndinteractions <- update(
+  full.model.2ndinteractions,
+  .~.,
+  data = mysub,
+  na.action = "na.fail")
+
 library(MuMIn)
 dd <- dredge(full.model.2ndinteractions)
 ```
 
-L’objet dd contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 2 unités d’AICc du meilleur modèle ont peu de support empirique).
+L’objet `dd` contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 2 unités d’AICc du meilleur modèle ont peu de support empirique).
 
-```
+```{r}
 # get models within 2 units of AICc from the best model
 top.models.1 <- get.models(dd, subset = delta < 2)
 avgmodel1<-model.avg(top.models.1) # compute average parameters
@@ -740,78 +468,90 @@ Quand les données ne rencontrent pas les conditions d’application de normalit
 
 Le code qui suit, utilisant le package simpleboot, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.
 
-```{r, eval = FALSE}
+```{r}
 ############################################################
 #######
 # Bootstrap analysis the simple way with library simpleboot
 # Define model to be bootstrapped and the data source used
-mymodel<-lm(logherp ~ logarea + thtden + swamp + I(swamp^2),
-data = mydata)
+mymodel <- lm(logherp ~ logarea + thtden + swamp + I(swamp^2), data = mydata)
 # Set the number of bootstrap iterations
 nboot<-1000
-require(simpleboot)
+library(simpleboot)
 # R is the number of bootstrap iterations
 # Setting rows to FALSE indicates resampling of residuals
-mysimpleboot<-lm.boot(mymodel, R = nboot, rows = FALSE)
+mysimpleboot <- lm.boot(mymodel, R = nboot, rows = FALSE)
 # Extract bootstrap coefficients
-myresults<-sapply(mysimpleboot$boot.list, function (x)
-x$coef)
-# Transpose matrix so that lines are bootstrap iterations
-and columns are coefficients
+myresults <- sapply(mysimpleboot$boot.list, function (x) x$coef)
+# Transpose matrix so that lines are bootstrap iterations and columns are coefficients
 tmyresults<-t(myresults)
-#
-Plot histograms of bootstrapped coefficients
-ncoefs<-length(data.frame(tmyresults))
-par(mfrow=c(2,1), mai=c(0.5, 0.5, 0.5, 0.5), ask = TRUE)
+```
+
+Vous pouvez ensuite faire des graphiques pour voir les résultats.
+```{r, eval = FALSE}
+# Plot histograms of bootstrapped coefficients
+ncoefs <- length(data.frame(tmyresults))
+par(mfrow = c(1, 2), mai = c(0.5, 0.5, 0.5, 0.5), ask = TRUE)
 for (i in 1 : ncoefs) {
-lab<-colnames(tmyresults)[i]
-x<-tmyresults[,i]
-plot(density(x),main=lab, xlab="")
-abline(v=mymodel$coef[i], col = "red")
-abline(v=quantile(x, c(0.025, 0.975)))
-hist(x, main=lab, xlab="")
-abline(v=quantile(x, c(0.025, 0.975)))
-abline(v=mymodel$coef[i], col = "red")
+  lab <- colnames(tmyresults)[i]
+  x <- tmyresults[,i]
+  plot(density(x),main=lab, xlab="")
+  abline(v=mymodel$coef[i], col = "red")
+  abline(v=quantile(x, c(0.025, 0.975)))
+  hist(x, main=lab, xlab="")
+  abline(v=quantile(x, c(0.025, 0.975)))
+  abline(v=mymodel$coef[i], col = "red")
 }
-par(mfrow=c(1,1), ask = FALSE)
 ```
 
 Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d’examiner la distribution pour chaque coefficient du modèle sur des graphiques:
 
 
-Figure 7.
-Le graphique du haut illustre la densité lissée (kernel density) et celui du bas est l’histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l’intervalle de confiance à 95%. Ici l’IC ne contient pas 0, et donc on peut conclure que l’effet de logarea sur logherp est significativement positif.
+```{r, echo = FALSE, fig.cap = "Distribution des estimé par bootstrap pour `logarea`"}
+i <- 2
+par(mfrow = c(1, 2))
+  lab <- colnames(tmyresults)[i]
+  x <- tmyresults[,i]
+  plot(density(x),main=lab, xlab="")
+  abline(v=mymodel$coef[i], col = "red")
+  abline(v=quantile(x, c(0.025, 0.975)))
+  hist(x, main=lab, xlab="")
+  abline(v=quantile(x, c(0.025, 0.975)))
+  abline(v=mymodel$coef[i], col = "red")
+```
+
+Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l’histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l’intervalle de confiance à 95%. Ici l’IC ne contient pas 0, et donc on peut conclure que l’effet de logarea sur logherp est significativement positif.
 
 Les limites précises peuvent être obtenues par:
-```
-# Display empirical bootstrap quantiles (not corrected
-for bias)
+
+```{r}
+# Display empirical bootstrap quantiles (not corrected for bias)
 p <- c(0.005,0.01, 0.025, 0.05, 0.95, 0.975, 0.99, 0.995)
 apply(tmyresults, 2, quantile, p)
 ```
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n’est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
 
-```{r, eval = FALSE}
+```{r}
 ################################################
 # Bootstrap analysis in multiple regression with BCa confidence intervals
 # Preferable when parameter distribution is far from normal
 # Bootstrap 95% BCa CI for regression coefficients
 
-
 library(boot)
 # function to obtain regression coefficients for each iteration
 bs <- function(formula, data, indices) {
-d <- data[indices,] # allows boot to select sample
-fit <- lm(formula, data=d)
-return(coef(fit))
+  d <- data[indices,] # allows boot to select sample
+  fit <- lm(formula, data=d)
+  return(coef(fit))
 }
 # bootstrapping with 1000 replications
-results <- boot(data=mydata, statistic=bs,
-R=1000, formula=logherp ~ logarea + thtden + swamp +
-I(swamp^2))
+results <- boot(data = mydata, statistic = bs, R = 1000,
+  formula = logherp ~ logarea + thtden + swamp + I(swamp^2))
 # view results
-results
+```
+
+Pour obtenir les résultats, le code suivant va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l’intervalle de confiance
+ ```{r, eval = FALSE}
 plot(results, index=1) # intercept
 plot(results, index=2) # logarea
 plot(results, index=3) # thtden
@@ -826,10 +566,11 @@ boot.ci(results, type="bca", index=4)
 boot.ci(results, type="bca", index=5)
 ```
 
-Ce code va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l’intervalle de confiance. Pour logarea, cela donne:
+Pour logarea, cela donne:
 
-```
+```{r, echo = FALSE}
 boot.ci(results, type="bca", index=2) # logarea
+plot(results, index=2) # logarea
 ```
 
 Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
@@ -845,12 +586,13 @@ Les tests de permutations sont plus rarement effectués en régression multiple 
 # Permutation in multiple regression
 #
 # using lmperm library
-require(lmPerm)
+library(lmPerm)
 # Fit desired model on the desired dataframe
 mymodel<-lm(logherp ~ logarea + thtden + swamp + I(swamp^2),
-data = mydata)
-mymodelProb<-lmp(logherp ~ logarea + thtden + swamp +
-I(swamp^2), data = mydata, perm="Prob")
+  data = mydata)
+mymodelProb<-lmp(
+  logherp ~ logarea + thtden + swamp + I(swamp^2),
+  data = mydata, perm="Prob")
 summary(mymodel)
 summary(mymodelProb)
 ```
