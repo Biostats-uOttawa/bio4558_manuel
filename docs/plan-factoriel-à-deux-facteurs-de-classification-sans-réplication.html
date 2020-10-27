@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.8</b> Visualiser la taille d’effet</a></li>
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
-<li class="chapter" data-level="7.11" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrapping multiple regression</a></li>
+<li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
@@ -328,10 +328,10 @@ Comme il n’y a pas de réplicats, on ne peut estimer la variance du terme d’
 <ul>
 <li>Effectuez une ANOVA à deux critères de classification en utilisant temp comme variable dépendante et date et depth comme variables indépendantes (vous devez changer le type de données pour DEPTH pour que R traite cette variable comme un facteur et non pas une var$able continue).</li>
 </ul>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1">nr2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nr2wdat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb438-2" title="2">nr2wdat<span class="op">$</span>depth &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nr2wdat<span class="op">$</span>depth)</a>
-<a class="sourceLine" id="cb438-3" title="3">anova.model4&lt;-<span class="kw">lm</span>(temp <span class="op">~</span><span class="st"> </span>date <span class="op">+</span><span class="st"> </span>depth, <span class="dt">data =</span> nr2wdat)</a>
-<a class="sourceLine" id="cb438-4" title="4"><span class="kw">Anova</span>(anova.model4, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1">nr2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nr2wdat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb441-2" title="2">nr2wdat<span class="op">$</span>depth &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nr2wdat<span class="op">$</span>depth)</a>
+<a class="sourceLine" id="cb441-3" title="3">anova.model4&lt;-<span class="kw">lm</span>(temp <span class="op">~</span><span class="st"> </span>date <span class="op">+</span><span class="st"> </span>depth, <span class="dt">data =</span> nr2wdat)</a>
+<a class="sourceLine" id="cb441-4" title="4"><span class="kw">Anova</span>(anova.model4, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: temp
@@ -343,7 +343,7 @@ Comme il n’y a pas de réplicats, on ne peut estimer la variance du terme d’
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Si on suppose que c’est un modèle d’ANOVA mixte (date aléatoire, Depth fixe), que concluez vous? (Indice: faites un graphique d’interaction température en fonction de la profondeur et la date, pour voir ce qui se passe).</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1"><span class="kw">interaction.plot</span>(nr2wdat<span class="op">$</span>depth, nr2wdat<span class="op">$</span>date, nr2wdat<span class="op">$</span>temp)</a></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">interaction.plot</span>(nr2wdat<span class="op">$</span>depth, nr2wdat<span class="op">$</span>date, nr2wdat<span class="op">$</span>temp)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-222"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-222-1.svg" alt="Effet du mois et de la profondeur sur la température" width="672" />
 <p class="caption">
@@ -352,8 +352,8 @@ Figure 6.4: Effet du mois et de la profondeur sur la température
 </div>
 <p>La température diminue significativement en profondeur. Pour tester l’effet du mois (le facteur aléatoire), on doit présumer qu’il n’y a pas d’interaction entre la profondeur et le mois (donc que l’effet de la profondeur sur la température est le même à chaque mois). C’est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l’été, ce modèle ne fait pas de très bonnes prédictions.</p>
 <p>Jetez un coup d’oeil sur les graphiques des résidus:</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb441-2" title="2"><span class="kw">plot</span>(anova.model4)</a></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb444-2" title="2"><span class="kw">plot</span>(anova.model4)</a></code></pre></div>
 <pre><code>## Error in xy.coords(x, y, xlabel, ylabel, log): &#39;x&#39; and &#39;y&#39; lengths differ</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-223"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-223-1.svg" alt="Conditions d'applications du modèle anova.model4" width="672" />
@@ -361,14 +361,14 @@ Figure 6.4: Effet du mois et de la profondeur sur la température
 Figure 6.5: Conditions d’applications du modèle anova.model4
 </p>
 </div>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model4))</a></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model4))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model4)
 ## W = 0.95968, p-value = 0.1634</code></pre>
 <p>Le test de normalité sur les résidus donne p = 0.16, donc l’hypothèse de normalité ne semble pas être sérieusement en doute. Pour l’égalité des variances, on peut seulement comparer entre les mois en utilisant les profondeurs comme réplicats (ou l’inverse). En utilisant les profondeurs comme réplicats, on obtient:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1"><span class="kw">leveneTest</span>(temp <span class="op">~</span><span class="st"> </span>date , <span class="dt">data =</span> nr2wdat)</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1"><span class="kw">leveneTest</span>(temp <span class="op">~</span><span class="st"> </span>date , <span class="dt">data =</span> nr2wdat)</a></code></pre></div>
 <pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
 ## factor.</code></pre>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)

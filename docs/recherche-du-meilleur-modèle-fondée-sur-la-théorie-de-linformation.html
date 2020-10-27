@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="tester-la-présence-dinteractions.html"/>
-<link rel="next" href="bootstrapping-multiple-regression.html"/>
+<link rel="next" href="bootstrap-et-régression-multiple.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.8</b> Visualiser la taille d’effet</a></li>
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
-<li class="chapter" data-level="7.11" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrapping multiple regression</a></li>
+<li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
@@ -318,25 +318,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation" class="section level2">
 <h2><span class="header-section-number">7.10</span> Recherche du meilleur modèle fondée sur la théorie de l’information</h2>
-<p>Une des principales critiques des méthodes pas-à-pas (stepwise) est que les p-valeurs ne sont pas strictement interprétables à cause du grand nombre de tests qui sont implicites dans le processus. C’est le problème des comparaisons ou tests multiples: en construisant un modèle linéaire (comme une régression multiple) à partir d’un grand nombre de variables et de leurs interactions, il y a tellement de combinaisons possibles qu’un ajustement de Bonferroni rendrait les tests trop conservateurs.</p>
-<p>Une alternative, élégamment défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d’utiliser l’AIC (ou mieux encore AICc qui est plus approprié quand le nombre d’observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.</p>
-<p>Cette approche a été suivie dans le package <code>MuMIn</code>. Les comparaisons de modèle par <code>AIC</code>doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
-Il faut donc s’arrurer d’enlever les données manquantes et de spécifier dans la fonction <code>lm</code> de ne pas marcher s’il y a des données manquantes</p>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" title="1"><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></a>
-<a class="sourceLine" id="cb558-2" title="2">full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</a>
-<a class="sourceLine" id="cb558-3" title="3">  full.model<span class="fl">.2</span>ndinteractions,</a>
-<a class="sourceLine" id="cb558-4" title="4">  .<span class="op">~</span>.,</a>
-<a class="sourceLine" id="cb558-5" title="5">  <span class="dt">data =</span> mysub,</a>
-<a class="sourceLine" id="cb558-6" title="6">  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
-<a class="sourceLine" id="cb558-7" title="7"></a>
-<a class="sourceLine" id="cb558-8" title="8"><span class="kw">library</span>(MuMIn)</a>
-<a class="sourceLine" id="cb558-9" title="9">dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<p>Une des principales critiques des méthodes pas-à-pas (stepwise) est que les valeurs de p ne sont pas strictement interprétables à cause du grand nombre de tests qui sont implicites dans le processus. C’est le problème des comparaisons ou tests multiples: en construisant un modèle linéaire (comme une régression multiple) à partir d’un grand nombre de variables et de leurs interactions, il y a tellement de combinaisons possibles qu’un ajustement de Bonferroni rendrait les tests trop conservateurs.</p>
+<p>Une alternative, défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d’utiliser l’AIC (ou mieux encore AICc qui est plus approprié quand le nombre d’observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.</p>
+<p>L’approche de comparaison par <em>AIC</em> a d’abord été développé pour comparer un ensemble de modèle préalablement défini basé sur les connaissance du sytème et les hypothèses biologiques. Cependant, certains ont développé une approche plutôt brutale et sans scrupule de faire tous les modèles possibles et de les comparer par <em>AIC</em>. Cette approche a été suivie dans le package <code>MuMIn</code>. Les comparaisons de modèle par <code>AIC</code>doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
+Il faut donc s’arrurer d’enlever les données manquantes et de spécifier dans la fonction <code>lm</code> de ne pas marcher s’il y a des données manquantes.</p>
+
+<div class="rmdnote">
+Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l’approche par la fonction <code>dredge()</code> qui selon moi va à l’encontre de la philosophie des AIC et de la parsimonie. Je soutiens de dévelooper un modèle basé sur des hypothèses biologiques et de reporter ce modèle avec tous les effets significatifs ou non.
+</div>
+
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" title="1"><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></a>
+<a class="sourceLine" id="cb561-2" title="2">full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</a>
+<a class="sourceLine" id="cb561-3" title="3">  full.model<span class="fl">.2</span>ndinteractions,</a>
+<a class="sourceLine" id="cb561-4" title="4">  .<span class="op">~</span>.,</a>
+<a class="sourceLine" id="cb561-5" title="5">  <span class="dt">data =</span> mysub,</a>
+<a class="sourceLine" id="cb561-6" title="6">  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
+<a class="sourceLine" id="cb561-7" title="7"></a>
+<a class="sourceLine" id="cb561-8" title="8"><span class="kw">library</span>(MuMIn)</a>
+<a class="sourceLine" id="cb561-9" title="9">dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>## Fixed term is &quot;(Intercept)&quot;</code></pre>
-<p>L’objet <code>dd</code> contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 2 unités d’AICc du meilleur modèle ont peu de support empirique).</p>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" title="1"><span class="co"># get models within 2 units of AICc from the best model</span></a>
-<a class="sourceLine" id="cb560-2" title="2">top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb560-3" title="3">avgmodel1&lt;-<span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></a>
-<a class="sourceLine" id="cb560-4" title="4"><span class="kw">summary</span>(avgmodel1) <span class="co">#display averaged model</span></a></code></pre></div>
+<p>L’objet <code>dd</code> contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 7 unités d’AICc du meilleur modèle ont peu de support empirique).</p>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" title="1"><span class="co"># get models within 2 units of AICc from the best model</span></a>
+<a class="sourceLine" id="cb563-2" title="2">top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb563-3" title="3">avgmodel1&lt;-<span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></a>
+<a class="sourceLine" id="cb563-4" title="4"><span class="kw">summary</span>(avgmodel1) <span class="co">#display averaged model</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## model.avg(object = top.models.1)
@@ -374,7 +379,7 @@ Il faut donc s’arrurer d’enlever les données manquantes et de spécifier da
 ## logarea:thtden  3.882e-02  2.114e-02   2.237e-02   1.735   0.0827 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb562-1" title="1"><span class="kw">confint</span>(avgmodel1) <span class="co">#display CI for averaged coefficients</span></a></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb565-1" title="1"><span class="kw">confint</span>(avgmodel1) <span class="co">#display CI for averaged coefficients</span></a></code></pre></div>
 <pre><code>##                        2.5 %       97.5 %
 ## (Intercept)    -0.6860022996  0.257064603
 ## logarea        -0.0836067896  0.354883299
@@ -395,7 +400,7 @@ Il faut donc s’arrurer d’enlever les données manquantes et de spécifier da
         </div>
       </div>
 <a href="tester-la-présence-dinteractions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bootstrapping-multiple-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bootstrap-et-régression-multiple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

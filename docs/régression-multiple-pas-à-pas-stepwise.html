@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.8</b> Visualiser la taille d’effet</a></li>
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
-<li class="chapter" data-level="7.11" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrapping multiple regression</a></li>
+<li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
@@ -323,9 +323,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Utiliser la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes sur le modèles de régression incluant <code>logarea</code>, <code>cpfor2</code> et <code>thtden</code>:</li>
 </ul>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1"><span class="co"># Stepwise Regression</span></a>
-<a class="sourceLine" id="cb506-2" title="2"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb506-3" title="3">step.mtri &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(model.mtri, <span class="dt">direction=</span><span class="st">&quot;both&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1"><span class="co"># Stepwise Regression</span></a>
+<a class="sourceLine" id="cb509-2" title="2"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb509-3" title="3">step.mtri &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(model.mtri, <span class="dt">direction=</span><span class="st">&quot;both&quot;</span>)</a></code></pre></div>
 <pre><code>## Start:  AIC=-98.27
 ## logherp ~ logarea + cpfor2 + thtden
 ## 
@@ -343,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## + cpfor2   1   0.01571 0.62937 -98.267
 ## - thtden   1   0.25092 0.89600 -92.376
 ## - logarea  1   0.40204 1.04712 -88.013</code></pre>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" title="1">step.mtri<span class="op">$</span>anova <span class="co"># display results</span></a></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1">step.mtri<span class="op">$</span>anova <span class="co"># display results</span></a></code></pre></div>
 <pre><code>## Stepwise Model Path 
 ## Analysis of Deviance Table
 ## 
@@ -362,11 +362,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2. L’AIC des modèles dans lesquels une variable a été enlevée du modèle complet. Notez que c’est seulement en enlevant cpfor2 du modèle qu’on peut réduire l’AIC
 3. La valeur de AIC pour les modèles auxquels on enlève ou on ajoute une variable au modèle sélectionné à la première étape.(i.e. logherp ~ logarea + thtden). Notez qu’aucun des modèles n’a un AIC inférieur à ce modèle.</p>
 <p>Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on peut commencer par le modèle nul et ajouter des termes:</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" title="1"><span class="co"># Forward selection approach</span></a>
-<a class="sourceLine" id="cb510-2" title="2">model.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb510-3" title="3">step.f &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(</a>
-<a class="sourceLine" id="cb510-4" title="4">  model.null,</a>
-<a class="sourceLine" id="cb510-5" title="5">  <span class="dt">scope =</span> <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1"><span class="co"># Forward selection approach</span></a>
+<a class="sourceLine" id="cb513-2" title="2">model.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb513-3" title="3">step.f &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(</a>
+<a class="sourceLine" id="cb513-4" title="4">  model.null,</a>
+<a class="sourceLine" id="cb513-5" title="5">  <span class="dt">scope =</span> <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span>)</a></code></pre></div>
 <pre><code>## Start:  AIC=-82.09
 ## logherp ~ 1
 ## 
@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##          Df Sum of Sq     RSS     AIC
 ## &lt;none&gt;                0.64508 -99.576
 ## + cpfor2  1  0.015708 0.62937 -98.267</code></pre>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" title="1">step.f<span class="op">$</span>anova <span class="co"># display results</span></a></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1">step.f<span class="op">$</span>anova <span class="co"># display results</span></a></code></pre></div>
 <pre><code>## Stepwise Model Path 
 ## Analysis of Deviance Table
 ## 

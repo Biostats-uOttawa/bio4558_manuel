@@ -5038,8 +5038,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002569658  0.03314378
-## t2* 0.3408557 -0.001866195  0.02625861
+## t1* 1.1919926  0.001673837  0.03345678
+## t2* 0.3408557 -0.001212873  0.02652056
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,12 +5096,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.254 )   ( 1.123,  1.254 )  
+## 95%   ( 1.125,  1.256 )   ( 1.124,  1.258 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.130,  1.261 )   ( 1.109,  1.245 )  
+## 95%   ( 1.126,  1.260 )   ( 1.118,  1.253 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -5125,12 +5124,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2913,  0.3942 )   ( 0.2913,  0.3945 )  
+## 95%   ( 0.2901,  0.3940 )   ( 0.2890,  0.3947 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2872,  0.3904 )   ( 0.2992,  0.4054 )  
+## 95%   ( 0.2870,  0.3927 )   ( 0.2926,  0.3981 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5475,9 +5473,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 -0.010714771   0.4202628
-## t2* -1.714546  0.006574537   0.7719081
+##      original        bias    std. error
+## t1* 45.084391 -0.0002946074   0.4372303
+## t2* -1.714546 -0.0205259761   0.7725243
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5510,7 +5508,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.201, -0.285 )  
+## 95%   (-3.197, -0.255 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5552,7 +5550,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 3375    0.029 *
+## location1   0.8573 5000   0.0138 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6271,18 +6269,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5964
+## Quantile = 2.5951
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2750   3.6494
-## m1965 - m1954 == 0  -5.5077 -10.0021  -1.0132
-## m1966 - m1954 == 0  -3.3127  -6.3464  -0.2789
-## m1965 - m1958 == 0  -5.6949 -10.4164  -0.9733
-## m1966 - m1958 == 0  -3.4999  -6.8610  -0.1389
-## m1966 - m1965 == 0   2.1950  -2.2220   6.6120
+## m1958 - m1954 == 0   0.1872  -3.2733   3.6477
+## m1965 - m1954 == 0  -5.5077  -9.9999  -1.0155
+## m1966 - m1954 == 0  -3.3127  -6.3449  -0.2805
+## m1965 - m1958 == 0  -5.6949 -10.4141  -0.9757
+## m1966 - m1958 == 0  -3.4999  -6.8593  -0.1406
+## m1966 - m1965 == 0   2.1950  -2.2198   6.6097
 \end{verbatim}
 
 \begin{Shaded}
@@ -6815,6 +6813,25 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(effects)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 methods overwritten by 'lme4':
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car
+\end{verbatim}
+
+\begin{verbatim}
+## lattice theme set by effectsTheme()
+## See ?effectsTheme for details.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{allEffects}\NormalTok{(anova.model1)}
 \end{Highlighting}
 \end{Shaded}
@@ -8811,12 +8828,16 @@ Le test indique que ces deux modèles ont des variances résiduelles comparables
 \hypertarget{recherche-du-meilleur-moduxe8le-fonduxe9e-sur-la-thuxe9orie-de-linformation}{%
 \section{Recherche du meilleur modèle fondée sur la théorie de l'information}\label{recherche-du-meilleur-moduxe8le-fonduxe9e-sur-la-thuxe9orie-de-linformation}}
 
-Une des principales critiques des méthodes pas-à-pas (stepwise) est que les p-valeurs ne sont pas strictement interprétables à cause du grand nombre de tests qui sont implicites dans le processus. C'est le problème des comparaisons ou tests multiples: en construisant un modèle linéaire (comme une régression multiple) à partir d'un grand nombre de variables et de leurs interactions, il y a tellement de combinaisons possibles qu'un ajustement de Bonferroni rendrait les tests trop conservateurs.
+Une des principales critiques des méthodes pas-à-pas (stepwise) est que les valeurs de p ne sont pas strictement interprétables à cause du grand nombre de tests qui sont implicites dans le processus. C'est le problème des comparaisons ou tests multiples: en construisant un modèle linéaire (comme une régression multiple) à partir d'un grand nombre de variables et de leurs interactions, il y a tellement de combinaisons possibles qu'un ajustement de Bonferroni rendrait les tests trop conservateurs.
 
-Une alternative, élégamment défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d'utiliser l'AIC (ou mieux encore AICc qui est plus approprié quand le nombre d'observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.
+Une alternative, défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d'utiliser l'AIC (ou mieux encore AICc qui est plus approprié quand le nombre d'observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.
 
-Cette approche a été suivie dans le package \texttt{MuMIn}. Les comparaisons de modèle par \texttt{AIC}doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
-Il faut donc s'arrurer d'enlever les données manquantes et de spécifier dans la fonction \texttt{lm} de ne pas marcher s'il y a des données manquantes
+L'approche de comparaison par \emph{AIC} a d'abord été développé pour comparer un ensemble de modèle préalablement défini basé sur les connaissance du sytème et les hypothèses biologiques. Cependant, certains ont développé une approche plutôt brutale et sans scrupule de faire tous les modèles possibles et de les comparer par \emph{AIC}. Cette approche a été suivie dans le package \texttt{MuMIn}. Les comparaisons de modèle par \texttt{AIC}doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
+Il faut donc s'arrurer d'enlever les données manquantes et de spécifier dans la fonction \texttt{lm} de ne pas marcher s'il y a des données manquantes.
+
+\begin{rmdnote}
+Je ne supporte pas l'approche stepwise ni l'approche par AIC. Je déteste l'approche par la fonction \texttt{dredge()} qui selon moi va à l'encontre de la philosophie des AIC et de la parsimonie. Je soutiens de dévelooper un modèle basé sur des hypothèses biologiques et de reporter ce modèle avec tous les effets significatifs ou non.
+\end{rmdnote}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8836,7 +8857,7 @@ Il faut donc s'arrurer d'enlever les données manquantes et de spécifier dans l
 ## Fixed term is "(Intercept)"
 \end{verbatim}
 
-L'objet \texttt{dd} contient tous les modèles possibles (i.e.~ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l'objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 2 unités d'AICc du meilleur modèle ont peu de support empirique).
+L'objet \texttt{dd} contient tous les modèles possibles (i.e.~ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l'objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 7 unités d'AICc du meilleur modèle ont peu de support empirique).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8914,8 +8935,8 @@ L'objet \texttt{dd} contient tous les modèles possibles (i.e.~ceux qui ont tout
   À partir de ce sous-ensemble de modèles, la moyenne pondérée des coefficients (en utilisant les poids Akaike) est calculée, avec in IC à 95\%. Notez que les termes absents d'un modèle sont considérés avoir un coefficient de 0 pour ce terme.
 \end{enumerate}
 
-\hypertarget{bootstrapping-multiple-regression}{%
-\section{Bootstrapping multiple regression}\label{bootstrapping-multiple-regression}}
+\hypertarget{bootstrap-et-ruxe9gression-multiple}{%
+\section{Bootstrap et régression multiple}\label{bootstrap-et-ruxe9gression-multiple}}
 
 Quand les données ne rencontrent pas les conditions d'application de normalité et d'homoscédasticité et que les transformations n'arrivent pas à corriger ces violations, le bootstrap peut être utilisé pour calculer des intervalles de confiance pour les coefficients. Si la distribution des coefficients bootstrappés est symétrique et approximativement normale, on peut utiliser les percentiles empiriques pour calculer les limites de confiance.
 
@@ -8931,6 +8952,15 @@ Le code qui suit, utilisant le package simpleboot, a été conçu pour être fac
 \CommentTok{# Set the number of bootstrap iterations}
 \NormalTok{nboot<-}\DecValTok{1000}
 \KeywordTok{library}\NormalTok{(simpleboot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Simple Bootstrap Routines (1.1-7)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{# R is the number of bootstrap iterations}
 \CommentTok{# Setting rows to FALSE indicates resampling of residuals}
 \NormalTok{mysimpleboot <-}\StringTok{ }\KeywordTok{lm.boot}\NormalTok{(mymodel, }\DataTypeTok{R =}\NormalTok{ nboot, }\DataTypeTok{rows =} \OtherTok{FALSE}\NormalTok{)}
@@ -8965,8 +8995,8 @@ Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d'examin
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-285-1.pdf}
-\caption{\label{fig:unnamed-chunk-285}Distribution des estimé par bootstrap pour \texttt{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-286-1.pdf}
+\caption{\label{fig:unnamed-chunk-286}Distribution des estimé par bootstrap pour \texttt{logarea}}
 \end{figure}
 
 Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l'histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l'intervalle de confiance à 95\%. Ici l'IC ne contient pas 0, et donc on peut conclure que l'effet de logarea sur logherp est significativement positif.
@@ -8983,14 +9013,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.71499574 0.1331337 -0.047915811 0.01687699 -0.0003465067
-## 1%    -0.68830466 0.1419176 -0.044400277 0.01772179 -0.0003388953
-## 2.5%  -0.63510615 0.1584012 -0.041794945 0.01935212 -0.0003230369
-## 5%    -0.59082091 0.1646999 -0.039783820 0.02090203 -0.0003100371
-## 95%   -0.06570970 0.2814622 -0.011455874 0.03712205 -0.0001808533
-## 97.5% -0.01066592 0.2903061 -0.009304164 0.03861963 -0.0001689553
-## 99%    0.01927518 0.3049747 -0.005947527 0.04081077 -0.0001560370
-## 99.5%  0.06514956 0.3124886 -0.003130526 0.04106368 -0.0001480806
+## 0.5%  -0.70814542 0.1337553 -0.046607391 0.01681898 -0.0003435191
+## 1%    -0.68212304 0.1379362 -0.045052437 0.01860564 -0.0003367800
+## 2.5%  -0.64186921 0.1562094 -0.041714351 0.02024018 -0.0003211452
+## 5%    -0.60064783 0.1644507 -0.039148400 0.02152327 -0.0003098770
+## 95%   -0.07374961 0.2789149 -0.011027049 0.03720617 -0.0001865236
+## 97.5% -0.02358722 0.2892516 -0.008534830 0.03833178 -0.0001777868
+## 99%    0.02431652 0.2974738 -0.005396965 0.04005049 -0.0001628431
+## 99.5%  0.05605318 0.3039372 -0.003104286 0.04146319 -0.0001473735
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -9046,11 +9076,11 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1136,  0.3116 )  
+## 95%   ( 0.1199,  0.3220 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-289-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-290-1.pdf}
 
 Notez que l'intervalle BCa va de 0.12 à 0.32, alors que l'intervalle standard était de 0.16 à 0.29. L'intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
 
@@ -10417,8 +10447,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-1.pdf}
-\caption{\label{fig:unnamed-chunk-292-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-1.pdf}
+\caption{\label{fig:unnamed-chunk-293-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10430,8 +10460,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-2.pdf}
-\caption{\label{fig:unnamed-chunk-292-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-2.pdf}
+\caption{\label{fig:unnamed-chunk-293-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10443,8 +10473,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-3.pdf}
-\caption{\label{fig:unnamed-chunk-292-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-3.pdf}
+\caption{\label{fig:unnamed-chunk-293-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.8</b> Visualiser la taille d’effet</a></li>
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
-<li class="chapter" data-level="7.11" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrapping multiple regression</a></li>
+<li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
@@ -345,9 +345,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 45.084391  0.02148933   0.4220512
-## t2* -1.714546 -0.02235579   0.7296542</code></pre>
+##      original     bias    std. error
+## t1* 45.084391 0.01651291   0.4286534
+## t2* -1.714546 0.01075948   0.7605610</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
@@ -366,7 +366,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.137, -0.256 )  
+## 95%   (-3.380, -0.329 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
@@ -389,7 +389,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 2547   0.0381 *
+## location1   0.8573 5000    0.015 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 

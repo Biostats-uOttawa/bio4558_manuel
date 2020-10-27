@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.8" data-path="visualiser-la-taille-deffet.html"><a href="visualiser-la-taille-deffet.html"><i class="fa fa-check"></i><b>7.8</b> Visualiser la taille d’effet</a></li>
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
-<li class="chapter" data-level="7.11" data-path="bootstrapping-multiple-regression.html"><a href="bootstrapping-multiple-regression.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrapping multiple regression</a></li>
+<li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
@@ -321,8 +321,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.</p>
 Examinons donc les graphiques diagnostiques du modèle final:
 <div class="fold s">
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb529-2" title="2"><span class="kw">plot</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb532-2" title="2"><span class="kw">plot</span>(model.poly2)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-266"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-266-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" />
 <p class="caption">
@@ -331,22 +331,22 @@ Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 </div>
 </div>
 <p>Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:</p>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</a></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  residuals(model.poly2)
 ## W = 0.9837, p-value = 0.9278</code></pre>
 <p>Les résidus ne dévient pas significativement de la normalité. Bien.</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="kw">library</span>(lmtest)</a>
-<a class="sourceLine" id="cb532-2" title="2"><span class="kw">bptest</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1"><span class="kw">library</span>(lmtest)</a>
+<a class="sourceLine" id="cb535-2" title="2"><span class="kw">bptest</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
 ## 	studentized Breusch-Pagan test
 ## 
 ## data:  model.poly2
 ## BP = 3.8415, df = 4, p-value = 0.4279</code></pre>
 <p>Pas de déviation d’homoscédasticité non plus. Bien.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1"><span class="kw">dwtest</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" title="1"><span class="kw">dwtest</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
 ## 	Durbin-Watson test
 ## 
@@ -354,7 +354,7 @@ Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 ## DW = 1.725, p-value = 0.2095
 ## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <p>Pas de corrélation sérielle des résidus, donc pas d’évidence de nonindépendance.</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" title="1"><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</a></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" title="1"><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</a></code></pre></div>
 <pre><code>## 
 ## 	RESET test
 ## 
