@@ -11,6 +11,7 @@
   });
 })();
 
+
 // adding hiding source or r output
 $(document).ready(function() {
 // from https://stackoverflow.com/questions/37755037/how-to-add-code-folding-to-output-chunks-in-rmarkdown-html-documents
