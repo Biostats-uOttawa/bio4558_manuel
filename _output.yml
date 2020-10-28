@@ -4,6 +4,7 @@ bookdown::gitbook:
   split_by: section
   scroll_highlight: yes
   includes:
+    # in_header: js/hide_code.html
     after_body: js/js_solution.html
   config:
     toc:
@@ -36,4 +37,4 @@ bookdown::pdf_book:
   toc_unnumbered: yes
   toc_appendix: yes
   quote_footer: ["\\VA{", "}{}"]
-  highlight_bw: yes
+  highlight_bw: no
