@@ -22,7 +22,8 @@ bookdown::html_chapters:
   css: [css/style.css, css/toc.css]
 bookdown::epub_book:
   dev: svglite
-  stylesheet: css/style.css
+  stylesheet: css/epub.css
+  toc: true
 bookdown::pdf_book:
   includes:
     in_header: latex/preamble.tex
