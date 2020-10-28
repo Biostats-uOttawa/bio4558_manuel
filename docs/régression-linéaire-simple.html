@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -337,7 +337,7 @@ Que concluez-vous de ce diagramme de dispersion ?</li>
 <a class="sourceLine" id="cb271-8" title="8"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#add loess</span></a>
 <a class="sourceLine" id="cb271-9" title="9"><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></a>
 <a class="sourceLine" id="cb271-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/sturlm-1-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/sturlm-1-1.svg" width="672" class="plot" /></p>
 <p>Ce graphique suggère que la relation n’est pas linéaire.</p>
 <p>Supposons que nous désirions estimer le taux de croissance des esturgeons mâles.
 Un estimé (peut-être pas terrible…) du taux de croissance peut être obtenu en calculant la pente de la régression de la longueur à la fourche sur l’âge.</p>
@@ -407,7 +407,7 @@ diagnostiques pour des modèles linéaires.</p>
 <a class="sourceLine" id="cb275-2" title="2"><span class="kw">plot</span>(RegModel<span class="fl">.1</span>)</a></code></pre></div>
 <p>La commande par() est utilisée pour dire à R de tracer 2 rangées et 2 colonnes de graphiques par page (il y a quatre graphiques diagnostiques qui sont générés automatiquement pour les modèles linéaires), et la commande las indique à R d’effectuer une rotation des légendes de l’axe des Y pour qu’elles soient perpendiculaires à l’axe (oui. Je sais. Rien de tout ça n’est évident.)</p>
 <p>Vous obtiendrez:
-<img src="Labo_BIO4558_files/figure-html/sturlmv-1eval-1.svg" width="672" /></p>
+<img src="Labo_BIO4558_files/figure-html/sturlmv-1eval-1.svg" width="672" class="plot" /></p>
 <ol style="list-style-type: decimal">
 <li>En haut à gauche, permet d’évaluer la linéarité, la normalité, et l’homoscédasticité des résidus. Il illustre les déviations autour de la régression en fonction des valeurs prédites. Rappllez-vous que le graphique de fklngth vs age suggère que la relation entre la longueur à la fourche et l’âge n’est pas linéaire. Les très jeunes et très vieux esturgeons sont sous la droite en général, alors que les esturgeons d’âge moyen sont retrouvés généralement au-dessus de la droite de régression. C’est exactement ce que le graphique des résidus en fonction des valeurs prédites illustre. La ligne en rouge est une trace lowess au travers de ce nuage de points. Si la relation était linéaire, la trace lowess serait presque plate et près de 0. La dispersion des résidus permet d’évaluer visuellement leur normalité et hétéroscédasticité; mais ce graphique n’est pas optimal pour évaluer ces propriétés. Les deux graphiques suivants sont supérieurs au premier pour cela.</li>
 <li>En haut à droite permet d’évaluer la normalité des résidus. C’est un graphique QQ des résidus (QQ plot). Des résidus distribués normalement tomberaient exactement sur la diagonale. Ici, on voit que c’est presque le cas, sauf dans les queues de la distribution.</li>

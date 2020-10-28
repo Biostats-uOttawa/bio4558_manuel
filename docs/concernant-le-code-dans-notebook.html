@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -330,37 +330,37 @@ Dans Rstudio, pour éxécuter le code à l’intérieur d’un bloc appuyer sur 
 <p>Lorsque vous exécuter du code dans un bloc, le résultat apparait directement en dessous de la du bloc (si votre document est un R Notebook).
 L’option <code>fig.cap</code> fonctionnement seulement lorsqu’on génère un PDF.</p>
 <p>Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les résultats est sauvegarder en même temps. Cliquer sur le bouton <em>Preview</em> ou appuyer sur <em>Ctrl+Shift+K</em> pour voir le fichier HTML.</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb616-1" title="1"><span class="bn">```{r, fig.cap = &quot;Exemple de graphique tiré du fichier d&#39;aide de la fonction stat_bin&quot;}</span></a>
-<a class="sourceLine" id="cb616-2" title="2"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
-<a class="sourceLine" id="cb616-3" title="3"><span class="bn">  geom_histogram()</span></a>
-<a class="sourceLine" id="cb616-4" title="4"></a>
-<a class="sourceLine" id="cb616-5" title="5"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
-<a class="sourceLine" id="cb616-6" title="6"><span class="bn">  geom_histogram(binwidth = 0.01)</span></a>
-<a class="sourceLine" id="cb616-7" title="7"></a>
-<a class="sourceLine" id="cb616-8" title="8"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
-<a class="sourceLine" id="cb616-9" title="9"><span class="bn">  geom_histogram(bins = 200)</span></a>
-<a class="sourceLine" id="cb616-10" title="10"><span class="bn">```</span></a></code></pre></div>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb617-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb613-1" title="1"><span class="bn">```{r, fig.cap = &quot;Exemple de graphique tiré du fichier d&#39;aide de la fonction stat_bin&quot;}</span></a>
+<a class="sourceLine" id="cb613-2" title="2"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb613-3" title="3"><span class="bn">  geom_histogram()</span></a>
+<a class="sourceLine" id="cb613-4" title="4"></a>
+<a class="sourceLine" id="cb613-5" title="5"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb613-6" title="6"><span class="bn">  geom_histogram(binwidth = 0.01)</span></a>
+<a class="sourceLine" id="cb613-7" title="7"></a>
+<a class="sourceLine" id="cb613-8" title="8"><span class="bn">ggplot(diamonds, aes(carat)) +</span></a>
+<a class="sourceLine" id="cb613-9" title="9"><span class="bn">  geom_histogram(bins = 200)</span></a>
+<a class="sourceLine" id="cb613-10" title="10"><span class="bn">```</span></a></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb614-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb614-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="figure"><span id="fig:unnamed-chunk-293-1"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-293-1.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-292-1"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-292-1.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" class="plot" />
 <p class="caption">
 Figure B.1: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
 </p>
 </div>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb619-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb619-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.01</span>)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-293-2"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-293-2.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb616-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.01</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-292-2"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-292-2.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" class="plot" />
 <p class="caption">
 Figure B.2: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
 </p>
 </div>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb620-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">200</span>)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-293-3"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-293-3.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" title="1"><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb617-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">200</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-292-3"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-292-3.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" class="plot" />
 <p class="caption">
 Figure B.3: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
 </p>

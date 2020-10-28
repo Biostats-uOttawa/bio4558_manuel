@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -345,7 +345,7 @@ Comme il n’y a pas de réplicats, on ne peut estimer la variance du terme d’
 <p>Si on suppose que c’est un modèle d’ANOVA mixte (date aléatoire, Depth fixe), que concluez vous? (Indice: faites un graphique d’interaction température en fonction de la profondeur et la date, pour voir ce qui se passe).</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">interaction.plot</span>(nr2wdat<span class="op">$</span>depth, nr2wdat<span class="op">$</span>date, nr2wdat<span class="op">$</span>temp)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-222"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-222-1.svg" alt="Effet du mois et de la profondeur sur la température" width="672" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-222-1.svg" alt="Effet du mois et de la profondeur sur la température" width="672" class="plot" />
 <p class="caption">
 Figure 6.4: Effet du mois et de la profondeur sur la température
 </p>
@@ -356,7 +356,7 @@ Figure 6.4: Effet du mois et de la profondeur sur la température
 <a class="sourceLine" id="cb444-2" title="2"><span class="kw">plot</span>(anova.model4)</a></code></pre></div>
 <pre><code>## Error in xy.coords(x, y, xlabel, ylabel, log): &#39;x&#39; and &#39;y&#39; lengths differ</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-223"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-223-1.svg" alt="Conditions d'applications du modèle anova.model4" width="672" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-223-1.svg" alt="Conditions d'applications du modèle anova.model4" width="672" class="plot" />
 <p class="caption">
 Figure 6.5: Conditions d’applications du modèle anova.model4
 </p>

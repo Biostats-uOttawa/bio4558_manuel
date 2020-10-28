@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -345,8 +345,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original        bias    std. error
-## t1* 1.1919926  0.0008270550  0.03453333
-## t2* 0.3408557 -0.0005345257  0.02752755</code></pre>
+## t1* 1.1919926  0.0007164314  0.03376121
+## t2* 0.3408557 -0.0003669905  0.02677386</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -356,9 +356,9 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 </ol>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb316-2" title="2"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">1</span>) <span class="co"># intercept</span></a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-1.svg" width="672" class="plot" /></p>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">2</span>) <span class="co"># log10(age)</span></a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-2.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-2.svg" width="672" class="plot" /></p>
 <p>La distribution des estimés obtenus par bootstrap est assez normale dans cet exemple, avec de petites déviations dans les queuee de la distribution (là où ça compte pour les intervalles de confiance…). On pourrait utiliser l’erreur-type des estimés bootstrap pour calculer un intervalle de confiance symétrique (moyenne +- t ET). Cependant, comme R peut facilement calculer des intervalles de confiance qui corrigent pour le biais (BCa) ou encore des intervalle empiriques à partir des distributions simulées (méthode Percentile) il peut être aussi simple de les calculer selon les 3 méthodes:</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="co"># interval de confiance pour l&#39;ordonnée à l&#39;origine</span></a>
 <a class="sourceLine" id="cb318-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</a></code></pre></div>
@@ -372,10 +372,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.123,  1.259 )   ( 1.121,  1.257 )  
+## 95%   ( 1.125,  1.257 )   ( 1.123,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.127,  1.263 )   ( 1.118,  1.254 )  
+## 95%   ( 1.128,  1.261 )   ( 1.115,  1.253 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" title="1"><span class="co">#intervalle de confiance pour la pente</span></a>
 <a class="sourceLine" id="cb321-2" title="2"><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
@@ -389,10 +389,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2874,  0.3953 )   ( 0.2866,  0.3986 )  
+## 95%   ( 0.2887,  0.3937 )   ( 0.2887,  0.3954 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2831,  0.3951 )   ( 0.2908,  0.4004 )  
+## 95%   ( 0.2863,  0.3931 )   ( 0.2915,  0.3999 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

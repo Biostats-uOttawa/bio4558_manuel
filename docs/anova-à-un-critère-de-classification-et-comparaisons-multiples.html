@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -369,14 +369,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb371-14" title="14"><span class="co">#display graph, by year</span></a>
 <a class="sourceLine" id="cb371-15" title="15">mygraph<span class="op">+</span><span class="kw">facet_wrap</span>(<span class="op">~</span>year,<span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-2"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" />
+<img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" class="plot" />
 <p class="caption">
 Figure 5.1: Distribution de la longueur des esturgeons par année
 </p>
 </div>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-200"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-200-1.svg" alt="Boxplot de la longueur pas annéee" width="672" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-200-1.svg" alt="Boxplot de la longueur pas annéee" width="672" class="plot" />
 <p class="caption">
 Figure 5.2: Boxplot de la longueur pas annéee
 </p>
@@ -394,7 +394,7 @@ Figure 5.2: Boxplot de la longueur pas annéee
 <a class="sourceLine" id="cb373-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb373-4" title="4"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-3"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" />
+<img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" class="plot" />
 <p class="caption">
 Figure 5.3: Conditions d’applications de l’ANOVA
 </p>
@@ -557,7 +557,7 @@ and there are no factor predictors; no plot no. 5`
 ## m1966-m1965  2.1949612  -2.240630  6.6305526 0.5710111</code></pre>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</a></code></pre></div>
 <div class="figure"><span id="fig:ano-13"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" class="plot" />
 <p class="caption">
 Figure 5.4: Différence anuelles dans la longueur des esturgeons
 </p>
@@ -580,21 +580,21 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5934
+## Quantile = 2.5947
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2710   3.6454
-## m1965 - m1954 == 0  -5.5077  -9.9969  -1.0184
-## m1966 - m1954 == 0  -3.3127  -6.3429  -0.2824
-## m1965 - m1958 == 0  -5.6949 -10.4110  -0.9788
-## m1966 - m1958 == 0  -3.4999  -6.8571  -0.1427
-## m1966 - m1965 == 0   2.1950  -2.2169   6.6069</code></pre>
+## m1958 - m1954 == 0   0.1872  -3.2728   3.6472
+## m1965 - m1954 == 0  -5.5077  -9.9992  -1.0161
+## m1966 - m1954 == 0  -3.3127  -6.3445  -0.2809
+## m1965 - m1958 == 0  -5.6949 -10.4134  -0.9763
+## m1966 - m1958 == 0  -3.4999  -6.8588  -0.1410
+## m1966 - m1965 == 0   2.1950  -2.2192   6.6091</code></pre>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" class="plot" />
 <p class="caption">
 Figure 5.5: Différence anuelles dans la longueur des esturgeons
 </p>
@@ -610,7 +610,7 @@ Figure 5.5: Différence anuelles dans la longueur des esturgeons
 <a class="sourceLine" id="cb396-8" title="8">old.par&lt;-<span class="kw">par</span>(<span class="dt">mai=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">1.25</span>,<span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb396-9" title="9"><span class="kw">plot</span>(cimeans)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-15"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" class="plot" />
 <p class="caption">
 Figure 5.6: Différence anuelles dans la longueur des esturgeons
 </p>

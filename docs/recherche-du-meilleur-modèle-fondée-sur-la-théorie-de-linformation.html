@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -327,21 +327,21 @@ Il faut donc s’arrurer d’enlever les données manquantes et de spécifier da
 Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l’approche par la fonction <code>dredge()</code> qui selon moi va à l’encontre de la philosophie des AIC et de la parsimonie. Je soutiens de dévelooper un modèle basé sur des hypothèses biologiques et de reporter ce modèle avec tous les effets significatifs ou non.
 </div>
 
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" title="1"><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></a>
-<a class="sourceLine" id="cb561-2" title="2">full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</a>
-<a class="sourceLine" id="cb561-3" title="3">  full.model<span class="fl">.2</span>ndinteractions,</a>
-<a class="sourceLine" id="cb561-4" title="4">  .<span class="op">~</span>.,</a>
-<a class="sourceLine" id="cb561-5" title="5">  <span class="dt">data =</span> mysub,</a>
-<a class="sourceLine" id="cb561-6" title="6">  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
-<a class="sourceLine" id="cb561-7" title="7"></a>
-<a class="sourceLine" id="cb561-8" title="8"><span class="kw">library</span>(MuMIn)</a>
-<a class="sourceLine" id="cb561-9" title="9">dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" title="1"><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></a>
+<a class="sourceLine" id="cb560-2" title="2">full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</a>
+<a class="sourceLine" id="cb560-3" title="3">  full.model<span class="fl">.2</span>ndinteractions,</a>
+<a class="sourceLine" id="cb560-4" title="4">  .<span class="op">~</span>.,</a>
+<a class="sourceLine" id="cb560-5" title="5">  <span class="dt">data =</span> mysub,</a>
+<a class="sourceLine" id="cb560-6" title="6">  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
+<a class="sourceLine" id="cb560-7" title="7"></a>
+<a class="sourceLine" id="cb560-8" title="8"><span class="kw">library</span>(MuMIn)</a>
+<a class="sourceLine" id="cb560-9" title="9">dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>## Fixed term is &quot;(Intercept)&quot;</code></pre>
 <p>L’objet <code>dd</code> contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 7 unités d’AICc du meilleur modèle ont peu de support empirique).</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" title="1"><span class="co"># get models within 2 units of AICc from the best model</span></a>
-<a class="sourceLine" id="cb563-2" title="2">top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb563-3" title="3">avgmodel1&lt;-<span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></a>
-<a class="sourceLine" id="cb563-4" title="4"><span class="kw">summary</span>(avgmodel1) <span class="co">#display averaged model</span></a></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb562-1" title="1"><span class="co"># get models within 2 units of AICc from the best model</span></a>
+<a class="sourceLine" id="cb562-2" title="2">top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb562-3" title="3">avgmodel1&lt;-<span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></a>
+<a class="sourceLine" id="cb562-4" title="4"><span class="kw">summary</span>(avgmodel1) <span class="co">#display averaged model</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## model.avg(object = top.models.1)
@@ -379,7 +379,7 @@ Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l�
 ## logarea:thtden  3.882e-02  2.114e-02   2.237e-02   1.735   0.0827 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb565-1" title="1"><span class="kw">confint</span>(avgmodel1) <span class="co">#display CI for averaged coefficients</span></a></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" title="1"><span class="kw">confint</span>(avgmodel1) <span class="co">#display CI for averaged coefficients</span></a></code></pre></div>
 <pre><code>##                        2.5 %       97.5 %
 ## (Intercept)    -0.6860022996  0.257064603
 ## logarea        -0.0836067896  0.354883299

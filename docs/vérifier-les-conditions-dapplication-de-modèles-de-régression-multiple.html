@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -321,32 +321,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.</p>
 Examinons donc les graphiques diagnostiques du modèle final:
 <div class="fold s">
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb532-2" title="2"><span class="kw">plot</span>(model.poly2)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-266"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-266-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" />
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb531-2" title="2"><span class="kw">plot</span>(model.poly2)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-265"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-265-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" class="plot" />
 <p class="caption">
 Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 </p>
 </div>
 </div>
 <p>Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</a></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</a></code></pre></div>
 <pre><code>## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  residuals(model.poly2)
 ## W = 0.9837, p-value = 0.9278</code></pre>
 <p>Les résidus ne dévient pas significativement de la normalité. Bien.</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1"><span class="kw">library</span>(lmtest)</a>
-<a class="sourceLine" id="cb535-2" title="2"><span class="kw">bptest</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1"><span class="kw">library</span>(lmtest)</a>
+<a class="sourceLine" id="cb534-2" title="2"><span class="kw">bptest</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
 ## 	studentized Breusch-Pagan test
 ## 
 ## data:  model.poly2
 ## BP = 3.8415, df = 4, p-value = 0.4279</code></pre>
 <p>Pas de déviation d’homoscédasticité non plus. Bien.</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" title="1"><span class="kw">dwtest</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" title="1"><span class="kw">dwtest</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
 ## 	Durbin-Watson test
 ## 
@@ -354,7 +354,7 @@ Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 ## DW = 1.725, p-value = 0.2095
 ## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <p>Pas de corrélation sérielle des résidus, donc pas d’évidence de nonindépendance.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb539-1" title="1"><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</a></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1"><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</a></code></pre></div>
 <pre><code>## 
 ## 	RESET test
 ## 

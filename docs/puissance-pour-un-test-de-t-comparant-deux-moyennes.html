@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -357,7 +357,7 @@ t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <li>Cliquer sur le bouton Calculate dans la fenêtre principale et vous devriez obtenir ceci:</li>
 </ol>
 <div class="figure"><span id="fig:gpower-1"></span>
-<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" />
+<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" class="plot" />
 <p class="caption">
 Figure 2.1: Analyse post-hoc avec la taille d’effet estimée
 </p>
@@ -393,7 +393,7 @@ Le plus simple comme nous allons estimer la taille d’effet <code>d</code> plus
 <a class="sourceLine" id="cb240-10" title="10">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean=</span>(<span class="fl">3.31-2.64</span>))</a>
 <a class="sourceLine" id="cb240-11" title="11"><span class="kw">polygon</span>(<span class="kw">c</span>( x[x<span class="op">&lt;=-</span>qc], <span class="op">-</span>qc),  <span class="kw">c</span>(y[x<span class="op">&lt;=-</span>qc],<span class="dv">0</span>), <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dt">red =</span> <span class="dv">0</span>, <span class="dt">green =</span> <span class="fl">0.2</span>, <span class="dt">blue =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>))</a></code></pre></div>
 <div class="figure"><span id="fig:r-power"></span>
-<img src="Labo_BIO4558_files/figure-html/r-power-1.svg" alt="Graphique de l'analyse de puissance dans R" width="672" />
+<img src="Labo_BIO4558_files/figure-html/r-power-1.svg" alt="Graphique de l'analyse de puissance dans R" width="672" class="plot" />
 <p class="caption">
 Figure 2.2: Graphique de l’analyse de puissance dans R
 </p>
@@ -429,7 +429,7 @@ Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliqu
 </div>
 
 <div class="figure"><span id="fig:gpower-2"></span>
-<img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
+<img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" class="plot" />
 <p class="caption">
 Figure 2.3: Analyse post-hoc avec une taille d’effet différente
 </p>
@@ -463,7 +463,7 @@ Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles
 </div>
 
 <div class="figure"><span id="fig:gpower-3"></span>
-<img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
+<img src="images/gpower_3.png" alt="Analyse à priori" width="100%" class="plot" />
 <p class="caption">
 Figure 2.4: Analyse à priori
 </p>
@@ -505,7 +505,7 @@ Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <stron
 </div>
 
 <div class="figure"><span id="fig:gpower-4"></span>
-<img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
+<img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" class="plot" />
 <p class="caption">
 Figure 2.5: Analyse de sensitivité
 </p>

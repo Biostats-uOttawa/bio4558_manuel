@@ -46,7 +46,7 @@ Le fichier `Mregdat.csv` contient des données de richesse spécifique de quatre
 
 Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
 
-```{r, fig.cap = "Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles", class.source = 'fold-hide'}
+```{r, fig.cap = "Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles"}
 mydata <- read.csv("data/Mregdat.csv")
 scatterplotMatrix(
   ~logherp + logarea + cpfor2 + thtden + swamp,

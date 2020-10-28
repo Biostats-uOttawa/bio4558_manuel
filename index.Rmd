@@ -8,7 +8,7 @@ documentclass: book
 #lot: yes
 #lof: yes
 fontsize: 12pt
-monofont: "Source Code Pro"
+#monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 description: "Manuel de laboratoire pour le cours BIO4558"
 github-repo: "JulienGAMartin/BIO4558_uOttawa_lab_manual"
@@ -16,7 +16,7 @@ cover-image: "images/missing.png"
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)#, warning = FALSE, message = FALSE)
-knitr::opts_chunk$set(out.extra = 'class="plot"')
+# knitr::opts_chunk$set(out.extra = 'class="plot"')
 #knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
 library(ggplot2)
 library(car)

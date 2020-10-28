@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -336,7 +336,7 @@ on voit ci-dessous, est:</p>
 <a class="sourceLine" id="cb256-7" title="7"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>rdwght)</a>
 <a class="sourceLine" id="cb256-8" title="8"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght),<span class="dt">ylab=</span><span class="st">&quot;log10(rdwgth)&quot;</span>)</a>
 <a class="sourceLine" id="cb256-9" title="9"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght))</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur-4hist-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-4hist-1.svg" width="672" class="plot" /></p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co">#redéfinie la zone de graphique par défaut</span></a></code></pre></div>
 <p>Il n’y a pas grand-chose à redire: aucune des distributions n’est
 parfaitement normale, mais les déviations semblent mineures.</p>
@@ -349,7 +349,7 @@ parfaitement normale, mais les déviations semblent mineures.</p>
 <a class="sourceLine" id="cb258-4" title="4">  <span class="dt">smooth=</span><span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="st">&#39;density&#39;</span>)</a></code></pre></div>
 <pre><code>## Warning in applyDefaults(diagonal, defaults = list(method =
 ## &quot;adaptiveDensity&quot;), : unnamed diag arguments, will be ignored</code></pre>
-<p><img src="Labo_BIO4558_files/figure-html/stur-scatmat-1.svg" width="672" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-scatmat-1.svg" width="672" class="plot" /></p>
 <ul>
 <li>Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées ) en utilisant la commande <code>cor()</code>.
 Avant de commencer, on va cependant ajouter les variables transformées au tableau de données sturgeon:</li>

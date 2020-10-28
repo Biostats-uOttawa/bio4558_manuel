@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -319,11 +319,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualiser-la-taille-deffet" class="section level2">
 <h2><span class="header-section-number">7.8</span> Visualiser la taille d’effet</h2>
 <p>Les coefficients de la régression multiple peuvent mesurer la taille d’effet, quoiqu’il puisse être nécessaire de les standardiser pour qu’ils ne soient pas influencés par les unités de mesure. Mais un graphique est souvent plus informatif. Dans ce contexte, les graphiques des résidus partiels (appelés components+residual plots dans R) sont particulièrement utiles. Ces graphique illustrent comment la variable dépendante, corrigée pour l’effet des autres variables dans le modèle, varie avec chacune des variables indépendantes du modèle. Voyons voir:</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1"><span class="co"># Evaluate visually linearity and effect size</span></a>
-<a class="sourceLine" id="cb541-2" title="2"><span class="co"># component + residual plot</span></a>
-<a class="sourceLine" id="cb541-3" title="3"><span class="kw">crPlots</span>(model.poly2)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-271"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-271-1.svg" alt="Graphiques de résidus partiels du modèle `model.poly2`" width="672" />
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1"><span class="co"># Evaluate visually linearity and effect size</span></a>
+<a class="sourceLine" id="cb540-2" title="2"><span class="co"># component + residual plot</span></a>
+<a class="sourceLine" id="cb540-3" title="3"><span class="kw">crPlots</span>(model.poly2)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-270"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-270-1.svg" alt="Graphiques de résidus partiels du modèle `model.poly2`" width="672" class="plot" />
 <p class="caption">
 Figure 7.6: Graphiques de résidus partiels du modèle <code>model.poly2</code>
 </p>
@@ -331,19 +331,19 @@ Figure 7.6: Graphiques de résidus partiels du modèle <code>model.poly2</code>
 <p>Notez que l’échelle de l’axe des y varie sur chaque graphique. Pour thtden, la variable dépendante (log10(richesse des herptiles)) varie d’environ 0.4 unités entre la valeur minimum et maximum de thtden. Pour logarea, la variation est d’environ 0.6 unité log. Pour swamp, l’interprétation est plus compliquée parce qu’il y a deux termes qui quantifient son effet, et que ces termes ont des signes opposés (positif pour swamp et négatif pour swamp^2) ce qui donne une relation curvilinéaire de type parabole. Le graphique ne permet pas de bien visualiser cela. Ceci dit, ces graphique n’indiquent pas vraiment de violation de linéarité.</p>
 <p>Pour illustrer ce qui serait visible sur ces graphiques si il y avait une déviation de linéarité, enlevons le terme du second degré pour swamp, puis on va refaire ces graphiques et effectuer le test RESET.</p>
 <div class="fold s">
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1">model.nopoly &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
-<a class="sourceLine" id="cb542-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp,</a>
-<a class="sourceLine" id="cb542-3" title="3">  <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb542-4" title="4"><span class="kw">crPlots</span>(model.nopoly)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-272"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-272-1.svg" alt="Graphiques de résidus partiels du modèle `model.nopoly`" width="672" />
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb541-1" title="1">model.nopoly &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
+<a class="sourceLine" id="cb541-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp,</a>
+<a class="sourceLine" id="cb541-3" title="3">  <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb541-4" title="4"><span class="kw">crPlots</span>(model.nopoly)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-271"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-271-1.svg" alt="Graphiques de résidus partiels du modèle `model.nopoly`" width="672" class="plot" />
 <p class="caption">
 Figure 7.7: Graphiques de résidus partiels du modèle <code>model.nopoly</code>
 </p>
 </div>
 </div>
 <p>La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:</p>
-<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1"><span class="kw">resettest</span>(model.nopoly, <span class="dt">type=</span><span class="st">&quot;regressor&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1"><span class="kw">resettest</span>(model.nopoly, <span class="dt">type=</span><span class="st">&quot;regressor&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ## 	RESET test
 ## 

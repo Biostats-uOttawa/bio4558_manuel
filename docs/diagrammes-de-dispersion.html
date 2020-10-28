@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -352,7 +352,7 @@ Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un
 <a class="sourceLine" id="cb254-9" title="9"></a>
 <a class="sourceLine" id="cb254-10" title="10">mygraph <span class="co"># display graph</span></a></code></pre></div>
 <div class="figure"><span id="fig:stur-2"></span>
-<img src="Labo_BIO4558_files/figure-html/stur-2-1.svg" alt="Graphique du poids en fonction de la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/stur-2-1.svg" alt="Graphique du poids en fonction de la longueur des esturgeons" width="672" class="plot" />
 <p class="caption">
 Figure 3.1: Graphique du poids en fonction de la longueur des esturgeons
 </p>
@@ -371,7 +371,7 @@ Malgré tout, il semble y avoir une forte corrélation entre les deux variables.
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" title="1"><span class="co"># apply log transformation on defined graph</span></a>
 <a class="sourceLine" id="cb255-2" title="2">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
 <div class="figure"><span id="fig:stur-log"></span>
-<img src="Labo_BIO4558_files/figure-html/stur-log-1.svg" alt="Graphique poids-longueur avec une échelle log" width="672" />
+<img src="Labo_BIO4558_files/figure-html/stur-log-1.svg" alt="Graphique poids-longueur avec une échelle log" width="672" class="plot" />
 <p class="caption">
 Figure 3.2: Graphique poids-longueur avec une échelle log
 </p>

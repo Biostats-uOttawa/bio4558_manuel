@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -350,7 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb324-20" title="20"><span class="co">#display graph, by location</span></a>
 <a class="sourceLine" id="cb324-21" title="21">mygraph<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>location)</a></code></pre></div>
 <div class="figure"><span id="fig:t-1"></span>
-<img src="Labo_BIO4558_files/figure-html/t-1-1.svg" alt="Distribution de la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/t-1-1.svg" alt="Distribution de la longueur des esturgeons" width="672" class="plot" />
 <p class="caption">
 Figure 4.1: Distribution de la longueur des esturgeons
 </p>
@@ -362,7 +362,7 @@ Figure 4.1: Distribution de la longueur des esturgeons
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data=</span>sturgeon, <span class="kw">aes</span>(<span class="dt">x=</span>location,</a>
 <a class="sourceLine" id="cb325-2" title="2"><span class="dt">y=</span>fklngth))<span class="op">+</span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:t-2"></span>
-<img src="Labo_BIO4558_files/figure-html/t-2-1.svg" alt="Boxplot de la longueur des esturgeons" width="672" />
+<img src="Labo_BIO4558_files/figure-html/t-2-1.svg" alt="Boxplot de la longueur des esturgeons" width="672" class="plot" />
 <p class="caption">
 Figure 4.2: Boxplot de la longueur des esturgeons
 </p>

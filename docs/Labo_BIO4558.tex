@@ -13,7 +13,6 @@
 \else % if luatex or xelatex
   \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
-    \setmonofont[Mapping=tex-ansi,Scale=0.7]{Source Code Pro}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -44,37 +43,37 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.33,0.33,0.33}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.61,0.61,0.61}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.14,0.14,0.14}{\textbf{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.06,0.06,0.06}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.27,0.27,0.27}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.43,0.43,0.43}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0,0,0}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.5,0.5,0.5}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textbf{\textit{#1}}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
@@ -109,10 +108,10 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage[bf,singlelinecheck=off]{caption}
-\usepackage{sourcecodepro}
+% \usepackage{sourcecodepro}
 %\usepackage{Alegreya}
 
-\setmainfont[UprightFeatures={SmallCapsFont=AlegreyaSC-Regular}]{Alegreya}
+% \setmainfont[UprightFeatures={SmallCapsFont=AlegreyaSC-Regular}]{Alegreya}
 
 \usepackage{framed,color}
 \definecolor{shadecolor}{RGB}{248,248,248}
@@ -222,7 +221,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{26-10-2020}
+\date{28-10-2020}
 
 \begin{document}
 \maketitle
@@ -5038,8 +5037,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.001673837  0.03345678
-## t2* 0.3408557 -0.001212873  0.02652056
+## t1* 1.1919926  0.003378843  0.03415922
+## t2* 0.3408557 -0.002599426  0.02695097
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5096,11 +5095,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.256 )   ( 1.124,  1.258 )  
+## 95%   ( 1.122,  1.256 )   ( 1.121,  1.258 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.126,  1.260 )   ( 1.118,  1.253 )  
+## 95%   ( 1.126,  1.263 )   ( 1.106,  1.248 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -5124,11 +5124,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2901,  0.3940 )   ( 0.2890,  0.3947 )  
+## 95%   ( 0.2906,  0.3963 )   ( 0.2891,  0.3971 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2870,  0.3927 )   ( 0.2926,  0.3981 )  
+## 95%   ( 0.2847,  0.3927 )   ( 0.2970,  0.4097 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5473,9 +5474,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 45.084391 -0.0002946074   0.4372303
-## t2* -1.714546 -0.0205259761   0.7725243
+##      original      bias    std. error
+## t1* 45.084391 -0.02192068   0.4277357
+## t2* -1.714546  0.05587674   0.7813470
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5508,7 +5509,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.197, -0.255 )  
+## 95%   (-3.285, -0.292 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5550,7 +5551,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000   0.0138 *
+## location1   0.8573 1583     0.06 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6269,18 +6270,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5951
+## Quantile = 2.5942
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2733   3.6477
-## m1965 - m1954 == 0  -5.5077  -9.9999  -1.0155
-## m1966 - m1954 == 0  -3.3127  -6.3449  -0.2805
-## m1965 - m1958 == 0  -5.6949 -10.4141  -0.9757
-## m1966 - m1958 == 0  -3.4999  -6.8593  -0.1406
-## m1966 - m1965 == 0   2.1950  -2.2198   6.6097
+## m1958 - m1954 == 0   0.1872  -3.2721   3.6465
+## m1965 - m1954 == 0  -5.5077  -9.9983  -1.0170
+## m1966 - m1954 == 0  -3.3127  -6.3439  -0.2815
+## m1965 - m1958 == 0  -5.6949 -10.4125  -0.9773
+## m1966 - m1958 == 0  -3.4999  -6.8581  -0.1417
+## m1966 - m1965 == 0   2.1950  -2.2183   6.6082
 \end{verbatim}
 
 \begin{Shaded}
@@ -6813,25 +6814,6 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(effects)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Registered S3 methods overwritten by 'lme4':
-##   method                          from
-##   cooks.distance.influence.merMod car 
-##   influence.merMod                car 
-##   dfbeta.influence.merMod         car 
-##   dfbetas.influence.merMod        car
-\end{verbatim}
-
-\begin{verbatim}
-## lattice theme set by effectsTheme()
-## See ?effectsTheme for details.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{allEffects}\NormalTok{(anova.model1)}
 \end{Highlighting}
 \end{Shaded}
@@ -7759,12 +7741,6 @@ Ce laboratoire nécessite:
   \end{itemize}
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(car)}
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{conseils-guxe9nuxe9raux}{%
 \section{Conseils généraux}\label{conseils-guxe9nuxe9raux}}
 
@@ -7783,8 +7759,8 @@ Il est important de réaliser que la maîtrise de la régression multiple ne s'a
   À moins que les variables indépendantes soient parfaitement orthogonales (c'est-à-dire qu'il n'y ait aucune corrélation entre elles et donc pas de multicolinéarité) les diverses approches de sélection des variables indépendantes peuvent mener à des modèles différents.
 \end{enumerate}
 
-\hypertarget{examen-pruxe9liminaire-des-donnuxe9es}{%
-\section{Examen préliminaire des données}\label{examen-pruxe9liminaire-des-donnuxe9es}}
+\hypertarget{premiuxe8res-ruxe9gressions-multiples}{%
+\section{Premières régressions multiples}\label{premiuxe8res-ruxe9gressions-multiples}}
 
 Le fichier \texttt{Mregdat.csv} contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont:
 
@@ -7831,8 +7807,8 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-249-1.pdf}
-\caption{\label{fig:unnamed-chunk-249}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-248-1.pdf}
+\caption{\label{fig:unnamed-chunk-248}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
 \end{figure}
 
 \begin{itemize}
@@ -7879,8 +7855,8 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-250-1.pdf}
-\caption{\label{fig:unnamed-chunk-250}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-249-1.pdf}
+\caption{\label{fig:unnamed-chunk-249}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
 \end{figure}
 
 Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n'explique cependant qu'environ le tiers de la variabilité (R 2 =0.355). L'analyse des résidus indique qu'il n'y a pas de problème avec la normalité , l'homoscédasticité, ni l'indépendance.
@@ -8289,8 +8265,8 @@ La régression requiert la linéarité de la relation entre les variables dépen
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-259-1.pdf}
-\caption{\label{fig:unnamed-chunk-259}Relation entre swamp et les résidus de la régression entre logherp et logarea}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-258-1.pdf}
+\caption{\label{fig:unnamed-chunk-258}Relation entre swamp et les résidus de la régression entre logherp et logarea}
 \end{figure}
 
 \begin{itemize}
@@ -8373,8 +8349,8 @@ Il devient évident que si on corrige la richesse spécifique pour la taille des
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-262-1.pdf}
-\caption{\label{fig:unnamed-chunk-262}Relation}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-261-1.pdf}
+\caption{\label{fig:unnamed-chunk-261}Relation}
 \end{figure}
 
 \begin{itemize}
@@ -8489,8 +8465,8 @@ Examinons donc les graphiques diagnostiques du modèle final:
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-266-1.pdf}
-\caption{\label{fig:unnamed-chunk-266}Conditions d'application du modèle \texttt{model.poly2}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-265-1.pdf}
+\caption{\label{fig:unnamed-chunk-265}Conditions d'application du modèle \texttt{model.poly2}}
 \end{figure}
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d'application:
@@ -8576,8 +8552,8 @@ Les coefficients de la régression multiple peuvent mesurer la taille d'effet, q
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-271-1.pdf}
-\caption{\label{fig:unnamed-chunk-271}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-270-1.pdf}
+\caption{\label{fig:unnamed-chunk-270}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
 \end{figure}
 
 Notez que l'échelle de l'axe des y varie sur chaque graphique. Pour thtden, la variable dépendante (log10(richesse des herptiles)) varie d'environ 0.4 unités entre la valeur minimum et maximum de thtden. Pour logarea, la variation est d'environ 0.6 unité log. Pour swamp, l'interprétation est plus compliquée parce qu'il y a deux termes qui quantifient son effet, et que ces termes ont des signes opposés (positif pour swamp et négatif pour swamp\^{}2) ce qui donne une relation curvilinéaire de type parabole. Le graphique ne permet pas de bien visualiser cela. Ceci dit, ces graphique n'indiquent pas vraiment de violation de linéarité.
@@ -8595,8 +8571,8 @@ Pour illustrer ce qui serait visible sur ces graphiques si il y avait une dévia
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-272-1.pdf}
-\caption{\label{fig:unnamed-chunk-272}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-271-1.pdf}
+\caption{\label{fig:unnamed-chunk-271}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
 \end{figure}
 
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
@@ -8952,15 +8928,6 @@ Le code qui suit, utilisant le package simpleboot, a été conçu pour être fac
 \CommentTok{# Set the number of bootstrap iterations}
 \NormalTok{nboot<-}\DecValTok{1000}
 \KeywordTok{library}\NormalTok{(simpleboot)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Simple Bootstrap Routines (1.1-7)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{# R is the number of bootstrap iterations}
 \CommentTok{# Setting rows to FALSE indicates resampling of residuals}
 \NormalTok{mysimpleboot <-}\StringTok{ }\KeywordTok{lm.boot}\NormalTok{(mymodel, }\DataTypeTok{R =}\NormalTok{ nboot, }\DataTypeTok{rows =} \OtherTok{FALSE}\NormalTok{)}
@@ -8995,8 +8962,8 @@ Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d'examin
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-286-1.pdf}
-\caption{\label{fig:unnamed-chunk-286}Distribution des estimé par bootstrap pour \texttt{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-285-1.pdf}
+\caption{\label{fig:unnamed-chunk-285}Distribution des estimé par bootstrap pour \texttt{logarea}}
 \end{figure}
 
 Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l'histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l'intervalle de confiance à 95\%. Ici l'IC ne contient pas 0, et donc on peut conclure que l'effet de logarea sur logherp est significativement positif.
@@ -9013,14 +8980,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.70814542 0.1337553 -0.046607391 0.01681898 -0.0003435191
-## 1%    -0.68212304 0.1379362 -0.045052437 0.01860564 -0.0003367800
-## 2.5%  -0.64186921 0.1562094 -0.041714351 0.02024018 -0.0003211452
-## 5%    -0.60064783 0.1644507 -0.039148400 0.02152327 -0.0003098770
-## 95%   -0.07374961 0.2789149 -0.011027049 0.03720617 -0.0001865236
-## 97.5% -0.02358722 0.2892516 -0.008534830 0.03833178 -0.0001777868
-## 99%    0.02431652 0.2974738 -0.005396965 0.04005049 -0.0001628431
-## 99.5%  0.05605318 0.3039372 -0.003104286 0.04146319 -0.0001473735
+## 0.5%  -0.75086570 0.1311371 -0.046868039 0.01649470 -0.0003458536
+## 1%    -0.71210411 0.1389175 -0.045115404 0.01790479 -0.0003419163
+## 2.5%  -0.66105336 0.1516295 -0.041725704 0.01922045 -0.0003277875
+## 5%    -0.62264640 0.1628994 -0.039523038 0.02099681 -0.0003199053
+## 95%   -0.06998117 0.2797279 -0.011818721 0.03839552 -0.0001787294
+## 97.5% -0.01460519 0.2908477 -0.009769974 0.03929290 -0.0001667462
+## 99%    0.02772175 0.3055182 -0.006704461 0.04102273 -0.0001544021
+## 99.5%  0.05855133 0.3098611 -0.003577491 0.04170067 -0.0001482091
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -9076,11 +9043,11 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1199,  0.3220 )  
+## 95%   ( 0.1200,  0.3247 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-290-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-289-1.pdf}
 
 Notez que l'intervalle BCa va de 0.12 à 0.32, alors que l'intervalle standard était de 0.16 à 0.29. L'intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
 
@@ -10447,8 +10414,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-1.pdf}
-\caption{\label{fig:unnamed-chunk-293-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-1.pdf}
+\caption{\label{fig:unnamed-chunk-292-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10460,8 +10427,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-2.pdf}
-\caption{\label{fig:unnamed-chunk-293-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-2.pdf}
+\caption{\label{fig:unnamed-chunk-292-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10473,8 +10440,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-3.pdf}
-\caption{\label{fig:unnamed-chunk-293-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-3.pdf}
+\caption{\label{fig:unnamed-chunk-292-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

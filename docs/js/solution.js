@@ -21,18 +21,19 @@ $(document).ready(function() {
 
     // add button to source code chunks
     if ( $(this).hasClass('s') ) {
-      $('pre.r', this).prepend("<div class=\"showopt\"><a href='#'></div>");
-      $('pre.r', this).children('code').attr('class', 'folded');
+      $('pre.r', this).prepend("<div class=\"showopt\"><a href='#'>le code</a></div>");
+      // $('pre.r', this).children('code').addClass('folded');
+      $('pre.r', this).children('code').hide();
     }
 
     // add button to output chunks
     if ( $(this).hasClass('o') ) {
-      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\"><a href='#'>la sortie R</div>");
+      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\"><a href='#'>la sortie R</a></div>");
       $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
 
       // add button to plots
       $(this).find('img').wrap('<pre class=\"plot\"></pre>');
-      $('pre.plot', this).prepend("<div class=\"showopt\"></div>");
+      $('pre.plot', this).prepend("<div class=\"showopt\"><a href='#'>le graph</a></div>");
       $('pre.plot', this).children('img').addClass('folded');
 
     }

@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
-<li class="chapter" data-level="7.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>7.3</b> Examen préliminaire des données</a></li>
+<li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
 <li class="chapter" data-level="7.4" data-path="régression-multiple-pas-à-pas-stepwise.html"><a href="régression-multiple-pas-à-pas-stepwise.html"><i class="fa fa-check"></i><b>7.4</b> Régression multiple pas-à-pas (stepwise)</a></li>
 <li class="chapter" data-level="7.5" data-path="détecter-la-multicolinéarité.html"><a href="détecter-la-multicolinéarité.html"><i class="fa fa-check"></i><b>7.5</b> Détecter la multicolinéarité</a></li>
 <li class="chapter" data-level="7.6" data-path="régression-polynomiale.html"><a href="régression-polynomiale.html"><i class="fa fa-check"></i><b>7.6</b> Régression polynomiale</a></li>
@@ -350,7 +350,7 @@ où <span class="math inline">\(b\)</span> est l’estimé de la pente, <span cl
 <span class="math display">\[ d = \frac{b}{s_b\sqrt{n-k-1}} = \frac{0.1}{0.02168\sqrt{74-1-1}}=0.54\]</span></p>
 <p>Armés de cette taille d’effet (une pente présumée de 0.1 et une variabilité autour de la régression similaire à la régression de fklngth vs age), aller à <strong>Tests: Means: One group: difference from constant</strong>, et entrez la valeur calculée de d, alpha, et l’effectif de l’échantillon pour calculer la puissance.</p>
 <div class="figure"><span id="fig:lm-pow-fig-1"></span>
-<img src="images/lm_pow_1.png" alt="Analyse de puissance pour N = 20 et pente = 0.1" width="100%" />
+<img src="images/lm_pow_1.png" alt="Analyse de puissance pour N = 20 et pente = 0.1" width="100%" class="plot" />
 <p class="caption">
 Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 </p>
@@ -374,7 +374,7 @@ Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 <h3><span class="header-section-number">3.9.2</span> Effectif requis pour atteindre une puissance désirée (test A-priori)</h3>
 <p>Pour estimer la taille d’échantillon (effectif) requis pour avoir une puissance de 99% de détecter un effet de l’âge si la pente est 0.1 (sur une échelle log-log ), avec alpha=0.05, on utilise la même valeur de d (0.54):</p>
 <div class="figure"><span id="fig:lm-pow-fig-2"></span>
-<img src="images/lm_pow_2.png" alt="Analyse à priori pour déterminer la taille d'échantillon pour une puissance de 0.99" width="100%" />
+<img src="images/lm_pow_2.png" alt="Analyse à priori pour déterminer la taille d'échantillon pour une puissance de 0.99" width="100%" class="plot" />
 <p class="caption">
 Figure 3.4: Analyse à priori pour déterminer la taille d’échantillon pour une puissance de 0.99
 </p>
