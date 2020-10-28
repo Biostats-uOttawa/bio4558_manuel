@@ -20,10 +20,6 @@ Ce laboratoire nécessite:
 * les fichiers de données
   * Mregdat.csv
 
-```{r}
-library(car)
-```
-
 ## Conseils généraux
 Les variables qui intéressent les biologistes sont généralement influencées par plusieurs facteurs, et une description exacte ou une prédiction de la variable dépendante requiert que plus d'une variable soit incluse dans le modèle. La régression multiple permet de quantifier l'effet de plusieurs variables continues sur la variable dépendante.
 
@@ -34,7 +30,7 @@ Il est important de réaliser que la maîtrise de la régression multiple ne s'a
 3. À moins que les variables indépendantes soient parfaitement orthogonales (c'est-à-dire qu'il n'y ait aucune corrélation entre elles et donc pas de multicolinéarité) les diverses approches de sélection des variables indépendantes peuvent mener à des modèles différents.
 
 
-## Examen préliminaire des données
+## Premières régressions multiples
 Le fichier `Mregdat.csv` contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont:
 
 * la richesse spécifique:
@@ -50,7 +46,7 @@ Le fichier `Mregdat.csv` contient des données de richesse spécifique de quatre
 
 Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
 
-```{r, fig.cap = "Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles"}
+```{r, fig.cap = "Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles", class.source = 'fold-hide'}
 mydata <- read.csv("data/Mregdat.csv")
 scatterplotMatrix(
   ~logherp + logarea + cpfor2 + thtden + swamp,
