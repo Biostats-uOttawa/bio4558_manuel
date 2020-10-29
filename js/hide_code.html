@@ -300,6 +300,16 @@ window.initializeCodeFolding = function(show) {
   var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan');
   rCodeBlocks.each(function() {
 
+    // if code block has been labeled with class `fold-show`, show the code on init!
+    var classList = $(this).attr('class').split(/\s+/);
+    for (var i = 0; i < classList.length; i++) {
+    if (classList[i] === 'fold-show') {
+        show = true;
+      }
+    if (classList[i] === 'fold-hide') {
+        show = false;
+      }
+    }
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
     if (show)
@@ -310,7 +320,7 @@ window.initializeCodeFolding = function(show) {
     $(this).detach().appendTo(div);
 
     // add a show code button right above
-    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeText = $('<span>' + (show ? 'Masquer' : 'Code') + '</span>');
     var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
     showCodeButton.append(showCodeText);
     showCodeButton
@@ -327,12 +337,23 @@ window.initializeCodeFolding = function(show) {
 
     div.before(buttonRow);
 
+    // hack: return show to false, otherwise all next codeBlocks will be shown!
+    for (var i = 0; i < classList.length; i++) {
+    if (classList[i] === 'fold-show') {
+        show = false;
+      }
+    if (classList[i] === 'fold-hide') {
+        show = true;
+      }
+    }
+
+
     // update state of button on show/hide
     div.on('hidden.bs.collapse', function () {
       showCodeText.text('Code');
     });
     div.on('show.bs.collapse', function () {
-      showCodeText.text('Hide');
+      showCodeText.text('Masquer');
     });
   });
 
@@ -715,11 +736,11 @@ fieldset[disabled] a.btn {
 
 </style>
 <script>
-var str = '<div class="btn-group pull-right" style="position: fixed; right: 50px; top: 10px; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" id="allCodeButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>';
+var str = '<div class="btn-group pull-right" style="position: fixed; right: 50px; top: 10px; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" id="allCodeButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 50px;"><li><a id="rmd-show-all-code" href="#">Afficher tout</a></li><li><a id="rmd-hide-all-code" href="#">Cacher tout</a></li></ul></div>';
 document.write(str);
 </script>
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("show" === "hide");
+  window.initializeCodeFolding("show" === "show");
 });
 </script>
