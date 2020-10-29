@@ -7,18 +7,19 @@ $(document).ready(function() {
 
     // add button to source code chunks
     if ( $(this).hasClass('s') ) {
-      $('pre.r', this).prepend("<div class=\"showopt\">Afficher le code R</div><br style=\"line-height:22px;\"/>");
-      $('pre.r', this).children('code').attr('class', 'folded');
+      $('pre.r', this).prepend("<div class=\"showopt\"><a href='#'>le code</a></div>");
+      // $('pre.r', this).children('code').addClass('folded');
+      $('pre.r', this).children('code').hide();
     }
 
     // add button to output chunks
     if ( $(this).hasClass('o') ) {
-      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\">Afficher la sortie R</div><br style=\"line-height:22px;\"/>");
+      $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\"><a href='#'>la sortie R</a></div>");
       $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
 
       // add button to plots
       $(this).find('img').wrap('<pre class=\"plot\"></pre>');
-      $('pre.plot', this).prepend("<div class=\"showopt\">Afficher le graphqiue</div><br style=\"line-height:22px;\"/>");
+      $('pre.plot', this).prepend("<div class=\"showopt\"><a href='#'>le graph</a></div>");
       $('pre.plot', this).children('img').addClass('folded');
 
     }
@@ -30,11 +31,7 @@ $(document).ready(function() {
   // function to toggle the visibility
   $('.showopt').click(function() {
     var label = $(this).html();
-    if (label.indexOf("Show") >= 0) {
-      $(this).html(label.replace("Afficher", "Cacher"));
-    } else {
-      $(this).html(label.replace("Afficher", "Cacher"));
-    }
     $(this).siblings('code, img').slideToggle('fast', 'swing');
+    $(this).toggleClass("shown");
   });
 });
