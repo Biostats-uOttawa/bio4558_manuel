@@ -344,32 +344,11 @@ sturgeon$dummy <- ifelse(sturgeon$sex == "MALE", 1, 0)
 
 ### Exercice sur R
 
-Vous trouverez dans le fichier `salmonella.csv`, des valeurs numériques du ratio d'infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
+Vous trouverez dans le fichier `salmonella.csv`, des valeurs numériques du ratio d'infection des cellules par la salmonelle dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
 Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.
 
 
-```{r intror-exer, echo = FALSE, warning = FALSE, message =  FALSE}
-salmonella <- read.csv("data/salmonella.csv")
-mygraph <- ggplot(subset(salmonella, souche == "SAUVAGE"), aes(x = ratio))
-mygraph <- mygraph +
-  geom_density() +
-  geom_rug() +
-  geom_histogram(aes(y = ..density..),
-                 bins = 30,
-                 color = "black",
-                 alpha = 0.3) +
-  stat_function(fun = dnorm,
-                args = list(
-                  mean = mean(subset(salmonella, souche == "SAUVAGE")$ratio),
-                  sd = sd(subset(salmonella, souche == "SAUVAGE")$ratio)
-                ),
-                color = "red")
-mygraph
-```
-
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+```{r intror-exer, warning = FALSE, message = FALSE, echo = params$echo_sol, class.source = "exer", fig.cap = "Distibution des ratios d'infections par la souche sauvage de salmonelle"}
 ## Charger les données
 salmonella <- read.csv("data/salmonella.csv")
 
@@ -396,5 +375,3 @@ mygraph <- mygraph +
 ## faire le graphique
 mygraph
 ```
-</div>
-\fi

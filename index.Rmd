@@ -13,6 +13,8 @@ monofontoptions: "Scale=0.7"
 description: "Manuel de laboratoire pour le cours BIO4558"
 github-repo: "JulienGAMartin/BIO4558_uOttawa_lab_manual"
 cover-image: "images/missing.png"
+params:
+  echo_sol: true
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)#, warning = FALSE, message = FALSE)

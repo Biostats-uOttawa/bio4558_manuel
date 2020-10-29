@@ -438,9 +438,8 @@ mosaicplot(tab, shade=TRUE)
 ```
 
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 library(questionr)
 data(hdv2003)
 tab <- table(hdv2003$qualif, hdv2003$clso)
@@ -449,33 +448,28 @@ tab <- table(hdv2003$qualif, hdv2003$clso)
 ## les pourcentages lignes
 lprop(tab)
 ```
-</div>
-\fi
+
+
 
 <!--
 Faire un test du χ². Peut-on rejeter l'hypothèse d'indépendance ?
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
-chisq.test(tab)
 
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
+chisq.test(tab)
+```
 ## On peut rejeter l'hypothèse d'indépendance au seuil de 0.05,
 ## et même au seuil de 0.001
-```
-</div>
-\fi
 -->
 
 Représenter ce tableau croisé sous la forme d'un `mosaicplot` en colorant les cases selon les résidus du test du χ².
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 mosaicplot(tab, shade = TRUE)
 ```
-</div>
-\fi
+
+
 
 
 
@@ -483,54 +477,40 @@ mosaicplot(tab, shade = TRUE)
 
 Toujours sur le jeu de données `hdv2003`, faire le boxplot qui croise le nombre d'heures passées devant la télévision (variable `heures.tv`) avec le statut d'occupation (variable `occup`).
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 boxplot(hdv2003$heures.tv ~ hdv2003$occup)
 ```
-</div>
-\fi
+
+
 
 
 
 Calculer la durée moyenne devant la télévision en fonction du statut d'occupation à l'aide de `tapply`.
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 tapply(hdv2003$heures.tv, hdv2003$occup, mean, na.rm = TRUE)
 
 ```
-</div>
-\fi
-
-
-
 
 **Exercice 3**
 
 Sur le jeu de données `rp2012`, représenter le nuage de points croisant le pourcentage de personnes sans diplôme (variable `dipl_aucun`) et le pourcentage de propriétaires (variable `proprio`).
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 library(questionr)
 data(rp2012)
 plot(rp2012$dipl_aucun, rp2012$proprio)
 ## ou
 plot(proprio ~ dipl_aucun, data = rp2012)
 ```
-</div>
-\fi
 
 <!--
 Calculer le coefficient de corrélation linéaire correspondant.
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 cor(rp2012$dipl_aucun, rp2012$proprio)
 ```
-</div>
-\fi
 -->

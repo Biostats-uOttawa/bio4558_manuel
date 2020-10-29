@@ -435,9 +435,8 @@ Créer un nouveau script qui effectue les actions suivantes :
 
 
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 library(questionr)
 
 data(hdv2003)
@@ -446,8 +445,8 @@ df <- hdv2003
 dim(df)
 names(df)
 ```
-</div>
-\fi
+
+
 
 
 
@@ -456,16 +455,15 @@ names(df)
 On souhaite étudier la répartition du temps passé devant la télévision par les enquêtés (variable `heures.tv`). Pour cela, affichez les principaux indicateurs de cette variable : valeur minimale, maximale, moyenne, médiane et écart-type. Représentez ensuite sa distribution par un histogramme en 10 classes.
 
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 summary(df$heures.tv)
 sd(df$heures.tv)
 
 hist(df$heures.tv, breaks = 10)
 ```
-</div>
-\fi
+
+
 
 
 
@@ -475,13 +473,12 @@ hist(df$heures.tv, breaks = 10)
 On s'intéresse maintenant à l'importance accordée par les enquêtés à leur travail (variable `trav.imp`). Faites un tri à plat des effectifs des modalités de cette variable avec la commande `table`.
 
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 table(df$trav.imp)
 ```
-</div>
-\fi
+
+
 
 
 
@@ -489,13 +486,12 @@ table(df$trav.imp)
 Faites un tri à plat affichant à la fois les effectifs et les pourcentages de chaque modalité. Y'a-t-il des valeurs manquantes ?
 
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 freq(df$trav.imp)
 ```
-</div>
-\fi
+
+
 
 
 
@@ -504,32 +500,25 @@ Représentez graphiquement les effectifs des modalités à l'aide d'un graphique
 
 
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 tab <- sort(table(df$trav.imp))
 barplot(tab)
 ```
-</div>
-\fi
+
+
 
 
 Utilisez l'argument `col` de la fonction `barplot` pour modifier la couleur du graphique en
 `tomato`.
 
-\iffalse
-<div class="exer">
-```{r eval=FALSE}
+
+```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 barplot(tab, col = "tomato")
 ```
-</div>
-\fi
-
 
 Tapez `colors()` dans la console pour afficher l'ensemble des noms de couleurs disponibles dans R. Testez chaque couleur une à une pour trouver votre couleur préférée.
 
-\iffalse
-<div class="exer">
+```{block2, echo = params$echo_sol, type = "exer"}
 C'est une blague, hein ! Cela dit `moccasin` ou `palevioletred` sont pas mal, si vous voulez essayer :-)
-</div>
-\fi
+```

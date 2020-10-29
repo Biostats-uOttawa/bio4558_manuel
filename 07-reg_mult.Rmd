@@ -70,12 +70,10 @@ Il semble donc y avoir une relation positive entre la richesse spécifique des r
 
 -  Faites ensuite la régression de `logherp` en fonction de `cpfor2` . Que concluez-vous?
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.logcp <- lm(logherp ~ cpfor2, data = mydata)
 summary(model.logcp)
 ```
-</div>
 
 
 Ici, on doit accepter l’hypothèse nulle et conclure qu’il n’y a pas de relation entre la richesse spécifique dans les marais (`logherp`) et la proportion de forêts sur les terres adjacentes (`cpfor2`). Qu’est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?
@@ -83,24 +81,19 @@ Ici, on doit accepter l’hypothèse nulle et conclure qu’il n’y a pas de re
 -  Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?
 
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.mcp <- lm(logherp ~ logarea + cpfor2, data = mydata)
 summary(model.mcp)
 ```
-</div>
-
 
 On voit donc qu’on peut rejeter les 2 hypothèses nulles que la pente de la régression de `logherp` sur `logarea` est zéro et que la pente de la régression de `logherp` sur `cpfor2` est zéro. Pourquoi `cpfor2` devient-il un facteur significatif dans la régression multiple alors qu’il n’est pas significatif dans la régression simple? Parce qu’il est parfois nécessaire de contrôler pour l’effet d’une variable pour pouvoir détecter les effets plus subtils d’autres variables. Ici, il y a une relation significative entre `logherp` et `logarea` qui masque l’effet de `cpfor2` sur `logherp` . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l’effet de `cpfor2` .
 
 -  Ajustez un autre modèle, cette fois en remplaçant `cpfor2` par `thtden` ( logherp ~ logarea + thtden ). Que concluez-vous?
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.mden <- lm(logherp ~ logarea + thtden, data = mydata)
 summary(model.mden)
 ```
-</div>
 
 On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (`logarea`) ni par la densité des routes (`thtden`). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( `cpfor2` ; résultat de la dernière régression).
 
@@ -110,12 +103,10 @@ La richesse spécifique des reptiles et amphibiens semble donc reliée à la sur
 
 -  Estimez un modèle de régression avec `logherp` comme variable dépendante et `logarea` , `cpfor2` et `thtden` comme variables indépendantes. Que concluez-vous?
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.mtri <- lm(logherp ~ logarea + cpfor2 + thtden, data = mydata)
 summary(model.mtri)
 ```
-</div>
 
 Plusieurs choses sont à noter ici:
 1. Tel que prédit, le coefficient de régression pour `cpfor2` n’est plus significativement différent de 0. Une fois que la variabilité attribuable à `logarea` et `thtden` est enlevée, il ne reste qu’une fraction nonsignificative de la variabilité attribuable à `cpfor2` .
@@ -131,7 +122,8 @@ anova(model.mtri, model.mden)
 
 Cette comparaison révèle que le modèle à 3 variables ne fait pas de prédictions significativement meilleures que le modèle avec seulement Logarea et thtden . Ce résultat n’est pas surprenant puisque le test de signification pour cpfor2 dans le modèle complet indique qu’il faut accepter l’hypothèse nulle.
 
-À la suite de cette analyse, on doit conclure que :
+À la suite de cette analyse, on doit conclure que:
+
 1. Le meilleur modèle est celui incluant thtden et logarea .
 2. Il y a une relation négative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes.
 3. Il y a une relation positive entre la richesse spécifique et la taille des marais.
@@ -152,7 +144,8 @@ step.mtri <- stepAIC(model.mtri, direction="both")
 step.mtri$anova # display results
 ```
 
-R nous donne::
+R nous donne:
+
 1. L’ajustement (mesuré par AIC) du modèle complet en premier lieu.
 2. L’AIC des modèles dans lesquels une variable a été enlevée du modèle complet. Notez que c’est seulement en enlevant cpfor2 du modèle qu’on peut réduire l’AIC
 3. La valeur de AIC pour les modèles auxquels on enlève ou on ajoute une variable au modèle sélectionné à la première étape.(i.e. logherp ~ logarea + thtden). Notez qu’aucun des modèles n’a un AIC inférieur à ce modèle.
@@ -210,8 +203,7 @@ La régression requiert la linéarité de la relation entre les variables dépen
 
 -  Faites un diagramme de dispersion des résidus (residual) de la régression `logherp ~ logarea` en fonction de swamp .
 
-<div class="fold s">
-```{r, fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
+```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
 #problème avec les données de manquantes dans logherp
 mysub <- subset(mydata, !is.na(logherp))
 # ajouter les résidus dans les donnée
@@ -219,61 +211,49 @@ mysub$resloga <- residuals(model.loga)
 ggplot(data = mysub, aes(y = resloga, x = swamp)) +
 geom_point() + geom_smooth()
 ```
-</div>
 
 -  L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
 
-<div class="fold s">
-```{r, fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
+```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
 model.resloga <- lm(resloga ~swamp, mysub)
 summary(model.resloga)
 ```
-</div>
-
 
 En deux mots, l’ajustement est épouvantable! Malgré le fait que le graphique suggère une relation très forte entre les deux variables. Cependant, cette relation n’est pas linéaire... (ce qui est également apparent si vous examinez les résidus du modèle linéaire).
 
--  Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter $swamp^2$ . L’expression devrait apparaître comme: `Y ~ X + I(X^2) . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
+-  Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter $swamp^2$ . L’expression devrait apparaître comme: $Y ~ X + I(X^2)$ . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.resloga2 <- lm(resloga ~ swamp + I(swamp^2), mysub)
 summary(model.resloga2)
 ```
-</div>
 
 Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp , selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.
 
-<div class="fold s">
-```{r, fig.cap = "Relation "}
+```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation "}
 par(mfrow = c(2, 2))
 plot(model.resloga2)
 ```
-</div>
 
 -  En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d'après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.
 
 Suite à ces analyses, il semble opportun d’essayer d’ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp^2 :
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.poly1 <- lm(
   logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2),
   data = mydata)
 summary(model.poly1)
 ```
-</div>
 
 Les résultats de cette analyse suggèrent qu’on devrait probablement exclure `cpfor2` du modèle:
 
-<div class="fold s">
-```{r}
+```{r, echo = params$echo_sol, class.source = "exer"}
 model.poly2 <- lm(
   logherp ~ logarea + thtden + swamp + I(swamp^2),
   data = mydata)
 summary(model.poly2)
 ```
-</div>
 
 Est-ce qu’il y a possiblement un problème de multicolinéarité?
 
@@ -289,13 +269,10 @@ Les valeurs d’inflation de la variance (VIF) pour les deux termes de swamp son
 Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.
 
 Examinons donc les graphiques diagnostiques du modèle final:
-<div class="fold s">
-```{r, fig.cap = "Conditions d'application du modèle `model.poly2`"}
+```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Conditions d'application du modèle `model.poly2`"}
 par(mfrow = c(2,2))
 plot(model.poly2)
 ```
-</div>
-
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:
 
@@ -336,14 +313,12 @@ Notez que l’échelle de l’axe des y varie sur chaque graphique. Pour thtden,
 Pour illustrer ce qui serait visible sur ces graphiques si il y avait une déviation de linéarité, enlevons le terme du second degré pour swamp, puis on va refaire ces graphiques et effectuer le test RESET.
 
 
-<div class="fold s">
-```{r, fig.cap = "Graphiques de résidus partiels du modèle `model.nopoly`"}
+```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Graphiques de résidus partiels du modèle `model.nopoly`"}
 model.nopoly <- lm(
   logherp ~ logarea + thtden + swamp,
   data = mydata)
 crPlots(model.nopoly)
 ```
-</div>
 
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
 
@@ -366,16 +341,8 @@ Notez les coefficients manquants aux dernières lignes: on ne peut inclure les 3
 
 Si on essaie une méthode automatique pour identifier le "meilleur" modèle dans ce gâchis, R refuse:
 
-```{r error-on07, echo = FALSE}
-knitr::opts_chunk$set(error = TRUE)
-```
-
-```{r}
+```{r, error = TRUE}
 step(fullmodel.withinteractions)
-```
-
-```{r error-off07, echo = FALSE}
-knitr::opts_chunk$set(error = FALSE)
 ```
 
 Bon, est-ce qu’on oublie tout ça et qu’on accepte le modèle final sans ce soucier des interactions? Non, pas encore. Il y a un compromis possible: comparer notre modèle "final" à un modèle qui contient au moins un sous-ensemble des interactions, par exemple toutes les interactions du second degré, pour éprouver si l’addition de ces interactions améliore beaucoup l’ajustement du modèle.
@@ -486,7 +453,7 @@ myresults <- sapply(mysimpleboot$boot.list, function (x) x$coef)
 tmyresults<-t(myresults)
 ```
 
-Vous pouvez ensuite faire des graphiques pour voir les résultats.
+Vous pouvez ensuite faire des graphiques pour voir les résultats. Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d’examiner la distribution pour chaque coefficient du modèle sur des graphiques:
 ```{r, eval = FALSE}
 # Plot histograms of bootstrapped coefficients
 ncoefs <- length(data.frame(tmyresults))
@@ -502,9 +469,6 @@ for (i in 1 : ncoefs) {
   abline(v=mymodel$coef[i], col = "red")
 }
 ```
-
-Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d’examiner la distribution pour chaque coefficient du modèle sur des graphiques:
-
 
 ```{r, echo = FALSE, fig.cap = "Distribution des estimé par bootstrap pour `logarea`"}
 i <- 2

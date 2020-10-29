@@ -4,7 +4,7 @@ bookdown::gitbook:
   split_by: section
   scroll_highlight: yes
   includes:
-    # in_header: js/hide_code.html
+    #in_header: js/hide_code.html
     after_body: js/js_solution.html
   config:
     toc:
