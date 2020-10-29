@@ -25,6 +25,9 @@ library(boot)
 library(lmPerm)
 library(multcomp)
 library(questionr)
+library(simpleboot)
+library(svglite)
+library(pwr)
 #svglite
 ```
 # Note {-}
