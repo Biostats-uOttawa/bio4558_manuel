@@ -221,7 +221,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{28-10-2020}
+\date{29-10-2020}
 
 \begin{document}
 \maketitle
@@ -1239,15 +1239,11 @@ Construire le vecteur \texttt{x} suivant~:
 ## [1] 120 134 256  12
 \end{verbatim}
 
-\iffalse
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{120}\NormalTok{, }\DecValTok{134}\NormalTok{, }\DecValTok{256}\NormalTok{, }\DecValTok{12}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\fi
 
 Utiliser ce vecteur \texttt{x} pour générer les deux vecteurs suivants~:
 
@@ -1258,17 +1254,6 @@ Utiliser ce vecteur \texttt{x} pour générer les deux vecteurs suivants~:
 \begin{verbatim}
 ## [1] 240 268 512  24
 \end{verbatim}
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{100}
-\NormalTok{x }\OperatorTok{*}\StringTok{ }\DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \textbf{Exercice 2}
 
@@ -1284,17 +1269,6 @@ On a demandé à 4 ménages le revenu des deux conjoints, et le nombre de person
 
 Calculer le revenu total de chaque ménage, puis diviser par le nombre de personnes pour obtenir le revenu par personne de chaque ménage.
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{revenu_total <-}\StringTok{ }\NormalTok{conjoint1 }\OperatorTok{+}\StringTok{ }\NormalTok{conjoint2}
-\NormalTok{revenu_total }\OperatorTok{/}\StringTok{ }\NormalTok{nb_personnes}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 \textbf{Exercice 3}
 
 Dans l'exercice précédent, calculer le revenu minimum et maximum parmi ceux du premier conjoint.
@@ -1305,16 +1279,6 @@ Dans l'exercice précédent, calculer le revenu minimum et maximum parmi ceux du
 \end{Highlighting}
 \end{Shaded}
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{range}\NormalTok{(conjoint1)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 Recommencer avec les revenus suivants, parmi lesquels l'un des enquetés n'a pas voulu répondre~:
 
 \begin{Shaded}
@@ -1322,16 +1286,6 @@ Recommencer avec les revenus suivants, parmi lesquels l'un des enquetés n'a pas
 \NormalTok{conjoint1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1200}\NormalTok{, }\DecValTok{1180}\NormalTok{, }\DecValTok{1750}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{range}\NormalTok{(conjoint1, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \textbf{Exercice 4}
 
@@ -1347,17 +1301,6 @@ Les deux vecteurs suivants représentent les précipitations (en mm) et la temp�
 Calculer la température moyenne sur l'année.
 
 Calculer la quantité totale de précipitations sur l'année.
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(temperature)}
-\KeywordTok{sum}\NormalTok{(precipitations)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 À quoi correspond et comment peut-on interpréter le résultat de la fonction suivante~? Vous pouvez vous aider de la page d'aide de la fonction si nécessaire.
 
@@ -1383,14 +1326,6 @@ Même question pour :
 ##  [1]  1.4  3.6  3.0  4.4  3.6  2.8 -0.6 -4.0 -4.2 -5.8 -3.2
 \end{verbatim}
 
-\iffalse
-
-\texttt{cumsum(precipitations)} correspond à la somme cumulée des précipitations sur l'année. Par exemple, la 6e valeur du vecteur résultat correspond au total de précipitations de janvier à juin.
-
-\texttt{diff(temperature)} correspond à la différence de température d'un mois sur l'autre. Par exemple, la 2e valeur de ce vecteur correspond à l'écart de température entre le mois de février et le mois de janvier.
-
-\fi
-
 \textbf{Exercice 5}
 
 On a relevé les notes en maths, anglais et sport d'une classe de 6 élèves et on a stocké ces données dans trois vecteurs :
@@ -1406,17 +1341,6 @@ On a relevé les notes en maths, anglais et sport d'une classe de 6 élèves et 
 Calculer la moyenne des élèves de la classe en anglais.
 
 Calculer la moyenne générale de chaque élève.
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mean}\NormalTok{(anglais)}
-\NormalTok{(maths }\OperatorTok{+}\StringTok{ }\NormalTok{anglais }\OperatorTok{+}\StringTok{ }\NormalTok{sport) }\OperatorTok{/}\StringTok{ }\DecValTok{3}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vous aider de la page d'aide de ces fonctions) :
 
@@ -1439,12 +1363,6 @@ Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vou
 \begin{verbatim}
 ## [1] 18 16 14 18 17 12
 \end{verbatim}
-
-\iffalse
-
-\texttt{pmin} et \texttt{pmax} renvoient les minimum et maximum ``parallèles'' des trois vecteurs passés en argument. Ainsi, \texttt{pmin} renvoie pour chaque élève la note minimale dans les trois matières, et \texttt{pmax} la note maximale.
-
-\fi
 
 \hypertarget{premier-travail-avec-des-donnuxe9es}{%
 \section{Premier travail avec des données}\label{premier-travail-avec-des-donnuxe9es}}
@@ -1491,7 +1409,7 @@ Nous devons ensuite indiquer à R que nous souhaitons accéder au jeu de donnée
 Cette commande ne renvoie aucun résultat particulier (sauf en cas d'erreur), mais vous devriez voir apparaître dans l'onglet \emph{Environment} de RStudio un nouvel objet nommé \texttt{hdv2003}~:
 
 \begin{figure}
-\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_environment} \caption{Onglet Environment}\label{fig:unnamed-chunk-71}
+\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_environment} \caption{Onglet Environment}\label{fig:unnamed-chunk-74}
 \end{figure}
 
 Cet objet est d'un type nouveau~: il s'agit d'un tableau de données.
@@ -1514,7 +1432,7 @@ R va, comme à son habitude, nous l'afficher dans la console, ce qui est tout sa
 Une autre manière d'afficher le contenu du tableau est de cliquer sur l'icône en forme de tableau à droite du nom de l'objet dans l'onglet \emph{Environment}~:
 
 \begin{figure}
-\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_view_icon} \caption{Icone view}\label{fig:unnamed-chunk-73}
+\includegraphics[width=0.75\linewidth]{images/screenshots/rstudio_view_icon} \caption{Icone view}\label{fig:unnamed-chunk-76}
 \end{figure}
 
 Ou d'utiliser la fonction \texttt{View}~:
@@ -1528,7 +1446,7 @@ Ou d'utiliser la fonction \texttt{View}~:
 Dans les deux cas votre tableau devrait s'afficher dans RStudio avec une interface de type tableur~:
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/screenshots/rstudio_view} \caption{Interface View}\label{fig:unnamed-chunk-75}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_view} \caption{Interface View}\label{fig:unnamed-chunk-78}
 \end{figure}
 
 Il est important de comprendre que l'objet \texttt{hdv2003} contient \emph{l'intégralité} des données du tableau.
@@ -1649,7 +1567,7 @@ Enfin, la fonction \texttt{str} renvoie un descriptif plus détaillé de la stru
 Sous RStudio, on peut afficher à tout moment la structure d'un objet en cliquant sur l'icône de triangle sur fond bleu à gauche du nom de l'objet dans l'onglet \emph{Environment}~:
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{images/screenshots/rstudio_environment_str} \caption{Structure d'un objet}\label{fig:unnamed-chunk-84}
+\includegraphics[width=1\linewidth]{images/screenshots/rstudio_environment_str} \caption{Structure d'un objet}\label{fig:unnamed-chunk-87}
 \end{figure}
 
 \hypertarget{accuxe9der-aux-variables-dun-tableau}{%
@@ -1934,8 +1852,8 @@ La représentation la plus courante est sans doute l'histogramme. On peut l'obte
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-101-1.pdf}
-\caption{\label{fig:unnamed-chunk-101}Histogramme de l'age par défaut}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-104-1.pdf}
+\caption{\label{fig:unnamed-chunk-104}Histogramme de l'age par défaut}
 \end{figure}
 
 Cette fonction n'a pas pour effet direct d'effectuer un calcul ou de nous renvoyer un résultat~: elle génère un graphique qui va s'afficher dans l'onglet \emph{Plots} de RStudio.
@@ -1950,8 +1868,8 @@ On peut personnaliser l'apparence de l'histogramme en ajoutant des arguments sup
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-102-1.pdf}
-\caption{\label{fig:unnamed-chunk-102}Histogramme de l'age avec 10 classes}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-105-1.pdf}
+\caption{\label{fig:unnamed-chunk-105}Histogramme de l'age avec 10 classes}
 \end{figure}
 
 \begin{Shaded}
@@ -1962,8 +1880,8 @@ On peut personnaliser l'apparence de l'histogramme en ajoutant des arguments sup
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-103-1.pdf}
-\caption{\label{fig:unnamed-chunk-103}Histogramme de l'age avec 70 classes}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-106-1.pdf}
+\caption{\label{fig:unnamed-chunk-106}Histogramme de l'age avec 70 classes}
 \end{figure}
 
 Le choix d'un ``bon'' nombre de classes pour un histogramme n'est pas un problème simple~: si on a trop peu de classes, on risque d'effacer quasiment toutes les variations, et si on en a trop on risque d'avoir trop de détails et de masquer les grandes tendances.
@@ -1981,8 +1899,8 @@ Les arguments de \texttt{hist} permettent également de modifier la présentatio
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-104-1.pdf}
-\caption{\label{fig:unnamed-chunk-104}Histogramme modifié}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-107-1.pdf}
+\caption{\label{fig:unnamed-chunk-107}Histogramme modifié}
 \end{figure}
 
 La fonction \texttt{hist} fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques
@@ -2148,8 +2066,8 @@ On peut représenter graphiquement le tri à plat d'une variable qualitative ave
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-115-1.pdf}
-\caption{\label{fig:unnamed-chunk-115}Graphique en barre}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-118-1.pdf}
+\caption{\label{fig:unnamed-chunk-118}Graphique en barre}
 \end{figure}
 
 On peut aussi trier le tri à plat avec la fonction \texttt{sort} avant de le représenter graphiquement, ce qui peut faciliter la lecture du graphique~:
@@ -2162,8 +2080,8 @@ On peut aussi trier le tri à plat avec la fonction \texttt{sort} avant de le re
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-116-1.pdf}
-\caption{\label{fig:unnamed-chunk-116}Graphique en barre trié}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-119-1.pdf}
+\caption{\label{fig:unnamed-chunk-119}Graphique en barre trié}
 \end{figure}
 
 Une alternative au graphique en barres est le \emph{diagramme de Cleveland}, qu'on peut obtenir avec la fonction \texttt{dotchart}. Celle-ci s'applique elle aussi au tri à plat de la variable calculé avec \texttt{table}.
@@ -2174,7 +2092,7 @@ Une alternative au graphique en barres est le \emph{diagramme de Cleveland}, qu'
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-117-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-120-1.pdf}
 Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter~:
 
 \begin{Shaded}
@@ -2185,8 +2103,8 @@ Là aussi, pour améliorer la lisibilité du graphique il est préférable de tr
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-118-1.pdf}
-\caption{\label{fig:unnamed-chunk-118}Graphique de Cleveland trié}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-121-1.pdf}
+\caption{\label{fig:unnamed-chunk-121}Graphique de Cleveland trié}
 \end{figure}
 
 \hypertarget{ex-introR-univ}{%
@@ -2208,98 +2126,22 @@ Créer un nouveau script qui effectue les actions suivantes~:
   afficher les dimensions et la liste des variables de \texttt{df}
 \end{itemize}
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(questionr)}
-
-\KeywordTok{data}\NormalTok{(hdv2003)}
-\NormalTok{df <-}\StringTok{ }\NormalTok{hdv2003}
-
-\KeywordTok{dim}\NormalTok{(df)}
-\KeywordTok{names}\NormalTok{(df)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 \textbf{Exercice 2}
 
 On souhaite étudier la répartition du temps passé devant la télévision par les enquêtés (variable \texttt{heures.tv}). Pour cela, affichez les principaux indicateurs de cette variable~: valeur minimale, maximale, moyenne, médiane et écart-type. Représentez ensuite sa distribution par un histogramme en 10 classes.
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{heures.tv)}
-\KeywordTok{sd}\NormalTok{(df}\OperatorTok{$}\NormalTok{heures.tv)}
-
-\KeywordTok{hist}\NormalTok{(df}\OperatorTok{$}\NormalTok{heures.tv, }\DataTypeTok{breaks =} \DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \textbf{Exercice 3}
 
 On s'intéresse maintenant à l'importance accordée par les enquêtés à leur travail (variable \texttt{trav.imp}). Faites un tri à plat des effectifs des modalités de cette variable avec la commande \texttt{table}.
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{trav.imp)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 Faites un tri à plat affichant à la fois les effectifs et les pourcentages de chaque modalité. Y'a-t-il des valeurs manquantes ?
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{freq}\NormalTok{(df}\OperatorTok{$}\NormalTok{trav.imp)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 Représentez graphiquement les effectifs des modalités à l'aide d'un graphique en barres.
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{tab <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{table}\NormalTok{(df}\OperatorTok{$}\NormalTok{trav.imp))}
-\KeywordTok{barplot}\NormalTok{(tab)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 Utilisez l'argument \texttt{col} de la fonction \texttt{barplot} pour modifier la couleur du graphique en
 \texttt{tomato}.
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{barplot}\NormalTok{(tab, }\DataTypeTok{col =} \StringTok{"tomato"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 Tapez \texttt{colors()} dans la console pour afficher l'ensemble des noms de couleurs disponibles dans R. Testez chaque couleur une à une pour trouver votre couleur préférée.
-
-\iffalse
-
-C'est une blague, hein~! Cela dit \texttt{moccasin} ou \texttt{palevioletred} sont pas mal, si vous voulez essayer :-)
-
-\fi
 
 \hypertarget{analyse-de-2-variables}{%
 \section{Analyse de 2 variables}\label{analyse-de-2-variables}}
@@ -2428,8 +2270,8 @@ Il est possible de faire une représentation graphique d'un tableau croisé, par
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-132-1.pdf}
-\caption{\label{fig:unnamed-chunk-132}Graphique mosaique}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-136-1.pdf}
+\caption{\label{fig:unnamed-chunk-136}Graphique mosaique}
 \end{figure}
 
 On peut améliorer ce graphique en colorant les cases selon les résidus du test du χ² (argument \texttt{shade\ =\ TRUE}) et en orientant verticalement les labels de colonnes (argument \texttt{las\ =\ 3})~:
@@ -2442,8 +2284,8 @@ On peut améliorer ce graphique en colorant les cases selon les résidus du test
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-133-1.pdf}
-\caption{\label{fig:unnamed-chunk-133}Graphique mosaique modifié}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-137-1.pdf}
+\caption{\label{fig:unnamed-chunk-137}Graphique mosaique modifié}
 \end{figure}
 
 Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y'a beaucoup d'employés et d'ouvriers et très peu d'``autres''). Sa hauteur correspond aux pourcentages colonnes~: la proportion d'hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant~: les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l'hypothèse d'indépendance.
@@ -2476,8 +2318,8 @@ Ce qui va nous donner le résultat suivant~:
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-136-1.pdf}
-\caption{\label{fig:unnamed-chunk-136}Graphique en boites à moustaches}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-140-1.pdf}
+\caption{\label{fig:unnamed-chunk-140}Graphique en boites à moustaches}
 \end{figure}
 
 \begin{rmdnote}
@@ -2552,7 +2394,7 @@ Une autre possibilité est d'utiliser la fonction \texttt{tapply}, qui prend en 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-145-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-149-1.pdf}
 
 Si l'âge dans le groupe des non sportifs se rapproche d'une distribution normale, celui des sportifs en semble assez éloigné, notamment du fait de la limite d'âge à 18 ans imposée par construction de l'enquête.
 
@@ -2634,16 +2476,16 @@ Quand on croise deux variables quantitatives, l'idéal est de faire une représe
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-150-1.pdf}
-\caption{\label{fig:unnamed-chunk-150}Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-154-1.pdf}
+\caption{\label{fig:unnamed-chunk-154}Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre}
 \end{figure}
 
 Une représentation graphique est l'idéal pour visualiser l'existence d'un lien entre les deux variables. Voici quelques exemples d'interprétation~:
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-151-1.pdf}
-\caption{\label{fig:unnamed-chunk-151}Illustration des relations bivariées}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-155-1.pdf}
+\caption{\label{fig:unnamed-chunk-155}Illustration des relations bivariées}
 \end{figure}
 
 Dans ce premier graphique généré sur nos données, il semble difficile de mettre en évidence une relation de dépendance. Si par contre on croise le pourcentage de cadres et celui de diplômés du supérieur, on obtient une belle relation de dépendance linéaire.
@@ -2656,8 +2498,8 @@ Dans ce premier graphique généré sur nos données, il semble difficile de met
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-152-1.pdf}
-\caption{\label{fig:unnamed-chunk-152}Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-156-1.pdf}
+\caption{\label{fig:unnamed-chunk-156}Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre}
 \end{figure}
 
 La corrélation des rangs a aussi pour avantage d'être moins sensibles aux valeurs extrêmes ou aux points isolés. On dit qu'elle est plus ``robuste''.
@@ -2760,7 +2602,7 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-164-1.pdf}
 --\textgreater{}
 
 \hypertarget{ex-introR-biv}{%
@@ -2770,77 +2612,17 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 
 Dans le jeu de données \texttt{hdv2003}, faire le tableau croisé entre la catégorie socio-professionnelle (variable \texttt{qualif}) et le fait de croire ou non en l'existence des classes sociales (variable \texttt{clso}). Identifier la variable indépendante et la variable dépendante, et calculer les pourcentages ligne ou colonne. Interpréter le résultat.
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(questionr)}
-\KeywordTok{data}\NormalTok{(hdv2003)}
-\NormalTok{tab <-}\StringTok{ }\KeywordTok{table}\NormalTok{(hdv2003}\OperatorTok{$}\NormalTok{qualif, hdv2003}\OperatorTok{$}\NormalTok{clso)}
-
-\CommentTok{## Ici la variable indépendante est `qualif`, on calcule donc}
-\CommentTok{## les pourcentages lignes}
-\KeywordTok{lprop}\NormalTok{(tab)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 Représenter ce tableau croisé sous la forme d'un \texttt{mosaicplot} en colorant les cases selon les résidus du test du χ².
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{mosaicplot}\NormalTok{(tab, }\DataTypeTok{shade =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \textbf{Exercice 2}
 
 Toujours sur le jeu de données \texttt{hdv2003}, faire le boxplot qui croise le nombre d'heures passées devant la télévision (variable \texttt{heures.tv}) avec le statut d'occupation (variable \texttt{occup}).
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{boxplot}\NormalTok{(hdv2003}\OperatorTok{$}\NormalTok{heures.tv }\OperatorTok{~}\StringTok{ }\NormalTok{hdv2003}\OperatorTok{$}\NormalTok{occup)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 Calculer la durée moyenne devant la télévision en fonction du statut d'occupation à l'aide de \texttt{tapply}.
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{tapply}\NormalTok{(hdv2003}\OperatorTok{$}\NormalTok{heures.tv, hdv2003}\OperatorTok{$}\NormalTok{occup, mean, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \textbf{Exercice 3}
 
 Sur le jeu de données \texttt{rp2012}, représenter le nuage de points croisant le pourcentage de personnes sans diplôme (variable \texttt{dipl\_aucun}) et le pourcentage de propriétaires (variable \texttt{proprio}).
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(questionr)}
-\KeywordTok{data}\NormalTok{(rp2012)}
-\KeywordTok{plot}\NormalTok{(rp2012}\OperatorTok{$}\NormalTok{dipl_aucun, rp2012}\OperatorTok{$}\NormalTok{proprio)}
-\CommentTok{## ou}
-\KeywordTok{plot}\NormalTok{(proprio }\OperatorTok{~}\StringTok{ }\NormalTok{dipl_aucun, }\DataTypeTok{data =}\NormalTok{ rp2012)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \hypertarget{guxe9rer-les-donnuxe9es}{%
 \section{Gérer les données}\label{guxe9rer-les-donnuxe9es}}
@@ -2943,12 +2725,12 @@ Je vous déconseille cependant, la fonction \texttt{ls.str()} car elle peut prod
 \begin{verbatim}
 ##  [1] "anglais"        "chien"          "d"              "d_nonsport"    
 ##  [5] "d_sport"        "diplome"        "erables"        "hdv2003"       
-##  [9] "imc"            "maths"          "p"              "poids"         
-## [13] "precipitations" "reg"            "resultat"       "rp2012"        
-## [17] "s"              "sport"          "tab"            "taille1"       
-## [21] "taille2"        "taille3"        "taille4"        "taille5"       
-## [25] "tailles"        "tailles_m"      "temperature"    "title"         
-## [29] "x"              "y"
+##  [9] "imc"            "maths"          "p"              "params"        
+## [13] "poids"          "precipitations" "reg"            "resultat"      
+## [17] "rp2012"         "s"              "sport"          "tab"           
+## [21] "taille1"        "taille2"        "taille3"        "taille4"       
+## [25] "taille5"        "tailles"        "tailles_m"      "temperature"   
+## [29] "title"          "x"              "y"
 \end{verbatim}
 
 \begin{Shaded}
@@ -3360,44 +3142,14 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 \hypertarget{exercice-sur-r}{%
 \subsection{Exercice sur R}\label{exercice-sur-r}}
 
-Vous trouverez dans le fichier \texttt{salmonella.csv}, des valeurs numériques du ratio d'infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
+Vous trouverez dans le fichier \texttt{salmonella.csv}, des valeurs numériques du ratio d'infection des cellules par la salmonelle dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
 Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.
 
+\begin{figure}
+\centering
 \includegraphics{Labo_BIO4558_files/figure-latex/intror-exer-1.pdf}
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## Charger les données}
-\NormalTok{salmonella <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/salmonella.csv"}\NormalTok{)}
-
-\CommentTok{##creer le graph en utilisant juste la souche sauvage et définir x}
-\NormalTok{mygraph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ ratio))}
-\CommentTok{##ajouter des composants graphiques}
-\NormalTok{mygraph <-}\StringTok{ }\NormalTok{mygraph }\OperatorTok{+}
-\CommentTok{# line densité}
-\StringTok{  }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
-\CommentTok{# position des observations}
-\StringTok{  }\KeywordTok{geom_rug}\NormalTok{() }\OperatorTok{+}
-\CommentTok{# histogramme}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ ..density..),}
-                 \DataTypeTok{bins =} \DecValTok{30}\NormalTok{,}
-                 \DataTypeTok{color =} \StringTok{"black"}\NormalTok{,}
-                 \DataTypeTok{alpha =} \FloatTok{0.3}\NormalTok{) }\OperatorTok{+}
-\CommentTok{# distribution normal ajustée}
-\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm,}
-                \DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}
-                  \DataTypeTok{mean =} \KeywordTok{mean}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{)}\OperatorTok{$}\NormalTok{ratio),}
-                  \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(}\KeywordTok{subset}\NormalTok{(salmonella, souche }\OperatorTok{==}\StringTok{ "SAUVAGE"}\NormalTok{)}\OperatorTok{$}\NormalTok{ratio)}
-\NormalTok{                ),}
-                \DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
-\CommentTok{## faire le graphique}
-\NormalTok{mygraph}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
+\caption{\label{fig:intror-exer}Distibution des ratios d'infections par la souche sauvage de salmonelle}
+\end{figure}
 
 \hypertarget{analyse-de-puissance-avec-r-et-gpower}{%
 \chapter{Analyse de puissance avec R et G*Power}\label{analyse-de-puissance-avec-r-et-gpower}}
@@ -5037,8 +4789,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.001783723  0.03401057
-## t2* 0.3408557 -0.001287317  0.02681295
+## t1* 1.1919926  0.002943639  0.03396587
+## t2* 0.3408557 -0.002179639  0.02702062
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5095,10 +4847,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.257 )   ( 1.123,  1.260 )  
+## 95%   ( 1.122,  1.256 )   ( 1.121,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.124,  1.261 )   ( 1.105,  1.248 )  
+## 95%   ( 1.128,  1.263 )   ( 1.110,  1.253 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -5124,12 +4876,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2896,  0.3947 )   ( 0.2861,  0.3954 )  
+## 95%   ( 0.2901,  0.3960 )   ( 0.2899,  0.3963 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2863,  0.3956 )   ( 0.2970,  0.4109 )  
+## 95%   ( 0.2854,  0.3918 )   ( 0.2926,  0.4036 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5475,8 +5226,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original      bias    std. error
-## t1* 45.084391 -0.01978571   0.4244488
-## t2* -1.714546  0.02921697   0.7622651
+## t1* 45.084391 -0.01147222   0.4236484
+## t2* -1.714546  0.02220596   0.7997646
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5509,7 +5260,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.384, -0.338 )  
+## 95%   (-3.403, -0.144 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5550,10 +5301,8 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## -18.40921  -3.75370  -0.08439   3.76598  23.48055 
 ## 
 ## Coefficients:
-##           Estimate Iter Pr(Prob)  
-## location1   0.8573 3499    0.028 *
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##           Estimate Iter Pr(Prob)
+## location1   0.8573  162    0.383
 ## 
 ## Residual standard error: 5.454 on 184 degrees of freedom
 ## Multiple R-Squared: 0.02419, Adjusted R-squared: 0.01889 
@@ -5941,8 +5690,8 @@ En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatche
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-200-1.pdf}
-\caption{\label{fig:unnamed-chunk-200}Boxplot de la longueur pas annéee}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-203-1.pdf}
+\caption{\label{fig:unnamed-chunk-203}Boxplot de la longueur pas annéee}
 \end{figure}
 
 Il semble que la taille des esturgeons est un peu plus petite après la construction du barrage, mais les données sont très variables et les effets ne sont pas parfaitement clairs. Il y a peut-être des problèmes de normalité avec les échantillons de 1954 et 1966, et il y a probablement des valeurs extrêmes dans les échantillons de 1958 et 1966. On va continuer en testant les conditions d'application de l'ANOVA. Il faut d'abord faire l'analyse et examiner les résidus.
@@ -6270,18 +6019,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5936
+## Quantile = 2.5927
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2713   3.6457
-## m1965 - m1954 == 0  -5.5077  -9.9973  -1.0180
-## m1966 - m1954 == 0  -3.3127  -6.3432  -0.2822
-## m1965 - m1958 == 0  -5.6949 -10.4113  -0.9784
-## m1966 - m1958 == 0  -3.4999  -6.8573  -0.1425
-## m1966 - m1965 == 0   2.1950  -2.2173   6.6072
+## m1958 - m1954 == 0   0.1872  -3.2701   3.6445
+## m1965 - m1954 == 0  -5.5077  -9.9957  -1.0196
+## m1966 - m1954 == 0  -3.3127  -6.3421  -0.2833
+## m1965 - m1958 == 0  -5.6949 -10.4097  -0.9800
+## m1966 - m1958 == 0  -3.4999  -6.8562  -0.1436
+## m1966 - m1965 == 0   2.1950  -2.2158   6.6057
 \end{verbatim}
 
 \begin{Shaded}
@@ -6662,8 +6411,6 @@ Ces résultats supportent l'interprétation des box plots: Les femelles sont plu
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Fit anova model and plot residual diagnostics}
-
-
 \CommentTok{# but first, save current par and set graphic page to hold 4 graphs}
 \NormalTok{opar <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
 \NormalTok{anova.model1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(rdwght }\OperatorTok{~}\StringTok{ }\NormalTok{sex }\OperatorTok{+}\StringTok{ }\NormalTok{location }\OperatorTok{+}\StringTok{ }\NormalTok{sex}\OperatorTok{:}\NormalTok{location,}
@@ -6724,8 +6471,8 @@ Suite à l'ANOVA, on accepte deux hypothèses nulles: (1) que l'effet du sexe ne
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-207-1.pdf}
-\caption{\label{fig:unnamed-chunk-207}Conditions d'application ANOVA model1}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-210-1.pdf}
+\caption{\label{fig:unnamed-chunk-210}Conditions d'application ANOVA model1}
 \end{figure}
 
 Cependant, on ne peut se fier à ces résultats sans vérifier si les conditions d'application de l'ANOVA étaient remplies. Un examen des graphiques des résidus, en haut, montre que les résidus semblent être distribués plus ou moins normalement, si ce n'est des 3 valeurs extrêmes qui sont notées sur le diagramme de probabilité (cas 101, 24,\& 71). D'après le graphique des résidus vs les valeurs prédites, on voit que l'étendue des résidus est plus ou moins égale pour les valeurs estimées, sauf encore pour 2 ou 3 cas. Si on éprouve la normalité, on obtient:
@@ -6766,26 +6513,34 @@ Nous allons utiliser le test de Levene pour examiner l'homoscédasticité des r�
 
 Si les résidus étaient homoscédastiques, on accepterait l'hypothèse nulle que le absres moyen ne varie pas entre les niveaux de sexe et location (i.e., sexloc). Le tableau d'ANOVA ci-dessus montre que l'hypothèse est rejetée. Il y a donc évidence d'hétéroscédasticité. En bref, nous avons donc plusieurs conditions d'application qui ne sont pas respectées. La question qui reste est: ces violations sont-elles suffisantes pour invalider nos conclusions ?
 
-\begin{itemize}
-\tightlist
-\item
-  Répétez la même analyse avec les données du fichier \texttt{stu2mdat.csv} . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?
-\end{itemize}
+\begin{rmdcode}
+Répétez la même analyse avec les données du fichier \texttt{stu2mdat.csv} . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?
+\end{rmdcode}
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Stu2mdat <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/Stu2mdat.csv"}\NormalTok{)}
-\NormalTok{anova.model2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
-  \DataTypeTok{formula =}\NormalTok{ rdwght }\OperatorTok{~}\StringTok{ }\NormalTok{sex }\OperatorTok{+}\StringTok{ }\NormalTok{location }\OperatorTok{+}\StringTok{ }\NormalTok{sex}\OperatorTok{:}\NormalTok{location,}
-  \DataTypeTok{contrasts =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{sex =}\NormalTok{ contr.sum, }\DataTypeTok{location =}\NormalTok{ contr.sum),}
-  \DataTypeTok{data =}\NormalTok{ Stu2mdat)}
-\KeywordTok{Anova}\NormalTok{(anova.model2, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = rdwght ~ sex + location + sex:location, data = Stu2mdat, 
+##     contrasts = list(sex = contr.sum, location = contr.sum))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.917  -6.017  -0.580   4.445  65.743 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     24.5346     0.7461  32.885  < 2e-16 ***
+## sex1            -0.5246     0.7461  -0.703    0.483    
+## location1        0.2227     0.7461   0.299    0.766    
+## sex1:location1   3.1407     0.7461   4.210 4.05e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 9.924 on 178 degrees of freedom
+##   (4 observations deleted due to missingness)
+## Multiple R-squared:  0.09744,    Adjusted R-squared:  0.08223 
+## F-statistic: 6.405 on 3 and 178 DF,  p-value: 0.0003817
+\end{verbatim}
 
 Notez que cette fois les femelles sont plus grandes que les mâles à Cumberland House, mais que c'est le contraire à The Pas. Quel est le résultat de l'ANOVA (n'oubliez pas qu'il faut des Type III sums of squares pour les résultats)?
 
@@ -6836,8 +6591,8 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-212-1.pdf}
-\caption{\label{fig:unnamed-chunk-212}Effet du sexe et du lieu sur le poids des esturgeons}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-217-1.pdf}
+\caption{\label{fig:unnamed-chunk-217}Effet du sexe et du lieu sur le poids des esturgeons}
 \end{figure}
 
 \begin{Shaded}
@@ -6864,8 +6619,8 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-213-1.pdf}
-\caption{\label{fig:unnamed-chunk-213}Effet du sexe et du lieu sur le poids des esturgeons}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-218-1.pdf}
+\caption{\label{fig:unnamed-chunk-218}Effet du sexe et du lieu sur le poids des esturgeons}
 \end{figure}
 
 Il y a une différence importante entre les résultats obtenus avec \texttt{stu2wdat} et \texttt{stu2mdat}. Dans le premier cas, puisqu'il n'y a pas d'interaction, on peut regrouper les données des deux niveaux d'un facteur (le site, par exemple) pour éprouver l'hypothèse d'un effet de l'autre facteur (le sexe). En fait, si on fait cela et que l'on calcule une ANOVA à un critère de classification (sex), on obtient:
@@ -6918,16 +6673,6 @@ Les analyses qui précèdent négligent un point important: \texttt{location} po
 Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle etait de type effet fixe seulement, et les termes principaux et celui d'interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type mixte, ces effets devraient être testés en utilisant le carré moyen du terme d'interaction, ou en combinant la somme des carrés de l'erreur et de l'interaction (selon le statisticien consulté!).
 
 En utilisant \texttt{Stu2wdat} , refaites un tableau d'ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l'interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c'est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d'ANOVA.
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{Anova}\NormalTok{(anova.model2, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 \begin{verbatim}
 ## Anova Table (Type III tests)
@@ -7014,8 +6759,8 @@ Si on suppose que c'est un modèle d'ANOVA mixte (date aléatoire, Depth fixe), 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-222-1.pdf}
-\caption{\label{fig:unnamed-chunk-222}Effet du mois et de la profondeur sur la température}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-227-1.pdf}
+\caption{\label{fig:unnamed-chunk-227}Effet du mois et de la profondeur sur la température}
 \end{figure}
 
 La température diminue significativement en profondeur. Pour tester l'effet du mois (le facteur aléatoire), on doit présumer qu'il n'y a pas d'interaction entre la profondeur et le mois (donc que l'effet de la profondeur sur la température est le même à chaque mois). C'est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l'été, ce modèle ne fait pas de très bonnes prédictions.
@@ -7035,8 +6780,8 @@ Jetez un coup d'oeil sur les graphiques des résidus:
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-223-1.pdf}
-\caption{\label{fig:unnamed-chunk-223}Conditions d'applications du modèle anova.model4}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-228-1.pdf}
+\caption{\label{fig:unnamed-chunk-228}Conditions d'applications du modèle anova.model4}
 \end{figure}
 
 \begin{Shaded}
@@ -7099,18 +6844,6 @@ Un design expérimental fréquent implique la division de chaque groupe du facte
 
 Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l'effet de Chamber / genotype n'est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N'oubliez pas de vérifier les conditions d'applications de l'ANOVA!
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{anova}\NormalTok{(anova.nested)}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(anova.nested)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 \begin{verbatim}
 ## Analysis of Variance Table
 ## 
@@ -7122,6 +6855,12 @@ Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (In
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-232-1.pdf}
+\caption{\label{fig:unnamed-chunk-232}Conditions d'applications du modèle anova.nested}
+\end{figure}
 
 On conclue de cette analyse que la variation entre les chambres de croissance n'est pas significative, mais qu'on doit rejeter l'hypothèse nulle que tous les génotypes ont la même résistance à la dessiccation.
 
@@ -7165,29 +6904,18 @@ Le graphique de \texttt{survival} en fonction du \texttt{génotype} suggère que
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-230-1.pdf}
-\caption{\label{fig:unnamed-chunk-230}Effet du genotype sur la résistance à la dessication avec un test de Tukey}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-234-1.pdf}
+\caption{\label{fig:unnamed-chunk-234}Effet du genotype sur la résistance à la dessication avec un test de Tukey}
 \end{figure}
 
 On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) \textgreater{} R(Aa) \textgreater{} R(aa).
 
 Cependant, avant d'accepter cette conclusion, il faut éprouver les conditions d'application du test. Voici les diagnostics des résidus pour l'ANOVA à un critère de classification (non hiérarchique):
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(anova.simple)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-232-1.pdf}
-\caption{\label{fig:unnamed-chunk-232}Conditions d'applications du modèle anova.simple}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-235-1.pdf}
+\caption{\label{fig:unnamed-chunk-235}Conditions d'applications du modèle anova.simple}
 \end{figure}
 
 Donc, toutes les conditions d'application semblent être remplies, et on peut donc accepter les conclusions. Notez que si l'on compare le carré moyen des résidus de l'ANOVA hiérarchique et de l'ANOVA à un critère de classification (5.045 vs 5.292), ils sont presque identiques. Cela n'est pas surprenant compte tenu de la faible variabilité associée aux chambres de croissance pour chaque génotype.
@@ -7327,20 +7055,6 @@ Le fichier \texttt{wmcdat2.csv} contient des mesures de consommation d'oxygène,
   Effectuez une ANOVA factorielle à deux critères de classification sur ces données en utilisant \texttt{o2cons} comme variable dépendante et \texttt{species} et \texttt{conc} comme les facteurs (il va probablement falloir changer le type de données de variable conc à facteur). Que concluez-vous ?
 \end{itemize}
 
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wmcdat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmcdat2.csv"}\NormalTok{)}
-\NormalTok{wmcdat2}\OperatorTok{$}\NormalTok{species <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmcdat2}\OperatorTok{$}\NormalTok{species)}
-\NormalTok{wmcdat2}\OperatorTok{$}\NormalTok{conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmcdat2}\OperatorTok{$}\NormalTok{conc)}
-\NormalTok{anova.model5 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(o2cons }\OperatorTok{~}\StringTok{ }\NormalTok{species }\OperatorTok{*}\StringTok{ }\NormalTok{conc, }\DataTypeTok{data =}\NormalTok{ wmcdat2)}
-\KeywordTok{Anova}\NormalTok{(anova.model5, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
-
 \begin{verbatim}
 ## Anova Table (Type III tests)
 ## 
@@ -7359,22 +7073,9 @@ Comme l'effectif dans chaque cellule est relativement petit, il faudrait idéale
 
 Examinons les graphiques diagnostiques:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(anova.model5)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-239-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-242-1.pdf}
 
 Les variances semblent donc égales. Le test de normalité donne:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{shapiro.test}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(anova.model5))}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -7391,12 +7092,6 @@ Il y a donc évidence de non-normalité, mais à part ça tout semble aller. Com
 \item
   À la suite des résultats que vous venez d'obtenir, quelles moyennes voudriez-vous comparer ? Pourquoi?
 \end{itemize}
-
-\iffalse
-
-ajouter une explication ici
-
-\fi
 
 On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet de la concentration ne dépends pas de l'espèce (il n'y a pas d'interaction). Par conséquent, les seules comparaisons justifiables sont entre les concentrations:
 
@@ -7438,8 +7133,8 @@ On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-241-1.pdf}
-\caption{\label{fig:unnamed-chunk-241}Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-245-1.pdf}
+\caption{\label{fig:unnamed-chunk-245}Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration}
 \end{figure}
 
 \begin{Shaded}
@@ -7455,19 +7150,6 @@ Il y a donc une différence de consommation d'oxygène significative lorsque la 
 \item
   Répétez les deux analyses précédentes sur les données du fichier \texttt{wmc2dat2.csv}. Comment les résultats se comparent-ils à ceux obt\$nus précédemment ?
 \end{itemize}
-
-\iffalse
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wmc2dat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmc2dat2.csv"}\NormalTok{)}
-\NormalTok{wmc2dat2}\OperatorTok{$}\NormalTok{species <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmc2dat2}\OperatorTok{$}\NormalTok{species)}
-\NormalTok{wmc2dat2}\OperatorTok{$}\NormalTok{conc <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(wmc2dat2}\OperatorTok{$}\NormalTok{conc)}
-\NormalTok{anova.model7 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(o2cons }\OperatorTok{~}\StringTok{ }\NormalTok{species }\OperatorTok{*}\StringTok{ }\NormalTok{conc, }\DataTypeTok{data =}\NormalTok{ wmcdat2)}
-\end{Highlighting}
-\end{Shaded}
-
-\fi
 
 En utilisant \texttt{wmc2dat2.csv}, on obtient:
 
@@ -7493,7 +7175,7 @@ Dans ce cas ci, il y a une interaction significative, et il n'est par conséquen
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-244-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-248-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -7549,7 +7231,7 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent se
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-247-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-251-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7819,8 +7501,8 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-248-1.pdf}
-\caption{\label{fig:unnamed-chunk-248}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-252-1.pdf}
+\caption{\label{fig:unnamed-chunk-252}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
 \end{figure}
 
 \begin{itemize}
@@ -7867,8 +7549,8 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-249-1.pdf}
-\caption{\label{fig:unnamed-chunk-249}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-253-1.pdf}
+\caption{\label{fig:unnamed-chunk-253}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
 \end{figure}
 
 Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n'explique cependant qu'environ le tiers de la variabilité (R 2 =0.355). L'analyse des résidus indique qu'il n'y a pas de problème avec la normalité , l'homoscédasticité, ni l'indépendance.
@@ -7878,13 +7560,6 @@ Il semble donc y avoir une relation positive entre la richesse spécifique des r
 \item
   Faites ensuite la régression de \texttt{logherp} en fonction de \texttt{cpfor2} . Que concluez-vous?
 \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.logcp <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{cpfor2, }\DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{summary}\NormalTok{(model.logcp)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -7916,13 +7591,6 @@ Ici, on doit accepter l'hypothèse nulle et conclure qu'il n'y a pas de relation
   Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.mcp <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2, }\DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{summary}\NormalTok{(model.mcp)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## 
 ## Call:
@@ -7953,13 +7621,6 @@ On voit donc qu'on peut rejeter les 2 hypothèses nulles que la pente de la rég
 \item
   Ajustez un autre modèle, cette fois en remplaçant \texttt{cpfor2} par \texttt{thtden} ( logherp \textasciitilde{} logarea + thtden ). Que concluez-vous?
 \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.mden <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden, }\DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{summary}\NormalTok{(model.mden)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -7995,13 +7656,6 @@ La richesse spécifique des reptiles et amphibiens semble donc reliée à la sur
 \item
   Estimez un modèle de régression avec \texttt{logherp} comme variable dépendante et \texttt{logarea} , \texttt{cpfor2} et \texttt{thtden} comme variables indépendantes. Que concluez-vous?
 \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.mtri <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden, }\DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{summary}\NormalTok{(model.mtri)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -8053,10 +7707,18 @@ On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 var
 
 Cette comparaison révèle que le modèle à 3 variables ne fait pas de prédictions significativement meilleures que le modèle avec seulement Logarea et thtden . Ce résultat n'est pas surprenant puisque le test de signification pour cpfor2 dans le modèle complet indique qu'il faut accepter l'hypothèse nulle.
 
-À la suite de cette analyse, on doit conclure que :
-1. Le meilleur modèle est celui incluant thtden et logarea .
-2. Il y a une relation négative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes.
-3. Il y a une relation positive entre la richesse spécifique et la taille des marais.
+À la suite de cette analyse, on doit conclure que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Le meilleur modèle est celui incluant thtden et logarea .
+\item
+  Il y a une relation négative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes.
+\item
+  Il y a une relation positive entre la richesse spécifique et la taille des marais.
+\end{enumerate}
 
 Notez que le ``meilleur'' modèle n'est pas nécessairement le modèle parfait, seulement le meilleur n'utilisant que ces trois variables indépendantes. Il est évident qu'il y a d'autres facteurs qui contrôlent la richesse spécifique dans les marais puisque, même le ``meilleur'' modèle n'explique que la moitié de la variabilité.
 
@@ -8123,10 +7785,18 @@ La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike
 ## 2 - cpfor2  1 0.01570813        25  0.6450798 -99.57640
 \end{verbatim}
 
-R nous donne::
-1. L'ajustement (mesuré par AIC) du modèle complet en premier lieu.
-2. L'AIC des modèles dans lesquels une variable a été enlevée du modèle complet. Notez que c'est seulement en enlevant cpfor2 du modèle qu'on peut réduire l'AIC
-3. La valeur de AIC pour les modèles auxquels on enlève ou on ajoute une variable au modèle sélectionné à la première étape.(i.e.~logherp \textasciitilde{} logarea + thtden). Notez qu'aucun des modèles n'a un AIC inférieur à ce modèle.
+R nous donne:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  L'ajustement (mesuré par AIC) du modèle complet en premier lieu.
+\item
+  L'AIC des modèles dans lesquels une variable a été enlevée du modèle complet. Notez que c'est seulement en enlevant cpfor2 du modèle qu'on peut réduire l'AIC
+\item
+  La valeur de AIC pour les modèles auxquels on enlève ou on ajoute une variable au modèle sélectionné à la première étape.(i.e.~logherp \textasciitilde{} logarea + thtden). Notez qu'aucun des modèles n'a un AIC inférieur à ce modèle.
+\end{enumerate}
 
 Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on peut commencer par le modèle nul et ajouter des termes:
 
@@ -8260,25 +7930,14 @@ La régression requiert la linéarité de la relation entre les variables dépen
   Faites un diagramme de dispersion des résidus (residual) de la régression \texttt{logherp\ \textasciitilde{}\ logarea} en fonction de swamp .
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#problème avec les données de manquantes dans logherp}
-\NormalTok{mysub <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(mydata, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(logherp))}
-\CommentTok{# ajouter les résidus dans les donnée}
-\NormalTok{mysub}\OperatorTok{$}\NormalTok{resloga <-}\StringTok{ }\KeywordTok{residuals}\NormalTok{(model.loga)}
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mysub, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ resloga, }\DataTypeTok{x =}\NormalTok{ swamp)) }\OperatorTok{+}
-\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 \end{verbatim}
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-258-1.pdf}
-\caption{\label{fig:unnamed-chunk-258}Relation entre swamp et les résidus de la régression entre logherp et logarea}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-262-1.pdf}
+\caption{\label{fig:unnamed-chunk-262}Relation entre swamp et les résidus de la régression entre logherp et logarea}
 \end{figure}
 
 \begin{itemize}
@@ -8286,13 +7945,6 @@ La régression requiert la linéarité de la relation entre les variables dépen
 \item
   L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
 \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.resloga <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(resloga }\OperatorTok{~}\NormalTok{swamp, mysub)}
-\KeywordTok{summary}\NormalTok{(model.resloga)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -8318,15 +7970,8 @@ En deux mots, l'ajustement est épouvantable! Malgré le fait que le graphique s
 \begin{itemize}
 \tightlist
 \item
-  Refaites la régression d'en haut, mais cette fois incluez un terme pour représenter \(swamp^2\) . L'expression devrait apparaître comme: `Y \textasciitilde{} X + I(X\^{}2) . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
+  Refaites la régression d'en haut, mais cette fois incluez un terme pour représenter \(swamp^2\) . L'expression devrait apparaître comme: \(Y ~ X + I(X^2)\) . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
 \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.resloga2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(resloga }\OperatorTok{~}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{), mysub)}
-\KeywordTok{summary}\NormalTok{(model.resloga2)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -8352,17 +7997,10 @@ En deux mots, l'ajustement est épouvantable! Malgré le fait que le graphique s
 
 Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp , selon une relation quadratique. Si vous examinez les résidus, vous observerez que l'ajustement est nettement meilleur qu'avec le modèle linéaire.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(model.resloga2)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-261-1.pdf}
-\caption{\label{fig:unnamed-chunk-261}Relation}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-265-1.pdf}
+\caption{\label{fig:unnamed-chunk-265}Relation}
 \end{figure}
 
 \begin{itemize}
@@ -8372,15 +8010,6 @@ Il devient évident que si on corrige la richesse spécifique pour la taille des
 \end{itemize}
 
 Suite à ces analyses, il semble opportun d'essayer d'ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp\^{}2 :
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.poly1 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
-\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{cpfor2 }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
-  \DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{summary}\NormalTok{(model.poly1)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -8410,15 +8039,6 @@ Suite à ces analyses, il semble opportun d'essayer d'ajuster un modèle incluan
 \end{verbatim}
 
 Les résultats de cette analyse suggèrent qu'on devrait probablement exclure \texttt{cpfor2} du modèle:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.poly2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
-\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp }\OperatorTok{+}\StringTok{ }\KeywordTok{I}\NormalTok{(swamp}\OperatorTok{^}\DecValTok{2}\NormalTok{),}
-  \DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{summary}\NormalTok{(model.poly2)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -8467,19 +8087,7 @@ Les valeurs d'inflation de la variance (VIF) pour les deux termes de swamp sont 
 Toutes les techniques de sélection des modèles présument que les conditions d'applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d'examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l'ajustement n'affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.
 
 Examinons donc les graphiques diagnostiques du modèle final:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(model.poly2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-265-1.pdf}
-\caption{\label{fig:unnamed-chunk-265}Conditions d'application du modèle \texttt{model.poly2}}
-\end{figure}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-269-1.pdf}
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d'application:
 
@@ -8564,27 +8172,18 @@ Les coefficients de la régression multiple peuvent mesurer la taille d'effet, q
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-270-1.pdf}
-\caption{\label{fig:unnamed-chunk-270}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-274-1.pdf}
+\caption{\label{fig:unnamed-chunk-274}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
 \end{figure}
 
 Notez que l'échelle de l'axe des y varie sur chaque graphique. Pour thtden, la variable dépendante (log10(richesse des herptiles)) varie d'environ 0.4 unités entre la valeur minimum et maximum de thtden. Pour logarea, la variation est d'environ 0.6 unité log. Pour swamp, l'interprétation est plus compliquée parce qu'il y a deux termes qui quantifient son effet, et que ces termes ont des signes opposés (positif pour swamp et négatif pour swamp\^{}2) ce qui donne une relation curvilinéaire de type parabole. Le graphique ne permet pas de bien visualiser cela. Ceci dit, ces graphique n'indiquent pas vraiment de violation de linéarité.
 
 Pour illustrer ce qui serait visible sur ces graphiques si il y avait une déviation de linéarité, enlevons le terme du second degré pour swamp, puis on va refaire ces graphiques et effectuer le test RESET.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{model.nopoly <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(}
-\NormalTok{  logherp }\OperatorTok{~}\StringTok{ }\NormalTok{logarea }\OperatorTok{+}\StringTok{ }\NormalTok{thtden }\OperatorTok{+}\StringTok{ }\NormalTok{swamp,}
-  \DataTypeTok{data =}\NormalTok{ mydata)}
-\KeywordTok{crPlots}\NormalTok{(model.nopoly)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-271-1.pdf}
-\caption{\label{fig:unnamed-chunk-271}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-275-1.pdf}
+\caption{\label{fig:unnamed-chunk-275}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
 \end{figure}
 
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
@@ -8950,7 +8549,7 @@ Le code qui suit, utilisant le package simpleboot, a été conçu pour être fac
 \end{Highlighting}
 \end{Shaded}
 
-Vous pouvez ensuite faire des graphiques pour voir les résultats.
+Vous pouvez ensuite faire des graphiques pour voir les résultats. Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d'examiner la distribution pour chaque coefficient du modèle sur des graphiques:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8970,12 +8569,10 @@ Vous pouvez ensuite faire des graphiques pour voir les résultats.
 \end{Highlighting}
 \end{Shaded}
 
-Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d'examiner la distribution pour chaque coefficient du modèle sur des graphiques:
-
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-285-1.pdf}
-\caption{\label{fig:unnamed-chunk-285}Distribution des estimé par bootstrap pour \texttt{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-289-1.pdf}
+\caption{\label{fig:unnamed-chunk-289}Distribution des estimé par bootstrap pour \texttt{logarea}}
 \end{figure}
 
 Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l'histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l'intervalle de confiance à 95\%. Ici l'IC ne contient pas 0, et donc on peut conclure que l'effet de logarea sur logherp est significativement positif.
@@ -8992,14 +8589,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.71095746 0.1348824 -0.044828051 0.01653306 -0.0003462902
-## 1%    -0.69380151 0.1455503 -0.043190381 0.01809887 -0.0003354139
-## 2.5%  -0.64148224 0.1555924 -0.041088574 0.01927811 -0.0003252127
-## 5%    -0.61362136 0.1688559 -0.039454544 0.02085433 -0.0003119613
-## 95%   -0.06733539 0.2808868 -0.011917574 0.03716914 -0.0001785972
-## 97.5% -0.03500315 0.2959770 -0.009406757 0.03891432 -0.0001666356
-## 99%    0.03139902 0.3066138 -0.006329502 0.04035792 -0.0001542086
-## 99.5%  0.06514415 0.3215960 -0.004867328 0.04163786 -0.0001467198
+## 0.5%  -0.71110675 0.1372464 -0.045606066 0.01684883 -0.0003536985
+## 1%    -0.69372925 0.1394272 -0.044956108 0.01763134 -0.0003457164
+## 2.5%  -0.64758663 0.1512206 -0.041477587 0.01953302 -0.0003306127
+## 5%    -0.61148912 0.1634637 -0.038796427 0.02182014 -0.0003158699
+## 95%   -0.08949947 0.2780784 -0.012339236 0.03813693 -0.0001861320
+## 97.5% -0.02838550 0.2893490 -0.008918151 0.03975744 -0.0001739173
+## 99%    0.03048993 0.3043579 -0.006790677 0.04100194 -0.0001593787
+## 99.5%  0.05132318 0.3092767 -0.005365340 0.04216646 -0.0001479223
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -9055,11 +8652,11 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1131,  0.3164 )  
+## 95%   ( 0.1150,  0.3151 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-289-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-1.pdf}
 
 Notez que l'intervalle BCa va de 0.12 à 0.32, alors que l'intervalle standard était de 0.16 à 0.29. L'intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
 
@@ -10426,8 +10023,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-1.pdf}
-\caption{\label{fig:unnamed-chunk-292-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-296-1.pdf}
+\caption{\label{fig:unnamed-chunk-296-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10439,8 +10036,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-2.pdf}
-\caption{\label{fig:unnamed-chunk-292-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-296-2.pdf}
+\caption{\label{fig:unnamed-chunk-296-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10452,8 +10049,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-292-3.pdf}
-\caption{\label{fig:unnamed-chunk-292-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-296-3.pdf}
+\caption{\label{fig:unnamed-chunk-296-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

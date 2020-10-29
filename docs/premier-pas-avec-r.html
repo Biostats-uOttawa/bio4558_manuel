@@ -629,59 +629,35 @@ On peut aussi installer des extensions en utilisant la fonction <code>install.pa
 <p><strong>Exercice 1</strong></p>
 <p>Construire le vecteur <code>x</code> suivant :</p>
 <pre><code>## [1] 120 134 256  12</code></pre>
-
-<div class="exer">
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">134</span>, <span class="dv">256</span>, <span class="dv">12</span>)</a></code></pre></div>
-</div>
-
 <p>Utiliser ce vecteur <code>x</code> pour générer les deux vecteurs suivants :</p>
 <pre><code>## [1] 220 234 356 112</code></pre>
 <pre><code>## [1] 240 268 512  24</code></pre>
-
-<div class="exer">
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">x <span class="op">+</span><span class="st"> </span><span class="dv">100</span></a>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">x <span class="op">+</span><span class="st"> </span><span class="dv">100</span></a>
 <a class="sourceLine" id="cb89-2" title="2">x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
-</div>
-
 <p><strong>Exercice 2</strong></p>
 <p>On a demandé à 4 ménages le revenu des deux conjoints, et le nombre de personnes du ménage :</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1">conjoint1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1200</span>, <span class="dv">1180</span>, <span class="dv">1750</span>, <span class="dv">2100</span>)</a>
 <a class="sourceLine" id="cb90-2" title="2">conjoint2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1450</span>, <span class="dv">1870</span>, <span class="dv">1690</span>, <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb90-3" title="3">nb_personnes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</a></code></pre></div>
 <p>Calculer le revenu total de chaque ménage, puis diviser par le nombre de personnes pour obtenir le revenu par personne de chaque ménage.</p>
-
-<div class="exer">
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">revenu_total &lt;-<span class="st"> </span>conjoint1 <span class="op">+</span><span class="st"> </span>conjoint2</a>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">revenu_total &lt;-<span class="st"> </span>conjoint1 <span class="op">+</span><span class="st"> </span>conjoint2</a>
 <a class="sourceLine" id="cb91-2" title="2">revenu_total <span class="op">/</span><span class="st"> </span>nb_personnes</a></code></pre></div>
-</div>
-
 <p><strong>Exercice 3</strong></p>
 <p>Dans l’exercice précédent, calculer le revenu minimum et maximum parmi ceux du premier conjoint.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">conjoint1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1200</span>, <span class="dv">1180</span>, <span class="dv">1750</span>, <span class="dv">2100</span>)</a></code></pre></div>
-
-<div class="exer">
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">range</span>(conjoint1)</a></code></pre></div>
-</div>
-
+<div class="sourceCode" id="cb93"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">range</span>(conjoint1)</a></code></pre></div>
 <p>Recommencer avec les revenus suivants, parmi lesquels l’un des enquetés n’a pas voulu répondre :</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">conjoint1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1200</span>, <span class="dv">1180</span>, <span class="dv">1750</span>, <span class="ot">NA</span>)</a></code></pre></div>
-
-<div class="exer">
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="kw">range</span>(conjoint1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-</div>
-
+<div class="sourceCode" id="cb95"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="kw">range</span>(conjoint1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><strong>Exercice 4</strong></p>
 <p>Les deux vecteurs suivants représentent les précipitations (en mm) et la température (en °C) moyennes sur la ville de Lyon, pour chaque mois de l’année, entre 1981 et 2010 :</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">temperature &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.4</span>, <span class="fl">4.8</span>, <span class="fl">8.4</span>, <span class="fl">11.4</span>, <span class="fl">15.8</span>, <span class="fl">19.4</span>, <span class="fl">22.2</span>, <span class="fl">21.6</span>, <span class="fl">17.6</span>, <span class="fl">13.4</span>, <span class="fl">7.6</span>, <span class="fl">4.4</span>)</a>
 <a class="sourceLine" id="cb96-2" title="2">precipitations &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">47.2</span>, <span class="fl">44.1</span>, <span class="fl">50.4</span>, <span class="fl">74.9</span>, <span class="fl">90.8</span>, <span class="fl">75.6</span>, <span class="fl">63.7</span>, <span class="dv">62</span>, <span class="fl">87.5</span>, <span class="fl">98.6</span>, <span class="fl">81.9</span>, <span class="fl">55.2</span>)</a></code></pre></div>
 <p>Calculer la température moyenne sur l’année.</p>
 <p>Calculer la quantité totale de précipitations sur l’année.</p>
-
-<div class="exer">
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">mean</span>(temperature)</a>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">mean</span>(temperature)</a>
 <a class="sourceLine" id="cb97-2" title="2"><span class="kw">sum</span>(precipitations)</a></code></pre></div>
-</div>
-
 <p>À quoi correspond et comment peut-on interpréter le résultat de la fonction suivante ? Vous pouvez vous aider de la page d’aide de la fonction si nécessaire.</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="kw">cumsum</span>(precipitations)</a></code></pre></div>
 <pre><code>##  [1]  47.2  91.3 141.7 216.6 307.4 383.0 446.7 508.7 596.2 694.8 776.7 831.9</code></pre>
@@ -691,7 +667,7 @@ On peut aussi installer des extensions en utilisant la fonction <code>install.pa
 
 <div class="exer">
 <p><code>cumsum(precipitations)</code> correspond à la somme cumulée des précipitations sur l’année. Par exemple, la 6e valeur du vecteur résultat correspond au total de précipitations de janvier à juin.</p>
-<p><code>diff(temperature)</code> correspond à la différence de température d’un mois sur l’autre. Par exemple, la 2e valeur de ce vecteur correspond à l’écart de température entre le mois de février et le mois de janvier.</p>
+<code>diff(temperature)</code> correspond à la différence de température d’un mois sur l’autre. Par exemple, la 2e valeur de ce vecteur correspond à l’écart de température entre le mois de février et le mois de janvier.
 </div>
 
 <p><strong>Exercice 5</strong></p>
@@ -701,12 +677,8 @@ On peut aussi installer des extensions en utilisant la fonction <code>install.pa
 <a class="sourceLine" id="cb102-3" title="3">sport &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">18</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">12</span>)</a></code></pre></div>
 <p>Calculer la moyenne des élèves de la classe en anglais.</p>
 <p>Calculer la moyenne générale de chaque élève.</p>
-
-<div class="exer">
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">mean</span>(anglais)</a>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">mean</span>(anglais)</a>
 <a class="sourceLine" id="cb103-2" title="2">(maths <span class="op">+</span><span class="st"> </span>anglais <span class="op">+</span><span class="st"> </span>sport) <span class="op">/</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
-</div>
-
 <p>Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vous aider de la page d’aide de ces fonctions) :</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="kw">pmin</span>(maths, anglais, sport)</a></code></pre></div>
 <pre><code>## [1] 12  9  8 10  6 10</code></pre>
@@ -714,7 +686,7 @@ On peut aussi installer des extensions en utilisant la fonction <code>install.pa
 <pre><code>## [1] 18 16 14 18 17 12</code></pre>
 
 <div class="exer">
-<p><code>pmin</code> et <code>pmax</code> renvoient les minimum et maximum “parallèles” des trois vecteurs passés en argument. Ainsi, <code>pmin</code> renvoie pour chaque élève la note minimale dans les trois matières, et <code>pmax</code> la note maximale.</p>
+<code>pmin</code> et <code>pmax</code> renvoient les minimum et maximum “parallèles” des trois vecteurs passés en argument. Ainsi, <code>pmin</code> renvoie pour chaque élève la note minimale dans les trois matières, et <code>pmax</code> la note maximale.
 </div>
 
 

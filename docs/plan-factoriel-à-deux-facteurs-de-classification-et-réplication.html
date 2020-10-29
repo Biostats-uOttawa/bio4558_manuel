@@ -349,14 +349,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 deux critères de classification:</li>
 </ul>
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1"><span class="co"># Fit anova model and plot residual diagnostics</span></a>
-<a class="sourceLine" id="cb413-2" title="2"></a>
-<a class="sourceLine" id="cb413-3" title="3"></a>
-<a class="sourceLine" id="cb413-4" title="4"><span class="co"># but first, save current par and set graphic page to hold 4 graphs</span></a>
-<a class="sourceLine" id="cb413-5" title="5">opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb413-6" title="6">anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</a>
-<a class="sourceLine" id="cb413-7" title="7"><span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</a>
-<a class="sourceLine" id="cb413-8" title="8"><span class="dt">data =</span> Stu2wdat)</a>
-<a class="sourceLine" id="cb413-9" title="9"><span class="kw">anova</span>(anova.model1)</a></code></pre></div>
+<a class="sourceLine" id="cb413-2" title="2"><span class="co"># but first, save current par and set graphic page to hold 4 graphs</span></a>
+<a class="sourceLine" id="cb413-3" title="3">opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb413-4" title="4">anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</a>
+<a class="sourceLine" id="cb413-5" title="5"><span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</a>
+<a class="sourceLine" id="cb413-6" title="6"><span class="dt">data =</span> Stu2wdat)</a>
+<a class="sourceLine" id="cb413-7" title="7"><span class="kw">anova</span>(anova.model1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: rdwght
@@ -389,8 +387,8 @@ Attention, R imprime les sommes des carrés séquentielles (Type I) les carrés 
 <p>Suite à l’ANOVA, on accepte deux hypothèses nulles: (1) que l’effet du sexe ne varie pas entre les sites (pas d’interaction significative) et (2) qu’il n’y a pas de différence de taille des esturgeons (peu importe le sexe) entre les deux sites. D’un autre coté, on rejette l’hypothèse nulle qu’il n’y a pas de différence de taille entre les esturgeons mâles et les femelles, tel que suggéré par les graphiques.</p>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb417-2" title="2"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-207"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-207-1.svg" alt="Conditions d'application ANOVA model1" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-210"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-210-1.svg" alt="Conditions d'application ANOVA model1" width="672" />
 <p class="caption">
 Figure 6.1: Conditions d’application ANOVA model1
 </p>
@@ -413,19 +411,40 @@ Figure 6.1: Conditions d’application ANOVA model1
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Si les résidus étaient homoscédastiques, on accepterait l’hypothèse nulle que le absres moyen ne varie pas entre les niveaux de sexe et location (i.e., sexloc). Le tableau d’ANOVA ci-dessus montre que l’hypothèse est rejetée. Il y a donc évidence d’hétéroscédasticité. En bref, nous avons donc plusieurs conditions d’application qui ne sont pas respectées. La question qui reste est: ces violations sont-elles suffisantes pour invalider nos conclusions ?</p>
-<ul>
-<li>Répétez la même analyse avec les données du fichier <code>stu2mdat.csv</code> . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?</li>
-</ul>
 
-<div class="exer">
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1">Stu2mdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2mdat.csv&quot;</span>)</a>
+<div class="rmdcode">
+Répétez la même analyse avec les données du fichier <code>stu2mdat.csv</code> . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?
+</div>
+
+<div class="sourceCode" id="cb422"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1">Stu2mdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2mdat.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb422-2" title="2">anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
 <a class="sourceLine" id="cb422-3" title="3">  <span class="dt">formula =</span> rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</a>
 <a class="sourceLine" id="cb422-4" title="4">  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</a>
 <a class="sourceLine" id="cb422-5" title="5">  <span class="dt">data =</span> Stu2mdat)</a>
-<a class="sourceLine" id="cb422-6" title="6"><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
-</div>
-
+<a class="sourceLine" id="cb422-6" title="6"><span class="kw">summary</span>(anova.model2)</a>
+<a class="sourceLine" id="cb422-7" title="7"><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rdwght ~ sex + location + sex:location, data = Stu2mdat, 
+##     contrasts = list(sex = contr.sum, location = contr.sum))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.917  -6.017  -0.580   4.445  65.743 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     24.5346     0.7461  32.885  &lt; 2e-16 ***
+## sex1            -0.5246     0.7461  -0.703    0.483    
+## location1        0.2227     0.7461   0.299    0.766    
+## sex1:location1   3.1407     0.7461   4.210 4.05e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.924 on 178 degrees of freedom
+##   (4 observations deleted due to missingness)
+## Multiple R-squared:  0.09744,    Adjusted R-squared:  0.08223 
+## F-statistic: 6.405 on 3 and 178 DF,  p-value: 0.0003817</code></pre>
 <p>Notez que cette fois les femelles sont plus grandes que les mâles à Cumberland House, mais que c’est le contraire à The Pas. Quel est le résultat de l’ANOVA (n’oubliez pas qu’il faut des Type III sums of squares pour les résultats)?</p>
 <pre><code>## Anova Table (Type III tests)
 ## 
@@ -442,8 +461,8 @@ Figure 6.1: Conditions d’application ANOVA model1
 <ul>
 <li>Vous trouverez utile ici de créer des graphiques pour les deux fichiers de données pour comparer les interactions entre sex et location. Le graphique d’interaction montre les relations entre les moyennes de chaque combinaison de facteurs (appelées aussi les moyennes des ce$lules).Générez un graphique illustrant les intéractions en utilisant la fonction allEffects du package effects :</li>
 </ul>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1"><span class="kw">library</span>(effects)</a>
-<a class="sourceLine" id="cb424-2" title="2"><span class="kw">allEffects</span>(anova.model1)</a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">library</span>(effects)</a>
+<a class="sourceLine" id="cb425-2" title="2"><span class="kw">allEffects</span>(anova.model1)</a></code></pre></div>
 <pre><code>##  model: rdwght ~ sex + location + sex:location
 ## 
 ##  sex*location effect
@@ -451,14 +470,14 @@ Figure 6.1: Conditions d’application ANOVA model1
 ## sex            CUMBERLAND   THE_PAS     
 ##   FEMALE           27.37347     27.97717
 ##   MALE             22.14118     20.64652</code></pre>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model1), <span class="st">&#39;sex:location&#39;</span>)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-212"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-212-1.svg" alt="Effet du sexe et du lieu sur le poids des esturgeons" width="672" />
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model1), <span class="st">&#39;sex:location&#39;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-217"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-217-1.svg" alt="Effet du sexe et du lieu sur le poids des esturgeons" width="672" />
 <p class="caption">
 Figure 6.2: Effet du sexe et du lieu sur le poids des esturgeons
 </p>
 </div>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb427-1" title="1"><span class="kw">allEffects</span>(anova.model2)</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="kw">allEffects</span>(anova.model2)</a></code></pre></div>
 <pre><code>##  model: rdwght ~ sex + location + sex:location
 ## 
 ##  sex*location effect
@@ -466,15 +485,15 @@ Figure 6.2: Effet du sexe et du lieu sur le poids des esturgeons
 ## sex            CUMBERLAND   THE_PAS     
 ##   FEMALE           27.37347     20.64652
 ##   MALE             22.14118     27.97717</code></pre>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb429-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model2), <span class="st">&#39;sex:location&#39;</span>)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-213"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-213-1.svg" alt="Effet du sexe et du lieu sur le poids des esturgeons" width="672" />
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model2), <span class="st">&#39;sex:location&#39;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-218"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-218-1.svg" alt="Effet du sexe et du lieu sur le poids des esturgeons" width="672" />
 <p class="caption">
 Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 </p>
 </div>
 <p>Il y a une différence importante entre les résultats obtenus avec <code>stu2wdat</code> et <code>stu2mdat</code>. Dans le premier cas, puisqu’il n’y a pas d’interaction, on peut regrouper les données des deux niveaux d’un facteur (le site, par exemple) pour éprouver l’hypothèse d’un effet de l’autre facteur (le sexe). En fait, si on fait cela et que l’on calcule une ANOVA à un critère de classification (sex), on obtient:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1"><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2wdat), <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" title="1"><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2wdat), <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -485,7 +504,7 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Notez que la somme des carrés des résidus (17583) est presque égale à celle du modèle complet (17530) de l’ANOVA factorielle à deux facteurs. C’est parce que dans cette anova factorielle, le terme d’interaction et le terme représentant l’effet du site n’expliquent qu’une partie infime de la variabilité. D’un autre coté, si on essaie le même truc avec <code>stu2mdat</code>, on obtient:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1"><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2mdat), <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb433-1" title="1"><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2mdat), <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -502,11 +521,7 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 <p>Les analyses qui précèdent négligent un point important: <code>location</code> pourrait être traité comme un facteur aléatoire et <code>sex</code> est fixe. Par conséquent le modèle approprié d’ANOVA est de type mixte.</p>
 <p>Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle etait de type effet fixe seulement, et les termes principaux et celui d’interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type mixte, ces effets devraient être testés en utilisant le carré moyen du terme d’interaction, ou en combinant la somme des carrés de l’erreur et de l’interaction (selon le statisticien consulté!).</p>
 <p>En utilisant <code>Stu2wdat</code> , refaites un tableau d’ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l’interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c’est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d’ANOVA.</p>
-
-<div class="exer">
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
-</div>
-
+<div class="sourceCode" id="cb435"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb435-1" title="1"><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -521,7 +536,7 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 <p>Pour <code>sex</code>, la nouvelle valeur de F (le rapport des carrés moyens) est de</p>
 <p><span class="math display">\[F = \frac{(1745/1)}{(49/1)} = 35.6\]</span></p>
 <p>Pour obtenir la valeur de p correspondant à cette statistique <code>F</code>, il faut utilisez la fonction de probabilité de la distribtuion de F <code>pf(F, df1, df2, lower.tail = FALSE)</code>, où F est la valeur de F calculée, et <code>df1</code> et <code>df2</code> sont les degrés de liberté du numérateur (sex) et dénominateur(SEX:location).</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="kw">pf</span>(<span class="fl">35.6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">lower.tail =</span>  <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1"><span class="kw">pf</span>(<span class="fl">35.6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">lower.tail =</span>  <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## [1] 0.1057152</code></pre>
 <p>Notez que maintenant la valeur de p pour sex n’est plus significative. C’est parce que le carré moyen de l’erreur dans l’ANOVA initiale est plus petit que celui associé à l’interaction, mais surtout parce que le nombre de degrés de liberté pour le dénominateur du test de F est passé de 178 à 1 seulement. En général, c’est beaucoup plus difficile d’obtenir des résultats significatifs quand les degrés de liberté pour le dénominateur sont petits.</p>
 

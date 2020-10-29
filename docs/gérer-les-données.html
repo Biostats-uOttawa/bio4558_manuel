@@ -389,12 +389,12 @@ Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut 
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">ls</span>()</a></code></pre></div>
 <pre><code>##  [1] &quot;anglais&quot;        &quot;chien&quot;          &quot;d&quot;              &quot;d_nonsport&quot;    
 ##  [5] &quot;d_sport&quot;        &quot;diplome&quot;        &quot;erables&quot;        &quot;hdv2003&quot;       
-##  [9] &quot;imc&quot;            &quot;maths&quot;          &quot;p&quot;              &quot;poids&quot;         
-## [13] &quot;precipitations&quot; &quot;reg&quot;            &quot;resultat&quot;       &quot;rp2012&quot;        
-## [17] &quot;s&quot;              &quot;sport&quot;          &quot;tab&quot;            &quot;taille1&quot;       
-## [21] &quot;taille2&quot;        &quot;taille3&quot;        &quot;taille4&quot;        &quot;taille5&quot;       
-## [25] &quot;tailles&quot;        &quot;tailles_m&quot;      &quot;temperature&quot;    &quot;title&quot;         
-## [29] &quot;x&quot;              &quot;y&quot;</code></pre>
+##  [9] &quot;imc&quot;            &quot;maths&quot;          &quot;p&quot;              &quot;params&quot;        
+## [13] &quot;poids&quot;          &quot;precipitations&quot; &quot;reg&quot;            &quot;resultat&quot;      
+## [17] &quot;rp2012&quot;         &quot;s&quot;              &quot;sport&quot;          &quot;tab&quot;           
+## [21] &quot;taille1&quot;        &quot;taille2&quot;        &quot;taille3&quot;        &quot;taille4&quot;       
+## [25] &quot;taille5&quot;        &quot;tailles&quot;        &quot;tailles_m&quot;      &quot;temperature&quot;   
+## [29] &quot;title&quot;          &quot;x&quot;              &quot;y&quot;</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">str</span>(erables)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
 ##  $ station: chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
@@ -705,12 +705,9 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 </div>
 <div id="exercice-sur-r" class="section level3">
 <h3><span class="header-section-number">1.5.5</span> Exercice sur R</h3>
-<p>Vous trouverez dans le fichier <code>salmonella.csv</code>, des valeurs numériques du ratio d’infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
+<p>Vous trouverez dans le fichier <code>salmonella.csv</code>, des valeurs numériques du ratio d’infection des cellules par la salmonelle dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
 Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.</p>
-<p><img src="Labo_BIO4558_files/figure-html/intror-exer-1.svg" width="672" /></p>
-
-<div class="exer">
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="co">## Charger les données</span></a>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="co">## Charger les données</span></a>
 <a class="sourceLine" id="cb236-2" title="2">salmonella &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/salmonella.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb236-3" title="3"></a>
 <a class="sourceLine" id="cb236-4" title="4"><span class="co">##creer le graph en utilisant juste la souche sauvage et définir x</span></a>
@@ -735,8 +732,12 @@ Examinez les données pour le ratio et faites des graphiques pour évaluer la no
 <a class="sourceLine" id="cb236-23" title="23">                <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a>
 <a class="sourceLine" id="cb236-24" title="24"><span class="co">## faire le graphique</span></a>
 <a class="sourceLine" id="cb236-25" title="25">mygraph</a></code></pre></div>
+<div class="figure"><span id="fig:intror-exer"></span>
+<img src="Labo_BIO4558_files/figure-html/intror-exer-1.svg" alt="Distibution des ratios d'infections par la souche sauvage de salmonelle" width="672" />
+<p class="caption">
+Figure 1.22: Distibution des ratios d’infections par la souche sauvage de salmonelle
+</p>
 </div>
-
 
 <!-- # (PART) Analyse de puissance {-} -->
 </div>

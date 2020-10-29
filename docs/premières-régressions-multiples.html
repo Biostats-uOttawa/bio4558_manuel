@@ -336,14 +336,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>la densité des routes pavées (en m/ha) dans un rayon de 1km du marais ( thtden ).</li>
 </ul>
 <p>Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Mregdat.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb491-2" title="2"><span class="kw">scatterplotMatrix</span>(</a>
-<a class="sourceLine" id="cb491-3" title="3">  <span class="op">~</span>logherp <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp,</a>
-<a class="sourceLine" id="cb491-4" title="4">  <span class="dt">regLine =</span> <span class="ot">TRUE</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb491-5" title="5">  <span class="dt">data =</span> mydata</a>
-<a class="sourceLine" id="cb491-6" title="6">)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-248"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-248-1.svg" alt="Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles" width="672" />
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Mregdat.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb493-2" title="2"><span class="kw">scatterplotMatrix</span>(</a>
+<a class="sourceLine" id="cb493-3" title="3">  <span class="op">~</span>logherp <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp,</a>
+<a class="sourceLine" id="cb493-4" title="4">  <span class="dt">regLine =</span> <span class="ot">TRUE</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb493-5" title="5">  <span class="dt">data =</span> mydata</a>
+<a class="sourceLine" id="cb493-6" title="6">)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-252"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-252-1.svg" alt="Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles" width="672" />
 <p class="caption">
 Figure 7.1: Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles
 </p>
@@ -351,8 +351,8 @@ Figure 7.1: Matrice de rélation et densité pour la richesse spécifique des am
 <ul>
 <li>En utilisant les données de ce fichier, faites la régression simple de <code>logherp</code> en fonction de <code>logarea</code> . Que concluez-vous à partir de cette analyse?</li>
 </ul>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" title="1">model.loga &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb492-2" title="2"><span class="kw">summary</span>(model.loga)</a></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" title="1">model.loga &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb494-2" title="2"><span class="kw">summary</span>(model.loga)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea, data = mydata)
@@ -372,10 +372,10 @@ Figure 7.1: Matrice de rélation et densité pour la richesse spécifique des am
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.3552, Adjusted R-squared:  0.3304 
 ## F-statistic: 14.32 on 1 and 26 DF,  p-value: 0.0008185</code></pre>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb494-2" title="2"><span class="kw">plot</span>(model.loga)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-249"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-249-1.svg" alt="Conditions d'applications de la régression de *logherp* sur *logarea*" width="672" />
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb496-2" title="2"><span class="kw">plot</span>(model.loga)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-253"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-253-1.svg" alt="Conditions d'applications de la régression de *logherp* sur *logarea*" width="672" />
 <p class="caption">
 Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> sur <em>logarea</em>
 </p>
@@ -384,9 +384,8 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 <ul>
 <li>Faites ensuite la régression de <code>logherp</code> en fonction de <code>cpfor2</code> . Que concluez-vous?</li>
 </ul>
-<div class="fold s">
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1">model.logcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb495-2" title="2"><span class="kw">summary</span>(model.logcp)</a></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" title="1">model.logcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb497-2" title="2"><span class="kw">summary</span>(model.logcp)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ cpfor2, data = mydata)
@@ -406,14 +405,12 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.09289,    Adjusted R-squared:  0.058 
 ## F-statistic: 2.662 on 1 and 26 DF,  p-value: 0.1148</code></pre>
-</div>
 <p>Ici, on doit accepter l’hypothèse nulle et conclure qu’il n’y a pas de relation entre la richesse spécifique dans les marais (<code>logherp</code>) et la proportion de forêts sur les terres adjacentes (<code>cpfor2</code>). Qu’est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?</p>
 <ul>
 <li>Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?</li>
 </ul>
-<div class="fold s">
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" title="1">model.mcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb497-2" title="2"><span class="kw">summary</span>(model.mcp)</a></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" title="1">model.mcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb499-2" title="2"><span class="kw">summary</span>(model.mcp)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2, data = mydata)
@@ -434,14 +431,12 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.4493, Adjusted R-squared:  0.4052 
 ## F-statistic:  10.2 on 2 and 25 DF,  p-value: 0.0005774</code></pre>
-</div>
 <p>On voit donc qu’on peut rejeter les 2 hypothèses nulles que la pente de la régression de <code>logherp</code> sur <code>logarea</code> est zéro et que la pente de la régression de <code>logherp</code> sur <code>cpfor2</code> est zéro. Pourquoi <code>cpfor2</code> devient-il un facteur significatif dans la régression multiple alors qu’il n’est pas significatif dans la régression simple? Parce qu’il est parfois nécessaire de contrôler pour l’effet d’une variable pour pouvoir détecter les effets plus subtils d’autres variables. Ici, il y a une relation significative entre <code>logherp</code> et <code>logarea</code> qui masque l’effet de <code>cpfor2</code> sur <code>logherp</code> . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l’effet de <code>cpfor2</code> .</p>
 <ul>
 <li>Ajustez un autre modèle, cette fois en remplaçant <code>cpfor2</code> par <code>thtden</code> ( logherp ~ logarea + thtden ). Que concluez-vous?</li>
 </ul>
-<div class="fold s">
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" title="1">model.mden &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb499-2" title="2"><span class="kw">summary</span>(model.mden)</a></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1">model.mden &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb501-2" title="2"><span class="kw">summary</span>(model.mden)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + thtden, data = mydata)
@@ -462,16 +457,14 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.5358, Adjusted R-squared:  0.4986 
 ## F-statistic: 14.43 on 2 and 25 DF,  p-value: 6.829e-05</code></pre>
-</div>
 <p>On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (<code>logarea</code>) ni par la densité des routes (<code>thtden</code>). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( <code>cpfor2</code> ; résultat de la dernière régression).</p>
 <p>Le <span class="math inline">\(R^2\)</span> de ce modèle est plus élevé que pour le précédent, reflétant une corrélation plus forte entre logherp et thtden qu’entre <code>logherp</code> et <code>cpfor2</code> .</p>
 <p>La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais ( <code>logarea</code> ), la densité des routes ( <code>thtden</code> ), et possiblement au couvert forestier sur les terres adjacentes aux marais ( <code>cpfor2</code> ). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons <code>cpfor2</code> et <code>thtden</code> ) sont parfaitement corrélées, alors l’effet de <code>thtden</code> ne serait rien de plus que celui de <code>cpfor2</code> (et vice-versa) et un modèle incluant l’une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de <code>logarea</code> ).</p>
 <ul>
 <li>Estimez un modèle de régression avec <code>logherp</code> comme variable dépendante et <code>logarea</code> , <code>cpfor2</code> et <code>thtden</code> comme variables indépendantes. Que concluez-vous?</li>
 </ul>
-<div class="fold s">
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1">model.mtri &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb501-2" title="2"><span class="kw">summary</span>(model.mtri)</a></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" title="1">model.mtri &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb503-2" title="2"><span class="kw">summary</span>(model.mtri)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2 + thtden, data = mydata)
@@ -493,13 +486,12 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.5471, Adjusted R-squared:  0.4904 
 ## F-statistic: 9.662 on 3 and 24 DF,  p-value: 0.0002291</code></pre>
-</div>
 <p>Plusieurs choses sont à noter ici:
 1. Tel que prédit, le coefficient de régression pour <code>cpfor2</code> n’est plus significativement différent de 0. Une fois que la variabilité attribuable à <code>logarea</code> et <code>thtden</code> est enlevée, il ne reste qu’une fraction nonsignificative de la variabilité attribuable à <code>cpfor2</code> .
 2. Le <span class="math inline">\(R^2\)</span> pour ce modèle(0.547) n’est que légèrement supérieur au <span class="math inline">\(R^2\)</span> du modèle avec seulement <code>logarea</code> et <code>thtden</code> (.536), ce qui confirme que <code>cpfor2</code> n’explique pas grand-chose de plus.</p>
 <p>Notez aussi que même si le coefficient de régression pour <code>thtden</code> n’a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul <code>thtden</code> et <code>logarea</code> étaient dans le modèle (0-.036 vs -0.042), l’erreur type pour l’estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre <code>thtden</code> et <code>cpfor2</code> était plus forte, la décroissance de la précision serait encore plus grande.</p>
 <p>On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 variables et celui avec seulement logarea and thtden ) pour décider lequel privilégier.</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" title="1"><span class="kw">anova</span>(model.mtri, model.mden)</a></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" title="1"><span class="kw">anova</span>(model.mtri, model.mden)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: logherp ~ logarea + cpfor2 + thtden
@@ -508,10 +500,12 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 ## 1     24 0.62937                          
 ## 2     25 0.64508 -1 -0.015708 0.599 0.4465</code></pre>
 <p>Cette comparaison révèle que le modèle à 3 variables ne fait pas de prédictions significativement meilleures que le modèle avec seulement Logarea et thtden . Ce résultat n’est pas surprenant puisque le test de signification pour cpfor2 dans le modèle complet indique qu’il faut accepter l’hypothèse nulle.</p>
-<p>À la suite de cette analyse, on doit conclure que :
-1. Le meilleur modèle est celui incluant thtden et logarea .
-2. Il y a une relation négative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes.
-3. Il y a une relation positive entre la richesse spécifique et la taille des marais.</p>
+<p>À la suite de cette analyse, on doit conclure que:</p>
+<ol style="list-style-type: decimal">
+<li>Le meilleur modèle est celui incluant thtden et logarea .</li>
+<li>Il y a une relation négative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes.</li>
+<li>Il y a une relation positive entre la richesse spécifique et la taille des marais.</li>
+</ol>
 <p>Notez que le “meilleur” modèle n’est pas nécessairement le modèle parfait, seulement le meilleur n’utilisant que ces trois variables indépendantes. Il est évident qu’il y a d’autres facteurs qui contrôlent la richesse spécifique dans les marais puisque, même le “meilleur” modèle n’explique que la moitié de la variabilité.</p>
 </div>
 <script src="js/solution.js"></script>
