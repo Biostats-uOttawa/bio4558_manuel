@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.5 ANOVA non paramétrique avec deux facteurs de classification | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.5 ANOVA non paramétrique avec deux facteurs de classification | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -320,14 +322,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.5</span> ANOVA non paramétrique avec deux facteurs de classification</h2>
 <p>L’ANOVA non paramétrique à deux critères de classification est une extension de celle à un critère de classification vue précédemment. Elle débute par une ANOVA faite sur les données transformées en rangs. Elle peut se faire sur des données avec ou sans réplicats.</p>
 <p>À partir du fichier <code>stu2wdat.csv</code>, effectuez une ANOVA non paramétrique à deux facteurs de classification pour examiner l’effet de <code>sex</code> et <code>location</code> sur <code>rank(rdwght)</code>.</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1">aov.rank &lt;-<span class="st"> </span><span class="kw">aov</span>(</a>
-<a class="sourceLine" id="cb458-2" title="2">  <span class="kw">rank</span>(rdwght) <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>location,</a>
-<a class="sourceLine" id="cb458-3" title="3">  <span class="dt">contrasts =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb458-4" title="4">    <span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</a>
-<a class="sourceLine" id="cb458-5" title="5">  <span class="dt">data =</span> Stu2wdat)</a></code></pre></div>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1">aov.rank &lt;-<span class="st"> </span><span class="kw">aov</span>(</a>
+<a class="sourceLine" id="cb455-2" title="2">  <span class="kw">rank</span>(rdwght) <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>location,</a>
+<a class="sourceLine" id="cb455-3" title="3">  <span class="dt">contrasts =</span> <span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb455-4" title="4">    <span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</a>
+<a class="sourceLine" id="cb455-5" title="5">  <span class="dt">data =</span> Stu2wdat)</a></code></pre></div>
 <p>L’extension de Schreirer-Ray-Hare au test de Kruskall-Wallis se fait ensuite à la main. Il faut d’abord calculer la statistique H égale au rapport de la somme des carrées de l’effet testé, divisée par le carré moyen total. On calcule la statistique H pour chacun des termes. Les statistiques H sont ensuite comparées à une distribution théorique de <span class="math inline">\(\chi^2\)</span> (chi-carré) en utilisant la commande <code>pchisq(H, df, lower.tail = FALSE)</code>, où <code>H</code> et <code>df</code> sont les statistiques H calculées et les degrés de libertés, respectivement.</p>
 <p>Testez l’effet de sex et location sur rdwght. Que concluez-vous ? Comment ce résultat se compare-t-il à celui obtenu en faisant l’ANOVA paramétrique faite précédemment ?</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="kw">Anova</span>(aov.rank, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" title="1"><span class="kw">Anova</span>(aov.rank, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rank(rdwght)
@@ -341,24 +343,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Pour calculer l’extension Schreirer-Ray-Hare au test de Kruskall-Wallis, on doit d’abord calculer le carré moyen total (MS), i.e. la variance des données transformées en rang. Ici, on a 186 observations, donc des rangs; 1, 2, 3, … 186. La variance de cette série de 186 valeurs peut être calculée simplement par <code>var(1:186)</code>.</p>
 <p>Donc on peut calculer la statistique H pour chaque terme:</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" title="1">Hsex &lt;-<span class="st"> </span><span class="dv">58394</span> <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">186</span>)</a>
-<a class="sourceLine" id="cb461-2" title="2">Hlocation &lt;-<span class="st"> </span><span class="dv">1128</span> <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">186</span>)</a>
-<a class="sourceLine" id="cb461-3" title="3">Hsexloc &lt;-<span class="st"> </span><span class="dv">1230</span> <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">186</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" title="1">Hsex &lt;-<span class="st"> </span><span class="dv">58394</span> <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">186</span>)</a>
+<a class="sourceLine" id="cb458-2" title="2">Hlocation &lt;-<span class="st"> </span><span class="dv">1128</span> <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">186</span>)</a>
+<a class="sourceLine" id="cb458-3" title="3">Hsexloc &lt;-<span class="st"> </span><span class="dv">1230</span> <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">186</span>)</a></code></pre></div>
 <p>Et convertir ces statistiques en valeur de ps:</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" title="1"><span class="co"># sex</span></a>
-<a class="sourceLine" id="cb462-2" title="2">Hsex</a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="co"># sex</span></a>
+<a class="sourceLine" id="cb459-2" title="2">Hsex</a></code></pre></div>
 <pre><code>## [1] 20.14628</code></pre>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" title="1"><span class="kw">pchisq</span>(Hsex, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" title="1"><span class="kw">pchisq</span>(Hsex, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## [1] 7.173954e-06</code></pre>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" title="1"><span class="co"># location</span></a>
-<a class="sourceLine" id="cb466-2" title="2">Hlocation</a></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" title="1"><span class="co"># location</span></a>
+<a class="sourceLine" id="cb463-2" title="2">Hlocation</a></code></pre></div>
 <pre><code>## [1] 0.3891668</code></pre>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb468-1" title="1"><span class="kw">pchisq</span>(Hlocation, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1"><span class="kw">pchisq</span>(Hlocation, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## [1] 0.5327377</code></pre>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" title="1"><span class="co"># sex:location</span></a>
-<a class="sourceLine" id="cb470-2" title="2">Hsexloc</a></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1"><span class="co"># sex:location</span></a>
+<a class="sourceLine" id="cb467-2" title="2">Hsexloc</a></code></pre></div>
 <pre><code>## [1] 0.4243574</code></pre>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb472-1" title="1"><span class="kw">pchisq</span>(Hsexloc, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1"><span class="kw">pchisq</span>(Hsexloc, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## [1] 0.5147707</code></pre>
 <p>Ces résultats sont semblables aux résultats de l’ANOVA non-paramétrique à deux critères de classification. Malgré la puissance réduite, il y a encore un effet significatif du sexe, mais ni interaction ni effet du site.</p>
 <p>Il y a toutefois une différence importante. Rappelez-vous que dans l’ANOVA paramétrique il y avait un effet significatif de sex en considérant le problème comme un modèle ANOVA à effet fixe. Cependant, si on traite le problème comme un modèle d’ANOVA à effet mixte l’effet significatif de <code>sex</code> peut en principe disparaître parce que le nombre de degré de liberté (dl) associés au carré moyen (CM) de l’interaction est plus faible que le nombre de dl du CM de l’erreur du modèle à effet fixes. Dans ce cas ci, cependant, le CM de l’interaction est environ la moitié du CM de l’erreur. Par conséquent, l’effet significatif de <code>sex</code> pourrait devenir encore plus significatif si le problème est analysé (comme il se doit) comme une ANOVA mixte. Encore une fois on peut voir l’importance de spécifier le modèle adéquat en ANOVA.</p>

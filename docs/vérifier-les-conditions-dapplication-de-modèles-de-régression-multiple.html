@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.7 Vérifier les conditions d’application de modèles de régression multiple | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.7 Vérifier les conditions d’application de modèles de régression multiple | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -321,42 +323,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.</p>
 Examinons donc les graphiques diagnostiques du modèle final:
 <div class="fold s">
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb531-2" title="2"><span class="kw">plot</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb528-2" title="2"><span class="kw">plot</span>(model.poly2)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-265"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-265-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-265-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" />
 <p class="caption">
 Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 </p>
 </div>
 </div>
 <p>Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</a></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</a></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(model.poly2)
 ## W = 0.9837, p-value = 0.9278</code></pre>
 <p>Les résidus ne dévient pas significativement de la normalité. Bien.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1"><span class="kw">library</span>(lmtest)</a>
-<a class="sourceLine" id="cb534-2" title="2"><span class="kw">bptest</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="kw">library</span>(lmtest)</a>
+<a class="sourceLine" id="cb531-2" title="2"><span class="kw">bptest</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  model.poly2
 ## BP = 3.8415, df = 4, p-value = 0.4279</code></pre>
 <p>Pas de déviation d’homoscédasticité non plus. Bien.</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" title="1"><span class="kw">dwtest</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" title="1"><span class="kw">dwtest</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
-## 	Durbin-Watson test
+##  Durbin-Watson test
 ## 
 ## data:  model.poly2
 ## DW = 1.725, p-value = 0.2095
 ## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <p>Pas de corrélation sérielle des résidus, donc pas d’évidence de nonindépendance.</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1"><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</a></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb535-1" title="1"><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</a></code></pre></div>
 <pre><code>## 
-## 	RESET test
+##  RESET test
 ## 
 ## data:  model.poly2
 ## RESET = 0.9823, df1 = 8, df2 = 15, p-value = 0.4859</code></pre>

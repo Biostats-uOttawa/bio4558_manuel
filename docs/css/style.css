@@ -85,7 +85,7 @@ h1.title {
   content: "Masquer ";
 }
 
-.solution {
+.exer {
   margin-top: 1.3em;
   margin-bottom: 1.2em;
   padding-left: 1em;
@@ -93,7 +93,7 @@ h1.title {
   display: none;
 }
 
-.solution pre.sourceCode {
+.exer pre.sourceCode {
   background-color: #f0f4fd;
 }
 

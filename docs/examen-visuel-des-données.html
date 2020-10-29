@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.2 Examen visuel des données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.2 Examen visuel des données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -350,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb324-20" title="20"><span class="co">#display graph, by location</span></a>
 <a class="sourceLine" id="cb324-21" title="21">mygraph<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>location)</a></code></pre></div>
 <div class="figure"><span id="fig:t-1"></span>
-<img src="Labo_BIO4558_files/figure-html/t-1-1.svg" alt="Distribution de la longueur des esturgeons" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/t-1-1.svg" alt="Distribution de la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 4.1: Distribution de la longueur des esturgeons
 </p>
@@ -362,7 +364,7 @@ Figure 4.1: Distribution de la longueur des esturgeons
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data=</span>sturgeon, <span class="kw">aes</span>(<span class="dt">x=</span>location,</a>
 <a class="sourceLine" id="cb325-2" title="2"><span class="dt">y=</span>fklngth))<span class="op">+</span><span class="kw">geom_boxplot</span>(<span class="dt">notch=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:t-2"></span>
-<img src="Labo_BIO4558_files/figure-html/t-2-1.svg" alt="Boxplot de la longueur des esturgeons" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/t-2-1.svg" alt="Boxplot de la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 4.2: Boxplot de la longueur des esturgeons
 </p>

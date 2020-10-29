@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -357,7 +359,7 @@ t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <li>Cliquer sur le bouton Calculate dans la fenêtre principale et vous devriez obtenir ceci:</li>
 </ol>
 <div class="figure"><span id="fig:gpower-1"></span>
-<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" class="plot" />
+<img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" />
 <p class="caption">
 Figure 2.1: Analyse post-hoc avec la taille d’effet estimée
 </p>
@@ -393,7 +395,7 @@ Le plus simple comme nous allons estimer la taille d’effet <code>d</code> plus
 <a class="sourceLine" id="cb240-10" title="10">y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean=</span>(<span class="fl">3.31-2.64</span>))</a>
 <a class="sourceLine" id="cb240-11" title="11"><span class="kw">polygon</span>(<span class="kw">c</span>( x[x<span class="op">&lt;=-</span>qc], <span class="op">-</span>qc),  <span class="kw">c</span>(y[x<span class="op">&lt;=-</span>qc],<span class="dv">0</span>), <span class="dt">col=</span><span class="kw">rgb</span>(<span class="dt">red =</span> <span class="dv">0</span>, <span class="dt">green =</span> <span class="fl">0.2</span>, <span class="dt">blue =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>))</a></code></pre></div>
 <div class="figure"><span id="fig:r-power"></span>
-<img src="Labo_BIO4558_files/figure-html/r-power-1.svg" alt="Graphique de l'analyse de puissance dans R" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/r-power-1.svg" alt="Graphique de l'analyse de puissance dans R" width="672" />
 <p class="caption">
 Figure 2.2: Graphique de l’analyse de puissance dans R
 </p>
@@ -429,7 +431,7 @@ Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliqu
 </div>
 
 <div class="figure"><span id="fig:gpower-2"></span>
-<img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" class="plot" />
+<img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
 <p class="caption">
 Figure 2.3: Analyse post-hoc avec une taille d’effet différente
 </p>
@@ -463,7 +465,7 @@ Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles
 </div>
 
 <div class="figure"><span id="fig:gpower-3"></span>
-<img src="images/gpower_3.png" alt="Analyse à priori" width="100%" class="plot" />
+<img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
 <p class="caption">
 Figure 2.4: Analyse à priori
 </p>
@@ -505,7 +507,7 @@ Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <stron
 </div>
 
 <div class="figure"><span id="fig:gpower-4"></span>
-<img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" class="plot" />
+<img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
 <p class="caption">
 Figure 2.5: Analyse de sensitivité
 </p>

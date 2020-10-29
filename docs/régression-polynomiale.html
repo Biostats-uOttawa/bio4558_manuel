@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.6 Régression polynomiale | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.6 Régression polynomiale | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -323,15 +325,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Faites un diagramme de dispersion des résidus (residual) de la régression <code>logherp ~ logarea</code> en fonction de swamp .</li>
 </ul>
 <div class="fold s">
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" title="1"><span class="co">#problème avec les données de manquantes dans logherp</span></a>
-<a class="sourceLine" id="cb518-2" title="2">mysub &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, <span class="op">!</span><span class="kw">is.na</span>(logherp))</a>
-<a class="sourceLine" id="cb518-3" title="3"><span class="co"># ajouter les résidus dans les donnée</span></a>
-<a class="sourceLine" id="cb518-4" title="4">mysub<span class="op">$</span>resloga &lt;-<span class="st"> </span><span class="kw">residuals</span>(model.loga)</a>
-<a class="sourceLine" id="cb518-5" title="5"><span class="kw">ggplot</span>(<span class="dt">data =</span> mysub, <span class="kw">aes</span>(<span class="dt">y =</span> resloga, <span class="dt">x =</span> swamp)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb518-6" title="6"><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1"><span class="co">#problème avec les données de manquantes dans logherp</span></a>
+<a class="sourceLine" id="cb515-2" title="2">mysub &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, <span class="op">!</span><span class="kw">is.na</span>(logherp))</a>
+<a class="sourceLine" id="cb515-3" title="3"><span class="co"># ajouter les résidus dans les donnée</span></a>
+<a class="sourceLine" id="cb515-4" title="4">mysub<span class="op">$</span>resloga &lt;-<span class="st"> </span><span class="kw">residuals</span>(model.loga)</a>
+<a class="sourceLine" id="cb515-5" title="5"><span class="kw">ggplot</span>(<span class="dt">data =</span> mysub, <span class="kw">aes</span>(<span class="dt">y =</span> resloga, <span class="dt">x =</span> swamp)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb515-6" title="6"><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>()</a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <div class="figure"><span id="fig:unnamed-chunk-258"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-258-1.svg" alt="Relation entre swamp et les résidus de la régression entre logherp et logarea" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-258-1.svg" alt="Relation entre swamp et les résidus de la régression entre logherp et logarea" width="672" />
 <p class="caption">
 Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp et logarea
 </p>
@@ -341,8 +343,8 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 <li>L’examen de ce graphique suggère qu’il y a une forte relation entre les deux variables, mais qu’elle n’est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?</li>
 </ul>
 <div class="fold s">
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb520-1" title="1">model.resloga &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span>swamp, mysub)</a>
-<a class="sourceLine" id="cb520-2" title="2"><span class="kw">summary</span>(model.resloga)</a></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1">model.resloga &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span>swamp, mysub)</a>
+<a class="sourceLine" id="cb517-2" title="2"><span class="kw">summary</span>(model.resloga)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = resloga ~ swamp, data = mysub)
@@ -357,7 +359,7 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 ## swamp       -0.001145   0.001403  -0.816    0.422
 ## 
 ## Residual standard error: 0.1833 on 26 degrees of freedom
-## Multiple R-squared:  0.02498,	Adjusted R-squared:  -0.01252 
+## Multiple R-squared:  0.02498,    Adjusted R-squared:  -0.01252 
 ## F-statistic: 0.666 on 1 and 26 DF,  p-value: 0.4219</code></pre>
 </div>
 <p>En deux mots, l’ajustement est épouvantable! Malgré le fait que le graphique suggère une relation très forte entre les deux variables. Cependant, cette relation n’est pas linéaire… (ce qui est également apparent si vous examinez les résidus du modèle linéaire).</p>
@@ -365,8 +367,8 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 <li>Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter <span class="math inline">\(swamp^2\)</span> . L’expression devrait apparaître comme: `Y ~ X + I(X^2) . Que concluez-vous? Qu’est-ce que l’examen des résidus de cette régression multiple révèle?</li>
 </ul>
 <div class="fold s">
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" title="1">model.resloga2 &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), mysub)</a>
-<a class="sourceLine" id="cb522-2" title="2"><span class="kw">summary</span>(model.resloga2)</a></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1">model.resloga2 &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), mysub)</a>
+<a class="sourceLine" id="cb519-2" title="2"><span class="kw">summary</span>(model.resloga2)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = resloga ~ swamp + I(swamp^2), data = mysub)
@@ -384,15 +386,15 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.1177 on 25 degrees of freedom
-## Multiple R-squared:  0.6132,	Adjusted R-squared:  0.5823 
+## Multiple R-squared:  0.6132, Adjusted R-squared:  0.5823 
 ## F-statistic: 19.82 on 2 and 25 DF,  p-value: 6.972e-06</code></pre>
 </div>
 <p>Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp , selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.</p>
 <div class="fold s">
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb524-2" title="2"><span class="kw">plot</span>(model.resloga2)</a></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb521-2" title="2"><span class="kw">plot</span>(model.resloga2)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-261"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-261-1.svg" alt="Relation " width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-261-1.svg" alt="Relation " width="672" />
 <p class="caption">
 Figure 7.4: Relation
 </p>
@@ -403,10 +405,10 @@ Figure 7.4: Relation
 </ul>
 <p>Suite à ces analyses, il semble opportun d’essayer d’ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp^2 :</p>
 <div class="fold s">
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" title="1">model.poly1 &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
-<a class="sourceLine" id="cb525-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb525-3" title="3">  <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb525-4" title="4"><span class="kw">summary</span>(model.poly1)</a></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" title="1">model.poly1 &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
+<a class="sourceLine" id="cb522-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb522-3" title="3">  <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb522-4" title="4"><span class="kw">summary</span>(model.poly1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2), 
@@ -429,15 +431,15 @@ Figure 7.4: Relation
 ## 
 ## Residual standard error: 0.1072 on 22 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.8181,	Adjusted R-squared:  0.7767 
+## Multiple R-squared:  0.8181, Adjusted R-squared:  0.7767 
 ## F-statistic: 19.78 on 5 and 22 DF,  p-value: 1.774e-07</code></pre>
 </div>
 <p>Les résultats de cette analyse suggèrent qu’on devrait probablement exclure <code>cpfor2</code> du modèle:</p>
 <div class="fold s">
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1">model.poly2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
-<a class="sourceLine" id="cb527-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb527-3" title="3">  <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb527-4" title="4"><span class="kw">summary</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" title="1">model.poly2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
+<a class="sourceLine" id="cb524-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb524-3" title="3">  <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb524-4" title="4"><span class="kw">summary</span>(model.poly2)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + thtden + swamp + I(swamp^2), 
@@ -459,11 +461,11 @@ Figure 7.4: Relation
 ## 
 ## Residual standard error: 0.1063 on 23 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.8129,	Adjusted R-squared:  0.7804 
+## Multiple R-squared:  0.8129, Adjusted R-squared:  0.7804 
 ## F-statistic: 24.98 on 4 and 23 DF,  p-value: 4.405e-08</code></pre>
 </div>
 <p>Est-ce qu’il y a possiblement un problème de multicolinéarité?</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="kw">vif</span>(model.poly2)</a></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb526-1" title="1"><span class="kw">vif</span>(model.poly2)</a></code></pre></div>
 <pre><code>##    logarea     thtden      swamp I(swamp^2) 
 ##   1.053193   1.123491  45.845845  45.656453</code></pre>
 <p>Les valeurs d’inflation de la variance (VIF) pour les deux termes de swamp sont beaucoup plus élevés que le seuil de 5. Cependant, c’est la norme pour les termes polynomiaux et on ne doit pas s’en préoccuper outre mesure, surtout quand les deux termes sont hautement significatifs dans le modèle. Les fortes valeurs de VIF indiquent que les coefficients pour ces deux termes ne sont pas estimés précisément, mais leur utilisation dans le modèle permet tout de même de faire de bonnes prédictions (i.e. ils décrivent la réponse à swamp).</p>

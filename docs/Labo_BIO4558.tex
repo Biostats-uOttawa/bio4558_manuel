@@ -1623,7 +1623,7 @@ Enfin, la fonction \texttt{str} renvoie un descriptif plus détaillé de la stru
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':	2000 obs. of  20 variables:
+## 'data.frame':    2000 obs. of  20 variables:
 ##  $ id           : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ age          : int  28 23 59 34 71 35 60 47 20 28 ...
 ##  $ sexe         : Factor w/ 2 levels "Homme","Femme": 2 2 1 1 2 2 2 1 2 1 ...
@@ -2415,8 +2415,8 @@ directement, pour chaque sexe, la répartition des catégories
 socio-professionnelles.
 \end{rmdnote}
 
-\hypertarget{repruxe9sentation-graphique}{%
-\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique}}
+\hypertarget{repruxe9sentation-graphique-1}{%
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-1}}
 
 Il est possible de faire une représentation graphique d'un tableau croisé, par exemple avec la fonction \texttt{mosaicplot}~:
 
@@ -2451,8 +2451,8 @@ Chaque rectangle de ce graphique représente une case de tableau. Sa largeur cor
 \hypertarget{croisement-dune-variable-quantitative-et-dune-variable-qualitative}{%
 \subsection{Croisement d'une variable quantitative et d'une variable qualitative}\label{croisement-dune-variable-quantitative-et-dune-variable-qualitative}}
 
-\hypertarget{repruxe9sentation-graphique-1}{%
-\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-1}}
+\hypertarget{repruxe9sentation-graphique-2}{%
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-2}}
 
 Croiser une variable quantitative et une variable qualitative, c'est essayer de voir si les valeurs de la variable quantitative se répartissent différemment selon la catégorie d'appartenance de la variable qualitative.
 
@@ -2566,7 +2566,7 @@ On peut tester cette normalité à l'aide du test de Shapiro-Wilk et de la fonct
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  d_sport$age
 ## W = 0.96203, p-value = 9.734e-13
@@ -2580,7 +2580,7 @@ On peut tester cette normalité à l'aide du test de Shapiro-Wilk et de la fonct
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  d_nonsport$age
 ## W = 0.98844, p-value = 1.654e-08
@@ -2598,7 +2598,7 @@ Dans ce cas on peut faire appel à un test non-paramétrique, qui ne fait donc p
 
 \begin{verbatim}
 ## 
-## 	Wilcoxon rank sum test with continuity correction
+##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  d$age by d$sport
 ## W = 640577, p-value < 2.2e-16
@@ -2621,8 +2621,8 @@ Le jeu de données \texttt{hdv2003} comportant assez peu de variables quantitati
 
 Un nouveau tableau de données \texttt{rp2012} devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section \ref{rp2012}.
 
-\hypertarget{repruxe9sentation-graphique-2}{%
-\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-2}}
+\hypertarget{repruxe9sentation-graphique-3}{%
+\subsubsection{Représentation graphique}\label{repruxe9sentation-graphique-3}}
 
 Quand on croise deux variables quantitatives, l'idéal est de faire une représentation graphique sous forme de nuage de points à l'aide de la fonction \texttt{plot}. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune~:
 
@@ -2744,7 +2744,7 @@ Pour des résultats plus détaillés, on peut stocker le résultat de la régres
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 2.701 on 5168 degrees of freedom
-## Multiple R-squared:  0.8783,	Adjusted R-squared:  0.8783 
+## Multiple R-squared:  0.8783, Adjusted R-squared:  0.8783 
 ## F-statistic: 3.729e+04 on 1 and 5168 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
@@ -2958,7 +2958,7 @@ Je vous déconseille cependant, la fonction \texttt{ls.str()} car elle peut prod
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':	100 obs. of  3 variables:
+## 'data.frame':    100 obs. of  3 variables:
 ##  $ station: chr  "A" "A" "A" "A" ...
 ##  $ diam   : num  22.4 36.1 44.4 24.6 17.7 ...
 ##  $ biom   : num  732 1171 673 1552 504 ...
@@ -3024,7 +3024,7 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':	186 obs. of  9 variables:
+## 'data.frame':    186 obs. of  9 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
 ##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
@@ -3190,7 +3190,7 @@ Ici,
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  sturgeon$fklngth
 ## W = 0.97225, p-value = 0.0009285
@@ -4073,7 +4073,7 @@ corrélation est que la relation entre les deux variables est linéaire. Pour
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':	186 obs. of  9 variables:
+## 'data.frame':    186 obs. of  9 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
 ##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
@@ -4286,7 +4286,7 @@ Comme exemple, essayons de tester si la corrélation entre lfklngth et rdwght es
 
 \begin{verbatim}
 ## 
-## 	Pearson's product-moment correlation
+##  Pearson's product-moment correlation
 ## 
 ## data:  sturgeon$lfklngth and sturgeon$rdwght
 ## t = 24.322, df = 180, p-value < 2.2e-16
@@ -4339,7 +4339,7 @@ Les deux plus communes sont le coefficient de rang de Spearman et le \(\tau\) (t
 
 \begin{verbatim}
 ## 
-## 	Spearman's rank correlation rho
+##  Spearman's rank correlation rho
 ## 
 ## data:  sturgeon$lfklngth and sturgeon$rdwght
 ## S = 47971, p-value < 2.2e-16
@@ -4360,7 +4360,7 @@ Les deux plus communes sont le coefficient de rang de Spearman et le \(\tau\) (t
 
 \begin{verbatim}
 ## 
-## 	Kendall's rank correlation tau
+##  Kendall's rank correlation tau
 ## 
 ## data:  sturgeon$lfklngth and sturgeon$rdwght
 ## z = 16.358, p-value < 2.2e-16
@@ -4462,7 +4462,7 @@ Pour voir les résultats, tapez:
 ## 
 ## Residual standard error: 3.307 on 73 degrees of freedom
 ##   (5 observations deleted due to missingness)
-## Multiple R-squared:  0.664,	Adjusted R-squared:  0.6594 
+## Multiple R-squared:  0.664,  Adjusted R-squared:  0.6594 
 ## F-statistic: 144.3 on 1 and 73 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
@@ -4588,7 +4588,7 @@ Exécutez les commandes suivantes
 
 \begin{verbatim}
 ## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  RegModel.1
 ## BP = 1.1765, df = 1, p-value = 0.2781
@@ -4604,7 +4604,7 @@ Le test Breusch-Pagan test examine si la variabilité des résidus est constante
 
 \begin{verbatim}
 ## 
-## 	Durbin-Watson test
+##  Durbin-Watson test
 ## 
 ## data:  RegModel.1
 ## DW = 2.242, p-value = 0.8489
@@ -4621,7 +4621,7 @@ Le test Durbin-Watson permet de détecter l'autocorrélation sérielle des rési
 
 \begin{verbatim}
 ## 
-## 	RESET test
+##  RESET test
 ## 
 ## data:  RegModel.1
 ## RESET = 14.544, df1 = 2, df2 = 71, p-value = 5.082e-06
@@ -4637,7 +4637,7 @@ Le test RESET permet d'éprouver la linéarité. Si la relation est linéaire, a
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(RegModel.1)
 ## W = 0.98037, p-value = 0.2961
@@ -4697,7 +4697,7 @@ Ajustons maintenant une régression simple sur ces données transformées.
 ## 
 ## Residual standard error: 0.03015 on 73 degrees of freedom
 ##   (5 observations deleted due to missingness)
-## Multiple R-squared:  0.772,	Adjusted R-squared:  0.7688 
+## Multiple R-squared:  0.772,  Adjusted R-squared:  0.7688 
 ## F-statistic: 247.1 on 1 and 73 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
@@ -4722,7 +4722,7 @@ Il y a une certaine amélioration, mais ce n'est pas encore parfait (la perfecti
 
 \begin{verbatim}
 ## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  RegModel.2
 ## BP = 0.14282, df = 1, p-value = 0.7055
@@ -4736,7 +4736,7 @@ Il y a une certaine amélioration, mais ce n'est pas encore parfait (la perfecti
 
 \begin{verbatim}
 ## 
-## 	Durbin-Watson test
+##  Durbin-Watson test
 ## 
 ## data:  RegModel.2
 ## DW = 2.1777, p-value = 0.6134
@@ -4751,7 +4751,7 @@ Il y a une certaine amélioration, mais ce n'est pas encore parfait (la perfecti
 
 \begin{verbatim}
 ## 
-## 	RESET test
+##  RESET test
 ## 
 ## data:  RegModel.2
 ## RESET = 4.4413, df1 = 2, df2 = 71, p-value = 0.01523
@@ -4765,7 +4765,7 @@ Il y a une certaine amélioration, mais ce n'est pas encore parfait (la perfecti
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(RegModel.2)
 ## W = 0.98998, p-value = 0.8246
@@ -4813,7 +4813,7 @@ avoir enlevé les observations 8, 24, et 112.
 ## 
 ## Residual standard error: 0.02554 on 70 degrees of freedom
 ##   (5 observations deleted due to missingness)
-## Multiple R-squared:  0.7885,	Adjusted R-squared:  0.7855 
+## Multiple R-squared:  0.7885, Adjusted R-squared:  0.7855 
 ## F-statistic:   261 on 1 and 70 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
@@ -4839,7 +4839,7 @@ Les graphiques diagnostiques des résidus et les tests formels des conditions d'
 
 \begin{verbatim}
 ## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  RegModel.3
 ## BP = 0.3001, df = 1, p-value = 0.5838
@@ -4853,7 +4853,7 @@ Les graphiques diagnostiques des résidus et les tests formels des conditions d'
 
 \begin{verbatim}
 ## 
-## 	Durbin-Watson test
+##  Durbin-Watson test
 ## 
 ## data:  RegModel.3
 ## DW = 2.0171, p-value = 0.5074
@@ -4868,7 +4868,7 @@ Les graphiques diagnostiques des résidus et les tests formels des conditions d'
 
 \begin{verbatim}
 ## 
-## 	RESET test
+##  RESET test
 ## 
 ## data:  RegModel.3
 ## RESET = 3.407, df1 = 2, df2 = 68, p-value = 0.0389
@@ -4882,7 +4882,7 @@ Les graphiques diagnostiques des résidus et les tests formels des conditions d'
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(RegModel.3)
 ## W = 0.98318, p-value = 0.4502
@@ -4930,7 +4930,7 @@ Par exemple, supposons que les ichthyologues considèrent qu'une pente de 0.1 po
 ## 
 ## Residual standard error: 0.03015 on 73 degrees of freedom
 ##   (5 observations deleted due to missingness)
-## Multiple R-squared:  0.772,	Adjusted R-squared:  0.7688 
+## Multiple R-squared:  0.772,  Adjusted R-squared:  0.7688 
 ## F-statistic: 247.1 on 1 and 73 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
@@ -5037,8 +5037,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.003378843  0.03415922
-## t2* 0.3408557 -0.002599426  0.02695097
+## t1* 1.1919926  0.001783723  0.03401057
+## t2* 0.3408557 -0.001287317  0.02681295
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -5095,10 +5095,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.256 )   ( 1.121,  1.258 )  
+## 95%   ( 1.124,  1.257 )   ( 1.123,  1.260 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.126,  1.263 )   ( 1.106,  1.248 )  
+## 95%   ( 1.124,  1.261 )   ( 1.105,  1.248 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -5124,10 +5124,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2906,  0.3963 )   ( 0.2891,  0.3971 )  
+## 95%   ( 0.2896,  0.3947 )   ( 0.2861,  0.3954 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2847,  0.3927 )   ( 0.2970,  0.4097 )  
+## 95%   ( 0.2863,  0.3956 )   ( 0.2970,  0.4109 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -5293,7 +5293,7 @@ Que concluez-vous?
 
 \begin{verbatim}
 ## 
-## 	Two Sample t-test
+##  Two Sample t-test
 ## 
 ## data:  fklngth by location
 ## t = 2.1359, df = 184, p-value = 0.03401
@@ -5317,7 +5317,7 @@ Que concluez-vous?
 
 \begin{verbatim}
 ## 
-## 	Welch Two Sample t-test
+##  Welch Two Sample t-test
 ## 
 ## data:  fklngth by location
 ## t = 2.2201, df = 169.8, p-value = 0.02774
@@ -5340,7 +5340,7 @@ Que concluez-vous?
 
 \begin{verbatim}
 ## 
-## 	Wilcoxon rank sum test with continuity correction
+##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  fklngth by location
 ## W = 4973, p-value = 0.06296
@@ -5379,7 +5379,7 @@ Le second graphique est un graphique de probabilité (graphique Q-Q) des résidu
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(m1)
 ## W = 0.97469, p-value = 0.001857
@@ -5418,7 +5418,7 @@ Qu'en est-il de l'égalité des variances?
 
 \begin{verbatim}
 ## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  m1
 ## BP = 8.8015, df = 1, p-value = 0.00301
@@ -5475,8 +5475,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original      bias    std. error
-## t1* 45.084391 -0.02192068   0.4277357
-## t2* -1.714546  0.05587674   0.7813470
+## t1* 45.084391 -0.01978571   0.4244488
+## t2* -1.714546  0.02921697   0.7622651
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5509,7 +5509,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.285, -0.292 )  
+## 95%   (-3.384, -0.338 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5551,12 +5551,12 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1583     0.06 .
+## location1   0.8573 3499    0.028 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.454 on 184 degrees of freedom
-## Multiple R-Squared: 0.02419,	Adjusted R-squared: 0.01889 
+## Multiple R-Squared: 0.02419, Adjusted R-squared: 0.01889 
 ## F-statistic: 4.562 on 1 and 184 DF,  p-value: 0.03401
 \end{verbatim}
 
@@ -5600,7 +5600,7 @@ Le fichier \texttt{skulldat\_2020.csv} contient des mesures de la partie inféri
 
 \begin{verbatim}
 ## 
-## 	Welch Two Sample t-test
+##  Welch Two Sample t-test
 ## 
 ## data:  width by age
 ## t = -1.7812, df = 27.93, p-value = 0.08576
@@ -5676,7 +5676,7 @@ Maintenant, effectuons le test apparié qui est approprié: Que conclure? Commen
 
 \begin{verbatim}
 ## 
-## 	Paired t-test
+##  Paired t-test
 ## 
 ## data:  skull_h$width5 and skull_h$width6
 ## t = -19.72, df = 14, p-value = 1.301e-11
@@ -5736,7 +5736,7 @@ Avec \emph{r} = 0.9930841. En présence d'une si forte corrélation, l'erreur-ty
 
 \begin{verbatim}
 ## 
-## 	Wilcoxon signed rank test with continuity correction
+##  Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0007193
@@ -5757,7 +5757,7 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 
 \begin{verbatim}
 ## 
-## 	Paired t-test
+##  Paired t-test
 ## 
 ## data:  skull_h$width5 and skull_h$width6
 ## t = -19.72, df = 14, p-value = 6.507e-12
@@ -5784,7 +5784,7 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 
 \begin{verbatim}
 ## 
-## 	Wilcoxon signed rank test with continuity correction
+##  Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0003597
@@ -5877,7 +5877,7 @@ En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatche
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':	118 obs. of  21 variables:
+## 'data.frame':    118 obs. of  21 variables:
 ##  $ year    : Factor w/ 4 levels "1954","1958",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
 ##  $ totlngth: num  49 NA 43 50.5 NA 51.7 45.5 52 60.2 58.5 ...
@@ -5999,7 +5999,7 @@ Des tests formels nous confirmeront ou infirmeront nos conclusions faites à par
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model1)
 ## W = 0.91571, p-value = 1.63e-06
@@ -6064,7 +6064,7 @@ La valeur de p vous dit que vous pouvez rejeter l'hypothèse nulle qu'il n'y a a
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 5.211 on 114 degrees of freedom
-## Multiple R-squared:  0.1355,	Adjusted R-squared:  0.1128 
+## Multiple R-squared:  0.1355, Adjusted R-squared:  0.1128 
 ## F-statistic: 5.957 on 3 and 114 DF,  p-value: 0.0008246
 \end{verbatim}
 
@@ -6127,7 +6127,7 @@ Compare toutes les moyennes sans ajuster les probabilités
 
 \begin{verbatim}
 ## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -6150,7 +6150,7 @@ Option \texttt{bonf} ajuste les p-valeurs avec la correction de Bonferroni. Ici,
 
 \begin{verbatim}
 ## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -6173,7 +6173,7 @@ Option ``holm'' is est la correction séquentielle de Bonferroni dans laquelle l
 
 \begin{verbatim}
 ## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -6196,7 +6196,7 @@ L'option ``fdr'' sert à contrôler le ``false discovery rate''.
 
 \begin{verbatim}
 ## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -6263,25 +6263,25 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 
 \begin{verbatim}
 ## 
-## 	 Simultaneous Confidence Intervals
+##   Simultaneous Confidence Intervals
 ## 
 ## Multiple Comparisons of Means: Tukey Contrasts
 ## 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5942
+## Quantile = 2.5936
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2721   3.6465
-## m1965 - m1954 == 0  -5.5077  -9.9983  -1.0170
-## m1966 - m1954 == 0  -3.3127  -6.3439  -0.2815
-## m1965 - m1958 == 0  -5.6949 -10.4125  -0.9773
-## m1966 - m1958 == 0  -3.4999  -6.8581  -0.1417
-## m1966 - m1965 == 0   2.1950  -2.2183   6.6082
+## m1958 - m1954 == 0   0.1872  -3.2713   3.6457
+## m1965 - m1954 == 0  -5.5077  -9.9973  -1.0180
+## m1966 - m1954 == 0  -3.3127  -6.3432  -0.2822
+## m1965 - m1958 == 0  -5.6949 -10.4113  -0.9784
+## m1966 - m1958 == 0  -3.4999  -6.8573  -0.1425
+## m1966 - m1965 == 0   2.1950  -2.2173   6.6072
 \end{verbatim}
 
 \begin{Shaded}
@@ -6369,7 +6369,7 @@ Les graphiques sont à peine mieux ici. Si on fait le test Wilk-Shapiro sur les 
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model2)
 ## W = 0.96199, p-value = 0.002048
@@ -6402,7 +6402,7 @@ Alors, on a toujours des problèmes avec la normalité et on est juste sur le se
 
 \begin{verbatim}
 ## 
-## 	Kruskal-Wallis rank sum test
+##  Kruskal-Wallis rank sum test
 ## 
 ## data:  fklngth by year
 ## Kruskal-Wallis chi-squared = 15.731, df = 3, p-value = 0.001288
@@ -6445,7 +6445,7 @@ Vous devriez avoir remarqué au cours des analyses précédentes qu'il y avait p
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(aov.Damsubset)
 ## W = 0.98533, p-value = 0.2448
@@ -6738,7 +6738,7 @@ Cependant, on ne peut se fier à ces résultats sans vérifier si les conditions
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model1)
 ## W = 0.87213, p-value = 2.619e-11
@@ -7047,7 +7047,7 @@ Jetez un coup d'oeil sur les graphiques des résidus:
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model4)
 ## W = 0.95968, p-value = 0.1634
@@ -7327,6 +7327,8 @@ Le fichier \texttt{wmcdat2.csv} contient des mesures de consommation d'oxygène,
   Effectuez une ANOVA factorielle à deux critères de classification sur ces données en utilisant \texttt{o2cons} comme variable dépendante et \texttt{species} et \texttt{conc} comme les facteurs (il va probablement falloir changer le type de données de variable conc à facteur). Que concluez-vous ?
 \end{itemize}
 
+\iffalse
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{wmcdat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmcdat2.csv"}\NormalTok{)}
@@ -7336,6 +7338,8 @@ Le fichier \texttt{wmcdat2.csv} contient des mesures de consommation d'oxygène,
 \KeywordTok{Anova}\NormalTok{(anova.model5, }\DataTypeTok{type =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\fi
 
 \begin{verbatim}
 ## Anova Table (Type III tests)
@@ -7374,7 +7378,7 @@ Les variances semblent donc égales. Le test de normalité donne:
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model5)
 ## W = 0.93692, p-value = 0.01238
@@ -7388,7 +7392,11 @@ Il y a donc évidence de non-normalité, mais à part ça tout semble aller. Com
   À la suite des résultats que vous venez d'obtenir, quelles moyennes voudriez-vous comparer ? Pourquoi?
 \end{itemize}
 
+\iffalse
+
 ajouter une explication ici
+
+\fi
 
 On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet de la concentration ne dépends pas de l'espèce (il n'y a pas d'interaction). Par conséquent, les seules comparaisons justifiables sont entre les concentrations:
 
@@ -7448,6 +7456,8 @@ Il y a donc une différence de consommation d'oxygène significative lorsque la 
   Répétez les deux analyses précédentes sur les données du fichier \texttt{wmc2dat2.csv}. Comment les résultats se comparent-ils à ceux obt\$nus précédemment ?
 \end{itemize}
 
+\iffalse
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{wmc2dat2 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/wmc2dat2.csv"}\NormalTok{)}
@@ -7456,6 +7466,8 @@ Il y a donc une différence de consommation d'oxygène significative lorsque la 
 \NormalTok{anova.model7 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(o2cons }\OperatorTok{~}\StringTok{ }\NormalTok{species }\OperatorTok{*}\StringTok{ }\NormalTok{conc, }\DataTypeTok{data =}\NormalTok{ wmcdat2)}
 \end{Highlighting}
 \end{Shaded}
+
+\fi
 
 En utilisant \texttt{wmc2dat2.csv}, on obtient:
 
@@ -7505,7 +7517,7 @@ ensuite on peut faire les comparaisons de Bonferroni:
 
 \begin{verbatim}
 ## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  o2cons and species.conc 
 ## 
@@ -7842,7 +7854,7 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 ## 
 ## Residual standard error: 0.1856 on 26 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.3552,	Adjusted R-squared:  0.3304 
+## Multiple R-squared:  0.3552, Adjusted R-squared:  0.3304 
 ## F-statistic: 14.32 on 1 and 26 DF,  p-value: 0.0008185
 \end{verbatim}
 
@@ -7892,7 +7904,7 @@ Il semble donc y avoir une relation positive entre la richesse spécifique des r
 ## 
 ## Residual standard error: 0.2202 on 26 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.09289,	Adjusted R-squared:  0.058 
+## Multiple R-squared:  0.09289,    Adjusted R-squared:  0.058 
 ## F-statistic: 2.662 on 1 and 26 DF,  p-value: 0.1148
 \end{verbatim}
 
@@ -7930,7 +7942,7 @@ Ici, on doit accepter l'hypothèse nulle et conclure qu'il n'y a pas de relation
 ## 
 ## Residual standard error: 0.175 on 25 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.4493,	Adjusted R-squared:  0.4052 
+## Multiple R-squared:  0.4493, Adjusted R-squared:  0.4052 
 ## F-statistic:  10.2 on 2 and 25 DF,  p-value: 0.0005774
 \end{verbatim}
 
@@ -7968,7 +7980,7 @@ On voit donc qu'on peut rejeter les 2 hypothèses nulles que la pente de la rég
 ## 
 ## Residual standard error: 0.1606 on 25 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.5358,	Adjusted R-squared:  0.4986 
+## Multiple R-squared:  0.5358, Adjusted R-squared:  0.4986 
 ## F-statistic: 14.43 on 2 and 25 DF,  p-value: 6.829e-05
 \end{verbatim}
 
@@ -8011,7 +8023,7 @@ La richesse spécifique des reptiles et amphibiens semble donc reliée à la sur
 ## 
 ## Residual standard error: 0.1619 on 24 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.5471,	Adjusted R-squared:  0.4904 
+## Multiple R-squared:  0.5471, Adjusted R-squared:  0.4904 
 ## F-statistic: 9.662 on 3 and 24 DF,  p-value: 0.0002291
 \end{verbatim}
 
@@ -8297,7 +8309,7 @@ La régression requiert la linéarité de la relation entre les variables dépen
 ## swamp       -0.001145   0.001403  -0.816    0.422
 ## 
 ## Residual standard error: 0.1833 on 26 degrees of freedom
-## Multiple R-squared:  0.02498,	Adjusted R-squared:  -0.01252 
+## Multiple R-squared:  0.02498,    Adjusted R-squared:  -0.01252 
 ## F-statistic: 0.666 on 1 and 26 DF,  p-value: 0.4219
 \end{verbatim}
 
@@ -8334,7 +8346,7 @@ En deux mots, l'ajustement est épouvantable! Malgré le fait que le graphique s
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.1177 on 25 degrees of freedom
-## Multiple R-squared:  0.6132,	Adjusted R-squared:  0.5823 
+## Multiple R-squared:  0.6132, Adjusted R-squared:  0.5823 
 ## F-statistic: 19.82 on 2 and 25 DF,  p-value: 6.972e-06
 \end{verbatim}
 
@@ -8393,7 +8405,7 @@ Suite à ces analyses, il semble opportun d'essayer d'ajuster un modèle incluan
 ## 
 ## Residual standard error: 0.1072 on 22 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.8181,	Adjusted R-squared:  0.7767 
+## Multiple R-squared:  0.8181, Adjusted R-squared:  0.7767 
 ## F-statistic: 19.78 on 5 and 22 DF,  p-value: 1.774e-07
 \end{verbatim}
 
@@ -8430,7 +8442,7 @@ Les résultats de cette analyse suggèrent qu'on devrait probablement exclure \t
 ## 
 ## Residual standard error: 0.1063 on 23 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.8129,	Adjusted R-squared:  0.7804 
+## Multiple R-squared:  0.8129, Adjusted R-squared:  0.7804 
 ## F-statistic: 24.98 on 4 and 23 DF,  p-value: 4.405e-08
 \end{verbatim}
 
@@ -8479,7 +8491,7 @@ Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut fair
 
 \begin{verbatim}
 ## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(model.poly2)
 ## W = 0.9837, p-value = 0.9278
@@ -8496,7 +8508,7 @@ Les résidus ne dévient pas significativement de la normalité. Bien.
 
 \begin{verbatim}
 ## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  model.poly2
 ## BP = 3.8415, df = 4, p-value = 0.4279
@@ -8512,7 +8524,7 @@ Pas de déviation d'homoscédasticité non plus. Bien.
 
 \begin{verbatim}
 ## 
-## 	Durbin-Watson test
+##  Durbin-Watson test
 ## 
 ## data:  model.poly2
 ## DW = 1.725, p-value = 0.2095
@@ -8529,7 +8541,7 @@ Pas de corrélation sérielle des résidus, donc pas d'évidence de nonindépend
 
 \begin{verbatim}
 ## 
-## 	RESET test
+##  RESET test
 ## 
 ## data:  model.poly2
 ## RESET = 0.9823, df1 = 8, df2 = 15, p-value = 0.4859
@@ -8585,7 +8597,7 @@ La relation non-linéaire avec swamp devient évidente. Et le test RESET détect
 
 \begin{verbatim}
 ## 
-## 	RESET test
+##  RESET test
 ## 
 ## data:  model.nopoly
 ## RESET = 6.7588, df1 = 6, df2 = 18, p-value = 0.0007066
@@ -8651,7 +8663,7 @@ Lorsqu'il y a plusieurs variables indépendantes, vous devriez toujours garder �
 ## 
 ## Residual standard error: NaN on 0 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:      1,	Adjusted R-squared:    NaN 
+## Multiple R-squared:      1,  Adjusted R-squared:    NaN 
 ## F-statistic:   NaN on 27 and 0 DF,  p-value: NA
 \end{verbatim}
 
@@ -8716,7 +8728,7 @@ Bon, est-ce qu'on oublie tout ça et qu'on accepte le modèle final sans ce souc
 ## 
 ## Residual standard error: 0.108 on 16 degrees of freedom
 ##   (2 observations deleted due to missingness)
-## Multiple R-squared:  0.8658,	Adjusted R-squared:  0.7735 
+## Multiple R-squared:  0.8658, Adjusted R-squared:  0.7735 
 ## F-statistic: 9.382 on 11 and 16 DF,  p-value: 4.829e-05
 \end{verbatim}
 
@@ -8980,14 +8992,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.75086570 0.1311371 -0.046868039 0.01649470 -0.0003458536
-## 1%    -0.71210411 0.1389175 -0.045115404 0.01790479 -0.0003419163
-## 2.5%  -0.66105336 0.1516295 -0.041725704 0.01922045 -0.0003277875
-## 5%    -0.62264640 0.1628994 -0.039523038 0.02099681 -0.0003199053
-## 95%   -0.06998117 0.2797279 -0.011818721 0.03839552 -0.0001787294
-## 97.5% -0.01460519 0.2908477 -0.009769974 0.03929290 -0.0001667462
-## 99%    0.02772175 0.3055182 -0.006704461 0.04102273 -0.0001544021
-## 99.5%  0.05855133 0.3098611 -0.003577491 0.04170067 -0.0001482091
+## 0.5%  -0.71095746 0.1348824 -0.044828051 0.01653306 -0.0003462902
+## 1%    -0.69380151 0.1455503 -0.043190381 0.01809887 -0.0003354139
+## 2.5%  -0.64148224 0.1555924 -0.041088574 0.01927811 -0.0003252127
+## 5%    -0.61362136 0.1688559 -0.039454544 0.02085433 -0.0003119613
+## 95%   -0.06733539 0.2808868 -0.011917574 0.03716914 -0.0001785972
+## 97.5% -0.03500315 0.2959770 -0.009406757 0.03891432 -0.0001666356
+## 99%    0.03139902 0.3066138 -0.006329502 0.04035792 -0.0001542086
+## 99.5%  0.06514415 0.3215960 -0.004867328 0.04163786 -0.0001467198
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -9043,7 +9055,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1200,  0.3247 )  
+## 95%   ( 0.1131,  0.3164 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -9537,8 +9549,8 @@ Cette fois-ci, le modèle plus complexe s'ajuste significativement mieux
 aux données. (Pas surprenant puisque nous avions précédemment
 conclu que l'interaction est significative avec ces données.)
 
-\hypertarget{bootstrap}{%
-\section{Bootstrap}\label{bootstrap}}
+\hypertarget{bootstrap-1}{%
+\section{Bootstrap}\label{bootstrap-1}}
 
 \begin{verbatim}
 ############################################################

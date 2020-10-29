@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.3 Transformations et le coefficient de corrélation | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.3 Transformations et le coefficient de corrélation | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -336,7 +338,7 @@ on voit ci-dessous, est:</p>
 <a class="sourceLine" id="cb256-7" title="7"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>rdwght)</a>
 <a class="sourceLine" id="cb256-8" title="8"><span class="kw">qqnorm</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght),<span class="dt">ylab=</span><span class="st">&quot;log10(rdwgth)&quot;</span>)</a>
 <a class="sourceLine" id="cb256-9" title="9"><span class="kw">qqline</span>(<span class="kw">log10</span>(sturgeon<span class="op">$</span>rdwght))</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur-4hist-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-4hist-1.svg" width="672" /></p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" title="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)) <span class="co">#redéfinie la zone de graphique par défaut</span></a></code></pre></div>
 <p>Il n’y a pas grand-chose à redire: aucune des distributions n’est
 parfaitement normale, mais les déviations semblent mineures.</p>
@@ -349,7 +351,7 @@ parfaitement normale, mais les déviations semblent mineures.</p>
 <a class="sourceLine" id="cb258-4" title="4">  <span class="dt">smooth=</span><span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="st">&#39;density&#39;</span>)</a></code></pre></div>
 <pre><code>## Warning in applyDefaults(diagonal, defaults = list(method =
 ## &quot;adaptiveDensity&quot;), : unnamed diag arguments, will be ignored</code></pre>
-<p><img src="Labo_BIO4558_files/figure-html/stur-scatmat-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-scatmat-1.svg" width="672" /></p>
 <ul>
 <li>Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées ) en utilisant la commande <code>cor()</code>.
 Avant de commencer, on va cependant ajouter les variables transformées au tableau de données sturgeon:</li>

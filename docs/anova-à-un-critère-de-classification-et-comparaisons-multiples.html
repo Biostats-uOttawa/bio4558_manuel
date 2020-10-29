@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 ANOVA à un critère de classification et comparaisons multiples | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 ANOVA à un critère de classification et comparaisons multiples | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -328,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1">Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb369-2" title="2">Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</a>
 <a class="sourceLine" id="cb369-3" title="3"><span class="kw">str</span>(Dam10dat)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	118 obs. of  21 variables:
+<pre><code>## &#39;data.frame&#39;:    118 obs. of  21 variables:
 ##  $ year    : Factor w/ 4 levels &quot;1954&quot;,&quot;1958&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
 ##  $ totlngth: num  49 NA 43 50.5 NA 51.7 45.5 52 60.2 58.5 ...
@@ -369,14 +371,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb371-14" title="14"><span class="co">#display graph, by year</span></a>
 <a class="sourceLine" id="cb371-15" title="15">mygraph<span class="op">+</span><span class="kw">facet_wrap</span>(<span class="op">~</span>year,<span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-2"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" />
 <p class="caption">
 Figure 5.1: Distribution de la longueur des esturgeons par année
 </p>
 </div>
 <div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-200"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-200-1.svg" alt="Boxplot de la longueur pas annéee" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-200-1.svg" alt="Boxplot de la longueur pas annéee" width="672" />
 <p class="caption">
 Figure 5.2: Boxplot de la longueur pas annéee
 </p>
@@ -394,7 +396,7 @@ Figure 5.2: Boxplot de la longueur pas annéee
 <a class="sourceLine" id="cb373-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb373-4" title="4"><span class="kw">plot</span>(anova.model1)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-3"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" />
 <p class="caption">
 Figure 5.3: Conditions d’applications de l’ANOVA
 </p>
@@ -413,7 +415,7 @@ and there are no factor predictors; no plot no. 5`
 </ul>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</a></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model1)
 ## W = 0.91571, p-value = 1.63e-06</code></pre>
@@ -454,7 +456,7 @@ and there are no factor predictors; no plot no. 5`
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 5.211 on 114 degrees of freedom
-## Multiple R-squared:  0.1355,	Adjusted R-squared:  0.1128 
+## Multiple R-squared:  0.1355, Adjusted R-squared:  0.1128 
 ## F-statistic: 5.957 on 3 and 114 DF,  p-value: 0.0008246</code></pre>
 <ul>
 <li><em>Coefficients: Estimates</em> Les 4 coefficients peuvent être utilisés pour obtenir les valeurs prédites par le modèle (i.e. les moyennes de chaque groupe). La fklngth moyenne de la première année (1954) est 48.0243. Les coefficients pour les 3 autres années sont la différence entre la moyenne de l’année en question et la moyenne de 1954. La moyenne pour 1965 est 48.0243-5.5077=42.5166. Pour chaque coefficient, on a également accès à l’erreur-type, une valeur de t et la probabilité qui lui est associée (H0 que le coefficient est 0). Les poissons étaient plus petits après la construction du barrage qu’en 1954. Vous devez prendre ces p-valeurs avec un grain de sel, car elles ne sont pas corrigées pour les comparaisons multiples et. En général, je porte peu d’attention à cette partie des résultats imprimés et me concentre sur ce qui suit.</li>
@@ -485,7 +487,7 @@ and there are no factor predictors; no plot no. 5`
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
 <a class="sourceLine" id="cb382-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -499,7 +501,7 @@ and there are no factor predictors; no plot no. 5`
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
 <a class="sourceLine" id="cb384-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -513,7 +515,7 @@ and there are no factor predictors; no plot no. 5`
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
 <a class="sourceLine" id="cb386-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -527,7 +529,7 @@ and there are no factor predictors; no plot no. 5`
 <div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" title="1"><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</a>
 <a class="sourceLine" id="cb388-2" title="2">  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Pairwise comparisons using t tests with pooled SD 
+##  Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  Dam10dat$fklngth and Dam10dat$year 
 ## 
@@ -557,7 +559,7 @@ and there are no factor predictors; no plot no. 5`
 ## m1966-m1965  2.1949612  -2.240630  6.6305526 0.5710111</code></pre>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" title="1"><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</a></code></pre></div>
 <div class="figure"><span id="fig:ano-13"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 5.4: Différence anuelles dans la longueur des esturgeons
 </p>
@@ -573,28 +575,28 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 <a class="sourceLine" id="cb393-7" title="7"><span class="st">&quot;Tukey&quot;</span>))</a>
 <a class="sourceLine" id="cb393-8" title="8"><span class="kw">confint</span>(meandiff)</a></code></pre></div>
 <pre><code>## 
-## 	 Simultaneous Confidence Intervals
+##   Simultaneous Confidence Intervals
 ## 
 ## Multiple Comparisons of Means: Tukey Contrasts
 ## 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5947
+## Quantile = 2.5928
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2728   3.6472
-## m1965 - m1954 == 0  -5.5077  -9.9992  -1.0161
-## m1966 - m1954 == 0  -3.3127  -6.3445  -0.2809
-## m1965 - m1958 == 0  -5.6949 -10.4134  -0.9763
-## m1966 - m1958 == 0  -3.4999  -6.8588  -0.1410
-## m1966 - m1965 == 0   2.1950  -2.2192   6.6091</code></pre>
+## m1958 - m1954 == 0   0.1872  -3.2701   3.6446
+## m1965 - m1954 == 0  -5.5077  -9.9958  -1.0195
+## m1966 - m1954 == 0  -3.3127  -6.3422  -0.2832
+## m1965 - m1958 == 0  -5.6949 -10.4098  -0.9800
+## m1966 - m1958 == 0  -3.4999  -6.8562  -0.1436
+## m1966 - m1965 == 0   2.1950  -2.2158   6.6057</code></pre>
 <div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">plot</span>(meandiff)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 5.5: Différence anuelles dans la longueur des esturgeons
 </p>
@@ -610,7 +612,7 @@ Figure 5.5: Différence anuelles dans la longueur des esturgeons
 <a class="sourceLine" id="cb396-8" title="8">old.par&lt;-<span class="kw">par</span>(<span class="dt">mai=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">1.25</span>,<span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb396-9" title="9"><span class="kw">plot</span>(cimeans)</a></code></pre></div>
 <div class="figure"><span id="fig:ano-15"></span>
-<img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 5.6: Différence anuelles dans la longueur des esturgeons
 </p>

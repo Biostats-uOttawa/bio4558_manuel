@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.5 Gérer les données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.5 Gérer les données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -394,7 +396,7 @@ Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut 
 ## [25] &quot;tailles&quot;        &quot;tailles_m&quot;      &quot;temperature&quot;    &quot;title&quot;         
 ## [29] &quot;x&quot;              &quot;y&quot;</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="kw">str</span>(erables)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	100 obs. of  3 variables:
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
 ##  $ station: chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
 ##  $ diam   : num  22.4 36.1 44.4 24.6 17.7 ...
 ##  $ biom   : num  732 1171 673 1552 504 ...</code></pre>
@@ -439,7 +441,7 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 </ul>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1">sturgeon &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgeon.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb217-2" title="2"><span class="kw">str</span>(sturgeon)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	186 obs. of  9 variables:
+<pre><code>## &#39;data.frame&#39;:    186 obs. of  9 variables:
 ##  $ fklngth : num  37 50.2 28.9 50.2 45.6 ...
 ##  $ totlngth: num  40.7 54.1 31.3 53.1 49.5 ...
 ##  $ drlngth : num  23.6 31.5 17.3 32.3 32.1 ...
@@ -493,7 +495,7 @@ On y reviendra, mais prenez l’habitude de noter mentalement si il y a des donn
 <p>Examinons maintenant de plus près la distribution de fklngth.
 La commande <code>hist()</code> permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1"><span class="kw">hist</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/hist-stur-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/hist-stur-1.svg" width="672" /></p>
 <p>Les données semblent suivre approximativement une distribution normale.</p>
 
 <div class="rmdnote">
@@ -535,19 +537,19 @@ Copiez-collez le code suivant dans une nouvelle fenêtre script ( File-&gt;New s
 <a class="sourceLine" id="cb222-21" title="21"></a>
 <a class="sourceLine" id="cb222-22" title="22"><span class="co">## montrer le graphique</span></a>
 <a class="sourceLine" id="cb222-23" title="23">mygraph</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur-g1-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-g1-1.svg" width="672" /></p>
 <p>Chaque observation est représentée par une barre sous l’axe des x (rug).
 En rouge est la distribution normale de données avec la même moyenne et écart-type que les observations.
 Et l’autre ligne est la densité de probabilité empirique, « lissée » à partir des observations.
 Si vous êtes plus aventureux, vous pouvez examiner la distribution des observations de fklngth par sous-groupes (par exemple sex et year) avec :</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1">mygraph <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>sex)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/aventure-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/aventure-1.svg" width="672" /></p>
 <p>Chaque panneau illustre la distribution pour un sexe cette année-là, et la courbe en rouge récurrente représente la distribution normale pour l’ensemble des données.
 Cette courbe peut servir à mieux évaluer visuellement les différences entre les panneaux.
 Une autre façon d’évaluer la normalité de données visuellement est de faire un QQ plot avec la paire de commandes <code>qqnorm()</code> et <code>qqline()</code>.</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1"><span class="kw">qqnorm</span>(sturgeon<span class="op">$</span>fklngth)</a>
 <a class="sourceLine" id="cb224-2" title="2"><span class="kw">qqline</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur-norm-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-norm-1.svg" width="672" /></p>
 <p>Des données parfaitement normales suivraient la ligne droite diagonale.
 Ici, il y a des déviations dans les queues de la distribution, et un peu à droite du centre.
 Comparez cette représentation à celle des deux graphiques précédents.
@@ -559,7 +561,7 @@ Si W s’éloigne de 1 (vers 0), alors les données s’éloignent de la normali
 Ici,</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1"><span class="kw">shapiro.test</span>(sturgeon<span class="op">$</span>fklngth)</a></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  sturgeon$fklngth
 ## W = 0.97225, p-value = 0.0009285</code></pre>
@@ -568,7 +570,7 @@ L’examen visuel des grands échantillons est souvent compliqué par le fait qu
 Les boxplots avec “moustaches” (box and whiskers plots) offrent une alternative intéressante.
 La commande <code>boxplot()</code> peut produire un boxplot de fklngth pour chaque niveau de sex, et ajoute les coches.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> sturgeon, <span class="dt">notch =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/boxplot-stur-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/boxplot-stur-1.svg" width="672" /></p>
 <p>La ligne un peu plus épaisse dans la boîte de la Figure indique la médiane.
 La coche est proportionnelle à l’incertitude quant à la position de la médiane.
 On peut visuellement interpréter approximativement les différences entre médianes en examinant si il y a chevauchement entre les coches (ici, il n’y a pas chevauchement, et on conclurait provisoirement que la médiane de fklngth pour les femelles est supérieure à celle des mâles).
@@ -586,12 +588,12 @@ Faites un graphique de fklngth en fonction de age avec la commande plot.
 
 <p>Vous devriez obtenir:</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">plot</span>(fklngth <span class="op">~</span><span class="st"> </span>age, <span class="dt">data =</span> sturgeon)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/stur-biv-plot-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/stur-biv-plot-1.svg" width="672" /></p>
 <p>R a une fonction qui permet la création des graphiques de dispersion de toutes les paires de variables (<code>pairs()</code>).
 Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance de la relation entre les variables.
 Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande <code>pairs(sturgeon[,1:6], panel=panel.smooth)</code> et vous devriez obtenir</p>
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">pairs</span>(sturgeon[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">panel =</span> panel.smooth)</a></code></pre></div>
-<p><img src="Labo_BIO4558_files/figure-html/pairs-stur-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/pairs-stur-1.svg" width="672" /></p>
 </div>
 </div>
 <div id="créer-des-sous-ensembles-de-cas" class="section level3">
@@ -705,9 +707,9 @@ Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à
 <h3><span class="header-section-number">1.5.5</span> Exercice sur R</h3>
 <p>Vous trouverez dans le fichier <code>salmonella.csv</code>, des valeurs numériques du ratio d’infection des cellules par la salmonelles dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
 Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.</p>
-<p><img src="Labo_BIO4558_files/figure-html/intror-exer-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/intror-exer-1.svg" width="672" /></p>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="co">## Charger les données</span></a>
 <a class="sourceLine" id="cb236-2" title="2">salmonella &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/salmonella.csv&quot;</span>)</a>
 <a class="sourceLine" id="cb236-3" title="3"></a>

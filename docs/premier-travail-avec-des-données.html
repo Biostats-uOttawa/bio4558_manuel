@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -337,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Cette commande ne renvoie aucun résultat particulier (sauf en cas d’erreur), mais vous devriez voir apparaître dans l’onglet <em>Environment</em> de RStudio un nouvel objet nommé <code>hdv2003</code> :</p>
 <!-- ![Onglet *Environment*](images/screenshots/rstudio_environment.png) -->
 <div class="figure"><span id="fig:unnamed-chunk-71"></span>
-<img src="images/screenshots/rstudio_environment.png" alt="Onglet Environment" width="75%" class="plot" />
+<img src="images/screenshots/rstudio_environment.png" alt="Onglet Environment" width="75%" />
 <p class="caption">
 Figure 1.4: Onglet Environment
 </p>
@@ -353,7 +355,7 @@ Figure 1.4: Onglet Environment
 <p>Une autre manière d’afficher le contenu du tableau est de cliquer sur l’icône en forme de tableau à droite du nom de l’objet dans l’onglet <em>Environment</em> :</p>
 <!-- ![Icone view](images/screenshots/rstudio_view_icon.png) -->
 <div class="figure"><span id="fig:unnamed-chunk-73"></span>
-<img src="images/screenshots/rstudio_view_icon.png" alt="Icone view" width="75%" class="plot" />
+<img src="images/screenshots/rstudio_view_icon.png" alt="Icone view" width="75%" />
 <p class="caption">
 Figure 1.5: Icone view
 </p>
@@ -363,7 +365,7 @@ Figure 1.5: Icone view
 <p>Dans les deux cas votre tableau devrait s’afficher dans RStudio avec une interface de type tableur :</p>
 <!-- ![Interface "View"](images/screenshots/rstudio_view.png) -->
 <div class="figure"><span id="fig:unnamed-chunk-75"></span>
-<img src="images/screenshots/rstudio_view.png" alt="Interface View" width="100%" class="plot" />
+<img src="images/screenshots/rstudio_view.png" alt="Interface View" width="100%" />
 <p class="caption">
 Figure 1.6: Interface View
 </p>
@@ -404,7 +406,7 @@ Sous R, on peut importer ou créer autant de tableaux de données qu’on le sou
 ## [17] &quot;bricol&quot;        &quot;cinema&quot;        &quot;sport&quot;         &quot;heures.tv&quot;</code></pre>
 <p>Enfin, la fonction <code>str</code> renvoie un descriptif plus détaillé de la structure du tableau. Elle liste les différentes variables, indique leur type <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> et affiche les premières valeurs :</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">str</span>(d)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	2000 obs. of  20 variables:
+<pre><code>## &#39;data.frame&#39;:    2000 obs. of  20 variables:
 ##  $ id           : int  1 2 3 4 5 6 7 8 9 10 ...
 ##  $ age          : int  28 23 59 34 71 35 60 47 20 28 ...
 ##  $ sexe         : Factor w/ 2 levels &quot;Homme&quot;,&quot;Femme&quot;: 2 2 1 1 2 2 2 1 2 1 ...
@@ -428,7 +430,7 @@ Sous R, on peut importer ou créer autant de tableaux de données qu’on le sou
 <p>Sous RStudio, on peut afficher à tout moment la structure d’un objet en cliquant sur l’icône de triangle sur fond bleu à gauche du nom de l’objet dans l’onglet <em>Environment</em> :</p>
 <!-- ![Structure d'un objet](images/screenshots/rstudio_environment_str.png) -->
 <div class="figure"><span id="fig:unnamed-chunk-84"></span>
-<img src="images/screenshots/rstudio_environment_str.png" alt="Structure d'un objet" width="100%" class="plot" />
+<img src="images/screenshots/rstudio_environment_str.png" alt="Structure d'un objet" width="100%" />
 <p class="caption">
 Figure 1.7: Structure d’un objet
 </p>
@@ -543,7 +545,7 @@ Figure 1.7: Structure d’un objet
 <p>La représentation la plus courante est sans doute l’histogramme. On peut l’obtenir avec la fonction <code>hist</code> :</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-101"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-101-1.svg" alt="Histogramme de l'age par défaut" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-101-1.svg" alt="Histogramme de l'age par défaut" width="672" />
 <p class="caption">
 Figure 1.8: Histogramme de l’age par défaut
 </p>
@@ -552,14 +554,14 @@ Figure 1.8: Histogramme de l’age par défaut
 <p>On peut personnaliser l’apparence de l’histogramme en ajoutant des arguments supplémentaires à la fonction <code>hist</code>. L’argument le plus important est <code>breaks</code>, qui permet d’indiquer le nombre de classes que l’on souhaite.</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">breaks =</span> <span class="dv">10</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-102"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-102-1.svg" alt="Histogramme de l'age avec 10 classes" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-102-1.svg" alt="Histogramme de l'age avec 10 classes" width="672" />
 <p class="caption">
 Figure 1.9: Histogramme de l’age avec 10 classes
 </p>
 </div>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1"><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">breaks =</span> <span class="dv">70</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-103"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-103-1.svg" alt="Histogramme de l'age avec 70 classes" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-103-1.svg" alt="Histogramme de l'age avec 70 classes" width="672" />
 <p class="caption">
 Figure 1.10: Histogramme de l’age avec 70 classes
 </p>
@@ -571,7 +573,7 @@ Figure 1.10: Histogramme de l’age avec 70 classes
 <a class="sourceLine" id="cb160-3" title="3">     <span class="dt">xlab =</span> <span class="st">&quot;Âge&quot;</span>,</a>
 <a class="sourceLine" id="cb160-4" title="4">     <span class="dt">ylab =</span> <span class="st">&quot;Effectif&quot;</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-104"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-104-1.svg" alt="Histogramme modifié" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-104-1.svg" alt="Histogramme modifié" width="672" />
 <p class="caption">
 Figure 1.11: Histogramme modifié
 </p>
@@ -664,7 +666,7 @@ Attention, par défaut la fonction <code>table</code> n’affiche pas les valeur
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>clso)</a>
 <a class="sourceLine" id="cb174-2" title="2"><span class="kw">barplot</span>(tab)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-115"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-115-1.svg" alt="Graphique en barre" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-115-1.svg" alt="Graphique en barre" width="672" />
 <p class="caption">
 Figure 1.12: Graphique en barre
 </p>
@@ -672,7 +674,7 @@ Figure 1.12: Graphique en barre
 <p>On peut aussi trier le tri à plat avec la fonction <code>sort</code> avant de le représenter graphiquement, ce qui peut faciliter la lecture du graphique :</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">barplot</span>(<span class="kw">sort</span>(tab))</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-116"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-116-1.svg" alt="Graphique en barre trié" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-116-1.svg" alt="Graphique en barre trié" width="672" />
 <p class="caption">
 Figure 1.13: Graphique en barre trié
 </p>
@@ -680,7 +682,7 @@ Figure 1.13: Graphique en barre trié
 <p>Une alternative au graphique en barres est le <em>diagramme de Cleveland</em>, qu’on peut obtenir avec la fonction <code>dotchart</code>. Celle-ci s’applique elle aussi au tri à plat de la variable calculé avec <code>table</code>.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1"><span class="kw">dotchart</span>(<span class="kw">table</span>(d<span class="op">$</span>qualif))</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-117"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-117-1.svg" alt="Graphique de Cleveland" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-117-1.svg" alt="Graphique de Cleveland" width="672" />
 <p class="caption">
 Figure 1.14: Graphique de Cleveland
 </p>
@@ -688,7 +690,7 @@ Figure 1.14: Graphique de Cleveland
 <p>Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter :</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="kw">dotchart</span>(<span class="kw">sort</span>(<span class="kw">table</span>(d<span class="op">$</span>qualif)))</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-118"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-118-1.svg" alt="Graphique de Cleveland trié" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-118-1.svg" alt="Graphique de Cleveland trié" width="672" />
 <p class="caption">
 Figure 1.15: Graphique de Cleveland trié
 </p>
@@ -707,7 +709,7 @@ Figure 1.15: Graphique de Cleveland trié
 <li>afficher les dimensions et la liste des variables de <code>df</code></li>
 </ul>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">library</span>(questionr)</a>
 <a class="sourceLine" id="cb178-2" title="2"></a>
 <a class="sourceLine" id="cb178-3" title="3"><span class="kw">data</span>(hdv2003)</a>
@@ -720,7 +722,7 @@ Figure 1.15: Graphique de Cleveland trié
 <p><strong>Exercice 2</strong></p>
 <p>On souhaite étudier la répartition du temps passé devant la télévision par les enquêtés (variable <code>heures.tv</code>). Pour cela, affichez les principaux indicateurs de cette variable : valeur minimale, maximale, moyenne, médiane et écart-type. Représentez ensuite sa distribution par un histogramme en 10 classes.</p>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="kw">summary</span>(df<span class="op">$</span>heures.tv)</a>
 <a class="sourceLine" id="cb179-2" title="2"><span class="kw">sd</span>(df<span class="op">$</span>heures.tv)</a>
 <a class="sourceLine" id="cb179-3" title="3"></a>
@@ -730,19 +732,19 @@ Figure 1.15: Graphique de Cleveland trié
 <p><strong>Exercice 3</strong></p>
 <p>On s’intéresse maintenant à l’importance accordée par les enquêtés à leur travail (variable <code>trav.imp</code>). Faites un tri à plat des effectifs des modalités de cette variable avec la commande <code>table</code>.</p>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="kw">table</span>(df<span class="op">$</span>trav.imp)</a></code></pre></div>
 </div>
 
 <p>Faites un tri à plat affichant à la fois les effectifs et les pourcentages de chaque modalité. Y’a-t-il des valeurs manquantes ?</p>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="kw">freq</span>(df<span class="op">$</span>trav.imp)</a></code></pre></div>
 </div>
 
 <p>Représentez graphiquement les effectifs des modalités à l’aide d’un graphique en barres.</p>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df<span class="op">$</span>trav.imp))</a>
 <a class="sourceLine" id="cb182-2" title="2"><span class="kw">barplot</span>(tab)</a></code></pre></div>
 </div>
@@ -750,13 +752,13 @@ Figure 1.15: Graphique de Cleveland trié
 <p>Utilisez l’argument <code>col</code> de la fonction <code>barplot</code> pour modifier la couleur du graphique en
 <code>tomato</code>.</p>
 
-<div class="solution">
+<div class="exer">
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="kw">barplot</span>(tab, <span class="dt">col =</span> <span class="st">&quot;tomato&quot;</span>)</a></code></pre></div>
 </div>
 
 <p>Tapez <code>colors()</code> dans la console pour afficher l’ensemble des noms de couleurs disponibles dans R. Testez chaque couleur une à une pour trouver votre couleur préférée.</p>
 
-<div class="solution">
+<div class="exer">
 <p>C’est une blague, hein ! Cela dit <code>moccasin</code> ou <code>palevioletred</code> sont pas mal, si vous voulez essayer :-)</p>
 </div>
 

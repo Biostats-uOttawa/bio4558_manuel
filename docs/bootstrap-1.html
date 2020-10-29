@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.5 Test de permutation | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>8.6 Bootstrap | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.5 Test de permutation | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="8.6 Bootstrap | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.5 Test de permutation | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="8.6 Bootstrap | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="examen-des-valeurs-extrêmes.html"/>
-<link rel="next" href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"/>
+<link rel="prev" href="comparer-lajustement-de-modèles.html"/>
+<link rel="next" href="permutation-test.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -318,77 +318,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="test-de-permutation" class="section level2">
-<h2><span class="header-section-number">5.5</span> Test de permutation</h2>
-<p>Commande R pour un test de permutation d’une ANOVA à un critère de classification.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" title="1"><span class="co">#############################################################</span></a>
-<a class="sourceLine" id="cb408-2" title="2"><span class="co"># Permutation Test for one-way ANOVA</span></a>
-<a class="sourceLine" id="cb408-3" title="3"><span class="co"># modified from code written by David C. Howell</span></a>
-<a class="sourceLine" id="cb408-4" title="4"><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></a>
-<a class="sourceLine" id="cb408-5" title="5"><span class="co"># set desired number of permutations</span></a>
-<a class="sourceLine" id="cb408-6" title="6">nreps &lt;-<span class="dv">500</span></a>
-<a class="sourceLine" id="cb408-7" title="7"><span class="co"># to simplify reuse of this code, copy desired dataframe to mydata</span></a>
-<a class="sourceLine" id="cb408-8" title="8">mydata&lt;-Dam10dat</a>
-<a class="sourceLine" id="cb408-9" title="9"><span class="co"># copy model formula to myformula</span></a>
-<a class="sourceLine" id="cb408-10" title="10">myformula&lt;-<span class="kw">as.formula</span>(<span class="st">&quot;fklngth ~ year&quot;</span>)</a>
-<a class="sourceLine" id="cb408-11" title="11"><span class="co"># copy dependent variable vector to mydep</span></a>
-<a class="sourceLine" id="cb408-12" title="12">mydep&lt;-mydata<span class="op">$</span>fklngth</a>
-<a class="sourceLine" id="cb408-13" title="13"><span class="co"># copy independent variable vector to myindep</span></a>
-<a class="sourceLine" id="cb408-14" title="14">myindep&lt;-<span class="kw">as.factor</span>(mydata<span class="op">$</span>year)</a>
-<a class="sourceLine" id="cb408-15" title="15"><span class="co">################################################</span></a>
-<a class="sourceLine" id="cb408-16" title="16"><span class="co"># You should not need to modify code chunk below</span></a>
-<a class="sourceLine" id="cb408-17" title="17"><span class="co">################################################</span></a>
-<a class="sourceLine" id="cb408-18" title="18"><span class="co"># Compute observed F value for original sample</span></a>
-<a class="sourceLine" id="cb408-19" title="19">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data=</span>mydata) <span class="co"># Standard Anova</span></a>
-<a class="sourceLine" id="cb408-20" title="20">ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod1)) <span class="co"># Save summary to variable</span></a>
-<a class="sourceLine" id="cb408-21" title="21">observedF&lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>] <span class="co"># Save observed F value</span></a>
-<a class="sourceLine" id="cb408-22" title="22"><span class="co"># Print standard ANOVA results</span></a>
-<a class="sourceLine" id="cb408-23" title="23"><span class="kw">cat</span>(<span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</a>
-<a class="sourceLine" id="cb408-24" title="24"><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb408-25" title="25"></a>
-<a class="sourceLine" id="cb408-26" title="26"><span class="kw">print</span>(ANOVA, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb408-27" title="27"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb408-28" title="28"><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb408-29" title="29"><span class="kw">print</span>(<span class="st">&quot;Resampling as in Manly with unrestricted sampling of observations. &quot;</span>)</a>
-<a class="sourceLine" id="cb408-30" title="30"></a>
-<a class="sourceLine" id="cb408-31" title="31"><span class="co"># Now start resampling</span></a>
-<a class="sourceLine" id="cb408-32" title="32">Fboot &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps) <span class="co"># initalize vector to receive permuted</span></a>
-<a class="sourceLine" id="cb408-33" title="33">values</a>
-<a class="sourceLine" id="cb408-34" title="34">Fboot[<span class="dv">1</span>] &lt;-<span class="st"> </span>observedF</a>
-<a class="sourceLine" id="cb408-35" title="35"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</a>
-<a class="sourceLine" id="cb408-36" title="36">newdependent &lt;-<span class="st"> </span><span class="kw">sample</span>(mydep, <span class="kw">length</span>(mydep)) <span class="co"># randomize dep</span></a>
-<a class="sourceLine" id="cb408-37" title="37">var</a>
-<a class="sourceLine" id="cb408-38" title="38">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(newdependent <span class="op">~</span><span class="st"> </span>myindep) <span class="co"># refit model</span></a>
-<a class="sourceLine" id="cb408-39" title="39">b &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod2))</a>
-<a class="sourceLine" id="cb408-40" title="40">Fboot[i] &lt;-<span class="st"> </span>b[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>] <span class="co"># store F stats</span></a>
-<a class="sourceLine" id="cb408-41" title="41">}</a>
-<a class="sourceLine" id="cb408-42" title="42">permprob &lt;-<span class="st"> </span><span class="kw">length</span>(Fboot[Fboot <span class="op">&gt;=</span><span class="st"> </span>observedF])<span class="op">/</span>nreps</a>
-<a class="sourceLine" id="cb408-43" title="43"><span class="kw">cat</span>(<span class="st">&quot; The permutation probability value is: &quot;</span>, permprob,</a>
-<a class="sourceLine" id="cb408-44" title="44"><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb408-45" title="45"><span class="co"># end of code chunk for permutation</span></a></code></pre></div>
-<p>Version lmPerm du test de permutation.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1"><span class="co">## lmPerm version of permutation test</span></a>
-<a class="sourceLine" id="cb409-2" title="2"><span class="kw">library</span>(lmPerm)</a>
-<a class="sourceLine" id="cb409-3" title="3"><span class="co"># for generality, copy desired dataframe to mydata</span></a>
-<a class="sourceLine" id="cb409-4" title="4"><span class="co"># and model formula to myformula</span></a>
-<a class="sourceLine" id="cb409-5" title="5">mydata &lt;-<span class="st"> </span>Dam10dat</a>
-<a class="sourceLine" id="cb409-6" title="6">myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;fklngth ~ year&quot;</span>)</a>
-<a class="sourceLine" id="cb409-7" title="7"><span class="co"># Fit desired model on the desired dataframe</span></a>
-<a class="sourceLine" id="cb409-8" title="8">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb409-9" title="9"><span class="co"># Calculate permutation p-value</span></a>
-<a class="sourceLine" id="cb409-10" title="10"><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center=</span><span class="ot">FALSE</span>, <span class="dt">Ca=</span><span class="fl">0.001</span>))</a></code></pre></div>
+<div id="bootstrap-1" class="section level2">
+<h2><span class="header-section-number">8.6</span> Bootstrap</h2>
+<pre><code>############################################################
+######
+# Bootstrap analysis
+#
+#
+Bootstrap analysis BCa confidence intervals
+Preferable when parameter distribution is far from normal
+# Bootstrap 95% BCa CI for regression coefficients
+library(boot)
+# To simplify future modifications of the code in this file,
+# copy the data to a generic mydata dataframe
+mydata&lt;-anc3dat
+# create a myformula variable containing the formula for the
+model to be fitted
+myformula&lt;-as.formula(lfkl ~ lage + locate + lage:locate)
+# function to obtain regression coefficients for each iteration
+bs &lt;- function(formula, data, indices) {
+d &lt;- data[indices, ]
+fit &lt;- lm(formula, data = d)
+return(coef(fit))
+}
+# bootstrapping with 1000 replications
+results &lt;- boot(data = mydata, statistic = bs, R = 1000,
+formula = myformula)
+# view results
+results
+for (i in 1:length(results$t0)) {
+plot(results, index = i)
+}
+# get 95% confidence intervals
+for (i in 1:length(results$t0)) {
+print(boot.ci(results, type = &quot;bca&quot;, index = i))
 
-<!-- # (PART) Modèle multivarié {-} -->
+
+}</code></pre>
 </div>
-<!-- </div> -->
 <script src="js/solution.js"></script>
             </section>
 
           </div>
         </div>
       </div>
-<a href="examen-des-valeurs-extrêmes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="comparer-lajustement-de-modèles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="permutation-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -410,7 +385,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/05-anova.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/08-ancova_glm.Rmd",
 "text": "Edit"
 },
 "history": {

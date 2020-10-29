@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Comparer les moyennes de deux échantillons indépendants | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Comparer les moyennes de deux échantillons indépendants | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -331,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb326-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
 <a class="sourceLine" id="cb326-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Two Sample t-test
+##  Two Sample t-test
 ## 
 ## data:  fklngth by location
 ## t = 2.1359, df = 184, p-value = 0.03401
@@ -347,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb328-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>,</a>
 <a class="sourceLine" id="cb328-5" title="5">   <span class="dt">var.equal =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Welch Two Sample t-test
+##  Welch Two Sample t-test
 ## 
 ## data:  fklngth by location
 ## t = 2.2201, df = 169.8, p-value = 0.02774
@@ -362,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb330-3" title="3">   fklngth <span class="op">~</span><span class="st"> </span>location, <span class="dt">data =</span> sturgeon,</a>
 <a class="sourceLine" id="cb330-4" title="4">   <span class="dt">alternative =</span><span class="st">&#39;two.sided&#39;</span>)</a></code></pre></div>
 <pre><code>## 
-## 	Wilcoxon rank sum test with continuity correction
+##  Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  fklngth by location
 ## W = 4973, p-value = 0.06296
@@ -374,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb332-2" title="2"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</a>
 <a class="sourceLine" id="cb332-3" title="3"><span class="kw">plot</span>(m1)</a></code></pre></div>
 <div class="figure"><span id="fig:t-6"></span>
-<img src="Labo_BIO4558_files/figure-html/t-6-1.svg" alt="Condition d'application du modèle linéaire" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/t-6-1.svg" alt="Condition d'application du modèle linéaire" width="672" />
 <p class="caption">
 Figure 4.3: Condition d’application du modèle linéaire
 </p>
@@ -383,7 +385,7 @@ Figure 4.3: Condition d’application du modèle linéaire
 <p>Le second graphique est un graphique de probabilité (graphique Q-Q) des résidus. Comme ici, les points tombent près de la diagonale, il ne semble pas y avoir de problème important avec la normalité. On peut faire un test formel de la condition de normalité par le test de Shapiro- Wilk:</p>
 <div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1"><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(m1))</a></code></pre></div>
 <pre><code>## 
-## 	Shapiro-Wilk normality test
+##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(m1)
 ## W = 0.97469, p-value = 0.001857</code></pre>
@@ -401,7 +403,7 @@ Figure 4.3: Condition d’application du modèle linéaire
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1"><span class="kw">bptest</span>(m1)</a></code></pre></div>
 <pre><code>## 
-## 	studentized Breusch-Pagan test
+##  studentized Breusch-Pagan test
 ## 
 ## data:  m1
 ## BP = 8.8015, df = 1, p-value = 0.00301</code></pre>

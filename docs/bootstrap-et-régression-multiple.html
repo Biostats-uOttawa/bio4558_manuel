@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.11 Bootstrap et régression multiple | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.11 Bootstrap et régression multiple | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -49,6 +49,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
 <li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
@@ -320,86 +322,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.11</span> Bootstrap et régression multiple</h2>
 <p>Quand les données ne rencontrent pas les conditions d’application de normalité et d’homoscédasticité et que les transformations n’arrivent pas à corriger ces violations, le bootstrap peut être utilisé pour calculer des intervalles de confiance pour les coefficients. Si la distribution des coefficients bootstrappés est symétrique et approximativement normale, on peut utiliser les percentiles empiriques pour calculer les limites de confiance.</p>
 <p>Le code qui suit, utilisant le package simpleboot, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" title="1"><span class="co">############################################################</span></a>
-<a class="sourceLine" id="cb566-2" title="2"><span class="co">#######</span></a>
-<a class="sourceLine" id="cb566-3" title="3"><span class="co"># Bootstrap analysis the simple way with library simpleboot</span></a>
-<a class="sourceLine" id="cb566-4" title="4"><span class="co"># Define model to be bootstrapped and the data source used</span></a>
-<a class="sourceLine" id="cb566-5" title="5">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb566-6" title="6"><span class="co"># Set the number of bootstrap iterations</span></a>
-<a class="sourceLine" id="cb566-7" title="7">nboot&lt;-<span class="dv">1000</span></a>
-<a class="sourceLine" id="cb566-8" title="8"><span class="kw">library</span>(simpleboot)</a>
-<a class="sourceLine" id="cb566-9" title="9"><span class="co"># R is the number of bootstrap iterations</span></a>
-<a class="sourceLine" id="cb566-10" title="10"><span class="co"># Setting rows to FALSE indicates resampling of residuals</span></a>
-<a class="sourceLine" id="cb566-11" title="11">mysimpleboot &lt;-<span class="st"> </span><span class="kw">lm.boot</span>(mymodel, <span class="dt">R =</span> nboot, <span class="dt">rows =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb566-12" title="12"><span class="co"># Extract bootstrap coefficients</span></a>
-<a class="sourceLine" id="cb566-13" title="13">myresults &lt;-<span class="st"> </span><span class="kw">sapply</span>(mysimpleboot<span class="op">$</span>boot.list, <span class="cf">function</span> (x) x<span class="op">$</span>coef)</a>
-<a class="sourceLine" id="cb566-14" title="14"><span class="co"># Transpose matrix so that lines are bootstrap iterations and columns are coefficients</span></a>
-<a class="sourceLine" id="cb566-15" title="15">tmyresults&lt;-<span class="kw">t</span>(myresults)</a></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" title="1"><span class="co">############################################################</span></a>
+<a class="sourceLine" id="cb563-2" title="2"><span class="co">#######</span></a>
+<a class="sourceLine" id="cb563-3" title="3"><span class="co"># Bootstrap analysis the simple way with library simpleboot</span></a>
+<a class="sourceLine" id="cb563-4" title="4"><span class="co"># Define model to be bootstrapped and the data source used</span></a>
+<a class="sourceLine" id="cb563-5" title="5">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb563-6" title="6"><span class="co"># Set the number of bootstrap iterations</span></a>
+<a class="sourceLine" id="cb563-7" title="7">nboot&lt;-<span class="dv">1000</span></a>
+<a class="sourceLine" id="cb563-8" title="8"><span class="kw">library</span>(simpleboot)</a>
+<a class="sourceLine" id="cb563-9" title="9"><span class="co"># R is the number of bootstrap iterations</span></a>
+<a class="sourceLine" id="cb563-10" title="10"><span class="co"># Setting rows to FALSE indicates resampling of residuals</span></a>
+<a class="sourceLine" id="cb563-11" title="11">mysimpleboot &lt;-<span class="st"> </span><span class="kw">lm.boot</span>(mymodel, <span class="dt">R =</span> nboot, <span class="dt">rows =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb563-12" title="12"><span class="co"># Extract bootstrap coefficients</span></a>
+<a class="sourceLine" id="cb563-13" title="13">myresults &lt;-<span class="st"> </span><span class="kw">sapply</span>(mysimpleboot<span class="op">$</span>boot.list, <span class="cf">function</span> (x) x<span class="op">$</span>coef)</a>
+<a class="sourceLine" id="cb563-14" title="14"><span class="co"># Transpose matrix so that lines are bootstrap iterations and columns are coefficients</span></a>
+<a class="sourceLine" id="cb563-15" title="15">tmyresults&lt;-<span class="kw">t</span>(myresults)</a></code></pre></div>
 <p>Vous pouvez ensuite faire des graphiques pour voir les résultats.</p>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" title="1"><span class="co"># Plot histograms of bootstrapped coefficients</span></a>
-<a class="sourceLine" id="cb567-2" title="2">ncoefs &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">data.frame</span>(tmyresults))</a>
-<a class="sourceLine" id="cb567-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mai =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">ask =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb567-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span> <span class="op">:</span><span class="st"> </span>ncoefs) {</a>
-<a class="sourceLine" id="cb567-5" title="5">  lab &lt;-<span class="st"> </span><span class="kw">colnames</span>(tmyresults)[i]</a>
-<a class="sourceLine" id="cb567-6" title="6">  x &lt;-<span class="st"> </span>tmyresults[,i]</a>
-<a class="sourceLine" id="cb567-7" title="7">  <span class="kw">plot</span>(<span class="kw">density</span>(x),<span class="dt">main=</span>lab, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb567-8" title="8">  <span class="kw">abline</span>(<span class="dt">v=</span>mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb567-9" title="9">  <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</a>
-<a class="sourceLine" id="cb567-10" title="10">  <span class="kw">hist</span>(x, <span class="dt">main=</span>lab, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb567-11" title="11">  <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</a>
-<a class="sourceLine" id="cb567-12" title="12">  <span class="kw">abline</span>(<span class="dt">v=</span>mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
-<a class="sourceLine" id="cb567-13" title="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" title="1"><span class="co"># Plot histograms of bootstrapped coefficients</span></a>
+<a class="sourceLine" id="cb564-2" title="2">ncoefs &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">data.frame</span>(tmyresults))</a>
+<a class="sourceLine" id="cb564-3" title="3"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mai =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">ask =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb564-4" title="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span> <span class="op">:</span><span class="st"> </span>ncoefs) {</a>
+<a class="sourceLine" id="cb564-5" title="5">  lab &lt;-<span class="st"> </span><span class="kw">colnames</span>(tmyresults)[i]</a>
+<a class="sourceLine" id="cb564-6" title="6">  x &lt;-<span class="st"> </span>tmyresults[,i]</a>
+<a class="sourceLine" id="cb564-7" title="7">  <span class="kw">plot</span>(<span class="kw">density</span>(x),<span class="dt">main=</span>lab, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb564-8" title="8">  <span class="kw">abline</span>(<span class="dt">v=</span>mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb564-9" title="9">  <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</a>
+<a class="sourceLine" id="cb564-10" title="10">  <span class="kw">hist</span>(x, <span class="dt">main=</span>lab, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb564-11" title="11">  <span class="kw">abline</span>(<span class="dt">v=</span><span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</a>
+<a class="sourceLine" id="cb564-12" title="12">  <span class="kw">abline</span>(<span class="dt">v=</span>mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb564-13" title="13">}</a></code></pre></div>
 <p>Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d’examiner la distribution pour chaque coefficient du modèle sur des graphiques:</p>
 <div class="figure"><span id="fig:unnamed-chunk-285"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-285-1.svg" alt="Distribution des estimé par bootstrap pour `logarea`" width="672" class="plot" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-285-1.svg" alt="Distribution des estimé par bootstrap pour `logarea`" width="672" />
 <p class="caption">
 Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 </p>
 </div>
 <p>Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l’histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l’intervalle de confiance à 95%. Ici l’IC ne contient pas 0, et donc on peut conclure que l’effet de logarea sur logherp est significativement positif.</p>
 <p>Les limites précises peuvent être obtenues par:</p>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb568-1" title="1"><span class="co"># Display empirical bootstrap quantiles (not corrected for bias)</span></a>
-<a class="sourceLine" id="cb568-2" title="2">p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.005</span>,<span class="fl">0.01</span>, <span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>, <span class="fl">0.995</span>)</a>
-<a class="sourceLine" id="cb568-3" title="3"><span class="kw">apply</span>(tmyresults, <span class="dv">2</span>, quantile, p)</a></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb565-1" title="1"><span class="co"># Display empirical bootstrap quantiles (not corrected for bias)</span></a>
+<a class="sourceLine" id="cb565-2" title="2">p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.005</span>,<span class="fl">0.01</span>, <span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>, <span class="fl">0.995</span>)</a>
+<a class="sourceLine" id="cb565-3" title="3"><span class="kw">apply</span>(tmyresults, <span class="dv">2</span>, quantile, p)</a></code></pre></div>
 <pre><code>##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.70894790 0.1268643 -0.047690626 0.01734930 -0.0003476185
-## 1%    -0.67551297 0.1343112 -0.044057359 0.01761072 -0.0003366549
-## 2.5%  -0.64531825 0.1506900 -0.041396817 0.01931991 -0.0003233079
-## 5%    -0.61042154 0.1661160 -0.039366477 0.02135192 -0.0003139975
-## 95%   -0.08913545 0.2795245 -0.010949006 0.03759961 -0.0001831328
-## 97.5% -0.03167611 0.2901570 -0.008152683 0.03877922 -0.0001667044
-## 99%    0.02458125 0.3005593 -0.005981631 0.04057454 -0.0001547184
-## 99.5%  0.04793625 0.3079317 -0.004543636 0.04138911 -0.0001511178</code></pre>
+## 0.5%  -0.71487867 0.1372604 -0.048160353 0.01704610 -0.0003493448
+## 1%    -0.70395998 0.1416677 -0.044539442 0.01775472 -0.0003375029
+## 2.5%  -0.64456034 0.1497201 -0.042471320 0.02008079 -0.0003242622
+## 5%    -0.60361946 0.1618549 -0.039798070 0.02149673 -0.0003101469
+## 95%   -0.07961526 0.2848452 -0.012280036 0.03726741 -0.0001861543
+## 97.5% -0.03785810 0.2945280 -0.009348354 0.03889768 -0.0001691326
+## 99%    0.03402085 0.3037580 -0.006555464 0.04057459 -0.0001570516
+## 99.5%  0.04310961 0.3102429 -0.006313643 0.04116854 -0.0001479019</code></pre>
 <p>Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n’est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb570-1" title="1"><span class="co">################################################</span></a>
-<a class="sourceLine" id="cb570-2" title="2"><span class="co"># Bootstrap analysis in multiple regression with BCa confidence intervals</span></a>
-<a class="sourceLine" id="cb570-3" title="3"><span class="co"># Preferable when parameter distribution is far from normal</span></a>
-<a class="sourceLine" id="cb570-4" title="4"><span class="co"># Bootstrap 95% BCa CI for regression coefficients</span></a>
-<a class="sourceLine" id="cb570-5" title="5"></a>
-<a class="sourceLine" id="cb570-6" title="6"><span class="kw">library</span>(boot)</a>
-<a class="sourceLine" id="cb570-7" title="7"><span class="co"># function to obtain regression coefficients for each iteration</span></a>
-<a class="sourceLine" id="cb570-8" title="8">bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</a>
-<a class="sourceLine" id="cb570-9" title="9">  d &lt;-<span class="st"> </span>data[indices,] <span class="co"># allows boot to select sample</span></a>
-<a class="sourceLine" id="cb570-10" title="10">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data=</span>d)</a>
-<a class="sourceLine" id="cb570-11" title="11">  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</a>
-<a class="sourceLine" id="cb570-12" title="12">}</a>
-<a class="sourceLine" id="cb570-13" title="13"><span class="co"># bootstrapping with 1000 replications</span></a>
-<a class="sourceLine" id="cb570-14" title="14">results &lt;-<span class="st"> </span><span class="kw">boot</span>(<span class="dt">data =</span> mydata, <span class="dt">statistic =</span> bs, <span class="dt">R =</span> <span class="dv">1000</span>,</a>
-<a class="sourceLine" id="cb570-15" title="15">  <span class="dt">formula =</span> logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb570-16" title="16"><span class="co"># view results</span></a></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" title="1"><span class="co">################################################</span></a>
+<a class="sourceLine" id="cb567-2" title="2"><span class="co"># Bootstrap analysis in multiple regression with BCa confidence intervals</span></a>
+<a class="sourceLine" id="cb567-3" title="3"><span class="co"># Preferable when parameter distribution is far from normal</span></a>
+<a class="sourceLine" id="cb567-4" title="4"><span class="co"># Bootstrap 95% BCa CI for regression coefficients</span></a>
+<a class="sourceLine" id="cb567-5" title="5"></a>
+<a class="sourceLine" id="cb567-6" title="6"><span class="kw">library</span>(boot)</a>
+<a class="sourceLine" id="cb567-7" title="7"><span class="co"># function to obtain regression coefficients for each iteration</span></a>
+<a class="sourceLine" id="cb567-8" title="8">bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</a>
+<a class="sourceLine" id="cb567-9" title="9">  d &lt;-<span class="st"> </span>data[indices,] <span class="co"># allows boot to select sample</span></a>
+<a class="sourceLine" id="cb567-10" title="10">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data=</span>d)</a>
+<a class="sourceLine" id="cb567-11" title="11">  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</a>
+<a class="sourceLine" id="cb567-12" title="12">}</a>
+<a class="sourceLine" id="cb567-13" title="13"><span class="co"># bootstrapping with 1000 replications</span></a>
+<a class="sourceLine" id="cb567-14" title="14">results &lt;-<span class="st"> </span><span class="kw">boot</span>(<span class="dt">data =</span> mydata, <span class="dt">statistic =</span> bs, <span class="dt">R =</span> <span class="dv">1000</span>,</a>
+<a class="sourceLine" id="cb567-15" title="15">  <span class="dt">formula =</span> logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb567-16" title="16"><span class="co"># view results</span></a></code></pre></div>
 <p>Pour obtenir les résultats, le code suivant va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l’intervalle de confiance</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb571-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">1</span>) <span class="co"># intercept</span></a>
-<a class="sourceLine" id="cb571-2" title="2"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">2</span>) <span class="co"># logarea</span></a>
-<a class="sourceLine" id="cb571-3" title="3"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">3</span>) <span class="co"># thtden</span></a>
-<a class="sourceLine" id="cb571-4" title="4"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">4</span>) <span class="co"># swamp</span></a>
-<a class="sourceLine" id="cb571-5" title="5"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">5</span>) <span class="co"># swamp^2</span></a>
-<a class="sourceLine" id="cb571-6" title="6"></a>
-<a class="sourceLine" id="cb571-7" title="7"><span class="co"># get 95% confidence intervals</span></a>
-<a class="sourceLine" id="cb571-8" title="8"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb571-9" title="9"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb571-10" title="10"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb571-11" title="11"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb571-12" title="12"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb568-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">1</span>) <span class="co"># intercept</span></a>
+<a class="sourceLine" id="cb568-2" title="2"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">2</span>) <span class="co"># logarea</span></a>
+<a class="sourceLine" id="cb568-3" title="3"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">3</span>) <span class="co"># thtden</span></a>
+<a class="sourceLine" id="cb568-4" title="4"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">4</span>) <span class="co"># swamp</span></a>
+<a class="sourceLine" id="cb568-5" title="5"><span class="kw">plot</span>(results, <span class="dt">index=</span><span class="dv">5</span>) <span class="co"># swamp^2</span></a>
+<a class="sourceLine" id="cb568-6" title="6"></a>
+<a class="sourceLine" id="cb568-7" title="7"><span class="co"># get 95% confidence intervals</span></a>
+<a class="sourceLine" id="cb568-8" title="8"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb568-9" title="9"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb568-10" title="10"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb568-11" title="11"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb568-12" title="12"><span class="kw">boot.ci</span>(results, <span class="dt">type=</span><span class="st">&quot;bca&quot;</span>, <span class="dt">index=</span><span class="dv">5</span>)</a></code></pre></div>
 <p>Pour logarea, cela donne:</p>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
 ## Based on 1000 bootstrap replicates
@@ -409,9 +411,9 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1109,  0.3111 )  
+## 95%   ( 0.1196,  0.3190 )  
 ## Calculations and Intervals on Original Scale</code></pre>
-<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-289-1.svg" width="672" class="plot" /></p>
+<p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-289-1.svg" width="672" /></p>
 <p>Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.</p>
 </div>
 <script src="js/solution.js"></script>
