@@ -106,7 +106,7 @@ Si les résidus étaient homoscédastiques, on accepterait l’hypothèse nulle 
 * Répétez la même analyse avec les données du fichier `stu2mdat.csv` . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?
 
 \iffalse
-<div class="solution">
+<div class="exer">
 ```{r, eval = FALSE}
 Stu2mdat <- read.csv("data/Stu2mdat.csv")
 anova.model2 <- lm(
@@ -169,7 +169,7 @@ Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comm
 En utilisant `Stu2wdat` , refaites un tableau d’ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l’interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c’est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d’ANOVA.
 
 \iffalse
-<div class="solution">
+<div class="exer">
 ```{r, eval = FALSE}
 Anova(anova.model2, type = 3)
 ```
@@ -265,7 +265,7 @@ anova.nested <- lm(survival ~ genotype/chamber, data = nestdat)
 Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l'effet de Chamber / genotype n'est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N'oubliez pas de vérifier les conditions d'applications de l'ANOVA!
 
 \iffalse
-<div class="solution">
+<div class="exer">
 ```{r, eval = FALSE}
 anova(anova.nested)
 par(mfrow = c(2, 2))
@@ -308,7 +308,7 @@ On conclue donc que la résistance à la dessiccation (R), telle que mesurée pa
 Cependant, avant d’accepter cette conclusion, il faut éprouver les conditions d’application du test. Voici les diagnostics des résidus pour l’ANOVA à un critère de classification (non hiérarchique):
 
 \iffalse
-<div class="solution">
+<div class="exer">
 ```{r, eval = FALSE}
 par(mfrow = c(2, 2))
 plot(anova.simple)
@@ -385,8 +385,8 @@ Le fichier `wmcdat2.csv` contient des mesures de consommation d'oxygène, `o2con
 
 - Effectuez une ANOVA factorielle à deux critères de classification sur ces données en utilisant `o2cons` comme variable dépendante et `species` et `conc` comme les facteurs (il va probablement falloir changer le type de données de variable conc à facteur). Que concluez-vous ?
 
-
-<div class="solution">
+\iffalse
+<div class="exer">
 ```{r, eval=FALSE}
 wmcdat2 <- read.csv("data/wmcdat2.csv")
 wmcdat2$species <- as.factor(wmcdat2$species)
@@ -395,7 +395,7 @@ anova.model5 <- lm(o2cons ~ species * conc, data = wmcdat2)
 Anova(anova.model5, type = 3)
 ```
 </div>
-
+\fi
 
 ```{r, echo = FALSE}
 wmcdat2 <- read.csv("data/wmcdat2.csv")
@@ -431,9 +431,11 @@ Il y a donc évidence de non-normalité, mais à part ça tout semble aller. Com
 
 - À la suite des résultats que vous venez d'obtenir, quelles moyennes voudriez-vous comparer ? Pourquoi?
 
-<div class="solution">
+\iffalse
+<div class="exer">
 ajouter une explication ici
 </div>
+\fi
 
 On conclue donc qu’il n’y a pas de différence entre les espèces et que l’effet de la concentration ne dépends pas de l’espèce (il n’y a pas d’interaction). Par conséquent, les seules comparaisons justifiables sont entre les concentrations:
 
@@ -460,7 +462,8 @@ Il y a donc une différence de consommation d’oxygène significative lorsque l
 
 - Répétez les deux analyses précédentes sur les données du fichier `wmc2dat2.csv`. Comment les résultats se comparent-ils à ceux obt$nus précédemment ?
 
-<div class="solution">
+\iffalse
+<div class="exer">
 ```{r}
 wmc2dat2 <- read.csv("data/wmc2dat2.csv")
 wmc2dat2$species <- as.factor(wmc2dat2$species)
@@ -468,6 +471,7 @@ wmc2dat2$conc <- as.factor(wmc2dat2$conc)
 anova.model7 <- lm(o2cons ~ species * conc, data = wmcdat2)
 ```
 </div>
+\fi
 
 En utilisant `wmc2dat2.csv`, on obtient:
 

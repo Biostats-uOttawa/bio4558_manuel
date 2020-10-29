@@ -368,7 +368,7 @@ mygraph
 ```
 
 \iffalse
-<div class="solution">
+<div class="exer">
 ```{r eval=FALSE}
 ## Charger les données
 salmonella <- read.csv("data/salmonella.csv")
