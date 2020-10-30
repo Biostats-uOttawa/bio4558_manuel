@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.1 GLM | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>1.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.1 GLM | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="1.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.1 GLM | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="1.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ancova-et-glm.html"/>
-<link rel="next" href="ancova.html"/>
+<link rel="prev" href="introduction-à-r.html"/>
+<link rel="next" href="premier-pas-avec-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -149,9 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introduction-à-r.html"><a href="introduction-à-r.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
-<li class="chapter" data-level="1.1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html"><i class="fa fa-check"></i><b>1.1</b> Objectifs Labo 1</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html#set-intro"><i class="fa fa-check"></i><b>1.1.1</b> Paquets et données requises pour le labo</a></li>
-</ul></li>
+<li class="chapter" data-level="1.1" data-path="set-intro.html"><a href="set-intro.html"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>1.2</b> Premier pas avec R</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#la-console"><i class="fa fa-check"></i><b>1.2.1</b> La console</a></li>
 <li class="chapter" data-level="1.2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets"><i class="fa fa-check"></i><b>1.2.2</b> Objets</a></li>
@@ -268,25 +266,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
-<li class="chapter" data-level="8.1" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>8.1</b> GLM</a></li>
-<li class="chapter" data-level="8.2" data-path="ancova.html"><a href="ancova.html"><i class="fa fa-check"></i><b>8.2</b> ANCOVA</a></li>
-<li class="chapter" data-level="8.3" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.3</b> Homogénéité des pentes</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-1---la-taille-en-fonction-de-lâge-exemple-avec-pente-commune"><i class="fa fa-check"></i><b>8.3.1</b> Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)</a></li>
-<li class="chapter" data-level="8.3.2" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-2---taille-en-fonction-de-lâge-exemple-avec-des-pentes-différentes"><i class="fa fa-check"></i><b>8.3.2</b> Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)</a></li>
+<li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a><ul>
+<li class="chapter" data-level="8.1" data-path="set-anco.html"><a href="set-anco.html"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="8.2" data-path="modèle-linéaire-général.html"><a href="modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8.2</b> Modèle linéaire général</a></li>
+<li class="chapter" data-level="8.3" data-path="ancova.html"><a href="ancova.html"><i class="fa fa-check"></i><b>8.3</b> ANCOVA</a></li>
+<li class="chapter" data-level="8.4" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.4</b> Homogénéité des pentes</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-1---la-taille-en-fonction-de-lâge-exemple-avec-pente-commune"><i class="fa fa-check"></i><b>8.4.1</b> Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-2---taille-en-fonction-de-lâge-exemple-avec-des-pentes-différentes"><i class="fa fa-check"></i><b>8.4.2</b> Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
-<li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
-<li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
+<li class="chapter" data-level="8.5" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.5</b> Le modèle d’ANCOVA</a></li>
+<li class="chapter" data-level="8.6" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.6</b> Comparer l’ajustement de modèles</a></li>
+<li class="chapter" data-level="8.7" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.7</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.8" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.8</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
-<li class="chapter" data-level="9.1" data-path="organisation-des-données-3-formats.html"><a href="organisation-des-données-3-formats.html"><i class="fa fa-check"></i><b>9.1</b> Organisation des données: 3 formats</a></li>
-<li class="chapter" data-level="9.2" data-path="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><i class="fa fa-check"></i><b>9.2</b> Visualiser graphiquement les tableaux de contingence et test d’indépendance</a></li>
-<li class="chapter" data-level="9.3" data-path="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><i class="fa fa-check"></i><b>9.3</b> Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence</a></li>
-<li class="chapter" data-level="9.4" data-path="tester-une-hypothèse-extrinsèque.html"><a href="tester-une-hypothèse-extrinsèque.html"><i class="fa fa-check"></i><b>9.4</b> Tester une hypothèse extrinsèque</a></li>
-<li class="chapter" data-level="9.5" data-path="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><i class="fa fa-check"></i><b>9.5</b> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</a></li>
-<li class="chapter" data-level="9.6" data-path="ex-glm.html"><a href="ex-glm.html"><i class="fa fa-check"></i><b>9.6</b> Exercice</a></li>
+<li class="chapter" data-level="9.1" data-path="set-freq.html"><a href="set-freq.html"><i class="fa fa-check"></i><b>9.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="9.2" data-path="organisation-des-données-3-formats.html"><a href="organisation-des-données-3-formats.html"><i class="fa fa-check"></i><b>9.2</b> Organisation des données: 3 formats</a></li>
+<li class="chapter" data-level="9.3" data-path="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><i class="fa fa-check"></i><b>9.3</b> Visualiser graphiquement les tableaux de contingence et test d’indépendance</a></li>
+<li class="chapter" data-level="9.4" data-path="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><i class="fa fa-check"></i><b>9.4</b> Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence</a></li>
+<li class="chapter" data-level="9.5" data-path="tester-une-hypothèse-extrinsèque.html"><a href="tester-une-hypothèse-extrinsèque.html"><i class="fa fa-check"></i><b>9.5</b> Tester une hypothèse extrinsèque</a></li>
+<li class="chapter" data-level="9.6" data-path="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><i class="fa fa-check"></i><b>9.6</b> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</a></li>
+<li class="chapter" data-level="9.7" data-path="ex-glm.html"><a href="ex-glm.html"><i class="fa fa-check"></i><b>9.7</b> Exercice</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
 <li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
@@ -318,20 +318,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="glm" class="section level2">
-<h2><span class="header-section-number">8.1</span> GLM</h2>
-<p>GLM est une abréviation pour General Linear Model. Les GLM sont
-des modèles statistiques de la forme Y=XB+E, ou Y est un vecteur
-(ou matrice) contenant la variable dépendante, B est une matrice de
-paramètres estimés, et E est un vecteur (ou matrice) de résidus
-homoscédastiques et normalement distribués. Tous les tests que nous
-avons étudiés à date (test de t, régression linéaire simple, ANOVA à
-un facteur de classification, ANOVA à plusieurs facteurs de
-classification et régression multiple) sont des GLMs. Notez que tous
-les modèles que nous avons rencontrés à ce jour ne contiennent qu’un
-type de variable indépendante (soit continue ou discontinue). Dans cet
-exercice de laboratoire, vous allez ajuster des modèles qui ont les deux
-types de variables indépendantes.</p>
+<div id="set-intro" class="section level2">
+<h2><span class="header-section-number">1.1</span> Paquets et données requises pour le labo</h2>
+<p>Ce laboratoire nécessite:</p>
+<ul>
+<li>les paquets R:
+<ul>
+<li>questionr</li>
+<li>ggplot2</li>
+</ul></li>
+<li>les fichiers de données
+<ul>
+<li>ErablesGatineau.csv</li>
+<li>sturgeon.csv</li>
+</ul></li>
+</ul>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -339,8 +340,8 @@ types de variables indépendantes.</p>
           </div>
         </div>
       </div>
-<a href="ancova-et-glm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ancova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-à-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="premier-pas-avec-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -362,7 +363,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/08-ancova_glm.Rmd",
+"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/01-introR_1.Rmd",
 "text": "Edit"
 },
 "history": {

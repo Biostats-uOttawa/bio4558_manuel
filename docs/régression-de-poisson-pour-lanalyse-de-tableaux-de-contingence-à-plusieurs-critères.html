@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.5 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R</title>
+  <title>9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.5 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R" />
+  <meta property="og:title" content="9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/missing.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.5 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R" />
+  <meta name="twitter:title" content="9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="twitter:image" content="images/missing.png" />
@@ -149,9 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introduction-à-r.html"><a href="introduction-à-r.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
-<li class="chapter" data-level="1.1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html"><i class="fa fa-check"></i><b>1.1</b> Objectifs Labo 1</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="objectifs-labo-1.html"><a href="objectifs-labo-1.html#set-intro"><i class="fa fa-check"></i><b>1.1.1</b> Paquets et données requises pour le labo</a></li>
-</ul></li>
+<li class="chapter" data-level="1.1" data-path="set-intro.html"><a href="set-intro.html"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>1.2</b> Premier pas avec R</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#la-console"><i class="fa fa-check"></i><b>1.2.1</b> La console</a></li>
 <li class="chapter" data-level="1.2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets"><i class="fa fa-check"></i><b>1.2.2</b> Objets</a></li>
@@ -268,25 +266,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ancova-et-glm.html"><a href="ancova-et-glm.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et GLM</a><ul>
-<li class="chapter" data-level="8.1" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>8.1</b> GLM</a></li>
-<li class="chapter" data-level="8.2" data-path="ancova.html"><a href="ancova.html"><i class="fa fa-check"></i><b>8.2</b> ANCOVA</a></li>
-<li class="chapter" data-level="8.3" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.3</b> Homogénéité des pentes</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-1---la-taille-en-fonction-de-lâge-exemple-avec-pente-commune"><i class="fa fa-check"></i><b>8.3.1</b> Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)</a></li>
-<li class="chapter" data-level="8.3.2" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-2---taille-en-fonction-de-lâge-exemple-avec-des-pentes-différentes"><i class="fa fa-check"></i><b>8.3.2</b> Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)</a></li>
+<li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a><ul>
+<li class="chapter" data-level="8.1" data-path="set-anco.html"><a href="set-anco.html"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="8.2" data-path="modèle-linéaire-général.html"><a href="modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8.2</b> Modèle linéaire général</a></li>
+<li class="chapter" data-level="8.3" data-path="ancova.html"><a href="ancova.html"><i class="fa fa-check"></i><b>8.3</b> ANCOVA</a></li>
+<li class="chapter" data-level="8.4" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.4</b> Homogénéité des pentes</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-1---la-taille-en-fonction-de-lâge-exemple-avec-pente-commune"><i class="fa fa-check"></i><b>8.4.1</b> Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-2---taille-en-fonction-de-lâge-exemple-avec-des-pentes-différentes"><i class="fa fa-check"></i><b>8.4.2</b> Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.4</b> Le modèle d’ANCOVA</a></li>
-<li class="chapter" data-level="8.5" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.5</b> Comparer l’ajustement de modèles</a></li>
-<li class="chapter" data-level="8.6" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.6</b> Bootstrap</a></li>
-<li class="chapter" data-level="8.7" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.7</b> Permutation test</a></li>
+<li class="chapter" data-level="8.5" data-path="le-modèle-dancova.html"><a href="le-modèle-dancova.html"><i class="fa fa-check"></i><b>8.5</b> Le modèle d’ANCOVA</a></li>
+<li class="chapter" data-level="8.6" data-path="comparer-lajustement-de-modèles.html"><a href="comparer-lajustement-de-modèles.html"><i class="fa fa-check"></i><b>8.6</b> Comparer l’ajustement de modèles</a></li>
+<li class="chapter" data-level="8.7" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.7</b> Bootstrap</a></li>
+<li class="chapter" data-level="8.8" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.8</b> Permutation test</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
-<li class="chapter" data-level="9.1" data-path="organisation-des-données-3-formats.html"><a href="organisation-des-données-3-formats.html"><i class="fa fa-check"></i><b>9.1</b> Organisation des données: 3 formats</a></li>
-<li class="chapter" data-level="9.2" data-path="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><i class="fa fa-check"></i><b>9.2</b> Visualiser graphiquement les tableaux de contingence et test d’indépendance</a></li>
-<li class="chapter" data-level="9.3" data-path="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><i class="fa fa-check"></i><b>9.3</b> Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence</a></li>
-<li class="chapter" data-level="9.4" data-path="tester-une-hypothèse-extrinsèque.html"><a href="tester-une-hypothèse-extrinsèque.html"><i class="fa fa-check"></i><b>9.4</b> Tester une hypothèse extrinsèque</a></li>
-<li class="chapter" data-level="9.5" data-path="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><i class="fa fa-check"></i><b>9.5</b> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</a></li>
-<li class="chapter" data-level="9.6" data-path="ex-glm.html"><a href="ex-glm.html"><i class="fa fa-check"></i><b>9.6</b> Exercice</a></li>
+<li class="chapter" data-level="9.1" data-path="set-freq.html"><a href="set-freq.html"><i class="fa fa-check"></i><b>9.1</b> Paquets et données requises pour le labo</a></li>
+<li class="chapter" data-level="9.2" data-path="organisation-des-données-3-formats.html"><a href="organisation-des-données-3-formats.html"><i class="fa fa-check"></i><b>9.2</b> Organisation des données: 3 formats</a></li>
+<li class="chapter" data-level="9.3" data-path="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><i class="fa fa-check"></i><b>9.3</b> Visualiser graphiquement les tableaux de contingence et test d’indépendance</a></li>
+<li class="chapter" data-level="9.4" data-path="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"><i class="fa fa-check"></i><b>9.4</b> Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence</a></li>
+<li class="chapter" data-level="9.5" data-path="tester-une-hypothèse-extrinsèque.html"><a href="tester-une-hypothèse-extrinsèque.html"><i class="fa fa-check"></i><b>9.5</b> Tester une hypothèse extrinsèque</a></li>
+<li class="chapter" data-level="9.6" data-path="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><i class="fa fa-check"></i><b>9.6</b> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</a></li>
+<li class="chapter" data-level="9.7" data-path="ex-glm.html"><a href="ex-glm.html"><i class="fa fa-check"></i><b>9.7</b> Exercice</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
 <li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
@@ -319,78 +319,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères" class="section level2">
-<h2><span class="header-section-number">9.5</span> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</h2>
-<p>Le principe d’éprouver l’indépendance en examinant les interactions
-peut être utilisé avec les tableaux de contingence à plusieurs critères.
-Par exemple, examinons si la température (2 niveaux: base et haute) et
-l’éclairage (2 niveaux: bas et haut) affectent si des plantes sont
-infectées (2 niveaux: infecté et non-infecté) par un pathogène. On
-peut représenter ces données par un tableau de contingence à 3
-critères (température, lumière, statut d’infection).</p>
-<p>L’ajustement de modèles log-linéaires à des données de fréquence
-implique que l’on éprouve plusieurs modèles en les comparant au
-modèle complet (saturé). Une série de modèles contenant tous les
-termes sauf une des interactions qui nous intéressent est produite, et
-l’ajustement de chaque modèle est comparé à celui du modèle
-complet. Si la réduction de la qualité d’ajustement n’est pas
-significative, cela implique que l’interaction manquante contribue peu
-à la qualité de l’ajustement. Par contre, si le modèle réduit s’ajuste
-nettement moins bien aux données, alors l’interaction manquante
-contribue beaucoup à l’ajustement du modèle complet. Comme pour
-les tableaux de contingence 2X2, les termes qui nous intéressent le
-plus sont les interactions, pas les effets principaux, si l’on teste pour
-l’indépendance des différents facteurs.</p>
-<p>Le fichier loglin.csv contient les fréquences ( frequency ) des
-plantes infectées ou non infectées ( infected ) à basse et haute
-température ( temperature) à basse et haute lumière ( light). Pour
-visualiser ces données et déterminer si le taux d’infection dépends de
-la lumière et de la température, on peut faire une figure mosaïque et
-ajuster un modèle log-linéaire:</p>
-<pre><code># Convert from frequency form to table form for mosaic plot
-loglinTable&lt;-xtabs(frequency~temperature+light+infected, data=loglin)
-# Create mosaic plot to look at data
-library(vcd)
-mosaic(loglinTable, shade=TRUE)</code></pre>
-<p>Figure 4.</p>
-<p>Cette expérience contrôlée avec le même nombre de plantes à chaque
-niveau de lumière et de température produit une mosaïque où la
-surface occupée par les observations dans les quatre quadrants est
-égale. Ce qui nous intéresse, le taux d’infection par le pathogène,
-semble varier entre les quadrants (i.e. les niveaux de température et de
-lumière). Le rectangle rouge dans le coin en bas à gauche indique que
-le nombre de plantes infectées à basse température et haute lumière
-est plus faible qu’attendu si ces deux facteurs n’influencent pas le taux
-d’infection. Même chose pour les conditions de basse lumière et de
-haute température (coin supérieur droit). La valeur p au bas de
-l’échelle représente un test d’indépendance équivalent à comparer le
-modèle complet au modèle excluant toutes les interactions et ne
-contenant que les effets principaux de la température, la lumière, et le
-statut d’infection sur le logarithme naturel du nombre d’observations.</p>
-<pre><code># Fit full model
-full.model&lt;-glm(frequency~temperature*light*infected, family=poisson(),
-data=loglin)
-# Test partial effect of terms in full model
-require(car)
-Anova(full.model, type=3, test=&quot;LR&quot;)</code></pre>
-<p>Les probabilités associées à chaque terme sont ici calculées en
-comparant l’ajustement du modèle complet à un modèle qui exclue
-seulement le terme d’intérêt. Plusieurs des termes sont ici sans
-véritable intérêt puisque les fréquences sont partiellement contrôlées
-dans notre expérience. Puisque la question biologique porte sur le
-taux d’infection, les seuls termes d’intérêt sont les termes
-d’interactions qui incluent le statut d’infection:
-temperature:infected , l ight:infected , l’interaction triple
-temperature:light:infected .</p>
+<h2><span class="header-section-number">9.6</span> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</h2>
+<p>Le principe d’éprouver l’indépendance en examinant les interactions peut être utilisé avec les tableaux de contingence à plusieurs critères. Par exemple, examinons si la température (2 niveaux: base et haute) et l’éclairage (2 niveaux: bas et haut) affectent si des plantes sont infectées (2 niveaux: infecté et non-infecté) par un pathogène. On peut représenter ces données par un tableau de contingence à 3 critères (température, lumière, statut d’infection).</p>
+<p>L’ajustement de modèles log-linéaires à des données de fréquence implique que l’on éprouve plusieurs modèles en les comparant au modèle complet (saturé). Une série de modèles contenant tous les termes sauf une des interactions qui nous intéressent est produite, et l’ajustement de chaque modèle est comparé à celui du modèle complet. Si la réduction de la qualité d’ajustement n’est pas significative, cela implique que l’interaction manquante contribue peu à la qualité de l’ajustement. Par contre, si le modèle réduit s’ajuste nettement moins bien aux données, alors l’interaction manquante contribue beaucoup à l’ajustement du modèle complet. Comme pour les tableaux de contingence 2X2, les termes qui nous intéressent le plus sont les interactions, pas les effets principaux, si l’on teste pour l’indépendance des différents facteurs.</p>
+<p>Le fichier <code>loglin.csv</code> contient les fréquences (frequency) des plantes infectées ou non infectées (<code>infected</code>) à basse et haute température (<code>temperature</code>) à basse et haute lumière (<code>light</code>). Pour visualiser ces données et déterminer si le taux d’infection dépends de la lumière et de la température, on peut faire une figure mosaïque et ajuster un modèle log-linéaire:</p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb639-1" title="1">loglin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/loglin.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb639-2" title="2"><span class="co"># Convert from frequency form to table form for mosaic plot</span></a>
+<a class="sourceLine" id="cb639-3" title="3">loglinTable&lt;-<span class="kw">xtabs</span>(frequency<span class="op">~</span>temperature<span class="op">+</span>light<span class="op">+</span>infected, <span class="dt">data=</span>loglin)</a>
+<a class="sourceLine" id="cb639-4" title="4"><span class="co"># Create mosaic plot to look at data</span></a>
+<a class="sourceLine" id="cb639-5" title="5"><span class="kw">mosaic</span>(loglinTable, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-334"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-334-1.svg" alt="Proportion de plantes infectées en fonction de la température er la lumière" width="672" />
+<p class="caption">
+Figure 9.2: Proportion de plantes infectées en fonction de la température er la lumière
+</p>
+</div>
+<p>Cette expérience contrôlée avec le même nombre de plantes à chaque niveau de lumière et de température produit une mosaïque où la surface occupée par les observations dans les quatre quadrants est égale. Ce qui nous intéresse, le taux d’infection par le pathogène, semble varier entre les quadrants (i.e. les niveaux de température et de lumière). Le rectangle rouge dans le coin en bas à gauche indique que le nombre de plantes infectées à basse température et haute lumière est plus faible qu’attendu si ces deux facteurs n’influencent pas le taux d’infection. Même chose pour les conditions de basse lumière et de haute température (coin supérieur droit). La valeur p au bas de l’échelle représente un test d’indépendance équivalent à comparer le modèle complet au modèle excluant toutes les interactions et ne contenant que les effets principaux de la température, la lumière, et le statut d’infection sur le logarithme naturel du nombre d’observations.</p>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb640-1" title="1"><span class="co"># Fit full model</span></a>
+<a class="sourceLine" id="cb640-2" title="2">full.model&lt;-<span class="kw">glm</span>(frequency<span class="op">~</span>temperature<span class="op">*</span>light<span class="op">*</span>infected, <span class="dt">family=</span><span class="kw">poisson</span>(), <span class="dt">data=</span>loglin)</a>
+<a class="sourceLine" id="cb640-3" title="3"><span class="co"># Test partial effect of terms in full model</span></a>
+<a class="sourceLine" id="cb640-4" title="4"><span class="kw">Anova</span>(full.model, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">test =</span> <span class="st">&quot;LR&quot;</span>)</a></code></pre></div>
+<pre><code>## Analysis of Deviance Table (Type III tests)
+## 
+## Response: frequency
+##                            LR Chisq Df Pr(&gt;Chisq)    
+## temperature                  9.1786  1  0.0024487 ** 
+## light                       13.2829  1  0.0002678 ***
+## infected                     0.0000  1  1.0000000    
+## temperature:light            5.6758  1  0.0172008 *  
+## temperature:infected        29.0612  1  7.013e-08 ***
+## light:infected              20.2687  1  6.729e-06 ***
+## temperature:light:infected   1.0840  1  0.2978126    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Les probabilités associées à chaque terme sont ici calculées en comparant l’ajustement du modèle complet à un modèle qui exclue seulement le terme d’intérêt. Plusieurs des termes sont ici sans véritable intérêt puisque les fréquences sont partiellement contrôlées dans notre expérience. Puisque la question biologique porte sur le taux d’infection, les seuls termes d’intérêt sont les termes d’interactions qui incluent le statut d’infection (<code>temperature:infected</code>, <code>light:infected</code> et <code>temperature:light:infected</code>.</p>
 <ul>
-<li>L’interation significative temperature:infected implique que le
-taux d’infection n’est pas indépendant de la température. D’ailleurs il est apparent dans la mosaïque que le taux d’infection (le
-nombre relatif de plantes infectées) est supérieur à haute température.</li>
-<li>L’interaction significative light:infected implique que le taux
-d’infection dépends de la lumière. La mosaïque illustre que la proportion des plantes infectées est plus élevée en basse lumière.</li>
-<li>L’interaction temperature:light:infected in’est pas significative. Cela implique que l’effet de la température et de la lumière sur
-le taux d’infection sont indépendants. Autrement dit, l’effet de la
-lumière sur le taux d’infection ne dépends pas de la température,
-et vice versa.</li>
+<li>L’interation significative <code>temperature:infected</code> implique que le taux d’infection n’est pas indépendant de la température. D’ailleurs il est apparent dans la mosaïque que le taux d’infection (le nombre relatif de plantes infectées) est supérieur à haute température.</li>
+<li>L’interaction significative <code>light:infected</code> implique que le taux d’infection dépends de la lumière. La mosaïque illustre que la proportion des plantes infectées est plus élevée en basse lumière.</li>
+<li>L’interaction <code>temperature:light:infected</code> n’est pas significative. Cela implique que l’effet de la température et de la lumière sur le taux d’infection sont indépendants. Autrement dit, l’effet de la lumière sur le taux d’infection ne dépends pas de la température, et vice versa.</li>
 </ul>
 </div>
 <script src="js/solution.js"></script>
