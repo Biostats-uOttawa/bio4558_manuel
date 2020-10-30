@@ -145,21 +145,19 @@ Donc, comme les conditions des GLM sont suffisamment remplies, on peut accepter 
 model.full2
 ```
 
-Par défaut, la variable locate iest encodée comme 0 pour le site qui vient le premier en ordre alphabétique (LofW) et 1 pour l’autre (Nelson). Les régressions pour chaque site deviennent donc:
+Par défaut, la variable `locate` est encodée comme 0 pour le site qui vient le premier en ordre alphabétique (LofW) et 1 pour l’autre (Nelson). Les régressions pour chaque site deviennent donc:
 
 Pour LofW:
-$$\begin{align}
-lfkl_{LofW} &= 1.2284 + 0.3253 \times lage + 0.2207 \times locate_{LofW} - 0.1656 \times locate_{LofW} \times lage \\
-lfkl_{LofW} &= 1.2284 + 0.3253 \times lage + 0.2207 \times 0 - 0.1656 \times 0 \times lage \\
+$$\begin{aligned}
+lfkl &= 1.2284 + 0.3253 \times lage + 0.2207 \times 0 - 0.1656 \times 0 \times lage \\
  &= 1.2284 + 0.3253 \times lage
-\end{align}$$
+\end{aligned}$$
 
 Pour Nelson:
-$$\begin{align}
-lfkl_{Nelson} &= 1.2284 + 0.3253 \times lage + 0.2207 \times locate_{Nelson} - 0.1656 \times locate_{Nelson} \times lage \\
-lfkl_{Nelson} &= 1.2284 + 0.3253 \times lage + 0.2207 \times 1 - 0.1656 \times 1 \times lage \\
-&= 1.4491 + 0.1597 \times lage
-\end{align}$$
+$$\begin{aligned}
+lfkl &= 1.2284 + 0.3253 \times lage + 0.2207 \times 1 - 0.1656 \times 1 \times lage \\
+ &= 1.4491 + 0.1597 \times lage
+\end{aligned}$$
 
 Vous pouvez vérifier en ajustant séparément les régressions pour chaque site:
 
