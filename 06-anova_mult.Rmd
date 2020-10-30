@@ -161,7 +161,7 @@ Les analyses qui précèdent négligent un point important: `location` pourrait 
 
 Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle etait de type effet fixe seulement, et les termes principaux et celui d’interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type mixte, ces effets devraient être testés en utilisant le carré moyen du terme d’interaction, ou en combinant la somme des carrés de l’erreur et de l’interaction (selon le statisticien consulté!).
 
-En utilisant `Stu2wdat` , refaites un tableau d’ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l’interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c’est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d’ANOVA.
+En utilisant `Stu2wdat`, refaites un tableau d’ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l’interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c’est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d’ANOVA.
 
 
 ```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
@@ -231,7 +231,7 @@ shapiro.test(residuals(anova.model4))
 Le test de normalité sur les résidus donne p = 0.16, donc l’hypothèse de normalité ne semble pas être sérieusement en doute. Pour l’égalité des variances, on peut seulement comparer entre les mois en utilisant les profondeurs comme réplicats (ou l’inverse). En utilisant les profondeurs comme réplicats, on obtient:
 
 ```{r}
-leveneTest(temp ~ date , data = nr2wdat)
+leveneTest(temp ~ date, data = nr2wdat)
 ```
 
 Il y a donc un problème d’hétéroscédasticité, comme on peut très bien voir dans le graphique des résidus vs les valeurs estimées. Cette analyse n’est donc pas très satisfaisante: il y a des violations des conditions d’application et il semble y avoir une interaction entre depth et date qui pourrait invalider l’analyse.
@@ -443,7 +443,7 @@ Dans ce cas ci, il y a une interaction significative, et il n’est par conséqu
 with(wmc2dat2, interaction.plot(conc, species, o2cons))
 ```
 
-- Toujours en utilisant les données de `wmc2dat2.csv` , comparez les 6 moyennes avec l’ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:
+- Toujours en utilisant les données de `wmc2dat2.csv`, comparez les 6 moyennes avec l’ajustement Bonferonni. Pour ce faire, il sera utile de créer une nouvelle variable qui combine species et conc:
 
 ```{r}
 wmc2dat2$species.conc <- as.factor(paste0(wmc2dat2$species, wmc2dat2$conc))
@@ -517,7 +517,7 @@ for (i in 2:nreps) {
   modb <- summary(aov(newdat ~ factor1 + factor2 +
     factor1:factor2,
   data = my.dataframe.noNA
-  ))
+))
   TBint[i] <- modb[[1]]$"F value"[3]
   TB1[i] <- modb[[1]]$"F value"[1]
   TB2[i] <- modb[[1]]$"F value"[2]

@@ -43,14 +43,14 @@ mygraph <- ggplot(
 mygraph <- mygraph +
   geom_density() + # add data density smooth
   geom_rug() + # add rug (bars at the bottom of the plot)
-  geom_histogram( # add black semitransparent histogram
+  geom_histogram(# add black semitransparent histogram
     aes(y = ..density..), color = "black", alpha = 0.3) +
   # add normal curve in red, with mean and sd from fklength
   stat_function(fun = dnorm,
     args = list(
       mean = mean(sturgeon$fklngth),
       sd = sd(sturgeon$fklngth)
-    ),
+),
     color = "red")
 #display graph, by location
 mygraph+facet_grid(.~location)
@@ -264,7 +264,7 @@ graphskull
 
 Avec *r* = `r cor(skull_h$width5,skull_h$width6)`. En présence d’une si forte corrélation, l’erreur-type de la différence appariée de largeur du visage entre 5 et 6 ans est beaucoup plus petit que l’erreur-type de la différence entre la largeur moyenne à 5 ans et la largeur moyenne à 6 ans. Par conséquent, la statistique t associée est beaucoup plus élevée pour le test apparié, la puissance du test est plus grande, et la valeur de p plus petite.
 
-- Répétez l'analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. ( Que concluez-vous?
+- Répétez l'analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. (Que concluez-vous?
 
 ```{r, tpaired-4}
 wilcox.test(skull_h$width5, skull_h$width6,

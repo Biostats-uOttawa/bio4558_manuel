@@ -175,7 +175,7 @@ Mais il faut programmer un peu (ou savoir copier-coller...).
 Le code suivant est un histogramme fait avec l'extension `ggplot2`.
 
 ```{block2, type = "rmdcode"}
-Copiez-collez le code suivant dans une nouvelle fenêtre script ( File->New script, ou Ctrl-n dans Windows), puis exécutez le.
+Copiez-collez le code suivant dans une nouvelle fenêtre script (File->New script, ou Ctrl-n dans Windows), puis exécutez le.
 ```
 
 ```{r stur-g1, warning = FALSE, message =  FALSE}
@@ -197,7 +197,7 @@ mygraph <- mygraph +
     stat_function(fun = dnorm,
                    args = list(
                      mean = mean(sturgeon$fklngth),
-                     sd = sd(sturgeon$fklngth) ),
+                     sd = sd(sturgeon$fklngth)),
                    color = "red")
 
 ## montrer le graphique

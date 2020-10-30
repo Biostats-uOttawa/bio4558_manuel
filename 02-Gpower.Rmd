@@ -115,7 +115,7 @@ Ce que vous apprendrez aujourd’hui s’appliquera à toutes les autres analyse
 
 Jaynie Stephenson a étudié la productivité des ruisseaux de la région d’Ottawa.
 Elle a, entre autres, quantifié la biomasse des poissons dans 18 ruisseaux sur le Bouclier Canadien d’une part, et dans 18 autres ruisseaux de la vallée de la rivière des Outaouais et de la rivière Rideau d’autre part.
-Elle a observé une biomasse plus faible dans les ruisseaux de la vallée (2.64 $g/m^2$ , écart-type=3.28) que dans ceux du Bouclier (3.31 $g/m^2$ , écart-type=2.79).
+Elle a observé une biomasse plus faible dans les ruisseaux de la vallée (2.64 $g/m^2$, écart-type=3.28) que dans ceux du Bouclier (3.31 $g/m^2$, écart-type=2.79).
 En faisant un test de t pour éprouver l’hypothèse nulle que la biomasse des poissons est la même dans les deux régions, elle obtient:
 ```
 Pooled-Variance Two-Sample t-Test
@@ -167,7 +167,7 @@ lines(x, dnorm(x, mean=(3.31-2.64)), type="l", col="blue", lwd=2)
 
 #power corresponds to the shaded area
 y <- dnorm(x, mean=(3.31-2.64))
-polygon(c( x[x<=-qc], -qc),  c(y[x<=-qc],0), col=rgb(red = 0, green = 0.2, blue = 1, alpha = 0.5))
+polygon(c(x[x<=-qc], -qc),  c(y[x<=-qc],0), col=rgb(red = 0, green = 0.2, blue = 1, alpha = 0.5))
 ```
 
 Étudions un peu la figure \@ref(fig:gpower-1).
@@ -175,9 +175,9 @@ polygon(c( x[x<=-qc], -qc),  c(y[x<=-qc],0), col=rgb(red = 0, green = 0.2, blue 
 - La courbe de gauche, en rouge, correspond à la distribution de la statistique t si $H_0$ est vraie (i.e si les deux moyennes étaient égales) compte tenu de l’effectif (18 dans chaque région) et des écarts- types observés.
 - Les lignes verticales vertes correspondent aux valeurs critiques de t pour une valeur $\alpha = 0.05$ et un effectif total de 36 (2x18).
 - Les régions ombrées en rose correspondent aux zones de rejet de $H_0$.
-Si Jaynie avait obtenu une valeur de t en dehors de l’intervalle délimité par les valeurs critiques allant de -2.03224 à 2.03224, alors elle aurait rejeté $H_0$ , l’hypothèse nulle d’égalité des deux moyennes.
+Si Jaynie avait obtenu une valeur de t en dehors de l’intervalle délimité par les valeurs critiques allant de -2.03224 à 2.03224, alors elle aurait rejeté $H_0$, l’hypothèse nulle d’égalité des deux moyennes.
 En fait, elle a obtenu une valeur de t égale à -0.5746 et conclu que la biomasse est la même dans les deux régions.
-- La courbe de droite, en bleu, correspond à la distribution de la sta- tistique t si $H_1$ est vraie (ici $H_1$ correspond à une différence de biomasse entre les deux régions de $3.33-2.64=0.69g/m^2$ , compte tenu des écarts-types observés).
+- La courbe de droite, en bleu, correspond à la distribution de la sta- tistique t si $H_1$ est vraie (ici $H_1$ correspond à une différence de biomasse entre les deux régions de $3.33-2.64=0.69g/m^2$, compte tenu des écarts-types observés).
 Cette distribution correspond à ce qu’on devrait s’attendre à observer si $H_1$ était vraie et que l’on répétait un grand nombre de fois les mesures dans des échantillons aléatoires de 18 ruisseaux des deux régions en calculant la statistique t à chaque fois.
 En moyenne, on observerait une valeur de t d’environ 0.6.
 - Notez que la distribution de droite chevauche considérablement celle de gauche, et une bonne partie de la surface sous la courbe de droite se retrouve à l’intérieur de l’intervalle d’acceptation de $H_0$, délimité par les deux lignes vertes et allant de -2.03224 à 2.03224.
@@ -193,7 +193,7 @@ Toute cette analyse ne nous informe pas beaucoup.
 **Une analyse de puissance post hoc avec la taille de l’effet observé n’est pas très utile.**
 On la fera plutôt pour une taille d’effet autre que celle observée quand H 0 est acceptée.
 Quelle taille d’effet utiliser? C’est la biologie du système étudié qui peut nous guider.
-Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s’attendre à ce qu’une différence de biomasse du simple au double (disons de 2.64 à 5.28 $g/m^2$ ) ait des conséquences écologiques.
+Par exemple, en ce qui concerne la biomasse des poissons, on pourrait s’attendre à ce qu’une différence de biomasse du simple au double (disons de 2.64 à 5.28 $g/m^2$) ait des conséquences écologiques.
 On voudrait s’assurer que Jaynie avait de bonnes chances de détecter une différence aussi grande que celle-là avant d’accepter ses conclusions que la biomasse est la même entre les deux régions.
 Quelles étaient les chances de Jaynie de détecter une différence de 2.64 $g/m^2$ entre les deux régions? G\*Power peut nous le dire.
 
@@ -217,12 +217,12 @@ Cela pourrait être pour deux raisons: soit qu’il n’y a pas de différences 
 La deuxième analyse de puissance permet d’éliminer cette seconde possibilité puisque Jaynie avait 71% des chances de détecter une différence du simple au double.
 
 ### Analyse à priori
-Supposons qu’on puisse défendre la position qu’une différence de biomasse observée par Jaynie entre les deux régions, $3.31- 2.64=0.67g/m^2$ , soit écologiquement signifiante.
+Supposons qu’on puisse défendre la position qu’une différence de biomasse observée par Jaynie entre les deux régions, $3.31- 2.64=0.67g/m^2$, soit écologiquement signifiante.
 On devrait donc planifier la prochaine saison d’échantillonnage de manière à avoir de bonnes chances de détecter une différence de cette taille.
 Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chances de la détecter (compte tenu de la variabilité observée)?
 
 ```{block2, type = "rmdcode"}
-Changer le type d’analyse de puissance dans G\*Power à **A priori**: **Compute sample size - given $\alpha$ , power, and effect size.**
+Changer le type d’analyse de puissance dans G\*Power à **A priori**: **Compute sample size - given $\alpha$, power, and effect size.**
 Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance.
 ```
 
@@ -252,7 +252,7 @@ pwr.t.test(power = 0.95, d = d(u1=2.64, sd1=3.28, u2=3.31, sd2=2.79), sig.level 
 Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 18 ruisseaux par région, et en conservant $\alpha=0.05$, quelle est la taille d’effet que Jaynie pouvait détecter avec 80% de chances $\beta=0.2$)?
 
 ```{block2, type = "rmdcode"}
-Changez le type d’analyse dans G\*Power à **Sensitivity**: **Compute required effect size - given $\alpha$ , power, and sample size** et assurez-vous que la taille des échantillons est de 18 dans chaque région.
+Changez le type d’analyse dans G\*Power à **Sensitivity**: **Compute required effect size - given $\alpha$, power, and sample size** et assurez-vous que la taille des échantillons est de 18 dans chaque région.
 ```
 
 ```{r, gpower-4, fig.cap = "Analyse de sensitivité", out.width = "100%", echo = FALSE }

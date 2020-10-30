@@ -45,7 +45,7 @@ Comme chaque régression linéaire est décrite par deux paramètres, la pente e
 ### Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)
 
 ```{block2, type = "rmdcode"}
-En utilisant les données du fichier `anc1dat.csv` , éprouvez l'hypothèse que le taux de croissance des esturgeons mâles et femelles de The Pas est le même (données de 1978-1980). Comme mesure du taux de croissance, nous allons utiliser la pente de la régression du log 10 de la longueur à la fourche, lfkl , sur le log 10 de l’âge, l'age.
+En utilisant les données du fichier `anc1dat.csv`, éprouvez l'hypothèse que le taux de croissance des esturgeons mâles et femelles de The Pas est le même (données de 1978-1980). Comme mesure du taux de croissance, nous allons utiliser la pente de la régression du log 10 de la longueur à la fourche, lfkl, sur le log 10 de l’âge, l'age.
 ```
 
 Commençons par examiner les données. Pour faciliter la comparaison, il serait utile de tracer la droite de régression et la trace lowess pour ainsi plus facilement évaluer la linéarité. On peut aussi ajouter un peu de trucs R pour obtenir des légendes plus complètes (remarquez l’utilisation de la commande expression() pour obtenir des indices):
@@ -60,7 +60,7 @@ myplot <- myplot+
   labs(
     y = expression(log[10]~(Fork~length)),
     x = expression(log[10]~(Age))
-  )
+)
 myplot
 ```
 
@@ -108,7 +108,7 @@ La conclusion ne change pas après avoir enlevé la valeur extrême. Comme on n�
 ### Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)
 
 ```{block2, type = "rmdcode"}
-Le fichier `anc3dat.csv` contient des données sur des esturgeons mâles de deux sites ( locate) : Lake of the Woods dans le Nord-Ouest de l'Ontario et Chruchill River dans le Nord du Manitoba. En utilisant la même procédure, éprouvez l'hypothèse que la pente de la régression de lfkl sur lage est la même aux deux sites (alors Locate est la variable en catégories et non pas sex ). Que concluez-vous?
+Le fichier `anc3dat.csv` contient des données sur des esturgeons mâles de deux sites (locate) : Lake of the Woods dans le Nord-Ouest de l'Ontario et Chruchill River dans le Nord du Manitoba. En utilisant la même procédure, éprouvez l'hypothèse que la pente de la régression de lfkl sur lage est la même aux deux sites (alors Locate est la variable en catégories et non pas sex). Que concluez-vous?
 ```
 
 ```{r, warning = FALSE, message =  FALSE, fig.cap ="Longueur des esturgeons en fonction de l'age d'après `anc3dat`"}
@@ -121,7 +121,7 @@ myplot <- ggplot(data = anc3dat, aes(x=lage, y = log10(fklngth))) +
   labs(
     y = expression(log[10]~(Fork~length)),
     x = expression(log[10]~(Age))
-  )
+)
 myplot
 model.full2<-lm(lfkl ~ lage + locate + lage:locate, data = anc3dat)
 Anova(model.full2, type = 3)
@@ -190,7 +190,7 @@ On avait déjà conclu que la pente ne varie pas entre les sexes (i.e. l’inter
 De l’autre côté, selon l’approche traditionnelle, l’inférence quand à l’effet du sexe se fait à partir du modèle réduit (le modèle ANCOVA sensus stricto):
 
 ```{r}
-model.ancova <- lm(lfkl ~ sex + lage , data = anc1dat)
+model.ancova <- lm(lfkl ~ sex + lage, data = anc1dat)
 Anova(model.ancova, type = 3)
 summary(model.ancova)
 ```
@@ -202,7 +202,7 @@ En examinant les graphiques diagnostiques, vous noterez qu’il y a trois observ
 ```
 
 ```{r}
-model.ancova.nooutliers <- lm(lfkl ~ sex + lage , data = anc1dat[c(-49, -50, -19),])
+model.ancova.nooutliers <- lm(lfkl ~ sex + lage, data = anc1dat[c(-49, -50, -19),])
 Anova(model.ancova.nooutliers, type = 3)
 summary(model.ancova.nooutliers)
 ```
@@ -225,7 +225,7 @@ Pour la régression simple (sans les valeurs extrêmes) on obtient un R 2 de 0.7
 Si on ajuste une régression simple sur toutes les données, on obtient:
 
 ```{r}
-model.linear<-lm(lfkl ~ lage , data = anc1dat)
+model.linear<-lm(lfkl ~ lage, data = anc1dat)
 summary(model.linear)
 ```
 Encore une fois, l’erreur-type des résidus (0.0285) pour cette régression unique est semblable à la variance du modèle d’ANCOVA (0.02837) et le modèle simplifié prédit presque aussi bien que le modèle plus complexe. (Ici encore, toutes les conditions d’application semblent remplies, si ce n’est de la valeur extrême).
@@ -250,12 +250,12 @@ anova(model.ancova,model.linear)
 La fonction anova() utilise la différence entre la somme des carrés des deux modèles et la divise par la différence entre le nombre de degrés de liberté pour obtenir un carré moyen. Ce carré moyen est utilisé au numérateur et est divisé par la variance résiduelle du modèle le plus complexe pour obtenir la statistique F. Dans ce cas-ci, le test de F n’est pas significatif, et on conclut que les deux modèles ont une qualité d’ajustement équivalente, et qu’on devrait donc privilégier le modèle le plus simple, la régression linéaire simple.
 
 ```{block2, type="rmdcode"}
-Refaites le même processus avec le données de `anc3dat` , ajustez le modèle complet avec interaction ( LFKL~LAGE+LOCATE+LAGE:LOCATE ) et sans interaction ( LFKL~LAGE+LOCATE ), Comparez l’ajustement des deux modèles, que concluez vous?
+Refaites le même processus avec le données de `anc3dat`, ajustez le modèle complet avec interaction (LFKL~LAGE+LOCATE+LAGE:LOCATE) et sans interaction (LFKL~LAGE+LOCATE), Comparez l’ajustement des deux modèles, que concluez vous?
 ```
 
 ```{r}
 model.full.anc3dat<-lm(lfkl ~ lage + locate + lage:locate, data = anc3dat)
-model.ancova.anc3dat<-lm(lfkl ~ lage + locate , data = anc3dat)
+model.ancova.anc3dat<-lm(lfkl ~ lage + locate, data = anc3dat)
 anova(model.full.anc3dat,model.ancova.anc3dat)
 ```
 
@@ -318,7 +318,7 @@ model to be fitted
 myformula<-as.formula(lfkl ~ lage + locate + lage:locate)
 require(lmPerm2)
 # Fit desired model on the desired dataframe
-mymodel <- lm(myformula , data = mydata)
+mymodel <- lm(myformula, data = mydata)
 # Calculate p-values for each term by permutation
 # Note that lmp centers numeric variable by default, so to
 get results that are

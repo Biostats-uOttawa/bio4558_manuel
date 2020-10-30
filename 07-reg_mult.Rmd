@@ -34,15 +34,15 @@ Il est important de réaliser que la maîtrise de la régression multiple ne s'a
 Le fichier `Mregdat.csv` contient des données de richesse spécifique de quatre groupes d'organismes dans 30 marais de la région Ottawa-Cornwall-Kingston. Les variables sont:
 
 * la richesse spécifique:
-    *  des oiseaux ( bird , et son logarithme base 10 logbird )
-    *  des mammifères ( mammal , logmam )
-    *  des amphibiens et reptiles ( herptile , logherp )
-    *  des vertébrés ( totsp , logtot )
-*  les coordonnées des sites ( lat , long )
-*  la superficie du marais ( logarea )
-*  le pourcentage du marais inondé toute l'année ( swamp )
-*  le pourcentage des terres couvertes par des forêts dans un rayon de 1km du marais ( cpfor2 )
-*  la densité des routes pavées (en m/ha) dans un rayon de 1km du marais ( thtden ).
+    *  des oiseaux (bird, et son logarithme base 10 logbird)
+    *  des mammifères (mammal, logmam)
+    *  des amphibiens et reptiles (herptile, logherp)
+    *  des vertébrés (totsp, logtot)
+*  les coordonnées des sites (lat, long)
+*  la superficie du marais (logarea)
+*  le pourcentage du marais inondé toute l'année (swamp)
+*  le pourcentage des terres couvertes par des forêts dans un rayon de 1km du marais (cpfor2)
+*  la densité des routes pavées (en m/ha) dans un rayon de 1km du marais (thtden).
 
 Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:
 
@@ -66,7 +66,7 @@ par(mfrow = c(2,2))
 plot(model.loga)
 ```
 
-Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n’explique cependant qu’environ le tiers de la variabilité (R 2 =0.355). L’analyse des résidus indique qu’il n’y a pas de problème avec la normalité , l’homoscédasticité, ni l’indépendance.
+Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n’explique cependant qu’environ le tiers de la variabilité (R 2 =0.355). L’analyse des résidus indique qu’il n’y a pas de problème avec la normalité, l’homoscédasticité, ni l’indépendance.
 
 -  Faites ensuite la régression de `logherp` en fonction de `cpfor2` . Que concluez-vous?
 
@@ -88,20 +88,20 @@ summary(model.mcp)
 
 On voit donc qu’on peut rejeter les 2 hypothèses nulles que la pente de la régression de `logherp` sur `logarea` est zéro et que la pente de la régression de `logherp` sur `cpfor2` est zéro. Pourquoi `cpfor2` devient-il un facteur significatif dans la régression multiple alors qu’il n’est pas significatif dans la régression simple? Parce qu’il est parfois nécessaire de contrôler pour l’effet d’une variable pour pouvoir détecter les effets plus subtils d’autres variables. Ici, il y a une relation significative entre `logherp` et `logarea` qui masque l’effet de `cpfor2` sur `logherp` . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l’effet de `cpfor2` .
 
--  Ajustez un autre modèle, cette fois en remplaçant `cpfor2` par `thtden` ( logherp ~ logarea + thtden ). Que concluez-vous?
+-  Ajustez un autre modèle, cette fois en remplaçant `cpfor2` par `thtden` (logherp ~ logarea + thtden). Que concluez-vous?
 
 ```{r, echo = params$echo_sol, class.source = "exer"}
 model.mden <- lm(logherp ~ logarea + thtden, data = mydata)
 summary(model.mden)
 ```
 
-On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (`logarea`) ni par la densité des routes (`thtden`). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts ( `cpfor2` ; résultat de la dernière régression).
+On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (`logarea`) ni par la densité des routes (`thtden`). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts (`cpfor2` ; résultat de la dernière régression).
 
 Le $R^2$ de ce modèle est plus élevé que pour le précédent, reflétant une corrélation plus forte entre logherp et thtden qu’entre `logherp` et `cpfor2` .
 
-La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais ( `logarea` ), la densité des routes ( `thtden` ), et possiblement au couvert forestier sur les terres adjacentes aux marais ( `cpfor2` ). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons `cpfor2` et `thtden` ) sont parfaitement corrélées, alors l’effet de `thtden` ne serait rien de plus que celui de `cpfor2` (et vice-versa) et un modèle incluant l’une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de `logarea` ).
+La richesse spécifique des reptiles et amphibiens semble donc reliée à la surface de marais (`logarea`), la densité des routes (`thtden`), et possiblement au couvert forestier sur les terres adjacentes aux marais (`cpfor2`). Cependant, les trois variables ne sont peut-être pas nécessaires dans un modèle prédictif. Si deux des trois variables (disons `cpfor2` et `thtden`) sont parfaitement corrélées, alors l’effet de `thtden` ne serait rien de plus que celui de `cpfor2` (et vice-versa) et un modèle incluant l’une des deux variables ferait des prédictions identiques à un modèle incluant ces deux variables (en plus de `logarea`).
 
--  Estimez un modèle de régression avec `logherp` comme variable dépendante et `logarea` , `cpfor2` et `thtden` comme variables indépendantes. Que concluez-vous?
+-  Estimez un modèle de régression avec `logherp` comme variable dépendante et `logarea`, `cpfor2` et `thtden` comme variables indépendantes. Que concluez-vous?
 
 ```{r, echo = params$echo_sol, class.source = "exer"}
 model.mtri <- lm(logherp ~ logarea + cpfor2 + thtden, data = mydata)
@@ -114,7 +114,7 @@ Plusieurs choses sont à noter ici:
 
 Notez aussi que même si le coefficient de régression pour `thtden` n’a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul `thtden` et `logarea` étaient dans le modèle (0-.036 vs -0.042), l’erreur type pour l’estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre `thtden` et `cpfor2` était plus forte, la décroissance de la précision serait encore plus grande.
 
-On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 variables et celui avec seulement logarea and thtden ) pour décider lequel privilégier.
+On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 variables et celui avec seulement logarea and thtden) pour décider lequel privilégier.
 
 ```{r}
 anova(model.mtri, model.mden)
@@ -199,7 +199,7 @@ Ici, il n’y a pas d’évidence de multicolinéarité car toutes les valeurs d
 
 
 ## Régression polynomiale
-La régression requiert la linéarité de la relation entre les variables dépendante et indépendante(s). Lorsque la relation n'est pas linéaire, il est parfois possible de linéariser la relation en effectuant une transformation sur une ou plusieurs variables. Cependant, dans bien des cas il est impossible de transformer les axes pour rendre la relation linéaire. On doit alors utiliser une forme ou l'autre de régression nonlinéaire. La forme la plus simple de régression non-linéaire est la régression polynomiale dans laquelle les variables indépendantes sont à une puissance plus grande que 1 (Ex : $X^2$ ou $X^3$ ).
+La régression requiert la linéarité de la relation entre les variables dépendante et indépendante(s). Lorsque la relation n'est pas linéaire, il est parfois possible de linéariser la relation en effectuant une transformation sur une ou plusieurs variables. Cependant, dans bien des cas il est impossible de transformer les axes pour rendre la relation linéaire. On doit alors utiliser une forme ou l'autre de régression nonlinéaire. La forme la plus simple de régression non-linéaire est la régression polynomiale dans laquelle les variables indépendantes sont à une puissance plus grande que 1 (Ex : $X^2$ ou $X^3$).
 
 -  Faites un diagramme de dispersion des résidus (residual) de la régression `logherp ~ logarea` en fonction de swamp .
 
@@ -228,7 +228,7 @@ model.resloga2 <- lm(resloga ~ swamp + I(swamp^2), mysub)
 summary(model.resloga2)
 ```
 
-Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp , selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.
+Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp, selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.
 
 ```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation "}
 par(mfrow = c(2, 2))
@@ -356,7 +356,7 @@ full.model.2ndinteractions<- lm(
     + cpfor2:thtden
     + cpfor2:swamp
     + thtden:swamp
-  , data= mydata)
+ , data= mydata)
 summary(full.model.2ndinteractions)
 ```
 

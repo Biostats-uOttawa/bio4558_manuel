@@ -188,7 +188,7 @@ Le principe d’éprouver l’indépendance en examinant les interactions peut �
 
 L’ajustement de modèles log-linéaires à des données de fréquence implique que l’on éprouve plusieurs modèles en les comparant au modèle complet (saturé). Une série de modèles contenant tous les termes sauf une des interactions qui nous intéressent est produite, et l’ajustement de chaque modèle est comparé à celui du modèle complet. Si la réduction de la qualité d’ajustement n’est pas significative, cela implique que l’interaction manquante contribue peu à la qualité de l’ajustement. Par contre, si le modèle réduit s’ajuste nettement moins bien aux données, alors l’interaction manquante contribue beaucoup à l’ajustement du modèle complet. Comme pour les tableaux de contingence 2X2, les termes qui nous intéressent le plus sont les interactions, pas les effets principaux, si l’on teste pour l’indépendance des différents facteurs.
 
-Le fichier `loglin.csv` contient les fréquences ( frequency ) des plantes infectées ou non infectées (`infected`) à basse et haute température (`temperature`) à basse et haute lumière (`light`). Pour visualiser ces données et déterminer si le taux d’infection dépends de la lumière et de la température, on peut faire une figure mosaïque et ajuster un modèle log-linéaire:
+Le fichier `loglin.csv` contient les fréquences (frequency) des plantes infectées ou non infectées (`infected`) à basse et haute température (`temperature`) à basse et haute lumière (`light`). Pour visualiser ces données et déterminer si le taux d’infection dépends de la lumière et de la température, on peut faire une figure mosaïque et ajuster un modèle log-linéaire:
 
 ```{r, fig.cap = "Proportion de plantes infectées en fonction de la température er la lumière"}
 loglin <- read.csv("data/loglin.csv")
@@ -220,7 +220,7 @@ Les probabilités associées à chaque terme sont ici calculées en comparant l�
 Le fichier Sturgdat contient les données qui vous permettront d'éprouver l’hypothèse que le nombre d’esturgeons capturé est indépendants du site, de l’année, et du sexe. Avant de commencer l’analyse, les données devront être réorganisées pour pouvoir ajuster un modèle log-linéaire:
 
 ```{block2, type = "rmdcode"}
-Ouvrez sturgdat.csv , puis utilisez la fonction table() pour obtenir les fréquence d’individus capturés par sex , location , et year . Sauvegardez ce tableau comme strugdat.table . Faites une figure mosaïque de ces données.
+Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquence d’individus capturés par sex, location, et year . Sauvegardez ce tableau comme strugdat.table . Faites une figure mosaïque de ces données.
 ```
 
 
@@ -240,7 +240,7 @@ mosaic(sturgdat.table, shade=TRUE)
 ```
 
 ```{block2,type="rmdcode"}
-À partir de ces données en format de fréquence, ajustez le modèle loglinéaire complet et le tableau d’anova avec les statistique de Chi carré pour les termes du modèles. Est-ce que l’interaction triple ( `location:year:sex` ) est significative? Est-ce que le rapport des sexes varien entre les sites ou d’une année à l’autre?.
+À partir de ces données en format de fréquence, ajustez le modèle loglinéaire complet et le tableau d’anova avec les statistique de Chi carré pour les termes du modèles. Est-ce que l’interaction triple (`location:year:sex`) est significative? Est-ce que le rapport des sexes varien entre les sites ou d’une année à l’autre?.
 ```
 
 ```{r}
@@ -250,11 +250,11 @@ summary(full.model)
 Anova(full.model, type=3)
 ```
 
-Ce tableau a trois critères: `sex`, `location` et `year` . Donc le modèles compelt (saturé) contient 7 termes: trois effets principaux ( `sex`, `location` et `year` ), trois interactions du second degré (double) ( `sex:year`, `sex:location` et `year: location` ) et une interaction du troisième degré (triple)( `sex:year:location` ). La déviance nulle est 57.17574, la déviance résiduelle du modèle complet est, sans surprise, 0. La déviance pouvant être attribuée à l’interaction triple est 1.6677, non significative.
+Ce tableau a trois critères: `sex`, `location` et `year` . Donc le modèles compelt (saturé) contient 7 termes: trois effets principaux (`sex`, `location` et `year`), trois interactions du second degré (double) (`sex:year`, `sex:location` et `year: location`) et une interaction du troisième degré (triple)(`sex:year:location`). La déviance nulle est 57.17574, la déviance résiduelle du modèle complet est, sans surprise, 0. La déviance pouvant être attribuée à l’interaction triple est 1.6677, non significative.
 
-Qu’est ce que cela implique? S’il y a des interactions doubles, alors elles ne dépendent pas de la troisième variable. Par exemple, si le rapport des sexe des esturgeons varie d’une année à l’autre (une interaction sex:year ), alors cette tendance est la même aux 2 stations.
+Qu’est ce que cela implique? S’il y a des interactions doubles, alors elles ne dépendent pas de la troisième variable. Par exemple, si le rapport des sexe des esturgeons varie d’une année à l’autre (une interaction sex:year), alors cette tendance est la même aux 2 stations.
 
-Puisqu’il n’y a pas d’interaction triple, il est (statistiquement) justifié de combiner les données pour éprouver les interactions du second degré. Par exemple, pour tester l’effet `sex:location`, on peut combiner les années. Pour tester l’effet `sex:year` , on peut combiner les sites. Cette aggrégation a pour effet d’augmenter la puissance, et est analogue à la stratégie en ANOVA à critères multiples. L’approche de la régression de Poisson permet de faire l’équivalent simplement en ajustant le modèle sans l’interaction du troisième degré.
+Puisqu’il n’y a pas d’interaction triple, il est (statistiquement) justifié de combiner les données pour éprouver les interactions du second degré. Par exemple, pour tester l’effet `sex:location`, on peut combiner les années. Pour tester l’effet `sex:year`, on peut combiner les sites. Cette aggrégation a pour effet d’augmenter la puissance, et est analogue à la stratégie en ANOVA à critères multiples. L’approche de la régression de Poisson permet de faire l’équivalent simplement en ajustant le modèle sans l’interaction du troisième degré.
 
 - Ajustez le modèle en excluant l’interaction du troisième degré:
 

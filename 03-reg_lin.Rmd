@@ -128,7 +128,7 @@ scatterplotMatrix(
   smooth=TRUE, diagonal = 'density')
 ```
 
-- Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées ) en utilisant la commande `cor()`.
+- Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées) en utilisant la commande `cor()`.
 Avant de commencer, on va cependant ajouter les variables transformées au tableau de données sturgeon:
 
 ```{r, stur-newvar}
@@ -144,7 +144,7 @@ cor(sturgeon[,c("fklngth","lfklngth","lrdwght","rdwght")], use="complete.obs")
 Fréquemment, il y a des données manquantes dans un échantillon.
 En choisissant `use="complete.obs"`, toutes les lignes du fichier pour lesquelles les variables ne sont pas toutes mesurées sont éliminées.
 Dans ce cas, toutes les corrélations seront calculées avec le même nombre de cas.
-Par contre, en utilisant `use="pairwise.complete.obs"` ,
+Par contre, en utilisant `use="pairwise.complete.obs"`,
 R élimine une observation que lorsqu'un des deux membres de la paire a une valeur manquante.
 Dans ce cas, si les données manquantes pour différentes variables se retrouvent dans un groupe différent d'observation, les corrélations ne seront pas nécessairement calculées sur le même nombre de cas ni sur le même sous-ensemble de cas.
 En général, vous devriez utiliser l'option `use="complete.obs"` à moins que vous ayez un très grand nombre de données manquantes et que cette façon de procéder élimine la plus grande partie de vos
@@ -347,7 +347,7 @@ Finalement, quel est le verdict concernant la régression linéaire entre fklngt
 
 Personnellement, je n’utilise jamais les tests formels des conditions d’application de la régression et me contente des graphiques des résidus pour guider mes décisions. C’est ce que la plupart des praticiens font. Cependant, lors de mes premières analyses, je n’étais pas toujours certain de bien interpréter les graphiques et j’aurais aimé un indice plus formel ou un test permettant de détecter les violations des conditions d’application de la régression.
 
-Le package `lmtest` , qui ne fait pas partie de l’installation de base, mais qui est disponible sur CRAN, permet de faire plusieurs tests de linéarité et d’homoscédasticité. Et on peut tester la normalité avec le test Shapiro-Wilk test vu précédemment.
+Le package `lmtest`, qui ne fait pas partie de l’installation de base, mais qui est disponible sur CRAN, permet de faire plusieurs tests de linéarité et d’homoscédasticité. Et on peut tester la normalité avec le test Shapiro-Wilk test vu précédemment.
 
 ```{block2, type = "rmdcode"}
 Charger le package lmtest de CRAN (et installer le si besoin).
@@ -422,7 +422,7 @@ resettest(RegModel.2)
 shapiro.test(residuals(RegModel.2))
 ```
 
-Oui, les conclusions sont les mêmes: les résidus sont encore homoscédastiques (test Breusch-Pagan), ne sont pas autocorrélés (test Durbin-Watson), sont normaux (test Shapiro-Wilk ), et sont plus linéaires (la valeur de P du test RESET est maintenant 0.015, au lieu de 0.000005). Donc la linéarité a augmenté, mais cette condition d’application semble encore légèrement violée.
+Oui, les conclusions sont les mêmes: les résidus sont encore homoscédastiques (test Breusch-Pagan), ne sont pas autocorrélés (test Durbin-Watson), sont normaux (test Shapiro-Wilk), et sont plus linéaires (la valeur de P du test RESET est maintenant 0.015, au lieu de 0.000005). Donc la linéarité a augmenté, mais cette condition d’application semble encore légèrement violée.
 
 ## Traitement des valeurs extrèmes
 Dans cet exemple, il n’y a pas de valeur vraiment extrème. Oui, je sais, R a quand même identifié les observations 8, 24, et 112 dans le dernier graphique diagnostique. Mais ces valeurs sont encore dans la fourchette de valeurs que je juge "acceptables". Mais comment déterminer objectivement ce qui est acceptable? À quel moment juge t’on qu’une valeur extrême est vraiment trop invraisemblable pour ne pas l’exclure? Il n’y a malheureusement pas de règle absolue là-dessus. Les opinions varient, mais je penche vers le conservatisme sur cette question.
@@ -495,7 +495,7 @@ pwr.t.test(n = 20, d = 0.54, sig.level = 0.05, type = "one.sample")
 La puissance de détecter une pente comme étant statistiquement significative (au niveau alpha), si la pente est 0.1, que la variabilité résiduelle autour de la régression est semblable à celle de notre échantillon (ce qui revient à une taille d’effet de 0.54, pour un échantillon de 20 esturgeons et alpha=0.05) est de 0.629. Seulement environ 2/3 des échantillons de cette taille détecteraient un effet significatif de l’âge sur `fklngth`.
 
 ### Effectif requis pour atteindre une puissance désirée (test A-priori)
-Pour estimer la taille d’échantillon (effectif) requis pour avoir une puissance de 99% de détecter un effet de l’âge si la pente est 0.1 (sur une échelle log-log ), avec alpha=0.05, on utilise la même valeur de d (0.54):
+Pour estimer la taille d’échantillon (effectif) requis pour avoir une puissance de 99% de détecter un effet de l’âge si la pente est 0.1 (sur une échelle log-log), avec alpha=0.05, on utilise la même valeur de d (0.54):
 
 ```{r, lm-pow-fig-2, fig.cap = "Analyse à priori pour déterminer la taille d'échantillon pour une puissance de 0.99", out.width = "100%", echo = FALSE  }
 knitr::include_graphics("images/lm_pow_2.png")
