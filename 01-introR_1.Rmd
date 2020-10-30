@@ -1,8 +1,6 @@
 <!-- # (PART) Introduction à R {-} -->
 # Introduction à R
 
-## Objectifs Labo 1
-
 Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Ouvrir des fichiers de données R déjà existants
 - Importer des ensembles de données rectangulaires
@@ -13,7 +11,7 @@ Après avoir complété cet exercice de laboratoire, vous pourrez :
 - Calculer des statistiques descriptives d’une variable
 - Effectuer des transformations de données
 
-### Paquets et données requises pour le labo {#set-intro}
+## Paquets et données requises pour le labo {#set-intro}
 
 Ce laboratoire nécessite:
 
