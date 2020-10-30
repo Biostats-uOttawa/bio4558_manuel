@@ -105,16 +105,25 @@
 \def\fps@figure{htbp}
 \makeatother
 
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage[bf,singlelinecheck=off]{caption}
-% \usepackage{sourcecodepro}
-%\usepackage{Alegreya}
+%\usepackage{booktabs}
+\usepackage{ctable}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[margin=2cm]{geometry}
 
-% \setmainfont[UprightFeatures={SmallCapsFont=AlegreyaSC-Regular}]{Alegreya}
+\floatplacement{figure}{H}
+
+%\usepackage[sf,bf]{titlesec}
+
+\hypersetup{colorlinks=true, urlcolor=blue}
+
+\renewcommand{\chaptername}{Chapitre}
+\renewcommand{\contentsname}{Table des Matières}
+\renewcommand{\partname}{Partie}
 
 \usepackage{framed,color}
-\definecolor{shadecolor}{RGB}{248,248,248}
+\definecolor{incolor}{RGB}{240,240,240}
+\definecolor{outcolor}{RGB}{248,248,248}
 
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.8}
@@ -123,41 +132,38 @@
 
 %\renewenvironment{quote}{\begin{VF}}{\end{VF}}
 
-\let\oldhref\href
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
-
 \ifxetex
-  \usepackage{letltxmacro}
-  \setlength{\XeTeXLinkMargin}{1pt}
-  \LetLtxMacro\SavedIncludeGraphics\includegraphics
-  \def\includegraphics#1#{% #1 catches optional stuff (star/opt. arg.)
-    \IncludeGraphicsAux{#1}%
-  }%
-  \newcommand*{\IncludeGraphicsAux}[2]{%
-    \XeTeXLinkBox{%
-      \SavedIncludeGraphics#1{#2}%
-    }%
-  }%
+ \usepackage{letltxmacro}
+ \setlength{\XeTeXLinkMargin}{1pt}
+ \LetLtxMacro\SavedIncludeGraphics\includegraphics
+ \def\includegraphics#1#{% #1 catches optional stuff (star/opt. arg.)
+   \IncludeGraphicsAux{#1}%
+ }%
+ \newcommand*{\IncludeGraphicsAux}[2]{%
+   \XeTeXLinkBox{%
+     \SavedIncludeGraphics#1{#2}%
+   }%
+ }%
 \fi
 
 \makeatletter
 \newenvironment{kframe}{%
 \medskip{}
 \setlength{\fboxsep}{.8em}
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
+\def\at@end@of@kframe{}%
+\ifinner\ifhmode%
+ \def\at@end@of@kframe{\end{minipage}}%
+ \begin{minipage}{\columnwidth}%
+\fi\fi%
+\def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+\colorbox{incolor}{##1}\hskip-\fboxsep
+    % There is no \\@totalrightmargin, so:
+    \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+\MakeFramed {\advance\hsize-\width
+  \@totalleftmargin\z@ \linewidth\hsize
+  \@setminipage}}%
+{\par\unskip\endMakeFramed%
+\at@end@of@kframe}
 \makeatother
 
 \makeatletter
@@ -165,22 +171,26 @@
 }{\renewenvironment{Shaded}{\begin{kframe}}{\end{kframe}}}
 \makeatother
 
+% \let\oldverbatim\verbatim
+% \renewenvironment{Shaded}{\vspace{0.2cm}\begin{kframe}}{\end{kframe}}
+% \renewenvironment{verbatim}{\begin{shaded}\begin{oldverbatim}}{\end{oldverbatim}\end{shaded}}
+
 \newenvironment{rmdblock}[1]
-  {
-  \begin{itemize}
-  \renewcommand{\labelitemi}{
-    \raisebox{-.7\height}[0pt][0pt]{
-      {\setkeys{Gin}{width=3em,keepaspectratio}\includegraphics{images/#1}}
-    }
-  }
-  \setlength{\fboxsep}{1em}
-  \begin{kframe}
-  \item
-  }
-  {
-  \end{kframe}
-  \end{itemize}
-  }
+ {
+ \begin{itemize}
+ \renewcommand{\labelitemi}{
+   \raisebox{-.7\height}[0pt][0pt]{
+     {\setkeys{Gin}{width=3em,keepaspectratio}\includegraphics{images/#1}}
+   }
+ }
+ \begin{kframe}
+ \setlength{\fboxsep}{1em}
+ \item
+ }
+ {
+ \end{kframe}
+ \end{itemize}
+ }
 \newenvironment{rmdnote}
   {\begin{rmdblock}{note}}
   {\end{rmdblock}}
@@ -213,7 +223,7 @@
 }
 \makeatother
 
-%\frontmatter
+% \frontmatter
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
@@ -221,7 +231,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{29-10-2020}
+\date{30-10-2020}
 
 \begin{document}
 \maketitle
@@ -4786,8 +4796,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original        bias    std. error
-## t1* 1.1919926  0.0012138060  0.03398221
-## t2* 0.3408557 -0.0008575881  0.02676912
+## t1* 1.1919926  0.0009071040  0.03367953
+## t2* 0.3408557 -0.0005520252  0.02660705
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4844,12 +4854,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.257 )   ( 1.127,  1.259 )  
+## 95%   ( 1.125,  1.257 )   ( 1.126,  1.259 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.125,  1.257 )   ( 1.108,  1.244 )  
+## 95%   ( 1.125,  1.258 )   ( 1.114,  1.250 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -4873,10 +4882,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2892,  0.3942 )   ( 0.2869,  0.3909 )  
+## 95%   ( 0.2893,  0.3936 )   ( 0.2858,  0.3939 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2908,  0.3948 )   ( 0.2979,  0.4029 )  
+## 95%   ( 0.2878,  0.3959 )   ( 0.2956,  0.4016 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5223,8 +5232,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391 -0.007582037   0.4346985
-## t2* -1.714546  0.003883484   0.7976184
+## t1* 45.084391 -0.007055219   0.4139568
+## t2* -1.714546  0.055837247   0.7592685
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5257,7 +5266,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.253, -0.029 )  
+## 95%   (-3.229, -0.299 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5299,7 +5308,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1783   0.0533 .
+## location1   0.8573 1989   0.0483 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6018,18 +6027,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5964
+## Quantile = 2.5948
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2750   3.6495
-## m1965 - m1954 == 0  -5.5077 -10.0022  -1.0132
-## m1966 - m1954 == 0  -3.3127  -6.3465  -0.2789
-## m1965 - m1958 == 0  -5.6949 -10.4165  -0.9733
-## m1966 - m1958 == 0  -3.4999  -6.8610  -0.1388
-## m1966 - m1965 == 0   2.1950  -2.2221   6.6120
+## m1958 - m1954 == 0   0.1872  -3.2729   3.6473
+## m1965 - m1954 == 0  -5.5077  -9.9994  -1.0159
+## m1966 - m1954 == 0  -3.3127  -6.3446  -0.2808
+## m1965 - m1958 == 0  -5.6949 -10.4136  -0.9762
+## m1966 - m1958 == 0  -3.4999  -6.8589  -0.1409
+## m1966 - m1965 == 0   2.1950  -2.2193   6.6093
 \end{verbatim}
 
 \begin{Shaded}
@@ -8588,14 +8597,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.70353951 0.1288834 -0.046140816 0.01738200 -0.0003461736
-## 1%    -0.68517697 0.1367008 -0.044918933 0.01850803 -0.0003402218
-## 2.5%  -0.64000305 0.1490951 -0.042452866 0.01995648 -0.0003232998
-## 5%    -0.59640904 0.1632726 -0.039573041 0.02118379 -0.0003128049
-## 95%   -0.05325019 0.2793116 -0.012163666 0.03731436 -0.0001820193
-## 97.5% -0.02206293 0.2917430 -0.008909406 0.03909895 -0.0001720539
-## 99%    0.05659680 0.3036678 -0.004694270 0.04074233 -0.0001625919
-## 99.5%  0.07880594 0.3100134 -0.004151672 0.04145895 -0.0001508128
+## 0.5%  -0.69048949 0.1337556 -0.049497559 0.01586741 -0.0003423812
+## 1%    -0.66959730 0.1398432 -0.047841248 0.01723472 -0.0003360327
+## 2.5%  -0.62807141 0.1524897 -0.043360218 0.01978200 -0.0003244346
+## 5%    -0.60260517 0.1653059 -0.040749700 0.02110003 -0.0003143871
+## 95%   -0.07103346 0.2793870 -0.011753218 0.03749724 -0.0001801930
+## 97.5% -0.00548927 0.2896779 -0.009607731 0.03909909 -0.0001709944
+## 99%    0.04901773 0.2978173 -0.007601176 0.04014011 -0.0001502461
+## 99.5%  0.07184617 0.3066208 -0.005790782 0.04115885 -0.0001348230
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8651,7 +8660,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1272,  0.3236 )  
+## 95%   ( 0.1146,  0.3224 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -9667,7 +9676,7 @@ La fonction glm() avec l'option family=poisson() permet l'estimation, par la mé
 ## (Dispersion parameter for poisson family taken to be 1)
 ## 
 ##     Null deviance: 5.3611e+04  on 17  degrees of freedom
-## Residual deviance: 7.5131e-12  on  0  degrees of freedom
+## Residual deviance: 1.1520e-12  on  0  degrees of freedom
 ## AIC: 237.31
 ## 
 ## Number of Fisher Scoring iterations: 2
@@ -9938,7 +9947,7 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 ## (Dispersion parameter for poisson family taken to be 1)
 ## 
 ##     Null deviance: 5.7176e+01  on 11  degrees of freedom
-## Residual deviance: 7.5495e-15  on  0  degrees of freedom
+## Residual deviance: 4.6629e-15  on  0  degrees of freedom
 ## AIC: 77.28
 ## 
 ## Number of Fisher Scoring iterations: 3
