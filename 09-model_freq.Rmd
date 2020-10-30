@@ -62,7 +62,7 @@ xtabs(frequency~ageclass+sex, data=USPopSurvey)
 
 Table: (\#tab:unnamed-chunk-1)Fonctions permettant la conversion de données de fréquences entre les différents formats.
 
-| De\Vers        | Cas           | Fréquence  | Tableau |
+| De (ligne) \\ Vers (colonne)        | Cas           | Fréquence  | Tableau |
 |:-------------:|:-------------:| :-------:|:---------:|
 | Cas      |  | xtabs(~ A + B) | table(A, B) |
 | Fréquence | expand.dft(X) |    | xtabs(count ~ A + B) |
