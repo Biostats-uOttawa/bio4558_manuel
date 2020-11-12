@@ -348,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391  0.008395175   0.4159471
-## t2* -1.714546 -0.004990873   0.7412920</code></pre>
+## t1* 45.084391 -0.001761105   0.4213605
+## t2* -1.714546 -0.011974511   0.7747563</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</a></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
@@ -368,7 +368,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.175, -0.289 )  
+## 95%   (-3.158, -0.236 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
@@ -391,7 +391,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1231   0.0755 .
+## location1   0.8573 4773   0.0205 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 

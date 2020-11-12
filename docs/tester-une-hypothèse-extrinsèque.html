@@ -323,23 +323,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Le test d’indépendance ci-dessus éprouve une hypothèse intrinsèque parce que les proportions utilisées pour calculer les valeurs attendues et tester l’indépendance sont celles observées (i.e. la proportion des mâles et femelles dans tout l’échantillon, et la proportion des individus dans chaque classe d’âge).</p>
 <p>Pour éprouver l’hypothèse (extrinsèque) que le rapport des sexes est 1:1 pour les individus les plus jeunes (ageclass 0-9), on doit produire le tableau 2X2 des fréquences observées et attendues. Les fréquences attendues sont obtenues simplement en divisant le total des mâles et femelles par 2.</p>
 <p>Code R pour créer et analyser un tableau de contingence 2X2 et éprouver une hypothèse extrinsèque</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb634-1" title="1"><span class="co">### Produce a table of obs vs exp for 0-9 age class</span></a>
-<a class="sourceLine" id="cb634-2" title="2">Popn0<span class="fl">.9</span> &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">17578</span>, <span class="dv">17578</span>), <span class="kw">c</span>(<span class="dv">17619</span>, <span class="dv">17538</span>))</a>
-<a class="sourceLine" id="cb634-3" title="3"><span class="co">### Run X2 test on above table</span></a>
-<a class="sourceLine" id="cb634-4" title="4"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct=</span>F)<span class="co">### X2 without Yates</span></a>
-<a class="sourceLine" id="cb634-5" title="5"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>) <span class="co">### X2 with Yates</span></a></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb637-1" title="1"><span class="co">### Produce a table of obs vs exp for 0-9 age class</span></a>
+<a class="sourceLine" id="cb637-2" title="2">Popn0<span class="fl">.9</span> &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">17578</span>, <span class="dv">17578</span>), <span class="kw">c</span>(<span class="dv">17619</span>, <span class="dv">17538</span>))</a>
+<a class="sourceLine" id="cb637-3" title="3"><span class="co">### Run X2 test on above table</span></a>
+<a class="sourceLine" id="cb637-4" title="4"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct=</span>F)<span class="co">### X2 without Yates</span></a>
+<a class="sourceLine" id="cb637-5" title="5"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>) <span class="co">### X2 with Yates</span></a></code></pre></div>
 
 <div class="rmdcode">
 Éprouvez l’hypothèse nulle que la proportion de mâles et femelles à la naissance est égale. Que concluez-vous? Croyez-vous que ces données sont appropriées pour tester cette hypothèse?
 </div>
 
-<div class="sourceCode" id="cb635"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb635-1" title="1"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct=</span>F)</a></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb638-1" title="1"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct=</span>F)</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  Popn0.9
 ## X-squared = 0.093309, df = 1, p-value = 0.76</code></pre>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb637-1" title="1"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb640-1" title="1"><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 

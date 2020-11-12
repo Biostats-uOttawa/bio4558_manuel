@@ -320,29 +320,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="permutation-test" class="section level2">
 <h2><span class="header-section-number">8.8</span> Permutation test</h2>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb610-1" title="1"><span class="co">############################################################</span></a>
-<a class="sourceLine" id="cb610-2" title="2"><span class="co">##########</span></a>
-<a class="sourceLine" id="cb610-3" title="3"><span class="co"># Permutation test</span></a>
-<a class="sourceLine" id="cb610-4" title="4"><span class="co">#</span></a>
-<a class="sourceLine" id="cb610-5" title="5"><span class="co"># using lmperm library</span></a>
-<a class="sourceLine" id="cb610-6" title="6"><span class="co"># To simplify future modifications of the code in this file,</span></a>
-<a class="sourceLine" id="cb610-7" title="7"><span class="co"># copy the data to a generic mydata dataframe</span></a>
-<a class="sourceLine" id="cb610-8" title="8">mydata&lt;-anc3dat</a>
-<a class="sourceLine" id="cb610-9" title="9"><span class="co"># create a myformula variable containing the formula for the</span></a>
-<a class="sourceLine" id="cb610-10" title="10">model to be fitted</a>
-<a class="sourceLine" id="cb610-11" title="11">myformula&lt;-<span class="kw">as.formula</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate)</a>
-<a class="sourceLine" id="cb610-12" title="12"><span class="kw">require</span>(lmPerm2)</a>
-<a class="sourceLine" id="cb610-13" title="13"><span class="co"># Fit desired model on the desired dataframe</span></a>
-<a class="sourceLine" id="cb610-14" title="14">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
-<a class="sourceLine" id="cb610-15" title="15"><span class="co"># Calculate p-values for each term by permutation</span></a>
-<a class="sourceLine" id="cb610-16" title="16"><span class="co"># Note that lmp centers numeric variable by default, so to</span></a>
-<a class="sourceLine" id="cb610-17" title="17">get results that are</a>
-<a class="sourceLine" id="cb610-18" title="18"><span class="co"># consistent with standard models, it is necessary to set</span></a>
-<a class="sourceLine" id="cb610-19" title="19">center=<span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb610-20" title="20">mymodelProb &lt;-<span class="st"> </span><span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">center=</span><span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb610-21" title="21"><span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</a>
-<a class="sourceLine" id="cb610-22" title="22"><span class="kw">summary</span>(mymodel)</a>
-<a class="sourceLine" id="cb610-23" title="23"><span class="kw">summary</span>(mymodelProb)</a></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb613-1" title="1"><span class="co">############################################################</span></a>
+<a class="sourceLine" id="cb613-2" title="2"><span class="co">##########</span></a>
+<a class="sourceLine" id="cb613-3" title="3"><span class="co"># Permutation test</span></a>
+<a class="sourceLine" id="cb613-4" title="4"><span class="co">#</span></a>
+<a class="sourceLine" id="cb613-5" title="5"><span class="co"># using lmperm library</span></a>
+<a class="sourceLine" id="cb613-6" title="6"><span class="co"># To simplify future modifications of the code in this file,</span></a>
+<a class="sourceLine" id="cb613-7" title="7"><span class="co"># copy the data to a generic mydata dataframe</span></a>
+<a class="sourceLine" id="cb613-8" title="8">mydata&lt;-anc3dat</a>
+<a class="sourceLine" id="cb613-9" title="9"><span class="co"># create a myformula variable containing the formula for the</span></a>
+<a class="sourceLine" id="cb613-10" title="10">model to be fitted</a>
+<a class="sourceLine" id="cb613-11" title="11">myformula&lt;-<span class="kw">as.formula</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate)</a>
+<a class="sourceLine" id="cb613-12" title="12"><span class="kw">require</span>(lmPerm2)</a>
+<a class="sourceLine" id="cb613-13" title="13"><span class="co"># Fit desired model on the desired dataframe</span></a>
+<a class="sourceLine" id="cb613-14" title="14">mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</a>
+<a class="sourceLine" id="cb613-15" title="15"><span class="co"># Calculate p-values for each term by permutation</span></a>
+<a class="sourceLine" id="cb613-16" title="16"><span class="co"># Note that lmp centers numeric variable by default, so to</span></a>
+<a class="sourceLine" id="cb613-17" title="17">get results that are</a>
+<a class="sourceLine" id="cb613-18" title="18"><span class="co"># consistent with standard models, it is necessary to set</span></a>
+<a class="sourceLine" id="cb613-19" title="19">center=<span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb613-20" title="20">mymodelProb &lt;-<span class="st"> </span><span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">center=</span><span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb613-21" title="21"><span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</a>
+<a class="sourceLine" id="cb613-22" title="22"><span class="kw">summary</span>(mymodel)</a>
+<a class="sourceLine" id="cb613-23" title="23"><span class="kw">summary</span>(mymodelProb)</a></code></pre></div>
 
 </div>
 <!-- </div> -->

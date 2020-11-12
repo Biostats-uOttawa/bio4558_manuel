@@ -321,10 +321,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tester-la-présence-dinteractions" class="section level2">
 <h2><span class="header-section-number">7.9</span> Tester la présence d’interactions</h2>
 <p>Lorsqu’il y a plusieurs variables indépendantes, vous devriez toujours garder à l’esprit la possibilité d’interactions. Dans la majorité des situations de régression multiple cela n’est pas évident parce que l’addition de termes d’interaction augmente la multicolinéarité des termes du modèle, et parce qu’il n’y a souvent pas assez d’observations pour éprouver toutes les interactions ou que les observations ne sont pas suffisamment balancées pour faire des tests puissants pour les interactions. Retournons à notre modèle “final” et voyons ce qui se passe si on essaie d’ajuster un modèle saturé avec toutes les interactions:</p>
-<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb543-1" title="1">fullmodel.withinteractions &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
-<a class="sourceLine" id="cb543-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">*</span><span class="st"> </span>cpfor2 <span class="op">*</span><span class="st"> </span>thtden <span class="op">*</span><span class="st"> </span>swamp <span class="op">*</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb543-3" title="3">  <span class="dt">data=</span> mydata)</a>
-<a class="sourceLine" id="cb543-4" title="4"><span class="kw">summary</span>(fullmodel.withinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" title="1">fullmodel.withinteractions &lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
+<a class="sourceLine" id="cb546-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">*</span><span class="st"> </span>cpfor2 <span class="op">*</span><span class="st"> </span>thtden <span class="op">*</span><span class="st"> </span>swamp <span class="op">*</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb546-3" title="3">  <span class="dt">data=</span> mydata)</a>
+<a class="sourceLine" id="cb546-4" title="4"><span class="kw">summary</span>(fullmodel.withinteractions)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea * cpfor2 * thtden * swamp * I(swamp^2), 
@@ -374,19 +374,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic:   NaN on 27 and 0 DF,  p-value: NA</code></pre>
 <p>Notez les coefficients manquants aux dernières lignes: on ne peut inclure les 32 termes si on a seulement 28 observations. Il manque des observations, le R carré est 1, et le modèle “prédit” parfaitement les données.</p>
 <p>Si on essaie une méthode automatique pour identifier le “meilleur” modèle dans ce gâchis, R refuse:</p>
-<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb545-1" title="1"><span class="kw">step</span>(fullmodel.withinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" title="1"><span class="kw">step</span>(fullmodel.withinteractions)</a></code></pre></div>
 <pre><code>## Error in step(fullmodel.withinteractions): AIC is -infinity for this model, so &#39;step&#39; cannot proceed</code></pre>
 <p>Bon, est-ce qu’on oublie tout ça et qu’on accepte le modèle final sans ce soucier des interactions? Non, pas encore. Il y a un compromis possible: comparer notre modèle “final” à un modèle qui contient au moins un sous-ensemble des interactions, par exemple toutes les interactions du second degré, pour éprouver si l’addition de ces interactions améliore beaucoup l’ajustement du modèle.</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb547-1" title="1">full.model<span class="fl">.2</span>ndinteractions&lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
-<a class="sourceLine" id="cb547-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb547-3" title="3">    <span class="op">+</span><span class="st"> </span>logarea<span class="op">:</span>cpfor2</a>
-<a class="sourceLine" id="cb547-4" title="4">    <span class="op">+</span><span class="st"> </span>logarea<span class="op">:</span>thtden</a>
-<a class="sourceLine" id="cb547-5" title="5">    <span class="op">+</span><span class="st"> </span>logarea<span class="op">:</span>swamp</a>
-<a class="sourceLine" id="cb547-6" title="6">    <span class="op">+</span><span class="st"> </span>cpfor2<span class="op">:</span>thtden</a>
-<a class="sourceLine" id="cb547-7" title="7">    <span class="op">+</span><span class="st"> </span>cpfor2<span class="op">:</span>swamp</a>
-<a class="sourceLine" id="cb547-8" title="8">    <span class="op">+</span><span class="st"> </span>thtden<span class="op">:</span>swamp</a>
-<a class="sourceLine" id="cb547-9" title="9"> , <span class="dt">data=</span> mydata)</a>
-<a class="sourceLine" id="cb547-10" title="10"><span class="kw">summary</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" title="1">full.model<span class="fl">.2</span>ndinteractions&lt;-<span class="st"> </span><span class="kw">lm</span>(</a>
+<a class="sourceLine" id="cb550-2" title="2">  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb550-3" title="3">    <span class="op">+</span><span class="st"> </span>logarea<span class="op">:</span>cpfor2</a>
+<a class="sourceLine" id="cb550-4" title="4">    <span class="op">+</span><span class="st"> </span>logarea<span class="op">:</span>thtden</a>
+<a class="sourceLine" id="cb550-5" title="5">    <span class="op">+</span><span class="st"> </span>logarea<span class="op">:</span>swamp</a>
+<a class="sourceLine" id="cb550-6" title="6">    <span class="op">+</span><span class="st"> </span>cpfor2<span class="op">:</span>thtden</a>
+<a class="sourceLine" id="cb550-7" title="7">    <span class="op">+</span><span class="st"> </span>cpfor2<span class="op">:</span>swamp</a>
+<a class="sourceLine" id="cb550-8" title="8">    <span class="op">+</span><span class="st"> </span>thtden<span class="op">:</span>swamp</a>
+<a class="sourceLine" id="cb550-9" title="9"> , <span class="dt">data=</span> mydata)</a>
+<a class="sourceLine" id="cb550-10" title="10"><span class="kw">summary</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2) + 
@@ -419,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.8658, Adjusted R-squared:  0.7735 
 ## F-statistic: 9.382 on 11 and 16 DF,  p-value: 4.829e-05</code></pre>
 <p>Ce modèle s’ajuste un peu mieux aux données que les modèle “final” (il explique 86.6% de la variance de logherp, comparé à 81.2% pour le modèle “final” sans interactions), mais il compte deux fois plus de paramètres. De plus, si vous examinez les coefficients, il se passe d’étranges choses: le signe pour logare a changé par exemple. C’est un des symptômes de la multicolinéarité. Allons voir les facteurs d’inflation de la variance:</p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" title="1"><span class="kw">vif</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb552-1" title="1"><span class="kw">vif</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>##        logarea         cpfor2         thtden          swamp     I(swamp^2) 
 ##       49.86060       78.49622      101.42437       90.47389      115.08457 
 ## logarea:cpfor2 logarea:thtden  logarea:swamp  cpfor2:thtden   cpfor2:swamp 
@@ -427,12 +427,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   thtden:swamp 
 ##       20.04410</code></pre>
 <p>Aie! tous les VIF sont plus grands que 5, pas seulement les termes incluant swamp. Cette forte multicolinéarité empêche de quantifier avec précision l’effet de ces interactions. De plus, ce modèle avec interactions n’est pas plus informatif que le modèle “final” puisque son AIC est plus élevé (souvenez-vous qu’on privilégie le modèle avec la valeur d’AIC la plus basse):</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb551-1" title="1"><span class="kw">AIC</span>(model.poly1)</a></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" title="1"><span class="kw">AIC</span>(model.poly1)</a></code></pre></div>
 <pre><code>## [1] -38.3433</code></pre>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb553-1" title="1"><span class="kw">AIC</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" title="1"><span class="kw">AIC</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>## [1] -34.86123</code></pre>
 <p>On peut également utiliser la fonction anova() pour comparer l’ajustement des deux modèles et vérifier si l’addition des termes d’intération améliore significativement l’ajustement:</p>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" title="1"><span class="kw">anova</span>(model.poly1, full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" title="1"><span class="kw">anova</span>(model.poly1, full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2)
@@ -443,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1     22 0.25282                           
 ## 2     16 0.18651  6  0.066314 0.9481  0.489</code></pre>
 <p>Ici, l’addition des termes d’interaction ne réduit pas significativement la variabilité résiduelle du modèle “complet”. Qu’en est-il de la si on compare le modèle avec interaction et notre modèle “final”?</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb557-1" title="1"><span class="kw">anova</span>(model.poly2, full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" title="1"><span class="kw">anova</span>(model.poly2, full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: logherp ~ logarea + thtden + swamp + I(swamp^2)

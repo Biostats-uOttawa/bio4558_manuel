@@ -325,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Puisque l’approche simplifiée est moins puissante, si vous rejetez quand même H0, alors votre conclusion ne changera pas, mais sera seulement renforcée, en utilisant l’approche traditionnelle.</p>
 <p>Ici, je vais comparer l’approche traditionnelle et l’approche simplifiée. Rappelez-vous que vous voulez évaluer l’égalité des ordonnées à l’origine <strong>après avoir déterminé que les pentes étaient égales</strong>. Éprouver l’égalité des ordonnées à l’origine quand les pentes diffèrent (ou, si vous préférez, quand il y a une interaction) est rarement sensé, peut facilement être mal interprété, et ne devrait être effectué que rarement.</p>
 <p>De retour aux données de anc1dat.csv, en comparant la relation entre lfkl et lage entre les sexes, nous avions obtenu les résultats suivants pour le modèle complet avec interactions:</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb591-1" title="1"><span class="kw">Anova</span>(model.full1)</a></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" title="1"><span class="kw">Anova</span>(model.full1)</a></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: lfkl
@@ -338,8 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>On avait déjà conclu que la pente ne varie pas entre les sexes (i.e. l’interaction n’est pas significative). Notez que la p-valeur associée au sexe (0.4795) n’est pas significative non plus.</p>
 <p>De l’autre côté, selon l’approche traditionnelle, l’inférence quand à l’effet du sexe se fait à partir du modèle réduit (le modèle ANCOVA sensus stricto):</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb593-1" title="1">model.ancova &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</a>
-<a class="sourceLine" id="cb593-2" title="2"><span class="kw">Anova</span>(model.ancova, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" title="1">model.ancova &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</a>
+<a class="sourceLine" id="cb596-2" title="2"><span class="kw">Anova</span>(model.ancova, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -350,7 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residuals   0.07162 89                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb595-1" title="1"><span class="kw">summary</span>(model.ancova)</a></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb598-1" title="1"><span class="kw">summary</span>(model.ancova)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ sex + lage, data = anc1dat)
@@ -376,8 +376,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 En examinant les graphiques diagnostiques, vous noterez qu’il y a trois observations dont la valeur absolue du résidu est grande (cas 19, 49, et 50). Ces observations pourraient avoir un effet disproportionné sur les résultats de l’analyse. Éliminez-les et refaites l’analyse. Les conclusions changent-elles ?
 </div>
 
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb597-1" title="1">model.ancova.nooutliers &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</a>
-<a class="sourceLine" id="cb597-2" title="2"><span class="kw">Anova</span>(model.ancova.nooutliers, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb600-1" title="1">model.ancova.nooutliers &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</a>
+<a class="sourceLine" id="cb600-2" title="2"><span class="kw">Anova</span>(model.ancova.nooutliers, <span class="dt">type =</span> <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -388,7 +388,7 @@ En examinant les graphiques diagnostiques, vous noterez qu’il y a trois observ
 ## Residuals   0.04950 86                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb599-1" title="1"><span class="kw">summary</span>(model.ancova.nooutliers)</a></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb602-1" title="1"><span class="kw">summary</span>(model.ancova.nooutliers)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ sex + lage, data = anc1dat[c(-49, -50, -19), 
@@ -416,8 +416,8 @@ Ajustez une régression simple entre lfkl et lage pour l’ensemble complet de d
 </div>
 
 <p>Le modèle en excluant les valeurs extrêmes:</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb601-1" title="1">model.linear.nooutliers&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage,<span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</a>
-<a class="sourceLine" id="cb601-2" title="2"><span class="kw">summary</span>(model.linear.nooutliers)</a></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb604-1" title="1">model.linear.nooutliers&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage,<span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</a>
+<a class="sourceLine" id="cb604-2" title="2"><span class="kw">summary</span>(model.linear.nooutliers)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ lage, data = anc1dat[c(-49, -50, -19), ])
@@ -438,8 +438,8 @@ Ajustez une régression simple entre lfkl et lage pour l’ensemble complet de d
 ## F-statistic: 275.2 on 1 and 87 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Pour la régression simple (sans les valeurs extrêmes) on obtient un R 2 de 0.76 et une erreur-type des résidus de 0.02441, En comparant à l’erreur-type des résidus du modèle d’ANCOVA (0.02399) on réalise que la qualité des prédictions est essentiellement la même, même en ajustant des ordonnées à l’origine différentes pour chaque groupe. Par conséquent, les bénéfices de l’inclusion d’un terme pour les différentes ordonnées à l’origine sont faibles alors que le coût, en terme de complexité du modèle, est élevé (33% d’augmentation du nombre de termes pour un très faible amélioration de la qualité d’ajustement). Si vous examinez les résidus de ce modèle, vous trouverez qu’ils sont à peu près O.K.)</p>
 <p>Si on ajuste une régression simple sur toutes les données, on obtient:</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb603-1" title="1">model.linear&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</a>
-<a class="sourceLine" id="cb603-2" title="2"><span class="kw">summary</span>(model.linear)</a></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb606-1" title="1">model.linear&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</a>
+<a class="sourceLine" id="cb606-2" title="2"><span class="kw">summary</span>(model.linear)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ lage, data = anc1dat)

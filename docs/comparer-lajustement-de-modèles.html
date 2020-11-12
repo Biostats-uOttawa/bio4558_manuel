@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 En utilisant les données de <code>anc1dat</code> comparez l’ajustement du modèle ANCOVA et de la régression commune:
 </div>
 
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb605-1" title="1"><span class="kw">anova</span>(model.ancova,model.linear)</a></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb608-1" title="1"><span class="kw">anova</span>(model.ancova,model.linear)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: lfkl ~ sex + lage
@@ -340,9 +340,9 @@ En utilisant les données de <code>anc1dat</code> comparez l’ajustement du mod
 Refaites le même processus avec le données de <code>anc3dat</code>, ajustez le modèle complet avec interaction (LFKL~LAGE+LOCATE+LAGE:LOCATE) et sans interaction (LFKL~LAGE+LOCATE), Comparez l’ajustement des deux modèles, que concluez vous?
 </div>
 
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" title="1">model.full.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate, <span class="dt">data =</span> anc3dat)</a>
-<a class="sourceLine" id="cb607-2" title="2">model.ancova.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate, <span class="dt">data =</span> anc3dat)</a>
-<a class="sourceLine" id="cb607-3" title="3"><span class="kw">anova</span>(model.full.anc3dat,model.ancova.anc3dat)</a></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb610-1" title="1">model.full.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate, <span class="dt">data =</span> anc3dat)</a>
+<a class="sourceLine" id="cb610-2" title="2">model.ancova.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate, <span class="dt">data =</span> anc3dat)</a>
+<a class="sourceLine" id="cb610-3" title="3"><span class="kw">anova</span>(model.full.anc3dat,model.ancova.anc3dat)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: lfkl ~ lage + locate + lage:locate

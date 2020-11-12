@@ -231,7 +231,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{30-10-2020}
+\date{12-11-2020}
 
 \begin{document}
 \maketitle
@@ -4795,9 +4795,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0009071040  0.03367953
-## t2* 0.3408557 -0.0005520252  0.02660705
+##      original       bias    std. error
+## t1* 1.1919926  0.002335530  0.03552310
+## t2* 0.3408557 -0.001559064  0.02811153
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4854,10 +4854,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.257 )   ( 1.126,  1.259 )  
+## 95%   ( 1.120,  1.259 )   ( 1.117,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.125,  1.258 )   ( 1.114,  1.250 )  
+## 95%   ( 1.128,  1.267 )   ( 1.115,  1.259 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -4882,10 +4882,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2893,  0.3936 )   ( 0.2858,  0.3939 )  
+## 95%   ( 0.2873,  0.3975 )   ( 0.2890,  0.4006 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2878,  0.3959 )   ( 0.2956,  0.4016 )  
+## 95%   ( 0.2811,  0.3927 )   ( 0.2910,  0.4036 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5231,9 +5231,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 -0.007055219   0.4139568
-## t2* -1.714546  0.055837247   0.7592685
+##      original      bias    std. error
+## t1* 45.084391 0.006922214   0.4183354
+## t2* -1.714546 0.004444427   0.7530176
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5266,7 +5266,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.229, -0.299 )  
+## 95%   (-3.143, -0.163 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5308,7 +5308,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1989   0.0483 *
+## location1   0.8573 2693    0.036 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6027,18 +6027,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5948
+## Quantile = 2.5915
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2729   3.6473
-## m1965 - m1954 == 0  -5.5077  -9.9994  -1.0159
-## m1966 - m1954 == 0  -3.3127  -6.3446  -0.2808
-## m1965 - m1958 == 0  -5.6949 -10.4136  -0.9762
-## m1966 - m1958 == 0  -3.4999  -6.8589  -0.1409
-## m1966 - m1965 == 0   2.1950  -2.2193   6.6093
+## m1958 - m1954 == 0   0.1872  -3.2685   3.6429
+## m1965 - m1954 == 0  -5.5077  -9.9936  -1.0217
+## m1966 - m1954 == 0  -3.3127  -6.3407  -0.2847
+## m1965 - m1958 == 0  -5.6949 -10.4075  -0.9822
+## m1966 - m1958 == 0  -3.4999  -6.8546  -0.1452
+## m1966 - m1965 == 0   2.1950  -2.2137   6.6036
 \end{verbatim}
 
 \begin{Shaded}
@@ -6577,6 +6577,25 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(effects)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 methods overwritten by 'lme4':
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car
+\end{verbatim}
+
+\begin{verbatim}
+## lattice theme set by effectsTheme()
+## See ?effectsTheme for details.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{allEffects}\NormalTok{(anova.model1)}
 \end{Highlighting}
 \end{Shaded}
@@ -7427,7 +7446,7 @@ Ce laboratoire nécessite:
   \item
     lmtest
   \item
-    mysimpleboot
+    simpleboot
   \item
     boot
   \item
@@ -8535,7 +8554,7 @@ L'objet \texttt{dd} contient tous les modèles possibles (i.e.~ceux qui ont tout
 
 Quand les données ne rencontrent pas les conditions d'application de normalité et d'homoscédasticité et que les transformations n'arrivent pas à corriger ces violations, le bootstrap peut être utilisé pour calculer des intervalles de confiance pour les coefficients. Si la distribution des coefficients bootstrappés est symétrique et approximativement normale, on peut utiliser les percentiles empiriques pour calculer les limites de confiance.
 
-Le code qui suit, utilisant le package simpleboot, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.
+Le code qui suit, utilisant le package \texttt{simpleboot}, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8597,14 +8616,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.69048949 0.1337556 -0.049497559 0.01586741 -0.0003423812
-## 1%    -0.66959730 0.1398432 -0.047841248 0.01723472 -0.0003360327
-## 2.5%  -0.62807141 0.1524897 -0.043360218 0.01978200 -0.0003244346
-## 5%    -0.60260517 0.1653059 -0.040749700 0.02110003 -0.0003143871
-## 95%   -0.07103346 0.2793870 -0.011753218 0.03749724 -0.0001801930
-## 97.5% -0.00548927 0.2896779 -0.009607731 0.03909909 -0.0001709944
-## 99%    0.04901773 0.2978173 -0.007601176 0.04014011 -0.0001502461
-## 99.5%  0.07184617 0.3066208 -0.005790782 0.04115885 -0.0001348230
+## 0.5%  -0.71180804 0.1359327 -0.045329954 0.01632191 -0.0003492918
+## 1%    -0.67842049 0.1471264 -0.044254245 0.01756226 -0.0003399827
+## 2.5%  -0.64164254 0.1581361 -0.042207795 0.01936547 -0.0003233737
+## 5%    -0.59515218 0.1645156 -0.039261193 0.02129171 -0.0003115332
+## 95%   -0.06666795 0.2793922 -0.010605120 0.03736988 -0.0001834586
+## 97.5% -0.02174981 0.2921219 -0.008262641 0.03889284 -0.0001693474
+## 99%    0.02710850 0.3032961 -0.004407861 0.04092865 -0.0001565817
+## 99.5%  0.08169364 0.3072677 -0.003207476 0.04191492 -0.0001430707
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8660,7 +8679,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1146,  0.3224 )  
+## 95%   ( 0.1189,  0.3216 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 

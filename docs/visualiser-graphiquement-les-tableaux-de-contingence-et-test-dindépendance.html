@@ -322,10 +322,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.3</span> Visualiser graphiquement les tableaux de contingence et test d’indépendance</h2>
 <p>Les tableaux de contingence peuvent servir à éprouver l’hypothèse d’indépendance des observations. Ceci équivaut à répondre à la question: est-ce que la classification des observations selon une variable (par exemple sex) indépendante de la classification par une autre variable (par exemple ageclass). En autres mots, est-ce que la proportion des mâles et femelles indépendante de l’âge ou varie avec l’âge?</p>
 <p>Le package <code>vcd</code> inclut la fonction <code>mosaic()</code> qui permet de représenter graphiquement le contenu d’un tableau de contingence:</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" title="1"><span class="kw">library</span>(vcd)</a>
-<a class="sourceLine" id="cb621-2" title="2">USTable&lt;-<span class="kw">xtabs</span>(frequency<span class="op">~</span>ageclass<span class="op">+</span>sex, <span class="dt">data=</span>USPopSurvey) <span class="co"># save the table form as USTable dataframe</span></a>
-<a class="sourceLine" id="cb621-3" title="3"><span class="co"># Mosaic plot of the contingency table</span></a>
-<a class="sourceLine" id="cb621-4" title="4"><span class="kw">mosaic</span>(USTable)</a></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb624-1" title="1"><span class="kw">library</span>(vcd)</a>
+<a class="sourceLine" id="cb624-2" title="2">USTable&lt;-<span class="kw">xtabs</span>(frequency<span class="op">~</span>ageclass<span class="op">+</span>sex, <span class="dt">data=</span>USPopSurvey) <span class="co"># save the table form as USTable dataframe</span></a>
+<a class="sourceLine" id="cb624-3" title="3"><span class="co"># Mosaic plot of the contingency table</span></a>
+<a class="sourceLine" id="cb624-4" title="4"><span class="kw">mosaic</span>(USTable)</a></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-325"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-325-1.svg" alt="Représentation mosaique de la proportion des sexes par classe d'age" width="672" />
 <p class="caption">
@@ -334,8 +334,8 @@ Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’a
 </div>
 <p>Cette mosaïque représente la proportion des observations dans chaque combinaison de catégories (ici il y a 18 catégories, 2 sexes x 9 classes d’âge). Les catégories contenant une plus grande proportion d’observations sont représentées par de plus grands rectangles. Visuellement, on peut voir que la proportion des mâles et femelles est approximativement égale chez les jeunes, mais que la proportion des femelles augmente chez les personnes âgées.</p>
 <p>Le test de Chi carré permet d’éprouver l’hypothèse nulle que la proportion des mâles et femelles ne change pas avec l’âge (est indépendante de l’âge):</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" title="1"><span class="co"># Test of independence</span></a>
-<a class="sourceLine" id="cb622-2" title="2"><span class="kw">chisq.test</span>(USTable) <span class="co"># runs chi square test of independence of sex and age class</span></a></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" title="1"><span class="co"># Test of independence</span></a>
+<a class="sourceLine" id="cb625-2" title="2"><span class="kw">chisq.test</span>(USTable) <span class="co"># runs chi square test of independence of sex and age class</span></a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
@@ -345,8 +345,8 @@ Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’a
 <p><code>{rfig.cap = "Représentation mosaique de la proportion des sexes par classe d'age avec échelle de couleur"} # Mosaic plot of the contingency table with shading mosaic(USTable, shade=TRUE)</code></p>
 <p>La couleur de chaque rectangle est proportionnelle à la déviation des fréquences observées de ce qui serait attendu si l’âge et le sexe étaient indépendants. Les classes d’âge 40-49 et 50-59 ont un rapport des sexe approximativement égal à celui de toutes les classes d’âge réunies. Il y a plus de jeunes mâles et de femelles âgées que si le rapport des sexe ne variait pas avec l’âge.et ces rectangles sont colorés en bleu. De l’autre côté, il y a moins de jeunes femelles et de mâles âgés que si le rapport des sexe était indépendant de l’âge, et ces rectangles sont en rouge. La valeur p à la droite de la figure est pour le test de Chi carré qui éprouve l’hypothèse nulle d’indépendance pour l’ensemble des observations, toutes classes d’âge confondues.</p>
 <p>L’estimation de la valeur p associée à la statistique du Chi carré est approximative lorsque les fréquences attendues sont faibles dans certaines cellules, et ce particulièrement pour les tableaux de contingence 2x2. Deux options permettant des valeurs p plus exactes sont préférées dans ce cas, et le choix dépends du nombre total d’observations. Pour de grands échantillons (comme ici avec plus de 200,000 observations!), une approche par simulation de type Monte Carlo est suggérée et peut être obtenue en ajoutant simulate.p.value=TRUE comme argument à la fonction chisq.test() :</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb624-1" title="1"><span class="co"># Monte-carlo estimation of p value (better for small n)</span></a>
-<a class="sourceLine" id="cb624-2" title="2"><span class="kw">chisq.test</span>(USTable, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb627-1" title="1"><span class="co"># Monte-carlo estimation of p value (better for small n)</span></a>
+<a class="sourceLine" id="cb627-2" title="2"><span class="kw">chisq.test</span>(USTable, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
 ##  replicates)
@@ -355,11 +355,11 @@ Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’a
 ## X-squared = 1162.6, df = NA, p-value = 9.999e-05</code></pre>
 <p>Ici, la simulation a été faite B=10000 fois, et la valeur de Chi carré observée avec les données réelles n’a jamais été observée. Par conséquent, p a été estimé à 1/10001=9.999e-05, qui est beaucoup plus élevé que la valeur p estimée à partir de la distribution théorique de Chi carré (p&lt; 2.2e-16). Cette différence est due au moins en partie à un artéfacts de la simulation. Pour obtenir des valeurs p de l’ordre de 1e-16, il faut effectuer au moins 10 16 simulations. Et je ne suis pas aussi patient que ça!</p>
 <p>Pour de petits tableaux de contingence avec des fréquences attendues petites, le test exact de Fisher peut servir à estimer la valeur p associée à l’hypothèse d’indépendance. Mais ce test ne peut être effectué avec de grands échantillons, comme ici:</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb626-1" title="1"><span class="co">#Fisher exact test for contingency tables (small samples and small tables)</span></a>
-<a class="sourceLine" id="cb626-2" title="2"><span class="kw">fisher.test</span>(USTable) <span class="co"># fails here because too many observations</span></a></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb629-1" title="1"><span class="co">#Fisher exact test for contingency tables (small samples and small tables)</span></a>
+<a class="sourceLine" id="cb629-2" title="2"><span class="kw">fisher.test</span>(USTable) <span class="co"># fails here because too many observations</span></a></code></pre></div>
 <pre><code>## Error in fisher.test(USTable): FEXACT error 40.
 ## Out of workspace.</code></pre>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb628-1" title="1"><span class="kw">fisher.test</span>(USTable, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb631-1" title="1"><span class="kw">fisher.test</span>(USTable, <span class="dt">simulate.p.value=</span><span class="ot">TRUE</span>, <span class="dt">B=</span><span class="dv">10000</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data with simulated p-value (based on
 ##  10000 replicates)
