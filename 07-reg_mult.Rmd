@@ -14,7 +14,7 @@ Ce laboratoire nécessite:
   * ggplot2
   * car
   * lmtest
-  * mysimpleboot
+  * simpleboot
   * boot
   * MuMIn
 * les fichiers de données
@@ -433,7 +433,7 @@ confint(avgmodel1) #display CI for averaged coefficients
 
 Quand les données ne rencontrent pas les conditions d’application de normalité et d’homoscédasticité et que les transformations n’arrivent pas à corriger ces violations, le bootstrap peut être utilisé pour calculer des intervalles de confiance pour les coefficients. Si la distribution des coefficients bootstrappés est symétrique et approximativement normale, on peut utiliser les percentiles empiriques pour calculer les limites de confiance.
 
-Le code qui suit, utilisant le package simpleboot, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.
+Le code qui suit, utilisant le package `simpleboot`, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.
 
 ```{r}
 ############################################################
