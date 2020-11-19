@@ -180,7 +180,7 @@ De retour aux données de anc1dat.csv, en comparant la relation entre lfkl et la
 
 
 ```{r}
-Anova(model.full1, type =3)
+Anova(model.full1, type = 3)
 ```
 
 On avait déjà conclu que la pente ne varie pas entre les sexes (i.e. l’interaction n’est pas significative). Notez que la p-valeur associée au sexe (0.4795) n’est pas significative non plus.
