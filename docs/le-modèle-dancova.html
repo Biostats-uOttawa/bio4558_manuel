@@ -325,15 +325,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Puisque l’approche simplifiée est moins puissante, si vous rejetez quand même H0, alors votre conclusion ne changera pas, mais sera seulement renforcée, en utilisant l’approche traditionnelle.</p>
 <p>Ici, je vais comparer l’approche traditionnelle et l’approche simplifiée. Rappelez-vous que vous voulez évaluer l’égalité des ordonnées à l’origine <strong>après avoir déterminé que les pentes étaient égales</strong>. Éprouver l’égalité des ordonnées à l’origine quand les pentes diffèrent (ou, si vous préférez, quand il y a une interaction) est rarement sensé, peut facilement être mal interprété, et ne devrait être effectué que rarement.</p>
 <p>De retour aux données de anc1dat.csv, en comparant la relation entre lfkl et lage entre les sexes, nous avions obtenu les résultats suivants pour le modèle complet avec interactions:</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" title="1"><span class="kw">Anova</span>(model.full1)</a></code></pre></div>
-<pre><code>## Anova Table (Type II tests)
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" title="1"><span class="kw">Anova</span>(model.full1, <span class="dt">type =</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
-##             Sum Sq Df  F value Pr(&gt;F)    
-## sex       0.001490  1   1.8375 0.1787    
-## lage      0.143377  1 176.8349 &lt;2e-16 ***
-## sex:lage  0.000273  1   0.3367 0.5632    
-## Residuals 0.071350 88                    
+##              Sum Sq Df  F value    Pr(&gt;F)    
+## (Intercept) 0.64444  1 794.8182 &lt; 2.2e-16 ***
+## sex         0.00041  1   0.5043    0.4795    
+## lage        0.07259  1  89.5312 4.588e-15 ***
+## sex:lage    0.00027  1   0.3367    0.5632    
+## Residuals   0.07135 88                       
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>On avait déjà conclu que la pente ne varie pas entre les sexes (i.e. l’interaction n’est pas significative). Notez que la p-valeur associée au sexe (0.4795) n’est pas significative non plus.</p>

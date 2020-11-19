@@ -363,14 +363,14 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 <a class="sourceLine" id="cb570-2" title="2">p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.005</span>,<span class="fl">0.01</span>, <span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>, <span class="fl">0.995</span>)</a>
 <a class="sourceLine" id="cb570-3" title="3"><span class="kw">apply</span>(tmyresults, <span class="dv">2</span>, quantile, p)</a></code></pre></div>
 <pre><code>##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.73662068 0.1289827 -0.047748277 0.01773560 -0.0003464458
-## 1%    -0.70103166 0.1489460 -0.045355029 0.01852432 -0.0003445132
-## 2.5%  -0.65929750 0.1618635 -0.042732860 0.01987095 -0.0003304758
-## 5%    -0.61136106 0.1710153 -0.039105757 0.02104790 -0.0003163430
-## 95%   -0.08917791 0.2790138 -0.012709709 0.03788051 -0.0001811681
-## 97.5% -0.04811569 0.2893268 -0.009817729 0.03943074 -0.0001688795
-## 99%    0.04209829 0.3050324 -0.006297080 0.04161946 -0.0001615876
-## 99.5%  0.08154858 0.3090579 -0.004604020 0.04224521 -0.0001574674</code></pre>
+## 0.5%  -0.74324237 0.1380150 -0.046599755 0.01679869 -0.0003558340
+## 1%    -0.69835145 0.1447108 -0.044704649 0.01705882 -0.0003469640
+## 2.5%  -0.65193186 0.1561465 -0.042234169 0.01948048 -0.0003345237
+## 5%    -0.61250772 0.1696644 -0.039427998 0.02142913 -0.0003210128
+## 95%   -0.07208930 0.2817499 -0.011582655 0.03826195 -0.0001826876
+## 97.5% -0.01734166 0.2903874 -0.008496461 0.04002231 -0.0001709964
+## 99%    0.02653138 0.3061421 -0.005190029 0.04196000 -0.0001506930
+## 99.5%  0.05688972 0.3119632 -0.003407326 0.04314782 -0.0001463208</code></pre>
 <p>Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n’est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):</p>
 <div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb572-1" title="1"><span class="co">################################################</span></a>
 <a class="sourceLine" id="cb572-2" title="2"><span class="co"># Bootstrap analysis in multiple regression with BCa confidence intervals</span></a>
@@ -410,7 +410,7 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1136,  0.3165 )  
+## 95%   ( 0.1153,  0.3288 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-293-1.svg" width="672" /></p>
 <p>Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.</p>

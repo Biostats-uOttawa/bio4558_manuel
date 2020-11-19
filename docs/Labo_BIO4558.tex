@@ -231,7 +231,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{12-11-2020}
+\date{19-11-2020}
 
 \begin{document}
 \maketitle
@@ -4795,9 +4795,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.002335530  0.03552310
-## t2* 0.3408557 -0.001559064  0.02811153
+##      original        bias    std. error
+## t1* 1.1919926 -0.0001447123  0.03343419
+## t2* 0.3408557  0.0001617976  0.02664449
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4854,10 +4854,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.120,  1.259 )   ( 1.117,  1.256 )  
+## 95%   ( 1.127,  1.258 )   ( 1.130,  1.260 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.267 )   ( 1.115,  1.259 )  
+## 95%   ( 1.124,  1.254 )   ( 1.115,  1.248 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -4882,10 +4882,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2873,  0.3975 )   ( 0.2890,  0.4006 )  
+## 95%   ( 0.2885,  0.3929 )   ( 0.2865,  0.3912 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2811,  0.3927 )   ( 0.2910,  0.4036 )  
+## 95%   ( 0.2905,  0.3953 )   ( 0.2950,  0.4009 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5231,9 +5231,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original      bias    std. error
-## t1* 45.084391 0.006922214   0.4183354
-## t2* -1.714546 0.004444427   0.7530176
+##      original     bias    std. error
+## t1* 45.084391 0.01163189   0.4197776
+## t2* -1.714546 0.00676600   0.7610339
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5266,7 +5266,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.143, -0.163 )  
+## 95%   (-3.264, -0.244 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5308,7 +5308,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 2693    0.036 *
+## location1   0.8573 5000   0.0178 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6027,18 +6027,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5915
+## Quantile = 2.5931
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2685   3.6429
-## m1965 - m1954 == 0  -5.5077  -9.9936  -1.0217
-## m1966 - m1954 == 0  -3.3127  -6.3407  -0.2847
-## m1965 - m1958 == 0  -5.6949 -10.4075  -0.9822
-## m1966 - m1958 == 0  -3.4999  -6.8546  -0.1452
-## m1966 - m1965 == 0   2.1950  -2.2137   6.6036
+## m1958 - m1954 == 0   0.1872  -3.2706   3.6451
+## m1965 - m1954 == 0  -5.5077  -9.9965  -1.0188
+## m1966 - m1954 == 0  -3.3127  -6.3426  -0.2828
+## m1965 - m1958 == 0  -5.6949 -10.4105  -0.9792
+## m1966 - m1958 == 0  -3.4999  -6.8567  -0.1431
+## m1966 - m1965 == 0   2.1950  -2.2165   6.6064
 \end{verbatim}
 
 \begin{Shaded}
@@ -8615,15 +8615,15 @@ Les limites précises peuvent être obtenues par:
 \end{Shaded}
 
 \begin{verbatim}
-##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.71180804 0.1359327 -0.045329954 0.01632191 -0.0003492918
-## 1%    -0.67842049 0.1471264 -0.044254245 0.01756226 -0.0003399827
-## 2.5%  -0.64164254 0.1581361 -0.042207795 0.01936547 -0.0003233737
-## 5%    -0.59515218 0.1645156 -0.039261193 0.02129171 -0.0003115332
-## 95%   -0.06666795 0.2793922 -0.010605120 0.03736988 -0.0001834586
-## 97.5% -0.02174981 0.2921219 -0.008262641 0.03889284 -0.0001693474
-## 99%    0.02710850 0.3032961 -0.004407861 0.04092865 -0.0001565817
-## 99.5%  0.08169364 0.3072677 -0.003207476 0.04191492 -0.0001430707
+##        (Intercept)   logarea       thtden      swamp    I(swamp^2)
+## 0.5%  -0.723742544 0.1385618 -0.046751547 0.01638857 -0.0003551691
+## 1%    -0.683788128 0.1440925 -0.044998338 0.01828120 -0.0003424990
+## 2.5%  -0.652556691 0.1596472 -0.042550955 0.02027057 -0.0003234793
+## 5%    -0.602868825 0.1693667 -0.039620521 0.02170341 -0.0003115042
+## 95%   -0.073554220 0.2793089 -0.012350123 0.03722937 -0.0001879452
+## 97.5% -0.036731235 0.2928049 -0.009454090 0.03918862 -0.0001758748
+## 99%    0.005509837 0.3024170 -0.006728334 0.04133935 -0.0001591924
+## 99.5%  0.029418200 0.3115598 -0.004642389 0.04258879 -0.0001452916
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8679,8 +8679,9 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1189,  0.3216 )  
+## 95%   ( 0.1316,  0.3266 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-1.pdf}
@@ -9041,19 +9042,20 @@ De retour aux données de anc1dat.csv, en comparant la relation entre lfkl et la
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{Anova}\NormalTok{(model.full1)}
+\KeywordTok{Anova}\NormalTok{(model.full1, }\DataTypeTok{type =}\DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Anova Table (Type II tests)
+## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
-##             Sum Sq Df  F value Pr(>F)    
-## sex       0.001490  1   1.8375 0.1787    
-## lage      0.143377  1 176.8349 <2e-16 ***
-## sex:lage  0.000273  1   0.3367 0.5632    
-## Residuals 0.071350 88                    
+##              Sum Sq Df  F value    Pr(>F)    
+## (Intercept) 0.64444  1 794.8182 < 2.2e-16 ***
+## sex         0.00041  1   0.5043    0.4795    
+## lage        0.07259  1  89.5312 4.588e-15 ***
+## sex:lage    0.00027  1   0.3367    0.5632    
+## Residuals   0.07135 88                       
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
