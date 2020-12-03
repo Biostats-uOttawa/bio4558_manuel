@@ -18,7 +18,7 @@ Ce laboratoire nécessite:
 * les fichiers de données
   * USPopSurvey.csv
   * loglin.csv
-  * sturgdat.cas
+  * sturgdat.csv
 
 ```{r, include = FALSE}
 library(ggplot2)
