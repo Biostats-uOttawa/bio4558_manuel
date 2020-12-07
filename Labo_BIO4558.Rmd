@@ -5290,29 +5290,40 @@ Bootstrap analysis BCa confidence intervals
 Preferable when parameter distribution is far from normal
 # Bootstrap 95% BCa CI for regression coefficients
 library(boot)
+
 # To simplify future modifications of the code in this file,
 # copy the data to a generic mydata dataframe
-mydata<-anc3dat
-# create a myformula variable containing the formula for the
-model to be fitted
-myformula<-as.formula(lfkl ~ lage + locate + lage:locate)
+mydata <- anc3dat
+
+# create a myformula variable containing the formula for the model to be fitted
+myformula <- as.formula(lfkl ~ lage + locate + lage:locate)
+
 # function to obtain regression coefficients for each iteration
 bs <- function(formula, data, indices) {
-d <- data[indices, ]
-fit <- lm(formula, data = d)
-return(coef(fit))
+  d <- data[indices, ]
+  fit <- lm(formula, data = d)
+  return(coef(fit))
 }
 # bootstrapping with 1000 replications
-results <- boot(data = mydata, statistic = bs, R = 1000,
-formula = myformula)
+results <- boot(data = mydata, statistic = bs, R = 1000, formula = myformula)
+
 # view results
 results
+boot_res <- summary(results)
+rownames(boot_res) <- names(results$t0)
+boot_res
+
+op <- par(ask = TRUE)
 for (i in 1:length(results$t0)) {
-plot(results, index = i)
+  plot(results, index = i)
+  title(names(results$t0)[i])
 }
+par(op)
+
 # get 95% confidence intervals
 for (i in 1:length(results$t0)) {
-print(boot.ci(results, type = "bca", index = i))
+  cat("\n", names(results$t0)[i],"\n")
+  print(boot.ci(results, type = "bca", index = i))
 }
 ```
 

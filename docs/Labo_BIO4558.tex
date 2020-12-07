@@ -231,7 +231,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{03-12-2020}
+\date{07-12-2020}
 
 \begin{document}
 \maketitle
@@ -4796,8 +4796,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.001728556  0.03437082
-## t2* 0.3408557 -0.001150461  0.02718156
+## t1* 1.1919926  0.002587425  0.03424185
+## t2* 0.3408557 -0.001790806  0.02729714
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4854,10 +4854,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.123,  1.258 )   ( 1.120,  1.260 )  
+## 95%   ( 1.122,  1.257 )   ( 1.122,  1.255 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.124,  1.264 )   ( 1.115,  1.252 )  
+## 95%   ( 1.129,  1.262 )   ( 1.105,  1.247 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable
 \end{verbatim}
@@ -4883,11 +4883,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2887,  0.3953 )   ( 0.2867,  0.3965 )  
+## 95%   ( 0.2891,  0.3961 )   ( 0.2880,  0.3968 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2852,  0.3950 )   ( 0.2935,  0.4015 )  
+## 95%   ( 0.2849,  0.3937 )   ( 0.2977,  0.4096 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5233,8 +5234,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original      bias    std. error
-## t1* 45.084391 -0.01236434   0.4439008
-## t2* -1.714546 -0.01996182   0.7850255
+## t1* 45.084391 0.005451566   0.4244847
+## t2* -1.714546 0.010962129   0.7577796
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5267,7 +5268,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.275, -0.170 )  
+## 95%   (-3.157, -0.197 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5309,7 +5310,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)
-## location1   0.8573  883    0.102
+## location1   0.8573  152    0.401
 ## 
 ## Residual standard error: 5.454 on 184 degrees of freedom
 ## Multiple R-Squared: 0.02419, Adjusted R-squared: 0.01889 
@@ -6026,18 +6027,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.593
+## Quantile = 2.5926
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2705   3.6449
-## m1965 - m1954 == 0  -5.5077  -9.9963  -1.0190
-## m1966 - m1954 == 0  -3.3127  -6.3425  -0.2829
-## m1965 - m1958 == 0  -5.6949 -10.4103  -0.9794
-## m1966 - m1958 == 0  -3.4999  -6.8566  -0.1432
-## m1966 - m1965 == 0   2.1950  -2.2163   6.6062
+## m1958 - m1954 == 0   0.1872  -3.2699   3.6444
+## m1965 - m1954 == 0  -5.5077  -9.9955  -1.0198
+## m1966 - m1954 == 0  -3.3127  -6.3420  -0.2834
+## m1965 - m1958 == 0  -5.6949 -10.4095  -0.9802
+## m1966 - m1958 == 0  -3.4999  -6.8560  -0.1438
+## m1966 - m1965 == 0   2.1950  -2.2156   6.6055
 \end{verbatim}
 
 \begin{Shaded}
@@ -8614,15 +8615,15 @@ Les limites précises peuvent être obtenues par:
 \end{Shaded}
 
 \begin{verbatim}
-##        (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.739501718 0.1370147 -0.046031097 0.01749839 -0.0003480628
-## 1%    -0.720846973 0.1421416 -0.044496805 0.01842929 -0.0003407629
-## 2.5%  -0.668597108 0.1577264 -0.042369325 0.01998215 -0.0003284708
-## 5%    -0.600325706 0.1679678 -0.039064176 0.02158220 -0.0003170890
-## 95%   -0.086058656 0.2798187 -0.011328349 0.03779990 -0.0001841938
-## 97.5% -0.048419281 0.2897511 -0.008593740 0.03927679 -0.0001747760
-## 99%    0.003395567 0.3050410 -0.007000653 0.04132389 -0.0001603688
-## 99.5%  0.042334817 0.3098243 -0.005559534 0.04188185 -0.0001539947
+##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
+## 0.5%  -0.74964348 0.1285933 -0.045436747 0.01666837 -0.0003424949
+## 1%    -0.72362672 0.1359206 -0.044792958 0.01725598 -0.0003376743
+## 2.5%  -0.66734272 0.1519607 -0.042184212 0.01932201 -0.0003230553
+## 5%    -0.60715040 0.1636665 -0.039705241 0.02116459 -0.0003125312
+## 95%   -0.07645744 0.2802235 -0.010768707 0.03727096 -0.0001833891
+## 97.5% -0.03025148 0.2937605 -0.008535882 0.03845145 -0.0001676742
+## 99%    0.04101389 0.3056067 -0.005952793 0.04058536 -0.0001516959
+## 99.5%  0.06594492 0.3137025 -0.003553050 0.04116562 -0.0001469235
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8678,7 +8679,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1165,  0.3238 )  
+## 95%   ( 0.1075,  0.3108 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -9306,29 +9307,40 @@ Cette fois-ci, le modèle plus complexe s'ajuste significativement mieux aux don
 \NormalTok{Preferable when parameter distribution is far from normal}
 \CommentTok{# Bootstrap 95% BCa CI for regression coefficients}
 \KeywordTok{library}\NormalTok{(boot)}
+
 \CommentTok{# To simplify future modifications of the code in this file,}
 \CommentTok{# copy the data to a generic mydata dataframe}
-\NormalTok{mydata<-anc3dat}
-\CommentTok{# create a myformula variable containing the formula for the}
-\NormalTok{model to be fitted}
-\NormalTok{myformula<-}\KeywordTok{as.formula}\NormalTok{(lfkl }\OperatorTok{~}\StringTok{ }\NormalTok{lage }\OperatorTok{+}\StringTok{ }\NormalTok{locate }\OperatorTok{+}\StringTok{ }\NormalTok{lage}\OperatorTok{:}\NormalTok{locate)}
+\NormalTok{mydata <-}\StringTok{ }\NormalTok{anc3dat}
+
+\CommentTok{# create a myformula variable containing the formula for the model to be fitted}
+\NormalTok{myformula <-}\StringTok{ }\KeywordTok{as.formula}\NormalTok{(lfkl }\OperatorTok{~}\StringTok{ }\NormalTok{lage }\OperatorTok{+}\StringTok{ }\NormalTok{locate }\OperatorTok{+}\StringTok{ }\NormalTok{lage}\OperatorTok{:}\NormalTok{locate)}
+
 \CommentTok{# function to obtain regression coefficients for each iteration}
 \NormalTok{bs <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(formula, data, indices) \{}
-\NormalTok{d <-}\StringTok{ }\NormalTok{data[indices, ]}
-\NormalTok{fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(formula, }\DataTypeTok{data =}\NormalTok{ d)}
-\KeywordTok{return}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit))}
+\NormalTok{  d <-}\StringTok{ }\NormalTok{data[indices, ]}
+\NormalTok{  fit <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(formula, }\DataTypeTok{data =}\NormalTok{ d)}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{coef}\NormalTok{(fit))}
 \NormalTok{\}}
 \CommentTok{# bootstrapping with 1000 replications}
-\NormalTok{results <-}\StringTok{ }\KeywordTok{boot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{statistic =}\NormalTok{ bs, }\DataTypeTok{R =} \DecValTok{1000}\NormalTok{,}
-\DataTypeTok{formula =}\NormalTok{ myformula)}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{boot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{statistic =}\NormalTok{ bs, }\DataTypeTok{R =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{formula =}\NormalTok{ myformula)}
+
 \CommentTok{# view results}
 \NormalTok{results}
+\NormalTok{boot_res <-}\StringTok{ }\KeywordTok{summary}\NormalTok{(results)}
+\KeywordTok{rownames}\NormalTok{(boot_res) <-}\StringTok{ }\KeywordTok{names}\NormalTok{(results}\OperatorTok{$}\NormalTok{t0)}
+\NormalTok{boot_res}
+
+\NormalTok{op <-}\StringTok{ }\KeywordTok{par}\NormalTok{(}\DataTypeTok{ask =} \OtherTok{TRUE}\NormalTok{)}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(results}\OperatorTok{$}\NormalTok{t0)) \{}
-\KeywordTok{plot}\NormalTok{(results, }\DataTypeTok{index =}\NormalTok{ i)}
+  \KeywordTok{plot}\NormalTok{(results, }\DataTypeTok{index =}\NormalTok{ i)}
+  \KeywordTok{title}\NormalTok{(}\KeywordTok{names}\NormalTok{(results}\OperatorTok{$}\NormalTok{t0)[i])}
 \NormalTok{\}}
+\KeywordTok{par}\NormalTok{(op)}
+
 \CommentTok{# get 95% confidence intervals}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(results}\OperatorTok{$}\NormalTok{t0)) \{}
-\KeywordTok{print}\NormalTok{(}\KeywordTok{boot.ci}\NormalTok{(results, }\DataTypeTok{type =} \StringTok{"bca"}\NormalTok{, }\DataTypeTok{index =}\NormalTok{ i))}
+  \KeywordTok{cat}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\KeywordTok{names}\NormalTok{(results}\OperatorTok{$}\NormalTok{t0)[i],}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{boot.ci}\NormalTok{(results, }\DataTypeTok{type =} \StringTok{"bca"}\NormalTok{, }\DataTypeTok{index =}\NormalTok{ i))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
