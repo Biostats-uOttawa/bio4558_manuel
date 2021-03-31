@@ -501,7 +501,7 @@ Si vous essayez d'exécuter une fonction d'une extension et que vous obtenez le 
 
 ### Exercices {#ex-introR}
 
-**Exercice 1**
+#### Exercice 1
 
 Construire le vecteur `x` suivant :
 
@@ -512,12 +512,8 @@ x
 
 
 ```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
-```{r eval=FALSE}
 x <- c(120, 134, 256, 12)
 ```
-
-
-
 
 Utiliser ce vecteur `x` pour générer les deux vecteurs suivants :
 
@@ -535,7 +531,7 @@ x * 2
 
 
 
-**Exercice 2**
+#### Exercice 2
 
 On a demandé à 4 ménages le revenu des deux conjoints, et le nombre de personnes du ménage :
 
@@ -558,7 +554,7 @@ revenu_total / nb_personnes
 
 
 
-**Exercice 3**
+#### Exercice 3
 
 Dans l'exercice précédent, calculer le revenu minimum et maximum parmi ceux du premier conjoint.
 
@@ -593,7 +589,7 @@ range(conjoint1, na.rm = TRUE)
 
 
 
-**Exercice 4**
+#### Exercice 4
 
 Les deux vecteurs suivants représentent les précipitations (en mm) et la température (en °C) moyennes sur la ville de Lyon, pour chaque mois de l'année, entre 1981 et 2010 :
 
@@ -637,7 +633,7 @@ diff(temperature)
 
 
 
-**Exercice 5**
+#### Exercice 5
 
 On a relevé les notes en maths, anglais et sport d'une classe de 6 élèves et on a stocké ces données dans trois vecteurs :
 
