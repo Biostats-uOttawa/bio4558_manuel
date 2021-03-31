@@ -45,7 +45,7 @@ Lorsqu’il y a des variables continues, ce format ne peut être utilisé. Les d
 
 
 ```{r}
-USPopSurvey.caseform <- expand.dft(USPopSurvey, freq="frequency")
+USPopSurvey.caseform <- expand.dft(USPopSurvey, freq = "frequency")
 head(USPopSurvey.caseform)
 tail(USPopSurvey.caseform)
 ```
@@ -55,9 +55,9 @@ Ces données peuvent finalement être organisées sous **le format de tableau** 
 
 ```{r}
 # convert case form to table form
-xtabs(~ageclass+sex,USPopSurvey.caseform)
+xtabs(~ ageclass + sex, USPopSurvey.caseform)
 # convert frequency form to table form
-xtabs(frequency~ageclass+sex, data=USPopSurvey)
+xtabs(frequency ~ ageclass + sex, data = USPopSurvey)
 ```
 
 Table: (\#tab:unnamed-chunk-1)Fonctions permettant la conversion de données de fréquences entre les différents formats.
@@ -78,7 +78,7 @@ Le package `vcd` inclut la fonction `mosaic()` qui permet de représenter graphi
 
 ```{r, fig.cap = "Représentation mosaique de la proportion des sexes par classe d'age"}
 library(vcd)
-USTable<-xtabs(frequency~ageclass+sex, data=USPopSurvey) # save the table form as USTable dataframe
+USTable <- xtabs(frequency ~ ageclass + sex, data = USPopSurvey) # save the table form as USTable dataframe
 # Mosaic plot of the contingency table
 mosaic(USTable)
 ```
@@ -107,7 +107,7 @@ L’estimation de la valeur p associée à la statistique du Chi carré est appr
 
 ```{r}
 # Monte-carlo estimation of p value (better for small n)
-chisq.test(USTable, simulate.p.value=TRUE, B=10000)
+chisq.test(USTable, simulate.p.value = TRUE, B = 10000)
 ```
 
 Ici, la simulation a été faite B=10000 fois, et la valeur de Chi carré observée avec les données réelles n’a jamais été observée. Par conséquent, p a été estimé à 1/10001=9.999e-05, qui est beaucoup plus élevé que la valeur p estimée à partir de la distribution théorique de Chi carré (p< 2.2e-16). Cette différence est due au moins en partie à un artéfacts de la simulation. Pour obtenir des valeurs p de l’ordre de 1e-16, il faut effectuer au moins 10 16 simulations. Et je ne suis pas aussi patient que ça!
@@ -115,9 +115,9 @@ Ici, la simulation a été faite B=10000 fois, et la valeur de Chi carré observ
 Pour de petits tableaux de contingence avec des fréquences attendues petites, le test exact de Fisher peut servir à estimer la valeur p associée à l’hypothèse d’indépendance. Mais ce test ne peut être effectué avec de grands échantillons, comme ici:
 
 ```{r, error = TRUE}
-#Fisher exact test for contingency tables (small samples and small tables)
+# Fisher exact test for contingency tables (small samples and small tables)
 fisher.test(USTable) # fails here because too many observations
-fisher.test(USTable, simulate.p.value=TRUE, B=10000)
+fisher.test(USTable, simulate.p.value = TRUE, B = 10000)
 ```
 
 
@@ -131,7 +131,7 @@ La fonction glm() avec l’option family=poisson() permet l’estimation, par la
 
 
 ```{r}
-mymodel<-glm(frequency~sex*ageclass,family=poisson(),data=USPopSurvey)
+mymodel <- glm(frequency ~ sex * ageclass, family = poisson(), data = USPopSurvey)
 summary(mymodel)
 ```
 
@@ -146,7 +146,7 @@ Il y a de nombreuses valeur p dans ce tableau, mais elle ne sont en général pa
 La fonction `Anova()` du package `car` permet de prendre un raccourci:
 
 ```{r}
-Anova(mymodel, type=3, test = "LR")
+Anova(mymodel, type = 3, test = "LR")
 ```
 
 Les arguments `type=3` and `test="LR"` font en sorte que le test effectué pour comparer le modèle complet aux modèles réduits est les test de Chi carré sur le rapport de vraisemblance (Likelihood Ratio Chi-Square) à partir de la variance résiduelle, et que c’est un test partiel, et non séquentiel.
@@ -166,7 +166,7 @@ Code R pour créer et analyser un tableau de contingence 2X2 et éprouver une hy
 ### Produce a table of obs vs exp for 0-9 age class
 Popn0.9 <- rbind(c(17578, 17578), c(17619, 17538))
 ### Run X2 test on above table
-chisq.test(Popn0.9, correct=F)### X2 without Yates
+chisq.test(Popn0.9, correct = F) ### X2 without Yates
 chisq.test(Popn0.9) ### X2 with Yates
 ```
 
@@ -175,7 +175,7 @@ chisq.test(Popn0.9) ### X2 with Yates
 ```
 
 ```{r, echo = params$echo_sol, class.source="exer"}
-chisq.test(Popn0.9, correct=F)
+chisq.test(Popn0.9, correct = F)
 chisq.test(Popn0.9)
 ```
 
@@ -193,7 +193,7 @@ Le fichier `loglin.csv` contient les fréquences (frequency) des plantes infect�
 ```{r, fig.cap = "Proportion de plantes infectées en fonction de la température er la lumière"}
 loglin <- read.csv("data/loglin.csv")
 # Convert from frequency form to table form for mosaic plot
-loglinTable<-xtabs(frequency~temperature+light+infected, data=loglin)
+loglinTable <- xtabs(frequency ~ temperature + light + infected, data = loglin)
 # Create mosaic plot to look at data
 mosaic(loglinTable, shade = TRUE)
 ```
@@ -203,7 +203,7 @@ Cette expérience contrôlée avec le même nombre de plantes à chaque niveau d
 
 ```{r}
 # Fit full model
-full.model<-glm(frequency~temperature*light*infected, family=poisson(), data=loglin)
+full.model <- glm(frequency ~ temperature * light * infected, family = poisson(), data = loglin)
 # Test partial effect of terms in full model
 Anova(full.model, type = 3, test = "LR")
 ```
@@ -227,16 +227,16 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 ```{r, fig.cap = "Fréquence de femelles et males en fonction de l'année et du lieu"}
 sturgdat <- read.csv("data/sturgdat.csv")
 # Reorganize data from case form to table form
-sturgdat.table<-with(sturgdat, table(sex,year,location))
+sturgdat.table <- with(sturgdat, table(sex, year, location))
 # display the table
 sturgdat.table
 # Create data frame while converting from table form to frequency form
-sturgdat.freq<-as.data.frame(sturgdat.table)
-#display data frame
+sturgdat.freq <- as.data.frame(sturgdat.table)
+# display data frame
 sturgdat.freq
 # Look at the data as mosaic plot
 # mosaic using the table created above
-mosaic(sturgdat.table, shade=TRUE)
+mosaic(sturgdat.table, shade = TRUE)
 ```
 
 ```{block2,type="rmdcode"}
@@ -245,9 +245,9 @@ mosaic(sturgdat.table, shade=TRUE)
 
 ```{r}
 # Fit full model
-full.model<-glm(Freq~sex*year*location, data=sturgdat.freq, family="poisson")
+full.model <- glm(Freq ~ sex * year * location, data = sturgdat.freq, family = "poisson")
 summary(full.model)
-Anova(full.model, type=3)
+Anova(full.model, type = 3)
 ```
 
 Ce tableau a trois critères: `sex`, `location` et `year` . Donc le modèles compelt (saturé) contient 7 termes: trois effets principaux (`sex`, `location` et `year`), trois interactions du second degré (double) (`sex:year`, `sex:location` et `year: location`) et une interaction du troisième degré (triple)(`sex:year:location`). La déviance nulle est 57.17574, la déviance résiduelle du modèle complet est, sans surprise, 0. La déviance pouvant être attribuée à l’interaction triple est 1.6677, non significative.
@@ -259,8 +259,8 @@ Puisqu’il n’y a pas d’interaction triple, il est (statistiquement) justifi
 - Ajustez le modèle en excluant l’interaction du troisième degré:
 
 ```{r, echo = params$echo_sol, class.source="exer"}
-o2int.model<-glm(Freq ~ sex + year + location + sex:year + sex:location + year:location, data=sturgdat.freq, family="poisson")
-Anova(o2int.model, type=3)
+o2int.model <- glm(Freq ~ sex + year + location + sex:year + sex:location + year:location, data = sturgdat.freq, family = "poisson")
+Anova(o2int.model, type = 3)
 ```
 
 L’interaction `sex:location` n’explique pas une portion significative de la déviance, alors que les deux autres sont significatives. Le rapport des sexes ne varie pas entre les sites, mais il varie selon les années. L’interaction `year:location` est aussi significative (voir plus pas pour son interprétation).
@@ -270,8 +270,8 @@ Devriez vous tenter de simplifier le modèle encore plus? Les vrais statisticien
 - Ajustez le modèle sans l’interaction sex:location :
 
 ```{r, echo = params$echo_sol, class.source="exer"}
-o2int.model2<-glm(Freq ~ sex + year + location + sex:year + year:location, data=sturgdat.freq, family="poisson")
-Anova(o2int.model2, type=3)
+o2int.model2 <- glm(Freq ~ sex + year + location + sex:year + year:location, data = sturgdat.freq, family = "poisson")
+Anova(o2int.model2, type = 3)
 ```
 
 Les deux interactions sont significatives et ce modèle semble le meilleur. Ce modèle est:

@@ -1,9 +1,9 @@
-#convertin to csv
-rm(list=ls())
+# convertin to csv
+rm(list = ls())
 files <- list.files("./data/", pattern = ".RData")
 ls_o <- ls_n <- NA
 
-for(i in files){
+for (i in files) {
   ls_o <- ls()
   load(paste0("./data/", i))
   ls_n <- ls()

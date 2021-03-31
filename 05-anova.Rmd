@@ -43,20 +43,24 @@ str(Dam10dat)
 ```{r, ano-2, warning = FALSE, message = FALSE, fig.cap = "Distribution de la longueur des esturgeons par année" }
 
 mygraph <- ggplot(Dam10dat, aes(x = fklngth)) +
-  labs (x = "Fork length (cm)") +
+  labs(x = "Fork length (cm)") +
   geom_density() +
   geom_rug() +
   geom_histogram(aes(y = ..density..),
     color = "black",
-    alpha = 0.3) +
-  stat_function(fun = dnorm,
+    alpha = 0.3
+  ) +
+  stat_function(
+    fun = dnorm,
     args = list(
       mean = mean(Dam10dat$fklngth),
-      sd = sd(Dam10dat$fklngth)),
-    color = "red")
+      sd = sd(Dam10dat$fklngth)
+    ),
+    color = "red"
+  )
 
-#display graph, by year
-mygraph+facet_wrap(~year,ncol=2)
+# display graph, by year
+mygraph + facet_wrap(~year, ncol = 2)
 ```
 
 ```{r, fig.cap = "Boxplot de la longueur pas annéee"}
@@ -73,7 +77,7 @@ L'ANOVA paramétrique a trois conditions principales d'application : 1) les rés
 
 ```{r, ano-3, fig.cap = "Conditions d'applications de l'ANOVA"}
 # Fit anova model and plot residual diagnostics
-anova.model1 <- lm(fklngth ~ year, data=Dam10dat)
+anova.model1 <- lm(fklngth ~ year, data = Dam10dat)
 par(mfrow = c(2, 2))
 plot(anova.model1)
 ```
@@ -100,7 +104,7 @@ Ce test confirme nos soupçons: les résidus ne sont pas distribués normalement
 - Ensuite, éprouvez l'hypothèse d'égalité des variances (homoscedasticité):
 
 ```{r, ano-5}
-leveneTest(fklngth ~ year, data=Dam10dat)
+leveneTest(fklngth ~ year, data = Dam10dat)
 ```
 
 La valeur de p vous dit que vous pouvez rejeter l’hypothèse nulle qu’il n’y a aucune différence dans les variances entre les années. Alors, nous concluons que les variances ne sont pas homogènes.
@@ -132,27 +136,31 @@ Compare toutes les moyennes sans ajuster les probabilités
 
 ```{r, ano-8}
 pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
-  p.adj = "none")
+  p.adj = "none"
+)
 ```
 
 Option `bonf` ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 valeurs de p calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la `p-value` ajustée est 1).
 
 ```{r, ano-9}
 pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
-  p.adj = "bonf")
+  p.adj = "bonf"
+)
 ```
 
 Option "holm" is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc $0.0019*(6-1+1)=0.011$. La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p-valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.
 
 ```{r, ano-10}
 pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
-  p.adj = "holm")
+  p.adj = "holm"
+)
 ```
 L’option "fdr" sert à contrôler le "false discovery rate".
 
 ```{r, ano-11}
 pairwise.t.test(Dam10dat$fklngth, Dam10dat$year,
-  p.adj = "fdr")
+  p.adj = "fdr"
+)
 ```
 
 Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus gros après la construction du barrage et toutes les comparaisons entre les années 50 et 60 sont significatives alors que les différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne dépend pas du choix de méthode.
@@ -178,8 +186,10 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 anova.fkl.vs.year <- aov(aov(fklngth ~ myyear, data = Dam10dat))
 # set up all-pairs comparisons for factor `year'
 
-meandiff <- glht(anova.fkl.vs.year, linfct = mcp(myyear =
-"Tukey"))
+meandiff <- glht(anova.fkl.vs.year, linfct = mcp(
+  myyear =
+    "Tukey"
+))
 confint(meandiff)
 
 plot(meandiff)
@@ -191,11 +201,12 @@ C’est un peu mieux, mais ce qui le serait encore plus c’est un graphique des
 # Compute and plot means and Tukey CI
 means <- glht(
   anova.fkl.vs.year,
-  linfct = mcp(myyear = "Tukey"))
+  linfct = mcp(myyear = "Tukey")
+)
 cimeans <- cld(means)
 # use sufficiently large upper margin
 # plot
-old.par<-par(mai=c(1,1,1.25,1))
+old.par <- par(mai = c(1, 1, 1.25, 1))
 plot(cimeans)
 ```
 
@@ -215,7 +226,7 @@ Dans l’exemple précédent sur les différences annuelles de la variable fklgn
 ```{r, ano-16, fig.cap = "Conditions d'application de l'ANOVA" }
 # Fit anova model on log10 of fklngth and plot residual diagnostics
 par(mfrow = c(2, 2))
-anova.model2 <- lm(log10(fklngth) ~ year, data=Dam10dat)
+anova.model2 <- lm(log10(fklngth) ~ year, data = Dam10dat)
 plot(anova.model2)
 ```
 
@@ -236,7 +247,7 @@ Alors, on a toujours des problèmes avec la normalité et on est juste sur le se
 - L'analogue non-paramétrique de l'ANOVA à un critère de classification le plus employé est le test de Kruskall-Wallis. Faites ce test sur `fklngth` et comparez les résultats à ceux de l'analyse paramétrique. Que concluez-vous?
 
 ```{r, ano-18}
-kruskal.test(fklngth ~ year, data=Dam10dat)
+kruskal.test(fklngth ~ year, data = Dam10dat)
 ```
 
 La conclusion est donc la même qu’avec l’ANOVA paramétrique: on rejette l’hypothèse nulle que le rang moyen est le même pour chaque année. Donc, même si les conditions d’application de l’analyse paramétrique n’étaient pas parfaitement rencontrées, les conclusions sont les mêmes, ce qui illustre la robustesse de l’ANOVA paramétrique.
@@ -247,7 +258,7 @@ Vous devriez avoir remarqué au cours des analyses précédentes qu’il y avait
 - Répétez l’ANOVA originale sur fklngth et year mais faites le avec un sous-ensemble de données sans les valeurs extrêmes. Est-ce que les conclusions ont changé?
 
 ```{r, ano-19}
-Damsubset<-Dam10dat[-c(23,59,87),] #removes obs 23, 59 and 87
+Damsubset <- Dam10dat[-c(23, 59, 87), ] # removes obs 23, 59 and 87
 aov.Damsubset <- aov(fklngth ~ as.factor(year), Damsubset)
 summary(aov.Damsubset)
 ```
@@ -273,25 +284,27 @@ Commande R pour un test de permutation d’une ANOVA à un critère de classific
 # modified from code written by David C. Howell
 # http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html
 # set desired number of permutations
-nreps <-500
+nreps <- 500
 # to simplify reuse of this code, copy desired dataframe to mydata
-mydata<-Dam10dat
+mydata <- Dam10dat
 # copy model formula to myformula
-myformula<-as.formula("fklngth ~ year")
+myformula <- as.formula("fklngth ~ year")
 # copy dependent variable vector to mydep
-mydep<-mydata$fklngth
+mydep <- mydata$fklngth
 # copy independent variable vector to myindep
-myindep<-as.factor(mydata$year)
+myindep <- as.factor(mydata$year)
 ################################################
 # You should not need to modify code chunk below
 ################################################
 # Compute observed F value for original sample
-mod1 <- lm(myformula, data=mydata) # Standard Anova
+mod1 <- lm(myformula, data = mydata) # Standard Anova
 ANOVA <- summary(aov(mod1)) # Save summary to variable
-observedF<- ANOVA[[1]]$"F value"[1] # Save observed F value
+observedF <- ANOVA[[1]]$"F value"[1] # Save observed F value
 # Print standard ANOVA results
-cat(" The standard ANOVA for these data follows ",
-"\n")
+cat(
+  " The standard ANOVA for these data follows ",
+  "\n"
+)
 
 print(ANOVA, "\n")
 cat("\n")
@@ -303,15 +316,17 @@ Fboot <- numeric(nreps) # initalize vector to receive permuted
 values
 Fboot[1] <- observedF
 for (i in 2:nreps) {
-newdependent <- sample(mydep, length(mydep)) # randomize dep
-var
-mod2 <- lm(newdependent ~ myindep) # refit model
-b <- summary(aov(mod2))
-Fboot[i] <- b[[1]]$"F value"[1] # store F stats
+  newdependent <- sample(mydep, length(mydep)) # randomize dep
+  var
+  mod2 <- lm(newdependent ~ myindep) # refit model
+  b <- summary(aov(mod2))
+  Fboot[i] <- b[[1]]$"F value"[1] # store F stats
 }
-permprob <- length(Fboot[Fboot >= observedF])/nreps
-cat(" The permutation probability value is: ", permprob,
-"\n")
+permprob <- length(Fboot[Fboot >= observedF]) / nreps
+cat(
+  " The permutation probability value is: ", permprob,
+  "\n"
+)
 # end of code chunk for permutation
 ```
 
@@ -327,5 +342,5 @@ myformula <- as.formula("fklngth ~ year")
 # Fit desired model on the desired dataframe
 mymodel <- lm(myformula, data = mydata)
 # Calculate permutation p-value
-anova(lmp(myformula, data = mydata, perm = "Prob", center=FALSE, Ca=0.001))
+anova(lmp(myformula, data = mydata, perm = "Prob", center = FALSE, Ca = 0.001))
 ```

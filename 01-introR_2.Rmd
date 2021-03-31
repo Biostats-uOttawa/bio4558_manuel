@@ -148,7 +148,7 @@ knitr::include_graphics("images/screenshots/rstudio_environment_str.png")
 Une opération très importante est l'accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l'opérateur `$`, qui permet d'accéder aux colonnes du tableau. Ainsi, si l'on tape :
 
 ```{r include=FALSE}
-options(max.print=200)
+options(max.print = 200)
 ```
 
 
@@ -311,10 +311,12 @@ Le choix d'un "bon" nombre de classes pour un histogramme n'est pas un problème
 Les arguments de `hist` permettent également de modifier la présentation du graphique. On peut ainsi changer la couleur des barres avec `col`^[Les différentes manières de spécifier des couleurs sont indiquées dans l'encadré de la section \@ref(scalecolor).], le titre avec `main`, les étiquettes des axes avec `xlab` et `ylab`, etc. :
 
 ```{r, fig.cap = "Histogramme modifié"}
-hist(d$age, col = "skyblue",
-     main = "Répartition des âges des enquêtés",
-     xlab = "Âge",
-     ylab = "Effectif")
+hist(d$age,
+  col = "skyblue",
+  main = "Répartition des âges des enquêtés",
+  xlab = "Âge",
+  ylab = "Effectif"
+)
 ```
 
 La fonction `hist` fait partie des fonctions graphique de base de R. On verra plus en détail d'autres fonctions graphiques
@@ -387,10 +389,10 @@ La colonne `n` représente les effectifs de chaque catégorie, la colonne `%` le
 - `sort` permet de trier le tableau par fréquence croissante (`sort="inc"`) ou décroissante (`sort="dec"`).
 
 ```{r eval=FALSE}
-freq(d$qualif, valid= FALSE, total = TRUE, sort = "dec")
+freq(d$qualif, valid = FALSE, total = TRUE, sort = "dec")
 ```
 ```{r echo=FALSE}
-print(freq(d$qualif, valid= FALSE, total = TRUE, sort = "dec"))
+print(freq(d$qualif, valid = FALSE, total = TRUE, sort = "dec"))
 ```
 
 

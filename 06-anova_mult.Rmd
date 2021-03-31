@@ -49,7 +49,7 @@ Les graphiques montrent qu’aux deux sites les femelles sont probablement plus 
 
 ```{r}
 Stu2wdat <- read.csv("data/Stu2wdat.csv")
-aggregate(rdwght~sex+location, data=Stu2wdat, FUN = "summary")
+aggregate(rdwght ~ sex + location, data = Stu2wdat, FUN = "summary")
 ```
 Ces résultats supportent l’interprétation des box plots: Les femelles sont plus grosses que les mâles, et la différence de taille entre les deuxsites sont petites.
 
@@ -61,8 +61,9 @@ deux critères de classification:
 # but first, save current par and set graphic page to hold 4 graphs
 opar <- par(mfrow = c(2, 2))
 anova.model1 <- lm(rdwght ~ sex + location + sex:location,
-contrasts = list(sex = contr.sum, location = contr.sum),
-data = Stu2wdat)
+  contrasts = list(sex = contr.sum, location = contr.sum),
+  data = Stu2wdat
+)
 anova(anova.model1)
 ```
 
@@ -110,7 +111,8 @@ Stu2mdat <- read.csv("data/Stu2mdat.csv")
 anova.model2 <- lm(
   formula = rdwght ~ sex + location + sex:location,
   contrasts = list(sex = contr.sum, location = contr.sum),
-  data = Stu2mdat)
+  data = Stu2mdat
+)
 summary(anova.model2)
 Anova(anova.model2, type = 3)
 ```
@@ -132,12 +134,12 @@ Dans ce cas, le terme de l’interaction (sex:location) est maintenant significa
 ```{r, fig.cap = "Effet du sexe et du lieu sur le poids des esturgeons"}
 library(effects)
 allEffects(anova.model1)
-plot(allEffects(anova.model1), 'sex:location')
+plot(allEffects(anova.model1), "sex:location")
 ```
 
 ```{r, fig.cap = "Effet du sexe et du lieu sur le poids des esturgeons"}
 allEffects(anova.model2)
-plot(allEffects(anova.model2), 'sex:location')
+plot(allEffects(anova.model2), "sex:location")
 ```
 
 Il y a une différence importante entre les résultats obtenus avec `stu2wdat` et `stu2mdat`. Dans le premier cas, puisqu’il n’y a pas d'interaction, on peut regrouper les données des deux niveaux d’un facteur (le site, par exemple) pour éprouver l’hypothèse d’un effet de l’autre facteur (le sexe). En fait, si on fait cela et que l’on calcule une ANOVA à un critère de classification (sex), on obtient:
@@ -179,7 +181,7 @@ $$F = \frac{(1745/1)}{(49/1)} = 35.6$$
 Pour obtenir la valeur de p correspondant à cette statistique `F`, il faut utilisez la fonction de probabilité de la distribtuion de F `pf(F, df1, df2, lower.tail = FALSE)`, où F est la valeur de F calculée, et `df1` et `df2` sont les degrés de liberté du numérateur (sex) et dénominateur(SEX:location).
 
 ```{r}
-pf(35.6, 1, 1, lower.tail =  FALSE)
+pf(35.6, 1, 1, lower.tail = FALSE)
 ```
 
 Notez que maintenant la valeur de p pour sex n’est plus significative. C’est parce que le carré moyen de l’erreur dans l’ANOVA initiale est plus petit que celui associé à l’interaction, mais surtout parce que le nombre de degrés de liberté pour le dénominateur du test de F est passé de 178 à 1 seulement. En général, c’est beaucoup plus difficile d’obtenir des résultats significatifs quand les degrés de liberté pour le dénominateur sont petits.
@@ -203,7 +205,7 @@ Un limnologiste qui étudie Round Lake dans le Parc Algonquin prend une seule me
 ```{r}
 nr2wdat <- read.csv("data/nr2wdat.csv")
 nr2wdat$depth <- as.factor(nr2wdat$depth)
-anova.model4<-lm(temp ~ date + depth, data = nr2wdat)
+anova.model4 <- lm(temp ~ date + depth, data = nr2wdat)
 Anova(anova.model4, type = 3)
 ```
 
@@ -219,7 +221,7 @@ Jetez un coup d’oeil sur les graphiques des résidus:
 
 
 ```{r, fig.cap = "Conditions d'applications du modèle anova.model4", error =  TRUE}
-par(mfrow = c(2,2))
+par(mfrow = c(2, 2))
 plot(anova.model4)
 ```
 
@@ -246,7 +248,7 @@ Un design expérimental fréquent implique la division de chaque groupe du facte
 nestdat <- read.csv("data/nestdat.csv")
 nestdat$chamber <- as.factor(nestdat$chamber)
 nestdat$genotype <- as.factor(nestdat$genotype)
-anova.nested <- lm(survival ~ genotype/chamber, data = nestdat)
+anova.nested <- lm(survival ~ genotype / chamber, data = nestdat)
 ```
 Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l'effet de Chamber / genotype n'est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N'oubliez pas de vérifier les conditions d'applications de l'ANOVA!
 
@@ -271,15 +273,17 @@ Donc on conclue qu’il y a une variation significative de résistance à la des
 Le graphique de `survival` en fonction du `génotype` suggère que la résistance à la dessiccation varie entre chaque génotype. On peut combiner cela avec un test de Tukey.
 
 ```{r, fig.cap = "Effet du genotype sur la résistance à la dessication avec un test de Tukey "}
-par(mfrow=c(1,1))
+par(mfrow = c(1, 1))
 # Compute and plot means and Tukey CI
-means <- glht(anova.simple, linfct = mcp(genotype =
-  "Tukey"))
+means <- glht(anova.simple, linfct = mcp(
+  genotype =
+    "Tukey"
+))
 cimeans <- cld(means)
 # use sufficiently large upper margin
 old.par <- par(mai = c(1, 1, 1.25, 1))
 # plot
-plot(cimeans, las=1) # las option to put y-axis labels as God intended them
+plot(cimeans, las = 1) # las option to put y-axis labels as God intended them
 ```
 
 On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) > R(Aa) > R(aa).
@@ -305,8 +309,10 @@ L'ANOVA non paramétrique à deux critères de classification est une extension 
 aov.rank <- aov(
   rank(rdwght) ~ sex * location,
   contrasts = list(
-    sex = contr.sum, location = contr.sum),
-  data = Stu2wdat)
+    sex = contr.sum, location = contr.sum
+  ),
+  data = Stu2wdat
+)
 ```
 
 L'extension de Schreirer-Ray-Hare au test de Kruskall-Wallis se fait ensuite à la main. Il faut d'abord calculer la statistique H égale au rapport de la somme des carrées de l'effet testé, divisée par le carré moyen total. On calcule la statistique H pour chacun des termes. Les statistiques H sont ensuite comparées à une distribution théorique de $\chi^2$ (chi-carré) en utilisant la commande `pchisq(H, df, lower.tail = FALSE)`, où `H` et `df` sont les statistiques H calculées et les degrés de libertés, respectivement.
@@ -417,7 +423,6 @@ old.par <- par(mai = c(1, 1, 1.25, 1))
 # plot
 plot(tuk.cld)
 par(old.par)
-
 ```
 
 Il y a donc une différence de consommation d’oxygène significative lorsque la salinité est réduite de 50%, mais pas à 25% de réduction.
@@ -452,7 +457,7 @@ wmc2dat2$species.conc <- as.factor(paste0(wmc2dat2$species, wmc2dat2$conc))
 ensuite on peut faire les comparaisons de Bonferroni:
 
 ```{r}
-with(wmc2dat2, pairwise.t.test(o2cons, species.conc,p.adj = "bonf"))
+with(wmc2dat2, pairwise.t.test(o2cons, species.conc, p.adj = "bonf"))
 ```
 
 Ces comparaisons sont un peu plus difficiles à interpréter, mais l’analyse examine essentiellement les différences entre les concentrations de l’eau dans l’espèce A (nommé adj1) et pour les différences entre les concentrations dans l’espèce B (nommé adj2). Cette analyse indique que la différence principale est entre la concentration de 50% pour l’espèce B et les concentrations de 75 et 100% de l’espèce B, tandis qu’il n’y a aucunes différences significatives pour l’espèce A.
@@ -517,7 +522,7 @@ for (i in 2:nreps) {
   modb <- summary(aov(newdat ~ factor1 + factor2 +
     factor1:factor2,
   data = my.dataframe.noNA
-))
+  ))
   TBint[i] <- modb[[1]]$"F value"[3]
   TB1[i] <- modb[[1]]$"F value"[1]
   TB2[i] <- modb[[1]]$"F value"[2]
@@ -541,7 +546,6 @@ cat(
   "The probability for the effect of Factor 2 is ",
   prob2, "\n"
 )
-
 ```
 
 Si vous avez la chance d’avoir accès au package lmPerm, vous pouvez effectuer le test de permutation beaucoup plus rapidement et facilement:
@@ -558,7 +562,6 @@ myformula <- as.formula("rdwght ~ sex+location+sex:location")
 mymodel <- lm(myformula, data = mydata)
 # Calculate permutation p-value
 anova(lmp(myformula, data = mydata, perm = "Prob", center = FALSE, Ca = 0.001))
-
 ```
 
 ## Bootstrap pour l’ANOVA à deux facteurs de classification
@@ -608,5 +611,4 @@ boot.ci(bootresults, conf = 0.9, index = 4)
 plot(bootresults, index = 4)
 boot.ci(bootresults, conf = 0.9, index = 5)
 plot(bootresults, index = 5)
-
 ```

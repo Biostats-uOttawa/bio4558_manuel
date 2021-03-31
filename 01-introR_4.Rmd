@@ -107,7 +107,7 @@ Vous aurez à la fin une seule version (corrigée) de vos données et un code qu
 Vous pouvez utiliser la fonction,
 
 ```{r write, eval =FALSE}
-  write.csv(mydata, file = "outfilename.csv", row.names = FALSE)
+write.csv(mydata, file = "outfilename.csv", row.names = FALSE)
 ```
 
 où `mydata` est le nom du base de données à exporter et `outfilename.csv` est le nom du fichier à produire.
@@ -187,18 +187,21 @@ mygraph <- ggplot(data = sturgeon, aes(x = fklngth))
 
 ## ajouter différentes parties au graphique
 mygraph <- mygraph +
-## histogramme semi-transparent
-    geom_histogram(aes(y = ..density..), bins = 30, color = "black",   alpha = 0.3) +
-##  line de densité
-    geom_density() +
-##  localisation des observations
-    geom_rug() +
-##  courbe de distribution normale approximé au données
-    stat_function(fun = dnorm,
-                   args = list(
-                     mean = mean(sturgeon$fklngth),
-                     sd = sd(sturgeon$fklngth)),
-                   color = "red")
+  ## histogramme semi-transparent
+  geom_histogram(aes(y = ..density..), bins = 30, color = "black", alpha = 0.3) +
+  ##  line de densité
+  geom_density() +
+  ##  localisation des observations
+  geom_rug() +
+  ##  courbe de distribution normale approximé au données
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = mean(sturgeon$fklngth),
+      sd = sd(sturgeon$fklngth)
+    ),
+    color = "red"
+  )
 
 ## montrer le graphique
 mygraph
@@ -269,7 +272,7 @@ Une des option de ¬ est l’ajout d’une trace lowess qui indique la tendance 
 Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les variable dans sturgeon, entrer la commande `pairs(sturgeon[,1:6], panel=panel.smooth)` et vous devriez obtenir
 
 ```{r pairs-stur}
-pairs(sturgeon[,1:6], panel = panel.smooth)
+pairs(sturgeon[, 1:6], panel = panel.smooth)
 ```
 
 ### Créer des sous-ensembles de cas
@@ -318,7 +321,7 @@ On peut employer ces fonctions directement dans les lignes de commandes, ou enco
 Par exemple, pour faire un graphique du logarithme décimal de fklngth en fonction de l’âge, on peut écrire
 
 ```{r plot-translog-stur-plot, eval = FALSE}
-plot(log(fklngth)~age, data = sturgeon)
+plot(log(fklngth) ~ age, data = sturgeon)
 ```
 
  Pour créer une variable orpheline (i.e. non incluse dans le data.frame) appelée logfklngth et contenant le logarithme décimal de fklngth, on peut écrire
@@ -352,26 +355,29 @@ Examinez les données pour le ratio et faites des graphiques pour évaluer la no
 ## Charger les données
 salmonella <- read.csv("data/salmonella.csv")
 
-##creer le graph en utilisant juste la souche sauvage et définir x
+## creer le graph en utilisant juste la souche sauvage et définir x
 mygraph <- ggplot(subset(salmonella, souche == "SAUVAGE"), aes(x = ratio))
-##ajouter des composants graphiques
+## ajouter des composants graphiques
 mygraph <- mygraph +
-# line densité
+  # line densité
   geom_density() +
-# position des observations
+  # position des observations
   geom_rug() +
-# histogramme
+  # histogramme
   geom_histogram(aes(y = ..density..),
-                 bins = 30,
-                 color = "black",
-                 alpha = 0.3) +
-# distribution normal ajustée
-  stat_function(fun = dnorm,
-                args = list(
-                  mean = mean(subset(salmonella, souche == "SAUVAGE")$ratio),
-                  sd = sd(subset(salmonella, souche == "SAUVAGE")$ratio)
-                ),
-                color = "red")
+    bins = 30,
+    color = "black",
+    alpha = 0.3
+  ) +
+  # distribution normal ajustée
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = mean(subset(salmonella, souche == "SAUVAGE")$ratio),
+      sd = sd(subset(salmonella, souche == "SAUVAGE")$ratio)
+    ),
+    color = "red"
+  )
 ## faire le graphique
 mygraph
 ```

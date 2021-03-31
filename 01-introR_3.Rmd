@@ -239,38 +239,49 @@ plot(rp2012$cadres, rp2012$proprio)
 Une représentation graphique est l'idéal pour visualiser l'existence d'un lien entre les deux variables. Voici quelques exemples d'interprétation :
 
 ```{r, echo = FALSE, fig.height=10, fig.width=6, fig.cap = "Illustration des relations bivariées"}
-par(mfrow=c(3,2))
+par(mfrow = c(3, 2))
 
 x <- rnorm(100)
-y <- 2*x + 1 + rnorm(100, 0, 0.4)
-plot(x, y, main = "Dépendance linéaire positive",
-     xlab = "", ylab = "", col="red")
+y <- 2 * x + 1 + rnorm(100, 0, 0.4)
+plot(x, y,
+  main = "Dépendance linéaire positive",
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
-y <- -3*x + 15 + rnorm(100, 0, 0.4)
-plot(x, y, main = "Dépendance linéaire négative",
-     xlab = "", ylab = "", col="red")
+y <- -3 * x + 15 + rnorm(100, 0, 0.4)
+plot(x, y,
+  main = "Dépendance linéaire négative",
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
 y <- exp(x) + 1 + rnorm(100, 0, 0.4)
-plot(x, y, main = "Dépendance non-linéaire monotone",
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = "Dépendance non-linéaire monotone",
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
-y <- 2*x^2 + 1 + rnorm(100, 0, 0.4)
-plot(x, y, main = "Dépendance non-linéaire non monotone",
-     xlab = "", ylab = "", col="red")
+y <- 2 * x^2 + 1 + rnorm(100, 0, 0.4)
+plot(x, y,
+  main = "Dépendance non-linéaire non monotone",
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
 y <- rnorm(100)
-plot(x, y, main = "Indépendance",
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = "Indépendance",
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
 y <- rnorm(100, 0, 0.03)
-plot(x, y, main = "Indépendance",
-     xlab = "", ylab = "", col="red", ylim = c(-2,2))
-
+plot(x, y,
+  main = "Indépendance",
+  xlab = "", ylab = "", col = "red", ylim = c(-2, 2)
+)
 ```
 
 
@@ -320,47 +331,57 @@ Ainsi, si la valeur la plus basse de la première variable est associée à la v
 
 
 ```{r, echo = FALSE, fig.height=10, fig.width=6}
-par(mfrow=c(3,2))
+par(mfrow = c(3, 2))
 
 x <- rnorm(100)
-y <- 2*x + 1 + rnorm(100, 0, 0.4)
+y <- 2 * x + 1 + rnorm(100, 0, 0.4)
 p <- round(cor(x, y), 2)
 s <- round(cor(x, y, method = "spearman"), 2)
 title <- paste0("Pearson : ", p, " - Spearman : ", s)
-plot(x, y, main = title,
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = title,
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
-y <- -3*x + 15 + rnorm(100, 0, 0.4)
+y <- -3 * x + 15 + rnorm(100, 0, 0.4)
 p <- round(cor(x, y), 2)
 s <- round(cor(x, y, method = "spearman"), 2)
 title <- paste0("Pearson : ", p, " - Spearman : ", s)
-plot(x, y, main = title,
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = title,
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
 y <- exp(x) + 1 + rnorm(100, 0, 0.4)
 p <- round(cor(x, y), 2)
 s <- round(cor(x, y, method = "spearman"), 2)
 title <- paste0("Pearson : ", p, " - Spearman : ", s)
-plot(x, y, main = title,
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = title,
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
-y <- 2*x^2 + 1 + rnorm(100, 0, 0.4)
+y <- 2 * x^2 + 1 + rnorm(100, 0, 0.4)
 p <- round(cor(x, y), 2)
 s <- round(cor(x, y, method = "spearman"), 2)
 title <- paste0("Pearson : ", p, " - Spearman : ", s)
-plot(x, y, main = title,
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = title,
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(100)
 y <- rnorm(100)
 p <- round(cor(x, y), 2)
 s <- round(cor(x, y, method = "spearman"), 2)
 title <- paste0("Pearson : ", p, " - Spearman : ", s)
-plot(x, y, main = title,
-     xlab = "", ylab = "", col="red")
+plot(x, y,
+  main = title,
+  xlab = "", ylab = "", col = "red"
+)
 
 x <- rnorm(20)
 y <- x + 1 + rnorm(20, 0, 0.4)
@@ -369,11 +390,10 @@ y <- c(y, -2, -1.9)
 p <- round(cor(x, y), 2)
 s <- round(cor(x, y, method = "spearman"), 2)
 title <- paste0("Pearson : ", p, " - Spearman : ", s)
-plot(x, y, main = title,
-     xlab = "", ylab = "", col="red", ylim = c(-2,2))
-
-
-
+plot(x, y,
+  main = title,
+  xlab = "", ylab = "", col = "red", ylim = c(-2, 2)
+)
 ```
 
 La corrélation des rangs a aussi pour avantage d'être moins sensibles aux valeurs extrêmes ou aux points isolés. On dit qu'elle est plus "robuste".
@@ -417,7 +437,7 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 
 ```{r}
 plot(rp2012$dipl_sup, rp2012$cadres)
-abline(reg, col="red")
+abline(reg, col = "red")
 ```
 -->
 
@@ -434,7 +454,7 @@ data(hdv2003)
 tab <- table(hdv2003$qualif, hdv2003$clso)
 tab
 lprop(tab)
-mosaicplot(tab, shade=TRUE)
+mosaicplot(tab, shade = TRUE)
 ```
 
 
@@ -491,7 +511,6 @@ Calculer la durée moyenne devant la télévision en fonction du statut d'occupa
 
 ```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
 tapply(hdv2003$heures.tv, hdv2003$occup, mean, na.rm = TRUE)
-
 ```
 
 **Exercice 3**

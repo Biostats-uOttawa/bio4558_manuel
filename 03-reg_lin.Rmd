@@ -62,13 +62,14 @@ str(sturgeon)
 ```
 
 ```{r, stur-2, warning = FALSE, message =  FALSE, fig.cap = "Graphique du poids en fonction de la longueur des esturgeons"}
-mygraph<-ggplot(
-  data = sturgeon[!is.na(sturgeon$rdwght),], # source of data
-  aes(x = fklngth, y = rdwght))
+mygraph <- ggplot(
+  data = sturgeon[!is.na(sturgeon$rdwght), ], # source of data
+  aes(x = fklngth, y = rdwght)
+)
 # plot data points, regression, loess trace
 mygraph <- mygraph +
-  stat_smooth(method=lm, se=FALSE, color="green") + # add linear regression, but no SE shading
-  stat_smooth(color="red", se=FALSE) + #add loess
+  stat_smooth(method = lm, se = FALSE, color = "green") + # add linear regression, but no SE shading
+  stat_smooth(color = "red", se = FALSE) + # add loess
   geom_point() # add data points
 
 mygraph # display graph
@@ -104,15 +105,15 @@ on voit ci-dessous, est:
 
 ```{r, stur-4hist}
 par(mfrow = c(2, 2)) # divise le graphique en 4 sections
-qqnorm(sturgeon$fklngth,ylab="fklngth")
+qqnorm(sturgeon$fklngth, ylab = "fklngth")
 qqline(sturgeon$fklngth)
-qqnorm(log10(sturgeon$fklngth),ylab="log10(fklngth)")
+qqnorm(log10(sturgeon$fklngth), ylab = "log10(fklngth)")
 qqline(log10(sturgeon$fklngth))
-qqnorm(sturgeon$rdwght,ylab="rdwght")
+qqnorm(sturgeon$rdwght, ylab = "rdwght")
 qqline(sturgeon$rdwght)
-qqnorm(log10(sturgeon$rdwght),ylab="log10(rdwgth)")
+qqnorm(log10(sturgeon$rdwght), ylab = "log10(rdwgth)")
 qqline(log10(sturgeon$rdwght))
-par(mfrow = c(1, 1)) #redéfinie la zone de graphique par défaut
+par(mfrow = c(1, 1)) # redéfinie la zone de graphique par défaut
 ```
 
 Il n’y a pas grand-chose à redire: aucune des distributions n’est
@@ -123,9 +124,10 @@ parfaitement normale, mais les déviations semblent mineures.
 
 ```{r, stur-scatmat}
 scatterplotMatrix(
-  ~fklngth+log10(fklngth)+rdwght+log10(rdwght),
-  data= sturgeon,
-  smooth=TRUE, diagonal = 'density')
+  ~ fklngth + log10(fklngth) + rdwght + log10(rdwght),
+  data = sturgeon,
+  smooth = TRUE, diagonal = "density"
+)
 ```
 
 - Ensuite, calculez le coefficient de corrélation de Pearson entre chaque paire (variables originales et logtransformées) en utilisant la commande `cor()`.
@@ -138,7 +140,7 @@ sturgeon$lrdwght <- log10(sturgeon$rdwght)
 
 Vous pouvez ensuite obtenir la matrice de corrélation par:
 ```{r, sturmat, eval = FALSE}
-cor(sturgeon[,c("fklngth","lfklngth","lrdwght","rdwght")], use="complete.obs")
+cor(sturgeon[, c("fklngth", "lfklngth", "lrdwght", "rdwght")], use = "complete.obs")
 ```
 
 Fréquemment, il y a des données manquantes dans un échantillon.
@@ -153,7 +155,7 @@ observations.
 Pourquoi la corrélation entre les variables originales est-elle la plus faible des trois ?
 
 ```{r, sturmat-eval}
-cor(sturgeon[,c("fklngth","lfklngth","lrdwght","rdwght")], use="complete.obs")
+cor(sturgeon[, c("fklngth", "lfklngth", "lrdwght", "rdwght")], use = "complete.obs")
 ```
 
 Il y a plusieurs choses à noter ici.
@@ -176,8 +178,9 @@ Comme exemple, essayons de tester si la corrélation entre lfklngth et rdwght es
 ```{r, sturcor-2}
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
-  alternative="two.sided",
-  method="pearson")
+  alternative = "two.sided",
+  method = "pearson"
+)
 ```
 
 On voit ici que la corrélation est hautement significative ($p < 2.2e-16$),ce qui n’est pas surprenant étant donné la valeur du coefficient de corrélation (0.8756).
@@ -204,15 +207,17 @@ Les deux plus communes sont le coefficient de rang de Spearman et le $\tau$ (tau
 ```{r, sturcor-spear}
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
-  alternative="two.sided",
-  method="spearman")
+  alternative = "two.sided",
+  method = "spearman"
+)
 ```
 
 ```{r, sturcor-ken}
 cor.test(
   sturgeon$lfklngth, sturgeon$rdwght,
-  alternative="two.sided",
-  method="kendall")
+  alternative = "two.sided",
+  method = "kendall"
+)
 ```
 
 Comparer les résultats de cette analyse à l'analyse paramétrique.
@@ -248,12 +253,13 @@ Que concluez-vous de ce diagramme de dispersion ?
 ```{r, sturlm-1, warning = FALSE, message =  FALSE}
 sturgeon.male <- subset(sturgeon, subset = sex == "MALE")
 mygraph <- ggplot(
-  data=sturgeon.male, # source of data
-  aes(x=age, y=fklngth)) #aesthetics: y=fklngth, x=rdwght
+  data = sturgeon.male, # source of data
+  aes(x = age, y = fklngth)
+) # aesthetics: y=fklngth, x=rdwght
 # plot data points, regression, loess trace
 mygraph <- mygraph +
-  stat_smooth(method=lm, se=FALSE, color="green") + # add linear regression, but no SE shading
-  stat_smooth(color="red") + #add loess
+  stat_smooth(method = lm, se = FALSE, color = "green") + # add linear regression, but no SE shading
+  stat_smooth(color = "red") + # add loess
   geom_point() # add data points
 mygraph # display graph
 ```
@@ -320,7 +326,7 @@ La commande plot() permet de visualiser des graphiques
 diagnostiques pour des modèles linéaires.
 
 ```{r, sturlmv-1, eval = FALSE}
-par(mfrow = c(2, 2), las=1)
+par(mfrow = c(2, 2), las = 1)
 plot(RegModel.1)
 ```
 
@@ -328,7 +334,7 @@ La commande par() est utilisée pour dire à R de tracer 2 rangées et 2 colonne
 
 Vous obtiendrez:
 ```{r, sturlmv-1eval, echo = FALSE}
-par(mfrow = c(2, 2), las=1)
+par(mfrow = c(2, 2), las = 1)
 plot(RegModel.1)
 ```
 
@@ -390,26 +396,27 @@ La relation entre `fklngth` et `age` n’étant pas linéaire, on devrait donc e
 - Voyons ce qu’une transformation log donne:
 
 ```{r, sturtr-1,warning = FALSE, message =  FALSE}
-par(mfrow = c(1, 1), las=1)
+par(mfrow = c(1, 1), las = 1)
 ggplot(
   data = sturgeon.male,
-  aes(x=log10(age), y=log10(fklngth))) +
-  geom_smooth(color="red")+
-  geom_smooth(method="lm", se=FALSE, color="green")+
+  aes(x = log10(age), y = log10(fklngth))
+) +
+  geom_smooth(color = "red") +
+  geom_smooth(method = "lm", se = FALSE, color = "green") +
   geom_point()
 ```
 
 Ajustons maintenant une régression simple sur ces données transformées.
 
 ```{r, sturtr-2}
-RegModel.2 <- lm(log10(fklngth)~log10(age), data=sturgeon.male)
+RegModel.2 <- lm(log10(fklngth) ~ log10(age), data = sturgeon.male)
 summary(RegModel.2)
 ```
 
 Examinons maintenant les graphiques diagnostiques:
 
 ```{r, sturtr-3}
-par(mfrow = c(2, 2), las=1)
+par(mfrow = c(2, 2), las = 1)
 plot(RegModel.2)
 ```
 
@@ -437,7 +444,7 @@ Suivant cette approche comparative, refaisons donc l’analyse après
 avoir enlevé les observations 8, 24, et 112.
 
 ```{r, sturtr-5}
-RegModel.3 <- lm(log10(fklngth)~log10(age), data=sturgeon.male, subset = !(rownames(sturgeon.male) %in% c('8','24','112')))
+RegModel.3 <- lm(log10(fklngth) ~ log10(age), data = sturgeon.male, subset = !(rownames(sturgeon.male) %in% c("8", "24", "112")))
 summary(RegModel.3)
 ```
 
@@ -447,9 +454,9 @@ L’ordonnée à l’origine (Intercept), la pente, et le R carré sont presque 
 Les graphiques diagnostiques des résidus et les tests formels des conditions d’application sur ce sous-ensemble de données donnent:
 
 ```{r, sturtr-6}
-par(mfrow = c(2,2))
+par(mfrow = c(2, 2))
 plot(RegModel.3)
-sturgeon.male.subset <- subset(sturgeon, subset=!(rownames(sturgeon.male) %in% c('8','24','112')))
+sturgeon.male.subset <- subset(sturgeon, subset = !(rownames(sturgeon.male) %in% c("8", "24", "112")))
 bptest(RegModel.3)
 dwtest(RegModel.3)
 resettest(RegModel.3)
@@ -488,7 +495,7 @@ Dans R, il est possible de faire cette analyse avec le code suivant:
 ```{r, rlm_r-pow-1}
 library(pwr)
 
-#analyse de puissance
+# analyse de puissance
 pwr.t.test(n = 20, d = 0.54, sig.level = 0.05, type = "one.sample")
 ```
 
@@ -506,7 +513,7 @@ Dans R, il est possible de faire cette analyse avec le code suivant:
 ```{r, lm_r-pow-1}
 library(pwr)
 
-#analyse de puissance
+# analyse de puissance
 pwr.t.test(n = 65, d = 0.54, sig.level = 0.05, type = "one.sample")
 ```
 
@@ -518,11 +525,11 @@ En augmentant la taille de l’échantillon à 65, selon le même scénario que 
 Un test non paramétrique pour l’ordonnée à l’origine et la pente d’une régression simple peut être effectué par bootstrap.
 
 ```{r, lm-boot-1}
-#charger le paquet boot
+# charger le paquet boot
 library(boot)
 # obtenir les poids de régression
 bs <- function(formula, data, indices) {
-  d <- data[indices,] # allows boot to select sample
+  d <- data[indices, ] # allows boot to select sample
   fit <- lm(formula, data = d)
   return(coef(fit))
 }
@@ -530,7 +537,8 @@ bs <- function(formula, data, indices) {
 results <- boot(
   data = sturgeon.male,
   statistic = bs,
-  R=1000, formula=log10(fklngth)~log10(age))
+  R = 1000, formula = log10(fklngth) ~ log10(age)
+)
 # view results
 results
 ```
@@ -543,9 +551,9 @@ appelée t1\* et la pente de la régression t2\*), R imprime :
 3. `std. error` l’erreur-type de l’estimé bootstrap
 
 ```{r, lm-boot-2}
-par(mfrow = c(2,2))
-plot(results, index=1) # intercept
-plot(results, index=2) # log10(age)
+par(mfrow = c(2, 2))
+plot(results, index = 1) # intercept
+plot(results, index = 2) # log10(age)
 ```
 
 
@@ -556,7 +564,7 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 boot.ci(results, type = "all", index = 1)
 ```
 ```{r, lm-boot-4}
-#intervalle de confiance pour la pente
+# intervalle de confiance pour la pente
 boot.ci(results, type = "all", index = 2)
 ```
 

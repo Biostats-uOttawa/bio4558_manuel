@@ -49,7 +49,7 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 ```{r, fig.cap = "Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles"}
 mydata <- read.csv("data/Mregdat.csv")
 scatterplotMatrix(
-  ~logherp + logarea + cpfor2 + thtden + swamp,
+  ~ logherp + logarea + cpfor2 + thtden + swamp,
   regLine = TRUE, smooth = TRUE, diagonal = TRUE,
   data = mydata
 )
@@ -62,7 +62,7 @@ scatterplotMatrix(
 model.loga <- lm(logherp ~ logarea, data = mydata)
 summary(model.loga)
 
-par(mfrow = c(2,2))
+par(mfrow = c(2, 2))
 plot(model.loga)
 ```
 
@@ -140,7 +140,7 @@ La sélection pas à pas avec R utilise le Critère Informatif de Akaike (Akaike
 ```{r}
 # Stepwise Regression
 library(MASS)
-step.mtri <- stepAIC(model.mtri, direction="both")
+step.mtri <- stepAIC(model.mtri, direction = "both")
 step.mtri$anova # display results
 ```
 
@@ -157,7 +157,8 @@ Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on p
 model.null <- lm(logherp ~ 1, data = mydata)
 step.f <- stepAIC(
   model.null,
-  scope = ~ . + logarea + cpfor2 + thtden, direction = "forward")
+  scope = ~ . + logarea + cpfor2 + thtden, direction = "forward"
+)
 step.f$anova # display results
 ```
 
@@ -204,18 +205,19 @@ La régression requiert la linéarité de la relation entre les variables dépen
 -  Faites un diagramme de dispersion des résidus (residual) de la régression `logherp ~ logarea` en fonction de swamp .
 
 ```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
-#problème avec les données de manquantes dans logherp
+# problème avec les données de manquantes dans logherp
 mysub <- subset(mydata, !is.na(logherp))
 # ajouter les résidus dans les donnée
 mysub$resloga <- residuals(model.loga)
 ggplot(data = mysub, aes(y = resloga, x = swamp)) +
-geom_point() + geom_smooth()
+  geom_point() +
+  geom_smooth()
 ```
 
 -  L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
 
 ```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
-model.resloga <- lm(resloga ~swamp, mysub)
+model.resloga <- lm(resloga ~ swamp, mysub)
 summary(model.resloga)
 ```
 
@@ -242,7 +244,8 @@ Suite à ces analyses, il semble opportun d’essayer d’ajuster un modèle inc
 ```{r, echo = params$echo_sol, class.source = "exer"}
 model.poly1 <- lm(
   logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2),
-  data = mydata)
+  data = mydata
+)
 summary(model.poly1)
 ```
 
@@ -251,7 +254,8 @@ Les résultats de cette analyse suggèrent qu’on devrait probablement exclure 
 ```{r, echo = params$echo_sol, class.source = "exer"}
 model.poly2 <- lm(
   logherp ~ logarea + thtden + swamp + I(swamp^2),
-  data = mydata)
+  data = mydata
+)
 summary(model.poly2)
 ```
 
@@ -270,7 +274,7 @@ Toutes les techniques de sélection des modèles présument que les conditions d
 
 Examinons donc les graphiques diagnostiques du modèle final:
 ```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Conditions d'application du modèle `model.poly2`"}
-par(mfrow = c(2,2))
+par(mfrow = c(2, 2))
 plot(model.poly2)
 ```
 
@@ -316,14 +320,15 @@ Pour illustrer ce qui serait visible sur ces graphiques si il y avait une dévia
 ```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Graphiques de résidus partiels du modèle `model.nopoly`"}
 model.nopoly <- lm(
   logherp ~ logarea + thtden + swamp,
-  data = mydata)
+  data = mydata
+)
 crPlots(model.nopoly)
 ```
 
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
 
 ```{r}
-resettest(model.nopoly, type="regressor")
+resettest(model.nopoly, type = "regressor")
 ```
 
 ## Tester la présence d'interactions
@@ -333,7 +338,8 @@ Lorsqu’il y a plusieurs variables indépendantes, vous devriez toujours garder
 ```{r}
 fullmodel.withinteractions <- lm(
   logherp ~ logarea * cpfor2 * thtden * swamp * I(swamp^2),
-  data= mydata)
+  data = mydata
+)
 summary(fullmodel.withinteractions)
 ```
 
@@ -348,15 +354,16 @@ step(fullmodel.withinteractions)
 Bon, est-ce qu’on oublie tout ça et qu’on accepte le modèle final sans ce soucier des interactions? Non, pas encore. Il y a un compromis possible: comparer notre modèle "final" à un modèle qui contient au moins un sous-ensemble des interactions, par exemple toutes les interactions du second degré, pour éprouver si l’addition de ces interactions améliore beaucoup l’ajustement du modèle.
 
 ```{r}
-full.model.2ndinteractions<- lm(
+full.model.2ndinteractions <- lm(
   logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2)
     + logarea:cpfor2
     + logarea:thtden
     + logarea:swamp
     + cpfor2:thtden
     + cpfor2:swamp
-    + thtden:swamp
- , data= mydata)
+    + thtden:swamp,
+  data = mydata
+)
 summary(full.model.2ndinteractions)
 ```
 
@@ -405,9 +412,10 @@ Je ne supporte pas l'approche stepwise ni l'approche par AIC. Je déteste l'appr
 # refaire le modèle en s'assurant qu'il n'y a pas de "NA" et en spécificant na.action
 full.model.2ndinteractions <- update(
   full.model.2ndinteractions,
-  .~.,
+  . ~ .,
   data = mysub,
-  na.action = "na.fail")
+  na.action = "na.fail"
+)
 
 library(MuMIn)
 dd <- dredge(full.model.2ndinteractions)
@@ -418,9 +426,9 @@ L’objet `dd` contient tous les modèles possibles (i.e. ceux qui ont toutes le
 ```{r}
 # get models within 2 units of AICc from the best model
 top.models.1 <- get.models(dd, subset = delta < 2)
-avgmodel1<-model.avg(top.models.1) # compute average parameters
-summary(avgmodel1) #display averaged model
-confint(avgmodel1) #display CI for averaged coefficients
+avgmodel1 <- model.avg(top.models.1) # compute average parameters
+summary(avgmodel1) # display averaged model
+confint(avgmodel1) # display CI for averaged coefficients
 ```
 
 
@@ -442,15 +450,15 @@ Le code qui suit, utilisant le package `simpleboot`, a été conçu pour être f
 # Define model to be bootstrapped and the data source used
 mymodel <- lm(logherp ~ logarea + thtden + swamp + I(swamp^2), data = mydata)
 # Set the number of bootstrap iterations
-nboot<-1000
+nboot <- 1000
 library(simpleboot)
 # R is the number of bootstrap iterations
 # Setting rows to FALSE indicates resampling of residuals
 mysimpleboot <- lm.boot(mymodel, R = nboot, rows = FALSE)
 # Extract bootstrap coefficients
-myresults <- sapply(mysimpleboot$boot.list, function (x) x$coef)
+myresults <- sapply(mysimpleboot$boot.list, function(x) x$coef)
 # Transpose matrix so that lines are bootstrap iterations and columns are coefficients
-tmyresults<-t(myresults)
+tmyresults <- t(myresults)
 ```
 
 Vous pouvez ensuite faire des graphiques pour voir les résultats. Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d’examiner la distribution pour chaque coefficient du modèle sur des graphiques:
@@ -458,29 +466,29 @@ Vous pouvez ensuite faire des graphiques pour voir les résultats. Lorsque vous 
 # Plot histograms of bootstrapped coefficients
 ncoefs <- length(data.frame(tmyresults))
 par(mfrow = c(1, 2), mai = c(0.5, 0.5, 0.5, 0.5), ask = TRUE)
-for (i in 1 : ncoefs) {
+for (i in 1:ncoefs) {
   lab <- colnames(tmyresults)[i]
-  x <- tmyresults[,i]
-  plot(density(x),main=lab, xlab="")
-  abline(v=mymodel$coef[i], col = "red")
-  abline(v=quantile(x, c(0.025, 0.975)))
-  hist(x, main=lab, xlab="")
-  abline(v=quantile(x, c(0.025, 0.975)))
-  abline(v=mymodel$coef[i], col = "red")
+  x <- tmyresults[, i]
+  plot(density(x), main = lab, xlab = "")
+  abline(v = mymodel$coef[i], col = "red")
+  abline(v = quantile(x, c(0.025, 0.975)))
+  hist(x, main = lab, xlab = "")
+  abline(v = quantile(x, c(0.025, 0.975)))
+  abline(v = mymodel$coef[i], col = "red")
 }
 ```
 
 ```{r, echo = FALSE, fig.cap = "Distribution des estimé par bootstrap pour `logarea`"}
 i <- 2
 par(mfrow = c(1, 2))
-  lab <- colnames(tmyresults)[i]
-  x <- tmyresults[,i]
-  plot(density(x),main=lab, xlab="")
-  abline(v=mymodel$coef[i], col = "red")
-  abline(v=quantile(x, c(0.025, 0.975)))
-  hist(x, main=lab, xlab="")
-  abline(v=quantile(x, c(0.025, 0.975)))
-  abline(v=mymodel$coef[i], col = "red")
+lab <- colnames(tmyresults)[i]
+x <- tmyresults[, i]
+plot(density(x), main = lab, xlab = "")
+abline(v = mymodel$coef[i], col = "red")
+abline(v = quantile(x, c(0.025, 0.975)))
+hist(x, main = lab, xlab = "")
+abline(v = quantile(x, c(0.025, 0.975)))
+abline(v = mymodel$coef[i], col = "red")
 ```
 
 Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l’histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l’intervalle de confiance à 95%. Ici l’IC ne contient pas 0, et donc on peut conclure que l’effet de logarea sur logherp est significativement positif.
@@ -489,7 +497,7 @@ Les limites précises peuvent être obtenues par:
 
 ```{r}
 # Display empirical bootstrap quantiles (not corrected for bias)
-p <- c(0.005,0.01, 0.025, 0.05, 0.95, 0.975, 0.99, 0.995)
+p <- c(0.005, 0.01, 0.025, 0.05, 0.95, 0.975, 0.99, 0.995)
 apply(tmyresults, 2, quantile, p)
 ```
 
@@ -504,37 +512,39 @@ Ces intervalles de confiances ne sont pas fiables si la distribution des estimé
 library(boot)
 # function to obtain regression coefficients for each iteration
 bs <- function(formula, data, indices) {
-  d <- data[indices,] # allows boot to select sample
-  fit <- lm(formula, data=d)
+  d <- data[indices, ] # allows boot to select sample
+  fit <- lm(formula, data = d)
   return(coef(fit))
 }
 # bootstrapping with 1000 replications
-results <- boot(data = mydata, statistic = bs, R = 1000,
-  formula = logherp ~ logarea + thtden + swamp + I(swamp^2))
+results <- boot(
+  data = mydata, statistic = bs, R = 1000,
+  formula = logherp ~ logarea + thtden + swamp + I(swamp^2)
+)
 # view results
 ```
 
 Pour obtenir les résultats, le code suivant va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l’intervalle de confiance
  ```{r, eval = FALSE}
-plot(results, index=1) # intercept
-plot(results, index=2) # logarea
-plot(results, index=3) # thtden
-plot(results, index=4) # swamp
-plot(results, index=5) # swamp^2
+plot(results, index = 1) # intercept
+plot(results, index = 2) # logarea
+plot(results, index = 3) # thtden
+plot(results, index = 4) # swamp
+plot(results, index = 5) # swamp^2
 
 # get 95% confidence intervals
-boot.ci(results, type="bca", index=1)
-boot.ci(results, type="bca", index=2)
-boot.ci(results, type="bca", index=3)
-boot.ci(results, type="bca", index=4)
-boot.ci(results, type="bca", index=5)
+boot.ci(results, type = "bca", index = 1)
+boot.ci(results, type = "bca", index = 2)
+boot.ci(results, type = "bca", index = 3)
+boot.ci(results, type = "bca", index = 4)
+boot.ci(results, type = "bca", index = 5)
 ```
 
 Pour logarea, cela donne:
 
 ```{r, echo = FALSE}
-boot.ci(results, type="bca", index=2) # logarea
-plot(results, index=2) # logarea
+boot.ci(results, type = "bca", index = 2) # logarea
+plot(results, index = 2) # logarea
 ```
 
 Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
@@ -552,11 +562,13 @@ Les tests de permutations sont plus rarement effectués en régression multiple 
 # using lmperm library
 library(lmPerm)
 # Fit desired model on the desired dataframe
-mymodel<-lm(logherp ~ logarea + thtden + swamp + I(swamp^2),
-  data = mydata)
-mymodelProb<-lmp(
+mymodel <- lm(logherp ~ logarea + thtden + swamp + I(swamp^2),
+  data = mydata
+)
+mymodelProb <- lmp(
   logherp ~ logarea + thtden + swamp + I(swamp^2),
-  data = mydata, perm="Prob")
+  data = mydata, perm = "Prob"
+)
 summary(mymodel)
 summary(mymodelProb)
 ```

@@ -37,23 +37,28 @@ Une excellente façon de comparer visuellement une distribution à la distributi
 # and define x axis as representing fklngth
 mygraph <- ggplot(
   data = sturgeon,
-  aes(x = fklngth)) +
+  aes(x = fklngth)
+) +
   xlab("Fork length (cm)")
 # add data to the mygraph ggplot
 mygraph <- mygraph +
   geom_density() + # add data density smooth
   geom_rug() + # add rug (bars at the bottom of the plot)
-  geom_histogram(# add black semitransparent histogram
-    aes(y = ..density..), color = "black", alpha = 0.3) +
+  geom_histogram( # add black semitransparent histogram
+    aes(y = ..density..),
+    color = "black", alpha = 0.3
+  ) +
   # add normal curve in red, with mean and sd from fklength
-  stat_function(fun = dnorm,
+  stat_function(
+    fun = dnorm,
     args = list(
       mean = mean(sturgeon$fklngth),
       sd = sd(sturgeon$fklngth)
-),
-    color = "red")
-#display graph, by location
-mygraph+facet_grid(.~location)
+    ),
+    color = "red"
+  )
+# display graph, by location
+mygraph + facet_grid(. ~ location)
 ```
 
 Examinez ce graphique et essayez de déterminer si ces deux échantillons sont normalement distribués. À mon avis, cette variable est approximativement normalement distribuée dans les deux échantillons. Puisque ce qui nous intéresse est de comparer la taille des poissons de deux sites différents, c’est probablement une bonne idée de créer un graphique qui compare les deux groupes de données. Un Box plot convient très bien pour cette tâche.
@@ -61,8 +66,11 @@ Examinez ce graphique et essayez de déterminer si ces deux échantillons sont n
 - Tracez un boxplot de `fklngth` groupé par `location`. Que concluez-vous quant à la différence entre les deux sites?
 
 ```{r, t-2, warning = FALSE, message = FALSE, fig.cap = "Boxplot de la longueur des esturgeons"}
-ggplot(data=sturgeon, aes(x=location,
-y=fklngth))+geom_boxplot(notch=TRUE)
+ggplot(data = sturgeon, aes(
+  x = location,
+  y = fklngth
+)) +
+  geom_boxplot(notch = TRUE)
 ```
 
 Il n’y a pas de grande différence de taille entre les deux sites, mais la taille des poissons à The Pas est plus variable ayant une plus large étendue de taille et des valeurs extrêmes (définies par les valeurs qui sont > 1.5*l’étendue interquartile) à chaque bout de la distribution.
@@ -80,25 +88,31 @@ Que concluez-vous?
 
 ```{r, t-3}
 # t-test assuming equal variances
- t.test(
-   fklngth~location, data = sturgeon,
-   alternative ='two.sided',
-   var.equal = TRUE)
+t.test(
+  fklngth ~ location,
+  data = sturgeon,
+  alternative = "two.sided",
+  var.equal = TRUE
+)
 ```
 
 ```{r, t-4}
 # t-test assuming unequal variances
- t.test(
-   fklngth ~ location, data = sturgeon,
-   alternative ='two.sided',
-   var.equal = FALSE)
+t.test(
+  fklngth ~ location,
+  data = sturgeon,
+  alternative = "two.sided",
+  var.equal = FALSE
+)
 ```
 
 ```{r, t-5}
 # test non paramétrique
- wilcox.test(
-   fklngth ~ location, data = sturgeon,
-   alternative ='two.sided')
+wilcox.test(
+  fklngth ~ location,
+  data = sturgeon,
+  alternative = "two.sided"
+)
 ```
 
 En se fiant au test de t, on rejette donc l’hypothèse nulle. Il y a une différence significative entre les deux moyennes des longueurs à la fourche.
@@ -108,7 +122,7 @@ Notez que si l’on se fie au test de *Wilcoxon*, il faut accepter l’hypothès
 Avant d’accepter les résultats du test de t et de rejeter l’hypothèse nulle qu’il n’y a pas de différences de taille entre les deux sites, il est important de déterminer si les données remplissent les conditions de normalité des résidus et d’égalité des variances. L’examen préliminaire suggérait que les données sont à peu près normales mais qu’il y avait peut-être des problèmes avec les variances (puisque l’étendue des données pour The Pas était beaucoup plus grande que celle pour Cumberland). On peut examiner ces conditions d’application plus en détail en examinant les résidus d’un modèle linéaire et en utilisant les graphiques diagnostiques:
 
 ```{r, t-6, fig.cap = "Condition d'application du modèle linéaire"}
-m1 <- lm(fklngth ~ location, data=sturgeon)
+m1 <- lm(fklngth ~ location, data = sturgeon)
 par(mfrow = c(2, 2))
 plot(m1)
 ```
@@ -129,7 +143,7 @@ Qu’en est-il de l’égalité des variances?
 
 ```{r, t-8}
 library(car)
- leveneTest(m1)
+leveneTest(m1)
 ```
 
 ```{r, t-9}
@@ -161,8 +175,10 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 
 ```{r, tb-2}
 # bootstrapping with 1000 replications
-results <- boot(data = sturgeon, statistic = bs, R = 1000,
-formula = fklngth ~ location)
+results <- boot(
+  data = sturgeon, statistic = bs, R = 1000,
+  formula = fklngth ~ location
+)
 # view results
 results
 ```
@@ -185,8 +201,10 @@ Les tests de permutation pour les modèles linéaires peuvent être effectués �
 
 ```{r, tp-1}
 m1Perm <- lmp(
-  fklngth ~ location, data = sturgeon,
-  perm = "Prob")
+  fklngth ~ location,
+  data = sturgeon,
+  perm = "Prob"
+)
 ```
 
 La fonction `lmp()` fait tout le travail pour nous. Ici, cette fonction est effectuée avec l’option perm pour choisir la règle utilisée pour stopper les calculs. L’option Probs arrête les permutations quand la déviation standard estimée pour la p-valeur tombe sous un seuil déterminé. C’est l’une des nombreuses règles qui peuvent possiblement être utilisées pour ne faire les permutations que sur un sous-ensemble des permutations possibles (ce qui prendrait souvent trrrrrès longtemps).
@@ -214,9 +232,11 @@ Le fichier `skulldat_2020.csv` contient des mesures de la partie inférieure du 
 
 ```{r, tpaired-1}
 skull <- read.csv("data/skulldat_2020.csv")
-t.test(width~age, data = skull,
-  alternative='two.sided',
-  paired = FALSE)
+t.test(width ~ age,
+  data = skull,
+  alternative = "two.sided",
+  paired = FALSE
+)
 ```
 
 Jusqu'à maintenant, nous avons spécifié le test de t en utilisant une notation de type `formule` avec `y ~ x` où `y` est la variable pour laquelle on souhaite comparer les moyennes et `x` correspond à une variable définissant les groupes.
@@ -236,8 +256,8 @@ Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par 
 
 ```{r}
 skull_h <- data.frame(id = unique(skull$id))
-skull_h$width5 <- skull$width[match(skull_h$id,skull$id) & skull$age==5]
-skull_h$width6 <- skull$width[match(skull_h$id,skull$id) & skull$age==6]
+skull_h$width5 <- skull$width[match(skull_h$id, skull$id) & skull$age == 5]
+skull_h$width6 <- skull$width[match(skull_h$id, skull$id) & skull$age == 6]
 head(skull_h)
 ```
 
@@ -245,8 +265,9 @@ Maintenant, effectuons le test apparié qui est approprié: Que conclure? Commen
 
 ```{r, tpaired-2}
 t.test(skull_h$width5, skull_h$width6,
-  alternative='two.sided',
-  paired = TRUE)
+  alternative = "two.sided",
+  paired = TRUE
+)
 ```
 
 La première analyse a comme supposition que les deux échantillons de filles de 5 et 6 ans sont indépendants, alors que la deuxième analyse a comme supposition que la même fille a été mesurée deux fois, une fois à 5 ans, et la deuxième fois à 6 ans.
@@ -258,7 +279,7 @@ graphskull <- ggplot(data = skull_h, aes(x = width5, y = width6)) +
   geom_point() +
   labs(x = "Skull width at age 5", y = "Skull width at age 6") +
   geom_smooth() +
-  scale_fill_continuous(low="lavenderblush", high="red")
+  scale_fill_continuous(low = "lavenderblush", high = "red")
 graphskull
 ```
 
@@ -268,8 +289,9 @@ Avec *r* = `r cor(skull_h$width5,skull_h$width6)`. En présence d’une si forte
 
 ```{r, tpaired-4}
 wilcox.test(skull_h$width5, skull_h$width6,
-  alternative='two.sided',
-  paired = TRUE)
+  alternative = "two.sided",
+  paired = TRUE
+)
 ```
 
 Donc on tire la même conclusion qu’avec le test de t apparié et conclue qu’il y a des différences significatives entre la taille des crânes de filles âgées de 5 et 6 ans (quelle surprise!).
@@ -278,11 +300,13 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 
 ```{r, tpaired-5}
 t.test(skull_h$width5, skull_h$width6,
-  alternative='less',
-  paired = TRUE)
+  alternative = "less",
+  paired = TRUE
+)
 wilcox.test(skull_h$width5, skull_h$width6,
-  alternative='less',
-  paired = TRUE)
+  alternative = "less",
+  paired = TRUE
+)
 ```
 
 
