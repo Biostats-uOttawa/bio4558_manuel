@@ -6,20 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.10 Recherche du meilleur modèle fondée sur la théorie de l’information | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.10 Recherche du meilleur modèle fondée sur la théorie de l’information | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/missing.png" />
+  <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
+  <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="7.10 Recherche du meilleur modèle fondée sur la théorie de l’information | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="twitter:image" content="images/missing.png" />
+  <meta name="twitter:image" content="/images/missing.png" />
 
 <meta name="author" content="Julien Martin" />
 
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="tester-la-présence-dinteractions.html"/>
 <link rel="next" href="bootstrap-et-régression-multiple.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,30 +50,32 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
@@ -133,24 +137,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Note</a></li>
-<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a>
+<ul>
 <li class="chapter" data-level="" data-path="quelques-points-importants-à-retenir.html"><a href="quelques-points-importants-à-retenir.html"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
 <li class="chapter" data-level="" data-path="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours.html"><a href="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours.html"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
-<li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a><ul>
+<li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a>
+<ul>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#r"><i class="fa fa-check"></i>R</a></li>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#rstudio"><i class="fa fa-check"></i>Rstudio</a></li>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#gpower"><i class="fa fa-check"></i>G*Power</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="instructions-générales-pour-les-laboratoires.html"><a href="instructions-générales-pour-les-laboratoires.html"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
-<li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html"><i class="fa fa-check"></i>Notes sur le manuel</a><ul>
+<li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html"><i class="fa fa-check"></i>Notes sur le manuel</a>
+<ul>
 <li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html#resources"><i class="fa fa-check"></i>Resources</a></li>
 <li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction-à-r.html"><a href="introduction-à-r.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
+<li class="chapter" data-level="1" data-path="introduction-à-r.html"><a href="introduction-à-r.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="set-intro.html"><a href="set-intro.html"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>1.2</b> Premier pas avec R</a><ul>
+<li class="chapter" data-level="1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>1.2</b> Premier pas avec R</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#la-console"><i class="fa fa-check"></i><b>1.2.1</b> La console</a></li>
 <li class="chapter" data-level="1.2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets"><i class="fa fa-check"></i><b>1.2.2</b> Objets</a></li>
 <li class="chapter" data-level="1.2.3" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#vecteurs"><i class="fa fa-check"></i><b>1.2.3</b> Vecteurs</a></li>
@@ -159,19 +168,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.6" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#packages"><i class="fa fa-check"></i><b>1.2.6</b> Installer et charger des extensions (<em>packages</em>)</a></li>
 <li class="chapter" data-level="1.2.7" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#ex-introR"><i class="fa fa-check"></i><b>1.2.7</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html"><i class="fa fa-check"></i><b>1.3</b> Premier travail avec des données</a><ul>
+<li class="chapter" data-level="1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html"><i class="fa fa-check"></i><b>1.3</b> Premier travail avec des données</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#jeu-de-données-dexemple"><i class="fa fa-check"></i><b>1.3.1</b> Jeu de données d’exemple</a></li>
 <li class="chapter" data-level="1.3.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#tableau-de-données-data-frame"><i class="fa fa-check"></i><b>1.3.2</b> Tableau de données (<em>data frame</em>)</a></li>
 <li class="chapter" data-level="1.3.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyse-univariée"><i class="fa fa-check"></i><b>1.3.3</b> Analyse univariée</a></li>
 <li class="chapter" data-level="1.3.4" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#ex-introR-univ"><i class="fa fa-check"></i><b>1.3.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>1.4</b> Analyse de 2 variables</a><ul>
+<li class="chapter" data-level="1.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>1.4</b> Analyse de 2 variables</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-qualitatives"><i class="fa fa-check"></i><b>1.4.1</b> Croisement de deux variables qualitatives</a></li>
 <li class="chapter" data-level="1.4.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-dune-variable-quantitative-et-dune-variable-qualitative"><i class="fa fa-check"></i><b>1.4.2</b> Croisement d’une variable quantitative et d’une variable qualitative</a></li>
 <li class="chapter" data-level="1.4.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-quantitatives"><i class="fa fa-check"></i><b>1.4.3</b> Croisement de deux variables quantitatives</a></li>
 <li class="chapter" data-level="1.4.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#ex-introR-biv"><i class="fa fa-check"></i><b>1.4.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html"><i class="fa fa-check"></i><b>1.5</b> Gérer les données</a><ul>
+<li class="chapter" data-level="1.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html"><i class="fa fa-check"></i><b>1.5</b> Gérer les données</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="gérer-les-données.html"><a href="gérer-les-données.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>1.5.1</b> Importer et exporter des données</a></li>
 <li class="chapter" data-level="1.5.2" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>1.5.2</b> Examen préliminaire des données</a></li>
 <li class="chapter" data-level="1.5.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#créer-des-sous-ensembles-de-cas"><i class="fa fa-check"></i><b>1.5.3</b> Créer des sous-ensembles de cas</a></li>
@@ -179,57 +191,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html#exercice-sur-r"><i class="fa fa-check"></i><b>1.5.5</b> Exercice sur R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power</a><ul>
-<li class="chapter" data-level="2.1" data-path="la-théorie.html"><a href="la-théorie.html"><i class="fa fa-check"></i><b>2.1</b> La théorie</a><ul>
+<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="la-théorie.html"><a href="la-théorie.html"><i class="fa fa-check"></i><b>2.1</b> La théorie</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="la-théorie.html"><a href="la-théorie.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>2.1.1</b> Qu’est-ce que la puissance?</a></li>
 <li class="chapter" data-level="2.1.2" data-path="la-théorie.html"><a href="la-théorie.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>2.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
 <li class="chapter" data-level="2.1.3" data-path="la-théorie.html"><a href="la-théorie.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>2.1.3</b> Facteurs qui affectent la puissance</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="quest-ce-que-gpower.html"><a href="quest-ce-que-gpower.html"><i class="fa fa-check"></i><b>2.2</b> Qu’est ce que G*Power?</a></li>
-<li class="chapter" data-level="2.3" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="2.3" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html#principe-général"><i class="fa fa-check"></i><b>2.3.1</b> Principe général</a></li>
 <li class="chapter" data-level="2.3.2" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>2.3.2</b> Types d’analyses de puissance disponibles</a></li>
 <li class="chapter" data-level="2.3.3" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>2.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><i class="fa fa-check"></i><b>2.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
+<li class="chapter" data-level="2.4" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><i class="fa fa-check"></i><b>2.4</b> Puissance pour un test de t comparant deux moyennes</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-post-hoc"><i class="fa fa-check"></i><b>2.4.1</b> Analyse post-hoc</a></li>
 <li class="chapter" data-level="2.4.2" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-à-priori"><i class="fa fa-check"></i><b>2.4.2</b> Analyse à priori</a></li>
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
+<li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
 <li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et <span class="math inline">\(\tau\)</span> de Kendall</a></li>
-<li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
+<li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="transformation-des-données-en-régression.html"><a href="transformation-des-données-en-régression.html"><i class="fa fa-check"></i><b>3.7</b> Transformation des données en régression</a></li>
 <li class="chapter" data-level="3.8" data-path="traitement-des-valeurs-extrèmes.html"><a href="traitement-des-valeurs-extrèmes.html"><i class="fa fa-check"></i><b>3.8</b> Traitement des valeurs extrèmes</a></li>
-<li class="chapter" data-level="3.9" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><i class="fa fa-check"></i><b>3.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
+<li class="chapter" data-level="3.9" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><i class="fa fa-check"></i><b>3.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>3.9.1</b> Puissance de détecter une pente donnée</a></li>
 <li class="chapter" data-level="3.9.2" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>3.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="bootstrap-en-régression-simple-avec-r.html"><a href="bootstrap-en-régression-simple-avec-r.html"><i class="fa fa-check"></i><b>3.10</b> Bootstrap en régression simple avec R</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a><ul>
+<li class="chapter" data-level="4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="set-t.html"><a href="set-t.html"><i class="fa fa-check"></i><b>4.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="4.2" data-path="examen-visuel-des-données.html"><a href="examen-visuel-des-données.html"><i class="fa fa-check"></i><b>4.2</b> Examen visuel des données</a></li>
 <li class="chapter" data-level="4.3" data-path="comparer-les-moyennes-de-deux-échantillons-indépendants.html"><a href="comparer-les-moyennes-de-deux-échantillons-indépendants.html"><i class="fa fa-check"></i><b>4.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
-<li class="chapter" data-level="4.4" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><i class="fa fa-check"></i><b>4.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
+<li class="chapter" data-level="4.4" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><i class="fa fa-check"></i><b>4.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>4.4.1</b> Bootstrap</a></li>
 <li class="chapter" data-level="4.4.2" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#permutation"><i class="fa fa-check"></i><b>4.4.2</b> Permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="comparer-les-moyennes-de-deux-échantillons-appariés.html"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html"><i class="fa fa-check"></i><b>4.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
 <li class="chapter" data-level="4.6" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i><b>4.6</b> Références</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="set-ano.html"><a href="set-ano.html"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#visualiser-les-données"><i class="fa fa-check"></i><b>5.2.1</b> Visualiser les données</a></li>
 <li class="chapter" data-level="5.2.2" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>5.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
 <li class="chapter" data-level="5.2.3" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#faire-lanova"><i class="fa fa-check"></i><b>5.2.3</b> Faire l’ANOVA</a></li>
@@ -239,9 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="examen-des-valeurs-extrêmes.html"><a href="examen-des-valeurs-extrêmes.html"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a><ul>
+<li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="set-anomul.html"><a href="set-anomul.html"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a><ul>
+<li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes</a></li>
 <li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes</a></li>
 </ul></li>
@@ -252,7 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html"><i class="fa fa-check"></i><b>6.7</b> Test de permutation pour l’ANOVA à deux facteurs de classification</a></li>
 <li class="chapter" data-level="6.8" data-path="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"><i class="fa fa-check"></i><b>6.8</b> Bootstrap pour l’ANOVA à deux facteurs de classification</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
+<li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
 <li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
@@ -266,11 +292,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a><ul>
+<li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="set-anco.html"><a href="set-anco.html"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="8.2" data-path="modèle-linéaire-général.html"><a href="modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8.2</b> Modèle linéaire général</a></li>
 <li class="chapter" data-level="8.3" data-path="ancova.html"><a href="ancova.html"><i class="fa fa-check"></i><b>8.3</b> ANCOVA</a></li>
-<li class="chapter" data-level="8.4" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.4</b> Homogénéité des pentes</a><ul>
+<li class="chapter" data-level="8.4" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.4</b> Homogénéité des pentes</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-1---la-taille-en-fonction-de-lâge-exemple-avec-pente-commune"><i class="fa fa-check"></i><b>8.4.1</b> Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)</a></li>
 <li class="chapter" data-level="8.4.2" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-2---taille-en-fonction-de-lâge-exemple-avec-des-pentes-différentes"><i class="fa fa-check"></i><b>8.4.2</b> Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)</a></li>
 </ul></li>
@@ -279,7 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.7</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.8" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.8</b> Permutation test</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
+<li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="set-freq.html"><a href="set-freq.html"><i class="fa fa-check"></i><b>9.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="9.2" data-path="organisation-des-données-3-formats.html"><a href="organisation-des-données-3-formats.html"><i class="fa fa-check"></i><b>9.2</b> Organisation des données: 3 formats</a></li>
 <li class="chapter" data-level="9.3" data-path="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><i class="fa fa-check"></i><b>9.3</b> Visualiser graphiquement les tableaux de contingence et test d’indépendance</a></li>
@@ -290,8 +319,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
 <li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
-<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a>
+<ul>
 <li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
 <li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
@@ -318,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation" class="section level2">
+<div id="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation" class="section level2" number="7.10">
 <h2><span class="header-section-number">7.10</span> Recherche du meilleur modèle fondée sur la théorie de l’information</h2>
 <p>Une des principales critiques des méthodes pas-à-pas (stepwise) est que les valeurs de p ne sont pas strictement interprétables à cause du grand nombre de tests qui sont implicites dans le processus. C’est le problème des comparaisons ou tests multiples: en construisant un modèle linéaire (comme une régression multiple) à partir d’un grand nombre de variables et de leurs interactions, il y a tellement de combinaisons possibles qu’un ajustement de Bonferroni rendrait les tests trop conservateurs.</p>
 <p>Une alternative, défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d’utiliser l’AIC (ou mieux encore AICc qui est plus approprié quand le nombre d’observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.</p>
@@ -328,22 +359,22 @@ Il faut donc s’arrurer d’enlever les données manquantes et de spécifier da
 <div class="rmdnote">
 Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l’approche par la fonction <code>dredge()</code> qui selon moi va à l’encontre de la philosophie des AIC et de la parsimonie. Je soutiens de dévelooper un modèle basé sur des hypothèses biologiques et de reporter ce modèle avec tous les effets significatifs ou non.
 </div>
-
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb562-1" title="1"><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></a>
-<a class="sourceLine" id="cb562-2" title="2">full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</a>
-<a class="sourceLine" id="cb562-3" title="3">  full.model<span class="fl">.2</span>ndinteractions,</a>
-<a class="sourceLine" id="cb562-4" title="4">  .<span class="op">~</span>.,</a>
-<a class="sourceLine" id="cb562-5" title="5">  <span class="dt">data =</span> mysub,</a>
-<a class="sourceLine" id="cb562-6" title="6">  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span>)</a>
-<a class="sourceLine" id="cb562-7" title="7"></a>
-<a class="sourceLine" id="cb562-8" title="8"><span class="kw">library</span>(MuMIn)</a>
-<a class="sourceLine" id="cb562-9" title="9">dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</a></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-1" aria-hidden="true"></a><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></span>
+<span id="cb563-2"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-2" aria-hidden="true"></a>full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</span>
+<span id="cb563-3"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-3" aria-hidden="true"></a>  full.model<span class="fl">.2</span>ndinteractions,</span>
+<span id="cb563-4"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-4" aria-hidden="true"></a>  . <span class="op">~</span><span class="st"> </span>.,</span>
+<span id="cb563-5"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-5" aria-hidden="true"></a>  <span class="dt">data =</span> mysub,</span>
+<span id="cb563-6"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-6" aria-hidden="true"></a>  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span></span>
+<span id="cb563-7"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-7" aria-hidden="true"></a>)</span>
+<span id="cb563-8"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-8" aria-hidden="true"></a></span>
+<span id="cb563-9"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-9" aria-hidden="true"></a><span class="kw">library</span>(MuMIn)</span>
+<span id="cb563-10"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb563-10" aria-hidden="true"></a>dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</span></code></pre></div>
 <pre><code>## Fixed term is &quot;(Intercept)&quot;</code></pre>
 <p>L’objet <code>dd</code> contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 7 unités d’AICc du meilleur modèle ont peu de support empirique).</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb564-1" title="1"><span class="co"># get models within 2 units of AICc from the best model</span></a>
-<a class="sourceLine" id="cb564-2" title="2">top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb564-3" title="3">avgmodel1&lt;-<span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></a>
-<a class="sourceLine" id="cb564-4" title="4"><span class="kw">summary</span>(avgmodel1) <span class="co">#display averaged model</span></a></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb565-1" aria-hidden="true"></a><span class="co"># get models within 2 units of AICc from the best model</span></span>
+<span id="cb565-2"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb565-2" aria-hidden="true"></a>top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb565-3"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb565-3" aria-hidden="true"></a>avgmodel1 &lt;-<span class="st"> </span><span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></span>
+<span id="cb565-4"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb565-4" aria-hidden="true"></a><span class="kw">summary</span>(avgmodel1) <span class="co"># display averaged model</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## model.avg(object = top.models.1)
@@ -381,7 +412,7 @@ Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l�
 ## logarea:thtden  3.882e-02  2.114e-02   2.237e-02   1.735   0.0827 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb566-1" title="1"><span class="kw">confint</span>(avgmodel1) <span class="co">#display CI for averaged coefficients</span></a></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb567-1" aria-hidden="true"></a><span class="kw">confint</span>(avgmodel1) <span class="co"># display CI for averaged coefficients</span></span></code></pre></div>
 <pre><code>##                        2.5 %       97.5 %
 ## (Intercept)    -0.6860022996  0.257064603
 ## logarea        -0.0836067896  0.354883299
@@ -424,7 +455,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/07-reg_mult.Rmd",
+"link": "https://github.com/Bio4158-4558-uottawa/manuel_labo/edit/master/07-reg_mult.Rmd",
 "text": "Edit"
 },
 "history": {

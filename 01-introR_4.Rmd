@@ -283,8 +283,8 @@ Pour utiliser un sous-ensemble de vos données en créant un graphique ou en per
 Par exemple, pour créer un sous ensemble des données du tableau sturgeon qui ne contient que les femelles capturées en 1978, on peut écrire :
 
 ```{r stur-subset}
-sturgeon.female.1978 <- subset(sturgeon, sex == "FEMALE" & year == "1978")
-sturgeon.female.1978
+sturgeon_female_1978 <- subset(sturgeon, sex == "FEMALE" & year == "1978")
+sturgeon_female_1978
 ```
 
 ```{block2, type = "rmdcaution"}
@@ -306,6 +306,10 @@ Operateur | Explication | Operateur | Explication
 En utilisant les commandes `subset()` et `hist()`, essayez de faire un histogramme pour le sous-ensemble de cas correspondant aux femelles capturées en 1979 et 1980 (donc `sex == "FEMALE" & (year == "1979" | year == "1980")`)
 ```
 
+```{r intror-subex, warning = FALSE, message = FALSE, echo = params$echo_sol, class.source = "exer"}
+sub_female_7980 <- subset(sturgeon, sex == "FEMALE" & (year == "1979" | year == "1980"))
+hist(sub_female_7980$fklngth)
+```
 
 ### Transformations de données
 

@@ -1,4 +1,5 @@
 <!-- # (PART) Introduction à R {-} -->
+
 # Introduction à R
 
 Après avoir complété cet exercice de laboratoire, vous pourrez :

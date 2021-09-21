@@ -6,20 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.4 Analyse de 2 variables | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.4 Analyse de 2 variables | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/missing.png" />
+  <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="github-repo" content="JulienGAMartin/BIO4558_uOttawa_lab_manual" />
+  <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="1.4 Analyse de 2 variables | BIO4558 Biostatistiques appliquées avec R" />
   
   <meta name="twitter:description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="twitter:image" content="images/missing.png" />
+  <meta name="twitter:image" content="/images/missing.png" />
 
 <meta name="author" content="Julien Martin" />
 
@@ -32,6 +32,7 @@
   
 <link rel="prev" href="premier-travail-avec-des-données.html"/>
 <link rel="next" href="gérer-les-données.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,30 +50,32 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
@@ -133,24 +137,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Note</a></li>
-<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="" data-path="préface.html"><a href="préface.html"><i class="fa fa-check"></i>Préface</a>
+<ul>
 <li class="chapter" data-level="" data-path="quelques-points-importants-à-retenir.html"><a href="quelques-points-importants-à-retenir.html"><i class="fa fa-check"></i>Quelques points importants à retenir</a></li>
 <li class="chapter" data-level="" data-path="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours.html"><a href="quest-ce-que-r-et-pourquoi-lutiliser-dans-ce-cours.html"><i class="fa fa-check"></i>Qu’est-ce que R et pourquoi l’utiliser dans ce cours?</a></li>
-<li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a><ul>
+<li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html"><i class="fa fa-check"></i>Installation des logiciels nécessaires</a>
+<ul>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#r"><i class="fa fa-check"></i>R</a></li>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#rstudio"><i class="fa fa-check"></i>Rstudio</a></li>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#paquets-pour-r"><i class="fa fa-check"></i>Paquets pour R</a></li>
 <li class="chapter" data-level="" data-path="installation-des-logiciels-nécessaires.html"><a href="installation-des-logiciels-nécessaires.html#gpower"><i class="fa fa-check"></i>G*Power</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="instructions-générales-pour-les-laboratoires.html"><a href="instructions-générales-pour-les-laboratoires.html"><i class="fa fa-check"></i>Instructions générales pour les laboratoires</a></li>
-<li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html"><i class="fa fa-check"></i>Notes sur le manuel</a><ul>
+<li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html"><i class="fa fa-check"></i>Notes sur le manuel</a>
+<ul>
 <li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html#resources"><i class="fa fa-check"></i>Resources</a></li>
 <li class="chapter" data-level="" data-path="notes-sur-le-manuel.html"><a href="notes-sur-le-manuel.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction-à-r.html"><a href="introduction-à-r.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a><ul>
+<li class="chapter" data-level="1" data-path="introduction-à-r.html"><a href="introduction-à-r.html"><i class="fa fa-check"></i><b>1</b> Introduction à R</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="set-intro.html"><a href="set-intro.html"><i class="fa fa-check"></i><b>1.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>1.2</b> Premier pas avec R</a><ul>
+<li class="chapter" data-level="1.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html"><i class="fa fa-check"></i><b>1.2</b> Premier pas avec R</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#la-console"><i class="fa fa-check"></i><b>1.2.1</b> La console</a></li>
 <li class="chapter" data-level="1.2.2" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#objets"><i class="fa fa-check"></i><b>1.2.2</b> Objets</a></li>
 <li class="chapter" data-level="1.2.3" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#vecteurs"><i class="fa fa-check"></i><b>1.2.3</b> Vecteurs</a></li>
@@ -159,19 +168,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.6" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#packages"><i class="fa fa-check"></i><b>1.2.6</b> Installer et charger des extensions (<em>packages</em>)</a></li>
 <li class="chapter" data-level="1.2.7" data-path="premier-pas-avec-r.html"><a href="premier-pas-avec-r.html#ex-introR"><i class="fa fa-check"></i><b>1.2.7</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html"><i class="fa fa-check"></i><b>1.3</b> Premier travail avec des données</a><ul>
+<li class="chapter" data-level="1.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html"><i class="fa fa-check"></i><b>1.3</b> Premier travail avec des données</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#jeu-de-données-dexemple"><i class="fa fa-check"></i><b>1.3.1</b> Jeu de données d’exemple</a></li>
 <li class="chapter" data-level="1.3.2" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#tableau-de-données-data-frame"><i class="fa fa-check"></i><b>1.3.2</b> Tableau de données (<em>data frame</em>)</a></li>
 <li class="chapter" data-level="1.3.3" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#analyse-univariée"><i class="fa fa-check"></i><b>1.3.3</b> Analyse univariée</a></li>
 <li class="chapter" data-level="1.3.4" data-path="premier-travail-avec-des-données.html"><a href="premier-travail-avec-des-données.html#ex-introR-univ"><i class="fa fa-check"></i><b>1.3.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>1.4</b> Analyse de 2 variables</a><ul>
+<li class="chapter" data-level="1.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html"><i class="fa fa-check"></i><b>1.4</b> Analyse de 2 variables</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-qualitatives"><i class="fa fa-check"></i><b>1.4.1</b> Croisement de deux variables qualitatives</a></li>
 <li class="chapter" data-level="1.4.2" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-dune-variable-quantitative-et-dune-variable-qualitative"><i class="fa fa-check"></i><b>1.4.2</b> Croisement d’une variable quantitative et d’une variable qualitative</a></li>
 <li class="chapter" data-level="1.4.3" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#croisement-de-deux-variables-quantitatives"><i class="fa fa-check"></i><b>1.4.3</b> Croisement de deux variables quantitatives</a></li>
 <li class="chapter" data-level="1.4.4" data-path="analyse-de-2-variables.html"><a href="analyse-de-2-variables.html#ex-introR-biv"><i class="fa fa-check"></i><b>1.4.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html"><i class="fa fa-check"></i><b>1.5</b> Gérer les données</a><ul>
+<li class="chapter" data-level="1.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html"><i class="fa fa-check"></i><b>1.5</b> Gérer les données</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="gérer-les-données.html"><a href="gérer-les-données.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>1.5.1</b> Importer et exporter des données</a></li>
 <li class="chapter" data-level="1.5.2" data-path="gérer-les-données.html"><a href="gérer-les-données.html#examen-préliminaire-des-données"><i class="fa fa-check"></i><b>1.5.2</b> Examen préliminaire des données</a></li>
 <li class="chapter" data-level="1.5.3" data-path="gérer-les-données.html"><a href="gérer-les-données.html#créer-des-sous-ensembles-de-cas"><i class="fa fa-check"></i><b>1.5.3</b> Créer des sous-ensembles de cas</a></li>
@@ -179,57 +191,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.5" data-path="gérer-les-données.html"><a href="gérer-les-données.html#exercice-sur-r"><i class="fa fa-check"></i><b>1.5.5</b> Exercice sur R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power</a><ul>
-<li class="chapter" data-level="2.1" data-path="la-théorie.html"><a href="la-théorie.html"><i class="fa fa-check"></i><b>2.1</b> La théorie</a><ul>
+<li class="chapter" data-level="2" data-path="analyse-de-puissance-avec-r-et-gpower.html"><a href="analyse-de-puissance-avec-r-et-gpower.html"><i class="fa fa-check"></i><b>2</b> Analyse de puissance avec R et G*Power</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="la-théorie.html"><a href="la-théorie.html"><i class="fa fa-check"></i><b>2.1</b> La théorie</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="la-théorie.html"><a href="la-théorie.html#quest-ce-que-la-puissance"><i class="fa fa-check"></i><b>2.1.1</b> Qu’est-ce que la puissance?</a></li>
 <li class="chapter" data-level="2.1.2" data-path="la-théorie.html"><a href="la-théorie.html#pourquoi-faire-une-analyse-de-puissance"><i class="fa fa-check"></i><b>2.1.2</b> Pourquoi faire une analyse de puissance?</a></li>
 <li class="chapter" data-level="2.1.3" data-path="la-théorie.html"><a href="la-théorie.html#facteurs-qui-affectent-la-puissance"><i class="fa fa-check"></i><b>2.1.3</b> Facteurs qui affectent la puissance</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="quest-ce-que-gpower.html"><a href="quest-ce-que-gpower.html"><i class="fa fa-check"></i><b>2.2</b> Qu’est ce que G*Power?</a></li>
-<li class="chapter" data-level="2.3" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a><ul>
+<li class="chapter" data-level="2.3" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html"><i class="fa fa-check"></i><b>2.3</b> Comment utiliser G*Power</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html#principe-général"><i class="fa fa-check"></i><b>2.3.1</b> Principe général</a></li>
 <li class="chapter" data-level="2.3.2" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html#types-danalyses-de-puissance-disponibles"><i class="fa fa-check"></i><b>2.3.2</b> Types d’analyses de puissance disponibles</a></li>
 <li class="chapter" data-level="2.3.3" data-path="comment-utiliser-gpower.html"><a href="comment-utiliser-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques"><i class="fa fa-check"></i><b>2.3.3</b> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><i class="fa fa-check"></i><b>2.4</b> Puissance pour un test de t comparant deux moyennes</a><ul>
+<li class="chapter" data-level="2.4" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><i class="fa fa-check"></i><b>2.4</b> Puissance pour un test de t comparant deux moyennes</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-post-hoc"><i class="fa fa-check"></i><b>2.4.1</b> Analyse post-hoc</a></li>
 <li class="chapter" data-level="2.4.2" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-à-priori"><i class="fa fa-check"></i><b>2.4.2</b> Analyse à priori</a></li>
 <li class="chapter" data-level="2.4.3" data-path="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable"><i class="fa fa-check"></i><b>2.4.3</b> Analyse de sensitivité - Calculer la taille d’effet détectable</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="points-à-retenir.html"><a href="points-à-retenir.html"><i class="fa fa-check"></i><b>2.5</b> Points à retenir</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a><ul>
+<li class="chapter" data-level="3" data-path="corrélation-et-régression-linéaire-simple.html"><a href="corrélation-et-régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3</b> Corrélation et régression linéaire simple</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="set-lm.html"><a href="set-lm.html"><i class="fa fa-check"></i><b>3.1</b> Extensions R et données requises pour le labo</a></li>
 <li class="chapter" data-level="3.2" data-path="diagrammes-de-dispersion.html"><a href="diagrammes-de-dispersion.html"><i class="fa fa-check"></i><b>3.2</b> Diagrammes de dispersion</a></li>
 <li class="chapter" data-level="3.3" data-path="transformations-et-le-coefficient-de-corrélation.html"><a href="transformations-et-le-coefficient-de-corrélation.html"><i class="fa fa-check"></i><b>3.3</b> Transformations et le coefficient de corrélation</a></li>
 <li class="chapter" data-level="3.4" data-path="matrices-de-corrélations-et-correction-de-bonferroni.html"><a href="matrices-de-corrélations-et-correction-de-bonferroni.html"><i class="fa fa-check"></i><b>3.4</b> Matrices de corrélations et correction de Bonferroni</a></li>
 <li class="chapter" data-level="3.5" data-path="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><a href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"><i class="fa fa-check"></i><b>3.5</b> Corrélations non paramétriques: <em>r</em> de Spearman et <span class="math inline">\(\tau\)</span> de Kendall</a></li>
-<li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a><ul>
+<li class="chapter" data-level="3.6" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html"><i class="fa fa-check"></i><b>3.6</b> Régression linéaire simple</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression"><i class="fa fa-check"></i><b>3.6.1</b> Vérifier les conditions d’application de la régression</a></li>
 <li class="chapter" data-level="3.6.2" data-path="régression-linéaire-simple.html"><a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression"><i class="fa fa-check"></i><b>3.6.2</b> Tests formels des conditions d’application pour la régression</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="transformation-des-données-en-régression.html"><a href="transformation-des-données-en-régression.html"><i class="fa fa-check"></i><b>3.7</b> Transformation des données en régression</a></li>
 <li class="chapter" data-level="3.8" data-path="traitement-des-valeurs-extrèmes.html"><a href="traitement-des-valeurs-extrèmes.html"><i class="fa fa-check"></i><b>3.8</b> Traitement des valeurs extrèmes</a></li>
-<li class="chapter" data-level="3.9" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><i class="fa fa-check"></i><b>3.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a><ul>
+<li class="chapter" data-level="3.9" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><i class="fa fa-check"></i><b>3.9</b> Quantifier la taille d’effet et analyse de puissance en régression</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#puissance-de-détecter-une-pente-donnée"><i class="fa fa-check"></i><b>3.9.1</b> Puissance de détecter une pente donnée</a></li>
 <li class="chapter" data-level="3.9.2" data-path="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori"><i class="fa fa-check"></i><b>3.9.2</b> Effectif requis pour atteindre une puissance désirée (test A-priori)</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="bootstrap-en-régression-simple-avec-r.html"><a href="bootstrap-en-régression-simple-avec-r.html"><i class="fa fa-check"></i><b>3.10</b> Bootstrap en régression simple avec R</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a><ul>
+<li class="chapter" data-level="4" data-path="comparaison-de-deux-échantillons.html"><a href="comparaison-de-deux-échantillons.html"><i class="fa fa-check"></i><b>4</b> Comparaison de deux échantillons</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="set-t.html"><a href="set-t.html"><i class="fa fa-check"></i><b>4.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="4.2" data-path="examen-visuel-des-données.html"><a href="examen-visuel-des-données.html"><i class="fa fa-check"></i><b>4.2</b> Examen visuel des données</a></li>
 <li class="chapter" data-level="4.3" data-path="comparer-les-moyennes-de-deux-échantillons-indépendants.html"><a href="comparer-les-moyennes-de-deux-échantillons-indépendants.html"><i class="fa fa-check"></i><b>4.3</b> Comparer les moyennes de deux échantillons indépendants</a></li>
-<li class="chapter" data-level="4.4" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><i class="fa fa-check"></i><b>4.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a><ul>
+<li class="chapter" data-level="4.4" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><i class="fa fa-check"></i><b>4.4</b> Bootstrap et tests de permutation pour comparer deux moyennes</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#bootstrap"><i class="fa fa-check"></i><b>4.4.1</b> Bootstrap</a></li>
 <li class="chapter" data-level="4.4.2" data-path="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#permutation"><i class="fa fa-check"></i><b>4.4.2</b> Permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="comparer-les-moyennes-de-deux-échantillons-appariés.html"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html"><i class="fa fa-check"></i><b>4.5</b> Comparer les moyennes de deux échantillons appariés</a></li>
 <li class="chapter" data-level="4.6" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i><b>4.6</b> Références</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a><ul>
+<li class="chapter" data-level="5" data-path="anova-à-un-critère-de-classification.html"><a href="anova-à-un-critère-de-classification.html"><i class="fa fa-check"></i><b>5</b> ANOVA à un critère de classification</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="set-ano.html"><a href="set-ano.html"><i class="fa fa-check"></i><b>5.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a><ul>
+<li class="chapter" data-level="5.2" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><i class="fa fa-check"></i><b>5.2</b> ANOVA à un critère de classification et comparaisons multiples</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#visualiser-les-données"><i class="fa fa-check"></i><b>5.2.1</b> Visualiser les données</a></li>
 <li class="chapter" data-level="5.2.2" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique"><i class="fa fa-check"></i><b>5.2.2</b> Vérifier les conditions d’application de l’ANOVA paramétrique</a></li>
 <li class="chapter" data-level="5.2.3" data-path="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#faire-lanova"><i class="fa fa-check"></i><b>5.2.3</b> Faire l’ANOVA</a></li>
@@ -239,9 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="examen-des-valeurs-extrêmes.html"><a href="examen-des-valeurs-extrêmes.html"><i class="fa fa-check"></i><b>5.4</b> Examen des valeurs extrêmes</a></li>
 <li class="chapter" data-level="5.5" data-path="test-de-permutation.html"><a href="test-de-permutation.html"><i class="fa fa-check"></i><b>5.5</b> Test de permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a><ul>
+<li class="chapter" data-level="6" data-path="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><a href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"><i class="fa fa-check"></i><b>6</b> ANOVA à critères multiples : plans factoriels et hiérarchiques</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="set-anomul.html"><a href="set-anomul.html"><i class="fa fa-check"></i><b>6.1</b> Paquets et données requises pour le labo</a></li>
-<li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a><ul>
+<li class="chapter" data-level="6.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><i class="fa fa-check"></i><b>6.2</b> Plan factoriel à deux facteurs de classification et réplication</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-fixes"><i class="fa fa-check"></i><b>6.2.1</b> ANOVA à effets fixes</a></li>
 <li class="chapter" data-level="6.2.2" data-path="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#anova-à-effets-mixtes"><i class="fa fa-check"></i><b>6.2.2</b> ANOVA à effets mixtes</a></li>
 </ul></li>
@@ -252,7 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html"><i class="fa fa-check"></i><b>6.7</b> Test de permutation pour l’ANOVA à deux facteurs de classification</a></li>
 <li class="chapter" data-level="6.8" data-path="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"><i class="fa fa-check"></i><b>6.8</b> Bootstrap pour l’ANOVA à deux facteurs de classification</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a><ul>
+<li class="chapter" data-level="7" data-path="régression-multiple.html"><a href="régression-multiple.html"><i class="fa fa-check"></i><b>7</b> Régression multiple</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="set-reg-mul.html"><a href="set-reg-mul.html"><i class="fa fa-check"></i><b>7.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="7.2" data-path="conseils-généraux.html"><a href="conseils-généraux.html"><i class="fa fa-check"></i><b>7.2</b> Conseils généraux</a></li>
 <li class="chapter" data-level="7.3" data-path="premières-régressions-multiples.html"><a href="premières-régressions-multiples.html"><i class="fa fa-check"></i><b>7.3</b> Premières régressions multiples</a></li>
@@ -266,11 +292,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
 <li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a><ul>
+<li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="set-anco.html"><a href="set-anco.html"><i class="fa fa-check"></i><b>8.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="8.2" data-path="modèle-linéaire-général.html"><a href="modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8.2</b> Modèle linéaire général</a></li>
 <li class="chapter" data-level="8.3" data-path="ancova.html"><a href="ancova.html"><i class="fa fa-check"></i><b>8.3</b> ANCOVA</a></li>
-<li class="chapter" data-level="8.4" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.4</b> Homogénéité des pentes</a><ul>
+<li class="chapter" data-level="8.4" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html"><i class="fa fa-check"></i><b>8.4</b> Homogénéité des pentes</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-1---la-taille-en-fonction-de-lâge-exemple-avec-pente-commune"><i class="fa fa-check"></i><b>8.4.1</b> Cas 1 - La taille en fonction de l’âge (exemple avec pente commune)</a></li>
 <li class="chapter" data-level="8.4.2" data-path="homogénéité-des-pentes.html"><a href="homogénéité-des-pentes.html#cas-2---taille-en-fonction-de-lâge-exemple-avec-des-pentes-différentes"><i class="fa fa-check"></i><b>8.4.2</b> Cas 2 - Taille en fonction de l’âge (exemple avec des pentes différentes)</a></li>
 </ul></li>
@@ -279,7 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="bootstrap-1.html"><a href="bootstrap-1.html"><i class="fa fa-check"></i><b>8.7</b> Bootstrap</a></li>
 <li class="chapter" data-level="8.8" data-path="permutation-test.html"><a href="permutation-test.html"><i class="fa fa-check"></i><b>8.8</b> Permutation test</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a><ul>
+<li class="chapter" data-level="9" data-path="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><a href="analyse-de-données-de-fréquence-tableaux-de-contingence-modèles-log-linéaires-et-régression-de-poisson.html"><i class="fa fa-check"></i><b>9</b> Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="set-freq.html"><a href="set-freq.html"><i class="fa fa-check"></i><b>9.1</b> Paquets et données requises pour le labo</a></li>
 <li class="chapter" data-level="9.2" data-path="organisation-des-données-3-formats.html"><a href="organisation-des-données-3-formats.html"><i class="fa fa-check"></i><b>9.2</b> Organisation des données: 3 formats</a></li>
 <li class="chapter" data-level="9.3" data-path="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"><i class="fa fa-check"></i><b>9.3</b> Visualiser graphiquement les tableaux de contingence et test d’indépendance</a></li>
@@ -290,8 +319,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="appendix"><span><b>Appendice</b></span></li>
 <li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
-<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a><ul>
-<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a><ul>
+<li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html"><i class="fa fa-check"></i><b>B.1</b> Syntaxe Markdown</a>
+<ul>
 <li class="chapter" data-level="B.1.1" data-path="syntaxe-markdown.html"><a href="syntaxe-markdown.html#titre-3"><i class="fa fa-check"></i><b>B.1.1</b> Titre 3</a></li>
 </ul></li>
 <li class="chapter" data-level="B.2" data-path="à-propos-de-latex.html"><a href="à-propos-de-latex.html"><i class="fa fa-check"></i><b>B.2</b> À propos de LaTex</a></li>
@@ -318,21 +349,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analyse-de-2-variables" class="section level2">
+<div id="analyse-de-2-variables" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Analyse de 2 variables</h2>
 <p>Faire une analyse bivariée, c’est étudier la relation entre deux variables : sont-elles liées ? les valeurs de l’une influencent-elles les valeurs de l’autre ? ou sont-elles au contraire indépendantes ?</p>
 <p>À noter qu’on va parler ici d’influence ou de lien, mais pas de relation de cause à effet : les outils présentés permettent de visualiser ou de déterminer une relation, mais des liens de causalité proprement dit sont plus difficiles à mettre en évidence. Il faut en effet vérifier que c’est bien telle variable qui influence telle autre et pas l’inverse, qu’il n’y a pas de “variable cachée”, etc.</p>
 <p>Là encore, le type d’analyse ou de visualisation est déterminé par la nature qualitative ou quantitative des deux variables.</p>
-<div id="croisement-de-deux-variables-qualitatives" class="section level3">
+<div id="croisement-de-deux-variables-qualitatives" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Croisement de deux variables qualitatives</h3>
-<div id="tableaux-croisés" class="section level4">
+<div id="tableaux-croisés" class="section level4" number="1.4.1.1">
 <h4><span class="header-section-number">1.4.1.1</span> Tableaux croisés</h4>
 <p>On va continuer à travailler avec le jeu de données tiré de l’enquête <em>Histoire de vie</em> inclus dans l’extension <code>questionr</code>. On commence donc par charger l’extension, le jeu de données, et à le renommer en un nom plus court pour gagner un peu de temps de saisie au clavier :</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">library</span>(questionr)</a>
-<a class="sourceLine" id="cb184-2" title="2"><span class="kw">data</span>(hdv2003)</a>
-<a class="sourceLine" id="cb184-3" title="3">d &lt;-<span class="st"> </span>hdv2003</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="analyse-de-2-variables.html#cb184-1" aria-hidden="true"></a><span class="kw">library</span>(questionr)</span>
+<span id="cb184-2"><a href="analyse-de-2-variables.html#cb184-2" aria-hidden="true"></a><span class="kw">data</span>(hdv2003)</span>
+<span id="cb184-3"><a href="analyse-de-2-variables.html#cb184-3" aria-hidden="true"></a>d &lt;-<span class="st"> </span>hdv2003</span></code></pre></div>
 <p>Quand on veut croiser deux variables qualitatives, on fait un <em>tableau croisé</em>. Comme pour un tri à plat ceci s’obtient avec la fonction <code>table</code> de R, mais à laquelle on passe cette fois deux variables en argument. Par exemple, si on veut croiser la catégorie socio-professionnelle et le sexe des enquêtés :</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="kw">table</span>(d<span class="op">$</span>qualif, d<span class="op">$</span>sexe)</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="analyse-de-2-variables.html#cb185-1" aria-hidden="true"></a><span class="kw">table</span>(d<span class="op">$</span>qualif, d<span class="op">$</span>sexe)</span></code></pre></div>
 <pre><code>##                           
 ##                            Homme Femme
 ##   Ouvrier specialise          96   107
@@ -344,8 +375,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Autre                       21    37</code></pre>
 <p>Pour pouvoir interpréter ce tableau on doit passer du tableau en effectifs au tableau en pourcentages ligne ou colonne. Pour cela, on peut utiliser les fonctions <code>lprop</code> et <code>cprop</code> de l’extension <code>questionr</code>, qu’on applique au tableau croisé précédent.</p>
 <p>Pour calculer les pourcentages ligne :</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1">tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>qualif, d<span class="op">$</span>sexe)</a>
-<a class="sourceLine" id="cb187-2" title="2"><span class="kw">lprop</span>(tab)</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="analyse-de-2-variables.html#cb187-1" aria-hidden="true"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>qualif, d<span class="op">$</span>sexe)</span>
+<span id="cb187-2"><a href="analyse-de-2-variables.html#cb187-2" aria-hidden="true"></a><span class="kw">lprop</span>(tab)</span></code></pre></div>
 <pre><code>##                           
 ##                            Homme Femme Total
 ##   Ouvrier specialise        47.3  52.7 100.0
@@ -357,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Autre                     36.2  63.8 100.0
 ##   All                       44.8  55.2 100.0</code></pre>
 <p>Et pour les pourcentages colonne :</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="kw">cprop</span>(tab)</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="analyse-de-2-variables.html#cb189-1" aria-hidden="true"></a><span class="kw">cprop</span>(tab)</span></code></pre></div>
 <pre><code>##                           
 ##                            Homme Femme All  
 ##   Ouvrier specialise        13.0  11.7  12.3
@@ -437,20 +468,20 @@ L'interprétation des résidus est la suivante :
 Les résidus peuvent être une aide utile à l'interprétation, notamment pour des tableaux de grande dimension.
 -->
 </div>
-<div id="représentation-graphique-1" class="section level4">
+<div id="représentation-graphique-1" class="section level4" number="1.4.1.2">
 <h4><span class="header-section-number">1.4.1.2</span> Représentation graphique</h4>
 <p>Il est possible de faire une représentation graphique d’un tableau croisé, par exemple avec la fonction <code>mosaicplot</code> :</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="kw">mosaicplot</span>(tab)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-136"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-136-1.svg" alt="Graphique mosaique" width="576" />
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="analyse-de-2-variables.html#cb191-1" aria-hidden="true"></a><span class="kw">mosaicplot</span>(tab)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-135"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-135-1.svg" alt="Graphique mosaique" width="576" />
 <p class="caption">
 Figure 1.16: Graphique mosaique
 </p>
 </div>
 <p>On peut améliorer ce graphique en colorant les cases selon les résidus du test du χ² (argument <code>shade = TRUE</code>) et en orientant verticalement les labels de colonnes (argument <code>las = 3</code>) :</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">mosaicplot</span>(tab, <span class="dt">las =</span> <span class="dv">3</span>, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-137"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-137-1.svg" alt="Graphique mosaique modifié" width="576" />
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="analyse-de-2-variables.html#cb192-1" aria-hidden="true"></a><span class="kw">mosaicplot</span>(tab, <span class="dt">las =</span> <span class="dv">3</span>, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-136"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-136-1.svg" alt="Graphique mosaique modifié" width="576" />
 <p class="caption">
 Figure 1.17: Graphique mosaique modifié
 </p>
@@ -458,21 +489,21 @@ Figure 1.17: Graphique mosaique modifié
 <p>Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y’a beaucoup d’employés et d’ouvriers et très peu d’“autres”). Sa hauteur correspond aux pourcentages colonnes : la proportion d’hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant : les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l’hypothèse d’indépendance.</p>
 </div>
 </div>
-<div id="croisement-dune-variable-quantitative-et-dune-variable-qualitative" class="section level3">
+<div id="croisement-dune-variable-quantitative-et-dune-variable-qualitative" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Croisement d’une variable quantitative et d’une variable qualitative</h3>
-<div id="représentation-graphique-2" class="section level4">
+<div id="représentation-graphique-2" class="section level4" number="1.4.2.1">
 <h4><span class="header-section-number">1.4.2.1</span> Représentation graphique</h4>
 <p>Croiser une variable quantitative et une variable qualitative, c’est essayer de voir si les valeurs de la variable quantitative se répartissent différemment selon la catégorie d’appartenance de la variable qualitative.</p>
 <p>Pour cela, l’idéal est de commencer par une représentation graphique de type “boîte à moustache” à l’aide de la fonction <code>boxplot</code>. Par exemple, si on veut visualiser la répartition des âges selon la pratique ou non d’un sport, on va utiliser la syntaxe suivante :</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">boxplot</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> d)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="analyse-de-2-variables.html#cb193-1" aria-hidden="true"></a><span class="kw">boxplot</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> d)</span></code></pre></div>
 <div class="rmdnote">
 <p>
 Cette syntaxe de <code>boxplot</code> utilise une nouvelle notation de type “formule”. Celle-ci est utilisée notamment pour la spécification des modèles de régression. Ici le <code>~</code> peut se lire comme “en fonction de” : on veut représenter le boxplot de l’âge en fonction du sport.
 </p>
 </div>
 <p>Ce qui va nous donner le résultat suivant :</p>
-<div class="figure"><span id="fig:unnamed-chunk-140"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-140-1.svg" alt="Graphique en boites à moustaches" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-139"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-139-1.svg" alt="Graphique en boites à moustaches" width="672" />
 <p class="caption">
 Figure 1.18: Graphique en boites à moustaches
 </p>
@@ -484,7 +515,7 @@ L’interprétation d’un boxplot est la suivante : Les bords inférieurs et s
 </div>
 <p>Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cours des douze derniers mois ont l’air d’être sensiblement plus jeunes que les autres.</p>
 </div>
-<div id="calculs-dindicateurs" class="section level4">
+<div id="calculs-dindicateurs" class="section level4" number="1.4.2.2">
 <h4><span class="header-section-number">1.4.2.2</span> Calculs d’indicateurs</h4>
 <p>On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d’une variable quantitative selon les modalités d’une variable qualitative. Si on reprend l’exemple précédent, on peut calculer la moyenne d’âge pour ceux qui pratiquent un sport et pour ceux qui n’en pratiquent pas.</p>
 <p>Une première méthode pour cela est d’extraire de notre population autant de sous-populations qu’il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction <code>subset</code>.</p>
@@ -498,15 +529,15 @@ library(dplyr)
 ```
 -->
 <p>On applique <code>subset</code> pour créer deux sous-populations, stockées dans deux nouveaux tableaux de données :</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">d_sport &lt;-<span class="st"> </span><span class="kw">subset</span>(d, sport <span class="op">==</span><span class="st"> &quot;Oui&quot;</span>)</a>
-<a class="sourceLine" id="cb194-2" title="2">d_nonsport &lt;-<span class="st"> </span><span class="kw">subset</span>(d, sport <span class="op">==</span><span class="st"> &quot;Non&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="analyse-de-2-variables.html#cb194-1" aria-hidden="true"></a>d_sport &lt;-<span class="st"> </span><span class="kw">subset</span>(d, sport <span class="op">==</span><span class="st"> &quot;Oui&quot;</span>)</span>
+<span id="cb194-2"><a href="analyse-de-2-variables.html#cb194-2" aria-hidden="true"></a>d_nonsport &lt;-<span class="st"> </span><span class="kw">subset</span>(d, sport <span class="op">==</span><span class="st"> &quot;Non&quot;</span>)</span></code></pre></div>
 <p>On peut ensuite utiliser ces deux nouveaux tableaux de données comme on en a l’habitude, et calculer les deux moyennes d’âge :</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">mean</span>(d_sport<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="analyse-de-2-variables.html#cb195-1" aria-hidden="true"></a><span class="kw">mean</span>(d_sport<span class="op">$</span>age)</span></code></pre></div>
 <pre><code>## [1] 40.92531</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">mean</span>(d_nonsport<span class="op">$</span>age)</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="analyse-de-2-variables.html#cb197-1" aria-hidden="true"></a><span class="kw">mean</span>(d_nonsport<span class="op">$</span>age)</span></code></pre></div>
 <pre><code>## [1] 52.25137</code></pre>
 <p>Une autre possibilité est d’utiliser la fonction <code>tapply</code>, qui prend en paramètre une variable quantitative, une variable qualitative et une fonction, puis applique automatiquement la fonction aux valeurs de la variables quantitative pour chaque niveau de la variable qualitative :</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">tapply</span>(d<span class="op">$</span>age, d<span class="op">$</span>sport, mean)</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="analyse-de-2-variables.html#cb199-1" aria-hidden="true"></a><span class="kw">tapply</span>(d<span class="op">$</span>age, d<span class="op">$</span>sport, mean)</span></code></pre></div>
 <pre><code>##      Non      Oui 
 ## 52.25137 40.92531</code></pre>
 <!-- ### Tests statistiques
@@ -526,7 +557,7 @@ t.test(d$age ~ d$sport)
 ## 
 ## data:  d$age by d$sport
 ## t = 15.503, df = 1600.4, p-value < 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group Non and group Oui is not equal to 0
 ## 95 percent confidence interval:
 ##   9.893117 12.759002
 ## sample estimates:
@@ -543,14 +574,14 @@ Nous sommes cependant allés un peu vite, et avons négligé le fait que le test
 hist(d_sport$age)
 ```
 
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-148-1.svg" width="672" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-147-1.svg" width="672" />
 
 
 ```r
 hist(d_nonsport$age)
 ```
 
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-149-1.svg" width="672" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-148-1.svg" width="672" />
 
 Si l'âge dans le groupe des non sportifs se rapproche d'une distribution normale, celui des sportifs en semble assez éloigné, notamment du fait de la limite d'âge à 18 ans imposée par construction de l'enquête.
 
@@ -605,32 +636,32 @@ La valeur *p* étant à nouveau extrêmement petite, on peut rejeter l'hypothès
 -->
 </div>
 </div>
-<div id="croisement-de-deux-variables-quantitatives" class="section level3">
+<div id="croisement-de-deux-variables-quantitatives" class="section level3" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> Croisement de deux variables quantitatives</h3>
 <p>Le jeu de données <code>hdv2003</code> comportant assez peu de variables quantitatives, on va s’intéresser maintenant à un autre jeu de données comportant des informations du recensement de la population de 2012. On le charge avec :</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="kw">data</span>(rp2012)</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="analyse-de-2-variables.html#cb201-1" aria-hidden="true"></a><span class="kw">data</span>(rp2012)</span></code></pre></div>
 <p>Un nouveau tableau de données <code>rp2012</code> devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section <a href="#rp2012"><strong>??</strong></a>.</p>
-<div id="représentation-graphique-3" class="section level4">
+<div id="représentation-graphique-3" class="section level4" number="1.4.3.1">
 <h4><span class="header-section-number">1.4.3.1</span> Représentation graphique</h4>
 <p>Quand on croise deux variables quantitatives, l’idéal est de faire une représentation graphique sous forme de nuage de points à l’aide de la fonction <code>plot</code>. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune :</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>proprio)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-154"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-154-1.svg" alt="Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre" width="672" />
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="analyse-de-2-variables.html#cb202-1" aria-hidden="true"></a><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>proprio)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-153"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-153-1.svg" alt="Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre" width="672" />
 <p class="caption">
 Figure 1.19: Graphique du pourcentage de propriétaire en fonction du pourcentage de cadre
 </p>
 </div>
 <p>Une représentation graphique est l’idéal pour visualiser l’existence d’un lien entre les deux variables. Voici quelques exemples d’interprétation :</p>
-<div class="figure"><span id="fig:unnamed-chunk-155"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-155-1.svg" alt="Illustration des relations bivariées" width="576" />
+<div class="figure"><span id="fig:unnamed-chunk-154"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-154-1.svg" alt="Illustration des relations bivariées" width="576" />
 <p class="caption">
 Figure 1.20: Illustration des relations bivariées
 </p>
 </div>
 <p>Dans ce premier graphique généré sur nos données, il semble difficile de mettre en évidence une relation de dépendance. Si par contre on croise le pourcentage de cadres et celui de diplômés du supérieur, on obtient une belle relation de dépendance linéaire.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="kw">plot</span>(dipl_sup <span class="op">~</span><span class="st"> </span>cadres, <span class="dt">data =</span> rp2012)</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-156"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-156-1.svg" alt="Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre" width="672" />
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="analyse-de-2-variables.html#cb203-1" aria-hidden="true"></a><span class="kw">plot</span>(dipl_sup <span class="op">~</span><span class="st"> </span>cadres, <span class="dt">data =</span> rp2012)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-155"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-155-1.svg" alt="Relation entre le nombre de personnes diplomées à l'université et le nombre de cadre" width="672" />
 <p class="caption">
 Figure 1.21: Relation entre le nombre de personnes diplomées à l’université et le nombre de cadre
 </p>
@@ -683,7 +714,7 @@ Plutôt que de se baser sur les valeurs des variables, cette corrélation va se 
 Ainsi, si la valeur la plus basse de la première variable est associée à la valeur la plus basse de la deuxième, et ainsi de suite jusqu'à la valeur la plus haute, on obtiendra une corrélation de 1. Si la valeur la plus forte de la première variable est associée à la valeur la plus faible de la seconde, et ainsi de suite, et que la valeur la plus faible de la première est associée à la plus forte de la deuxième, on obtiendra une corrélation de -1. Si les rangs sont "mélangés", sans rapports entre eux, on obtiendra une corrélation autour de 0.
 
 
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-159-1.svg" width="576" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-158-1.svg" width="576" />
 
 La corrélation des rangs a aussi pour avantage d'être moins sensibles aux valeurs extrêmes ou aux points isolés. On dit qu'elle est plus "robuste".
 
@@ -765,24 +796,24 @@ On peut enfin représenter la droite de régression sur notre nuage de points à
 
 ```r
 plot(rp2012$dipl_sup, rp2012$cadres)
-abline(reg, col="red")
+abline(reg, col = "red")
 ```
 
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-164-1.svg" width="672" />
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-163-1.svg" width="672" />
 -->
 </div>
 </div>
-<div id="ex-introR-biv" class="section level3">
+<div id="ex-introR-biv" class="section level3" number="1.4.4">
 <h3><span class="header-section-number">1.4.4</span> Exercices</h3>
 <p><strong>Exercice 1</strong></p>
 <p>Dans le jeu de données <code>hdv2003</code>, faire le tableau croisé entre la catégorie socio-professionnelle (variable <code>qualif</code>) et le fait de croire ou non en l’existence des classes sociales (variable <code>clso</code>). Identifier la variable indépendante et la variable dépendante, et calculer les pourcentages ligne ou colonne. Interpréter le résultat.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">library</span>(questionr)</a>
-<a class="sourceLine" id="cb204-2" title="2"><span class="kw">data</span>(hdv2003)</a>
-<a class="sourceLine" id="cb204-3" title="3">tab &lt;-<span class="st"> </span><span class="kw">table</span>(hdv2003<span class="op">$</span>qualif, hdv2003<span class="op">$</span>clso)</a>
-<a class="sourceLine" id="cb204-4" title="4"></a>
-<a class="sourceLine" id="cb204-5" title="5"><span class="co">## Ici la variable indépendante est `qualif`, on calcule donc</span></a>
-<a class="sourceLine" id="cb204-6" title="6"><span class="co">## les pourcentages lignes</span></a>
-<a class="sourceLine" id="cb204-7" title="7"><span class="kw">lprop</span>(tab)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb204-1"><a href="analyse-de-2-variables.html#cb204-1" aria-hidden="true"></a><span class="kw">library</span>(questionr)</span>
+<span id="cb204-2"><a href="analyse-de-2-variables.html#cb204-2" aria-hidden="true"></a><span class="kw">data</span>(hdv2003)</span>
+<span id="cb204-3"><a href="analyse-de-2-variables.html#cb204-3" aria-hidden="true"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(hdv2003<span class="op">$</span>qualif, hdv2003<span class="op">$</span>clso)</span>
+<span id="cb204-4"><a href="analyse-de-2-variables.html#cb204-4" aria-hidden="true"></a></span>
+<span id="cb204-5"><a href="analyse-de-2-variables.html#cb204-5" aria-hidden="true"></a><span class="co">## Ici la variable indépendante est `qualif`, on calcule donc</span></span>
+<span id="cb204-6"><a href="analyse-de-2-variables.html#cb204-6" aria-hidden="true"></a><span class="co">## les pourcentages lignes</span></span>
+<span id="cb204-7"><a href="analyse-de-2-variables.html#cb204-7" aria-hidden="true"></a><span class="kw">lprop</span>(tab)</span></code></pre></div>
 <!--
 Faire un test du χ². Peut-on rejeter l'hypothèse d'indépendance ?
 
@@ -795,19 +826,19 @@ chisq.test(tab)
 ## et même au seuil de 0.001
 -->
 <p>Représenter ce tableau croisé sous la forme d’un <code>mosaicplot</code> en colorant les cases selon les résidus du test du χ².</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="kw">mosaicplot</span>(tab, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb205-1"><a href="analyse-de-2-variables.html#cb205-1" aria-hidden="true"></a><span class="kw">mosaicplot</span>(tab, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><strong>Exercice 2</strong></p>
 <p>Toujours sur le jeu de données <code>hdv2003</code>, faire le boxplot qui croise le nombre d’heures passées devant la télévision (variable <code>heures.tv</code>) avec le statut d’occupation (variable <code>occup</code>).</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">boxplot</span>(hdv2003<span class="op">$</span>heures.tv <span class="op">~</span><span class="st"> </span>hdv2003<span class="op">$</span>occup)</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb206-1"><a href="analyse-de-2-variables.html#cb206-1" aria-hidden="true"></a><span class="kw">boxplot</span>(hdv2003<span class="op">$</span>heures.tv <span class="op">~</span><span class="st"> </span>hdv2003<span class="op">$</span>occup)</span></code></pre></div>
 <p>Calculer la durée moyenne devant la télévision en fonction du statut d’occupation à l’aide de <code>tapply</code>.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1"><span class="kw">tapply</span>(hdv2003<span class="op">$</span>heures.tv, hdv2003<span class="op">$</span>occup, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb207-1"><a href="analyse-de-2-variables.html#cb207-1" aria-hidden="true"></a><span class="kw">tapply</span>(hdv2003<span class="op">$</span>heures.tv, hdv2003<span class="op">$</span>occup, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><strong>Exercice 3</strong></p>
 <p>Sur le jeu de données <code>rp2012</code>, représenter le nuage de points croisant le pourcentage de personnes sans diplôme (variable <code>dipl_aucun</code>) et le pourcentage de propriétaires (variable <code>proprio</code>).</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r exer"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">library</span>(questionr)</a>
-<a class="sourceLine" id="cb208-2" title="2"><span class="kw">data</span>(rp2012)</a>
-<a class="sourceLine" id="cb208-3" title="3"><span class="kw">plot</span>(rp2012<span class="op">$</span>dipl_aucun, rp2012<span class="op">$</span>proprio)</a>
-<a class="sourceLine" id="cb208-4" title="4"><span class="co">## ou</span></a>
-<a class="sourceLine" id="cb208-5" title="5"><span class="kw">plot</span>(proprio <span class="op">~</span><span class="st"> </span>dipl_aucun, <span class="dt">data =</span> rp2012)</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb208-1"><a href="analyse-de-2-variables.html#cb208-1" aria-hidden="true"></a><span class="kw">library</span>(questionr)</span>
+<span id="cb208-2"><a href="analyse-de-2-variables.html#cb208-2" aria-hidden="true"></a><span class="kw">data</span>(rp2012)</span>
+<span id="cb208-3"><a href="analyse-de-2-variables.html#cb208-3" aria-hidden="true"></a><span class="kw">plot</span>(rp2012<span class="op">$</span>dipl_aucun, rp2012<span class="op">$</span>proprio)</span>
+<span id="cb208-4"><a href="analyse-de-2-variables.html#cb208-4" aria-hidden="true"></a><span class="co">## ou</span></span>
+<span id="cb208-5"><a href="analyse-de-2-variables.html#cb208-5" aria-hidden="true"></a><span class="kw">plot</span>(proprio <span class="op">~</span><span class="st"> </span>dipl_aucun, <span class="dt">data =</span> rp2012)</span></code></pre></div>
 <!--
 Calculer le coefficient de corrélation linéaire correspondant.
 
@@ -849,7 +880,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/JulienGAMartin/BIO4558_uOttawa_lab_manual/01-introR_3.Rmd",
+"link": "https://github.com/Bio4158-4558-uottawa/manuel_labo/edit/master/01-introR_3.Rmd",
 "text": "Edit"
 },
 "history": {

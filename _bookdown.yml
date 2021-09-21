@@ -1,6 +1,6 @@
 #list files in order for book
 book_filename: Labo_BIO4558
-repo: hhttps://juliengamartin.github.io/BIO4558_uOttawa_lab_manual
+repo: https://github.com/Bio4158-4558-uottawa/manuel_labo/
 output_dir: docs
 delete_merged_file: true
 #language:

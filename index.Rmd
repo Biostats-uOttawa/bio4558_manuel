@@ -11,7 +11,7 @@ fontsize: 12pt
 #monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
 description: "Manuel de laboratoire pour le cours BIO4558"
-github-repo: "JulienGAMartin/BIO4558_uOttawa_lab_manual"
+github-repo: "Bio4158-4558-uottawa/manuel_labo/"
 cover-image: "images/missing.png"
 params:
   echo_sol: true
