@@ -1,6 +1,6 @@
 \cleardoublepage
 
-# (APPENDIX) Appendice {-}
+# (APPENDIX) Appendices {-}
 
 # Note sur les devoirs et Rmarkdown
 

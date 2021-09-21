@@ -317,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6" data-path="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><i class="fa fa-check"></i><b>9.6</b> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</a></li>
 <li class="chapter" data-level="9.7" data-path="ex-glm.html"><a href="ex-glm.html"><i class="fa fa-check"></i><b>9.7</b> Exercice</a></li>
 </ul></li>
-<li class="appendix"><span><b>Appendice</b></span></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
 <li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a>
 <ul>
@@ -394,14 +394,14 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 <span id="cb571-2"><a href="bootstrap-et-régression-multiple.html#cb571-2" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.005</span>, <span class="fl">0.01</span>, <span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>, <span class="fl">0.995</span>)</span>
 <span id="cb571-3"><a href="bootstrap-et-régression-multiple.html#cb571-3" aria-hidden="true"></a><span class="kw">apply</span>(tmyresults, <span class="dv">2</span>, quantile, p)</span></code></pre></div>
 <pre><code>##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.74476321 0.1350223 -0.047729775 0.01618293 -0.0003362503
-## 1%    -0.70406156 0.1450075 -0.044999637 0.01761590 -0.0003309360
-## 2.5%  -0.63615642 0.1592283 -0.041806374 0.01942768 -0.0003227501
-## 5%    -0.59743627 0.1689155 -0.039385528 0.02138074 -0.0003128226
-## 95%   -0.07852184 0.2784028 -0.011569365 0.03756225 -0.0001834066
-## 97.5% -0.04297981 0.2878021 -0.009464190 0.03873587 -0.0001679230
-## 99%    0.01657605 0.2994190 -0.006356118 0.03995090 -0.0001540884
-## 99.5%  0.05416893 0.3079486 -0.003019676 0.04049108 -0.0001474689</code></pre>
+## 0.5%  -0.71913462 0.1357866 -0.047095719 0.01775472 -0.0003478509
+## 1%    -0.70026889 0.1437287 -0.046738379 0.01875574 -0.0003412493
+## 2.5%  -0.66799310 0.1544217 -0.043443297 0.01983342 -0.0003277610
+## 5%    -0.61390064 0.1655161 -0.039675065 0.02141940 -0.0003167653
+## 95%   -0.09090913 0.2809977 -0.011452074 0.03791293 -0.0001856811
+## 97.5% -0.03501492 0.2898705 -0.009101361 0.03949282 -0.0001748550
+## 99%    0.03642435 0.2978188 -0.006389118 0.04111315 -0.0001603480
+## 99.5%  0.09328718 0.3052097 -0.004353933 0.04178111 -0.0001573338</code></pre>
 <p>Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n’est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):</p>
 <div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="bootstrap-et-régression-multiple.html#cb573-1" aria-hidden="true"></a><span class="co">################################################</span></span>
 <span id="cb573-2"><a href="bootstrap-et-régression-multiple.html#cb573-2" aria-hidden="true"></a><span class="co"># Bootstrap analysis in multiple regression with BCa confidence intervals</span></span>
@@ -443,7 +443,7 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1185,  0.3164 )  
+## 95%   ( 0.1078,  0.3176 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-292-1.svg" width="672" /></p>
 <p>Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.</p>

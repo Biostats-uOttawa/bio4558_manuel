@@ -317,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6" data-path="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html"><i class="fa fa-check"></i><b>9.6</b> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</a></li>
 <li class="chapter" data-level="9.7" data-path="ex-glm.html"><a href="ex-glm.html"><i class="fa fa-check"></i><b>9.7</b> Exercice</a></li>
 </ul></li>
-<li class="appendix"><span><b>Appendice</b></span></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="note-sur-les-devoirs-et-rmarkdown.html"><a href="note-sur-les-devoirs-et-rmarkdown.html"><i class="fa fa-check"></i><b>A</b> Note sur les devoirs et Rmarkdown</a></li>
 <li class="chapter" data-level="B" data-path="petit-guide-pour-rmarkdown.html"><a href="petit-guide-pour-rmarkdown.html"><i class="fa fa-check"></i><b>B</b> Petit guide pour Rmarkdown</a>
 <ul>
@@ -378,9 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.002551547  0.03264958
-## t2* 0.3408557 -0.001857416  0.02577003</code></pre>
+##      original        bias    std. error
+## t1* 1.1919926  0.0011610486  0.03453791
+## t2* 0.3408557 -0.0007042138  0.02736512</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -406,10 +406,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.253 )   ( 1.124,  1.254 )  
+## 95%   ( 1.123,  1.259 )   ( 1.118,  1.254 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.130,  1.260 )   ( 1.110,  1.251 )  
+## 95%   ( 1.130,  1.266 )   ( 1.117,  1.254 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb322-1" aria-hidden="true"></a><span class="co"># intervalle de confiance pour la pente</span></span>
 <span id="cb322-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb322-2" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -423,10 +423,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2922,  0.3932 )   ( 0.2904,  0.3936 )  
+## 95%   ( 0.2879,  0.3952 )   ( 0.2894,  0.3979 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2881,  0.3913 )   ( 0.2933,  0.4031 )  
+## 95%   ( 0.2838,  0.3923 )   ( 0.2901,  0.3975 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

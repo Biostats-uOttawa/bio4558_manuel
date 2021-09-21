@@ -3,6 +3,7 @@
 # Introduction à R
 
 Après avoir complété cet exercice de laboratoire, vous pourrez :
+
 - Ouvrir des fichiers de données R déjà existants
 - Importer des ensembles de données rectangulaires
 - Exporter des donnes de R vers un fichier texte

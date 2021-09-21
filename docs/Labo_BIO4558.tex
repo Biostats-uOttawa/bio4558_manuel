@@ -488,14 +488,26 @@ Ce document est mis à disposition selon les termes de la \href{http://creativec
 \chapter{Introduction à R}\label{introduction-uxe0-r}}
 
 Après avoir complété cet exercice de laboratoire, vous pourrez :
-- Ouvrir des fichiers de données R déjà existants
-- Importer des ensembles de données rectangulaires
-- Exporter des donnes de R vers un fichier texte
-- Vérifier si les données ont été correctement importées
-- Examiner la distribution des observations d'une variable
-- Examiner visuellement et tester la normalité d'une variable
-- Calculer des statistiques descriptives d'une variable
-- Effectuer des transformations de données
+
+\begin{itemize}
+\tightlist
+\item
+  Ouvrir des fichiers de données R déjà existants
+\item
+  Importer des ensembles de données rectangulaires
+\item
+  Exporter des donnes de R vers un fichier texte
+\item
+  Vérifier si les données ont été correctement importées
+\item
+  Examiner la distribution des observations d'une variable
+\item
+  Examiner visuellement et tester la normalité d'une variable
+\item
+  Calculer des statistiques descriptives d'une variable
+\item
+  Effectuer des transformations de données
+\end{itemize}
 
 \hypertarget{set-intro}{%
 \section{Paquets et données requises pour le labo}\label{set-intro}}
@@ -4820,8 +4832,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002170831  0.03241709
-## t2* 0.3408557 -0.001480771  0.02574459
+## t1* 1.1919926  0.002378721  0.03569537
+## t2* 0.3408557 -0.001652903  0.02822625
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4878,11 +4890,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.126,  1.253 )   ( 1.127,  1.253 )  
+## 95%   ( 1.120,  1.260 )   ( 1.120,  1.262 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.131,  1.257 )   ( 1.120,  1.249 )  
+## 95%   ( 1.122,  1.264 )   ( 1.114,  1.251 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -4906,10 +4919,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2919,  0.3928 )   ( 0.2928,  0.3937 )  
+## 95%   ( 0.2872,  0.3978 )   ( 0.2842,  0.3966 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2880,  0.3889 )   ( 0.2963,  0.3985 )  
+## 95%   ( 0.2851,  0.3975 )   ( 0.2913,  0.4013 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5271,9 +5284,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 45.084391 -0.0031209629   0.4289582
-## t2* -1.714546  0.0002344441   0.7589008
+##      original      bias    std. error
+## t1* 45.084391 0.003691577   0.4465739
+## t2* -1.714546 0.028614964   0.7641701
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5306,7 +5319,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.177, -0.260 )  
+## 95%   (-3.232, -0.209 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5350,7 +5363,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000   0.0172 *
+## location1   0.8573 4056   0.0242 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -6085,18 +6098,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5933
+## Quantile = 2.5922
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2709   3.6453
-## m1965 - m1954 == 0  -5.5077  -9.9968  -1.0185
-## m1966 - m1954 == 0  -3.3127  -6.3429  -0.2825
-## m1965 - m1958 == 0  -5.6949 -10.4109  -0.9789
-## m1966 - m1958 == 0  -3.4999  -6.8570  -0.1428
-## m1966 - m1965 == 0   2.1950  -2.2168   6.6067
+## m1958 - m1954 == 0   0.1872  -3.2694   3.6438
+## m1965 - m1954 == 0  -5.5077  -9.9948  -1.0205
+## m1966 - m1954 == 0  -3.3127  -6.3415  -0.2839
+## m1965 - m1958 == 0  -5.6949 -10.4087  -0.9810
+## m1966 - m1958 == 0  -3.4999  -6.8555  -0.1443
+## m1966 - m1965 == 0   2.1950  -2.2148   6.6048
 \end{verbatim}
 
 \begin{Shaded}
@@ -8687,15 +8700,15 @@ Les limites précises peuvent être obtenues par:
 \end{Shaded}
 
 \begin{verbatim}
-##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.75139551 0.1356219 -0.049589105 0.01580700 -0.0003472540
-## 1%    -0.72230273 0.1434819 -0.045596207 0.01695510 -0.0003419992
-## 2.5%  -0.67403908 0.1571303 -0.042219685 0.01972199 -0.0003310780
-## 5%    -0.62843474 0.1671856 -0.039552404 0.02114229 -0.0003183022
-## 95%   -0.08191400 0.2783219 -0.011449143 0.03844129 -0.0001808915
-## 97.5% -0.02113589 0.2880523 -0.009047702 0.03998440 -0.0001707970
-## 99%    0.02091995 0.3034008 -0.006578808 0.04079980 -0.0001486901
-## 99.5%  0.06062271 0.3159001 -0.003407741 0.04200062 -0.0001373976
+##       (Intercept)   logarea        thtden      swamp    I(swamp^2)
+## 0.5%  -0.73698985 0.1277441 -0.0494835045 0.01689310 -0.0003462060
+## 1%    -0.69539516 0.1387070 -0.0457182990 0.01842570 -0.0003372946
+## 2.5%  -0.64875337 0.1547725 -0.0421770050 0.01923256 -0.0003275330
+## 5%    -0.60254244 0.1668883 -0.0400004808 0.02107618 -0.0003131259
+## 95%   -0.08099397 0.2805487 -0.0107205270 0.03789797 -0.0001803205
+## 97.5% -0.02428049 0.2883705 -0.0073217847 0.03903605 -0.0001671496
+## 99%    0.02558482 0.3044692 -0.0041703200 0.04058086 -0.0001570792
+## 99.5%  0.04473608 0.3116818  0.0005128487 0.04116381 -0.0001460935
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8753,7 +8766,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1190,  0.3206 )  
+## 95%   ( 0.1155,  0.3163 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -10156,7 +10169,7 @@ L'interaction \texttt{location:year} nous dit que le nombre d'esturgeons n'a pas
 
 \cleardoublepage
 
-\hypertarget{appendix-appendice}{%
+\hypertarget{appendix-appendices}{%
 \appendix \addcontentsline{toc}{chapter}{\appendixname}}
 
 
