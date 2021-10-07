@@ -30,6 +30,7 @@ library(questionr)
 library(simpleboot)
 library(svglite)
 library(pwr)
+library(performance)
 # svglite
 ```
 # Note {-}

@@ -352,22 +352,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bootstrap-en-régression-simple-avec-r" class="section level2" number="3.10">
 <h2><span class="header-section-number">3.10</span> Bootstrap en régression simple avec R</h2>
 <p>Un test non paramétrique pour l’ordonnée à l’origine et la pente d’une régression simple peut être effectué par bootstrap.</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-1" aria-hidden="true"></a><span class="co"># charger le paquet boot</span></span>
-<span id="cb315-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-2" aria-hidden="true"></a><span class="kw">library</span>(boot)</span>
-<span id="cb315-3"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-3" aria-hidden="true"></a><span class="co"># obtenir les poids de régression</span></span>
-<span id="cb315-4"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-4" aria-hidden="true"></a>bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</span>
-<span id="cb315-5"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-5" aria-hidden="true"></a>  d &lt;-<span class="st"> </span>data[indices, ] <span class="co"># allows boot to select sample</span></span>
-<span id="cb315-6"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-6" aria-hidden="true"></a>  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</span>
-<span id="cb315-7"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-7" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</span>
-<span id="cb315-8"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-8" aria-hidden="true"></a>}</span>
-<span id="cb315-9"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-9" aria-hidden="true"></a><span class="co"># bootstrapping with 1000 replications</span></span>
-<span id="cb315-10"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-10" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">boot</span>(</span>
-<span id="cb315-11"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-11" aria-hidden="true"></a>  <span class="dt">data =</span> sturgeon.male,</span>
-<span id="cb315-12"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-12" aria-hidden="true"></a>  <span class="dt">statistic =</span> bs,</span>
-<span id="cb315-13"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-13" aria-hidden="true"></a>  <span class="dt">R =</span> <span class="dv">1000</span>, <span class="dt">formula =</span> <span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span><span class="kw">log10</span>(age)</span>
-<span id="cb315-14"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-14" aria-hidden="true"></a>)</span>
-<span id="cb315-15"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-15" aria-hidden="true"></a><span class="co"># view results</span></span>
-<span id="cb315-16"><a href="bootstrap-en-régression-simple-avec-r.html#cb315-16" aria-hidden="true"></a>results</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-1" aria-hidden="true"></a><span class="co"># charger le paquet boot</span></span>
+<span id="cb317-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-2" aria-hidden="true"></a><span class="kw">library</span>(boot)</span>
+<span id="cb317-3"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-3" aria-hidden="true"></a><span class="co"># obtenir les poids de régression</span></span>
+<span id="cb317-4"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-4" aria-hidden="true"></a>bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</span>
+<span id="cb317-5"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-5" aria-hidden="true"></a>  d &lt;-<span class="st"> </span>data[indices, ] <span class="co"># allows boot to select sample</span></span>
+<span id="cb317-6"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-6" aria-hidden="true"></a>  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</span>
+<span id="cb317-7"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-7" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</span>
+<span id="cb317-8"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-8" aria-hidden="true"></a>}</span>
+<span id="cb317-9"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-9" aria-hidden="true"></a><span class="co"># bootstrapping with 1000 replications</span></span>
+<span id="cb317-10"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-10" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">boot</span>(</span>
+<span id="cb317-11"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-11" aria-hidden="true"></a>  <span class="dt">data =</span> sturgeon.male,</span>
+<span id="cb317-12"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-12" aria-hidden="true"></a>  <span class="dt">statistic =</span> bs,</span>
+<span id="cb317-13"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-13" aria-hidden="true"></a>  <span class="dt">R =</span> <span class="dv">1000</span>, <span class="dt">formula =</span> <span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span><span class="kw">log10</span>(age)</span>
+<span id="cb317-14"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-14" aria-hidden="true"></a>)</span>
+<span id="cb317-15"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-15" aria-hidden="true"></a><span class="co"># view results</span></span>
+<span id="cb317-16"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-16" aria-hidden="true"></a>results</span></code></pre></div>
 <pre><code>## 
 ## ORDINARY NONPARAMETRIC BOOTSTRAP
 ## 
@@ -378,9 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0011610486  0.03453791
-## t2* 0.3408557 -0.0007042138  0.02736512</code></pre>
+##      original       bias    std. error
+## t1* 1.1919926  0.001606603  0.03422987
+## t2* 0.3408557 -0.001010916  0.02702988</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -388,14 +388,14 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 <li><code>bias</code> la différence entre la valeur moyenne des estimés par bootstrap et la valeur originale sur tout l’échantillon</li>
 <li><code>std. error</code> l’erreur-type de l’estimé bootstrap</li>
 </ol>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb317-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb317-2" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">1</span>) <span class="co"># intercept</span></span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb319-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb319-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb319-2" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">1</span>) <span class="co"># intercept</span></span></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb318-1" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>) <span class="co"># log10(age)</span></span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb320-1" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>) <span class="co"># log10(age)</span></span></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/lm-boot-2-2.svg" width="672" /></p>
 <p>La distribution des estimés obtenus par bootstrap est assez normale dans cet exemple, avec de petites déviations dans les queuee de la distribution (là où ça compte pour les intervalles de confiance…). On pourrait utiliser l’erreur-type des estimés bootstrap pour calculer un intervalle de confiance symétrique (moyenne +- t ET). Cependant, comme R peut facilement calculer des intervalles de confiance qui corrigent pour le biais (BCa) ou encore des intervalle empiriques à partir des distributions simulées (méthode Percentile) il peut être aussi simple de les calculer selon les 3 méthodes:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb319-1" aria-hidden="true"></a><span class="co"># interval de confiance pour l&#39;ordonnée à l&#39;origine</span></span>
-<span id="cb319-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb319-2" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb321-1" aria-hidden="true"></a><span class="co"># interval de confiance pour l&#39;ordonnée à l&#39;origine</span></span>
+<span id="cb321-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb321-2" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Warning in boot.ci(results, type = &quot;all&quot;, index = 1): bootstrap variances needed
 ## for studentized intervals</code></pre>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -406,13 +406,14 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.123,  1.259 )   ( 1.118,  1.254 )  
+## 95%   ( 1.123,  1.257 )   ( 1.124,  1.259 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.130,  1.266 )   ( 1.117,  1.254 )  
-## Calculations and Intervals on Original Scale</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb322-1" aria-hidden="true"></a><span class="co"># intervalle de confiance pour la pente</span></span>
-<span id="cb322-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb322-2" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</span></code></pre></div>
+## 95%   ( 1.125,  1.260 )   ( 1.114,  1.252 )  
+## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb324-1" aria-hidden="true"></a><span class="co"># intervalle de confiance pour la pente</span></span>
+<span id="cb324-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb324-2" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Warning in boot.ci(results, type = &quot;all&quot;, index = 2): bootstrap variances needed
 ## for studentized intervals</code></pre>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
@@ -423,10 +424,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2879,  0.3952 )   ( 0.2894,  0.3979 )  
+## 95%   ( 0.2889,  0.3948 )   ( 0.2874,  0.3932 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2838,  0.3923 )   ( 0.2901,  0.3975 )  
+## 95%   ( 0.2886,  0.3943 )   ( 0.2924,  0.4006 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

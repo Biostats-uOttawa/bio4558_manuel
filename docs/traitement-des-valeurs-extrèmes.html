@@ -357,8 +357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>L’approche conservatrice qui consiste à conserver toutes les valeurs extrêmes possibles est possiblement la plus honnête, mais elle peut causer certains problèmes. Ces valeurs extrêmes sont souvent la cause des violations des conditions d’application des tests statistiques. La solution suggérée à ce dilemme est de faire l’analyse avec et sans les valeurs extrêmes et de comparer les conclusions. Dans bien des cas, les conclusions seront qualitativement les mêmes et les tailles d’effet ne seront pas très différentes. Toutefois, dans certains cas, la présence des valeurs extrêmes change complètement les conclusions. Dans ces cas, il faut simplement accepter que les conclusions dépendent entièrement de la présence des valeurs extrêmes et sont donc peu concluantes.</p>
 <p>Suivant cette approche comparative, refaisons donc l’analyse après
 avoir enlevé les observations 8, 24, et 112.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="traitement-des-valeurs-extrèmes.html#cb298-1" aria-hidden="true"></a>RegModel<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span><span class="kw">log10</span>(age), <span class="dt">data =</span> sturgeon.male, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;8&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;112&quot;</span>)))</span>
-<span id="cb298-2"><a href="traitement-des-valeurs-extrèmes.html#cb298-2" aria-hidden="true"></a><span class="kw">summary</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="traitement-des-valeurs-extrèmes.html#cb300-1" aria-hidden="true"></a>RegModel<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span><span class="kw">log10</span>(age), <span class="dt">data =</span> sturgeon.male, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;8&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;112&quot;</span>)))</span>
+<span id="cb300-2"><a href="traitement-des-valeurs-extrèmes.html#cb300-2" aria-hidden="true"></a><span class="kw">summary</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male, 
@@ -381,30 +381,30 @@ avoir enlevé les observations 8, 24, et 112.</p>
 ## F-statistic:   261 on 1 and 70 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>L’ordonnée à l’origine (Intercept), la pente, et le R carré sont presque les mêmes, et la valeur de p est encore astronomiquement petite. Enlever les valeurs extrêmes a peu d’effet dans ce cas.</p>
 <p>Les graphiques diagnostiques des résidus et les tests formels des conditions d’application sur ce sous-ensemble de données donnent:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="traitement-des-valeurs-extrèmes.html#cb300-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb300-2"><a href="traitement-des-valeurs-extrèmes.html#cb300-2" aria-hidden="true"></a><span class="kw">plot</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="traitement-des-valeurs-extrèmes.html#cb302-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb302-2"><a href="traitement-des-valeurs-extrèmes.html#cb302-2" aria-hidden="true"></a><span class="kw">plot</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/sturtr-6-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="traitement-des-valeurs-extrèmes.html#cb301-1" aria-hidden="true"></a>sturgeon.male.subset &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;8&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;112&quot;</span>)))</span>
-<span id="cb301-2"><a href="traitement-des-valeurs-extrèmes.html#cb301-2" aria-hidden="true"></a><span class="kw">bptest</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="traitement-des-valeurs-extrèmes.html#cb303-1" aria-hidden="true"></a>sturgeon.male.subset &lt;-<span class="st"> </span><span class="kw">subset</span>(sturgeon, <span class="dt">subset =</span> <span class="op">!</span>(<span class="kw">rownames</span>(sturgeon.male) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;8&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;112&quot;</span>)))</span>
+<span id="cb303-2"><a href="traitement-des-valeurs-extrèmes.html#cb303-2" aria-hidden="true"></a><span class="kw">bptest</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
 ## data:  RegModel.3
 ## BP = 0.3001, df = 1, p-value = 0.5838</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="traitement-des-valeurs-extrèmes.html#cb303-1" aria-hidden="true"></a><span class="kw">dwtest</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="traitement-des-valeurs-extrèmes.html#cb305-1" aria-hidden="true"></a><span class="kw">dwtest</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Durbin-Watson test
 ## 
 ## data:  RegModel.3
 ## DW = 2.0171, p-value = 0.5074
 ## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="traitement-des-valeurs-extrèmes.html#cb305-1" aria-hidden="true"></a><span class="kw">resettest</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="traitement-des-valeurs-extrèmes.html#cb307-1" aria-hidden="true"></a><span class="kw">resettest</span>(RegModel<span class="fl">.3</span>)</span></code></pre></div>
 <pre><code>## 
 ##  RESET test
 ## 
 ## data:  RegModel.3
 ## RESET = 3.407, df1 = 2, df2 = 68, p-value = 0.0389</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="traitement-des-valeurs-extrèmes.html#cb307-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(RegModel<span class="fl">.3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="traitement-des-valeurs-extrèmes.html#cb309-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(RegModel<span class="fl">.3</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 

@@ -35,6 +35,7 @@ library(lmtest)
 library(boot)
 library(ggplot2)
 library(pwr)
+library(performance)
 
 sturgeon <- read.csv("data/sturgeon.csv")
 ```
@@ -347,7 +348,14 @@ plot(RegModel.1)
 Notez que R identifie automatiquement les cas les plus extrèmes sur chacun de ces 4 graphiques. Le fait qu’un point soit identifié ne signifie pas nécessairement que c’est une valeur réellement extrème, ou que vous devez vous en préoccuper. Dans tous les ensembles de données il y aura toujours un résidu plus grand que les autres...
 ```
 
+Il est possible d'obtenir des graphiques d'évalutions des conditions d'applications, qui sont plus simple à interpréter et plus joli (avec des couleurs).
+Il faut utiliser la fonction `model_check()` dans le `r emo::ji("package")` `performance`.
+
+```{r}
+check_model(RegModel.1)
+```
 Finalement, quel est le verdict concernant la régression linéaire entre fklngth et age ? Elle viole la condition de linéarité, possiblement celle de normalité, remplit la condition d’homoscédasticité, et ne semble pas influencée outre mesure par des valeurs bizarres ou extrêmes.
+
 
 ### Tests formels des conditions d’application pour la régression
 

@@ -353,31 +353,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.7</span> Vérifier les conditions d’application de modèles de régression multiple</h2>
 <p>Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.</p>
 <p>Examinons donc les graphiques diagnostiques du modèle final:</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb534-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb534-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb534-2"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb534-2" aria-hidden="true"></a><span class="kw">plot</span>(model.poly2)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-268"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-268-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" />
+<div class="sourceCode" id="cb536"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb536-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb536-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb536-2"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb536-2" aria-hidden="true"></a><span class="kw">plot</span>(model.poly2)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-269"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-269-1.svg" alt="Conditions d'application du modèle `model.poly2`" width="672" />
 <p class="caption">
 Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 </p>
 </div>
 <p>Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb535-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb537-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(model.poly2))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(model.poly2)
 ## W = 0.9837, p-value = 0.9278</code></pre>
 <p>Les résidus ne dévient pas significativement de la normalité. Bien.</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb537-1" aria-hidden="true"></a><span class="kw">library</span>(lmtest)</span>
-<span id="cb537-2"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb537-2" aria-hidden="true"></a><span class="kw">bptest</span>(model.poly2)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb539-1" aria-hidden="true"></a><span class="kw">library</span>(lmtest)</span>
+<span id="cb539-2"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb539-2" aria-hidden="true"></a><span class="kw">bptest</span>(model.poly2)</span></code></pre></div>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
 ## data:  model.poly2
 ## BP = 3.8415, df = 4, p-value = 0.4279</code></pre>
 <p>Pas de déviation d’homoscédasticité non plus. Bien.</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb539-1" aria-hidden="true"></a><span class="kw">dwtest</span>(model.poly2)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb541-1" aria-hidden="true"></a><span class="kw">dwtest</span>(model.poly2)</span></code></pre></div>
 <pre><code>## 
 ##  Durbin-Watson test
 ## 
@@ -385,7 +385,7 @@ Figure 7.5: Conditions d’application du modèle <code>model.poly2</code>
 ## DW = 1.725, p-value = 0.2095
 ## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
 <p>Pas de corrélation sérielle des résidus, donc pas d’évidence de nonindépendance.</p>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb541-1" aria-hidden="true"></a><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="vérifier-les-conditions-dapplication-de-modèles-de-régression-multiple.html#cb543-1" aria-hidden="true"></a><span class="kw">resettest</span>(model.poly2, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> mydata)</span></code></pre></div>
 <pre><code>## 
 ##  RESET test
 ## 

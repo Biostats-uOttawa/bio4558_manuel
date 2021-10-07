@@ -354,22 +354,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Le test d’indépendance ci-dessus éprouve une hypothèse intrinsèque parce que les proportions utilisées pour calculer les valeurs attendues et tester l’indépendance sont celles observées (i.e. la proportion des mâles et femelles dans tout l’échantillon, et la proportion des individus dans chaque classe d’âge).</p>
 <p>Pour éprouver l’hypothèse (extrinsèque) que le rapport des sexes est 1:1 pour les individus les plus jeunes (ageclass 0-9), on doit produire le tableau 2X2 des fréquences observées et attendues. Les fréquences attendues sont obtenues simplement en divisant le total des mâles et femelles par 2.</p>
 <p>Code R pour créer et analyser un tableau de contingence 2X2 et éprouver une hypothèse extrinsèque</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="tester-une-hypothèse-extrinsèque.html#cb640-1" aria-hidden="true"></a><span class="co">### Produce a table of obs vs exp for 0-9 age class</span></span>
-<span id="cb640-2"><a href="tester-une-hypothèse-extrinsèque.html#cb640-2" aria-hidden="true"></a>Popn0<span class="fl">.9</span> &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">17578</span>, <span class="dv">17578</span>), <span class="kw">c</span>(<span class="dv">17619</span>, <span class="dv">17538</span>))</span>
-<span id="cb640-3"><a href="tester-une-hypothèse-extrinsèque.html#cb640-3" aria-hidden="true"></a><span class="co">### Run X2 test on above table</span></span>
-<span id="cb640-4"><a href="tester-une-hypothèse-extrinsèque.html#cb640-4" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct =</span> F) <span class="co">### X2 without Yates</span></span>
-<span id="cb640-5"><a href="tester-une-hypothèse-extrinsèque.html#cb640-5" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>) <span class="co">### X2 with Yates</span></span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="tester-une-hypothèse-extrinsèque.html#cb642-1" aria-hidden="true"></a><span class="co">### Produce a table of obs vs exp for 0-9 age class</span></span>
+<span id="cb642-2"><a href="tester-une-hypothèse-extrinsèque.html#cb642-2" aria-hidden="true"></a>Popn0<span class="fl">.9</span> &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">17578</span>, <span class="dv">17578</span>), <span class="kw">c</span>(<span class="dv">17619</span>, <span class="dv">17538</span>))</span>
+<span id="cb642-3"><a href="tester-une-hypothèse-extrinsèque.html#cb642-3" aria-hidden="true"></a><span class="co">### Run X2 test on above table</span></span>
+<span id="cb642-4"><a href="tester-une-hypothèse-extrinsèque.html#cb642-4" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct =</span> F) <span class="co">### X2 without Yates</span></span>
+<span id="cb642-5"><a href="tester-une-hypothèse-extrinsèque.html#cb642-5" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>) <span class="co">### X2 with Yates</span></span></code></pre></div>
 
 <div class="rmdcode">
 Éprouvez l’hypothèse nulle que la proportion de mâles et femelles à la naissance est égale. Que concluez-vous? Croyez-vous que ces données sont appropriées pour tester cette hypothèse?
 </div>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb641-1"><a href="tester-une-hypothèse-extrinsèque.html#cb641-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb643-1"><a href="tester-une-hypothèse-extrinsèque.html#cb643-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>, <span class="dt">correct =</span> F)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  Popn0.9
 ## X-squared = 0.093309, df = 1, p-value = 0.76</code></pre>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb643-1"><a href="tester-une-hypothèse-extrinsèque.html#cb643-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb645-1"><a href="tester-une-hypothèse-extrinsèque.html#cb645-1" aria-hidden="true"></a><span class="kw">chisq.test</span>(Popn0<span class="fl">.9</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
