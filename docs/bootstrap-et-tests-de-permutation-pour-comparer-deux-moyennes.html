@@ -380,9 +380,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original     bias    std. error
-## t1* 45.084391 0.01017694   0.4368807
-## t2* -1.714546 0.00667481   0.7913592</code></pre>
+##      original       bias    std. error
+## t1* 45.084391 0.0021687789   0.4337398
+## t2* -1.714546 0.0008239552   0.7733035</code></pre>
 <p>On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C’est ce second paramètre, la différence entre les moyennes, qui nous intéresse.</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html#cb346-1" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:tb-3"></span>
@@ -401,7 +401,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.246, -0.091 )  
+## 95%   (-3.211, -0.235 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Comme l’intervalle de confiance n’inclue pas 0, on conclue que les moyennes ne sont pas les mêmes.</p>
 </div>
@@ -426,7 +426,7 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1071   0.0859 .
+## location1   0.8573 4144   0.0236 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -434,10 +434,9 @@ Figure 4.4: Normalité des estimés de la différence des moyennes par bootstrap
 ## Multiple R-Squared: 0.02419, Adjusted R-squared: 0.01889 
 ## F-statistic: 4.562 on 1 and 184 DF,  p-value: 0.03401</code></pre>
 <ol style="list-style-type: decimal">
-<li>Ici, la règle a limité à 1117 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .</li>
-<li>La p-valeur estimée pour H0 est 0.0824. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1-0.0824=presque 92%) des 1117 permutations. Notez que 1117 permutations ce n’est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations.. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l’erreur- type de p est plus petite que Ca*p (défaut=0.1)</li>
-<li>Le reste est la sortie standard pour un modèle ajusté à des
-données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d’application sont remplies, est 0.34.</li>
+<li><code>Iter</code>: la règle a limité à 4144 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .</li>
+<li><code>Pr(Prob)</code>: La p-valeur estimée pour H0 est 0.0236. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0236= 97.6%) des 4144 permutations. Notez que 4144 permutations ce n’est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l’erreur- type de p est plus petite que Ca*p (défaut=0.1)</li>
+<li><code>F-statistic</code>: Le reste est la sortie standard pour un modèle ajusté à des données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d’application sont remplies, est 0.034.</li>
 </ol>
 </div>
 </div>

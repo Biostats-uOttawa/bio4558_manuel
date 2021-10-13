@@ -213,10 +213,9 @@ La fonction `lmp()` fait tout le travail pour nous. Ici, cette fonction est effe
 summary(m1Perm)
 ```
 
-1. Ici, la règle a limité à 1117 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
-2. La p-valeur estimée pour H0 est 0.0824. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1-0.0824=presque 92%) des 1117 permutations. Notez que 1117 permutations ce n’est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations.. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l’erreur- type de p est plus petite que Ca*p (défaut=0.1)
-3.  Le reste est la sortie standard pour un modèle ajusté à des
-données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d’application sont remplies, est 0.34.
+1. `Iter`: la règle a limité à `r summary(m1Perm)$coefficients[2, 2]` permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
+2. `Pr(Prob)`: La p-valeur estimée pour H0 est `r round(summary(m1Perm)$coefficients[2, 3], 4)`. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - `r round(summary(m1Perm)$coefficients[2, 3],4)`= `r round(1 - summary(m1Perm)$coefficients[2, 3], 3)*100`%) des `r summary(m1Perm)$coefficients[2, 2]` permutations. Notez que `r summary(m1Perm)$coefficients[2, 2]` permutations ce n’est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l’erreur- type de p est plus petite que Ca*p (défaut=0.1)
+3.  `F-statistic`: Le reste est la sortie standard pour un modèle ajusté à des données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d’application sont remplies, est `r round(with(as.data.frame(t(summary(m1Perm)$fstatistic)), pf(value,numdf,dendf, lower.tail = FALSE)), 4)`.
 
 ## Comparer les moyennes de deux échantillons appariés
 
