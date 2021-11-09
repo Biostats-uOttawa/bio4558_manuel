@@ -239,7 +239,7 @@
 \makeatother
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{13-10-2021}
+\date{09-11-2021}
 
 \begin{document}
 \maketitle
@@ -4847,8 +4847,8 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## Bootstrap Statistics :
 ##      original        bias    std. error
-## t1* 1.1919926  0.0007845553  0.03436987
-## t2* 0.3408557 -0.0003799683  0.02730237
+## t1* 1.1919926  0.0006063349  0.03319161
+## t2* 0.3408557 -0.0003183020  0.02631644
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4905,10 +4905,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.259 )   ( 1.124,  1.263 )  
+## 95%   ( 1.126,  1.256 )   ( 1.126,  1.254 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.121,  1.260 )   ( 1.112,  1.253 )  
+## 95%   ( 1.130,  1.258 )   ( 1.120,  1.250 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -4933,10 +4933,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2877,  0.3947 )   ( 0.2834,  0.3940 )  
+## 95%   ( 0.2896,  0.3928 )   ( 0.2902,  0.3933 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2877,  0.3983 )   ( 0.2914,  0.4043 )  
+## 95%   ( 0.2884,  0.3915 )   ( 0.2927,  0.3959 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5298,9 +5298,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 -0.008109894   0.4414446
-## t2* -1.714546  0.034057757   0.7778340
+##      original        bias    std. error
+## t1* 45.084391 -0.0024378124   0.4416405
+## t2* -1.714546  0.0001437761   0.7770123
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5333,7 +5333,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.442, -0.245 )  
+## 95%   (-3.299, -0.260 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5377,7 +5377,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 5000   0.0192 *
+## location1   0.8573 1782   0.0533 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5390,9 +5390,9 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \texttt{Iter}: la règle a limité à 5000 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
+  \texttt{Iter}: la règle a limité à 1782 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
 \item
-  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0192. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0192= 98.1\%) des 5000 permutations. Notez que 5000 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
+  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0533. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0533= 94.7\%) des 1782 permutations. Notez que 1782 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
 \item
   \texttt{F-statistic}: Le reste est la sortie standard pour un modèle ajusté à des données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d'application sont remplies, est 0.034.
 \end{enumerate}
@@ -5785,7 +5785,20 @@ Il semble que la taille des esturgeons est un peu plus petite après la construc
 \hypertarget{vuxe9rifier-les-conditions-dapplication-de-lanova-paramuxe9trique}{%
 \subsection{Vérifier les conditions d'application de l'ANOVA paramétrique}\label{vuxe9rifier-les-conditions-dapplication-de-lanova-paramuxe9trique}}
 
-L'ANOVA paramétrique a trois conditions principales d'application : 1) les résidus sont normalement distribués, 2) la variance des résidus est égale dans tous les traitements (homoscédasticité) et 3) les résidus sont indépendants les uns des autres. Ces conditions doivent être remplies avant qu'on puisse se fier aux résultats de l'ANOVA paramétrique.
+L'ANOVA paramétrique a trois conditions principales d'application :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  les résidus sont normalement distribués,
+\item
+  la variance des résidus est égale dans tous les traitements (homoscédasticité) et
+\item
+  les résidus sont indépendants les uns des autres.
+\end{enumerate}
+
+Ces conditions doivent être remplies avant qu'on puisse se fier aux résultats de l'ANOVA paramétrique.
 
 \begin{itemize}
 \tightlist
@@ -6111,18 +6124,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5955
+## Quantile = 2.5934
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2737   3.6482
-## m1965 - m1954 == 0  -5.5077 -10.0005  -1.0148
-## m1966 - m1954 == 0  -3.3127  -6.3454  -0.2800
-## m1965 - m1958 == 0  -5.6949 -10.4147  -0.9750
-## m1966 - m1958 == 0  -3.4999  -6.8597  -0.1401
-## m1966 - m1965 == 0   2.1950  -2.2204   6.6104
+## m1958 - m1954 == 0   0.1872  -3.2710   3.6454
+## m1965 - m1954 == 0  -5.5077  -9.9969  -1.0184
+## m1966 - m1954 == 0  -3.3127  -6.3429  -0.2825
+## m1965 - m1958 == 0  -5.6949 -10.4109  -0.9788
+## m1966 - m1958 == 0  -3.4999  -6.8570  -0.1428
+## m1966 - m1965 == 0   2.1950  -2.2169   6.6068
 \end{verbatim}
 
 \begin{Shaded}
@@ -6424,6 +6437,8 @@ Ce laboratoire nécessite:
     multicomp
   \item
     car
+  \item
+    tidyverse
   \end{itemize}
 \item
   les fichiers de données
@@ -6449,8 +6464,28 @@ Ce laboratoire nécessite:
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(multcomp)}
 \KeywordTok{library}\NormalTok{(car)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages ----------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v tibble  3.1.2     v purrr   0.3.4
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts -------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## x dplyr::recode() masks car::recode()
+## x dplyr::select() masks MASS::select()
+## x purrr::some()   masks car::some()
+\end{verbatim}
 
 \hypertarget{plan-factoriel-uxe0-deux-facteurs-de-classification-et-ruxe9plication}{%
 \section{Plan factoriel à deux facteurs de classification et réplication}\label{plan-factoriel-uxe0-deux-facteurs-de-classification-et-ruxe9plication}}
@@ -6467,6 +6502,12 @@ Supposons que vous êtes intéressés par l'effet de deux facteurs : site (locat
 \item
   Examinez d'abord les données en faisant des box plots de rdwght pour sex et location des données du fichier \texttt{Stu2wdat.csv} .
 \end{itemize}
+
+\begin{verbatim}
+## Warning: Removed 4 rows containing non-finite values (stat_boxplot).
+\end{verbatim}
+
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-206-1.pdf}
 
 Les graphiques montrent qu'aux deux sites les femelles sont probablement plus grandes que les mâles, mais que les tailles ne varient pas beaucoup d'un site à l'autre. La présence de valeurs extrêmes sur ces graphiques suggère qu'il y aura peut-être des problèmes avec la condition de normalité des résidus.
 
@@ -6569,8 +6610,8 @@ Suite à l'ANOVA, on accepte deux hypothèses nulles: (1) que l'effet du sexe ne
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-210-1.pdf}
-\caption{\label{fig:unnamed-chunk-210}Conditions d'application ANOVA model1}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-211-1.pdf}
+\caption{\label{fig:unnamed-chunk-211}Conditions d'application ANOVA model1}
 \end{figure}
 
 Cependant, on ne peut se fier à ces résultats sans vérifier si les conditions d'application de l'ANOVA étaient remplies. Un examen des graphiques des résidus, en haut, montre que les résidus semblent être distribués plus ou moins normalement, si ce n'est des 3 valeurs extrêmes qui sont notées sur le diagramme de probabilité (cas 101, 24,\& 71). D'après le graphique des résidus vs les valeurs prédites, on voit que l'étendue des résidus est plus ou moins égale pour les valeurs estimées, sauf encore pour 2 ou 3 cas. Si on éprouve la normalité, on obtient:
@@ -6708,8 +6749,8 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-217-1.pdf}
-\caption{\label{fig:unnamed-chunk-217}Effet du sexe et du lieu sur le poids des esturgeons}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-218-1.pdf}
+\caption{\label{fig:unnamed-chunk-218}Effet du sexe et du lieu sur le poids des esturgeons}
 \end{figure}
 
 \begin{Shaded}
@@ -6736,8 +6777,8 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-218-1.pdf}
-\caption{\label{fig:unnamed-chunk-218}Effet du sexe et du lieu sur le poids des esturgeons}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-219-1.pdf}
+\caption{\label{fig:unnamed-chunk-219}Effet du sexe et du lieu sur le poids des esturgeons}
 \end{figure}
 
 Il y a une différence importante entre les résultats obtenus avec \texttt{stu2wdat} et \texttt{stu2mdat}. Dans le premier cas, puisqu'il n'y a pas d'interaction, on peut regrouper les données des deux niveaux d'un facteur (le site, par exemple) pour éprouver l'hypothèse d'un effet de l'autre facteur (le sexe). En fait, si on fait cela et que l'on calcule une ANOVA à un critère de classification (sex), on obtient:
@@ -6876,8 +6917,8 @@ Si on suppose que c'est un modèle d'ANOVA mixte (date aléatoire, Depth fixe), 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-227-1.pdf}
-\caption{\label{fig:unnamed-chunk-227}Effet du mois et de la profondeur sur la température}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-228-1.pdf}
+\caption{\label{fig:unnamed-chunk-228}Effet du mois et de la profondeur sur la température}
 \end{figure}
 
 La température diminue significativement en profondeur. Pour tester l'effet du mois (le facteur aléatoire), on doit présumer qu'il n'y a pas d'interaction entre la profondeur et le mois (donc que l'effet de la profondeur sur la température est le même à chaque mois). C'est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l'été, ce modèle ne fait pas de très bonnes prédictions.
@@ -6897,8 +6938,8 @@ Jetez un coup d'oeil sur les graphiques des résidus:
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-228-1.pdf}
-\caption{\label{fig:unnamed-chunk-228}Conditions d'applications du modèle anova.model4}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-229-1.pdf}
+\caption{\label{fig:unnamed-chunk-229}Conditions d'applications du modèle anova.model4}
 \end{figure}
 
 \begin{Shaded}
@@ -6975,8 +7016,8 @@ Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (In
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-232-1.pdf}
-\caption{\label{fig:unnamed-chunk-232}Conditions d'applications du modèle anova.nested}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-233-1.pdf}
+\caption{\label{fig:unnamed-chunk-233}Conditions d'applications du modèle anova.nested}
 \end{figure}
 
 On conclue de cette analyse que la variation entre les chambres de croissance n'est pas significative, mais qu'on doit rejeter l'hypothèse nulle que tous les génotypes ont la même résistance à la dessiccation.
@@ -7023,8 +7064,8 @@ Le graphique de \texttt{survival} en fonction du \texttt{génotype} suggère que
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-234-1.pdf}
-\caption{\label{fig:unnamed-chunk-234}Effet du genotype sur la résistance à la dessication avec un test de Tukey}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-235-1.pdf}
+\caption{\label{fig:unnamed-chunk-235}Effet du genotype sur la résistance à la dessication avec un test de Tukey}
 \end{figure}
 
 On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) \textgreater{} R(Aa) \textgreater{} R(aa).
@@ -7033,8 +7074,8 @@ Cependant, avant d'accepter cette conclusion, il faut éprouver les conditions d
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-235-1.pdf}
-\caption{\label{fig:unnamed-chunk-235}Conditions d'applications du modèle anova.simple}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-236-1.pdf}
+\caption{\label{fig:unnamed-chunk-236}Conditions d'applications du modèle anova.simple}
 \end{figure}
 
 Donc, toutes les conditions d'application semblent être remplies, et on peut donc accepter les conclusions. Notez que si l'on compare le carré moyen des résidus de l'ANOVA hiérarchique et de l'ANOVA à un critère de classification (5.045 vs 5.292), ils sont presque identiques. Cela n'est pas surprenant compte tenu de la faible variabilité associée aux chambres de croissance pour chaque génotype.
@@ -7194,7 +7235,7 @@ Comme l'effectif dans chaque cellule est relativement petit, il faudrait idéale
 
 Examinons les graphiques diagnostiques:
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-242-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-243-1.pdf}
 
 Les variances semblent donc égales. Le test de normalité donne:
 
@@ -7254,8 +7295,8 @@ On conclue donc qu'il n'y a pas de différence entre les espèces et que l'effet
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-245-1.pdf}
-\caption{\label{fig:unnamed-chunk-245}Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-246-1.pdf}
+\caption{\label{fig:unnamed-chunk-246}Comparaison de Tukey des moyennes de consommation d'oxygèn en fonction del la concentration}
 \end{figure}
 
 \begin{Shaded}
@@ -7296,7 +7337,7 @@ Dans ce cas ci, il y a une interaction significative, et il n'est par conséquen
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-248-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-249-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -7352,7 +7393,7 @@ Je trouve ces tableaux de résultats peu satisfaisants parce qu'ils indiquent se
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-251-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-252-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7622,8 +7663,8 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-252-1.pdf}
-\caption{\label{fig:unnamed-chunk-252}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-253-1.pdf}
+\caption{\label{fig:unnamed-chunk-253}Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles}
 \end{figure}
 
 \begin{itemize}
@@ -7670,8 +7711,8 @@ Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour c
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-253-1.pdf}
-\caption{\label{fig:unnamed-chunk-253}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-254-1.pdf}
+\caption{\label{fig:unnamed-chunk-254}Conditions d'applications de la régression de \emph{logherp} sur \emph{logarea}}
 \end{figure}
 
 Il semble donc y avoir une relation positive entre la richesse spécifique des reptiles et des amphibiens et la surface des marais. La régression n'explique cependant qu'environ le tiers de la variabilité (R 2 =0.355). L'analyse des résidus indique qu'il n'y a pas de problème avec la normalité, l'homoscédasticité, ni l'indépendance.
@@ -8058,8 +8099,8 @@ La régression requiert la linéarité de la relation entre les variables dépen
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-262-1.pdf}
-\caption{\label{fig:unnamed-chunk-262}Relation entre swamp et les résidus de la régression entre logherp et logarea}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-263-1.pdf}
+\caption{\label{fig:unnamed-chunk-263}Relation entre swamp et les résidus de la régression entre logherp et logarea}
 \end{figure}
 
 \begin{itemize}
@@ -8121,8 +8162,8 @@ Il devient évident que si on corrige la richesse spécifique pour la taille des
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-265-1.pdf}
-\caption{\label{fig:unnamed-chunk-265}Relation}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-266-1.pdf}
+\caption{\label{fig:unnamed-chunk-266}Relation}
 \end{figure}
 
 \begin{itemize}
@@ -8209,7 +8250,7 @@ Les valeurs d'inflation de la variance (VIF) pour les deux termes de swamp sont 
 Toutes les techniques de sélection des modèles présument que les conditions d'applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d'examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l'ajustement n'affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.
 
 Examinons donc les graphiques diagnostiques du modèle final:
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-269-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-270-1.pdf}
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d'application:
 
@@ -8294,8 +8335,8 @@ Les coefficients de la régression multiple peuvent mesurer la taille d'effet, q
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-274-1.pdf}
-\caption{\label{fig:unnamed-chunk-274}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-275-1.pdf}
+\caption{\label{fig:unnamed-chunk-275}Graphiques de résidus partiels du modèle \texttt{model.poly2}}
 \end{figure}
 
 Notez que l'échelle de l'axe des y varie sur chaque graphique. Pour thtden, la variable dépendante (log10(richesse des herptiles)) varie d'environ 0.4 unités entre la valeur minimum et maximum de thtden. Pour logarea, la variation est d'environ 0.6 unité log. Pour swamp, l'interprétation est plus compliquée parce qu'il y a deux termes qui quantifient son effet, et que ces termes ont des signes opposés (positif pour swamp et négatif pour swamp\^{}2) ce qui donne une relation curvilinéaire de type parabole. Le graphique ne permet pas de bien visualiser cela. Ceci dit, ces graphique n'indiquent pas vraiment de violation de linéarité.
@@ -8304,8 +8345,8 @@ Pour illustrer ce qui serait visible sur ces graphiques si il y avait une dévia
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-275-1.pdf}
-\caption{\label{fig:unnamed-chunk-275}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-276-1.pdf}
+\caption{\label{fig:unnamed-chunk-276}Graphiques de résidus partiels du modèle \texttt{model.nopoly}}
 \end{figure}
 
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
@@ -8696,8 +8737,8 @@ Vous pouvez ensuite faire des graphiques pour voir les résultats. Lorsque vous 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-289-1.pdf}
-\caption{\label{fig:unnamed-chunk-289}Distribution des estimé par bootstrap pour \texttt{logarea}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-290-1.pdf}
+\caption{\label{fig:unnamed-chunk-290}Distribution des estimé par bootstrap pour \texttt{logarea}}
 \end{figure}
 
 Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l'histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l'intervalle de confiance à 95\%. Ici l'IC ne contient pas 0, et donc on peut conclure que l'effet de logarea sur logherp est significativement positif.
@@ -8714,14 +8755,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##        (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.760649080 0.1413307 -0.047334023 0.01600645 -0.0003440856
-## 1%    -0.713545508 0.1473273 -0.045400025 0.01806853 -0.0003388477
-## 2.5%  -0.662391187 0.1596035 -0.043083250 0.01957243 -0.0003244820
-## 5%    -0.607923513 0.1680990 -0.040070921 0.02073176 -0.0003140767
-## 95%   -0.053416012 0.2813591 -0.012254367 0.03767338 -0.0001797812
-## 97.5% -0.009407314 0.2923247 -0.010127889 0.03888722 -0.0001701214
-## 99%    0.021455950 0.3011814 -0.007792059 0.04058110 -0.0001560286
-## 99.5%  0.080284280 0.3095614 -0.006126734 0.04120786 -0.0001455132
+## 0.5%  -0.711877920 0.1200470 -0.046261959 0.01700882 -0.0003442958
+## 1%    -0.694023058 0.1303715 -0.044506895 0.01803607 -0.0003347814
+## 2.5%  -0.652644009 0.1515682 -0.041827238 0.01993444 -0.0003257225
+## 5%    -0.603356933 0.1623907 -0.038963222 0.02172007 -0.0003146377
+## 95%   -0.088785058 0.2802413 -0.010629028 0.03791522 -0.0001859053
+## 97.5% -0.049267030 0.2873975 -0.007935330 0.03919438 -0.0001710589
+## 99%   -0.004626881 0.2989537 -0.005754757 0.04010749 -0.0001552270
+## 99.5%  0.044665950 0.3113671 -0.002832472 0.04167855 -0.0001511454
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8779,11 +8820,11 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1196,  0.3216 )  
+## 95%   ( 0.1176,  0.3172 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-293-1.pdf}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-294-1.pdf}
 
 Notez que l'intervalle BCa va de 0.12 à 0.32, alors que l'intervalle standard était de 0.16 à 0.29. L'intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.
 
@@ -8905,8 +8946,8 @@ Commençons par examiner les données. Pour faciliter la comparaison, il serait 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-297-1.pdf}
-\caption{\label{fig:unnamed-chunk-297}Longueur des esturgeons en fonction de l'age}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-298-1.pdf}
+\caption{\label{fig:unnamed-chunk-298}Longueur des esturgeons en fonction de l'age}
 \end{figure}
 
 La transformation log-log rend la relation linéaire et, à première vue, il ne semble pas y avoir de problème évident avec les conditions d'application. Ajustons donc le modèle complet avec l'interaction:
@@ -8940,8 +8981,8 @@ Probabilité que le terme lage*sex n'affecte pas la longueur à la fourche (i.e.
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-299-1.pdf}
-\caption{\label{fig:unnamed-chunk-299}Conditions d'applications du modèle \texttt{model.full1}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-300-1.pdf}
+\caption{\label{fig:unnamed-chunk-300}Conditions d'applications du modèle \texttt{model.full1}}
 \end{figure}
 
 En ce qui concerne la normalité, ça a l'air d'aller quoiqu'il y a quelques points, en haut à droite, qui dévient de la droite. Si on effectue le test de Wilk-Shapiro (W = .9764, p = 0.09329), on confirme que les résidus ne dévient pas significativement de la normalité. Les résidus semblent homoscédastiques, mais si vous voulez vous en assurer, vous pouvez l'éprouver par un des tests formels. Ici j'utilise le test Breusch-Pagan, qui est approprié quand certaines des variables indépendantes sont continues (Le test de Levene n'est approprié que lorsqu'il n'y a que des variables discontinues).
@@ -9028,8 +9069,8 @@ Le fichier \texttt{anc3dat.csv} contient des données sur des esturgeons mâles 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-304-1.pdf}
-\caption{\label{fig:unnamed-chunk-304}Longueur des esturgeons en fonction de l'age d'après \texttt{anc3dat}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-305-1.pdf}
+\caption{\label{fig:unnamed-chunk-305}Longueur des esturgeons en fonction de l'age d'après \texttt{anc3dat}}
 \end{figure}
 
 \begin{Shaded}
@@ -9059,8 +9100,8 @@ Mais avant d'accepter ces conclusions, on doit se convaincre que les conditions 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-305-1.pdf}
-\caption{\label{fig:unnamed-chunk-305}Conditions d'applications du modèle \texttt{model.full2}}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-306-1.pdf}
+\caption{\label{fig:unnamed-chunk-306}Conditions d'applications du modèle \texttt{model.full2}}
 \end{figure}
 
 Si on examine les résidus selon les méthodes habituelles, on voit qu'il n'y a pas de problème de linéarité, ni d'homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l'échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des GLM, de la taille de l'échantillon, on ne devrait pas \^{}tre trop inquiet de cette déviation de normalité.
@@ -9692,8 +9733,8 @@ Le package \texttt{vcd} inclut la fonction \texttt{mosaic()} qui permet de repr�
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-325-1.pdf}
-\caption{\label{fig:unnamed-chunk-325}Représentation mosaique de la proportion des sexes par classe d'age}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-326-1.pdf}
+\caption{\label{fig:unnamed-chunk-326}Représentation mosaique de la proportion des sexes par classe d'age}
 \end{figure}
 
 Cette mosaïque représente la proportion des observations dans chaque combinaison de catégories (ici il y a 18 catégories, 2 sexes x 9 classes d'âge). Les catégories contenant une plus grande proportion d'observations sont représentées par de plus grands rectangles. Visuellement, on peut voir que la proportion des mâles et femelles est approximativement égale chez les jeunes, mais que la proportion des femelles augmente chez les personnes âgées.
@@ -9922,8 +9963,8 @@ Le fichier \texttt{loglin.csv} contient les fréquences (frequency) des plantes 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-334-1.pdf}
-\caption{\label{fig:unnamed-chunk-334}Proportion de plantes infectées en fonction de la température er la lumière}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-335-1.pdf}
+\caption{\label{fig:unnamed-chunk-335}Proportion de plantes infectées en fonction de la température er la lumière}
 \end{figure}
 
 Cette expérience contrôlée avec le même nombre de plantes à chaque niveau de lumière et de température produit une mosaïque où la surface occupée par les observations dans les quatre quadrants est égale. Ce qui nous intéresse, le taux d'infection par le pathogène, semble varier entre les quadrants (i.e.~les niveaux de température et de lumière). Le rectangle rouge dans le coin en bas à gauche indique que le nombre de plantes infectées à basse température et haute lumière est plus faible qu'attendu si ces deux facteurs n'influencent pas le taux d'infection. Même chose pour les conditions de basse lumière et de haute température (coin supérieur droit). La valeur p au bas de l'échelle représente un test d'indépendance équivalent à comparer le modèle complet au modèle excluant toutes les interactions et ne contenant que les effets principaux de la température, la lumière, et le statut d'infection sur le logarithme naturel du nombre d'observations.
@@ -10035,8 +10076,8 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-337-1.pdf}
-\caption{\label{fig:unnamed-chunk-337}Fréquence de femelles et males en fonction de l'année et du lieu}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-338-1.pdf}
+\caption{\label{fig:unnamed-chunk-338}Fréquence de femelles et males en fonction de l'année et du lieu}
 \end{figure}
 
 \begin{rmdcode}
@@ -10399,8 +10440,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-343-1.pdf}
-\caption{\label{fig:unnamed-chunk-343-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-344-1.pdf}
+\caption{\label{fig:unnamed-chunk-344-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10412,8 +10453,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-343-2.pdf}
-\caption{\label{fig:unnamed-chunk-343-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-344-2.pdf}
+\caption{\label{fig:unnamed-chunk-344-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10425,8 +10466,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-343-3.pdf}
-\caption{\label{fig:unnamed-chunk-343-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-344-3.pdf}
+\caption{\label{fig:unnamed-chunk-344-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

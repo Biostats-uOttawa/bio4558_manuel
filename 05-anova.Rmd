@@ -71,7 +71,13 @@ Il semble que la taille des esturgeons est un peu plus petite après la construc
 
 ### Vérifier les conditions d'application de l'ANOVA paramétrique
 
-L'ANOVA paramétrique a trois conditions principales d'application : 1) les résidus sont normalement distribués, 2) la variance des résidus est égale dans tous les traitements (homoscédasticité) et 3) les résidus sont indépendants les uns des autres. Ces conditions doivent être remplies avant qu’on puisse se fier aux résultats de l’ANOVA paramétrique.
+L'ANOVA paramétrique a trois conditions principales d'application :
+
+1. les résidus sont normalement distribués,
+2. la variance des résidus est égale dans tous les traitements (homoscédasticité) et
+3. les résidus sont indépendants les uns des autres.
+
+Ces conditions doivent être remplies avant qu’on puisse se fier aux résultats de l’ANOVA paramétrique.
 
 - Faites une ANOVA à un critère de classification sur fklngth par année et produisez les graphiques diagnostiques
 

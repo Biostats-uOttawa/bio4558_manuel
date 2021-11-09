@@ -422,7 +422,13 @@ Figure 5.2: Boxplot de la longueur pas annéee
 </div>
 <div id="vérifier-les-conditions-dapplication-de-lanova-paramétrique" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Vérifier les conditions d’application de l’ANOVA paramétrique</h3>
-<p>L’ANOVA paramétrique a trois conditions principales d’application : 1) les résidus sont normalement distribués, 2) la variance des résidus est égale dans tous les traitements (homoscédasticité) et 3) les résidus sont indépendants les uns des autres. Ces conditions doivent être remplies avant qu’on puisse se fier aux résultats de l’ANOVA paramétrique.</p>
+<p>L’ANOVA paramétrique a trois conditions principales d’application :</p>
+<ol style="list-style-type: decimal">
+<li>les résidus sont normalement distribués,</li>
+<li>la variance des résidus est égale dans tous les traitements (homoscédasticité) et</li>
+<li>les résidus sont indépendants les uns des autres.</li>
+</ol>
+<p>Ces conditions doivent être remplies avant qu’on puisse se fier aux résultats de l’ANOVA paramétrique.</p>
 <ul>
 <li>Faites une ANOVA à un critère de classification sur fklngth par année et produisez les graphiques diagnostiques</li>
 </ul>
@@ -622,18 +628,18 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5939
+## Quantile = 2.5923
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2716   3.6460
-## m1965 - m1954 == 0  -5.5077  -9.9977  -1.0176
-## m1966 - m1954 == 0  -3.3127  -6.3435  -0.2819
-## m1965 - m1958 == 0  -5.6949 -10.4118  -0.9779
-## m1966 - m1958 == 0  -3.4999  -6.8577  -0.1422
-## m1966 - m1965 == 0   2.1950  -2.2177   6.6076</code></pre>
+## m1958 - m1954 == 0   0.1872  -3.2696   3.6440
+## m1965 - m1954 == 0  -5.5077  -9.9951  -1.0203
+## m1966 - m1954 == 0  -3.3127  -6.3417  -0.2837
+## m1965 - m1958 == 0  -5.6949 -10.4090  -0.9807
+## m1966 - m1958 == 0  -3.4999  -6.8557  -0.1441
+## m1966 - m1965 == 0   2.1950  -2.2151   6.6050</code></pre>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-1" aria-hidden="true"></a><span class="kw">plot</span>(meandiff)</span></code></pre></div>
 <div class="figure"><span id="fig:ano-14"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />

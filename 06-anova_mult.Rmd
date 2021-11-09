@@ -19,6 +19,7 @@ Ce laboratoire nécessite:
 * les paquets R:
   * multicomp
   * car
+  * tidyverse
 * les fichiers de données
   * Stu2wdat.csv
   * Stu2mdat.csv
@@ -30,6 +31,7 @@ Ce laboratoire nécessite:
 ```{r}
 library(multcomp)
 library(car)
+library(tidyverse)
 ```
 
 ## Plan factoriel à deux facteurs de classification et réplication
@@ -41,6 +43,13 @@ Supposons que vous êtes intéressés par l'effet de deux facteurs : site (locat
 ### ANOVA à effets fixes
 * Examinez d’abord les données en faisant des box plots de rdwght pour sex et location des données du fichier `Stu2wdat.csv` .
 
+```{r, echo = params$echo_sol, class.source = "exer"}
+Stu2wdat <- read.csv("data/Stu2wdat.csv")
+
+ggplot(Stu2wdat, aes(x = sex, y = rdwght)) +
+geom_boxplot(notch = TRUE) +
+facet_grid(~location)
+```
 
 Les graphiques montrent qu’aux deux sites les femelles sont probablement plus grandes que les mâles, mais que les tailles ne varient pas beaucoup d’un site à l’autre. La présence de valeurs extrêmes sur ces graphiques suggère qu’il y aura peut-être des problèmes avec la condition de normalité des résidus.
 
