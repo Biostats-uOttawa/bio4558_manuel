@@ -442,7 +442,7 @@ Il y a donc une différence de consommation d’oxygène significative lorsque l
 wmc2dat2 <- read.csv("data/wmc2dat2.csv")
 wmc2dat2$species <- as.factor(wmc2dat2$species)
 wmc2dat2$conc <- as.factor(wmc2dat2$conc)
-anova.model7 <- lm(o2cons ~ species * conc, data = wmcdat2)
+anova.model7 <- lm(o2cons ~ species * conc, data = wmc2dat2)
 ```
 
 En utilisant `wmc2dat2.csv`, on obtient:
