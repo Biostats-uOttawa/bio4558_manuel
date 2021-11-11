@@ -4846,9 +4846,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 1.1919926  0.002842619  0.03442398
-## t2* 0.3408557 -0.002239732  0.02717731
+##      original        bias    std. error
+## t1* 1.1919926  0.0016780094  0.03469268
+## t2* 0.3408557 -0.0009660716  0.02760247
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4905,12 +4905,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.257 )   ( 1.119,  1.258 )  
+## 95%   ( 1.122,  1.258 )   ( 1.118,  1.258 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.126,  1.265 )   ( 1.112,  1.249 )  
+## 95%   ( 1.126,  1.266 )   ( 1.114,  1.253 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -4934,12 +4933,11 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2898,  0.3964 )   ( 0.2887,  0.3966 )  
+## 95%   ( 0.2877,  0.3959 )   ( 0.2882,  0.3975 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2851,  0.3930 )   ( 0.2963,  0.4064 )  
+## 95%   ( 0.2842,  0.3935 )   ( 0.2939,  0.4038 )  
 ## Calculations and Intervals on Original Scale
-## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5301,8 +5299,8 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 45.084391 -0.003175695   0.4404004
-## t2* -1.714546  0.013338149   0.7730368
+## t1* 45.084391 -0.006769951   0.4438405
+## t2* -1.714546  0.027254245   0.7794951
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5335,7 +5333,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.276, -0.201 )  
+## 95%   (-3.343, -0.196 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5379,7 +5377,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 2370   0.0405 *
+## location1   0.8573 1217   0.0764 .
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5392,9 +5390,9 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \texttt{Iter}: la règle a limité à 2370 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
+  \texttt{Iter}: la règle a limité à 1217 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
 \item
-  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0405. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0405= 95.9\%) des 2370 permutations. Notez que 2370 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
+  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0764. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0764= 92.4\%) des 1217 permutations. Notez que 1217 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
 \item
   \texttt{F-statistic}: Le reste est la sortie standard pour un modèle ajusté à des données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d'application sont remplies, est 0.034.
 \end{enumerate}
@@ -6126,18 +6124,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5946
+## Quantile = 2.5932
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2726   3.6470
-## m1965 - m1954 == 0  -5.5077  -9.9990  -1.0163
-## m1966 - m1954 == 0  -3.3127  -6.3443  -0.2811
-## m1965 - m1958 == 0  -5.6949 -10.4131  -0.9766
-## m1966 - m1958 == 0  -3.4999  -6.8586  -0.1412
-## m1966 - m1965 == 0   2.1950  -2.2190   6.6089
+## m1958 - m1954 == 0   0.1872  -3.2707   3.6451
+## m1965 - m1954 == 0  -5.5077  -9.9965  -1.0188
+## m1966 - m1954 == 0  -3.3127  -6.3427  -0.2827
+## m1965 - m1958 == 0  -5.6949 -10.4106  -0.9792
+## m1966 - m1958 == 0  -3.4999  -6.8568  -0.1430
+## m1966 - m1965 == 0   2.1950  -2.2165   6.6065
 \end{verbatim}
 
 \begin{Shaded}
@@ -6840,9 +6838,9 @@ En utilisant \texttt{Stu2wdat}, refaites un tableau d'ANOVA pour RDWGHT en consi
 ## Response: rdwght
 ##              Sum Sq  Df   F value    Pr(>F)    
 ## (Intercept)  106507   1 1081.4552 < 2.2e-16 ***
-## sex              49   1    0.4944    0.4829    
+## sex            1745   1   17.7220 4.051e-05 ***
 ## location          9   1    0.0891    0.7656    
-## sex:location   1745   1   17.7220 4.051e-05 ***
+## sex:location     49   1    0.4944    0.4829    
 ## Residuals     17530 178                        
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -8757,14 +8755,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.71533776 0.1248316 -0.045072024 0.01582854 -0.0003451633
-## 1%    -0.68662679 0.1356427 -0.044052137 0.01716995 -0.0003395765
-## 2.5%  -0.64679834 0.1554751 -0.042431112 0.01987952 -0.0003288594
-## 5%    -0.59657004 0.1640844 -0.039551469 0.02135504 -0.0003127357
-## 95%   -0.08630668 0.2779894 -0.011768095 0.03740812 -0.0001824118
-## 97.5% -0.03429523 0.2881732 -0.008895967 0.03973966 -0.0001691517
-## 99%    0.02920307 0.3045614 -0.005389649 0.04063830 -0.0001495034
-## 99.5%  0.06925794 0.3153114 -0.004013547 0.04153014 -0.0001437199
+## 0.5%  -0.72459809 0.1461682 -0.048646182 0.01575624 -0.0003455503
+## 1%    -0.69286457 0.1480438 -0.044371659 0.01764356 -0.0003397982
+## 2.5%  -0.64450618 0.1567970 -0.041142768 0.01969369 -0.0003244245
+## 5%    -0.59226460 0.1693256 -0.038744597 0.02118231 -0.0003102351
+## 95%   -0.08243419 0.2787597 -0.011283789 0.03730900 -0.0001813791
+## 97.5% -0.03517996 0.2886521 -0.009091623 0.03900332 -0.0001676875
+## 99%    0.04587828 0.2990942 -0.005247813 0.04074307 -0.0001550396
+## 99.5%  0.13001737 0.3055980 -0.004388741 0.04164455 -0.0001408897
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8822,7 +8820,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1116,  0.3158 )  
+## 95%   ( 0.1185,  0.3253 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 

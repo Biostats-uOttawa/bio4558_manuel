@@ -176,11 +176,11 @@ En utilisant `Stu2wdat`, refaites un tableau d’ANOVA pour RDWGHT en considéra
 
 
 ```{r, eval = FALSE, echo = params$echo_sol, class.source = "exer"}
-Anova(anova.model2, type = 3)
+Anova(anova.model1, type = 3)
 ```
 
 ```{r, echo = FALSE}
-Anova(anova.model2, type = 3)
+Anova(anova.model1, type = 3)
 ```
 
 Pour `sex`, la nouvelle valeur de F (le rapport des carrés moyens) est de

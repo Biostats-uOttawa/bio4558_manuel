@@ -567,15 +567,15 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 <p>Les analyses qui précèdent négligent un point important: <code>location</code> pourrait être traité comme un facteur aléatoire et <code>sex</code> est fixe. Par conséquent le modèle approprié d’ANOVA est de type mixte.</p>
 <p>Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle etait de type effet fixe seulement, et les termes principaux et celui d’interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type mixte, ces effets devraient être testés en utilisant le carré moyen du terme d’interaction, ou en combinant la somme des carrés de l’erreur et de l’interaction (selon le statisticien consulté!).</p>
 <p>En utilisant <code>Stu2wdat</code>, refaites un tableau d’ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l’interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c’est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d’ANOVA.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb446-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb446-1" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb446-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb446-1" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
 ##              Sum Sq  Df   F value    Pr(&gt;F)    
 ## (Intercept)  106507   1 1081.4552 &lt; 2.2e-16 ***
-## sex              49   1    0.4944    0.4829    
+## sex            1745   1   17.7220 4.051e-05 ***
 ## location          9   1    0.0891    0.7656    
-## sex:location   1745   1   17.7220 4.051e-05 ***
+## sex:location     49   1    0.4944    0.4829    
 ## Residuals     17530 178                        
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
