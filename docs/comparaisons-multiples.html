@@ -430,17 +430,17 @@ Figure 6.9: Comparaison de Tukey des moyennes de consommation d’oxygèn en fon
 <div class="sourceCode" id="cb493"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb493-1"><a href="comparaisons-multiples.html#cb493-1" aria-hidden="true"></a>wmc2dat2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/wmc2dat2.csv&quot;</span>)</span>
 <span id="cb493-2"><a href="comparaisons-multiples.html#cb493-2" aria-hidden="true"></a>wmc2dat2<span class="op">$</span>species &lt;-<span class="st"> </span><span class="kw">as.factor</span>(wmc2dat2<span class="op">$</span>species)</span>
 <span id="cb493-3"><a href="comparaisons-multiples.html#cb493-3" aria-hidden="true"></a>wmc2dat2<span class="op">$</span>conc &lt;-<span class="st"> </span><span class="kw">as.factor</span>(wmc2dat2<span class="op">$</span>conc)</span>
-<span id="cb493-4"><a href="comparaisons-multiples.html#cb493-4" aria-hidden="true"></a>anova.model7 &lt;-<span class="st"> </span><span class="kw">lm</span>(o2cons <span class="op">~</span><span class="st"> </span>species <span class="op">*</span><span class="st"> </span>conc, <span class="dt">data =</span> wmcdat2)</span></code></pre></div>
+<span id="cb493-4"><a href="comparaisons-multiples.html#cb493-4" aria-hidden="true"></a>anova.model7 &lt;-<span class="st"> </span><span class="kw">lm</span>(o2cons <span class="op">~</span><span class="st"> </span>species <span class="op">*</span><span class="st"> </span>conc, <span class="dt">data =</span> wmc2dat2)</span></code></pre></div>
 <p>En utilisant <code>wmc2dat2.csv</code>, on obtient:</p>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: o2cons
-##               Sum Sq Df  F value    Pr(&gt;F)    
-## (Intercept)  1185.60  1 124.0165 4.101e-14 ***
-## species         0.09  1   0.0097   0.92189    
-## conc           74.90  2   3.9172   0.02755 *  
-## species:conc   23.93  2   1.2514   0.29656    
-## Residuals     401.52 42                       
+##              Sum Sq Df F value    Pr(&gt;F)    
+## (Intercept)  343.09  1 36.2132 3.745e-07 ***
+## species      133.52  1 14.0929 0.0005286 ***
+## conc          66.76  2  3.5232 0.0385011 *  
+## species:conc 168.15  2  8.8742 0.0006101 ***
+## Residuals    397.91 42                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Dans ce cas ci, il y a une interaction significative, et il n’est par conséquent pas approprié de comparer les moyennes regroupées par espèce ou concentration. Ceci est clairement visualisé par un graphique d’interaction:</p>

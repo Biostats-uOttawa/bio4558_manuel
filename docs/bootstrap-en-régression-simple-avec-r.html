@@ -379,8 +379,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002406346  0.03356083
-## t2* 0.3408557 -0.001792886  0.02673374</code></pre>
+## t1* 1.1919926  0.002982019  0.03325381
+## t2* 0.3408557 -0.002221273  0.02648440</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -406,10 +406,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.255 )   ( 1.122,  1.256 )  
+## 95%   ( 1.124,  1.254 )   ( 1.125,  1.256 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.262 )   ( 1.115,  1.247 )  
+## 95%   ( 1.128,  1.259 )   ( 1.115,  1.247 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable</code></pre>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb324-1" aria-hidden="true"></a><span class="co"># intervalle de confiance pour la pente</span></span>
@@ -424,10 +424,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2903,  0.3950 )   ( 0.2896,  0.3951 )  
+## 95%   ( 0.2912,  0.3950 )   ( 0.2890,  0.3952 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2867,  0.3921 )   ( 0.2984,  0.4013 )  
+## 95%   ( 0.2865,  0.3927 )   ( 0.2977,  0.4038 )  
 ## Calculations and Intervals on Original Scale
 ## Some BCa intervals may be unstable</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
