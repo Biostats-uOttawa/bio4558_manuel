@@ -116,7 +116,6 @@ représentation-graphique-2
 calculs-dindicateurs
 croisement-de-deux-variables-quantitatives
 représentation-graphique-3
-régression-linéaire
 ex-introR-biv
 gérer-les-données
 importer-et-exporter-des-données
