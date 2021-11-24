@@ -64,11 +64,12 @@ fig:unnamed-chunk-305
 fig:unnamed-chunk-306
 tab:unnamed-chunk-1
 fig:unnamed-chunk-326
-fig:unnamed-chunk-335
-fig:unnamed-chunk-338
-fig:unnamed-chunk-344-1
-fig:unnamed-chunk-344-2
-fig:unnamed-chunk-344-3
+fig:unnamed-chunk-328
+fig:unnamed-chunk-336
+fig:unnamed-chunk-339
+fig:unnamed-chunk-345-1
+fig:unnamed-chunk-345-2
+fig:unnamed-chunk-345-3
 introduction-à-r
 set-intro
 premier-pas-avec-r

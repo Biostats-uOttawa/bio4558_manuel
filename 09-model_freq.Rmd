@@ -96,7 +96,7 @@ chisq.test(USTable) # runs chi square test of independence of sex and age class
 La valeur p étant très faible, on rejette donc l’hypothèse nulle que âge et sexe sont indépendants. Ces graphiques mosaïques peuvent êtres colorés pour souligner les catégories qui contribuent le plus à cette dépendance:
 
 
-```{rfig.cap = "Représentation mosaique de la proportion des sexes par classe d'age avec échelle de couleur"}
+```{r, fig.cap = "Représentation mosaique de la proportion des sexes par classe d'age avec échelle de couleur"}
 # Mosaic plot of the contingency table with shading
 mosaic(USTable, shade=TRUE)
 ```

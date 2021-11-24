@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="tester-une-hypothèse-extrinsèque.html"/>
 <link rel="next" href="ex-glm.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -354,22 +354,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Le principe d’éprouver l’indépendance en examinant les interactions peut être utilisé avec les tableaux de contingence à plusieurs critères. Par exemple, examinons si la température (2 niveaux: base et haute) et l’éclairage (2 niveaux: bas et haut) affectent si des plantes sont infectées (2 niveaux: infecté et non-infecté) par un pathogène. On peut représenter ces données par un tableau de contingence à 3 critères (température, lumière, statut d’infection).</p>
 <p>L’ajustement de modèles log-linéaires à des données de fréquence implique que l’on éprouve plusieurs modèles en les comparant au modèle complet (saturé). Une série de modèles contenant tous les termes sauf une des interactions qui nous intéressent est produite, et l’ajustement de chaque modèle est comparé à celui du modèle complet. Si la réduction de la qualité d’ajustement n’est pas significative, cela implique que l’interaction manquante contribue peu à la qualité de l’ajustement. Par contre, si le modèle réduit s’ajuste nettement moins bien aux données, alors l’interaction manquante contribue beaucoup à l’ajustement du modèle complet. Comme pour les tableaux de contingence 2X2, les termes qui nous intéressent le plus sont les interactions, pas les effets principaux, si l’on teste pour l’indépendance des différents facteurs.</p>
 <p>Le fichier <code>loglin.csv</code> contient les fréquences (frequency) des plantes infectées ou non infectées (<code>infected</code>) à basse et haute température (<code>temperature</code>) à basse et haute lumière (<code>light</code>). Pour visualiser ces données et déterminer si le taux d’infection dépends de la lumière et de la température, on peut faire une figure mosaïque et ajuster un modèle log-linéaire:</p>
-<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-1" aria-hidden="true"></a>loglin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/loglin.csv&quot;</span>)</span>
-<span id="cb652-2"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-2" aria-hidden="true"></a><span class="co"># Convert from frequency form to table form for mosaic plot</span></span>
-<span id="cb652-3"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-3" aria-hidden="true"></a>loglinTable &lt;-<span class="st"> </span><span class="kw">xtabs</span>(frequency <span class="op">~</span><span class="st"> </span>temperature <span class="op">+</span><span class="st"> </span>light <span class="op">+</span><span class="st"> </span>infected, <span class="dt">data =</span> loglin)</span>
-<span id="cb652-4"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-4" aria-hidden="true"></a><span class="co"># Create mosaic plot to look at data</span></span>
-<span id="cb652-5"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-5" aria-hidden="true"></a><span class="kw">mosaic</span>(loglinTable, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-335"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-335-1.svg" alt="Proportion de plantes infectées en fonction de la température er la lumière" width="672" />
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb651-1" aria-hidden="true"></a>loglin &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/loglin.csv&quot;</span>)</span>
+<span id="cb651-2"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb651-2" aria-hidden="true"></a><span class="co"># Convert from frequency form to table form for mosaic plot</span></span>
+<span id="cb651-3"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb651-3" aria-hidden="true"></a>loglinTable &lt;-<span class="st"> </span><span class="kw">xtabs</span>(frequency <span class="op">~</span><span class="st"> </span>temperature <span class="op">+</span><span class="st"> </span>light <span class="op">+</span><span class="st"> </span>infected, <span class="dt">data =</span> loglin)</span>
+<span id="cb651-4"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb651-4" aria-hidden="true"></a><span class="co"># Create mosaic plot to look at data</span></span>
+<span id="cb651-5"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb651-5" aria-hidden="true"></a><span class="kw">mosaic</span>(loglinTable, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-336"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-336-1.svg" alt="Proportion de plantes infectées en fonction de la température er la lumière" width="672" />
 <p class="caption">
-Figure 9.2: Proportion de plantes infectées en fonction de la température er la lumière
+Figure 9.3: Proportion de plantes infectées en fonction de la température er la lumière
 </p>
 </div>
 <p>Cette expérience contrôlée avec le même nombre de plantes à chaque niveau de lumière et de température produit une mosaïque où la surface occupée par les observations dans les quatre quadrants est égale. Ce qui nous intéresse, le taux d’infection par le pathogène, semble varier entre les quadrants (i.e. les niveaux de température et de lumière). Le rectangle rouge dans le coin en bas à gauche indique que le nombre de plantes infectées à basse température et haute lumière est plus faible qu’attendu si ces deux facteurs n’influencent pas le taux d’infection. Même chose pour les conditions de basse lumière et de haute température (coin supérieur droit). La valeur p au bas de l’échelle représente un test d’indépendance équivalent à comparer le modèle complet au modèle excluant toutes les interactions et ne contenant que les effets principaux de la température, la lumière, et le statut d’infection sur le logarithme naturel du nombre d’observations.</p>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb653-1" aria-hidden="true"></a><span class="co"># Fit full model</span></span>
-<span id="cb653-2"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb653-2" aria-hidden="true"></a>full.model &lt;-<span class="st"> </span><span class="kw">glm</span>(frequency <span class="op">~</span><span class="st"> </span>temperature <span class="op">*</span><span class="st"> </span>light <span class="op">*</span><span class="st"> </span>infected, <span class="dt">family =</span> <span class="kw">poisson</span>(), <span class="dt">data =</span> loglin)</span>
-<span id="cb653-3"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb653-3" aria-hidden="true"></a><span class="co"># Test partial effect of terms in full model</span></span>
-<span id="cb653-4"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb653-4" aria-hidden="true"></a><span class="kw">Anova</span>(full.model, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">test =</span> <span class="st">&quot;LR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-1" aria-hidden="true"></a><span class="co"># Fit full model</span></span>
+<span id="cb652-2"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-2" aria-hidden="true"></a>full.model &lt;-<span class="st"> </span><span class="kw">glm</span>(frequency <span class="op">~</span><span class="st"> </span>temperature <span class="op">*</span><span class="st"> </span>light <span class="op">*</span><span class="st"> </span>infected, <span class="dt">family =</span> <span class="kw">poisson</span>(), <span class="dt">data =</span> loglin)</span>
+<span id="cb652-3"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-3" aria-hidden="true"></a><span class="co"># Test partial effect of terms in full model</span></span>
+<span id="cb652-4"><a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#cb652-4" aria-hidden="true"></a><span class="kw">Anova</span>(full.model, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">test =</span> <span class="st">&quot;LR&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type III tests)
 ## 
 ## Response: frequency
@@ -401,7 +401,6 @@ Figure 9.2: Proportion de plantes infectées en fonction de la température er l
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -431,6 +430,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

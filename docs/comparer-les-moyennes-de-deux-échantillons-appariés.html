@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.5 Comparer les moyennes de deux échantillons appariés | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.5 Comparer les moyennes de deux échantillons appariés | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="bootstrap-et-tests-de-permutation-pour-comparer-deux-moyennes.html"/>
 <link rel="next" href="références.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -360,12 +360,12 @@ Pour la section suivante veuillez télécharger le nouveau fichier <code>skullda
 <ul>
 <li>Pour débuter, éprouvons l’hypothèse que la largeur de la figure est la même à 5 ans et à 6 ans en assumant que les mesures viennent d’échantillons indépendants.</li>
 </ul>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb353-1" aria-hidden="true"></a>skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat_2020.csv&quot;</span>)</span>
-<span id="cb353-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb353-2" aria-hidden="true"></a><span class="kw">t.test</span>(width <span class="op">~</span><span class="st"> </span>age,</span>
-<span id="cb353-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb353-3" aria-hidden="true"></a>  <span class="dt">data =</span> skull,</span>
-<span id="cb353-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb353-4" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb353-5"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb353-5" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">FALSE</span></span>
-<span id="cb353-6"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb353-6" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb352-1" aria-hidden="true"></a>skull &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/skulldat_2020.csv&quot;</span>)</span>
+<span id="cb352-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb352-2" aria-hidden="true"></a><span class="kw">t.test</span>(width <span class="op">~</span><span class="st"> </span>age,</span>
+<span id="cb352-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb352-3" aria-hidden="true"></a>  <span class="dt">data =</span> skull,</span>
+<span id="cb352-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb352-4" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb352-5"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb352-5" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">FALSE</span></span>
+<span id="cb352-6"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb352-6" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -385,7 +385,7 @@ Dans l’objet <code>skull</code>, il y a 3 colonnes:</p>
 <li><code>age</code>: age lors de la mesure</li>
 <li><code>id</code>: identité de la personne</li>
 </ul>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb355-1" aria-hidden="true"></a><span class="kw">head</span>(skull)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb354-1" aria-hidden="true"></a><span class="kw">head</span>(skull)</span></code></pre></div>
 <pre><code>##   width age id
 ## 1  7.33   5  1
 ## 2  7.53   6  1
@@ -395,10 +395,10 @@ Dans l’objet <code>skull</code>, il y a 3 colonnes:</p>
 ## 6  7.46   6  3</code></pre>
 <p>Quand les données sont pairées, il faut indiquer comment elle doivent être associées. Dans notre exemple, elles sont pairées par individu. Le format de données de type <em>long</em> indique cet appariement via la colonne <code>id</code>. Cependant, la fonction <code>t.test</code> ne permet pas de le prendre en compte. Il faut donc transformer les données en format de type <em>large</em> ou <em>horizontale</em> ou il y a une colonne différente pour chaque catégorie.
 Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par age et où chaque ligne correspond à une personne différente. On peut modifier le format des données avec le code suivant.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb357-1" aria-hidden="true"></a>skull_h &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">unique</span>(skull<span class="op">$</span>id))</span>
-<span id="cb357-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb357-2" aria-hidden="true"></a>skull_h<span class="op">$</span>width5 &lt;-<span class="st"> </span>skull<span class="op">$</span>width[<span class="kw">match</span>(skull_h<span class="op">$</span>id, skull<span class="op">$</span>id) <span class="op">&amp;</span><span class="st"> </span>skull<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]</span>
-<span id="cb357-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb357-3" aria-hidden="true"></a>skull_h<span class="op">$</span>width6 &lt;-<span class="st"> </span>skull<span class="op">$</span>width[<span class="kw">match</span>(skull_h<span class="op">$</span>id, skull<span class="op">$</span>id) <span class="op">&amp;</span><span class="st"> </span>skull<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">6</span>]</span>
-<span id="cb357-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb357-4" aria-hidden="true"></a><span class="kw">head</span>(skull_h)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb356-1" aria-hidden="true"></a>skull_h &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">unique</span>(skull<span class="op">$</span>id))</span>
+<span id="cb356-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb356-2" aria-hidden="true"></a>skull_h<span class="op">$</span>width5 &lt;-<span class="st"> </span>skull<span class="op">$</span>width[<span class="kw">match</span>(skull_h<span class="op">$</span>id, skull<span class="op">$</span>id) <span class="op">&amp;</span><span class="st"> </span>skull<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]</span>
+<span id="cb356-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb356-3" aria-hidden="true"></a>skull_h<span class="op">$</span>width6 &lt;-<span class="st"> </span>skull<span class="op">$</span>width[<span class="kw">match</span>(skull_h<span class="op">$</span>id, skull<span class="op">$</span>id) <span class="op">&amp;</span><span class="st"> </span>skull<span class="op">$</span>age <span class="op">==</span><span class="st"> </span><span class="dv">6</span>]</span>
+<span id="cb356-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb356-4" aria-hidden="true"></a><span class="kw">head</span>(skull_h)</span></code></pre></div>
 <pre><code>##   id width5 width6
 ## 1  1   7.33   7.53
 ## 2  2   7.49   7.70
@@ -407,10 +407,10 @@ Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par 
 ## 5  5   7.56   7.81
 ## 6  6   7.81   8.01</code></pre>
 <p>Maintenant, effectuons le test apparié qui est approprié: Que conclure? Comment les résultats diffèrent-ils de la première analyse? Pourquoi?</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb359-1" aria-hidden="true"></a><span class="kw">t.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
-<span id="cb359-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb359-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb359-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb359-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
-<span id="cb359-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb359-4" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb358-1" aria-hidden="true"></a><span class="kw">t.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
+<span id="cb358-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb358-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb358-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb358-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
+<span id="cb358-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb358-4" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -424,14 +424,14 @@ Dans notre example, on souhaite avoir un fichier avec une colonne de mesure par 
 ##                    -0.2</code></pre>
 <p>La première analyse a comme supposition que les deux échantillons de filles de 5 et 6 ans sont indépendants, alors que la deuxième analyse a comme supposition que la même fille a été mesurée deux fois, une fois à 5 ans, et la deuxième fois à 6 ans.</p>
 <p>Notez que, dans le premier cas, on accepte l’hypothèse nulle, mais que le test apparié rejette l’hypothèse nulle. Donc, le test qui est approprié (le test apparié) indique un effet très significatif de l’âge, mais le test inapproprié suggère que l’âge n’importe pas. C’est parce qu’il y a une très forte corrélation entre la largeur du visage à 5 et 6 ans:</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb361-1" aria-hidden="true"></a>graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull_h, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></span>
-<span id="cb361-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb361-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb361-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb361-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></span>
-<span id="cb361-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb361-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
-<span id="cb361-5"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb361-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb361-6"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb361-6" aria-hidden="true"></a>graphskull</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb360-1" aria-hidden="true"></a>graphskull &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> skull_h, <span class="kw">aes</span>(<span class="dt">x =</span> width5, <span class="dt">y =</span> width6)) <span class="op">+</span></span>
+<span id="cb360-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb360-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb360-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb360-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Skull width at age 5&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Skull width at age 6&quot;</span>) <span class="op">+</span></span>
+<span id="cb360-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb360-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb360-5"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb360-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;lavenderblush&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb360-6"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb360-6" aria-hidden="true"></a>graphskull</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<div class="figure"><span id="fig:tpaired-3"></span>
+<div class="figure"><span style="display:block;" id="fig:tpaired-3"></span>
 <img src="Labo_BIO4558_files/figure-html/tpaired-3-1.svg" alt="Relation entre la taille de la tête à 5 et 6 ans" width="672" />
 <p class="caption">
 Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
@@ -441,10 +441,10 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 <ul>
 <li>Répétez l’analyse en utilisant l’alternative nonparamétrique, le test Wil-coxon signed-rank. (Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb363-1" aria-hidden="true"></a><span class="kw">wilcox.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
-<span id="cb363-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb363-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb363-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb363-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
-<span id="cb363-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb363-4" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb362-1" aria-hidden="true"></a><span class="kw">wilcox.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
+<span id="cb362-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb362-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb362-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb362-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
+<span id="cb362-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb362-4" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
 ## &quot;two.sided&quot;, : cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -455,10 +455,10 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>Donc on tire la même conclusion qu’avec le test de t apparié et conclue qu’il y a des différences significatives entre la taille des crânes de filles âgées de 5 et 6 ans (quelle surprise!).</p>
 <p>Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte tenu de s connaissances sur la croissance des enfants, une hypothèse unilatérale serait préférable. Ceci peut être accommodé en modifiant l’option “alternative”. On utilise l’hypothèse alternative pour décider entre “less” ou “greater”. Ici on s’attends que si il y a une différence, width5 va être inférieur à width6, donc on utiliserait “less”.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb366-1" aria-hidden="true"></a><span class="kw">t.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
-<span id="cb366-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb366-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>,</span>
-<span id="cb366-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb366-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
-<span id="cb366-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb366-4" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb365-1" aria-hidden="true"></a><span class="kw">t.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
+<span id="cb365-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb365-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>,</span>
+<span id="cb365-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb365-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
+<span id="cb365-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb365-4" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -470,10 +470,10 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 ## sample estimates:
 ## mean of the differences 
 ##                    -0.2</code></pre>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb368-1" aria-hidden="true"></a><span class="kw">wilcox.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
-<span id="cb368-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb368-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>,</span>
-<span id="cb368-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb368-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
-<span id="cb368-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb368-4" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb367-1" aria-hidden="true"></a><span class="kw">wilcox.test</span>(skull_h<span class="op">$</span>width5, skull_h<span class="op">$</span>width6,</span>
+<span id="cb367-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb367-2" aria-hidden="true"></a>  <span class="dt">alternative =</span> <span class="st">&quot;less&quot;</span>,</span>
+<span id="cb367-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb367-3" aria-hidden="true"></a>  <span class="dt">paired =</span> <span class="ot">TRUE</span></span>
+<span id="cb367-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb367-4" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
 ## &quot;less&quot;, : cannot compute exact p-value with ties</code></pre>
 <pre><code>## 
@@ -494,7 +494,6 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -524,6 +523,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

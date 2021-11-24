@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.4 Homogénéité des pentes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.4 Homogénéité des pentes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="ancova.html"/>
 <link rel="next" href="le-modèle-dancova.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -360,26 +360,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 En utilisant les données du fichier <code>anc1dat.csv</code>, éprouvez l’hypothèse que le taux de croissance des esturgeons mâles et femelles de The Pas est le même (données de 1978-1980). Comme mesure du taux de croissance, nous allons utiliser la pente de la régression du log 10 de la longueur à la fourche, lfkl, sur le log 10 de l’âge, l’age.
 </div>
 <p>Commençons par examiner les données. Pour faciliter la comparaison, il serait utile de tracer la droite de régression et la trace lowess pour ainsi plus facilement évaluer la linéarité. On peut aussi ajouter un peu de trucs R pour obtenir des légendes plus complètes (remarquez l’utilisation de la commande expression() pour obtenir des indices):</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="homogénéité-des-pentes.html#cb584-1" aria-hidden="true"></a>anc1dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/anc1dat.csv&quot;</span>)</span>
-<span id="cb584-2"><a href="homogénéité-des-pentes.html#cb584-2" aria-hidden="true"></a>anc1dat<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">as.factor</span>(anc1dat<span class="op">$</span>sex)</span>
-<span id="cb584-3"><a href="homogénéité-des-pentes.html#cb584-3" aria-hidden="true"></a>myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> anc1dat, <span class="kw">aes</span>(<span class="dt">x=</span>lage,    <span class="dt">y=</span><span class="kw">log10</span>(fklngth)))<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>sex)<span class="op">+</span><span class="kw">geom_point</span>()</span>
-<span id="cb584-4"><a href="homogénéité-des-pentes.html#cb584-4" aria-hidden="true"></a>myplot &lt;-<span class="st"> </span>myplot<span class="op">+</span></span>
-<span id="cb584-5"><a href="homogénéité-des-pentes.html#cb584-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></span>
-<span id="cb584-6"><a href="homogénéité-des-pentes.html#cb584-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb584-7"><a href="homogénéité-des-pentes.html#cb584-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb584-8"><a href="homogénéité-des-pentes.html#cb584-8" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Fork<span class="op">~</span>length)),</span>
-<span id="cb584-9"><a href="homogénéité-des-pentes.html#cb584-9" aria-hidden="true"></a>    <span class="dt">x =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Age))</span>
-<span id="cb584-10"><a href="homogénéité-des-pentes.html#cb584-10" aria-hidden="true"></a>)</span>
-<span id="cb584-11"><a href="homogénéité-des-pentes.html#cb584-11" aria-hidden="true"></a>myplot</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-298"></span>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="homogénéité-des-pentes.html#cb582-1" aria-hidden="true"></a>anc1dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/anc1dat.csv&quot;</span>)</span>
+<span id="cb582-2"><a href="homogénéité-des-pentes.html#cb582-2" aria-hidden="true"></a>anc1dat<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">as.factor</span>(anc1dat<span class="op">$</span>sex)</span>
+<span id="cb582-3"><a href="homogénéité-des-pentes.html#cb582-3" aria-hidden="true"></a>myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> anc1dat, <span class="kw">aes</span>(<span class="dt">x=</span>lage,    <span class="dt">y=</span><span class="kw">log10</span>(fklngth)))<span class="op">+</span><span class="kw">facet_grid</span>(.<span class="op">~</span>sex)<span class="op">+</span><span class="kw">geom_point</span>()</span>
+<span id="cb582-4"><a href="homogénéité-des-pentes.html#cb582-4" aria-hidden="true"></a>myplot &lt;-<span class="st"> </span>myplot<span class="op">+</span></span>
+<span id="cb582-5"><a href="homogénéité-des-pentes.html#cb582-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></span>
+<span id="cb582-6"><a href="homogénéité-des-pentes.html#cb582-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb582-7"><a href="homogénéité-des-pentes.html#cb582-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb582-8"><a href="homogénéité-des-pentes.html#cb582-8" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Fork<span class="op">~</span>length)),</span>
+<span id="cb582-9"><a href="homogénéité-des-pentes.html#cb582-9" aria-hidden="true"></a>    <span class="dt">x =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Age))</span>
+<span id="cb582-10"><a href="homogénéité-des-pentes.html#cb582-10" aria-hidden="true"></a>)</span>
+<span id="cb582-11"><a href="homogénéité-des-pentes.html#cb582-11" aria-hidden="true"></a>myplot</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-298"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-298-1.svg" alt="Longueur des esturgeons en fonction de l'age" width="672" />
 <p class="caption">
 Figure 8.1: Longueur des esturgeons en fonction de l’age
 </p>
 </div>
 <p>La transformation log-log rend la relation linéaire et, à première vue, il ne semble pas y avoir de problème évident avec les conditions d’application. Ajustons donc le modèle complet avec l’interaction:</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="homogénéité-des-pentes.html#cb585-1" aria-hidden="true"></a>model.full1&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>lage, <span class="dt">data =</span> anc1dat)</span>
-<span id="cb585-2"><a href="homogénéité-des-pentes.html#cb585-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.full1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="homogénéité-des-pentes.html#cb583-1" aria-hidden="true"></a>model.full1&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>lage, <span class="dt">data =</span> anc1dat)</span>
+<span id="cb583-2"><a href="homogénéité-des-pentes.html#cb583-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.full1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -394,23 +394,23 @@ Figure 8.1: Longueur des esturgeons en fonction de l’age
 <p>Probabilité que le terme lage*sex n’affecte pas la longueur à la fourche (i.e. que la pente ne diffère pas entre les sexes, et que la différence de taille entre les mâles et femelles ne varie pas avec l’âge)</p>
 <p><strong>Attrape</strong>. Notez que j’ai utilisé la fonction Anova() du package car avec un “a” majuscule au lieu de la fonction native anova() (avec un “a” minuscule") associée aux objets produits par lm() pour obtenir les sommes de carrés de type III. Ces sommes des carrés des écarts de type III (partiels) sont calculées comme si la variable était entrée la dernière dans le modèle et correspondent à la différence entre la variance expliquée par le modèle complet et par le modèle dans lequel seule cette variable est omise. La fonction native anova() donne les sommes des carrés séquentielles, calculées au fur et à mesure que chaque variable est ajoutée au modèle nul avec seulement une ordonnée à l’origine. Dans de rares cas, les sommes des carrés de type I et III sont égales (quand le design est parfaitement orthogonal ou balancé). Dans la vaste majorité des cas, les sommes des carrés de type I et III sont différentes et je vous conseille de toujours utiliser les sommes des carrés de type III dans vos analyses.</p>
 <p>À partir de cette analyse, on devrait accepter les hypothèses nulles (1) d’égalité des pentes pour les deux sexes, et (2) que les ordonnées à l’origine sont les mêmes pour les deux sexes. Mais, avant d’accepter ces conclusions, il faut vérifier si les données rencontrent les conditions d’application, comme d’habitude…</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb587-1"><a href="homogénéité-des-pentes.html#cb587-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb587-2"><a href="homogénéité-des-pentes.html#cb587-2" aria-hidden="true"></a><span class="kw">plot</span>(model.full1)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-300"></span>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb585-1"><a href="homogénéité-des-pentes.html#cb585-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb585-2"><a href="homogénéité-des-pentes.html#cb585-2" aria-hidden="true"></a><span class="kw">plot</span>(model.full1)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-300"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-300-1.svg" alt="Conditions d'applications du modèle `model.full1`" width="672" />
 <p class="caption">
 Figure 8.2: Conditions d’applications du modèle <code>model.full1</code>
 </p>
 </div>
 <p>En ce qui concerne la normalité, ça a l’air d’aller quoiqu’il y a quelques points, en haut à droite, qui dévient de la droite. Si on effectue le test de Wilk-Shapiro (W = .9764, p = 0.09329), on confirme que les résidus ne dévient pas significativement de la normalité. Les résidus semblent homoscédastiques, mais si vous voulez vous en assurer, vous pouvez l’éprouver par un des tests formels. Ici j’utilise le test Breusch-Pagan, qui est approprié quand certaines des variables indépendantes sont continues (Le test de Levene n’est approprié que lorsqu’il n’y a que des variables discontinues).</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="homogénéité-des-pentes.html#cb588-1" aria-hidden="true"></a><span class="kw">bptest</span>(model.full1)</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="homogénéité-des-pentes.html#cb586-1" aria-hidden="true"></a><span class="kw">bptest</span>(model.full1)</span></code></pre></div>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
 ## data:  model.full1
 ## BP = 0.99979, df = 3, p-value = 0.8013</code></pre>
 <p>Comme l’hypothèse nulle de ce test est que les résidus sont homoscédastiques, et que p est relativement élevé, le test confirme l’évaluation visuelle. De plus, il n’y a pas de tendance évidente dans les résidus, suggérant qu’il n’y a pas de problème de linéarité. Ce qui peut également être éprouvé formellement:</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="homogénéité-des-pentes.html#cb590-1" aria-hidden="true"></a><span class="kw">resettest</span>(model.full1, <span class="dt">power =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> anc1dat)</span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="homogénéité-des-pentes.html#cb588-1" aria-hidden="true"></a><span class="kw">resettest</span>(model.full1, <span class="dt">power =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">type =</span> <span class="st">&quot;regressor&quot;</span>, <span class="dt">data =</span> anc1dat)</span></code></pre></div>
 <pre><code>## 
 ##  RESET test
 ## 
@@ -418,8 +418,8 @@ Figure 8.2: Conditions d’applications du modèle <code>model.full1</code>
 ## RESET = 0.59861, df1 = 2, df2 = 86, p-value = 0.5519</code></pre>
 <p>La dernière condition d’application est qu’il n’y a pas d’erreur de mesure sur la variable indépendante continue. On ne peut vraiment éprouver cette condition,, mais on sait que des estimés indépendants de l’âge des poissons obtenus par différents chercheurs donnent des âges qui concordent avec moins de 1-2 ans d’écart., ce qui est inférieur au 10% de la fourchette observée des âges et donc acceptable pour des analyses de modèles de type I (attention ici on ne parle pas des SC de type I, je sais, c’est facile de confondre…)</p>
 <p>Vous noterez qu’il y a une observation qui a un résidu normalisé (studentized residual) qui est élevé, i.e. une valeur extrême (cas numéro 49). Éliminez-la de l’ensemble de données et refaites l’analyse. Vos conclusions changent-elles?</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="homogénéité-des-pentes.html#cb592-1" aria-hidden="true"></a>model.full.no49&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>lage, <span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>),])</span>
-<span id="cb592-2"><a href="homogénéité-des-pentes.html#cb592-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.full.no49, <span class="dt">type=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="homogénéité-des-pentes.html#cb590-1" aria-hidden="true"></a>model.full.no49&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>lage, <span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>),])</span>
+<span id="cb590-2"><a href="homogénéité-des-pentes.html#cb590-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.full.no49, <span class="dt">type=</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -439,25 +439,25 @@ Figure 8.2: Conditions d’applications du modèle <code>model.full1</code>
 <div class="rmdcode">
 Le fichier <code>anc3dat.csv</code> contient des données sur des esturgeons mâles de deux sites (locate) : Lake of the Woods dans le Nord-Ouest de l’Ontario et Chruchill River dans le Nord du Manitoba. En utilisant la même procédure, éprouvez l’hypothèse que la pente de la régression de lfkl sur lage est la même aux deux sites (alors Locate est la variable en catégories et non pas sex). Que concluez-vous?
 </div>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="homogénéité-des-pentes.html#cb594-1" aria-hidden="true"></a>anc3dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/anc3dat.csv&quot;</span>)</span>
-<span id="cb594-2"><a href="homogénéité-des-pentes.html#cb594-2" aria-hidden="true"></a>myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> anc3dat, <span class="kw">aes</span>(<span class="dt">x=</span>lage, <span class="dt">y =</span> <span class="kw">log10</span>(fklngth))) <span class="op">+</span></span>
-<span id="cb594-3"><a href="homogénéité-des-pentes.html#cb594-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span>locate) <span class="op">+</span></span>
-<span id="cb594-4"><a href="homogénéité-des-pentes.html#cb594-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb594-5"><a href="homogénéité-des-pentes.html#cb594-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></span>
-<span id="cb594-6"><a href="homogénéité-des-pentes.html#cb594-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
-<span id="cb594-7"><a href="homogénéité-des-pentes.html#cb594-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
-<span id="cb594-8"><a href="homogénéité-des-pentes.html#cb594-8" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Fork<span class="op">~</span>length)),</span>
-<span id="cb594-9"><a href="homogénéité-des-pentes.html#cb594-9" aria-hidden="true"></a>    <span class="dt">x =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Age))</span>
-<span id="cb594-10"><a href="homogénéité-des-pentes.html#cb594-10" aria-hidden="true"></a>)</span>
-<span id="cb594-11"><a href="homogénéité-des-pentes.html#cb594-11" aria-hidden="true"></a>myplot</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-305"></span>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="homogénéité-des-pentes.html#cb592-1" aria-hidden="true"></a>anc3dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/anc3dat.csv&quot;</span>)</span>
+<span id="cb592-2"><a href="homogénéité-des-pentes.html#cb592-2" aria-hidden="true"></a>myplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> anc3dat, <span class="kw">aes</span>(<span class="dt">x=</span>lage, <span class="dt">y =</span> <span class="kw">log10</span>(fklngth))) <span class="op">+</span></span>
+<span id="cb592-3"><a href="homogénéité-des-pentes.html#cb592-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span>locate) <span class="op">+</span></span>
+<span id="cb592-4"><a href="homogénéité-des-pentes.html#cb592-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb592-5"><a href="homogénéité-des-pentes.html#cb592-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span></span>
+<span id="cb592-6"><a href="homogénéité-des-pentes.html#cb592-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">se=</span><span class="ot">FALSE</span>, <span class="dt">color=</span><span class="st">&quot;red&quot;</span>)<span class="op">+</span></span>
+<span id="cb592-7"><a href="homogénéité-des-pentes.html#cb592-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb592-8"><a href="homogénéité-des-pentes.html#cb592-8" aria-hidden="true"></a>    <span class="dt">y =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Fork<span class="op">~</span>length)),</span>
+<span id="cb592-9"><a href="homogénéité-des-pentes.html#cb592-9" aria-hidden="true"></a>    <span class="dt">x =</span> <span class="kw">expression</span>(log[<span class="dv">10</span>]<span class="op">~</span>(Age))</span>
+<span id="cb592-10"><a href="homogénéité-des-pentes.html#cb592-10" aria-hidden="true"></a>)</span>
+<span id="cb592-11"><a href="homogénéité-des-pentes.html#cb592-11" aria-hidden="true"></a>myplot</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-305"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-305-1.svg" alt="Longueur des esturgeons en fonction de l'age d'après `anc3dat`" width="672" />
 <p class="caption">
 Figure 8.3: Longueur des esturgeons en fonction de l’age d’après <code>anc3dat</code>
 </p>
 </div>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="homogénéité-des-pentes.html#cb595-1" aria-hidden="true"></a>model.full2&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate, <span class="dt">data =</span> anc3dat)</span>
-<span id="cb595-2"><a href="homogénéité-des-pentes.html#cb595-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.full2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="homogénéité-des-pentes.html#cb593-1" aria-hidden="true"></a>model.full2&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate, <span class="dt">data =</span> anc3dat)</span>
+<span id="cb593-2"><a href="homogénéité-des-pentes.html#cb593-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.full2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -471,17 +471,17 @@ Figure 8.3: Longueur des esturgeons en fonction de l’age d’après <code>anc3
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Ici, on rejette les hypothèses nulles (1) que les pentes sont les mêmes dans les deux sites et (2) que les ordonnées à l’origine sont égales. En d’autres mots, si on veut prédire la longueur à la fourche d’un esturgeon à un âge donné précisément, il faut savoir de quel site il provient. Puisque les pentes diffèrent, il faut estimer des régressions séparées.</p>
 <p>Mais avant d’accepter ces conclusions, on doit se convaincre que les conditions d’application sont rencontrées:</p>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb597-1"><a href="homogénéité-des-pentes.html#cb597-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb597-2"><a href="homogénéité-des-pentes.html#cb597-2" aria-hidden="true"></a><span class="kw">plot</span>(model.full2)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-306"></span>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb595-1"><a href="homogénéité-des-pentes.html#cb595-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb595-2"><a href="homogénéité-des-pentes.html#cb595-2" aria-hidden="true"></a><span class="kw">plot</span>(model.full2)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-306"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-306-1.svg" alt="Conditions d'applications du modèle `model.full2`" width="672" />
 <p class="caption">
 Figure 8.4: Conditions d’applications du modèle <code>model.full2</code>
 </p>
 </div>
-<p>Si on examine les résidus selon les méthodes habituelles, on voit qu’il n’y a pas de problème de linéarité, ni d’homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l’échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des GLM, de la taille de l’échantillon, on ne devrait pas ^tre trop inquiet de cette déviation de normalité.</p>
-<p>Donc, comme les conditions des GLM sont suffisamment remplies, on peut accepter les résultats donnés par R. Tous les termes sont significatifs (location, lage, interaction). Ce modèle complet est équivalent à ajuster des régressions séparées pour chaque site. Pour obtenir les coefficients, on peut ajuster des régressions simples sur chaque sous-ensemble, ou extraire les coefficients ajustés du modèle complet:</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="homogénéité-des-pentes.html#cb598-1" aria-hidden="true"></a>model.full2</span></code></pre></div>
+<p>Si on examine les résidus selon les méthodes habituelles, on voit qu’il n’y a pas de problème de linéarité, ni d’homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l’échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des LM, de la taille de l’échantillon, on ne devrait pas ^tre trop inquiet de cette déviation de normalité.</p>
+<p>Donc, comme les conditions des LM sont suffisamment remplies, on peut accepter les résultats donnés par R. Tous les termes sont significatifs (location, lage, interaction). Ce modèle complet est équivalent à ajuster des régressions séparées pour chaque site. Pour obtenir les coefficients, on peut ajuster des régressions simples sur chaque sous-ensemble, ou extraire les coefficients ajustés du modèle complet:</p>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="homogénéité-des-pentes.html#cb596-1" aria-hidden="true"></a>model.full2</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ lage + locate + lage:locate, data = anc3dat)
@@ -503,7 +503,7 @@ lfkl &amp;= 1.2284 + 0.3253 \times lage + 0.2207 \times 1 - 0.1656 \times 1 \tim
  &amp;= 1.4491 + 0.1597 \times lage
 \end{aligned}\]</span></p>
 <p>Vous pouvez vérifier en ajustant séparément les régressions pour chaque site:</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="homogénéité-des-pentes.html#cb600-1" aria-hidden="true"></a><span class="kw">by</span>(anc3dat, anc3dat<span class="op">$</span>locate,<span class="cf">function</span>(x) <span class="kw">lm</span>(lfkl<span class="op">~</span>lage, <span class="dt">data=</span>x))</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="homogénéité-des-pentes.html#cb598-1" aria-hidden="true"></a><span class="kw">by</span>(anc3dat, anc3dat<span class="op">$</span>locate,<span class="cf">function</span>(x) <span class="kw">lm</span>(lfkl<span class="op">~</span>lage, <span class="dt">data=</span>x))</span></code></pre></div>
 <pre><code>## anc3dat$locate: LOFW        
 ## 
 ## Call:
@@ -535,7 +535,6 @@ lfkl &amp;= 1.2284 + 0.3253 \times lage + 0.2207 \times 1 - 0.1656 \times 1 \tim
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -565,6 +564,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

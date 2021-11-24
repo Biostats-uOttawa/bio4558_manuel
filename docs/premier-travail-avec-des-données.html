@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="premier-pas-avec-r.html"/>
 <link rel="next" href="analyse-de-2-variables.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -369,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="premier-travail-avec-des-données.html#cb109-1" aria-hidden="true"></a><span class="kw">data</span>(hdv2003)</span></code></pre></div>
 <p>Cette commande ne renvoie aucun résultat particulier (sauf en cas d’erreur), mais vous devriez voir apparaître dans l’onglet <em>Environment</em> de RStudio un nouvel objet nommé <code>hdv2003</code> :</p>
 <!-- ![Onglet *Environment*](images/screenshots/rstudio_environment.png) -->
-<div class="figure"><span id="fig:unnamed-chunk-73"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
 <img src="images/screenshots/rstudio_environment.png" alt="Onglet Environment" width="75%" />
 <p class="caption">
 Figure 1.4: Onglet Environment
@@ -385,7 +385,7 @@ Figure 1.4: Onglet Environment
 <p>R va, comme à son habitude, nous l’afficher dans la console, ce qui est tout sauf utile.</p>
 <p>Une autre manière d’afficher le contenu du tableau est de cliquer sur l’icône en forme de tableau à droite du nom de l’objet dans l’onglet <em>Environment</em> :</p>
 <!-- ![Icone view](images/screenshots/rstudio_view_icon.png) -->
-<div class="figure"><span id="fig:unnamed-chunk-75"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
 <img src="images/screenshots/rstudio_view_icon.png" alt="Icone view" width="75%" />
 <p class="caption">
 Figure 1.5: Icone view
@@ -395,7 +395,7 @@ Figure 1.5: Icone view
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="premier-travail-avec-des-données.html#cb111-1" aria-hidden="true"></a><span class="kw">View</span>(hdv2003)</span></code></pre></div>
 <p>Dans les deux cas votre tableau devrait s’afficher dans RStudio avec une interface de type tableur :</p>
 <!-- ![Interface "View"](images/screenshots/rstudio_view.png) -->
-<div class="figure"><span id="fig:unnamed-chunk-77"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
 <img src="images/screenshots/rstudio_view.png" alt="Interface View" width="100%" />
 <p class="caption">
 Figure 1.6: Interface View
@@ -459,7 +459,7 @@ Sous R, on peut importer ou créer autant de tableaux de données qu’on le sou
 ##  $ heures.tv    : num  0 1 0 2 3 2 2.9 1 2 2 ...</code></pre>
 <p>Sous RStudio, on peut afficher à tout moment la structure d’un objet en cliquant sur l’icône de triangle sur fond bleu à gauche du nom de l’objet dans l’onglet <em>Environment</em> :</p>
 <!-- ![Structure d'un objet](images/screenshots/rstudio_environment_str.png) -->
-<div class="figure"><span id="fig:unnamed-chunk-86"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-86"></span>
 <img src="images/screenshots/rstudio_environment_str.png" alt="Structure d'un objet" width="100%" />
 <p class="caption">
 Figure 1.7: Structure d’un objet
@@ -574,7 +574,7 @@ Figure 1.7: Structure d’un objet
 <p>L’outil le plus utile pour étudier la distribution des valeurs d’une variable quantitative reste la représentation graphique.</p>
 <p>La représentation la plus courante est sans doute l’histogramme. On peut l’obtenir avec la fonction <code>hist</code> :</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="premier-travail-avec-des-données.html#cb157-1" aria-hidden="true"></a><span class="kw">hist</span>(d<span class="op">$</span>age)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-103"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-103"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-103-1.svg" alt="Histogramme de l'age par défaut" width="672" />
 <p class="caption">
 Figure 1.8: Histogramme de l’age par défaut
@@ -583,14 +583,14 @@ Figure 1.8: Histogramme de l’age par défaut
 <p>Cette fonction n’a pas pour effet direct d’effectuer un calcul ou de nous renvoyer un résultat : elle génère un graphique qui va s’afficher dans l’onglet <em>Plots</em> de RStudio.</p>
 <p>On peut personnaliser l’apparence de l’histogramme en ajoutant des arguments supplémentaires à la fonction <code>hist</code>. L’argument le plus important est <code>breaks</code>, qui permet d’indiquer le nombre de classes que l’on souhaite.</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="premier-travail-avec-des-données.html#cb158-1" aria-hidden="true"></a><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">breaks =</span> <span class="dv">10</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-104"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-104-1.svg" alt="Histogramme de l'age avec 10 classes" width="672" />
 <p class="caption">
 Figure 1.9: Histogramme de l’age avec 10 classes
 </p>
 </div>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="premier-travail-avec-des-données.html#cb159-1" aria-hidden="true"></a><span class="kw">hist</span>(d<span class="op">$</span>age, <span class="dt">breaks =</span> <span class="dv">70</span>, <span class="dt">main =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-105"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-105"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-105-1.svg" alt="Histogramme de l'age avec 70 classes" width="672" />
 <p class="caption">
 Figure 1.10: Histogramme de l’age avec 70 classes
@@ -604,7 +604,7 @@ Figure 1.10: Histogramme de l’age avec 70 classes
 <span id="cb160-4"><a href="premier-travail-avec-des-données.html#cb160-4" aria-hidden="true"></a>  <span class="dt">xlab =</span> <span class="st">&quot;Âge&quot;</span>,</span>
 <span id="cb160-5"><a href="premier-travail-avec-des-données.html#cb160-5" aria-hidden="true"></a>  <span class="dt">ylab =</span> <span class="st">&quot;Effectif&quot;</span></span>
 <span id="cb160-6"><a href="premier-travail-avec-des-données.html#cb160-6" aria-hidden="true"></a>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-106"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-106"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-106-1.svg" alt="Histogramme modifié" width="672" />
 <p class="caption">
 Figure 1.11: Histogramme modifié
@@ -696,7 +696,7 @@ Attention, par défaut la fonction <code>table</code> n’affiche pas les valeur
 <p>On peut représenter graphiquement le tri à plat d’une variable qualitative avec un diagramme en barres, obtenu avec la fonction <code>barplot</code>. Attention, contrairement à <code>hist</code> cette fonction ne s’applique pas directement à la variable mais au résultat du tri à plat de cette variable, calculé avec <code>table</code>. Il faut donc procéder en deux étapes :</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="premier-travail-avec-des-données.html#cb174-1" aria-hidden="true"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>clso)</span>
 <span id="cb174-2"><a href="premier-travail-avec-des-données.html#cb174-2" aria-hidden="true"></a><span class="kw">barplot</span>(tab)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-117"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-117"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-117-1.svg" alt="Graphique en barre" width="672" />
 <p class="caption">
 Figure 1.12: Graphique en barre
@@ -704,7 +704,7 @@ Figure 1.12: Graphique en barre
 </div>
 <p>On peut aussi trier le tri à plat avec la fonction <code>sort</code> avant de le représenter graphiquement, ce qui peut faciliter la lecture du graphique :</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="premier-travail-avec-des-données.html#cb175-1" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">sort</span>(tab))</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-118"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-118"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-118-1.svg" alt="Graphique en barre trié" width="672" />
 <p class="caption">
 Figure 1.13: Graphique en barre trié
@@ -712,7 +712,7 @@ Figure 1.13: Graphique en barre trié
 </div>
 <p>Une alternative au graphique en barres est le <em>diagramme de Cleveland</em>, qu’on peut obtenir avec la fonction <code>dotchart</code>. Celle-ci s’applique elle aussi au tri à plat de la variable calculé avec <code>table</code>.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="premier-travail-avec-des-données.html#cb176-1" aria-hidden="true"></a><span class="kw">dotchart</span>(<span class="kw">table</span>(d<span class="op">$</span>qualif))</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-119"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-119"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-119-1.svg" alt="Graphique de Cleveland" width="672" />
 <p class="caption">
 Figure 1.14: Graphique de Cleveland
@@ -720,7 +720,7 @@ Figure 1.14: Graphique de Cleveland
 </div>
 <p>Là aussi, pour améliorer la lisibilité du graphique il est préférable de trier le tri à plat de la variable avant de le représenter :</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="premier-travail-avec-des-données.html#cb177-1" aria-hidden="true"></a><span class="kw">dotchart</span>(<span class="kw">sort</span>(<span class="kw">table</span>(d<span class="op">$</span>qualif)))</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-120"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-120"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-120-1.svg" alt="Graphique de Cleveland trié" width="672" />
 <p class="caption">
 Figure 1.15: Graphique de Cleveland trié
@@ -790,7 +790,6 @@ C’est une blague, hein ! Cela dit <code>moccasin</code> ou <code>palevioletre
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -820,6 +819,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.4 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.4 Régression multiple pas-à-pas (stepwise) | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="premières-régressions-multiples.html"/>
 <link rel="next" href="détecter-la-multicolinéarité.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -356,9 +356,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Utiliser la fonction stepAIC pour activer la sélection pas à pas des variables indépendantes sur le modèles de régression incluant <code>logarea</code>, <code>cpfor2</code> et <code>thtden</code>:</li>
 </ul>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb518-1" aria-hidden="true"></a><span class="co"># Stepwise Regression</span></span>
-<span id="cb518-2"><a href="régression-multiple-pas-à-pas-stepwise.html#cb518-2" aria-hidden="true"></a><span class="kw">library</span>(MASS)</span>
-<span id="cb518-3"><a href="régression-multiple-pas-à-pas-stepwise.html#cb518-3" aria-hidden="true"></a>step.mtri &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(model.mtri, <span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb516-1" aria-hidden="true"></a><span class="co"># Stepwise Regression</span></span>
+<span id="cb516-2"><a href="régression-multiple-pas-à-pas-stepwise.html#cb516-2" aria-hidden="true"></a><span class="kw">library</span>(MASS)</span>
+<span id="cb516-3"><a href="régression-multiple-pas-à-pas-stepwise.html#cb516-3" aria-hidden="true"></a>step.mtri &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(model.mtri, <span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
 <pre><code>## Start:  AIC=-98.27
 ## logherp ~ logarea + cpfor2 + thtden
 ## 
@@ -376,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## + cpfor2   1   0.01571 0.62937 -98.267
 ## - thtden   1   0.25092 0.89600 -92.376
 ## - logarea  1   0.40204 1.04712 -88.013</code></pre>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-1" aria-hidden="true"></a>step.mtri<span class="op">$</span>anova <span class="co"># display results</span></span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb518-1" aria-hidden="true"></a>step.mtri<span class="op">$</span>anova <span class="co"># display results</span></span></code></pre></div>
 <pre><code>## Stepwise Model Path 
 ## Analysis of Deviance Table
 ## 
@@ -397,12 +397,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>La valeur de AIC pour les modèles auxquels on enlève ou on ajoute une variable au modèle sélectionné à la première étape.(i.e. logherp ~ logarea + thtden). Notez qu’aucun des modèles n’a un AIC inférieur à ce modèle.</li>
 </ol>
 <p>Au lieu de débuter par le modèle complet (saturé) et enlever des termes, on peut commencer par le modèle nul et ajouter des termes:</p>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-1" aria-hidden="true"></a><span class="co"># Forward selection approach</span></span>
-<span id="cb522-2"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-2" aria-hidden="true"></a>model.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</span>
-<span id="cb522-3"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-3" aria-hidden="true"></a>step.f &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(</span>
-<span id="cb522-4"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-4" aria-hidden="true"></a>  model.null,</span>
-<span id="cb522-5"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-5" aria-hidden="true"></a>  <span class="dt">scope =</span> <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span></span>
-<span id="cb522-6"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-6" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-1" aria-hidden="true"></a><span class="co"># Forward selection approach</span></span>
+<span id="cb520-2"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-2" aria-hidden="true"></a>model.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> mydata)</span>
+<span id="cb520-3"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-3" aria-hidden="true"></a>step.f &lt;-<span class="st"> </span><span class="kw">stepAIC</span>(</span>
+<span id="cb520-4"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-4" aria-hidden="true"></a>  model.null,</span>
+<span id="cb520-5"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-5" aria-hidden="true"></a>  <span class="dt">scope =</span> <span class="op">~</span><span class="st"> </span>. <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span></span>
+<span id="cb520-6"><a href="régression-multiple-pas-à-pas-stepwise.html#cb520-6" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## Start:  AIC=-82.09
 ## logherp ~ 1
 ## 
@@ -426,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##          Df Sum of Sq     RSS     AIC
 ## &lt;none&gt;                0.64508 -99.576
 ## + cpfor2  1  0.015708 0.62937 -98.267</code></pre>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb524-1" aria-hidden="true"></a>step.f<span class="op">$</span>anova <span class="co"># display results</span></span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="régression-multiple-pas-à-pas-stepwise.html#cb522-1" aria-hidden="true"></a>step.f<span class="op">$</span>anova <span class="co"># display results</span></span></code></pre></div>
 <pre><code>## Stepwise Model Path 
 ## Analysis of Deviance Table
 ## 
@@ -467,7 +467,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -497,6 +496,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

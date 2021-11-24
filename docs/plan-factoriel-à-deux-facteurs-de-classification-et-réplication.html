@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.2 Plan factoriel à deux facteurs de classification et réplication | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.2 Plan factoriel à deux facteurs de classification et réplication | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="set-anomul.html"/>
 <link rel="next" href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -358,19 +358,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Examinez d’abord les données en faisant des box plots de rdwght pour sex et location des données du fichier <code>Stu2wdat.csv</code> .</li>
 </ul>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb417-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb417-1" aria-hidden="true"></a>Stu2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2wdat.csv&quot;</span>)</span>
-<span id="cb417-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb417-2" aria-hidden="true"></a></span>
-<span id="cb417-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb417-3" aria-hidden="true"></a><span class="kw">ggplot</span>(Stu2wdat, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> rdwght)) <span class="op">+</span></span>
-<span id="cb417-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb417-4" aria-hidden="true"></a><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
-<span id="cb417-5"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb417-5" aria-hidden="true"></a><span class="kw">facet_grid</span>(<span class="op">~</span>location)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb416-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb416-1" aria-hidden="true"></a>Stu2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2wdat.csv&quot;</span>)</span>
+<span id="cb416-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb416-2" aria-hidden="true"></a></span>
+<span id="cb416-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb416-3" aria-hidden="true"></a><span class="kw">ggplot</span>(Stu2wdat, <span class="kw">aes</span>(<span class="dt">x =</span> sex, <span class="dt">y =</span> rdwght)) <span class="op">+</span></span>
+<span id="cb416-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb416-4" aria-hidden="true"></a><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb416-5"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb416-5" aria-hidden="true"></a><span class="kw">facet_grid</span>(<span class="op">~</span>location)</span></code></pre></div>
 <pre><code>## Warning: Removed 4 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-206-1.svg" width="672" /></p>
 <p>Les graphiques montrent qu’aux deux sites les femelles sont probablement plus grandes que les mâles, mais que les tailles ne varient pas beaucoup d’un site à l’autre. La présence de valeurs extrêmes sur ces graphiques suggère qu’il y aura peut-être des problèmes avec la condition de normalité des résidus.</p>
 <ul>
 <li>Générez les statistiques sommaires pour RDWGHT par sex et Location.</li>
 </ul>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb419-1" aria-hidden="true"></a>Stu2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2wdat.csv&quot;</span>)</span>
-<span id="cb419-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb419-2" aria-hidden="true"></a><span class="kw">aggregate</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location, <span class="dt">data =</span> Stu2wdat, <span class="dt">FUN =</span> <span class="st">&quot;summary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb418-1" aria-hidden="true"></a>Stu2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2wdat.csv&quot;</span>)</span>
+<span id="cb418-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb418-2" aria-hidden="true"></a><span class="kw">aggregate</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location, <span class="dt">data =</span> Stu2wdat, <span class="dt">FUN =</span> <span class="st">&quot;summary&quot;</span>)</span></code></pre></div>
 <pre><code>##            sex     location rdwght.Min. rdwght.1st Qu. rdwght.Median
 ## 1 FEMALE       CUMBERLAND      15.10000       20.40000      26.80000
 ## 2 MALE         CUMBERLAND      14.00000       19.22500      20.85000
@@ -386,14 +386,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>À l’aide du fichier Stu2wdat.csv faites une ANOVA factorielle à
 deux critères de classification:</li>
 </ul>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-1" aria-hidden="true"></a><span class="co"># Fit anova model and plot residual diagnostics</span></span>
-<span id="cb421-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-2" aria-hidden="true"></a><span class="co"># but first, save current par and set graphic page to hold 4 graphs</span></span>
-<span id="cb421-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-3" aria-hidden="true"></a>opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb421-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-4" aria-hidden="true"></a>anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</span>
-<span id="cb421-5"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-5" aria-hidden="true"></a>  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</span>
-<span id="cb421-6"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-6" aria-hidden="true"></a>  <span class="dt">data =</span> Stu2wdat</span>
-<span id="cb421-7"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-7" aria-hidden="true"></a>)</span>
-<span id="cb421-8"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb421-8" aria-hidden="true"></a><span class="kw">anova</span>(anova.model1)</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-1" aria-hidden="true"></a><span class="co"># Fit anova model and plot residual diagnostics</span></span>
+<span id="cb420-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-2" aria-hidden="true"></a><span class="co"># but first, save current par and set graphic page to hold 4 graphs</span></span>
+<span id="cb420-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-3" aria-hidden="true"></a>opar &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb420-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-4" aria-hidden="true"></a>anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</span>
+<span id="cb420-5"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-5" aria-hidden="true"></a>  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</span>
+<span id="cb420-6"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-6" aria-hidden="true"></a>  <span class="dt">data =</span> Stu2wdat</span>
+<span id="cb420-7"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-7" aria-hidden="true"></a>)</span>
+<span id="cb420-8"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb420-8" aria-hidden="true"></a><span class="kw">anova</span>(anova.model1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: rdwght
@@ -409,8 +409,8 @@ deux critères de classification:</li>
 Attention, R imprime les sommes des carrés séquentielles (Type I) les carrés moyens et probabilités associés. Vous ne pouvez pas vous y fier si votre plan d’expérience n’est pas parfaitement balancé. Dans cet exemple, le nombre de poissons capturés change selon le site et le sexe et le plan d’expérience n’est donc pas balancé.
 </div>
 <p>Vous devez extraire les sommes de carrés partielles (Type III). Le moyen le plus simple que j’ai trouvé est d’utiliser la fonction Anova()du package <code>car</code> (notez la différence subtile, Anova() n’est pas la même chose que anova(), R est impitoyable et distingue les majuscules des minuscules). Malheureusement, Anova() ne suffit pas; il faut également spécifier le type de contraste dans le modèle avecl’argument <code>contrasts = list(sex = contr.sum,location = contr.sum)</code></p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb423-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
-<span id="cb423-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb423-2" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb422-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
+<span id="cb422-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb422-2" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -423,16 +423,16 @@ Attention, R imprime les sommes des carrés séquentielles (Type I) les carrés 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Suite à l’ANOVA, on accepte deux hypothèses nulles: (1) que l’effet du sexe ne varie pas entre les sites (pas d’interaction significative) et (2) qu’il n’y a pas de différence de taille des esturgeons (peu importe le sexe) entre les deux sites. D’un autre coté, on rejette l’hypothèse nulle qu’il n’y a pas de différence de taille entre les esturgeons mâles et les femelles, tel que suggéré par les graphiques.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb425-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb425-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb425-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.model1)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-211"></span>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb424-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb424-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb424-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.model1)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-211"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-211-1.svg" alt="Conditions d'application ANOVA model1" width="672" />
 <p class="caption">
 Figure 6.1: Conditions d’application ANOVA model1
 </p>
 </div>
 <p>Cependant, on ne peut se fier à ces résultats sans vérifier si les conditions d’application de l’ANOVA étaient remplies. Un examen des graphiques des résidus, en haut, montre que les résidus semblent être distribués plus ou moins normalement, si ce n’est des 3 valeurs extrêmes qui sont notées sur le diagramme de probabilité (cas 101, 24,&amp; 71). D’après le graphique des résidus vs les valeurs prédites, on voit que l’étendue des résidus est plus ou moins égale pour les valeurs estimées, sauf encore pour 2 ou 3 cas. Si on éprouve la normalité, on obtient:</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb426-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb425-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -440,8 +440,8 @@ Figure 6.1: Conditions d’application ANOVA model1
 ## W = 0.87213, p-value = 2.619e-11</code></pre>
 <p>Alors, il y a évidence que les résidus ne sont pas distribués normalement.</p>
 <p>Nous allons utiliser le test de Levene pour examiner l’homoscédasticité des résidus, de la même façon qu’on a fait pour l’ANOVA à un critère de classification.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb428-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
-<span id="cb428-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb428-2" aria-hidden="true"></a><span class="kw">leveneTest</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>location, <span class="dt">data =</span> Stu2wdat)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb427-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
+<span id="cb427-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb427-2" aria-hidden="true"></a><span class="kw">leveneTest</span>(rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>location, <span class="dt">data =</span> Stu2wdat)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value  Pr(&gt;F)  
 ## group   3  3.8526 0.01055 *
@@ -453,14 +453,14 @@ Figure 6.1: Conditions d’application ANOVA model1
 <div class="rmdcode">
 Répétez la même analyse avec les données du fichier <code>stu2mdat.csv</code> . Que concluez-vous? Supposons que vous vouliez comparer la taille des mâles et des femelles. Comment cette comparaison diffère entre les deux ensembles de données ?
 </div>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb430-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-1" aria-hidden="true"></a>Stu2mdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2mdat.csv&quot;</span>)</span>
-<span id="cb430-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-2" aria-hidden="true"></a>anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
-<span id="cb430-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-3" aria-hidden="true"></a>  <span class="dt">formula =</span> rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</span>
-<span id="cb430-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-4" aria-hidden="true"></a>  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</span>
-<span id="cb430-5"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-5" aria-hidden="true"></a>  <span class="dt">data =</span> Stu2mdat</span>
-<span id="cb430-6"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-6" aria-hidden="true"></a>)</span>
-<span id="cb430-7"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-7" aria-hidden="true"></a><span class="kw">summary</span>(anova.model2)</span>
-<span id="cb430-8"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb430-8" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb429-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-1" aria-hidden="true"></a>Stu2mdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Stu2mdat.csv&quot;</span>)</span>
+<span id="cb429-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-2" aria-hidden="true"></a>anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
+<span id="cb429-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-3" aria-hidden="true"></a>  <span class="dt">formula =</span> rdwght <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location,</span>
+<span id="cb429-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-4" aria-hidden="true"></a>  <span class="dt">contrasts =</span> <span class="kw">list</span>(<span class="dt">sex =</span> contr.sum, <span class="dt">location =</span> contr.sum),</span>
+<span id="cb429-5"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-5" aria-hidden="true"></a>  <span class="dt">data =</span> Stu2mdat</span>
+<span id="cb429-6"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-6" aria-hidden="true"></a>)</span>
+<span id="cb429-7"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-7" aria-hidden="true"></a><span class="kw">summary</span>(anova.model2)</span>
+<span id="cb429-8"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb429-8" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = rdwght ~ sex + location + sex:location, data = Stu2mdat, 
@@ -499,16 +499,10 @@ Répétez la même analyse avec les données du fichier <code>stu2mdat.csv</code
 <ul>
 <li>Vous trouverez utile ici de créer des graphiques pour les deux fichiers de données pour comparer les interactions entre sex et location. Le graphique d’interaction montre les relations entre les moyennes de chaque combinaison de facteurs (appelées aussi les moyennes des ce$lules).Générez un graphique illustrant les intéractions en utilisant la fonction allEffects du package effects :</li>
 </ul>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb433-1" aria-hidden="true"></a><span class="kw">library</span>(effects)</span></code></pre></div>
-<pre><code>## Registered S3 methods overwritten by &#39;lme4&#39;:
-##   method                          from
-##   cooks.distance.influence.merMod car 
-##   influence.merMod                car 
-##   dfbeta.influence.merMod         car 
-##   dfbetas.influence.merMod        car</code></pre>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb432-1" aria-hidden="true"></a><span class="kw">library</span>(effects)</span></code></pre></div>
 <pre><code>## lattice theme set by effectsTheme()
 ## See ?effectsTheme for details.</code></pre>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb436-1" aria-hidden="true"></a><span class="kw">allEffects</span>(anova.model1)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb434-1" aria-hidden="true"></a><span class="kw">allEffects</span>(anova.model1)</span></code></pre></div>
 <pre><code>##  model: rdwght ~ sex + location + sex:location
 ## 
 ##  sex*location effect
@@ -516,14 +510,14 @@ Répétez la même analyse avec les données du fichier <code>stu2mdat.csv</code
 ## sex            CUMBERLAND   THE_PAS     
 ##   FEMALE           27.37347     27.97717
 ##   MALE             22.14118     20.64652</code></pre>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb438-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model1), <span class="st">&quot;sex:location&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-218"></span>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb436-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model1), <span class="st">&quot;sex:location&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-218"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-218-1.svg" alt="Effet du sexe et du lieu sur le poids des esturgeons" width="672" />
 <p class="caption">
 Figure 6.2: Effet du sexe et du lieu sur le poids des esturgeons
 </p>
 </div>
-<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb439-1" aria-hidden="true"></a><span class="kw">allEffects</span>(anova.model2)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb437-1" aria-hidden="true"></a><span class="kw">allEffects</span>(anova.model2)</span></code></pre></div>
 <pre><code>##  model: rdwght ~ sex + location + sex:location
 ## 
 ##  sex*location effect
@@ -531,15 +525,15 @@ Figure 6.2: Effet du sexe et du lieu sur le poids des esturgeons
 ## sex            CUMBERLAND   THE_PAS     
 ##   FEMALE           27.37347     20.64652
 ##   MALE             22.14118     27.97717</code></pre>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb441-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model2), <span class="st">&quot;sex:location&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-219"></span>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb439-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">allEffects</span>(anova.model2), <span class="st">&quot;sex:location&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-219"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-219-1.svg" alt="Effet du sexe et du lieu sur le poids des esturgeons" width="672" />
 <p class="caption">
 Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 </p>
 </div>
 <p>Il y a une différence importante entre les résultats obtenus avec <code>stu2wdat</code> et <code>stu2mdat</code>. Dans le premier cas, puisqu’il n’y a pas d’interaction, on peut regrouper les données des deux niveaux d’un facteur (le site, par exemple) pour éprouver l’hypothèse d’un effet de l’autre facteur (le sexe). En fait, si on fait cela et que l’on calcule une ANOVA à un critère de classification (sex), on obtient:</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb442-1" aria-hidden="true"></a><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2wdat), <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb440-1" aria-hidden="true"></a><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2wdat), <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -550,7 +544,7 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Notez que la somme des carrés des résidus (17583) est presque égale à celle du modèle complet (17530) de l’ANOVA factorielle à deux facteurs. C’est parce que dans cette anova factorielle, le terme d’interaction et le terme représentant l’effet du site n’expliquent qu’une partie infime de la variabilité. D’un autre coté, si on essaie le même truc avec <code>stu2mdat</code>, on obtient:</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb444-1" aria-hidden="true"></a><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2mdat), <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb442-1" aria-hidden="true"></a><span class="kw">Anova</span>(<span class="kw">aov</span>(rdwght <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> Stu2mdat), <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -567,7 +561,7 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 <p>Les analyses qui précèdent négligent un point important: <code>location</code> pourrait être traité comme un facteur aléatoire et <code>sex</code> est fixe. Par conséquent le modèle approprié d’ANOVA est de type mixte.</p>
 <p>Notez que dans toutes les analyses qui précèdent, R a traité cette ANOVA comme si elle etait de type effet fixe seulement, et les termes principaux et celui d’interaction ont été testés en utilisant le carré moyen des résidus comme dénominateur des tests de F. Cependant, pour une ANOVA de type mixte, ces effets devraient être testés en utilisant le carré moyen du terme d’interaction, ou en combinant la somme des carrés de l’erreur et de l’interaction (selon le statisticien consulté!).</p>
 <p>En utilisant <code>Stu2wdat</code>, refaites un tableau d’ANOVA pour RDWGHT en considérant location comme facteur aléatoire et sex comme un facteur fixe. Pour ce faire, vous devrez recalculer les valeurs de F pour sex et location en utilisant le carré moyen de l’interaction sex:location au lieu du carré moyen des résidus comme dénominateur. Le mieux c’est de le faire à la mitaine ent travaillant avec les Type III Sums of squares du tableau d’ANOVA.</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb446-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb446-1" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb444-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb444-1" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: rdwght
@@ -582,7 +576,7 @@ Figure 6.3: Effet du sexe et du lieu sur le poids des esturgeons
 <p>Pour <code>sex</code>, la nouvelle valeur de F (le rapport des carrés moyens) est de</p>
 <p><span class="math display">\[F = \frac{(1745/1)}{(49/1)} = 35.6\]</span></p>
 <p>Pour obtenir la valeur de p correspondant à cette statistique <code>F</code>, il faut utilisez la fonction de probabilité de la distribtuion de F <code>pf(F, df1, df2, lower.tail = FALSE)</code>, où F est la valeur de F calculée, et <code>df1</code> et <code>df2</code> sont les degrés de liberté du numérateur (sex) et dénominateur(SEX:location).</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb448-1" aria-hidden="true"></a><span class="kw">pf</span>(<span class="fl">35.6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html#cb446-1" aria-hidden="true"></a><span class="kw">pf</span>(<span class="fl">35.6</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1057152</code></pre>
 <p>Notez que maintenant la valeur de p pour sex n’est plus significative. C’est parce que le carré moyen de l’erreur dans l’ANOVA initiale est plus petit que celui associé à l’interaction, mais surtout parce que le nombre de degrés de liberté pour le dénominateur du test de F est passé de 178 à 1 seulement. En général, c’est beaucoup plus difficile d’obtenir des résultats significatifs quand les degrés de liberté pour le dénominateur sont petits.</p>
 
@@ -602,7 +596,6 @@ Les modèles mixtes qui sont une généralisation de l’ANOVA à effets mixtes 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -632,6 +625,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

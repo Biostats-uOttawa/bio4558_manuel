@@ -136,9 +136,9 @@ par(mfrow = c(2,2))
 plot(model.full2)
 ```
 
-Si on examine les résidus selon les méthodes habituelles, on voit qu’il n’y a pas de problème de linéarité, ni d’homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l’échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des GLM, de la taille de l’échantillon, on ne devrait pas ^tre trop inquiet de cette déviation de normalité.
+Si on examine les résidus selon les méthodes habituelles, on voit qu’il n’y a pas de problème de linéarité, ni d’homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l’échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des LM, de la taille de l’échantillon, on ne devrait pas ^tre trop inquiet de cette déviation de normalité.
 
-Donc, comme les conditions des GLM sont suffisamment remplies, on peut accepter les résultats donnés par R. Tous les termes sont significatifs (location, lage, interaction). Ce modèle complet est équivalent à ajuster des régressions séparées pour chaque site. Pour obtenir les coefficients, on peut ajuster des régressions simples sur chaque sous-ensemble, ou extraire les coefficients ajustés du modèle complet:
+Donc, comme les conditions des LM sont suffisamment remplies, on peut accepter les résultats donnés par R. Tous les termes sont significatifs (location, lage, interaction). Ce modèle complet est équivalent à ajuster des régressions séparées pour chaque site. Pour obtenir les coefficients, on peut ajuster des régressions simples sur chaque sous-ensemble, ou extraire les coefficients ajustés du modèle complet:
 
 
 ```{r}
@@ -267,10 +267,8 @@ Cette fois-ci, le modèle plus complexe s’ajuste significativement mieux aux d
 ############################################################
 ######
 # Bootstrap analysis
-#
-#
-Bootstrap analysis BCa confidence intervals
-Preferable when parameter distribution is far from normal
+# Bootstrap analysis BCa confidence intervals
+# Preferable when parameter distribution is far from normal
 # Bootstrap 95% BCa CI for regression coefficients
 library(boot)
 
@@ -323,14 +321,14 @@ for (i in 1:length(results$t0)) {
 # copy the data to a generic mydata dataframe
 mydata<-anc3dat
 # create a myformula variable containing the formula for the
-model to be fitted
+# model to be fitted
 myformula<-as.formula(lfkl ~ lage + locate + lage:locate)
 require(lmPerm2)
 # Fit desired model on the desired dataframe
 mymodel <- lm(myformula, data = mydata)
 # Calculate p-values for each term by permutation
 # Note that lmp centers numeric variable by default, so to
-get results that are
+# get results that are
 # consistent with standard models, it is necessary to set
 center=FALSE
 mymodelProb <- lmp(myformula, data = mydata, center=FALSE,

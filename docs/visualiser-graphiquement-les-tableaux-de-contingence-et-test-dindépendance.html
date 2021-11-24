@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.3 Visualiser graphiquement les tableaux de contingence et test d’indépendance | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.3 Visualiser graphiquement les tableaux de contingence et test d’indépendance | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="organisation-des-données-3-formats.html"/>
 <link rel="next" href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -353,11 +353,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.3</span> Visualiser graphiquement les tableaux de contingence et test d’indépendance</h2>
 <p>Les tableaux de contingence peuvent servir à éprouver l’hypothèse d’indépendance des observations. Ceci équivaut à répondre à la question: est-ce que la classification des observations selon une variable (par exemple sex) indépendante de la classification par une autre variable (par exemple ageclass). En autres mots, est-ce que la proportion des mâles et femelles indépendante de l’âge ou varie avec l’âge?</p>
 <p>Le package <code>vcd</code> inclut la fonction <code>mosaic()</code> qui permet de représenter graphiquement le contenu d’un tableau de contingence:</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb634-1" aria-hidden="true"></a><span class="kw">library</span>(vcd)</span>
-<span id="cb634-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb634-2" aria-hidden="true"></a>USTable &lt;-<span class="st"> </span><span class="kw">xtabs</span>(frequency <span class="op">~</span><span class="st"> </span>ageclass <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data =</span> USPopSurvey) <span class="co"># save the table form as USTable dataframe</span></span>
-<span id="cb634-3"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb634-3" aria-hidden="true"></a><span class="co"># Mosaic plot of the contingency table</span></span>
-<span id="cb634-4"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb634-4" aria-hidden="true"></a><span class="kw">mosaic</span>(USTable)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-326"></span>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb632-1" aria-hidden="true"></a><span class="kw">library</span>(vcd)</span>
+<span id="cb632-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb632-2" aria-hidden="true"></a>USTable &lt;-<span class="st"> </span><span class="kw">xtabs</span>(frequency <span class="op">~</span><span class="st"> </span>ageclass <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data =</span> USPopSurvey) <span class="co"># save the table form as USTable dataframe</span></span>
+<span id="cb632-3"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb632-3" aria-hidden="true"></a><span class="co"># Mosaic plot of the contingency table</span></span>
+<span id="cb632-4"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb632-4" aria-hidden="true"></a><span class="kw">mosaic</span>(USTable)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-326"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-326-1.svg" alt="Représentation mosaique de la proportion des sexes par classe d'age" width="672" />
 <p class="caption">
 Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’age
@@ -365,19 +365,26 @@ Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’a
 </div>
 <p>Cette mosaïque représente la proportion des observations dans chaque combinaison de catégories (ici il y a 18 catégories, 2 sexes x 9 classes d’âge). Les catégories contenant une plus grande proportion d’observations sont représentées par de plus grands rectangles. Visuellement, on peut voir que la proportion des mâles et femelles est approximativement égale chez les jeunes, mais que la proportion des femelles augmente chez les personnes âgées.</p>
 <p>Le test de Chi carré permet d’éprouver l’hypothèse nulle que la proportion des mâles et femelles ne change pas avec l’âge (est indépendante de l’âge):</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb635-1" aria-hidden="true"></a><span class="co"># Test of independence</span></span>
-<span id="cb635-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb635-2" aria-hidden="true"></a><span class="kw">chisq.test</span>(USTable) <span class="co"># runs chi square test of independence of sex and age class</span></span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb633-1" aria-hidden="true"></a><span class="co"># Test of independence</span></span>
+<span id="cb633-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb633-2" aria-hidden="true"></a><span class="kw">chisq.test</span>(USTable) <span class="co"># runs chi square test of independence of sex and age class</span></span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  USTable
 ## X-squared = 1162.6, df = 8, p-value &lt; 2.2e-16</code></pre>
 <p>La valeur p étant très faible, on rejette donc l’hypothèse nulle que âge et sexe sont indépendants. Ces graphiques mosaïques peuvent êtres colorés pour souligner les catégories qui contribuent le plus à cette dépendance:</p>
-<p><code>{rfig.cap = "Représentation mosaique de la proportion des sexes par classe d'age avec échelle de couleur"} # Mosaic plot of the contingency table with shading mosaic(USTable, shade=TRUE)</code></p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb635-1" aria-hidden="true"></a><span class="co"># Mosaic plot of the contingency table with shading</span></span>
+<span id="cb635-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb635-2" aria-hidden="true"></a><span class="kw">mosaic</span>(USTable, <span class="dt">shade=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-328"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-328-1.svg" alt="Représentation mosaique de la proportion des sexes par classe d'age avec échelle de couleur" width="672" />
+<p class="caption">
+Figure 9.2: Représentation mosaique de la proportion des sexes par classe d’age avec échelle de couleur
+</p>
+</div>
 <p>La couleur de chaque rectangle est proportionnelle à la déviation des fréquences observées de ce qui serait attendu si l’âge et le sexe étaient indépendants. Les classes d’âge 40-49 et 50-59 ont un rapport des sexe approximativement égal à celui de toutes les classes d’âge réunies. Il y a plus de jeunes mâles et de femelles âgées que si le rapport des sexe ne variait pas avec l’âge.et ces rectangles sont colorés en bleu. De l’autre côté, il y a moins de jeunes femelles et de mâles âgés que si le rapport des sexe était indépendant de l’âge, et ces rectangles sont en rouge. La valeur p à la droite de la figure est pour le test de Chi carré qui éprouve l’hypothèse nulle d’indépendance pour l’ensemble des observations, toutes classes d’âge confondues.</p>
 <p>L’estimation de la valeur p associée à la statistique du Chi carré est approximative lorsque les fréquences attendues sont faibles dans certaines cellules, et ce particulièrement pour les tableaux de contingence 2x2. Deux options permettant des valeurs p plus exactes sont préférées dans ce cas, et le choix dépends du nombre total d’observations. Pour de grands échantillons (comme ici avec plus de 200,000 observations!), une approche par simulation de type Monte Carlo est suggérée et peut être obtenue en ajoutant simulate.p.value=TRUE comme argument à la fonction chisq.test() :</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb637-1" aria-hidden="true"></a><span class="co"># Monte-carlo estimation of p value (better for small n)</span></span>
-<span id="cb637-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb637-2" aria-hidden="true"></a><span class="kw">chisq.test</span>(USTable, <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>, <span class="dt">B =</span> <span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb636-1" aria-hidden="true"></a><span class="co"># Monte-carlo estimation of p value (better for small n)</span></span>
+<span id="cb636-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb636-2" aria-hidden="true"></a><span class="kw">chisq.test</span>(USTable, <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>, <span class="dt">B =</span> <span class="dv">10000</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with simulated p-value (based on 10000
 ##  replicates)
@@ -386,11 +393,11 @@ Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’a
 ## X-squared = 1162.6, df = NA, p-value = 9.999e-05</code></pre>
 <p>Ici, la simulation a été faite B=10000 fois, et la valeur de Chi carré observée avec les données réelles n’a jamais été observée. Par conséquent, p a été estimé à 1/10001=9.999e-05, qui est beaucoup plus élevé que la valeur p estimée à partir de la distribution théorique de Chi carré (p&lt; 2.2e-16). Cette différence est due au moins en partie à un artéfacts de la simulation. Pour obtenir des valeurs p de l’ordre de 1e-16, il faut effectuer au moins 10 16 simulations. Et je ne suis pas aussi patient que ça!</p>
 <p>Pour de petits tableaux de contingence avec des fréquences attendues petites, le test exact de Fisher peut servir à estimer la valeur p associée à l’hypothèse d’indépendance. Mais ce test ne peut être effectué avec de grands échantillons, comme ici:</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb639-1" aria-hidden="true"></a><span class="co"># Fisher exact test for contingency tables (small samples and small tables)</span></span>
-<span id="cb639-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb639-2" aria-hidden="true"></a><span class="kw">fisher.test</span>(USTable) <span class="co"># fails here because too many observations</span></span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb638-1" aria-hidden="true"></a><span class="co"># Fisher exact test for contingency tables (small samples and small tables)</span></span>
+<span id="cb638-2"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb638-2" aria-hidden="true"></a><span class="kw">fisher.test</span>(USTable) <span class="co"># fails here because too many observations</span></span></code></pre></div>
 <pre><code>## Error in fisher.test(USTable): FEXACT error 40.
 ## Out of workspace.</code></pre>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb641-1" aria-hidden="true"></a><span class="kw">fisher.test</span>(USTable, <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>, <span class="dt">B =</span> <span class="dv">10000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb640-1" aria-hidden="true"></a><span class="kw">fisher.test</span>(USTable, <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>, <span class="dt">B =</span> <span class="dv">10000</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data with simulated p-value (based on
 ##  10000 replicates)
@@ -410,7 +417,6 @@ Figure 9.1: Représentation mosaique de la proportion des sexes par classe d’a
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -440,6 +446,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

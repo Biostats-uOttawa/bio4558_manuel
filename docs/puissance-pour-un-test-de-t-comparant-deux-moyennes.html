@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="comment-utiliser-gpower.html"/>
 <link rel="next" href="points-à-retenir.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -389,7 +389,7 @@ t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Cliquer sur le bouton Calculate dans la fenêtre principale et vous devriez obtenir ceci:</li>
 </ol>
-<div class="figure"><span id="fig:gpower-1"></span>
+<div class="figure"><span style="display:block;" id="fig:gpower-1"></span>
 <img src="images/gpower_1.png" alt="Analyse post-hoc avec la taille d'effet estimée" width="100%" />
 <p class="caption">
 Figure 2.1: Analyse post-hoc avec la taille d’effet estimée
@@ -427,7 +427,7 @@ Le plus simple comme nous allons estimer la taille d’effet <code>d</code> plus
 <span id="cb241-9"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#cb241-9" aria-hidden="true"></a><span class="co"># power corresponds to the shaded area</span></span>
 <span id="cb241-10"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#cb241-10" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x, <span class="dt">mean =</span> (<span class="fl">3.31</span> <span class="op">-</span><span class="st"> </span><span class="fl">2.64</span>))</span>
 <span id="cb241-11"><a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#cb241-11" aria-hidden="true"></a><span class="kw">polygon</span>(<span class="kw">c</span>(x[x <span class="op">&lt;=</span><span class="st"> </span><span class="op">-</span>qc], <span class="op">-</span>qc), <span class="kw">c</span>(y[x <span class="op">&lt;=</span><span class="st"> </span><span class="op">-</span>qc], <span class="dv">0</span>), <span class="dt">col =</span> <span class="kw">rgb</span>(<span class="dt">red =</span> <span class="dv">0</span>, <span class="dt">green =</span> <span class="fl">0.2</span>, <span class="dt">blue =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<div class="figure"><span id="fig:r-power"></span>
+<div class="figure"><span style="display:block;" id="fig:r-power"></span>
 <img src="Labo_BIO4558_files/figure-html/r-power-1.svg" alt="Graphique de l'analyse de puissance dans R" width="672" />
 <p class="caption">
 Figure 2.2: Graphique de l’analyse de puissance dans R
@@ -462,7 +462,7 @@ Quelles étaient les chances de Jaynie de détecter une différence de 2.64 <spa
 <div class="rmdcode">
 Changer la moyenne du groupe 2 à 5.28, recalculer la taille d’effet, et cliquer sur Calculate pour obtenir (<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#fig:gpower-2">2.3</a>).
 </div>
-<div class="figure"><span id="fig:gpower-2"></span>
+<div class="figure"><span style="display:block;" id="fig:gpower-2"></span>
 <img src="images/gpower_2.png" alt="Analyse post-hoc avec une taille d'effet différente" width="100%" />
 <p class="caption">
 Figure 2.3: Analyse post-hoc avec une taille d’effet différente
@@ -495,7 +495,7 @@ Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chan
 Changer le type d’analyse de puissance dans G*Power à <strong>A priori</strong>: <strong>Compute sample size - given <span class="math inline">\(\alpha\)</span>, power, and effect size.</strong>
 Assurez-vous que les valeurs pour les moyennes et les écarts-type soient celles qu’a obtenu Jaynie, recalculez la taille de l’effet, et inscrivez 0.8 pour la puissance.
 </div>
-<div class="figure"><span id="fig:gpower-3"></span>
+<div class="figure"><span style="display:block;" id="fig:gpower-3"></span>
 <img src="images/gpower_3.png" alt="Analyse à priori" width="100%" />
 <p class="caption">
 Figure 2.4: Analyse à priori
@@ -536,7 +536,7 @@ Augmenter la puissance ça demande plus d’effort.</p>
 <div class="rmdcode">
 Changez le type d’analyse dans G*Power à <strong>Sensitivity</strong>: <strong>Compute required effect size - given <span class="math inline">\(\alpha\)</span>, power, and sample size</strong> et assurez-vous que la taille des échantillons est de 18 dans chaque région.
 </div>
-<div class="figure"><span id="fig:gpower-4"></span>
+<div class="figure"><span style="display:block;" id="fig:gpower-4"></span>
 <img src="images/gpower_4.png" alt="Analyse de sensitivité" width="100%" />
 <p class="caption">
 Figure 2.5: Analyse de sensitivité
@@ -581,7 +581,6 @@ Dans R, on peut estimer cela avec:</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -611,6 +610,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

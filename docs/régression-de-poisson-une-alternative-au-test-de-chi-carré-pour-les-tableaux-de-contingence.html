@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.4 Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.4 Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"/>
 <link rel="next" href="tester-une-hypothèse-extrinsèque.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -354,8 +354,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Rendu à ce stade, vous devriez avoir appris à apprécier la flexibilité et la généralité des modèles linéaires, et réaliser que le test de t est un cas spécial d’un modèle linéaire avec une variable indépendante catégorique. L’analyse des tableaux de contingence par le test du Chi carré peut également être généralisé. Un modèle linéaire généralisé pour une distribution de Poisson peut être utilisé quand la variable dépendante est une fréquence d’observations et les variables indépendantes sont catégorique (comme pour les tableaux de contingence, on parle alors de modèles log-linéaires), continue (régression Poisson), ou une combinaison de variables indépendante continues et catégoriques (aussi appelé régression de Poisson, mais avec des variables catégoriques en plus, analogue à l’ANCOVA sensu largo).</p>
 <p>Ces modèles prédisent le logarithme naturel de la fréquence des observations en fonction des variables indépendantes. Comme pour les modèles linéaires qui présument de la normalité des résidus, on peut évaluer la qualité d’ajustement du modèle (par AICc par exemple) et la signification statistique des termes du modèle (par exemple en comparant l’ajustement d’un modèle “complet” et celui d’un modèle qui exclue un terme à tester). On peut également obtenir des estimés des paramètre pour chaque terme dans le modèle, avec des intervalles de confiance et des valeur p pour l’hypothèse nulle que ce terme n’a pas d’influence sur la fréquence.</p>
 <p>La fonction glm() avec l’option family=poisson() permet l’estimation, par la méthode du maximum de vraisemblance, de modèles linéaires pour des fréquences. Comparativement aux modèles linéaires vus précédemment, une des particularité de ces modèles est que seuls les termes d’interaction sont d’intérêt. En partant des données de recensement en forme tableau, on peut ajuster un glm aux fréquences observées par sexe et classe d’âge par:</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#cb643-1" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">glm</span>(frequency <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>ageclass, <span class="dt">family =</span> <span class="kw">poisson</span>(), <span class="dt">data =</span> USPopSurvey)</span>
-<span id="cb643-2"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#cb643-2" aria-hidden="true"></a><span class="kw">summary</span>(mymodel)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#cb642-1" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">glm</span>(frequency <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>ageclass, <span class="dt">family =</span> <span class="kw">poisson</span>(), <span class="dt">data =</span> USPopSurvey)</span>
+<span id="cb642-2"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#cb642-2" aria-hidden="true"></a><span class="kw">summary</span>(mymodel)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = frequency ~ sex * ageclass, family = poisson(), 
@@ -399,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Pour les mâles dans la classe d’âge 80+, il faut calcule l’antilog du coefficient pour l’ordonnée à l’origine (pour les femelles dans la première classe d’âge), plus le coefficient pour sexmale (égal à la différence du log de la fréquence entre les femelles et les mâles), plus le coefficient pour la classe d’âge 80+ qui corresponds à la différence de fréquence entre cette classe d’âge et la classe d’âge de référence, plus le coefficient pour l’interaction sexmale:ageclass80+ (qui corresponds à la différence de proportion de mâles dans cette classe d’âge par rapport à la classe d’âge de référence). Ceci donne: ln(frequency)=9.776733-0.004608-1.454582-0.754343=7.5632, et la fréquence est égale à e 7.5632 =1926</p>
 <p>Il y a de nombreuses valeur p dans ce tableau, mais elle ne sont en général pas très utiles. Pour éprouver l’hypothèse que l’effet du sexe sur la fréquence est identique dans chaque classe d’âge (i.e. que sexe et âge sont indépendants), vous devez ajuster un modèle qui exclut cette interaction (sex:ageclass) et déterminer comment l’ajustement du modèle est affecté.</p>
 <p>La fonction <code>Anova()</code> du package <code>car</code> permet de prendre un raccourci:</p>
-<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#cb645-1" aria-hidden="true"></a><span class="kw">Anova</span>(mymodel, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">test =</span> <span class="st">&quot;LR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#cb644-1" aria-hidden="true"></a><span class="kw">Anova</span>(mymodel, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">test =</span> <span class="st">&quot;LR&quot;</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type III tests)
 ## 
 ## Response: frequency
@@ -423,7 +423,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -453,6 +452,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

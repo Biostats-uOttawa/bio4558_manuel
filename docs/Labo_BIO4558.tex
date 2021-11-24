@@ -239,7 +239,7 @@
 \makeatother
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{11-11-2021}
+\date{23-11-2021}
 
 \begin{document}
 \maketitle
@@ -4360,10 +4360,6 @@ Il faut utiliser la fonction \texttt{model\_check()} dans le 📦 \texttt{perfor
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Loading required namespace: qqplotr
-\end{verbatim}
-
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-196-1.pdf}
 Finalement, quel est le verdict concernant la régression linéaire entre fklngth et age ? Elle viole la condition de linéarité, possiblement celle de normalité, remplit la condition d'homoscédasticité, et ne semble pas influencée outre mesure par des valeurs bizarres ou extrêmes.
 
@@ -4846,9 +4842,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0016780094  0.03469268
-## t2* 0.3408557 -0.0009660716  0.02760247
+##      original       bias    std. error
+## t1* 1.1919926  0.002734212  0.03406241
+## t2* 0.3408557 -0.001959686  0.02701840
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4905,11 +4901,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.122,  1.258 )   ( 1.118,  1.258 )  
+## 95%   ( 1.122,  1.256 )   ( 1.120,  1.257 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.126,  1.266 )   ( 1.114,  1.253 )  
+## 95%   ( 1.127,  1.264 )   ( 1.100,  1.244 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \begin{Shaded}
@@ -4933,11 +4930,12 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2877,  0.3959 )   ( 0.2882,  0.3975 )  
+## 95%   ( 0.2899,  0.3958 )   ( 0.2893,  0.3962 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2842,  0.3935 )   ( 0.2939,  0.4038 )  
+## 95%   ( 0.2855,  0.3924 )   ( 0.2990,  0.4125 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 Ici, les 4 types d'intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d'application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.
@@ -5298,9 +5296,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original       bias    std. error
-## t1* 45.084391 -0.006769951   0.4438405
-## t2* -1.714546  0.027254245   0.7794951
+##      original      bias    std. error
+## t1* 45.084391  0.02475926   0.4412302
+## t2* -1.714546 -0.02362741   0.7638635
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5333,7 +5331,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.343, -0.196 )  
+## 95%   (-3.312, -0.252 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5377,7 +5375,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 1217   0.0764 .
+## location1   0.8573 5000   0.0146 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5390,9 +5388,9 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \texttt{Iter}: la règle a limité à 1217 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
+  \texttt{Iter}: la règle a limité à 5000 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
 \item
-  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0764. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0764= 92.4\%) des 1217 permutations. Notez que 1217 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
+  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0146. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0146= 98.5\%) des 5000 permutations. Notez que 5000 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
 \item
   \texttt{F-statistic}: Le reste est la sortie standard pour un modèle ajusté à des données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d'application sont remplies, est 0.034.
 \end{enumerate}
@@ -6124,18 +6122,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5932
+## Quantile = 2.594
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2707   3.6451
-## m1965 - m1954 == 0  -5.5077  -9.9965  -1.0188
-## m1966 - m1954 == 0  -3.3127  -6.3427  -0.2827
-## m1965 - m1958 == 0  -5.6949 -10.4106  -0.9792
-## m1966 - m1958 == 0  -3.4999  -6.8568  -0.1430
-## m1966 - m1965 == 0   2.1950  -2.2165   6.6065
+## m1958 - m1954 == 0   0.1872  -3.2718   3.6462
+## m1965 - m1954 == 0  -5.5077  -9.9980  -1.0174
+## m1966 - m1954 == 0  -3.3127  -6.3437  -0.2817
+## m1965 - m1958 == 0  -5.6949 -10.4121  -0.9777
+## m1966 - m1958 == 0  -3.4999  -6.8579  -0.1420
+## m1966 - m1965 == 0   2.1950  -2.2180   6.6079
 \end{verbatim}
 
 \begin{Shaded}
@@ -6469,17 +6467,17 @@ Ce laboratoire nécessite:
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching packages ---------------------------------------------------------------------------------------- tidyverse 1.3.1 --
+## -- Attaching packages ----------------------------------------------------------------------------------------------- tidyverse 1.3.1 --
 \end{verbatim}
 
 \begin{verbatim}
-## v tibble  3.1.2     v purrr   0.3.4
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.1
+## v tibble  3.1.6     v purrr   0.3.4
+## v tidyr   1.1.4     v stringr 1.4.0
+## v readr   2.1.0     v forcats 0.5.1
 \end{verbatim}
 
 \begin{verbatim}
-## -- Conflicts ------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## -- Conflicts -------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ## x dplyr::recode() masks car::recode()
@@ -6710,15 +6708,6 @@ Dans ce cas, le terme de l'interaction (sex:location) est maintenant significati
 \KeywordTok{library}\NormalTok{(effects)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Registered S3 methods overwritten by 'lme4':
-##   method                          from
-##   cooks.distance.influence.merMod car 
-##   influence.merMod                car 
-##   dfbeta.influence.merMod         car 
-##   dfbetas.influence.merMod        car
-\end{verbatim}
 
 \begin{verbatim}
 ## lattice theme set by effectsTheme()
@@ -8755,14 +8744,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.72459809 0.1461682 -0.048646182 0.01575624 -0.0003455503
-## 1%    -0.69286457 0.1480438 -0.044371659 0.01764356 -0.0003397982
-## 2.5%  -0.64450618 0.1567970 -0.041142768 0.01969369 -0.0003244245
-## 5%    -0.59226460 0.1693256 -0.038744597 0.02118231 -0.0003102351
-## 95%   -0.08243419 0.2787597 -0.011283789 0.03730900 -0.0001813791
-## 97.5% -0.03517996 0.2886521 -0.009091623 0.03900332 -0.0001676875
-## 99%    0.04587828 0.2990942 -0.005247813 0.04074307 -0.0001550396
-## 99.5%  0.13001737 0.3055980 -0.004388741 0.04164455 -0.0001408897
+## 0.5%  -0.74179020 0.1348058 -0.047855492 0.01756503 -0.0003625146
+## 1%    -0.72606861 0.1402197 -0.045139744 0.01838184 -0.0003469934
+## 2.5%  -0.67586984 0.1542842 -0.042566690 0.02010243 -0.0003306843
+## 5%    -0.61564617 0.1614941 -0.039306784 0.02148417 -0.0003173606
+## 95%   -0.09367427 0.2824555 -0.011198316 0.03790317 -0.0001855977
+## 97.5% -0.03773784 0.2926352 -0.008198877 0.03988127 -0.0001754762
+## 99%    0.02586879 0.3080263 -0.005764158 0.04226297 -0.0001603057
+## 99.5%  0.06293586 0.3146700 -0.002309645 0.04364566 -0.0001532750
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8820,7 +8809,7 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1185,  0.3253 )  
+## 95%   ( 0.1216,  0.3198 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -9104,9 +9093,9 @@ Mais avant d'accepter ces conclusions, on doit se convaincre que les conditions 
 \caption{\label{fig:unnamed-chunk-306}Conditions d'applications du modèle \texttt{model.full2}}
 \end{figure}
 
-Si on examine les résidus selon les méthodes habituelles, on voit qu'il n'y a pas de problème de linéarité, ni d'homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l'échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des GLM, de la taille de l'échantillon, on ne devrait pas \^{}tre trop inquiet de cette déviation de normalité.
+Si on examine les résidus selon les méthodes habituelles, on voit qu'il n'y a pas de problème de linéarité, ni d'homoscédasticité (BP = 2.8721, p = 0.4118). Cependant, le test de Wilk-Shapiro est significatif (W=0.97, p = 0.03). Étant donné la taille assez grande de l'échantillon (N=92), ce test a beaucoup de puissance, même si la déviation de normalité ne semble pas très grande. Compte-tenu de la robustesse relative des LM, de la taille de l'échantillon, on ne devrait pas \^{}tre trop inquiet de cette déviation de normalité.
 
-Donc, comme les conditions des GLM sont suffisamment remplies, on peut accepter les résultats donnés par R. Tous les termes sont significatifs (location, lage, interaction). Ce modèle complet est équivalent à ajuster des régressions séparées pour chaque site. Pour obtenir les coefficients, on peut ajuster des régressions simples sur chaque sous-ensemble, ou extraire les coefficients ajustés du modèle complet:
+Donc, comme les conditions des LM sont suffisamment remplies, on peut accepter les résultats donnés par R. Tous les termes sont significatifs (location, lage, interaction). Ce modèle complet est équivalent à ajuster des régressions séparées pour chaque site. Pour obtenir les coefficients, on peut ajuster des régressions simples sur chaque sous-ensemble, ou extraire les coefficients ajustés du modèle complet:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9444,10 +9433,8 @@ Cette fois-ci, le modèle plus complexe s'ajuste significativement mieux aux don
 \CommentTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \CommentTok{\#\#\#\#\#\#}
 \CommentTok{\# Bootstrap analysis}
-\CommentTok{\#}
-\CommentTok{\#}
-\NormalTok{Bootstrap analysis BCa confidence intervals}
-\NormalTok{Preferable when parameter distribution is far from normal}
+\CommentTok{\# Bootstrap analysis BCa confidence intervals}
+\CommentTok{\# Preferable when parameter distribution is far from normal}
 \CommentTok{\# Bootstrap 95\% BCa CI for regression coefficients}
 \KeywordTok{library}\NormalTok{(boot)}
 
@@ -9502,14 +9489,14 @@ Cette fois-ci, le modèle plus complexe s'ajuste significativement mieux aux don
 \CommentTok{\# copy the data to a generic mydata dataframe}
 \NormalTok{mydata\textless{}{-}anc3dat}
 \CommentTok{\# create a myformula variable containing the formula for the}
-\NormalTok{model to be fitted}
+\CommentTok{\# model to be fitted}
 \NormalTok{myformula\textless{}{-}}\KeywordTok{as.formula}\NormalTok{(lfkl }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{lage }\OperatorTok{+}\StringTok{ }\NormalTok{locate }\OperatorTok{+}\StringTok{ }\NormalTok{lage}\OperatorTok{:}\NormalTok{locate)}
 \KeywordTok{require}\NormalTok{(lmPerm2)}
 \CommentTok{\# Fit desired model on the desired dataframe}
 \NormalTok{mymodel \textless{}{-}}\StringTok{ }\KeywordTok{lm}\NormalTok{(myformula, }\DataTypeTok{data =}\NormalTok{ mydata)}
 \CommentTok{\# Calculate p{-}values for each term by permutation}
 \CommentTok{\# Note that lmp centers numeric variable by default, so to}
-\NormalTok{get results that are}
+\CommentTok{\# get results that are}
 \CommentTok{\# consistent with standard models, it is necessary to set}
 \NormalTok{center=}\OtherTok{FALSE}
 \NormalTok{mymodelProb \textless{}{-}}\StringTok{ }\KeywordTok{lmp}\NormalTok{(myformula, }\DataTypeTok{data =}\NormalTok{ mydata, }\DataTypeTok{center=}\OtherTok{FALSE}\NormalTok{,}
@@ -9758,7 +9745,18 @@ Le test de Chi carré permet d'éprouver l'hypothèse nulle que la proportion de
 
 La valeur p étant très faible, on rejette donc l'hypothèse nulle que âge et sexe sont indépendants. Ces graphiques mosaïques peuvent êtres colorés pour souligner les catégories qui contribuent le plus à cette dépendance:
 
-\texttt{\{rfig.cap\ =\ "Représentation\ mosaique\ de\ la\ proportion\ des\ sexes\ par\ classe\ d\textquotesingle{}age\ avec\ échelle\ de\ couleur"\}\ \#\ Mosaic\ plot\ of\ the\ contingency\ table\ with\ shading\ mosaic(USTable,\ shade=TRUE)}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mosaic plot of the contingency table with shading}
+\KeywordTok{mosaic}\NormalTok{(USTable, }\DataTypeTok{shade=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-328-1.pdf}
+\caption{\label{fig:unnamed-chunk-328}Représentation mosaique de la proportion des sexes par classe d'age avec échelle de couleur}
+\end{figure}
 
 La couleur de chaque rectangle est proportionnelle à la déviation des fréquences observées de ce qui serait attendu si l'âge et le sexe étaient indépendants. Les classes d'âge 40-49 et 50-59 ont un rapport des sexe approximativement égal à celui de toutes les classes d'âge réunies. Il y a plus de jeunes mâles et de femelles âgées que si le rapport des sexe ne variait pas avec l'âge.et ces rectangles sont colorés en bleu. De l'autre côté, il y a moins de jeunes femelles et de mâles âgés que si le rapport des sexe était indépendant de l'âge, et ces rectangles sont en rouge. La valeur p à la droite de la figure est pour le test de Chi carré qui éprouve l'hypothèse nulle d'indépendance pour l'ensemble des observations, toutes classes d'âge confondues.
 
@@ -9963,8 +9961,8 @@ Le fichier \texttt{loglin.csv} contient les fréquences (frequency) des plantes 
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-335-1.pdf}
-\caption{\label{fig:unnamed-chunk-335}Proportion de plantes infectées en fonction de la température er la lumière}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-336-1.pdf}
+\caption{\label{fig:unnamed-chunk-336}Proportion de plantes infectées en fonction de la température er la lumière}
 \end{figure}
 
 Cette expérience contrôlée avec le même nombre de plantes à chaque niveau de lumière et de température produit une mosaïque où la surface occupée par les observations dans les quatre quadrants est égale. Ce qui nous intéresse, le taux d'infection par le pathogène, semble varier entre les quadrants (i.e.~les niveaux de température et de lumière). Le rectangle rouge dans le coin en bas à gauche indique que le nombre de plantes infectées à basse température et haute lumière est plus faible qu'attendu si ces deux facteurs n'influencent pas le taux d'infection. Même chose pour les conditions de basse lumière et de haute température (coin supérieur droit). La valeur p au bas de l'échelle représente un test d'indépendance équivalent à comparer le modèle complet au modèle excluant toutes les interactions et ne contenant que les effets principaux de la température, la lumière, et le statut d'infection sur le logarithme naturel du nombre d'observations.
@@ -10076,8 +10074,8 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-338-1.pdf}
-\caption{\label{fig:unnamed-chunk-338}Fréquence de femelles et males en fonction de l'année et du lieu}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-339-1.pdf}
+\caption{\label{fig:unnamed-chunk-339}Fréquence de femelles et males en fonction de l'année et du lieu}
 \end{figure}
 
 \begin{rmdcode}
@@ -10440,8 +10438,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-344-1.pdf}
-\caption{\label{fig:unnamed-chunk-344-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-345-1.pdf}
+\caption{\label{fig:unnamed-chunk-345-1}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10453,8 +10451,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-344-2.pdf}
-\caption{\label{fig:unnamed-chunk-344-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-345-2.pdf}
+\caption{\label{fig:unnamed-chunk-345-2}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \begin{Shaded}
@@ -10466,8 +10464,8 @@ Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les r
 
 \begin{figure}
 \centering
-\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-344-3.pdf}
-\caption{\label{fig:unnamed-chunk-344-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
+\includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-345-3.pdf}
+\caption{\label{fig:unnamed-chunk-345-3}Exemple de graphique tiré du fichier d'aide de la fonction stat\_bin}
 \end{figure}
 
 \hypertarget{resources-pour-en-apprendre-plus-sur-rmarkdown}{%

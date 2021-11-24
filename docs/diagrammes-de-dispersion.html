@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Diagrammes de dispersion | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Diagrammes de dispersion | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="set-lm.html"/>
 <link rel="next" href="transformations-et-le-coefficient-de-corrélation.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -41,7 +42,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -290,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.9" data-path="tester-la-présence-dinteractions.html"><a href="tester-la-présence-dinteractions.html"><i class="fa fa-check"></i><b>7.9</b> Tester la présence d’interactions</a></li>
 <li class="chapter" data-level="7.10" data-path="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"><i class="fa fa-check"></i><b>7.10</b> Recherche du meilleur modèle fondée sur la théorie de l’information</a></li>
 <li class="chapter" data-level="7.11" data-path="bootstrap-et-régression-multiple.html"><a href="bootstrap-et-régression-multiple.html"><i class="fa fa-check"></i><b>7.11</b> Bootstrap et régression multiple</a></li>
-<li class="chapter" data-level="7.12" data-path="perm-reg-mult.html"><a href="perm-reg-mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
+<li class="chapter" data-level="7.12" data-path="perm_reg_mult.html"><a href="perm_reg_mult.html"><i class="fa fa-check"></i><b>7.12</b> Test de permutation</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="ancova-et-modèle-linéaire-général.html"><a href="ancova-et-modèle-linéaire-général.html"><i class="fa fa-check"></i><b>8</b> ANCOVA et modèle linéaire général</a>
 <ul>
@@ -385,7 +385,7 @@ Après avoir chargé les données dnas un objet <code>sturgeon</code>, faites un
 <span id="cb255-9"><a href="diagrammes-de-dispersion.html#cb255-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="co"># add data points</span></span>
 <span id="cb255-10"><a href="diagrammes-de-dispersion.html#cb255-10" aria-hidden="true"></a></span>
 <span id="cb255-11"><a href="diagrammes-de-dispersion.html#cb255-11" aria-hidden="true"></a>mygraph <span class="co"># display graph</span></span></code></pre></div>
-<div class="figure"><span id="fig:stur-2"></span>
+<div class="figure"><span style="display:block;" id="fig:stur-2"></span>
 <img src="Labo_BIO4558_files/figure-html/stur-2-1.svg" alt="Graphique du poids en fonction de la longueur des esturgeons" width="672" />
 <p class="caption">
 Figure 3.1: Graphique du poids en fonction de la longueur des esturgeons
@@ -404,7 +404,7 @@ Malgré tout, il semble y avoir une forte corrélation entre les deux variables.
 </ul>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="diagrammes-de-dispersion.html#cb256-1" aria-hidden="true"></a><span class="co"># apply log transformation on defined graph</span></span>
 <span id="cb256-2"><a href="diagrammes-de-dispersion.html#cb256-2" aria-hidden="true"></a>mygraph <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
-<div class="figure"><span id="fig:stur-log"></span>
+<div class="figure"><span style="display:block;" id="fig:stur-log"></span>
 <img src="Labo_BIO4558_files/figure-html/stur-log-1.svg" alt="Graphique poids-longueur avec une échelle log" width="672" />
 <p class="caption">
 Figure 3.2: Graphique poids-longueur avec une échelle log
@@ -423,7 +423,6 @@ Figure 3.2: Graphique poids-longueur avec une échelle log
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -453,6 +452,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
