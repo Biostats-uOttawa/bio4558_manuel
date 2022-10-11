@@ -525,7 +525,7 @@ results <- boot(
 ```
 
 Pour obtenir les résultats, le code suivant va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l’intervalle de confiance
- ```{r, eval = FALSE}
+```{r, eval = FALSE}
 plot(results, index = 1) # intercept
 plot(results, index = 2) # logarea
 plot(results, index = 3) # thtden
