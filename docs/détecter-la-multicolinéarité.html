@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.5 Détecter la multicolinéarité | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.5 Détecter la multicolinéarité | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="régression-multiple-pas-à-pas-stepwise.html"/>
 <link rel="next" href="régression-polynomiale.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="détecter-la-multicolinéarité" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Détecter la multicolinéarité</h2>
+<div id="détecter-la-multicolinéarité" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Détecter la multicolinéarité<a href="détecter-la-multicolinéarité.html#détecter-la-multicolinéarité" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La multicolinéarité est la présence de corrélations entre les variables indépendantes. Lorsqu’elle est extrême (multicolinéarité parfaite) elle empêche l’estimation des modèles statistiques. Lorsqu’elle est grande ou modérée, elle réduit la puissance de détection de l’effet des variables indépendantes individuellement, mais elle n’empêche pas le modèle de faire des prédictions.</p>
 <p>Un des indices les plus utilisés pour quantifier la multicolinéarité et le facteur d’inflation de la variance (VIF, variance inflation factor). Le fichier d’aide du package HH explique ainsi son calcul:</p>
 <blockquote>
@@ -359,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Bref, les VIF indiquent de combien l’incertitude de chaque coefficient de régression est augmentée par la multicolinéarité.</p>
 <p><strong>Attrappe.</strong> Il y a plusieurs fonctions vif() (j’en connais au moins trois dans les extensions <code>car</code>, <code>HH</code> et <code>DAAG</code>), et je ne sais pas en quoi elles diffèrent.</p>
 <p>On peut calculer les VIF avec la fonction <code>vif()</code> de l’extension <code>car</code>: :</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="détecter-la-multicolinéarité.html#cb524-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
-<span id="cb524-2"><a href="détecter-la-multicolinéarité.html#cb524-2" aria-hidden="true"></a><span class="kw">vif</span>(model.mtri)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="détecter-la-multicolinéarité.html#cb525-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
+<span id="cb525-2"><a href="détecter-la-multicolinéarité.html#cb525-2" aria-hidden="true"></a><span class="kw">vif</span>(model.mtri)</span></code></pre></div>
 <pre><code>##  logarea   cpfor2   thtden 
 ## 1.022127 1.344455 1.365970</code></pre>
 <p>Ici, il n’y a pas d’évidence de multicolinéarité car toutes les valeurs de VIF sont près de 1.</p>
@@ -404,7 +403,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

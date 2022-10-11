@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.10 Recherche du meilleur modèle fondée sur la théorie de l’information | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.10 Recherche du meilleur modèle fondée sur la théorie de l’information | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="tester-la-présence-dinteractions.html"/>
 <link rel="next" href="bootstrap-et-régression-multiple.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation" class="section level2" number="7.10">
-<h2><span class="header-section-number">7.10</span> Recherche du meilleur modèle fondée sur la théorie de l’information</h2>
+<div id="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Recherche du meilleur modèle fondée sur la théorie de l’information<a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Une des principales critiques des méthodes pas-à-pas (stepwise) est que les valeurs de p ne sont pas strictement interprétables à cause du grand nombre de tests qui sont implicites dans le processus. C’est le problème des comparaisons ou tests multiples: en construisant un modèle linéaire (comme une régression multiple) à partir d’un grand nombre de variables et de leurs interactions, il y a tellement de combinaisons possibles qu’un ajustement de Bonferroni rendrait les tests trop conservateurs.</p>
 <p>Une alternative, défendue par Burnham et Anderson (2002, Model selection and multimodel inference: a practical information-theoretic approach. 2nd ed), est d’utiliser l’AIC (ou mieux encore AICc qui est plus approprié quand le nombre d’observations est inférieur à 40 fois le nombre de variables indépendantes) pour ordonner les modèles et identifier un sousensemble de modèles qui sont les meilleurs. On peut ensuite calculer les moyennes des coefficients pondérées par la probabilité que chacun des modèles soit le meilleur pour obtenir des coefficients qui sont plus robustes et moins sensibles à la multicolinéarité.</p>
 <p>L’approche de comparaison par <em>AIC</em> a d’abord été développé pour comparer un ensemble de modèle préalablement défini basé sur les connaissance du sytème et les hypothèses biologiques. Cependant, certains ont développé une approche plutôt brutale et sans scrupule de faire tous les modèles possibles et de les comparer par <em>AIC</em>. Cette approche a été suivie dans le package <code>MuMIn</code>. Les comparaisons de modèle par <code>AIC</code>doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
@@ -359,22 +358,22 @@ Il faut donc s’arrurer d’enlever les données manquantes et de spécifier da
 <div class="rmdnote">
 Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l’approche par la fonction <code>dredge()</code> qui selon moi va à l’encontre de la philosophie des AIC et de la parsimonie. Je soutiens de dévelooper un modèle basé sur des hypothèses biologiques et de reporter ce modèle avec tous les effets significatifs ou non.
 </div>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-1" aria-hidden="true"></a><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></span>
-<span id="cb568-2"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-2" aria-hidden="true"></a>full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</span>
-<span id="cb568-3"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-3" aria-hidden="true"></a>  full.model<span class="fl">.2</span>ndinteractions,</span>
-<span id="cb568-4"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-4" aria-hidden="true"></a>  . <span class="op">~</span><span class="st"> </span>.,</span>
-<span id="cb568-5"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-5" aria-hidden="true"></a>  <span class="dt">data =</span> mysub,</span>
-<span id="cb568-6"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-6" aria-hidden="true"></a>  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span></span>
-<span id="cb568-7"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-7" aria-hidden="true"></a>)</span>
-<span id="cb568-8"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-8" aria-hidden="true"></a></span>
-<span id="cb568-9"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-9" aria-hidden="true"></a><span class="kw">library</span>(MuMIn)</span>
-<span id="cb568-10"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb568-10" aria-hidden="true"></a>dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-1" aria-hidden="true"></a><span class="co"># refaire le modèle en s&#39;assurant qu&#39;il n&#39;y a pas de &quot;NA&quot; et en spécificant na.action</span></span>
+<span id="cb570-2"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-2" aria-hidden="true"></a>full.model<span class="fl">.2</span>ndinteractions &lt;-<span class="st"> </span><span class="kw">update</span>(</span>
+<span id="cb570-3"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-3" aria-hidden="true"></a>  full.model<span class="fl">.2</span>ndinteractions,</span>
+<span id="cb570-4"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-4" aria-hidden="true"></a>  . <span class="op">~</span><span class="st"> </span>.,</span>
+<span id="cb570-5"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-5" aria-hidden="true"></a>  <span class="dt">data =</span> mysub,</span>
+<span id="cb570-6"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-6" aria-hidden="true"></a>  <span class="dt">na.action =</span> <span class="st">&quot;na.fail&quot;</span></span>
+<span id="cb570-7"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-7" aria-hidden="true"></a>)</span>
+<span id="cb570-8"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-8" aria-hidden="true"></a></span>
+<span id="cb570-9"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-9" aria-hidden="true"></a><span class="kw">library</span>(MuMIn)</span>
+<span id="cb570-10"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-10" aria-hidden="true"></a>dd &lt;-<span class="st"> </span><span class="kw">dredge</span>(full.model<span class="fl">.2</span>ndinteractions)</span></code></pre></div>
 <pre><code>## Fixed term is &quot;(Intercept)&quot;</code></pre>
 <p>L’objet <code>dd</code> contient tous les modèles possibles (i.e. ceux qui ont toutes les combinaisons possibles) en utilisant les termes du modèle full.model.2ndinteractions ajusté précédemment. On peut ensuite extraire de l’objet dd le sous-ensemble de modèles qui ont un AICc semblable au meilleur modèle (Burnham et Anderson suggèrent que les modèles qui dévient par plus de 7 unités d’AICc du meilleur modèle ont peu de support empirique).</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-1" aria-hidden="true"></a><span class="co"># get models within 2 units of AICc from the best model</span></span>
-<span id="cb570-2"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-2" aria-hidden="true"></a>top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</span>
-<span id="cb570-3"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-3" aria-hidden="true"></a>avgmodel1 &lt;-<span class="st"> </span><span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></span>
-<span id="cb570-4"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb570-4" aria-hidden="true"></a><span class="kw">summary</span>(avgmodel1) <span class="co"># display averaged model</span></span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb572-1" aria-hidden="true"></a><span class="co"># get models within 2 units of AICc from the best model</span></span>
+<span id="cb572-2"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb572-2" aria-hidden="true"></a>top.models<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">get.models</span>(dd, <span class="dt">subset =</span> delta <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb572-3"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb572-3" aria-hidden="true"></a>avgmodel1 &lt;-<span class="st"> </span><span class="kw">model.avg</span>(top.models<span class="fl">.1</span>) <span class="co"># compute average parameters</span></span>
+<span id="cb572-4"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb572-4" aria-hidden="true"></a><span class="kw">summary</span>(avgmodel1) <span class="co"># display averaged model</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## model.avg(object = top.models.1)
@@ -412,7 +411,7 @@ Je ne supporte pas l’approche stepwise ni l’approche par AIC. Je déteste l�
 ## logarea:thtden  3.882e-02  2.114e-02   2.237e-02   1.735   0.0827 .  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb572-1" aria-hidden="true"></a><span class="kw">confint</span>(avgmodel1) <span class="co"># display CI for averaged coefficients</span></span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html#cb574-1" aria-hidden="true"></a><span class="kw">confint</span>(avgmodel1) <span class="co"># display CI for averaged coefficients</span></span></code></pre></div>
 <pre><code>##                        2.5 %       97.5 %
 ## (Intercept)    -0.6860022996  0.257064603
 ## logarea        -0.0836067896  0.354883299
@@ -465,7 +464,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

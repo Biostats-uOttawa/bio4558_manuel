@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.2 Organisation des données: 3 formats | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.2 Organisation des données: 3 formats | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="set-freq.html"/>
 <link rel="next" href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,12 +348,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="organisation-des-données-3-formats" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Organisation des données: 3 formats</h2>
+<div id="organisation-des-données-3-formats" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Organisation des données: 3 formats<a href="organisation-des-données-3-formats.html#organisation-des-données-3-formats" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les résultats de certaines expériences sont sous forme de fréquences, par exemple le nombre de plantes infectées par un pathogène sous différents régimes d’infection, ou le nombre de tortues mâles et femelles qui éclosent à différentes températures (oui, chez les tortues le sexe dépends de la température!), etc. La question statistique qui se pose généralement est de savoir si la proportion des observations dans chaque catégorie (infecté vs non infecté, mâle vs femelle, etc) diffère significativement entre les traitements (régime d’infection ou température dans les deux exemples). Pour répondre à cette question, on peut organiser les données de manière à refléter comment les observations se retrouvent dans chaque catégorie. Il existe 3 façons d’organiser ces données. Vous devriez être capable de choisir la manière appropriée pour votre analyse, et savoir convertir entre elles avec R.</p>
 <p>Le fichier <code>USPopSurvey.csv</code> contient les donnée de recensement d’une ville du midwest américain en 1980:</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="organisation-des-données-3-formats.html#cb620-1" aria-hidden="true"></a>USPopSurvey &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/USPopSurvey.csv&quot;</span>)</span>
-<span id="cb620-2"><a href="organisation-des-données-3-formats.html#cb620-2" aria-hidden="true"></a>USPopSurvey</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="organisation-des-données-3-formats.html#cb622-1" aria-hidden="true"></a>USPopSurvey &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/USPopSurvey.csv&quot;</span>)</span>
+<span id="cb622-2"><a href="organisation-des-données-3-formats.html#cb622-2" aria-hidden="true"></a>USPopSurvey</span></code></pre></div>
 <pre><code>##    ageclass    sex frequency
 ## 1       0-9 female     17619
 ## 2     10-19 female     17947
@@ -376,13 +375,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 18      80+   male      1926</code></pre>
 <p>Notez qu’il y a 18 lignes et 3 colonnes dans ce fichier. Chaque ligne donne le nombre de personnes (frequency) pour un sexe et une classe d’âge. Il y a 239539 individus qui ont été classifiés selon les 18 catégories (2 sexes x 9 classes d’âge). Cette manière de représenter les données est sous <strong>le format de fréquences</strong> (frequency form). C’est un format compact permettant d’enregistrer les données quand il y a seulement des variables catégoriques à représenter.</p>
 <p>Lorsqu’il y a des variables continues, ce format ne peut être utilisé. Les données doivent être enregistrée sous <strong>le format de cas</strong> (case form) dans laquelle chaque observation (individu) est représenté par une ligne dans le fichier, et où chaque variable est représentée par une colonne. Le package <code>vcdExtra</code> contient la fonction <code>expand.dft()</code> qui permet de convertir de la forme de fréquence à la forme de cas. Par exemple, pour créer un data frame avec 239439 lignes et 2 colonnes (<code>sex</code> et <code>ageclass</code>) à partir du data frame <code>USPopSurvey</code>:</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="organisation-des-données-3-formats.html#cb622-1" aria-hidden="true"></a>USPopSurvey.caseform &lt;-<span class="st"> </span><span class="kw">expand.dft</span>(USPopSurvey, <span class="dt">freq =</span> <span class="st">&quot;frequency&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in type.convert.default(as.character(DF[[i]]), ...): &#39;as.is&#39; should be
-## specified by the caller; using TRUE
-
-## Warning in type.convert.default(as.character(DF[[i]]), ...): &#39;as.is&#39; should be
-## specified by the caller; using TRUE</code></pre>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="organisation-des-données-3-formats.html#cb624-1" aria-hidden="true"></a><span class="kw">head</span>(USPopSurvey.caseform)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="organisation-des-données-3-formats.html#cb624-1" aria-hidden="true"></a>USPopSurvey.caseform &lt;-<span class="st"> </span><span class="kw">expand.dft</span>(USPopSurvey, <span class="dt">freq =</span> <span class="st">&quot;frequency&quot;</span>)</span>
+<span id="cb624-2"><a href="organisation-des-données-3-formats.html#cb624-2" aria-hidden="true"></a><span class="kw">head</span>(USPopSurvey.caseform)</span></code></pre></div>
 <pre><code>##   ageclass    sex
 ## 1      0-9 female
 ## 2      0-9 female
@@ -496,7 +490,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

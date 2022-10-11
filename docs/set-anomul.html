@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.1 Paquets et données requises pour le labo | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="anova-à-critères-multiples-plans-factoriels-et-hiérarchiques.html"/>
 <link rel="next" href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="set-anomul" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Paquets et données requises pour le labo</h2>
+<div id="set-anomul" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Paquets et données requises pour le labo<a href="set-anomul.html#set-anomul" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ce laboratoire nécessite:</p>
 <ul>
 <li>les paquets R:
@@ -369,14 +368,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>wmc2dat2.csv</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="set-anomul.html#cb412-1" aria-hidden="true"></a><span class="kw">library</span>(multcomp)</span>
-<span id="cb412-2"><a href="set-anomul.html#cb412-2" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
-<span id="cb412-3"><a href="set-anomul.html#cb412-3" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✔ tibble  3.1.6     ✔ purrr   0.3.4
-## ✔ tidyr   1.1.4     ✔ stringr 1.4.0
-## ✔ readr   2.1.0     ✔ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="set-anomul.html#cb414-1" aria-hidden="true"></a><span class="kw">library</span>(multcomp)</span>
+<span id="cb414-2"><a href="set-anomul.html#cb414-2" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
+<span id="cb414-3"><a href="set-anomul.html#cb414-3" aria-hidden="true"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✔ tibble  3.1.7     ✔ purrr   0.3.4
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ✖ dplyr::recode() masks car::recode()
@@ -422,7 +421,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

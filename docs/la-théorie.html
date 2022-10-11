@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 La théorie | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 La théorie | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="analyse-de-puissance-avec-r-et-gpower.html"/>
 <link rel="next" href="quest-ce-que-gpower.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,45 +348,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="la-théorie" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> La théorie</h2>
-<div id="quest-ce-que-la-puissance" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Qu’est-ce que la puissance?</h3>
+<div id="la-théorie" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> La théorie<a href="la-théorie.html#la-théorie" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="quest-ce-que-la-puissance" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Qu’est-ce que la puissance?<a href="la-théorie.html#quest-ce-que-la-puissance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><em>La puissance est la probabilité de rejeter l’hypothèse nulle quand elle est fausse.</em></p>
 </div>
-<div id="pourquoi-faire-une-analyse-de-puissance" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Pourquoi faire une analyse de puissance?</h3>
-<div id="évaluer-lévidence" class="section level4 unnumbered" number="">
-<h4>Évaluer l’évidence</h4>
+<div id="pourquoi-faire-une-analyse-de-puissance" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Pourquoi faire une analyse de puissance?<a href="la-théorie.html#pourquoi-faire-une-analyse-de-puissance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="évaluer-lévidence" class="section level4 unnumbered hasAnchor" number="">
+<h4>Évaluer l’évidence<a href="la-théorie.html#évaluer-lévidence" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>L’analyse de puissance effectuée après avoir accepté une hypothèse nulle permet de calculer la probabilité que l’hypothèse nulle soit rejetée si elle était fausse et que la taille de l’effet était d’une valeur donnée.
 Ce type d’analyse a posteriori est très commun.</p>
 </div>
-<div id="planifier-de-meilleures-expériences" class="section level4 unnumbered" number="">
-<h4>Planifier de meilleures expériences</h4>
+<div id="planifier-de-meilleures-expériences" class="section level4 unnumbered hasAnchor" number="">
+<h4>Planifier de meilleures expériences<a href="la-théorie.html#planifier-de-meilleures-expériences" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>L’analyse de puissance effectuée avant de réaliser une expérience (le plus souvent après une expérience préliminaire cependant), permet de déterminer le nombre d’observations nécessaires pour détecter un effet d’une taille donnée à un niveau fixe de probabilité (la puissance).
 Ce type d’analyse a priori devrait être réalisé plus souvent.</p>
 </div>
-<div id="estimer-la-limite-de-détection-statistique" class="section level4 unnumbered" number="">
-<h4>Estimer la “limite de détection” statistique</h4>
+<div id="estimer-la-limite-de-détection-statistique" class="section level4 unnumbered hasAnchor" number="">
+<h4>Estimer la “limite de détection” statistique<a href="la-théorie.html#estimer-la-limite-de-détection-statistique" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>L’effort d’échantillonnage est souvent déterminé à l’avance (par exemple lorsque vous héritez de données récoltées par quelqu’un d’autre), ou très sévèrement limité (lorsque les contraintes logistiques prévalent).
 Que ce soit a priori ou a posteriori l’analyse de puissance vous permet d’estimer, pour un effort d’échantillonnage donné et un niveau de puissance fixe, quelle est la taille minimale de l’effet qui peut être détecté (comme étant statistiquement significatif).</p>
 </div>
 </div>
-<div id="facteurs-qui-affectent-la-puissance" class="section level3" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Facteurs qui affectent la puissance</h3>
+<div id="facteurs-qui-affectent-la-puissance" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Facteurs qui affectent la puissance<a href="la-théorie.html#facteurs-qui-affectent-la-puissance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il y a 3 facteurs qui affectent la puissance d’un test statistique.</p>
-<div id="le-critère-de-décision" class="section level4 unnumbered" number="">
-<h4>Le critère de décision</h4>
+<div id="le-critère-de-décision" class="section level4 unnumbered hasAnchor" number="">
+<h4>Le critère de décision<a href="la-théorie.html#le-critère-de-décision" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La puissance dépend de <span class="math inline">\(\alpha\)</span>, le seuil de probabilité auquel on rejette l’hypothèse nulle.
 Si ce seuil est très strict (<em>i.e.</em> si <span class="math inline">\(\alpha\)</span> est fixé à une valeur très basse, comme 0.1% ou p = 0.001), alors la puissance sera plus faible que si le seuil était moins strict.</p>
 </div>
-<div id="la-taille-de-léchantillon" class="section level4 unnumbered" number="">
-<h4>La taille de l’échantillon</h4>
+<div id="la-taille-de-léchantillon" class="section level4 unnumbered hasAnchor" number="">
+<h4>La taille de l’échantillon<a href="la-théorie.html#la-taille-de-léchantillon" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Plus l’échantillon est grand, plus la puissance est élevée.
 La capacité d’un test à détecter de petites différences comme étant statistiquement significatives augmente avec une augmentation du nombre d’observations.</p>
 </div>
-<div id="la-taille-de-leffet" class="section level4 unnumbered" number="">
-<h4>La taille de l’effet</h4>
+<div id="la-taille-de-leffet" class="section level4 unnumbered hasAnchor" number="">
+<h4>La taille de l’effet<a href="la-théorie.html#la-taille-de-leffet" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Plus la taille de l’effet est grande, plus un test a de puissance.
 Pour un échantillon de taille fixe, la capacité d’un test à détecter un effet comme étant statistiquement significatif est plus élevée si l’effet est grand que s’il est petit.
 La taille de l’effet est en fait une mesure du degré de fausseté de l’hypothèse nulle.</p>
@@ -433,7 +432,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

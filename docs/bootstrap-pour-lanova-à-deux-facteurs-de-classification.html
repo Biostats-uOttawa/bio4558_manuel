@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.8 Bootstrap pour l’ANOVA à deux facteurs de classification | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.8 Bootstrap pour l’ANOVA à deux facteurs de classification | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html"/>
 <link rel="next" href="régression-multiple.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,52 +348,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bootstrap-pour-lanova-à-deux-facteurs-de-classification" class="section level2" number="6.8">
-<h2><span class="header-section-number">6.8</span> Bootstrap pour l’ANOVA à deux facteurs de classification</h2>
+<div id="bootstrap-pour-lanova-à-deux-facteurs-de-classification" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Bootstrap pour l’ANOVA à deux facteurs de classification<a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#bootstrap-pour-lanova-à-deux-facteurs-de-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Dans la plupart des cas, les tests de permutation seront plus appropriés que le bootstrap pour les designs d’ANOVA. J’ai quand même un bout de code qui pourra servir si vous en avez besoin:</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
-<span id="cb501-2"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-2" aria-hidden="true"></a><span class="co">###########</span></span>
-<span id="cb501-3"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-3" aria-hidden="true"></a><span class="co"># Bootstrap for two-way ANOVA</span></span>
-<span id="cb501-4"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-4" aria-hidden="true"></a><span class="co"># You possibly want to edit bootfunction.mod1 to return other values</span></span>
-<span id="cb501-5"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-5" aria-hidden="true"></a><span class="co"># Here it returns the standard coefficients of the fitted model</span></span>
-<span id="cb501-6"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-6" aria-hidden="true"></a><span class="co"># Requires boot library</span></span>
-<span id="cb501-7"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-7" aria-hidden="true"></a><span class="co">#</span></span>
-<span id="cb501-8"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-8" aria-hidden="true"></a>nreps &lt;-<span class="st"> </span><span class="dv">5000</span></span>
-<span id="cb501-9"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-9" aria-hidden="true"></a>dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</span>
-<span id="cb501-10"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-10" aria-hidden="true"></a>factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</span>
-<span id="cb501-11"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-11" aria-hidden="true"></a>factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</span>
-<span id="cb501-12"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-12" aria-hidden="true"></a>my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</span>
-<span id="cb501-13"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-13" aria-hidden="true"></a>my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</span>
-<span id="cb501-14"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-14" aria-hidden="true"></a><span class="kw">library</span>(boot)</span>
-<span id="cb501-15"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-15" aria-hidden="true"></a><span class="co"># Fit model on observed data</span></span>
-<span id="cb501-16"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-16" aria-hidden="true"></a>mod1 &lt;-<span class="st"> </span><span class="kw">aov</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</span>
-<span id="cb501-17"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-17" aria-hidden="true"></a>  <span class="dt">data =</span> my.dataframe.noNA</span>
-<span id="cb501-18"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-18" aria-hidden="true"></a>)</span>
-<span id="cb501-19"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-19" aria-hidden="true"></a></span>
-<span id="cb501-20"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-20" aria-hidden="true"></a></span>
-<span id="cb501-21"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-21" aria-hidden="true"></a><span class="co"># Bootstrap 1000 time using the residuals bootstraping methods to</span></span>
-<span id="cb501-22"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-22" aria-hidden="true"></a><span class="co"># keep the same unequal number of observations for each level of the indep. var.</span></span>
-<span id="cb501-23"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-23" aria-hidden="true"></a>fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(mod1)</span>
-<span id="cb501-24"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-24" aria-hidden="true"></a>e &lt;-<span class="st"> </span><span class="kw">residuals</span>(mod1)</span>
-<span id="cb501-25"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-25" aria-hidden="true"></a>X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(mod1)</span>
-<span id="cb501-26"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-26" aria-hidden="true"></a>bootfunction.mod1 &lt;-<span class="st"> </span><span class="cf">function</span>(data, indices) {</span>
-<span id="cb501-27"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-27" aria-hidden="true"></a>  y &lt;-<span class="st"> </span>fit <span class="op">+</span><span class="st"> </span>e[indices]</span>
-<span id="cb501-28"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-28" aria-hidden="true"></a>  bootmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>X)</span>
-<span id="cb501-29"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-29" aria-hidden="true"></a>  <span class="kw">coefficients</span>(bootmod)</span>
-<span id="cb501-30"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-30" aria-hidden="true"></a>}</span>
-<span id="cb501-31"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-31" aria-hidden="true"></a>bootresults &lt;-<span class="st"> </span><span class="kw">boot</span>(my.dataframe.noNA, bootfunction.mod1,</span>
-<span id="cb501-32"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-32" aria-hidden="true"></a>  <span class="dt">R =</span> <span class="dv">1000</span></span>
-<span id="cb501-33"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-33" aria-hidden="true"></a>)</span>
-<span id="cb501-34"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-34" aria-hidden="true"></a>bootresults</span>
-<span id="cb501-35"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-35" aria-hidden="true"></a><span class="co">## Calculate 90% CI and plot bootstrap estimates separately for each model parameter</span></span>
-<span id="cb501-36"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-36" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">1</span>)</span>
-<span id="cb501-37"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-37" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">1</span>)</span>
-<span id="cb501-38"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-38" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">3</span>)</span>
-<span id="cb501-39"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-39" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">3</span>)</span>
-<span id="cb501-40"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-40" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">4</span>)</span>
-<span id="cb501-41"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-41" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">4</span>)</span>
-<span id="cb501-42"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-42" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">5</span>)</span>
-<span id="cb501-43"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb501-43" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
+<span id="cb502-2"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-2" aria-hidden="true"></a><span class="co">###########</span></span>
+<span id="cb502-3"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-3" aria-hidden="true"></a><span class="co"># Bootstrap for two-way ANOVA</span></span>
+<span id="cb502-4"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-4" aria-hidden="true"></a><span class="co"># You possibly want to edit bootfunction.mod1 to return other values</span></span>
+<span id="cb502-5"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-5" aria-hidden="true"></a><span class="co"># Here it returns the standard coefficients of the fitted model</span></span>
+<span id="cb502-6"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-6" aria-hidden="true"></a><span class="co"># Requires boot library</span></span>
+<span id="cb502-7"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-7" aria-hidden="true"></a><span class="co">#</span></span>
+<span id="cb502-8"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-8" aria-hidden="true"></a>nreps &lt;-<span class="st"> </span><span class="dv">5000</span></span>
+<span id="cb502-9"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-9" aria-hidden="true"></a>dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</span>
+<span id="cb502-10"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-10" aria-hidden="true"></a>factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</span>
+<span id="cb502-11"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-11" aria-hidden="true"></a>factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</span>
+<span id="cb502-12"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-12" aria-hidden="true"></a>my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</span>
+<span id="cb502-13"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-13" aria-hidden="true"></a>my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</span>
+<span id="cb502-14"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-14" aria-hidden="true"></a><span class="kw">library</span>(boot)</span>
+<span id="cb502-15"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-15" aria-hidden="true"></a><span class="co"># Fit model on observed data</span></span>
+<span id="cb502-16"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-16" aria-hidden="true"></a>mod1 &lt;-<span class="st"> </span><span class="kw">aov</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</span>
+<span id="cb502-17"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-17" aria-hidden="true"></a>  <span class="dt">data =</span> my.dataframe.noNA</span>
+<span id="cb502-18"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-18" aria-hidden="true"></a>)</span>
+<span id="cb502-19"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-19" aria-hidden="true"></a></span>
+<span id="cb502-20"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-20" aria-hidden="true"></a></span>
+<span id="cb502-21"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-21" aria-hidden="true"></a><span class="co"># Bootstrap 1000 time using the residuals bootstraping methods to</span></span>
+<span id="cb502-22"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-22" aria-hidden="true"></a><span class="co"># keep the same unequal number of observations for each level of the indep. var.</span></span>
+<span id="cb502-23"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-23" aria-hidden="true"></a>fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(mod1)</span>
+<span id="cb502-24"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-24" aria-hidden="true"></a>e &lt;-<span class="st"> </span><span class="kw">residuals</span>(mod1)</span>
+<span id="cb502-25"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-25" aria-hidden="true"></a>X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(mod1)</span>
+<span id="cb502-26"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-26" aria-hidden="true"></a>bootfunction.mod1 &lt;-<span class="st"> </span><span class="cf">function</span>(data, indices) {</span>
+<span id="cb502-27"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-27" aria-hidden="true"></a>  y &lt;-<span class="st"> </span>fit <span class="op">+</span><span class="st"> </span>e[indices]</span>
+<span id="cb502-28"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-28" aria-hidden="true"></a>  bootmod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>X)</span>
+<span id="cb502-29"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-29" aria-hidden="true"></a>  <span class="kw">coefficients</span>(bootmod)</span>
+<span id="cb502-30"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-30" aria-hidden="true"></a>}</span>
+<span id="cb502-31"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-31" aria-hidden="true"></a>bootresults &lt;-<span class="st"> </span><span class="kw">boot</span>(my.dataframe.noNA, bootfunction.mod1,</span>
+<span id="cb502-32"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-32" aria-hidden="true"></a>  <span class="dt">R =</span> <span class="dv">1000</span></span>
+<span id="cb502-33"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-33" aria-hidden="true"></a>)</span>
+<span id="cb502-34"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-34" aria-hidden="true"></a>bootresults</span>
+<span id="cb502-35"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-35" aria-hidden="true"></a><span class="co">## Calculate 90% CI and plot bootstrap estimates separately for each model parameter</span></span>
+<span id="cb502-36"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-36" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">1</span>)</span>
+<span id="cb502-37"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-37" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">1</span>)</span>
+<span id="cb502-38"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-38" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">3</span>)</span>
+<span id="cb502-39"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-39" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">3</span>)</span>
+<span id="cb502-40"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-40" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">4</span>)</span>
+<span id="cb502-41"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-41" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">4</span>)</span>
+<span id="cb502-42"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-42" aria-hidden="true"></a><span class="kw">boot.ci</span>(bootresults, <span class="dt">conf =</span> <span class="fl">0.9</span>, <span class="dt">index =</span> <span class="dv">5</span>)</span>
+<span id="cb502-43"><a href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html#cb502-43" aria-hidden="true"></a><span class="kw">plot</span>(bootresults, <span class="dt">index =</span> <span class="dv">5</span>)</span></code></pre></div>
 
 </div>
 <!-- </div> -->
@@ -437,7 +436,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.3 Plan factoriel à deux facteurs de classification sans réplication | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.3 Plan factoriel à deux facteurs de classification sans réplication | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="plan-factoriel-à-deux-facteurs-de-classification-et-réplication.html"/>
 <link rel="next" href="plans-hiérarchiques.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Plan factoriel à deux facteurs de classification sans réplication</h2>
+<div id="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Plan factoriel à deux facteurs de classification sans réplication<a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#plan-factoriel-à-deux-facteurs-de-classification-sans-réplication" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Dans certains plans d’expérience il n’y a pas de réplicats pour chaque combinaison de facteurs, par exemple parce qu’il serait trop coûteux de faire plus d’une observation. L’ANOVA à deux critères de classification est quand même possible dans ces circonstances, mais il y a une limitation importante.</p>
 
 <div class="rmdwarning">
@@ -360,10 +359,10 @@ Comme il n’y a pas de réplicats, on ne peut estimer la variance du terme d’
 <ul>
 <li>Effectuez une ANOVA à deux critères de classification en utilisant temp comme variable dépendante et date et depth comme variables indépendantes (vous devez changer le type de données pour DEPTH pour que R traite cette variable comme un facteur et non pas une var$able continue).</li>
 </ul>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb448-1" aria-hidden="true"></a>nr2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nr2wdat.csv&quot;</span>)</span>
-<span id="cb448-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb448-2" aria-hidden="true"></a>nr2wdat<span class="op">$</span>depth &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nr2wdat<span class="op">$</span>depth)</span>
-<span id="cb448-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb448-3" aria-hidden="true"></a>anova.model4 &lt;-<span class="st"> </span><span class="kw">lm</span>(temp <span class="op">~</span><span class="st"> </span>date <span class="op">+</span><span class="st"> </span>depth, <span class="dt">data =</span> nr2wdat)</span>
-<span id="cb448-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb448-4" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model4, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb450-1" aria-hidden="true"></a>nr2wdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nr2wdat.csv&quot;</span>)</span>
+<span id="cb450-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb450-2" aria-hidden="true"></a>nr2wdat<span class="op">$</span>depth &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nr2wdat<span class="op">$</span>depth)</span>
+<span id="cb450-3"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb450-3" aria-hidden="true"></a>anova.model4 &lt;-<span class="st"> </span><span class="kw">lm</span>(temp <span class="op">~</span><span class="st"> </span>date <span class="op">+</span><span class="st"> </span>depth, <span class="dt">data =</span> nr2wdat)</span>
+<span id="cb450-4"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb450-4" aria-hidden="true"></a><span class="kw">Anova</span>(anova.model4, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: temp
@@ -375,7 +374,7 @@ Comme il n’y a pas de réplicats, on ne peut estimer la variance du terme d’
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Si on suppose que c’est un modèle d’ANOVA mixte (date aléatoire, Depth fixe), que concluez vous? (Indice: faites un graphique d’interaction température en fonction de la profondeur et la date, pour voir ce qui se passe).</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb450-1" aria-hidden="true"></a><span class="kw">interaction.plot</span>(nr2wdat<span class="op">$</span>depth, nr2wdat<span class="op">$</span>date, nr2wdat<span class="op">$</span>temp)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb452-1" aria-hidden="true"></a><span class="kw">interaction.plot</span>(nr2wdat<span class="op">$</span>depth, nr2wdat<span class="op">$</span>date, nr2wdat<span class="op">$</span>temp)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-228"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-228-1.svg" alt="Effet du mois et de la profondeur sur la température" width="672" />
 <p class="caption">
@@ -384,23 +383,22 @@ Figure 6.4: Effet du mois et de la profondeur sur la température
 </div>
 <p>La température diminue significativement en profondeur. Pour tester l’effet du mois (le facteur aléatoire), on doit présumer qu’il n’y a pas d’interaction entre la profondeur et le mois (donc que l’effet de la profondeur sur la température est le même à chaque mois). C’est peu probable: si vous faites un graphique de la température en fonction de la profondeur pour chaque mois, vous observerez que le profil de température change au fur et à mesure du développement de la thermocline. Bref, comme le profil change au cours de l’été, ce modèle ne fait pas de très bonnes prédictions.</p>
 <p>Jetez un coup d’oeil sur les graphiques des résidus:</p>
-<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb451-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb451-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb451-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.model4)</span></code></pre></div>
-<pre><code>## Error in xy.coords(x, y, xlabel, ylabel, log): &#39;x&#39; and &#39;y&#39; lengths differ</code></pre>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb453-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb453-2"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb453-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.model4)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-229"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-229-1.svg" alt="Conditions d'applications du modèle anova.model4" width="672" />
 <p class="caption">
 Figure 6.5: Conditions d’applications du modèle anova.model4
 </p>
 </div>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb453-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model4))</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb454-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model4))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(anova.model4)
 ## W = 0.95968, p-value = 0.1634</code></pre>
 <p>Le test de normalité sur les résidus donne p = 0.16, donc l’hypothèse de normalité ne semble pas être sérieusement en doute. Pour l’égalité des variances, on peut seulement comparer entre les mois en utilisant les profondeurs comme réplicats (ou l’inverse). En utilisant les profondeurs comme réplicats, on obtient:</p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb455-1" aria-hidden="true"></a><span class="kw">leveneTest</span>(temp <span class="op">~</span><span class="st"> </span>date, <span class="dt">data =</span> nr2wdat)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="plan-factoriel-à-deux-facteurs-de-classification-sans-réplication.html#cb456-1" aria-hidden="true"></a><span class="kw">leveneTest</span>(temp <span class="op">~</span><span class="st"> </span>date, <span class="dt">data =</span> nr2wdat)</span></code></pre></div>
 <pre><code>## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
 ## factor.</code></pre>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
@@ -450,7 +448,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

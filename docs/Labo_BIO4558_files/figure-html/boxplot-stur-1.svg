@@ -9,6 +9,9 @@
       stroke-linejoin: round;
       stroke-miterlimit: 10.00;
     }
+    .svglite text {
+      white-space: pre;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -31,7 +34,7 @@
 <line x1='170.40' y1='127.06' x2='170.40' y2='158.35' style='stroke-width: 0.75; stroke-dasharray: 4.00,4.00;' />
 <line x1='132.00' y1='229.43' x2='208.80' y2='229.43' style='stroke-width: 0.75;' />
 <line x1='132.00' y1='127.06' x2='208.80' y2='127.06' style='stroke-width: 0.75;' />
-<polygon points='93.60,191.81 247.20,191.81 247.20,173.58 208.80,168.44 247.20,163.31 247.20,158.35 93.60,158.35 93.60,163.31 132.00,168.44 93.60,173.58 ' style='stroke-width: 0.75; fill: none;' />
+<polygon points='93.60,191.81 247.20,191.81 247.20,173.58 208.80,168.44 247.20,163.31 247.20,158.35 93.60,158.35 93.60,163.31 132.00,168.44 93.60,173.58 ' style='stroke-width: 0.75;' />
 <circle cx='170.40' cy='67.47' r='2.70' style='stroke-width: 0.75;' />
 <polygon points='285.60,207.75 439.20,207.75 439.20,193.05 400.80,188.05 439.20,183.04 439.20,179.43 285.60,179.43 285.60,183.04 324.00,188.05 285.60,193.05 ' style='stroke-width: 0.75; stroke: none; fill: #D3D3D3;' />
 <line x1='324.00' y1='188.05' x2='400.80' y2='188.05' style='stroke-width: 2.25; stroke-linecap: butt;' />
@@ -39,7 +42,7 @@
 <line x1='362.40' y1='149.24' x2='362.40' y2='179.43' style='stroke-width: 0.75; stroke-dasharray: 4.00,4.00;' />
 <line x1='324.00' y1='243.88' x2='400.80' y2='243.88' style='stroke-width: 0.75;' />
 <line x1='324.00' y1='149.24' x2='400.80' y2='149.24' style='stroke-width: 0.75;' />
-<polygon points='285.60,207.75 439.20,207.75 439.20,193.05 400.80,188.05 439.20,183.04 439.20,179.43 285.60,179.43 285.60,183.04 324.00,188.05 285.60,193.05 ' style='stroke-width: 0.75; fill: none;' />
+<polygon points='285.60,207.75 439.20,207.75 439.20,193.05 400.80,188.05 439.20,183.04 439.20,179.43 285.60,179.43 285.60,183.04 324.00,188.05 285.60,193.05 ' style='stroke-width: 0.75;' />
 <circle cx='362.40' cy='258.14' r='2.70' style='stroke-width: 0.75;' />
 <circle cx='362.40' cy='278.13' r='2.70' style='stroke-width: 0.75;' />
 <circle cx='362.40' cy='254.37' r='2.70' style='stroke-width: 0.75;' />
@@ -52,19 +55,19 @@
 <line x1='170.40' y1='286.56' x2='362.40' y2='286.56' style='stroke-width: 0.75;' />
 <line x1='170.40' y1='286.56' x2='170.40' y2='293.76' style='stroke-width: 0.75;' />
 <line x1='362.40' y1='286.56' x2='362.40' y2='293.76' style='stroke-width: 0.75;' />
-<text x='170.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='47.32px' lengthAdjust='spacingAndGlyphs'>FEMALE</text>
-<text x='362.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='32.83px' lengthAdjust='spacingAndGlyphs'>MALE</text>
+<text x='170.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='47.32px' lengthAdjust='spacingAndGlyphs'>FEMALE</text>
+<text x='362.40' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='32.83px' lengthAdjust='spacingAndGlyphs'>MALE</text>
 <line x1='59.04' y1='252.79' x2='59.04' y2='101.92' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='252.79' x2='51.84' y2='252.79' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='202.50' x2='51.84' y2='202.50' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='152.21' x2='51.84' y2='152.21' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='101.92' x2='51.84' y2='101.92' style='stroke-width: 0.75;' />
-<text transform='translate(41.76,252.79) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text transform='translate(41.76,202.50) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text transform='translate(41.76,152.21) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text transform='translate(41.76,101.92) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='20.54px' lengthAdjust='spacingAndGlyphs'>sex</text>
-<text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='42.06px' lengthAdjust='spacingAndGlyphs'>fklngth</text>
-<polygon points='59.04,286.56 473.76,286.56 473.76,59.04 59.04,59.04 ' style='stroke-width: 0.75; fill: none;' />
+<text transform='translate(41.76,252.79) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text transform='translate(41.76,202.50) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text transform='translate(41.76,152.21) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text transform='translate(41.76,101.92) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='20.54px' lengthAdjust='spacingAndGlyphs'>sex</text>
+<text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='42.06px' lengthAdjust='spacingAndGlyphs'>fklngth</text>
+<polygon points='59.04,286.56 473.76,286.56 473.76,59.04 59.04,59.04 ' style='stroke-width: 0.75;' />
 </g>
 </svg>

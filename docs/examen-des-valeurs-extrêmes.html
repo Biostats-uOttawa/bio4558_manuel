@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.4 Examen des valeurs extrêmes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.4 Examen des valeurs extrêmes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="transformations-de-données-et-anova-non-paramétrique.html"/>
 <link rel="next" href="test-de-permutation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,27 +348,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="examen-des-valeurs-extrêmes" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Examen des valeurs extrêmes</h2>
+<div id="examen-des-valeurs-extrêmes" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Examen des valeurs extrêmes<a href="examen-des-valeurs-extrêmes.html#examen-des-valeurs-extrêmes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Vous devriez avoir remarqué au cours des analyses précédentes qu’il y avait peut-être des valeurs extrêmes dans les données. Ces points étaient évidents dans le Box Plot de fklngth by year et ont été notés comme les points 59, 23, et 87 dans les diagrammes de probabilité des résidus et dans le diagramme de dispersion des résidus et des valeurs estimées. En général, vous devez avoir de très bonnes raisons pour enlever des valeurs extrêmes de la base de données (i.e. vous savez qu’il y a eu une erreur avec un cas). Cependant, il est quand même toujours valable de voir comment l’analyse change en enlevant des valeurs extrêmes de la base de données.</p>
 <ul>
 <li>Répétez l’ANOVA originale sur fklngth et year mais faites le avec un sous-ensemble de données sans les valeurs extrêmes. Est-ce que les conclusions ont changé?</li>
 </ul>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="examen-des-valeurs-extrêmes.html#cb404-1" aria-hidden="true"></a>Damsubset &lt;-<span class="st"> </span>Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">59</span>, <span class="dv">87</span>), ] <span class="co"># removes obs 23, 59 and 87</span></span>
-<span id="cb404-2"><a href="examen-des-valeurs-extrêmes.html#cb404-2" aria-hidden="true"></a>aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</span>
-<span id="cb404-3"><a href="examen-des-valeurs-extrêmes.html#cb404-3" aria-hidden="true"></a><span class="kw">summary</span>(aov.Damsubset)</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="examen-des-valeurs-extrêmes.html#cb406-1" aria-hidden="true"></a>Damsubset &lt;-<span class="st"> </span>Dam10dat[<span class="op">-</span><span class="kw">c</span>(<span class="dv">23</span>, <span class="dv">59</span>, <span class="dv">87</span>), ] <span class="co"># removes obs 23, 59 and 87</span></span>
+<span id="cb406-2"><a href="examen-des-valeurs-extrêmes.html#cb406-2" aria-hidden="true"></a>aov.Damsubset &lt;-<span class="st"> </span><span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(year), Damsubset)</span>
+<span id="cb406-3"><a href="examen-des-valeurs-extrêmes.html#cb406-3" aria-hidden="true"></a><span class="kw">summary</span>(aov.Damsubset)</span></code></pre></div>
 <pre><code>##                  Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## as.factor(year)   3  367.5  122.50   6.894 0.000267 ***
 ## Residuals       111 1972.4   17.77                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="examen-des-valeurs-extrêmes.html#cb406-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="examen-des-valeurs-extrêmes.html#cb408-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(aov.Damsubset))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  residuals(aov.Damsubset)
 ## W = 0.98533, p-value = 0.2448</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="examen-des-valeurs-extrêmes.html#cb408-1" aria-hidden="true"></a><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="examen-des-valeurs-extrêmes.html#cb410-1" aria-hidden="true"></a><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, Damsubset)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value   Pr(&gt;F)   
 ## group   3  4.6237 0.004367 **
@@ -417,7 +416,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

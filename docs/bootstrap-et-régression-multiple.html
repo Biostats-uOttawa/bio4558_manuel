@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.11 Bootstrap et régression multiple | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.11 Bootstrap et régression multiple | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="recherche-du-meilleur-modèle-fondée-sur-la-théorie-de-linformation.html"/>
 <link rel="next" href="perm_reg_mult.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,39 +348,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bootstrap-et-régression-multiple" class="section level2" number="7.11">
-<h2><span class="header-section-number">7.11</span> Bootstrap et régression multiple</h2>
+<div id="bootstrap-et-régression-multiple" class="section level2 hasAnchor" number="7.11">
+<h2><span class="header-section-number">7.11</span> Bootstrap et régression multiple<a href="bootstrap-et-régression-multiple.html#bootstrap-et-régression-multiple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Quand les données ne rencontrent pas les conditions d’application de normalité et d’homoscédasticité et que les transformations n’arrivent pas à corriger ces violations, le bootstrap peut être utilisé pour calculer des intervalles de confiance pour les coefficients. Si la distribution des coefficients bootstrappés est symétrique et approximativement normale, on peut utiliser les percentiles empiriques pour calculer les limites de confiance.</p>
 <p>Le code qui suit, utilisant le package <code>simpleboot</code>, a été conçu pour être facilement modifiable et calcule les limites des IC à partir des percentiles empiriques.</p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="bootstrap-et-régression-multiple.html#cb574-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
-<span id="cb574-2"><a href="bootstrap-et-régression-multiple.html#cb574-2" aria-hidden="true"></a><span class="co">#######</span></span>
-<span id="cb574-3"><a href="bootstrap-et-régression-multiple.html#cb574-3" aria-hidden="true"></a><span class="co"># Bootstrap analysis the simple way with library simpleboot</span></span>
-<span id="cb574-4"><a href="bootstrap-et-régression-multiple.html#cb574-4" aria-hidden="true"></a><span class="co"># Define model to be bootstrapped and the data source used</span></span>
-<span id="cb574-5"><a href="bootstrap-et-régression-multiple.html#cb574-5" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mydata)</span>
-<span id="cb574-6"><a href="bootstrap-et-régression-multiple.html#cb574-6" aria-hidden="true"></a><span class="co"># Set the number of bootstrap iterations</span></span>
-<span id="cb574-7"><a href="bootstrap-et-régression-multiple.html#cb574-7" aria-hidden="true"></a>nboot &lt;-<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb574-8"><a href="bootstrap-et-régression-multiple.html#cb574-8" aria-hidden="true"></a><span class="kw">library</span>(simpleboot)</span>
-<span id="cb574-9"><a href="bootstrap-et-régression-multiple.html#cb574-9" aria-hidden="true"></a><span class="co"># R is the number of bootstrap iterations</span></span>
-<span id="cb574-10"><a href="bootstrap-et-régression-multiple.html#cb574-10" aria-hidden="true"></a><span class="co"># Setting rows to FALSE indicates resampling of residuals</span></span>
-<span id="cb574-11"><a href="bootstrap-et-régression-multiple.html#cb574-11" aria-hidden="true"></a>mysimpleboot &lt;-<span class="st"> </span><span class="kw">lm.boot</span>(mymodel, <span class="dt">R =</span> nboot, <span class="dt">rows =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb574-12"><a href="bootstrap-et-régression-multiple.html#cb574-12" aria-hidden="true"></a><span class="co"># Extract bootstrap coefficients</span></span>
-<span id="cb574-13"><a href="bootstrap-et-régression-multiple.html#cb574-13" aria-hidden="true"></a>myresults &lt;-<span class="st"> </span><span class="kw">sapply</span>(mysimpleboot<span class="op">$</span>boot.list, <span class="cf">function</span>(x) x<span class="op">$</span>coef)</span>
-<span id="cb574-14"><a href="bootstrap-et-régression-multiple.html#cb574-14" aria-hidden="true"></a><span class="co"># Transpose matrix so that lines are bootstrap iterations and columns are coefficients</span></span>
-<span id="cb574-15"><a href="bootstrap-et-régression-multiple.html#cb574-15" aria-hidden="true"></a>tmyresults &lt;-<span class="st"> </span><span class="kw">t</span>(myresults)</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="bootstrap-et-régression-multiple.html#cb576-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
+<span id="cb576-2"><a href="bootstrap-et-régression-multiple.html#cb576-2" aria-hidden="true"></a><span class="co">#######</span></span>
+<span id="cb576-3"><a href="bootstrap-et-régression-multiple.html#cb576-3" aria-hidden="true"></a><span class="co"># Bootstrap analysis the simple way with library simpleboot</span></span>
+<span id="cb576-4"><a href="bootstrap-et-régression-multiple.html#cb576-4" aria-hidden="true"></a><span class="co"># Define model to be bootstrapped and the data source used</span></span>
+<span id="cb576-5"><a href="bootstrap-et-régression-multiple.html#cb576-5" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), <span class="dt">data =</span> mydata)</span>
+<span id="cb576-6"><a href="bootstrap-et-régression-multiple.html#cb576-6" aria-hidden="true"></a><span class="co"># Set the number of bootstrap iterations</span></span>
+<span id="cb576-7"><a href="bootstrap-et-régression-multiple.html#cb576-7" aria-hidden="true"></a>nboot &lt;-<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb576-8"><a href="bootstrap-et-régression-multiple.html#cb576-8" aria-hidden="true"></a><span class="kw">library</span>(simpleboot)</span>
+<span id="cb576-9"><a href="bootstrap-et-régression-multiple.html#cb576-9" aria-hidden="true"></a><span class="co"># R is the number of bootstrap iterations</span></span>
+<span id="cb576-10"><a href="bootstrap-et-régression-multiple.html#cb576-10" aria-hidden="true"></a><span class="co"># Setting rows to FALSE indicates resampling of residuals</span></span>
+<span id="cb576-11"><a href="bootstrap-et-régression-multiple.html#cb576-11" aria-hidden="true"></a>mysimpleboot &lt;-<span class="st"> </span><span class="kw">lm.boot</span>(mymodel, <span class="dt">R =</span> nboot, <span class="dt">rows =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb576-12"><a href="bootstrap-et-régression-multiple.html#cb576-12" aria-hidden="true"></a><span class="co"># Extract bootstrap coefficients</span></span>
+<span id="cb576-13"><a href="bootstrap-et-régression-multiple.html#cb576-13" aria-hidden="true"></a>myresults &lt;-<span class="st"> </span><span class="kw">sapply</span>(mysimpleboot<span class="op">$</span>boot.list, <span class="cf">function</span>(x) x<span class="op">$</span>coef)</span>
+<span id="cb576-14"><a href="bootstrap-et-régression-multiple.html#cb576-14" aria-hidden="true"></a><span class="co"># Transpose matrix so that lines are bootstrap iterations and columns are coefficients</span></span>
+<span id="cb576-15"><a href="bootstrap-et-régression-multiple.html#cb576-15" aria-hidden="true"></a>tmyresults &lt;-<span class="st"> </span><span class="kw">t</span>(myresults)</span></code></pre></div>
 <p>Vous pouvez ensuite faire des graphiques pour voir les résultats. Lorsque vous tournerez ce code, il y aura une pause pour vous permettre d’examiner la distribution pour chaque coefficient du modèle sur des graphiques:</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="bootstrap-et-régression-multiple.html#cb575-1" aria-hidden="true"></a><span class="co"># Plot histograms of bootstrapped coefficients</span></span>
-<span id="cb575-2"><a href="bootstrap-et-régression-multiple.html#cb575-2" aria-hidden="true"></a>ncoefs &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">data.frame</span>(tmyresults))</span>
-<span id="cb575-3"><a href="bootstrap-et-régression-multiple.html#cb575-3" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mai =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">ask =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb575-4"><a href="bootstrap-et-régression-multiple.html#cb575-4" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>ncoefs) {</span>
-<span id="cb575-5"><a href="bootstrap-et-régression-multiple.html#cb575-5" aria-hidden="true"></a>  lab &lt;-<span class="st"> </span><span class="kw">colnames</span>(tmyresults)[i]</span>
-<span id="cb575-6"><a href="bootstrap-et-régression-multiple.html#cb575-6" aria-hidden="true"></a>  x &lt;-<span class="st"> </span>tmyresults[, i]</span>
-<span id="cb575-7"><a href="bootstrap-et-régression-multiple.html#cb575-7" aria-hidden="true"></a>  <span class="kw">plot</span>(<span class="kw">density</span>(x), <span class="dt">main =</span> lab, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb575-8"><a href="bootstrap-et-régression-multiple.html#cb575-8" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb575-9"><a href="bootstrap-et-régression-multiple.html#cb575-9" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
-<span id="cb575-10"><a href="bootstrap-et-régression-multiple.html#cb575-10" aria-hidden="true"></a>  <span class="kw">hist</span>(x, <span class="dt">main =</span> lab, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb575-11"><a href="bootstrap-et-régression-multiple.html#cb575-11" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
-<span id="cb575-12"><a href="bootstrap-et-régression-multiple.html#cb575-12" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb575-13"><a href="bootstrap-et-régression-multiple.html#cb575-13" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="bootstrap-et-régression-multiple.html#cb577-1" aria-hidden="true"></a><span class="co"># Plot histograms of bootstrapped coefficients</span></span>
+<span id="cb577-2"><a href="bootstrap-et-régression-multiple.html#cb577-2" aria-hidden="true"></a>ncoefs &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">data.frame</span>(tmyresults))</span>
+<span id="cb577-3"><a href="bootstrap-et-régression-multiple.html#cb577-3" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mai =</span> <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>), <span class="dt">ask =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb577-4"><a href="bootstrap-et-régression-multiple.html#cb577-4" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>ncoefs) {</span>
+<span id="cb577-5"><a href="bootstrap-et-régression-multiple.html#cb577-5" aria-hidden="true"></a>  lab &lt;-<span class="st"> </span><span class="kw">colnames</span>(tmyresults)[i]</span>
+<span id="cb577-6"><a href="bootstrap-et-régression-multiple.html#cb577-6" aria-hidden="true"></a>  x &lt;-<span class="st"> </span>tmyresults[, i]</span>
+<span id="cb577-7"><a href="bootstrap-et-régression-multiple.html#cb577-7" aria-hidden="true"></a>  <span class="kw">plot</span>(<span class="kw">density</span>(x), <span class="dt">main =</span> lab, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb577-8"><a href="bootstrap-et-régression-multiple.html#cb577-8" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb577-9"><a href="bootstrap-et-régression-multiple.html#cb577-9" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
+<span id="cb577-10"><a href="bootstrap-et-régression-multiple.html#cb577-10" aria-hidden="true"></a>  <span class="kw">hist</span>(x, <span class="dt">main =</span> lab, <span class="dt">xlab =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb577-11"><a href="bootstrap-et-régression-multiple.html#cb577-11" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)))</span>
+<span id="cb577-12"><a href="bootstrap-et-régression-multiple.html#cb577-12" aria-hidden="true"></a>  <span class="kw">abline</span>(<span class="dt">v =</span> mymodel<span class="op">$</span>coef[i], <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb577-13"><a href="bootstrap-et-régression-multiple.html#cb577-13" aria-hidden="true"></a>}</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-290"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-290-1.svg" alt="Distribution des estimé par bootstrap pour `logarea`" width="672" />
 <p class="caption">
@@ -390,50 +389,50 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 </div>
 <p>Le graphique de droite illustre la densité lissée (kernel density) et celui de gauche est l’histogramme des estimés bootstrap du coefficient. La ligne rouge sur le graphique indique la valeur du coefficient ordinaire (pas bootstrap) et les deux lignes verticales noires marquent les limites de l’intervalle de confiance à 95%. Ici l’IC ne contient pas 0, et donc on peut conclure que l’effet de logarea sur logherp est significativement positif.</p>
 <p>Les limites précises peuvent être obtenues par:</p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="bootstrap-et-régression-multiple.html#cb576-1" aria-hidden="true"></a><span class="co"># Display empirical bootstrap quantiles (not corrected for bias)</span></span>
-<span id="cb576-2"><a href="bootstrap-et-régression-multiple.html#cb576-2" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.005</span>, <span class="fl">0.01</span>, <span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>, <span class="fl">0.995</span>)</span>
-<span id="cb576-3"><a href="bootstrap-et-régression-multiple.html#cb576-3" aria-hidden="true"></a><span class="kw">apply</span>(tmyresults, <span class="dv">2</span>, quantile, p)</span></code></pre></div>
-<pre><code>##        (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.697625216 0.1368059 -0.047399501 0.01711903 -0.0003406335
-## 1%    -0.675352554 0.1429136 -0.045977275 0.01759170 -0.0003364283
-## 2.5%  -0.636939003 0.1568623 -0.042731116 0.01933906 -0.0003238729
-## 5%    -0.594501720 0.1670516 -0.040431746 0.02132987 -0.0003102695
-## 95%   -0.067008084 0.2827094 -0.011071383 0.03721002 -0.0001824830
-## 97.5% -0.017837885 0.2933177 -0.008478674 0.03861960 -0.0001681035
-## 99%    0.009277282 0.2989287 -0.004625787 0.04055505 -0.0001562905
-## 99.5%  0.059563161 0.3072600 -0.003640405 0.04108601 -0.0001423938</code></pre>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="bootstrap-et-régression-multiple.html#cb578-1" aria-hidden="true"></a><span class="co"># Display empirical bootstrap quantiles (not corrected for bias)</span></span>
+<span id="cb578-2"><a href="bootstrap-et-régression-multiple.html#cb578-2" aria-hidden="true"></a>p &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.005</span>, <span class="fl">0.01</span>, <span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span>, <span class="fl">0.99</span>, <span class="fl">0.995</span>)</span>
+<span id="cb578-3"><a href="bootstrap-et-régression-multiple.html#cb578-3" aria-hidden="true"></a><span class="kw">apply</span>(tmyresults, <span class="dv">2</span>, quantile, p)</span></code></pre></div>
+<pre><code>##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
+## 0.5%  -0.73469720 0.1272694 -0.048450236 0.01641184 -0.0003401659
+## 1%    -0.69053828 0.1419067 -0.046512995 0.01756222 -0.0003310040
+## 2.5%  -0.63609554 0.1511039 -0.042554397 0.01898423 -0.0003231423
+## 5%    -0.58636221 0.1647355 -0.039686097 0.02072359 -0.0003080417
+## 95%   -0.06322222 0.2801550 -0.011412158 0.03690827 -0.0001794272
+## 97.5% -0.02634209 0.2893199 -0.008894022 0.03857999 -0.0001658465
+## 99%    0.02872516 0.2989365 -0.006146121 0.03996382 -0.0001530668
+## 99.5%  0.05250663 0.3033524 -0.003243723 0.04134185 -0.0001449922</code></pre>
 <p>Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n’est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="bootstrap-et-régression-multiple.html#cb578-1" aria-hidden="true"></a><span class="co">################################################</span></span>
-<span id="cb578-2"><a href="bootstrap-et-régression-multiple.html#cb578-2" aria-hidden="true"></a><span class="co"># Bootstrap analysis in multiple regression with BCa confidence intervals</span></span>
-<span id="cb578-3"><a href="bootstrap-et-régression-multiple.html#cb578-3" aria-hidden="true"></a><span class="co"># Preferable when parameter distribution is far from normal</span></span>
-<span id="cb578-4"><a href="bootstrap-et-régression-multiple.html#cb578-4" aria-hidden="true"></a><span class="co"># Bootstrap 95% BCa CI for regression coefficients</span></span>
-<span id="cb578-5"><a href="bootstrap-et-régression-multiple.html#cb578-5" aria-hidden="true"></a></span>
-<span id="cb578-6"><a href="bootstrap-et-régression-multiple.html#cb578-6" aria-hidden="true"></a><span class="kw">library</span>(boot)</span>
-<span id="cb578-7"><a href="bootstrap-et-régression-multiple.html#cb578-7" aria-hidden="true"></a><span class="co"># function to obtain regression coefficients for each iteration</span></span>
-<span id="cb578-8"><a href="bootstrap-et-régression-multiple.html#cb578-8" aria-hidden="true"></a>bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</span>
-<span id="cb578-9"><a href="bootstrap-et-régression-multiple.html#cb578-9" aria-hidden="true"></a>  d &lt;-<span class="st"> </span>data[indices, ] <span class="co"># allows boot to select sample</span></span>
-<span id="cb578-10"><a href="bootstrap-et-régression-multiple.html#cb578-10" aria-hidden="true"></a>  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</span>
-<span id="cb578-11"><a href="bootstrap-et-régression-multiple.html#cb578-11" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</span>
-<span id="cb578-12"><a href="bootstrap-et-régression-multiple.html#cb578-12" aria-hidden="true"></a>}</span>
-<span id="cb578-13"><a href="bootstrap-et-régression-multiple.html#cb578-13" aria-hidden="true"></a><span class="co"># bootstrapping with 1000 replications</span></span>
-<span id="cb578-14"><a href="bootstrap-et-régression-multiple.html#cb578-14" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">boot</span>(</span>
-<span id="cb578-15"><a href="bootstrap-et-régression-multiple.html#cb578-15" aria-hidden="true"></a>  <span class="dt">data =</span> mydata, <span class="dt">statistic =</span> bs, <span class="dt">R =</span> <span class="dv">1000</span>,</span>
-<span id="cb578-16"><a href="bootstrap-et-régression-multiple.html#cb578-16" aria-hidden="true"></a>  <span class="dt">formula =</span> logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb578-17"><a href="bootstrap-et-régression-multiple.html#cb578-17" aria-hidden="true"></a>)</span>
-<span id="cb578-18"><a href="bootstrap-et-régression-multiple.html#cb578-18" aria-hidden="true"></a><span class="co"># view results</span></span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="bootstrap-et-régression-multiple.html#cb580-1" aria-hidden="true"></a><span class="co">################################################</span></span>
+<span id="cb580-2"><a href="bootstrap-et-régression-multiple.html#cb580-2" aria-hidden="true"></a><span class="co"># Bootstrap analysis in multiple regression with BCa confidence intervals</span></span>
+<span id="cb580-3"><a href="bootstrap-et-régression-multiple.html#cb580-3" aria-hidden="true"></a><span class="co"># Preferable when parameter distribution is far from normal</span></span>
+<span id="cb580-4"><a href="bootstrap-et-régression-multiple.html#cb580-4" aria-hidden="true"></a><span class="co"># Bootstrap 95% BCa CI for regression coefficients</span></span>
+<span id="cb580-5"><a href="bootstrap-et-régression-multiple.html#cb580-5" aria-hidden="true"></a></span>
+<span id="cb580-6"><a href="bootstrap-et-régression-multiple.html#cb580-6" aria-hidden="true"></a><span class="kw">library</span>(boot)</span>
+<span id="cb580-7"><a href="bootstrap-et-régression-multiple.html#cb580-7" aria-hidden="true"></a><span class="co"># function to obtain regression coefficients for each iteration</span></span>
+<span id="cb580-8"><a href="bootstrap-et-régression-multiple.html#cb580-8" aria-hidden="true"></a>bs &lt;-<span class="st"> </span><span class="cf">function</span>(formula, data, indices) {</span>
+<span id="cb580-9"><a href="bootstrap-et-régression-multiple.html#cb580-9" aria-hidden="true"></a>  d &lt;-<span class="st"> </span>data[indices, ] <span class="co"># allows boot to select sample</span></span>
+<span id="cb580-10"><a href="bootstrap-et-régression-multiple.html#cb580-10" aria-hidden="true"></a>  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(formula, <span class="dt">data =</span> d)</span>
+<span id="cb580-11"><a href="bootstrap-et-régression-multiple.html#cb580-11" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">coef</span>(fit))</span>
+<span id="cb580-12"><a href="bootstrap-et-régression-multiple.html#cb580-12" aria-hidden="true"></a>}</span>
+<span id="cb580-13"><a href="bootstrap-et-régression-multiple.html#cb580-13" aria-hidden="true"></a><span class="co"># bootstrapping with 1000 replications</span></span>
+<span id="cb580-14"><a href="bootstrap-et-régression-multiple.html#cb580-14" aria-hidden="true"></a>results &lt;-<span class="st"> </span><span class="kw">boot</span>(</span>
+<span id="cb580-15"><a href="bootstrap-et-régression-multiple.html#cb580-15" aria-hidden="true"></a>  <span class="dt">data =</span> mydata, <span class="dt">statistic =</span> bs, <span class="dt">R =</span> <span class="dv">1000</span>,</span>
+<span id="cb580-16"><a href="bootstrap-et-régression-multiple.html#cb580-16" aria-hidden="true"></a>  <span class="dt">formula =</span> logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb580-17"><a href="bootstrap-et-régression-multiple.html#cb580-17" aria-hidden="true"></a>)</span>
+<span id="cb580-18"><a href="bootstrap-et-régression-multiple.html#cb580-18" aria-hidden="true"></a><span class="co"># view results</span></span></code></pre></div>
 <p>Pour obtenir les résultats, le code suivant va produire le graphique standard pour chaque coefficient, et les estimés BCa pour l’intervalle de confiance</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="bootstrap-et-régression-multiple.html#cb579-1" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">1</span>) <span class="co"># intercept</span></span>
-<span id="cb579-2"><a href="bootstrap-et-régression-multiple.html#cb579-2" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>) <span class="co"># logarea</span></span>
-<span id="cb579-3"><a href="bootstrap-et-régression-multiple.html#cb579-3" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">3</span>) <span class="co"># thtden</span></span>
-<span id="cb579-4"><a href="bootstrap-et-régression-multiple.html#cb579-4" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">4</span>) <span class="co"># swamp</span></span>
-<span id="cb579-5"><a href="bootstrap-et-régression-multiple.html#cb579-5" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">5</span>) <span class="co"># swamp^2</span></span>
-<span id="cb579-6"><a href="bootstrap-et-régression-multiple.html#cb579-6" aria-hidden="true"></a></span>
-<span id="cb579-7"><a href="bootstrap-et-régression-multiple.html#cb579-7" aria-hidden="true"></a><span class="co"># get 95% confidence intervals</span></span>
-<span id="cb579-8"><a href="bootstrap-et-régression-multiple.html#cb579-8" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</span>
-<span id="cb579-9"><a href="bootstrap-et-régression-multiple.html#cb579-9" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</span>
-<span id="cb579-10"><a href="bootstrap-et-régression-multiple.html#cb579-10" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">3</span>)</span>
-<span id="cb579-11"><a href="bootstrap-et-régression-multiple.html#cb579-11" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">4</span>)</span>
-<span id="cb579-12"><a href="bootstrap-et-régression-multiple.html#cb579-12" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="bootstrap-et-régression-multiple.html#cb581-1" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">1</span>) <span class="co"># intercept</span></span>
+<span id="cb581-2"><a href="bootstrap-et-régression-multiple.html#cb581-2" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">2</span>) <span class="co"># logarea</span></span>
+<span id="cb581-3"><a href="bootstrap-et-régression-multiple.html#cb581-3" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">3</span>) <span class="co"># thtden</span></span>
+<span id="cb581-4"><a href="bootstrap-et-régression-multiple.html#cb581-4" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">4</span>) <span class="co"># swamp</span></span>
+<span id="cb581-5"><a href="bootstrap-et-régression-multiple.html#cb581-5" aria-hidden="true"></a><span class="kw">plot</span>(results, <span class="dt">index =</span> <span class="dv">5</span>) <span class="co"># swamp^2</span></span>
+<span id="cb581-6"><a href="bootstrap-et-régression-multiple.html#cb581-6" aria-hidden="true"></a></span>
+<span id="cb581-7"><a href="bootstrap-et-régression-multiple.html#cb581-7" aria-hidden="true"></a><span class="co"># get 95% confidence intervals</span></span>
+<span id="cb581-8"><a href="bootstrap-et-régression-multiple.html#cb581-8" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">1</span>)</span>
+<span id="cb581-9"><a href="bootstrap-et-régression-multiple.html#cb581-9" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</span>
+<span id="cb581-10"><a href="bootstrap-et-régression-multiple.html#cb581-10" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">3</span>)</span>
+<span id="cb581-11"><a href="bootstrap-et-régression-multiple.html#cb581-11" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">4</span>)</span>
+<span id="cb581-12"><a href="bootstrap-et-régression-multiple.html#cb581-12" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;bca&quot;</span>, <span class="dt">index =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Pour logarea, cela donne:</p>
 <pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
 ## Based on 1000 bootstrap replicates
@@ -443,7 +442,7 @@ Figure 7.8: Distribution des estimé par bootstrap pour <code>logarea</code>
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1119,  0.3128 )  
+## 95%   ( 0.1238,  0.3220 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-294-1.svg" width="672" /></p>
 <p>Notez que l’intervalle BCa va de 0.12 à 0.32, alors que l’intervalle standard était de 0.16 à 0.29. L’intervalle BCa est ici plus grand du côté inférieur et plus petit du côté supérieur comme il se doit compte tenu de la distribution non-Gaussienne et asymétrique des estimés bootstrap.</p>
@@ -487,7 +486,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 ANOVA à un critère de classification et comparaisons multiples | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 ANOVA à un critère de classification et comparaisons multiples | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="set-ano.html"/>
 <link rel="next" href="transformations-de-données-et-anova-non-paramétrique.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,18 +348,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="anova-à-un-critère-de-classification-et-comparaisons-multiples" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> ANOVA à un critère de classification et comparaisons multiples</h2>
+<div id="anova-à-un-critère-de-classification-et-comparaisons-multiples" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> ANOVA à un critère de classification et comparaisons multiples<a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#anova-à-un-critère-de-classification-et-comparaisons-multiples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>L’ANOVA à un critère de classification est l’analogue du test de t pour des comparaisons de moyennes de plus de deux échantillons. Les conditions d’application du test sont essentiellement les mêmes, et lorsque appliqué à deux échantillons ce test est mathématiquement équivalent au test de t.</p>
 <p>En 1961-1962, le barrage Grand Rapids était construit sur la rivière Saskatchewan en amont de Cumberland House. On croit que durant la construction plusieurs gros esturgeons restèrent prisonniers dans des sections peu profondes et moururent. Des inventaires de la population d’esturgeons furent faits en 1954, 1958, 1965 et 1966. Au cours de ces inventaires, la longueur à la fourche (frklngth) furent mesurées (pas nécessairement sur chaque poisson cependant). Ces données sont dans le fichier <code>Dam10dat.csv</code>.</p>
-<div id="visualiser-les-données" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Visualiser les données</h3>
+<div id="visualiser-les-données" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Visualiser les données<a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#visualiser-les-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>À partir des données, vous devez d’abord changer le type de donnée de la variable <code>year</code>, pour que R traite <code>year</code> comme une variable discontinue (factor) plutôt que continue.</li>
 </ul>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb371-1" aria-hidden="true"></a>Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</span>
-<span id="cb371-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb371-2" aria-hidden="true"></a>Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</span>
-<span id="cb371-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb371-3" aria-hidden="true"></a><span class="kw">str</span>(Dam10dat)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-1" aria-hidden="true"></a>Dam10dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Dam10dat.csv&quot;</span>)</span>
+<span id="cb373-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-2" aria-hidden="true"></a>Dam10dat<span class="op">$</span>year &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Dam10dat<span class="op">$</span>year)</span>
+<span id="cb373-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-3" aria-hidden="true"></a><span class="kw">str</span>(Dam10dat)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    118 obs. of  21 variables:
 ##  $ year    : Factor w/ 4 levels &quot;1954&quot;,&quot;1958&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ fklngth : num  45 50 39 46 54.5 49 42.5 49 56 54 ...
@@ -386,32 +385,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Ensuite, visualisez les données comme dans le labo pour les tests de t. Créez un histogramme avec ligne de densité et un Box plot par année. Que vous révèlent ces données?</li>
 </ul>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-1" aria-hidden="true"></a>mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Dam10dat, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></span>
-<span id="cb373-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fork length (cm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb373-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
-<span id="cb373-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></span>
-<span id="cb373-5"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</span>
-<span id="cb373-6"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-6" aria-hidden="true"></a>    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb373-7"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-7" aria-hidden="true"></a>    <span class="dt">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb373-8"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-8" aria-hidden="true"></a>  ) <span class="op">+</span></span>
-<span id="cb373-9"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
-<span id="cb373-10"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-10" aria-hidden="true"></a>    <span class="dt">fun =</span> dnorm,</span>
-<span id="cb373-11"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-11" aria-hidden="true"></a>    <span class="dt">args =</span> <span class="kw">list</span>(</span>
-<span id="cb373-12"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-12" aria-hidden="true"></a>      <span class="dt">mean =</span> <span class="kw">mean</span>(Dam10dat<span class="op">$</span>fklngth),</span>
-<span id="cb373-13"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-13" aria-hidden="true"></a>      <span class="dt">sd =</span> <span class="kw">sd</span>(Dam10dat<span class="op">$</span>fklngth)</span>
-<span id="cb373-14"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-14" aria-hidden="true"></a>    ),</span>
-<span id="cb373-15"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-15" aria-hidden="true"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb373-16"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-16" aria-hidden="true"></a>  )</span>
-<span id="cb373-17"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-17" aria-hidden="true"></a></span>
-<span id="cb373-18"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-18" aria-hidden="true"></a><span class="co"># display graph, by year</span></span>
-<span id="cb373-19"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb373-19" aria-hidden="true"></a>mygraph <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-1" aria-hidden="true"></a>mygraph &lt;-<span class="st"> </span><span class="kw">ggplot</span>(Dam10dat, <span class="kw">aes</span>(<span class="dt">x =</span> fklngth)) <span class="op">+</span></span>
+<span id="cb375-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fork length (cm)&quot;</span>) <span class="op">+</span></span>
+<span id="cb375-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
+<span id="cb375-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-4" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_rug</span>() <span class="op">+</span></span>
+<span id="cb375-5"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-5" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..),</span>
+<span id="cb375-6"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-6" aria-hidden="true"></a>    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb375-7"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-7" aria-hidden="true"></a>    <span class="dt">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb375-8"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-8" aria-hidden="true"></a>  ) <span class="op">+</span></span>
+<span id="cb375-9"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-9" aria-hidden="true"></a><span class="st">  </span><span class="kw">stat_function</span>(</span>
+<span id="cb375-10"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-10" aria-hidden="true"></a>    <span class="dt">fun =</span> dnorm,</span>
+<span id="cb375-11"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-11" aria-hidden="true"></a>    <span class="dt">args =</span> <span class="kw">list</span>(</span>
+<span id="cb375-12"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-12" aria-hidden="true"></a>      <span class="dt">mean =</span> <span class="kw">mean</span>(Dam10dat<span class="op">$</span>fklngth),</span>
+<span id="cb375-13"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-13" aria-hidden="true"></a>      <span class="dt">sd =</span> <span class="kw">sd</span>(Dam10dat<span class="op">$</span>fklngth)</span>
+<span id="cb375-14"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-14" aria-hidden="true"></a>    ),</span>
+<span id="cb375-15"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-15" aria-hidden="true"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb375-16"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-16" aria-hidden="true"></a>  )</span>
+<span id="cb375-17"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-17" aria-hidden="true"></a></span>
+<span id="cb375-18"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-18" aria-hidden="true"></a><span class="co"># display graph, by year</span></span>
+<span id="cb375-19"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-19" aria-hidden="true"></a>mygraph <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>year, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ano-2"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-2-1.svg" alt="Distribution de la longueur des esturgeons par année" width="672" />
 <p class="caption">
 Figure 5.1: Distribution de la longueur des esturgeons par année
 </p>
 </div>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb374-1" aria-hidden="true"></a><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb376-1" aria-hidden="true"></a><span class="kw">boxplot</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-203"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-203-1.svg" alt="Boxplot de la longueur pas annéee" width="672" />
 <p class="caption">
@@ -420,8 +419,8 @@ Figure 5.2: Boxplot de la longueur pas annéee
 </div>
 <p>Il semble que la taille des esturgeons est un peu plus petite après la construction du barrage, mais les données sont très variables et les effets ne sont pas parfaitement clairs. Il y a peut-être des problèmes de normalité avec les échantillons de 1954 et 1966, et il y a probablement des valeurs extrêmes dans les échantillons de 1958 et 1966. On va continuer en testant les conditions d’application de l’ANOVA. Il faut d’abord faire l’analyse et examiner les résidus.</p>
 </div>
-<div id="vérifier-les-conditions-dapplication-de-lanova-paramétrique" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Vérifier les conditions d’application de l’ANOVA paramétrique</h3>
+<div id="vérifier-les-conditions-dapplication-de-lanova-paramétrique" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Vérifier les conditions d’application de l’ANOVA paramétrique<a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#vérifier-les-conditions-dapplication-de-lanova-paramétrique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’ANOVA paramétrique a trois conditions principales d’application :</p>
 <ol style="list-style-type: decimal">
 <li>les résidus sont normalement distribués,</li>
@@ -432,10 +431,10 @@ Figure 5.2: Boxplot de la longueur pas annéee
 <ul>
 <li>Faites une ANOVA à un critère de classification sur fklngth par année et produisez les graphiques diagnostiques</li>
 </ul>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-1" aria-hidden="true"></a><span class="co"># Fit anova model and plot residual diagnostics</span></span>
-<span id="cb375-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-2" aria-hidden="true"></a>anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span>
-<span id="cb375-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-3" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb375-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb375-4" aria-hidden="true"></a><span class="kw">plot</span>(anova.model1)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb377-1" aria-hidden="true"></a><span class="co"># Fit anova model and plot residual diagnostics</span></span>
+<span id="cb377-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb377-2" aria-hidden="true"></a>anova.model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span>
+<span id="cb377-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb377-3" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb377-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb377-4" aria-hidden="true"></a><span class="kw">plot</span>(anova.model1)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ano-3"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-3-1.svg" alt="Conditions d'applications de l'ANOVA" width="672" />
 <p class="caption">
@@ -453,7 +452,7 @@ and there are no factor predictors; no plot no. 5`
 <ul>
 <li>Faites un test de normalité sur les résidus de l’ANOVA.</li>
 </ul>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb376-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb378-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model1))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -463,7 +462,7 @@ and there are no factor predictors; no plot no. 5`
 <ul>
 <li>Ensuite, éprouvez l’hypothèse d’égalité des variances (homoscedasticité):</li>
 </ul>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb378-1" aria-hidden="true"></a><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb380-1" aria-hidden="true"></a><span class="kw">leveneTest</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##        Df F value  Pr(&gt;F)  
 ## group   3  2.8159 0.04234 *
@@ -472,12 +471,12 @@ and there are no factor predictors; no plot no. 5`
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>La valeur de p vous dit que vous pouvez rejeter l’hypothèse nulle qu’il n’y a aucune différence dans les variances entre les années. Alors, nous concluons que les variances ne sont pas homogènes.</p>
 </div>
-<div id="faire-lanova" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Faire l’ANOVA</h3>
+<div id="faire-lanova" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Faire l’ANOVA<a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#faire-lanova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Faites une ANOVA de fklnght en choisissant / en présumant pour l’instant que les conditions d’application sont suffisamment remplies. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb380-1" aria-hidden="true"></a><span class="kw">summary</span>(anova.model1)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb382-1" aria-hidden="true"></a><span class="kw">summary</span>(anova.model1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = fklngth ~ year, data = Dam10dat)
@@ -507,7 +506,7 @@ and there are no factor predictors; no plot no. 5`
 <li><em>F-Statistic</em> La p-valeur associée au test “omnibus” que toutes les moyennes sont égales. Ici, p est beaucoup plus petit que 0.05 et on rejetterait H0 pour conclure que fklngth varie selon les années.</li>
 </ol>
 <p>La commande <code>anova()</code> produit le tableau d’ANOVA standard qui contient la plupart de cette information:</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb382-1" aria-hidden="true"></a><span class="kw">anova</span>(anova.model1)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb384-1" aria-hidden="true"></a><span class="kw">anova</span>(anova.model1)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: fklngth
@@ -518,15 +517,15 @@ and there are no factor predictors; no plot no. 5`
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>La variabilité totale de <code>fklngth</code>, mesurée par la somme des carrés des écarts (Sum sq) est partitionnée en ce qui peut être expliqué par l’année (485.26) et la variabilité résiduelle inexpliquée (3095.30). L’année explique bien (485.26/(3095.30+485.26)=.1355 or 13.55% de la variabilité). Le carré moyen des résidus (Residual Mean Sq) est leur variance.</p>
 </div>
-<div id="les-comparaisons-multiples" class="section level3" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> Les comparaisons multiples</h3>
+<div id="les-comparaisons-multiples" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Les comparaisons multiples<a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#les-comparaisons-multiples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>La fonction <code>pairwise.t.test()</code> peut être utilisée pour comparer des moyennes et ajuster (ou non, si désiré) les probabilités pour le nombre de comparaisons en utilisant l’une des options pour p.adj:</li>
 </ul>
 <p>Compare toutes les moyennes sans ajuster les probabilités</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb384-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
-<span id="cb384-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb384-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span></span>
-<span id="cb384-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb384-3" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb386-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
+<span id="cb386-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb386-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb386-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb386-3" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -539,9 +538,9 @@ and there are no factor predictors; no plot no. 5`
 ## 
 ## P value adjustment method: none</code></pre>
 <p>Option <code>bonf</code> ajuste les p-valeurs avec la correction de Bonferroni. Ici, il y a 6 valeurs de p calculées, et la correction de Bonferroni revient à simplement multiplier la p-valeur par 6 (sauf si le résultat est supérieur à 1. Si tel est le cas, la <code>p-value</code> ajustée est 1).</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb386-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
-<span id="cb386-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb386-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span></span>
-<span id="cb386-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb386-3" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb388-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
+<span id="cb388-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb388-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;bonf&quot;</span></span>
+<span id="cb388-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb388-3" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -554,9 +553,9 @@ and there are no factor predictors; no plot no. 5`
 ## 
 ## P value adjustment method: bonferroni</code></pre>
 <p>Option “holm” is est la correction séquentielle de Bonferroni dans laquelle les p-valeurs sont ordonnées de (i=1) la plus faible à (N) la plus grande. La correction pour les p-valeurs est (N-i+1). Ici, il y a N=6 paires de moyennes qui sont comparées. La plus petite valeur de p non corrigée est 0.0019 pour 1954 vs 1965. La p-valeur corrigée est donc <span class="math inline">\(0.0019*(6-1+1)=0.011\)</span>. La seconde plus petite p-valeur est 0.0022. Sa p-valeur corrigée est 0.0022*(6-2+1)=0.011. Pour la p-valeur la plus élevée, la correction est (N-N+1)=1, donc la p-valeur corrigée est égale à la p-valeur brute.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb388-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
-<span id="cb388-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb388-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span></span>
-<span id="cb388-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb388-3" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb390-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
+<span id="cb390-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb390-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;holm&quot;</span></span>
+<span id="cb390-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb390-3" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -569,9 +568,9 @@ and there are no factor predictors; no plot no. 5`
 ## 
 ## P value adjustment method: holm</code></pre>
 <p>L’option “fdr” sert à contrôler le “false discovery rate”.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb390-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
-<span id="cb390-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb390-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span></span>
-<span id="cb390-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb390-3" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb392-1" aria-hidden="true"></a><span class="kw">pairwise.t.test</span>(Dam10dat<span class="op">$</span>fklngth, Dam10dat<span class="op">$</span>year,</span>
+<span id="cb392-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb392-2" aria-hidden="true"></a>  <span class="dt">p.adj =</span> <span class="st">&quot;fdr&quot;</span></span>
+<span id="cb392-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb392-3" aria-hidden="true"></a>)</span></code></pre></div>
 <pre><code>## 
 ##  Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -586,8 +585,8 @@ and there are no factor predictors; no plot no. 5`
 <p>Les quatre méthodes mènent ici à la même conclusion: les poissons sont plus gros après la construction du barrage et toutes les comparaisons entre les années 50 et 60 sont significatives alors que les différences entre 54 et 58 ou 65 et 66 ne le sont pas. La conclusion ne dépend pas du choix de méthode.</p>
 <p>Dans d’autres situations, vous pourriez obtenir des résultats contradictoires. Alors, quelle méthode choisir? Les p-valeurs qui ne sont pas corrigées sont certainement suspectes lorsqu’il y a plusieurs comparaisons. D’un autre coté, la correction de Bonferroni est conservatrice et le devient encore plus lorsqu’il y a de très nombreuses comparaisons. Des travaux récents suggèrent que la correction fdr est un bon compromis lorsqu’il y a beaucoup de comparaisons.</p>
 <p>La méthode de Tukey est l’une des plus populaires et est facile à utiliser en R (notez cependant qu’il y a un petit bug qui se manifeste quand la variable indépendante peut ressembler à un nombre plutôt qu’un facteur, ce qui explique la petite pirouette avec <code>paste0</code> dans le code):</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb392-1" aria-hidden="true"></a>Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste0</span>(<span class="st">&quot;m&quot;</span>, Dam10dat<span class="op">$</span>year))</span>
-<span id="cb392-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb392-2" aria-hidden="true"></a><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb394-1" aria-hidden="true"></a>Dam10dat<span class="op">$</span>myyear &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">paste0</span>(<span class="st">&quot;m&quot;</span>, Dam10dat<span class="op">$</span>year))</span>
+<span id="cb394-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb394-2" aria-hidden="true"></a><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -601,7 +600,7 @@ and there are no factor predictors; no plot no. 5`
 ## m1965-m1958 -5.6948718 -10.436304 -0.9534397 0.0116943
 ## m1966-m1958 -3.4999106  -6.875104 -0.1247171 0.0390011
 ## m1966-m1965  2.1949612  -2.240630  6.6305526 0.5710111</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb394-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb396-1" aria-hidden="true"></a><span class="kw">plot</span>(<span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat)))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ano-13"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-13-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
@@ -610,16 +609,16 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 </div>
 <p>Les intervalles de confiance, corrigés pour les comparaisons multiples par la méthode de Tukey, sont illustrés pour les différences entre années. Malheureusement les légendes ne sont pas complètes, mais l’ordre est le même que dans le tableau précédent.</p>
 <p>Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu plus de code:</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-1" aria-hidden="true"></a><span class="co"># Alternative way to compute Tukey multiple comparisons</span></span>
-<span id="cb395-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-2" aria-hidden="true"></a><span class="co"># set up a one-way ANOVA</span></span>
-<span id="cb395-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-3" aria-hidden="true"></a>anova.fkl.vs.year &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</span>
-<span id="cb395-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-4" aria-hidden="true"></a><span class="co"># set up all-pairs comparisons for factor `year&#39;</span></span>
-<span id="cb395-5"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-5" aria-hidden="true"></a></span>
-<span id="cb395-6"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-6" aria-hidden="true"></a>meandiff &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(</span>
-<span id="cb395-7"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-7" aria-hidden="true"></a>  <span class="dt">myyear =</span></span>
-<span id="cb395-8"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-8" aria-hidden="true"></a>    <span class="st">&quot;Tukey&quot;</span></span>
-<span id="cb395-9"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-9" aria-hidden="true"></a>))</span>
-<span id="cb395-10"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb395-10" aria-hidden="true"></a><span class="kw">confint</span>(meandiff)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-1" aria-hidden="true"></a><span class="co"># Alternative way to compute Tukey multiple comparisons</span></span>
+<span id="cb397-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-2" aria-hidden="true"></a><span class="co"># set up a one-way ANOVA</span></span>
+<span id="cb397-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-3" aria-hidden="true"></a>anova.fkl.vs.year &lt;-<span class="st"> </span><span class="kw">aov</span>(<span class="kw">aov</span>(fklngth <span class="op">~</span><span class="st"> </span>myyear, <span class="dt">data =</span> Dam10dat))</span>
+<span id="cb397-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-4" aria-hidden="true"></a><span class="co"># set up all-pairs comparisons for factor `year&#39;</span></span>
+<span id="cb397-5"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-5" aria-hidden="true"></a></span>
+<span id="cb397-6"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-6" aria-hidden="true"></a>meandiff &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.fkl.vs.year, <span class="dt">linfct =</span> <span class="kw">mcp</span>(</span>
+<span id="cb397-7"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-7" aria-hidden="true"></a>  <span class="dt">myyear =</span></span>
+<span id="cb397-8"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-8" aria-hidden="true"></a>    <span class="st">&quot;Tukey&quot;</span></span>
+<span id="cb397-9"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-9" aria-hidden="true"></a>))</span>
+<span id="cb397-10"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-10" aria-hidden="true"></a><span class="kw">confint</span>(meandiff)</span></code></pre></div>
 <pre><code>## 
 ##   Simultaneous Confidence Intervals
 ## 
@@ -628,19 +627,19 @@ Figure 5.4: Différence anuelles dans la longueur des esturgeons
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5943
+## Quantile = 2.5927
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2722   3.6466
-## m1965 - m1954 == 0  -5.5077  -9.9984  -1.0169
-## m1966 - m1954 == 0  -3.3127  -6.3440  -0.2814
-## m1965 - m1958 == 0  -5.6949 -10.4126  -0.9772
-## m1966 - m1958 == 0  -3.4999  -6.8582  -0.1416
-## m1966 - m1965 == 0   2.1950  -2.2184   6.6084</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb397-1" aria-hidden="true"></a><span class="kw">plot</span>(meandiff)</span></code></pre></div>
+## m1958 - m1954 == 0   0.1872  -3.2701   3.6445
+## m1965 - m1954 == 0  -5.5077  -9.9958  -1.0196
+## m1966 - m1954 == 0  -3.3127  -6.3422  -0.2832
+## m1965 - m1958 == 0  -5.6949 -10.4098  -0.9800
+## m1966 - m1958 == 0  -3.4999  -6.8562  -0.1436
+## m1966 - m1965 == 0   2.1950  -2.2158   6.6057</code></pre>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb399-1" aria-hidden="true"></a><span class="kw">plot</span>(meandiff)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ano-14"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-14-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
@@ -648,16 +647,16 @@ Figure 5.5: Différence anuelles dans la longueur des esturgeons
 </p>
 </div>
 <p>C’est un peu mieux, mais ce qui le serait encore plus c’est un graphique des moyennes, avec leurs intervalles de confiance ajustés pour les comparaisons multiples:</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-1" aria-hidden="true"></a><span class="co"># Compute and plot means and Tukey CI</span></span>
-<span id="cb398-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-2" aria-hidden="true"></a>means &lt;-<span class="st"> </span><span class="kw">glht</span>(</span>
-<span id="cb398-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-3" aria-hidden="true"></a>  anova.fkl.vs.year,</span>
-<span id="cb398-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-4" aria-hidden="true"></a>  <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span> <span class="st">&quot;Tukey&quot;</span>)</span>
-<span id="cb398-5"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-5" aria-hidden="true"></a>)</span>
-<span id="cb398-6"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-6" aria-hidden="true"></a>cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</span>
-<span id="cb398-7"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-7" aria-hidden="true"></a><span class="co"># use sufficiently large upper margin</span></span>
-<span id="cb398-8"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-8" aria-hidden="true"></a><span class="co"># plot</span></span>
-<span id="cb398-9"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-9" aria-hidden="true"></a>old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</span>
-<span id="cb398-10"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb398-10" aria-hidden="true"></a><span class="kw">plot</span>(cimeans)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-1" aria-hidden="true"></a><span class="co"># Compute and plot means and Tukey CI</span></span>
+<span id="cb400-2"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-2" aria-hidden="true"></a>means &lt;-<span class="st"> </span><span class="kw">glht</span>(</span>
+<span id="cb400-3"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-3" aria-hidden="true"></a>  anova.fkl.vs.year,</span>
+<span id="cb400-4"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-4" aria-hidden="true"></a>  <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">myyear =</span> <span class="st">&quot;Tukey&quot;</span>)</span>
+<span id="cb400-5"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-5" aria-hidden="true"></a>)</span>
+<span id="cb400-6"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-6" aria-hidden="true"></a>cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</span>
+<span id="cb400-7"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-7" aria-hidden="true"></a><span class="co"># use sufficiently large upper margin</span></span>
+<span id="cb400-8"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-8" aria-hidden="true"></a><span class="co"># plot</span></span>
+<span id="cb400-9"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-9" aria-hidden="true"></a>old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</span>
+<span id="cb400-10"><a href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html#cb400-10" aria-hidden="true"></a><span class="kw">plot</span>(cimeans)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ano-15"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-15-1.svg" alt="Différence anuelles dans la longueur des esturgeons" width="672" />
 <p class="caption">
@@ -706,7 +705,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

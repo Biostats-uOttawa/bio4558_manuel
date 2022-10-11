@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="premier-pas-avec-r.html"/>
 <link rel="next" href="analyse-de-2-variables.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="premier-travail-avec-des-données" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Premier travail avec des données</h2>
-<div id="jeu-de-données-dexemple" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Jeu de données d’exemple</h3>
+<div id="premier-travail-avec-des-données" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Premier travail avec des données<a href="premier-travail-avec-des-données.html#premier-travail-avec-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="jeu-de-données-dexemple" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Jeu de données d’exemple<a href="premier-travail-avec-des-données.html#jeu-de-données-dexemple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dans cette partie nous allons (enfin) travailler sur des “vraies” données, et utiliser un jeu de données présent dans l’extension <code>questionr</code>. Nous devons donc avant toute chose installer cette extension.</p>
 <p>Pour installer ce package, deux possibilités :</p>
 <ul>
@@ -377,8 +376,8 @@ Figure 1.4: Onglet Environment
 </div>
 <p>Cet objet est d’un type nouveau : il s’agit d’un tableau de données.</p>
 </div>
-<div id="tableau-de-données-data-frame" class="section level3" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Tableau de données (<em>data frame</em>)</h3>
+<div id="tableau-de-données-data-frame" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Tableau de données (<em>data frame</em>)<a href="premier-travail-avec-des-données.html#tableau-de-données-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Un <em>data frame</em> (ou tableau de données, ou table) est un type d’objet R qui contient des données au format tabulaire, avec les observations en ligne et les variables en colonnes, comme dans une feuille de tableur de type LibreOffice ou Excel.</p>
 <p>Si on se contente d’exécuter le nom de notre tableau de données :</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="premier-travail-avec-des-données.html#cb110-1" aria-hidden="true"></a>hdv2003</span></code></pre></div>
@@ -417,8 +416,8 @@ Sous R, on peut importer ou créer autant de tableaux de données qu’on le sou
 <span id="cb113-4"><a href="premier-travail-avec-des-données.html#cb113-4" aria-hidden="true"></a><span class="co">## Jeu de données hdv2003</span></span>
 <span id="cb113-5"><a href="premier-travail-avec-des-données.html#cb113-5" aria-hidden="true"></a><span class="kw">data</span>(hdv2003)</span>
 <span id="cb113-6"><a href="premier-travail-avec-des-données.html#cb113-6" aria-hidden="true"></a>d &lt;-<span class="st"> </span>hdv2003</span></code></pre></div>
-<div id="structure-du-tableau" class="section level4" number="1.3.2.1">
-<h4><span class="header-section-number">1.3.2.1</span> Structure du tableau</h4>
+<div id="structure-du-tableau" class="section level4 hasAnchor" number="1.3.2.1">
+<h4><span class="header-section-number">1.3.2.1</span> Structure du tableau<a href="premier-travail-avec-des-données.html#structure-du-tableau" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Un tableau étant un objet comme un autre, on peut lui appliquer des fonctions. Par exemple, <code>nrow</code> et <code>ncol</code> retournent le nombre de lignes et de colonnes du tableau :</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="premier-travail-avec-des-données.html#cb114-1" aria-hidden="true"></a><span class="kw">nrow</span>(d)</span></code></pre></div>
 <pre><code>## [1] 2000</code></pre>
@@ -466,8 +465,8 @@ Figure 1.7: Structure d’un objet
 </p>
 </div>
 </div>
-<div id="accéder-aux-variables-dun-tableau" class="section level4" number="1.3.2.2">
-<h4><span class="header-section-number">1.3.2.2</span> Accéder aux variables d’un tableau</h4>
+<div id="accéder-aux-variables-dun-tableau" class="section level4 hasAnchor" number="1.3.2.2">
+<h4><span class="header-section-number">1.3.2.2</span> Accéder aux variables d’un tableau<a href="premier-travail-avec-des-données.html#accéder-aux-variables-dun-tableau" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Une opération très importante est l’accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l’opérateur <code>$</code>, qui permet d’accéder aux colonnes du tableau. Ainsi, si l’on tape :</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="premier-travail-avec-des-données.html#cb124-1" aria-hidden="true"></a>d<span class="op">$</span>sexe</span></code></pre></div>
 <pre><code>##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme
@@ -498,8 +497,8 @@ Figure 1.7: Structure d’un objet
 <pre><code>##  [1] 52 42 50 41 46 45 46 24 24 66</code></pre>
 <p>Le deuxième argument numérique permet d’indiquer le nombre de valeurs à afficher.</p>
 </div>
-<div id="créer-une-nouvelle-variable" class="section level4" number="1.3.2.3">
-<h4><span class="header-section-number">1.3.2.3</span> Créer une nouvelle variable</h4>
+<div id="créer-une-nouvelle-variable" class="section level4 hasAnchor" number="1.3.2.3">
+<h4><span class="header-section-number">1.3.2.3</span> Créer une nouvelle variable<a href="premier-travail-avec-des-données.html#créer-une-nouvelle-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>On peut aussi utiliser l’opérateur <code>$</code> pour créer une nouvelle variable dans notre tableau : pour cela, il suffit de lui assigner une valeur.</p>
 <p>Par exemple, la variable <code>heures.tv</code> contient le nombre d’heures passées quotidiennement devant la télé :</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="premier-travail-avec-des-données.html#cb130-1" aria-hidden="true"></a><span class="kw">head</span>(d<span class="op">$</span>heures.tv, <span class="dv">10</span>)</span></code></pre></div>
@@ -511,15 +510,15 @@ Figure 1.7: Structure d’un objet
 <pre><code>## [1]   0  60   0 120 180 120</code></pre>
 </div>
 </div>
-<div id="analyse-univariée" class="section level3" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Analyse univariée</h3>
+<div id="analyse-univariée" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Analyse univariée<a href="premier-travail-avec-des-données.html#analyse-univariée" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On a donc désormais accès à un tableau de données <code>d</code>, dont les lignes sont des observations (des individus enquêtés), et les colonnes des variables (des caractéristiques de chacun de ces individus), et on sait accéder à ces variables grâce à l’opérateur <code>$</code>.</p>
 <p>Si on souhaite analyser ces variables, les méthodes et fonctions utilisées seront différentes selon qu’il s’agit d’une variable <em>quantitative</em> (variable numérique pouvant prendre un grand nombre de valeurs : l’âge, le revenu, un pourcentage…) ou d’une variable <em>qualitative</em> (variable pouvant prendre un nombre limité de valeurs appelées modalités : le sexe, la profession, le dernier diplôme obtenu, etc.).</p>
-<div id="analyser-une-variable-quantitative" class="section level4" number="1.3.3.1">
-<h4><span class="header-section-number">1.3.3.1</span> Analyser une variable quantitative</h4>
+<div id="analyser-une-variable-quantitative" class="section level4 hasAnchor" number="1.3.3.1">
+<h4><span class="header-section-number">1.3.3.1</span> Analyser une variable quantitative<a href="premier-travail-avec-des-données.html#analyser-une-variable-quantitative" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Une variable quantitative est une variable de type numérique (un nombre) qui peut prendre un grand nombre de valeurs. On en a plusieurs dans notre jeu de données, notamment l’âge (variable <code>age</code>) ou le nombre d’heures passées devant la télé (<code>heures.tv</code>).</p>
-<div id="indicateurs-de-centralité" class="section level5" number="1.3.3.1.1">
-<h5><span class="header-section-number">1.3.3.1.1</span> Indicateurs de centralité</h5>
+<div id="indicateurs-de-centralité" class="section level5 hasAnchor" number="1.3.3.1.1">
+<h5><span class="header-section-number">1.3.3.1.1</span> Indicateurs de centralité<a href="premier-travail-avec-des-données.html#indicateurs-de-centralité" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Caractériser une variable quantitative, c’est essayer de décrire la manière dont ses valeurs se répartissent, ou se distribuent.</p>
 <p>Pour cela on peut commencer par regarder les valeurs extrêmes, avec les fonctions <code>min</code>, <code>max</code> ou <code>range</code> :</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="premier-travail-avec-des-données.html#cb135-1" aria-hidden="true"></a><span class="kw">min</span>(d<span class="op">$</span>age)</span></code></pre></div>
@@ -536,8 +535,8 @@ Figure 1.7: Structure d’un objet
 <pre><code>## [1] 48</code></pre>
 <p>Une différence entre les deux indicateurs est que la médiane est beaucoup moins sensible aux valeurs “extrêmes” : on dit qu’elle est plus <em>robuste</em>. Ainsi, en 2013, le salaire net <em>moyen</em> des salariés à temps plein en France était de 2202 euros, tandis que le salaire net <em>médian</em> n’était que de 1772 euros. La différence étant due à des très hauts salaires qui “tirent” la moyenne vers le haut.</p>
 </div>
-<div id="indicateurs-de-dispersion" class="section level5" number="1.3.3.1.2">
-<h5><span class="header-section-number">1.3.3.1.2</span> Indicateurs de dispersion</h5>
+<div id="indicateurs-de-dispersion" class="section level5 hasAnchor" number="1.3.3.1.2">
+<h5><span class="header-section-number">1.3.3.1.2</span> Indicateurs de dispersion<a href="premier-travail-avec-des-données.html#indicateurs-de-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Les indicateurs de dispersion permettent de mesurer si les valeurs sont plutôt regroupées ou au contraire plutôt dispersées.</p>
 <p>L’indicateur le plus simple est l’étendue de la distribution, qui décrit l’écart maximal observé entre les observations :</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="premier-travail-avec-des-données.html#cb145-1" aria-hidden="true"></a><span class="kw">max</span>(d<span class="op">$</span>age) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(d<span class="op">$</span>age)</span></code></pre></div>
@@ -569,8 +568,8 @@ Figure 1.7: Structure d’un objet
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   18.00   35.00   48.00   48.16   60.00   97.00</code></pre>
 </div>
-<div id="représentation-graphique" class="section level5" number="1.3.3.1.3">
-<h5><span class="header-section-number">1.3.3.1.3</span> Représentation graphique</h5>
+<div id="représentation-graphique" class="section level5 hasAnchor" number="1.3.3.1.3">
+<h5><span class="header-section-number">1.3.3.1.3</span> Représentation graphique<a href="premier-travail-avec-des-données.html#représentation-graphique" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>L’outil le plus utile pour étudier la distribution des valeurs d’une variable quantitative reste la représentation graphique.</p>
 <p>La représentation la plus courante est sans doute l’histogramme. On peut l’obtenir avec la fonction <code>hist</code> :</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="premier-travail-avec-des-données.html#cb157-1" aria-hidden="true"></a><span class="kw">hist</span>(d<span class="op">$</span>age)</span></code></pre></div>
@@ -615,12 +614,12 @@ Figure 1.11: Histogramme modifié
 avec l’extension <code>ggplot2</code> qui permet la production et la personnalisation de graphiques complexes.</p>
 </div>
 </div>
-<div id="analyser-une-variable-qualitative" class="section level4" number="1.3.3.2">
-<h4><span class="header-section-number">1.3.3.2</span> Analyser une variable qualitative</h4>
+<div id="analyser-une-variable-qualitative" class="section level4 hasAnchor" number="1.3.3.2">
+<h4><span class="header-section-number">1.3.3.2</span> Analyser une variable qualitative<a href="premier-travail-avec-des-données.html#analyser-une-variable-qualitative" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Une variable qualitative est une variable qui ne peut prendre qu’un nombre limité de valeurs, appelées modalités. Dans notre jeu de données on trouvera par exemple le sexe (<code>sexe</code>), le niveau d’études (<code>nivetud</code>), la catégorie socio-professionnelle (<code>qualif</code>)…</p>
 <p>À noter qu’une variable qualitative peut tout-à-fait être numérique, et que certaines variables peuvent être traitées soit comme quantitatives, soit comme qualitatives : c’est le cas par exemple du nombre d’enfants ou du nombre de frères et soeurs.</p>
-<div id="tri-à-plat" class="section level5" number="1.3.3.2.1">
-<h5><span class="header-section-number">1.3.3.2.1</span> Tri à plat</h5>
+<div id="tri-à-plat" class="section level5 hasAnchor" number="1.3.3.2.1">
+<h5><span class="header-section-number">1.3.3.2.1</span> Tri à plat<a href="premier-travail-avec-des-données.html#tri-à-plat" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>L’outil le plus utilisé pour représenter la répartition des valeurs d’une variable qualitative est le <em>tri à plat</em> : il s’agit simplement de compter, pour chacune des valeurs possibles de la variable (pour chacune des modalités), le nombre d’observations ayant cette valeur. Un tri à plat s’obtient sous R à l’aide de la fonction <code>table</code> :</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="premier-travail-avec-des-données.html#cb161-1" aria-hidden="true"></a><span class="kw">table</span>(d<span class="op">$</span>sexe)</span></code></pre></div>
 <pre><code>## 
@@ -691,8 +690,8 @@ Attention, par défaut la fonction <code>table</code> n’affiche pas les valeur
 ## NA                        347  17.3
 ## Total                    2000 100.0</code></pre>
 </div>
-<div id="représentations-graphiques" class="section level5" number="1.3.3.2.2">
-<h5><span class="header-section-number">1.3.3.2.2</span> Représentations graphiques</h5>
+<div id="représentations-graphiques" class="section level5 hasAnchor" number="1.3.3.2.2">
+<h5><span class="header-section-number">1.3.3.2.2</span> Représentations graphiques<a href="premier-travail-avec-des-données.html#représentations-graphiques" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>On peut représenter graphiquement le tri à plat d’une variable qualitative avec un diagramme en barres, obtenu avec la fonction <code>barplot</code>. Attention, contrairement à <code>hist</code> cette fonction ne s’applique pas directement à la variable mais au résultat du tri à plat de cette variable, calculé avec <code>table</code>. Il faut donc procéder en deux étapes :</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="premier-travail-avec-des-données.html#cb174-1" aria-hidden="true"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>clso)</span>
 <span id="cb174-2"><a href="premier-travail-avec-des-données.html#cb174-2" aria-hidden="true"></a><span class="kw">barplot</span>(tab)</span></code></pre></div>
@@ -729,8 +728,8 @@ Figure 1.15: Graphique de Cleveland trié
 </div>
 </div>
 </div>
-<div id="ex-introR-univ" class="section level3" number="1.3.4">
-<h3><span class="header-section-number">1.3.4</span> Exercices</h3>
+<div id="ex-introR-univ" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Exercices<a href="premier-travail-avec-des-données.html#ex-introR-univ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Exercice 1</strong></p>
 <p>Créer un nouveau script qui effectue les actions suivantes :</p>
 <ul>
@@ -818,7 +817,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

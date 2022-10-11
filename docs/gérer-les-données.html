@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.5 Gérer les données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.5 Gérer les données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="analyse-de-2-variables.html"/>
 <link rel="next" href="analyse-de-puissance-avec-r-et-gpower.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gérer-les-données" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Gérer les données</h2>
-<div id="importer-et-exporter-des-données" class="section level3" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> Importer et exporter des données</h3>
+<div id="gérer-les-données" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Gérer les données<a href="gérer-les-données.html#gérer-les-données" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="importer-et-exporter-des-données" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Importer et exporter des données<a href="gérer-les-données.html#importer-et-exporter-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il existe de multiple format four sauvegarder les données, les 2 plus utiles sont <code>.csv</code> et <code>.Rdata</code>.
 Les fichiers <code>.csv</code> sont utilisés pour stocker des données.
 Ils sont ouvrables par les éditeurs de texte (e.g. Word, Writer, atom, …) et les tableurs (e.g. MS Excel, LO Calc).
@@ -361,8 +360,8 @@ Les fichiers <code>.Rdata</code> sont utilisés pour stocker n’importe quel ob
 Cependant, ces fichiers ne peuvent être lus et utilisés que par R.
 Ces fichiers sont lus avec la fonction <code>load</code> et créés avec la fonction <code>save</code>.</p>
 <p>Les données pour les exercices de laboratoire et pour les devoirs vous sont fournies en format <code>.csv</code>.</p>
-<div id="répertoire-de-travail" class="section level4" number="1.5.1.1">
-<h4><span class="header-section-number">1.5.1.1</span> Répertoire de travail</h4>
+<div id="répertoire-de-travail" class="section level4 hasAnchor" number="1.5.1.1">
+<h4><span class="header-section-number">1.5.1.1</span> Répertoire de travail<a href="gérer-les-données.html#répertoire-de-travail" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 
 <div class="rmdwarning">
 Une des erreurs les plus communes lorsque l’on débute avec R est lié au chargement des données et la lecture de fichier externe à R.
@@ -389,14 +388,14 @@ Si vous ouvrez <code>RStudio</code> en double-cliquant sur un fichier <code>.R</
 Pour l’ensemble des laboratoire du cours, je suggère de créer un dossier dans lequel seront sauvegardés tous les scripts d’analyses et de sauvegardés tous les fichiers de données dans un sous dossier <code>data</code>. Le code du labo est structuré de cette manière. C’est pourquoi tous les codes de chargement ou d’écriture de données seront du type <code>data/mon_fichier.xxx</code>.
 </div>
 </div>
-<div id="ouvrir-un-fichier-de-données-en-format-.rdata" class="section level4" number="1.5.1.2">
-<h4><span class="header-section-number">1.5.1.2</span> Ouvrir un fichier de données en format <code>.Rdata</code></h4>
+<div id="ouvrir-un-fichier-de-données-en-format-.rdata" class="section level4 hasAnchor" number="1.5.1.2">
+<h4><span class="header-section-number">1.5.1.2</span> Ouvrir un fichier de données en format <code>.Rdata</code><a href="gérer-les-données.html#ouvrir-un-fichier-de-données-en-format-.rdata" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pour ouvrir ces fichiers, vous pouvez cliquer dessus et laisser votre système d’exploitation démarrer une nouvelle session de R ou encore, à partir de la console de R, utliser la fonction <code>load</code> avec le nom et le chemin du fichier de données.
 Par example, pour ouvrir le fichier <code>ErablesGatineau.Rdata</code> qui se situe dans le dossier <code>data</code> du dossier de travail, il faut taper:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="gérer-les-données.html#cb210-1" aria-hidden="true"></a><span class="kw">load</span>(<span class="st">&quot;data/ErablesGatineau.Rdata&quot;</span>)</span></code></pre></div>
 </div>
-<div id="ouvrir-un-fichier-de-données-en-format-.csv" class="section level4" number="1.5.1.3">
-<h4><span class="header-section-number">1.5.1.3</span> Ouvrir un fichier de données en format <code>.csv</code></h4>
+<div id="ouvrir-un-fichier-de-données-en-format-.csv" class="section level4 hasAnchor" number="1.5.1.3">
+<h4><span class="header-section-number">1.5.1.3</span> Ouvrir un fichier de données en format <code>.csv</code><a href="gérer-les-données.html#ouvrir-un-fichier-de-données-en-format-.csv" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pour importer ces données en format <code>.csv</code> dans R, il faut utiliser la commande <code>read.csv()</code>.
 Par exemple, pour créer un objet R <code>erables</code> qui contient les données du fichier <code>ErablesGatineau.csv</code>, il faut utiliser la commande suivant.</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="gérer-les-données.html#cb211-1" aria-hidden="true"></a>erables &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/ErablesGatineau.csv&quot;</span>)</span></code></pre></div>
@@ -429,31 +428,31 @@ Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut 
 <p>R confirme avoir en mémoire l’objet <code>erables</code>.
 <code>erables</code> est un tableau de données rectangulaire (data.frame) contenant 100 observations (lignes) de 3 variables (colonnes): <code>station</code>, une variable de type Facteur avec 2 niveaux, et <code>diam</code> et <code>biom</code> qui sont 2 variables numériques.</p>
 </div>
-<div id="entrer-des-données" class="section level4" number="1.5.1.4">
-<h4><span class="header-section-number">1.5.1.4</span> Entrer des données</h4>
+<div id="entrer-des-données" class="section level4 hasAnchor" number="1.5.1.4">
+<h4><span class="header-section-number">1.5.1.4</span> Entrer des données<a href="gérer-les-données.html#entrer-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>R n’est pas un environnement idéal pour entrer des données.
 C’est possible, mais la syntaxe est lourde et peut inciter à s’arracher les cheveux.
 Utilisez votre chiffrier préféré pour faire l’entrée de données.
 Ce sera plus efficace et moins frustrant.</p>
 </div>
-<div id="nettoyercorriger-des-données" class="section level4" number="1.5.1.5">
-<h4><span class="header-section-number">1.5.1.5</span> Nettoyer/corriger des données</h4>
+<div id="nettoyercorriger-des-données" class="section level4 hasAnchor" number="1.5.1.5">
+<h4><span class="header-section-number">1.5.1.5</span> Nettoyer/corriger des données<a href="gérer-les-données.html#nettoyercorriger-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Une autre opération qui peut être frustrante en R.
 Mon conseil : ne le faites pas là.
 Retournez au fichier original, faites la correction, puis re-exportez les données vers R.
 Il est finalement plus simple de refaire exécuter les quelques lignes de code par la machine.
 Vous aurez à la fin une seule version (corrigée) de vos données et un code qui vous permet de refaire votre analyse.</p>
 </div>
-<div id="exporter-des-données-à-partir-de-r." class="section level4" number="1.5.1.6">
-<h4><span class="header-section-number">1.5.1.6</span> Exporter des données à partir de R.</h4>
+<div id="exporter-des-données-à-partir-de-r." class="section level4 hasAnchor" number="1.5.1.6">
+<h4><span class="header-section-number">1.5.1.6</span> Exporter des données à partir de R.<a href="gérer-les-données.html#exporter-des-données-à-partir-de-r." class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Vous pouvez utiliser la fonction,</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="gérer-les-données.html#cb216-1" aria-hidden="true"></a><span class="kw">write.csv</span>(mydata, <span class="dt">file =</span> <span class="st">&quot;outfilename.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>où <code>mydata</code> est le nom du base de données à exporter et <code>outfilename.csv</code> est le nom du fichier à produire.
 Notez que ce fichier sera créé dans le répertoire de travail (qui peut être changé par le menu à <code>File&gt;Change dir</code>, ou par la commande <code>setwd()</code>)</p>
 </div>
 </div>
-<div id="examen-préliminaire-des-données" class="section level3" number="1.5.2">
-<h3><span class="header-section-number">1.5.2</span> Examen préliminaire des données</h3>
+<div id="examen-préliminaire-des-données" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Examen préliminaire des données<a href="gérer-les-données.html#examen-préliminaire-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La première étape de toute analyse est l’examen des données.
 Elle nous permet de découvrir si on a bien importé les données, si les nombres enregistrés sont possibles, si toutes les données ont bien été lues, etc.
 L’examen préliminaire des données permet souvent aussi d’identifier des observations suspectes, possiblement dûes à des erreurs d’entrée de donnée.
@@ -477,8 +476,8 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 ##  $ sex     : chr  &quot;MALE&quot; &quot;FEMALE&quot; &quot;MALE&quot; &quot;FEMALE&quot; ...
 ##  $ location: chr  &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; &quot;THE_PAS&quot; ...
 ##  $ year    : int  1978 1978 1978 1978 1978 1978 1978 1978 1978 1978 ...</code></pre>
-<div id="sommaire-statistique" class="section level4" number="1.5.2.1">
-<h4><span class="header-section-number">1.5.2.1</span> Sommaire statistique</h4>
+<div id="sommaire-statistique" class="section level4 hasAnchor" number="1.5.2.1">
+<h4><span class="header-section-number">1.5.2.1</span> Sommaire statistique<a href="gérer-les-données.html#sommaire-statistique" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="gérer-les-données.html#cb219-1" aria-hidden="true"></a><span class="kw">summary</span>(sturgeon)</span></code></pre></div>
 <pre><code>##     fklngth         totlngth        drlngth          rdwght     
@@ -515,8 +514,8 @@ Plusieurs fonctions de R y réagissent mal et on doit souvent faire les analyses
 On y reviendra, mais prenez l’habitude de noter mentalement si il y a des données manquantes et de vous en rappeler en faisant l’analyse.
 </div>
 </div>
-<div id="histogramme-densité-de-probabilité-empirique-boxplot-et-examen-visuel-de-la-normalité" class="section level4" number="1.5.2.2">
-<h4><span class="header-section-number">1.5.2.2</span> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité</h4>
+<div id="histogramme-densité-de-probabilité-empirique-boxplot-et-examen-visuel-de-la-normalité" class="section level4 hasAnchor" number="1.5.2.2">
+<h4><span class="header-section-number">1.5.2.2</span> Histogramme, densité de probabilité empirique, boxplot et examen visuel de la normalité<a href="gérer-les-données.html#histogramme-densité-de-probabilité-empirique-boxplot-et-examen-visuel-de-la-normalité" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Examinons maintenant de plus près la distribution de fklngth.
 La commande <code>hist()</code> permet de tracer un histogramme de la variable fklngth dans le base de données sturgeon.</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="gérer-les-données.html#cb221-1" aria-hidden="true"></a><span class="kw">hist</span>(sturgeon<span class="op">$</span>fklngth)</span></code></pre></div>
@@ -603,8 +602,8 @@ On peut visuellement interpréter approximativement les différences entre médi
 Les boîtes s’étendent du premier au troisième quartile (du 25ième au 75ième percentile si vous préférez), Les barres (moustaches ou whiskers) au-dessus et en dessous des boîtes s’étendent soit de la valeur minimum à la valeur maximum, ou, si il y a des valeurs extrêmes, de la plus petite à la plus grande valeur à l’intérieur de 1.5x la largeur de l’étendue interquartile .
 Enfin, les observations qui excèdent les limites des moustaches (donc à plus de 1.5x l’étendue interquartile de chaque côté de la médiane) sont indiquées par des symboles.Ce sont des valeurs qui pourraient être considérées comme extrêmes et possiblement aberrantes.</p>
 </div>
-<div id="diagrammes-de-dispersion-bivariés" class="section level4" number="1.5.2.3">
-<h4><span class="header-section-number">1.5.2.3</span> Diagrammes de dispersion bivariés</h4>
+<div id="diagrammes-de-dispersion-bivariés" class="section level4 hasAnchor" number="1.5.2.3">
+<h4><span class="header-section-number">1.5.2.3</span> Diagrammes de dispersion bivariés<a href="gérer-les-données.html#diagrammes-de-dispersion-bivariés" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>En plus des graphiques pour chacune des variables séparément, il est très souvent intéressant de jeter un coup d’oeil aux diagrammes de dispersion .
 La commande <code>plot(y~x)</code> permet de faire le graphique de y sur l’axe vertical (l’ordonnée) en fonction de x sur l’axe horizontal (l’abscisse).</p>
 
@@ -621,8 +620,8 @@ Pour obtenir la matrice de ces graphiques avec la trace lowess pour toutes les v
 <p><img src="Labo_BIO4558_files/figure-html/pairs-stur-1.svg" width="672" /></p>
 </div>
 </div>
-<div id="créer-des-sous-ensembles-de-cas" class="section level3" number="1.5.3">
-<h3><span class="header-section-number">1.5.3</span> Créer des sous-ensembles de cas</h3>
+<div id="créer-des-sous-ensembles-de-cas" class="section level3 hasAnchor" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Créer des sous-ensembles de cas<a href="gérer-les-données.html#créer-des-sous-ensembles-de-cas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il arrive fréquemment qu’une analyse se concentre sur un sous-ensemble des observations contenues dans un fichier de données.
 Les cas sont d’habitude sélectionnés selon un critère en particulier.
 Pour utiliser un sous-ensemble de vos données en créant un graphique ou en performant une analyse, on peut utiliser la commande <code>subset()</code>.
@@ -707,8 +706,8 @@ En utilisant les commandes <code>subset()</code> et <code>hist()</code>, essayez
 <span id="cb232-2"><a href="gérer-les-données.html#cb232-2" aria-hidden="true"></a><span class="kw">hist</span>(sub_female_<span class="dv">7980</span><span class="op">$</span>fklngth)</span></code></pre></div>
 <p><img src="Labo_BIO4558_files/figure-html/intror-subex-1.svg" width="672" /></p>
 </div>
-<div id="transformations-de-données" class="section level3" number="1.5.4">
-<h3><span class="header-section-number">1.5.4</span> Transformations de données</h3>
+<div id="transformations-de-données" class="section level3 hasAnchor" number="1.5.4">
+<h3><span class="header-section-number">1.5.4</span> Transformations de données<a href="gérer-les-données.html#transformations-de-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il est très fréquemment nécessaire d’effectuer des transformations mathématiques sur les données brutes pour mieux satisfaire aux conditions d’application de tests statistiques.
 R étant aussi un langage de programmation complet, il peut donc effectuer les transformations désirées.
 Les fonctions les plus fréquemment utilisées sont:</p>
@@ -729,8 +728,8 @@ Pour les transformations conditionnelles, on peut utiliser la fonction <code>ife
 Par exemple, pour créer une nouvelle variable appelée dummy qui sera égale à 1 pour les mâles et 0 pour les femelles, on peut écrire:</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="gérer-les-données.html#cb236-1" aria-hidden="true"></a>sturgeon<span class="op">$</span>dummy &lt;-<span class="st"> </span><span class="kw">ifelse</span>(sturgeon<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;MALE&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code></pre></div>
 </div>
-<div id="exercice-sur-r" class="section level3" number="1.5.5">
-<h3><span class="header-section-number">1.5.5</span> Exercice sur R</h3>
+<div id="exercice-sur-r" class="section level3 hasAnchor" number="1.5.5">
+<h3><span class="header-section-number">1.5.5</span> Exercice sur R<a href="gérer-les-données.html#exercice-sur-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vous trouverez dans le fichier <code>salmonella.csv</code>, des valeurs numériques du ratio d’infection des cellules par la salmonelle dans deux milieux (IN VITRO et IN VIVO) et pour trois souches différentes de salmonelles.
 Examinez les données pour le ratio et faites des graphiques pour évaluer la normalité de la distribution des ratios pour la souche SAUVAGE dans les 2 milieux combinés et produire un graphique.</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb237-1"><a href="gérer-les-données.html#cb237-1" aria-hidden="true"></a><span class="co">## Charger les données</span></span>
@@ -811,7 +810,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

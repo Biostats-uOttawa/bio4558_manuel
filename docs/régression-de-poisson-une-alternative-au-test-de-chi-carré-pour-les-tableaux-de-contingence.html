@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.4 Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.4 Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html"/>
 <link rel="next" href="tester-une-hypothèse-extrinsèque.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence</h2>
+<div id="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Régression de Poisson: une alternative au test de Chi carré pour les tableaux de contingence<a href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html#régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Rendu à ce stade, vous devriez avoir appris à apprécier la flexibilité et la généralité des modèles linéaires, et réaliser que le test de t est un cas spécial d’un modèle linéaire avec une variable indépendante catégorique. L’analyse des tableaux de contingence par le test du Chi carré peut également être généralisé. Un modèle linéaire généralisé pour une distribution de Poisson peut être utilisé quand la variable dépendante est une fréquence d’observations et les variables indépendantes sont catégorique (comme pour les tableaux de contingence, on parle alors de modèles log-linéaires), continue (régression Poisson), ou une combinaison de variables indépendante continues et catégoriques (aussi appelé régression de Poisson, mais avec des variables catégoriques en plus, analogue à l’ANCOVA sensu largo).</p>
 <p>Ces modèles prédisent le logarithme naturel de la fréquence des observations en fonction des variables indépendantes. Comme pour les modèles linéaires qui présument de la normalité des résidus, on peut évaluer la qualité d’ajustement du modèle (par AICc par exemple) et la signification statistique des termes du modèle (par exemple en comparant l’ajustement d’un modèle “complet” et celui d’un modèle qui exclue un terme à tester). On peut également obtenir des estimés des paramètre pour chaque terme dans le modèle, avec des intervalles de confiance et des valeur p pour l’hypothèse nulle que ce terme n’a pas d’influence sur la fréquence.</p>
 <p>La fonction glm() avec l’option family=poisson() permet l’estimation, par la méthode du maximum de vraisemblance, de modèles linéaires pour des fréquences. Comparativement aux modèles linéaires vus précédemment, une des particularité de ces modèles est que seuls les termes d’interaction sont d’intérêt. En partant des données de recensement en forme tableau, on peut ajuster un glm aux fréquences observées par sexe et classe d’âge par:</p>
@@ -390,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Dispersion parameter for poisson family taken to be 1)
 ## 
 ##     Null deviance: 5.3611e+04  on 17  degrees of freedom
-## Residual deviance: 1.1520e-12  on  0  degrees of freedom
+## Residual deviance: 6.5463e-12  on  0  degrees of freedom
 ## AIC: 237.31
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
@@ -451,7 +450,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

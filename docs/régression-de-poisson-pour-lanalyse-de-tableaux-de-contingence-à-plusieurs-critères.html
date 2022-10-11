@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.6 Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="tester-une-hypothèse-extrinsèque.html"/>
 <link rel="next" href="ex-glm.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères" class="section level2" number="9.6">
-<h2><span class="header-section-number">9.6</span> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères</h2>
+<div id="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Régression de Poisson pour l’analyse de tableaux de contingence à plusieurs critères<a href="régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères.html#régression-de-poisson-pour-lanalyse-de-tableaux-de-contingence-à-plusieurs-critères" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Le principe d’éprouver l’indépendance en examinant les interactions peut être utilisé avec les tableaux de contingence à plusieurs critères. Par exemple, examinons si la température (2 niveaux: base et haute) et l’éclairage (2 niveaux: bas et haut) affectent si des plantes sont infectées (2 niveaux: infecté et non-infecté) par un pathogène. On peut représenter ces données par un tableau de contingence à 3 critères (température, lumière, statut d’infection).</p>
 <p>L’ajustement de modèles log-linéaires à des données de fréquence implique que l’on éprouve plusieurs modèles en les comparant au modèle complet (saturé). Une série de modèles contenant tous les termes sauf une des interactions qui nous intéressent est produite, et l’ajustement de chaque modèle est comparé à celui du modèle complet. Si la réduction de la qualité d’ajustement n’est pas significative, cela implique que l’interaction manquante contribue peu à la qualité de l’ajustement. Par contre, si le modèle réduit s’ajuste nettement moins bien aux données, alors l’interaction manquante contribue beaucoup à l’ajustement du modèle complet. Comme pour les tableaux de contingence 2X2, les termes qui nous intéressent le plus sont les interactions, pas les effets principaux, si l’on teste pour l’indépendance des différents facteurs.</p>
 <p>Le fichier <code>loglin.csv</code> contient les fréquences (frequency) des plantes infectées ou non infectées (<code>infected</code>) à basse et haute température (<code>temperature</code>) à basse et haute lumière (<code>light</code>). Pour visualiser ces données et déterminer si le taux d’infection dépends de la lumière et de la température, on peut faire une figure mosaïque et ajuster un modèle log-linéaire:</p>
@@ -376,7 +375,7 @@ Figure 9.3: Proportion de plantes infectées en fonction de la température er l
 ##                            LR Chisq Df Pr(&gt;Chisq)    
 ## temperature                  9.1786  1  0.0024487 ** 
 ## light                       13.2829  1  0.0002678 ***
-## infected                     0.0000  1  1.0000000    
+## infected                     0.0000  1  0.9999999    
 ## temperature:light            5.6758  1  0.0172008 *  
 ## temperature:infected        29.0612  1  7.013e-08 ***
 ## light:infected              20.2687  1  6.729e-06 ***
@@ -429,7 +428,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

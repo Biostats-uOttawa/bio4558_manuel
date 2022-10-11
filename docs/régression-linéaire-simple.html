@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.6 Régression linéaire simple | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.6 Régression linéaire simple | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="corrélations-non-paramétriques-r-de-spearman-et-tau-de-kendall.html"/>
 <link rel="next" href="transformation-des-données-en-régression.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="régression-linéaire-simple" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Régression linéaire simple</h2>
+<div id="régression-linéaire-simple" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Régression linéaire simple<a href="régression-linéaire-simple.html#régression-linéaire-simple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>L’analyse de corrélation vise à décrire comment deux variables covarient.
 L’analyse de régression vise plutôt à produire un modèle permettant de prédire une variable (la variable dépendante) par l’autre (la variable indépendante).</p>
 <p>Comme pour l’analyse de corrélation, on devrait commencer en examinant des graphiques.
@@ -412,8 +411,8 @@ Pour voir les résultats, tapez:</p>
 <p>La régression estimée est donc:</p>
 <p><span class="math display">\[ Fklngth = 28.50359 + 0.70724 * age\]</span></p>
 <p>Étant donné la valeur significative du test de F ainsi que pour le test de t pour la pente de la droite, on rejette l’hypothèse nulle qu’il n’y a pas de relation entre la taille et l’âge.</p>
-<div id="vérifier-les-conditions-dapplication-de-la-régression" class="section level3" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Vérifier les conditions d’application de la régression</h3>
+<div id="vérifier-les-conditions-dapplication-de-la-régression" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Vérifier les conditions d’application de la régression<a href="régression-linéaire-simple.html#vérifier-les-conditions-dapplication-de-la-régression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La régression simple de type I a quatre conditions préalables :</p>
 <ol style="list-style-type: decimal">
 <li>il n’y a pas d’erreur de mesure sur la variable indépendante (X)</li>
@@ -458,8 +457,8 @@ Il faut utiliser la fonction <code>model_check()</code> dans le 📦 <code>perfo
 <p><img src="Labo_BIO4558_files/figure-html/unnamed-chunk-196-1.svg" width="672" />
 Finalement, quel est le verdict concernant la régression linéaire entre fklngth et age ? Elle viole la condition de linéarité, possiblement celle de normalité, remplit la condition d’homoscédasticité, et ne semble pas influencée outre mesure par des valeurs bizarres ou extrêmes.</p>
 </div>
-<div id="tests-formels-des-conditions-dapplication-pour-la-régression" class="section level3" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Tests formels des conditions d’application pour la régression</h3>
+<div id="tests-formels-des-conditions-dapplication-pour-la-régression" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Tests formels des conditions d’application pour la régression<a href="régression-linéaire-simple.html#tests-formels-des-conditions-dapplication-pour-la-régression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Personnellement, je n’utilise jamais les tests formels des conditions d’application de la régression et me contente des graphiques des résidus pour guider mes décisions. C’est ce que la plupart des praticiens font. Cependant, lors de mes premières analyses, je n’étais pas toujours certain de bien interpréter les graphiques et j’aurais aimé un indice plus formel ou un test permettant de détecter les violations des conditions d’application de la régression.</p>
 <p>Le package <code>lmtest</code>, qui ne fait pas partie de l’installation de base, mais qui est disponible sur CRAN, permet de faire plusieurs tests de linéarité et d’homoscédasticité. Et on peut tester la normalité avec le test Shapiro-Wilk test vu précédemment.</p>
 
@@ -541,7 +540,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

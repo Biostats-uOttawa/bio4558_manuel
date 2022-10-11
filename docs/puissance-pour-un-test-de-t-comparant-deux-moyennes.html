@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="comment-utiliser-gpower.html"/>
 <link rel="next" href="points-à-retenir.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="puissance-pour-un-test-de-t-comparant-deux-moyennes" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Puissance pour un test de t comparant deux moyennes</h2>
+<div id="puissance-pour-un-test-de-t-comparant-deux-moyennes" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Puissance pour un test de t comparant deux moyennes<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#puissance-pour-un-test-de-t-comparant-deux-moyennes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>L’objectif de cette séance de laboratoire est de vous familiariser avec G*Power et de vous aider à comprendre comment les quatre paramètres des analyses de puissance (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, effectif et taille de l’effet) sont reliés entre eux.
 On examinera seulement un des nombreux tests, le test de t permettant de comparer deux moyennes indépendantes.
 C’est le test le plus communément utilisé par les biologistes, vous l’avez tous déjà utilisé, et il conviendra très bien pour les besoins de la cause.
@@ -362,8 +361,8 @@ En faisant un test de t pour éprouver l’hypothèse nulle que la biomasse des 
 <pre><code>Pooled-Variance Two-Sample t-Test
 t = -0.5746, df = 34, p-value = 0.5693</code></pre>
 <p>Elle accepte l’hypothèse nulle (puisque p est plus élevé que 0.05) conclue donc que la biomasse moyenne des poissons est la même dans ces deux régions.</p>
-<div id="analyse-post-hoc" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Analyse post-hoc</h3>
+<div id="analyse-post-hoc" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Analyse post-hoc<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-post-hoc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Compte tenu des valeurs des moyennes observées et de leur écart- type, on peut utiliser G*Power pour calculer la puissance du test de t bilatéral pour deux moyennes indépendantes et pour la taille d’effet (i.e. la différence entre la biomasse entre les deux régions, pondérée par les écarts-type) à <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <p>Démarrer G*Power.</p>
 <ol style="list-style-type: decimal">
@@ -485,8 +484,8 @@ En effet, Jaynie n’a pu détecter de différences significatives entre les deu
 Cela pourrait être pour deux raisons: soit qu’il n’y a pas de différences entre les régions, ou soit parce que la précision des mesures est si faible et l’effort d’échantillonnage était si limité qu’il était très peu probable de détecter même d’énormes différences.
 La deuxième analyse de puissance permet d’éliminer cette seconde possibilité puisque Jaynie avait 71% des chances de détecter une différence du simple au double.</p>
 </div>
-<div id="analyse-à-priori" class="section level3" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Analyse à priori</h3>
+<div id="analyse-à-priori" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Analyse à priori<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-à-priori" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Supposons qu’on puisse défendre la position qu’une différence de biomasse observée par Jaynie entre les deux régions, <span class="math inline">\(3.31- 2.64=0.67g/m^2\)</span>, soit écologiquement signifiante.
 On devrait donc planifier la prochaine saison d’échantillonnage de manière à avoir de bonnes chances de détecter une différence de cette taille.
 Combien de ruisseaux Jaynie devrait-elle échantillonner pour avoir 80% des chances de la détecter (compte tenu de la variabilité observée)?</p>
@@ -529,8 +528,8 @@ Augmenter la puissance ça demande plus d’effort.</p>
 ## 
 ## NOTE: n is number in *each* group</code></pre>
 </div>
-<div id="analyse-de-sensitivité---calculer-la-taille-deffet-détectable" class="section level3" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> Analyse de sensitivité - Calculer la taille d’effet détectable</h3>
+<div id="analyse-de-sensitivité---calculer-la-taille-deffet-détectable" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Analyse de sensitivité - Calculer la taille d’effet détectable<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#analyse-de-sensitivité---calculer-la-taille-deffet-détectable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Compte tenu de la variabilité observée, d’un effort d’échantillonnage de 18 ruisseaux par région, et en conservant <span class="math inline">\(\alpha=0.05\)</span>, quelle est la taille d’effet que Jaynie pouvait détecter avec 80% de chances <span class="math inline">\(\beta=0.2\)</span>)?</p>
 
 <div class="rmdcode">
@@ -609,7 +608,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

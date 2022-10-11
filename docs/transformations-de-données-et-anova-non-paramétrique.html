@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.3 Transformations de données et ANOVA non-paramétrique | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.3 Transformations de données et ANOVA non-paramétrique | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="anova-à-un-critère-de-classification-et-comparaisons-multiples.html"/>
 <link rel="next" href="examen-des-valeurs-extrêmes.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="transformations-de-données-et-anova-non-paramétrique" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Transformations de données et ANOVA non-paramétrique</h2>
+<div id="transformations-de-données-et-anova-non-paramétrique" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Transformations de données et ANOVA non-paramétrique<a href="transformations-de-données-et-anova-non-paramétrique.html#transformations-de-données-et-anova-non-paramétrique" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Dans l’exemple précédent sur les différences annuelles de la variable fklgnth, on a noté que les conditions d’application de l’ANOVA n’étaient pas remplies. Si les données ne remplissent pas les conditions de l’ANOVA paramétrique, il y a 3 options :</p>
 <ol style="list-style-type: decimal">
 <li>Ne rien faire. Si les effectifs dans chaque groupe sont grands, on peut relaxer les conditions d’application car l’ANOVA est alors assez robuste aux violations de normalité (mais moins aux violations d’homoscedasticité),</li>
@@ -360,10 +359,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Refaites l’ANOVA de la section précédente après avoir transformé en faisant le logarithme à la base de 10. Avec les données transformées, est-ce que les problèmes qui avaient été identifiés disparaissent ?</li>
 </ul>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb399-1" aria-hidden="true"></a><span class="co"># Fit anova model on log10 of fklngth and plot residual diagnostics</span></span>
-<span id="cb399-2"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb399-2" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb399-3"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb399-3" aria-hidden="true"></a>anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span>
-<span id="cb399-4"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb399-4" aria-hidden="true"></a><span class="kw">plot</span>(anova.model2)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb401-1" aria-hidden="true"></a><span class="co"># Fit anova model on log10 of fklngth and plot residual diagnostics</span></span>
+<span id="cb401-2"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb401-2" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb401-3"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb401-3" aria-hidden="true"></a>anova.model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log10</span>(fklngth) <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span>
+<span id="cb401-4"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb401-4" aria-hidden="true"></a><span class="kw">plot</span>(anova.model2)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ano-16"></span>
 <img src="Labo_BIO4558_files/figure-html/ano-16-1.svg" alt="Conditions d'application de l'ANOVA" width="672" />
 <p class="caption">
@@ -372,7 +371,7 @@ Figure 5.7: Conditions d’application de l’ANOVA
 </div>
 <p>Les graphiques diagnostiques des résidus donnent:</p>
 <p>Les graphiques sont à peine mieux ici. Si on fait le test Wilk-Shapiro sur les résidus, on obtient:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb400-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model2))</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb402-1" aria-hidden="true"></a><span class="kw">shapiro.test</span>(<span class="kw">residuals</span>(anova.model2))</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -387,7 +386,7 @@ Figure 5.7: Conditions d’application de l’ANOVA
 <ul>
 <li>L’analogue non-paramétrique de l’ANOVA à un critère de classification le plus employé est le test de Kruskall-Wallis. Faites ce test sur <code>fklngth</code> et comparez les résultats à ceux de l’analyse paramétrique. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb402-1" aria-hidden="true"></a><span class="kw">kruskal.test</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="transformations-de-données-et-anova-non-paramétrique.html#cb404-1" aria-hidden="true"></a><span class="kw">kruskal.test</span>(fklngth <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> Dam10dat)</span></code></pre></div>
 <pre><code>## 
 ##  Kruskal-Wallis rank sum test
 ## 
@@ -434,7 +433,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

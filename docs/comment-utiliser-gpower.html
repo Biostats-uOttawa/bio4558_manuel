@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Comment utiliser G*Power | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Comment utiliser G*Power | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="quest-ce-que-gpower.html"/>
 <link rel="next" href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,10 +348,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comment-utiliser-gpower" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Comment utiliser G*Power</h2>
-<div id="principe-général" class="section level3" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Principe général</h3>
+<div id="comment-utiliser-gpower" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Comment utiliser G*Power<a href="comment-utiliser-gpower.html#comment-utiliser-gpower" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="principe-général" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Principe général<a href="comment-utiliser-gpower.html#principe-général" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’utilisation de G*Power implique généralement en trois étapes:</p>
 <ol style="list-style-type: decimal">
 <li>Choisir le test approprié</li>
@@ -360,38 +359,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Inscrire les valeurs des paramètres requis et cliquer sur Calculate</li>
 </ol>
 </div>
-<div id="types-danalyses-de-puissance-disponibles" class="section level3" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Types d’analyses de puissance disponibles</h3>
-<div id="a-priori" class="section level4 unnumbered" number="">
-<h4>A priori</h4>
+<div id="types-danalyses-de-puissance-disponibles" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Types d’analyses de puissance disponibles<a href="comment-utiliser-gpower.html#types-danalyses-de-puissance-disponibles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-priori" class="section level4 unnumbered hasAnchor" number="">
+<h4>A priori<a href="comment-utiliser-gpower.html#a-priori" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Calcule l’effectif requis pour une valeur de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> et de taille d’effet donnée.
 Ce type d’analyse est utile à l’étape de planification des expériences.</p>
 </div>
-<div id="compromis" class="section level4 unnumbered" number="">
-<h4>Compromis</h4>
+<div id="compromis" class="section level4 unnumbered hasAnchor" number="">
+<h4>Compromis<a href="comment-utiliser-gpower.html#compromis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Calcule <span class="math inline">\(\alpha\)</span> et <span class="math inline">\(\beta\)</span> pour un rapport <span class="math inline">\(\beta / \alpha\)</span> donné, un effectif fixe, et une taille d’effet donnée.
 Ce type d’analyse est plus rarement utilisé (je ne l’ai jamais fait), mais peut être utile lorsque le rapport <span class="math inline">\(\beta / \alpha\)</span> est d’intérêt, par exemple lorsque le coût d’une erreur de type I et de type II peut être quantifié.</p>
 </div>
-<div id="critère" class="section level4 unnumbered" number="">
-<h4>Critère</h4>
+<div id="critère" class="section level4 unnumbered hasAnchor" number="">
+<h4>Critère<a href="comment-utiliser-gpower.html#critère" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Calcule <span class="math inline">\(\alpha\)</span> pour <span class="math inline">\(\beta\)</span>, effectif et taille d’effet donné.
 En pratique, je vois peu d’utilité pour ce type de calcul.
 Contactez-moi si vous en voyez une!</p>
 </div>
-<div id="post-hoc" class="section level4 unnumbered" number="">
-<h4>Post-hoc</h4>
+<div id="post-hoc" class="section level4 unnumbered hasAnchor" number="">
+<h4>Post-hoc<a href="comment-utiliser-gpower.html#post-hoc" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Calcule la puissance (1 - <span class="math inline">\(\beta\)</span>) pour <span class="math inline">\(\alpha\)</span>, une taille d’effet et un effectif donné.
 Très utilisée pour interpréter les résultats d’une analyse statistique non-significative, mais seulement si l’on utilise une taille d’effet biologiquement significative (et non la taille d’effet observée).
 Peu pertinente lorsque le test est significatif.</p>
 </div>
-<div id="sensitivité" class="section level4 unnumbered" number="">
-<h4>Sensitivité</h4>
+<div id="sensitivité" class="section level4 unnumbered hasAnchor" number="">
+<h4>Sensitivité<a href="comment-utiliser-gpower.html#sensitivité" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Calcule la taille d’effet détectable pour une valeur d’<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> et un effectif donné.
 Très utile également au stade de planification des expériences.</p>
 </div>
 </div>
-<div id="comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques" class="section level3" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques</h3>
+<div id="comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Comment calculer la taille de l’effet G*Power permet de faire une analyse de puissance pour de nombreux tests statistiques<a href="comment-utiliser-gpower.html#comment-calculer-la-taille-de-leffet-gpower-permet-de-faire-une-analyse-de-puissance-pour-de-nombreux-tests-statistiques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’indice de la taille de l’effet qui est utilisé par G*Power pour les calculs dépend du test.
 Notez que d’autres logiciels peuvent utiliser des indices différents et il est important de vérifier que l’indice que l’on utilise est celui qui convient.
 G*Power vous facilite la tâche et permet de calculer la taille de l’effet en inscrivant seulement les valeurs pertinentes dans la fenêtre de calcul.
@@ -493,7 +492,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

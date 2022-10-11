@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.9 Quantifier la taille d’effet et analyse de puissance en régression | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.9 Quantifier la taille d’effet et analyse de puissance en régression | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="traitement-des-valeurs-extrèmes.html"/>
 <link rel="next" href="bootstrap-en-régression-simple-avec-r.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,17 +348,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Quantifier la taille d’effet et analyse de puissance en régression</h2>
-<p>L’interprétation biologique des résultats n’est pas la même chose que l’interprétation statistique. Dans l’analyse qui précède, on conclue statistiquement que la taille augmente avec l’âge (puisque la pente est positive et et p&lt;0.05). Mais cette augmentation “statistique” de la taille avec l’âge ne donne pas d’information sur la différence de taille entre les jeunes et vieux individus. La pente et un graphique sont plus informatifs à ce sujet que la valeur p. La pente (dans l’espace log-log) est 0.34. Cela veut dire que pour chaque unité d’accroissement de X (log10(age)), il y a une augmentation de 0.34 unités de log10(fklngth). En d’autres mots, quand l’âge est multiplié par 10, la longueur à la fourche est multipliée environ par 2. Donc la longueur des esturgeons augmente plus lentement que leur âge (contrairement à mon tour de taille, semble-t-il….). La valeur de la pente (0.34) est un estimé de la taille de l’effet de l’âge sur la longueur.</p>
-<div id="puissance-de-détecter-une-pente-donnée" class="section level3" number="3.9.1">
-<h3><span class="header-section-number">3.9.1</span> Puissance de détecter une pente donnée</h3>
+<div id="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Quantifier la taille d’effet et analyse de puissance en régression<a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>L’interprétation biologique des résultats n’est pas la même chose que l’interprétation statistique. Dans l’analyse qui précède, on conclue statistiquement que la taille augmente avec l’âge (puisque la pente est positive et et p&lt;0.05). Mais cette augmentation “statistique” de la taille avec l’âge ne donne pas d’information sur la différence de taille entre les jeunes et vieux individus. La pente et un graphique sont plus informatifs à ce sujet que la valeur p. La pente (dans l’espace log-log) est 0.34. Cela veut dire que pour chaque unité d’accroissement de X (log10(age)), il y a une augmentation de 0.34 unités de log10(fklngth). En d’autres mots, quand l’âge est multiplié par 10, la longueur à la fourche est multipliée environ par 2 (10<sup>0.34</sup>). Donc la longueur des esturgeons augmente plus lentement que leur âge (contrairement à mon tour de taille, semble-t-il….). La valeur de la pente (0.34) est un estimé de la taille de l’effet de l’âge sur la longueur.</p>
+<p>Il est aussi importnat d’estimer l’intervalle de confiance sur la pente pour pouvoir estimer si l’intervalle inclus ou non que des valeurs biologiquement importantes. Cela peut être fait simplement avec la fonction <code>confint()</code>.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb310-1" aria-hidden="true"></a><span class="kw">confint</span>(RegModel<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>##                 2.5 %   97.5 %
+## (Intercept) 1.1377151 1.246270
+## log10(age)  0.2976433 0.384068</code></pre>
+<p>L’intervalle de confiance à 95% de la pente est 0.29-0.38. L,intervalle de confiance est assez faible et éloigné de zéro.</p>
+<div id="puissance-de-détecter-une-pente-donnée" class="section level3 hasAnchor" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> Puissance de détecter une pente donnée<a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#puissance-de-détecter-une-pente-donnée" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pour les calculs de puissance avec G*Power vous devrez cependant utiliser une autre métrique de la taille de l’effet, calculée à partir de la pente, de son erreur-type, et de la taille de l’échantillon (ce qui facilite les calculs pour G*Power, mais malheureusement pas pour vous ;-) La métrique (d) est calculée comme:
 <span class="math display">\[ d = \frac{b}{s_b\sqrt{n-k-1}} \]</span>
 où <span class="math inline">\(b\)</span> est l’estimé de la pente, <span class="math inline">\(s_b\)</span> est l’erreur type de la pente, <span class="math inline">\(n\)</span> est le nombre d’observations, et <span class="math inline">\(k\)</span> est le nombre de variables indépendantes (1 pour la régression linéaire simple).</p>
 <p>Vous pouvez calculer approximativement la puissance avec G*Power pour une valeur de pente que vous jugez assez grande pour mériter d’être détectée. Allez à <strong>Tests: Means: One group: difference from constant</strong>, là, vous devrez remplacer la valeur de <span class="math inline">\(b\)</span> dans l’équation pour la taille d’effet (d) par la pente que vous voudriez détecter, mais utiliser l’erreur type calculée à partir de vos données.</p>
 <p>Par exemple, supposons que les ichthyologues considèrent qu’une pente de 0.1 pour la relation entre log10(fklngth) et log10(age) est signifiante biologiquement, et qu’ils désirent estimer la puissance de détecter une telle pente à partir d’un échantillon de 20 esturgeons. Les résultats de la régression log-log nous fournissent ce dont on a besoin:</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb310-1" aria-hidden="true"></a><span class="kw">summary</span>(RegModel<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb312-1" aria-hidden="true"></a><span class="kw">summary</span>(RegModel<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = log10(fklngth) ~ log10(age), data = sturgeon.male)
@@ -389,10 +394,10 @@ Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 </p>
 </div>
 <p>Dans R, il est possible de faire cette analyse avec le code suivant:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb312-1" aria-hidden="true"></a><span class="kw">library</span>(pwr)</span>
-<span id="cb312-2"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb312-2" aria-hidden="true"></a></span>
-<span id="cb312-3"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb312-3" aria-hidden="true"></a><span class="co"># analyse de puissance</span></span>
-<span id="cb312-4"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb312-4" aria-hidden="true"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">d =</span> <span class="fl">0.54</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-1" aria-hidden="true"></a><span class="kw">library</span>(pwr)</span>
+<span id="cb314-2"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-2" aria-hidden="true"></a></span>
+<span id="cb314-3"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-3" aria-hidden="true"></a><span class="co"># analyse de puissance</span></span>
+<span id="cb314-4"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-4" aria-hidden="true"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">d =</span> <span class="fl">0.54</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      One-sample t test power calculation 
 ## 
@@ -403,8 +408,8 @@ Figure 3.3: Analyse de puissance pour N = 20 et pente = 0.1
 ##     alternative = two.sided</code></pre>
 <p>La puissance de détecter une pente comme étant statistiquement significative (au niveau alpha), si la pente est 0.1, que la variabilité résiduelle autour de la régression est semblable à celle de notre échantillon (ce qui revient à une taille d’effet de 0.54, pour un échantillon de 20 esturgeons et alpha=0.05) est de 0.629. Seulement environ 2/3 des échantillons de cette taille détecteraient un effet significatif de l’âge sur <code>fklngth</code>.</p>
 </div>
-<div id="effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori" class="section level3" number="3.9.2">
-<h3><span class="header-section-number">3.9.2</span> Effectif requis pour atteindre une puissance désirée (test A-priori)</h3>
+<div id="effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori" class="section level3 hasAnchor" number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> Effectif requis pour atteindre une puissance désirée (test A-priori)<a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#effectif-requis-pour-atteindre-une-puissance-désirée-test-a-priori" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pour estimer la taille d’échantillon (effectif) requis pour avoir une puissance de 99% de détecter un effet de l’âge si la pente est 0.1 (sur une échelle log-log), avec alpha=0.05, on utilise la même valeur de d (0.54):</p>
 <div class="figure"><span style="display:block;" id="fig:lm-pow-fig-2"></span>
 <img src="images/lm_pow_2.png" alt="Analyse à priori pour déterminer la taille d'échantillon pour une puissance de 0.99" width="100%" />
@@ -413,10 +418,10 @@ Figure 3.4: Analyse à priori pour déterminer la taille d’échantillon pour u
 </p>
 </div>
 <p>Dans R, il est possible de faire cette analyse avec le code suivant:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-1" aria-hidden="true"></a><span class="kw">library</span>(pwr)</span>
-<span id="cb314-2"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-2" aria-hidden="true"></a></span>
-<span id="cb314-3"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-3" aria-hidden="true"></a><span class="co"># analyse de puissance</span></span>
-<span id="cb314-4"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb314-4" aria-hidden="true"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">65</span>, <span class="dt">d =</span> <span class="fl">0.54</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb316-1" aria-hidden="true"></a><span class="kw">library</span>(pwr)</span>
+<span id="cb316-2"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb316-2" aria-hidden="true"></a></span>
+<span id="cb316-3"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb316-3" aria-hidden="true"></a><span class="co"># analyse de puissance</span></span>
+<span id="cb316-4"><a href="quantifier-la-taille-deffet-et-analyse-de-puissance-en-régression.html#cb316-4" aria-hidden="true"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">65</span>, <span class="dt">d =</span> <span class="fl">0.54</span>, <span class="dt">sig.level =</span> <span class="fl">0.05</span>, <span class="dt">type =</span> <span class="st">&quot;one.sample&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      One-sample t test power calculation 
 ## 
@@ -467,7 +472,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

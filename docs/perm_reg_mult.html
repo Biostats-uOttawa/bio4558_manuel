@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.12 Test de permutation | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.12 Test de permutation | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="bootstrap-et-régression-multiple.html"/>
 <link rel="next" href="ancova-et-modèle-linéaire-général.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,25 +348,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="perm_reg_mult" class="section level2" number="7.12">
-<h2><span class="header-section-number">7.12</span> Test de permutation</h2>
+<div id="perm_reg_mult" class="section level2 hasAnchor" number="7.12">
+<h2><span class="header-section-number">7.12</span> Test de permutation<a href="perm_reg_mult.html#perm_reg_mult" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les tests de permutations sont plus rarement effectués en régression multiple que le bootstrap. Voici un fragment de code pour le faire tout de même.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="perm_reg_mult.html#cb581-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
-<span id="cb581-2"><a href="perm_reg_mult.html#cb581-2" aria-hidden="true"></a><span class="co">##########</span></span>
-<span id="cb581-3"><a href="perm_reg_mult.html#cb581-3" aria-hidden="true"></a><span class="co"># Permutation in multiple regression</span></span>
-<span id="cb581-4"><a href="perm_reg_mult.html#cb581-4" aria-hidden="true"></a><span class="co">#</span></span>
-<span id="cb581-5"><a href="perm_reg_mult.html#cb581-5" aria-hidden="true"></a><span class="co"># using lmperm library</span></span>
-<span id="cb581-6"><a href="perm_reg_mult.html#cb581-6" aria-hidden="true"></a><span class="kw">library</span>(lmPerm)</span>
-<span id="cb581-7"><a href="perm_reg_mult.html#cb581-7" aria-hidden="true"></a><span class="co"># Fit desired model on the desired dataframe</span></span>
-<span id="cb581-8"><a href="perm_reg_mult.html#cb581-8" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
-<span id="cb581-9"><a href="perm_reg_mult.html#cb581-9" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
-<span id="cb581-10"><a href="perm_reg_mult.html#cb581-10" aria-hidden="true"></a>)</span>
-<span id="cb581-11"><a href="perm_reg_mult.html#cb581-11" aria-hidden="true"></a>mymodelProb &lt;-<span class="st"> </span><span class="kw">lmp</span>(</span>
-<span id="cb581-12"><a href="perm_reg_mult.html#cb581-12" aria-hidden="true"></a>  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
-<span id="cb581-13"><a href="perm_reg_mult.html#cb581-13" aria-hidden="true"></a>  <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span></span>
-<span id="cb581-14"><a href="perm_reg_mult.html#cb581-14" aria-hidden="true"></a>)</span>
-<span id="cb581-15"><a href="perm_reg_mult.html#cb581-15" aria-hidden="true"></a><span class="kw">summary</span>(mymodel)</span>
-<span id="cb581-16"><a href="perm_reg_mult.html#cb581-16" aria-hidden="true"></a><span class="kw">summary</span>(mymodelProb)</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="perm_reg_mult.html#cb583-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
+<span id="cb583-2"><a href="perm_reg_mult.html#cb583-2" aria-hidden="true"></a><span class="co">##########</span></span>
+<span id="cb583-3"><a href="perm_reg_mult.html#cb583-3" aria-hidden="true"></a><span class="co"># Permutation in multiple regression</span></span>
+<span id="cb583-4"><a href="perm_reg_mult.html#cb583-4" aria-hidden="true"></a><span class="co">#</span></span>
+<span id="cb583-5"><a href="perm_reg_mult.html#cb583-5" aria-hidden="true"></a><span class="co"># using lmperm library</span></span>
+<span id="cb583-6"><a href="perm_reg_mult.html#cb583-6" aria-hidden="true"></a><span class="kw">library</span>(lmPerm)</span>
+<span id="cb583-7"><a href="perm_reg_mult.html#cb583-7" aria-hidden="true"></a><span class="co"># Fit desired model on the desired dataframe</span></span>
+<span id="cb583-8"><a href="perm_reg_mult.html#cb583-8" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
+<span id="cb583-9"><a href="perm_reg_mult.html#cb583-9" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
+<span id="cb583-10"><a href="perm_reg_mult.html#cb583-10" aria-hidden="true"></a>)</span>
+<span id="cb583-11"><a href="perm_reg_mult.html#cb583-11" aria-hidden="true"></a>mymodelProb &lt;-<span class="st"> </span><span class="kw">lmp</span>(</span>
+<span id="cb583-12"><a href="perm_reg_mult.html#cb583-12" aria-hidden="true"></a>  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
+<span id="cb583-13"><a href="perm_reg_mult.html#cb583-13" aria-hidden="true"></a>  <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span></span>
+<span id="cb583-14"><a href="perm_reg_mult.html#cb583-14" aria-hidden="true"></a>)</span>
+<span id="cb583-15"><a href="perm_reg_mult.html#cb583-15" aria-hidden="true"></a><span class="kw">summary</span>(mymodel)</span>
+<span id="cb583-16"><a href="perm_reg_mult.html#cb583-16" aria-hidden="true"></a><span class="kw">summary</span>(mymodelProb)</span></code></pre></div>
 
 </div>
 <!-- </div> -->
@@ -410,7 +409,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

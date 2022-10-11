@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.4 Analyse de 2 variables | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.4 Analyse de 2 variables | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="premier-travail-avec-des-données.html"/>
 <link rel="next" href="gérer-les-données.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,15 +348,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analyse-de-2-variables" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Analyse de 2 variables</h2>
+<div id="analyse-de-2-variables" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Analyse de 2 variables<a href="analyse-de-2-variables.html#analyse-de-2-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Faire une analyse bivariée, c’est étudier la relation entre deux variables : sont-elles liées ? les valeurs de l’une influencent-elles les valeurs de l’autre ? ou sont-elles au contraire indépendantes ?</p>
 <p>À noter qu’on va parler ici d’influence ou de lien, mais pas de relation de cause à effet : les outils présentés permettent de visualiser ou de déterminer une relation, mais des liens de causalité proprement dit sont plus difficiles à mettre en évidence. Il faut en effet vérifier que c’est bien telle variable qui influence telle autre et pas l’inverse, qu’il n’y a pas de “variable cachée”, etc.</p>
 <p>Là encore, le type d’analyse ou de visualisation est déterminé par la nature qualitative ou quantitative des deux variables.</p>
-<div id="croisement-de-deux-variables-qualitatives" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Croisement de deux variables qualitatives</h3>
-<div id="tableaux-croisés" class="section level4" number="1.4.1.1">
-<h4><span class="header-section-number">1.4.1.1</span> Tableaux croisés</h4>
+<div id="croisement-de-deux-variables-qualitatives" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Croisement de deux variables qualitatives<a href="analyse-de-2-variables.html#croisement-de-deux-variables-qualitatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tableaux-croisés" class="section level4 hasAnchor" number="1.4.1.1">
+<h4><span class="header-section-number">1.4.1.1</span> Tableaux croisés<a href="analyse-de-2-variables.html#tableaux-croisés" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>On va continuer à travailler avec le jeu de données tiré de l’enquête <em>Histoire de vie</em> inclus dans l’extension <code>questionr</code>. On commence donc par charger l’extension, le jeu de données, et à le renommer en un nom plus court pour gagner un peu de temps de saisie au clavier :</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="analyse-de-2-variables.html#cb184-1" aria-hidden="true"></a><span class="kw">library</span>(questionr)</span>
 <span id="cb184-2"><a href="analyse-de-2-variables.html#cb184-2" aria-hidden="true"></a><span class="kw">data</span>(hdv2003)</span>
@@ -468,8 +467,8 @@ L'interprétation des résidus est la suivante :
 Les résidus peuvent être une aide utile à l'interprétation, notamment pour des tableaux de grande dimension.
 -->
 </div>
-<div id="représentation-graphique-1" class="section level4" number="1.4.1.2">
-<h4><span class="header-section-number">1.4.1.2</span> Représentation graphique</h4>
+<div id="représentation-graphique-1" class="section level4 hasAnchor" number="1.4.1.2">
+<h4><span class="header-section-number">1.4.1.2</span> Représentation graphique<a href="analyse-de-2-variables.html#représentation-graphique-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Il est possible de faire une représentation graphique d’un tableau croisé, par exemple avec la fonction <code>mosaicplot</code> :</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="analyse-de-2-variables.html#cb191-1" aria-hidden="true"></a><span class="kw">mosaicplot</span>(tab)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-135"></span>
@@ -489,10 +488,10 @@ Figure 1.17: Graphique mosaique modifié
 <p>Chaque rectangle de ce graphique représente une case de tableau. Sa largeur correspond au pourcentage des modalités en colonnes (il y’a beaucoup d’employés et d’ouvriers et très peu d’“autres”). Sa hauteur correspond aux pourcentages colonnes : la proportion d’hommes chez les cadres est plus élevée que chez les employés. Enfin, la couleur de la case correspond au résidu du test du χ² correspondant : les cases en rouge sont sous-représentées, les cases en bleu sur-représentées, et les cases blanches sont proches des effectifs attendus sous l’hypothèse d’indépendance.</p>
 </div>
 </div>
-<div id="croisement-dune-variable-quantitative-et-dune-variable-qualitative" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Croisement d’une variable quantitative et d’une variable qualitative</h3>
-<div id="représentation-graphique-2" class="section level4" number="1.4.2.1">
-<h4><span class="header-section-number">1.4.2.1</span> Représentation graphique</h4>
+<div id="croisement-dune-variable-quantitative-et-dune-variable-qualitative" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Croisement d’une variable quantitative et d’une variable qualitative<a href="analyse-de-2-variables.html#croisement-dune-variable-quantitative-et-dune-variable-qualitative" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="représentation-graphique-2" class="section level4 hasAnchor" number="1.4.2.1">
+<h4><span class="header-section-number">1.4.2.1</span> Représentation graphique<a href="analyse-de-2-variables.html#représentation-graphique-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Croiser une variable quantitative et une variable qualitative, c’est essayer de voir si les valeurs de la variable quantitative se répartissent différemment selon la catégorie d’appartenance de la variable qualitative.</p>
 <p>Pour cela, l’idéal est de commencer par une représentation graphique de type “boîte à moustache” à l’aide de la fonction <code>boxplot</code>. Par exemple, si on veut visualiser la répartition des âges selon la pratique ou non d’un sport, on va utiliser la syntaxe suivante :</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="analyse-de-2-variables.html#cb193-1" aria-hidden="true"></a><span class="kw">boxplot</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> d)</span></code></pre></div>
@@ -515,8 +514,8 @@ L’interprétation d’un boxplot est la suivante : Les bords inférieurs et s
 </div>
 <p>Dans le graphique ci-dessus, on voit que ceux qui ont pratiqué un sport au cours des douze derniers mois ont l’air d’être sensiblement plus jeunes que les autres.</p>
 </div>
-<div id="calculs-dindicateurs" class="section level4" number="1.4.2.2">
-<h4><span class="header-section-number">1.4.2.2</span> Calculs d’indicateurs</h4>
+<div id="calculs-dindicateurs" class="section level4 hasAnchor" number="1.4.2.2">
+<h4><span class="header-section-number">1.4.2.2</span> Calculs d’indicateurs<a href="analyse-de-2-variables.html#calculs-dindicateurs" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>On peut aussi vouloir comparer certains indicateurs (moyenne, médiane) d’une variable quantitative selon les modalités d’une variable qualitative. Si on reprend l’exemple précédent, on peut calculer la moyenne d’âge pour ceux qui pratiquent un sport et pour ceux qui n’en pratiquent pas.</p>
 <p>Une première méthode pour cela est d’extraire de notre population autant de sous-populations qu’il y a de modalités dans la variable qualitative. On peut le faire notamment avec la fonction <code>subset</code>.</p>
 <!-- ^[Le package en question est présenté en détail dans la partie \@ref(dplyr).].
@@ -636,13 +635,13 @@ La valeur *p* étant à nouveau extrêmement petite, on peut rejeter l'hypothès
 -->
 </div>
 </div>
-<div id="croisement-de-deux-variables-quantitatives" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> Croisement de deux variables quantitatives</h3>
+<div id="croisement-de-deux-variables-quantitatives" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Croisement de deux variables quantitatives<a href="analyse-de-2-variables.html#croisement-de-deux-variables-quantitatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le jeu de données <code>hdv2003</code> comportant assez peu de variables quantitatives, on va s’intéresser maintenant à un autre jeu de données comportant des informations du recensement de la population de 2012. On le charge avec :</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="analyse-de-2-variables.html#cb201-1" aria-hidden="true"></a><span class="kw">data</span>(rp2012)</span></code></pre></div>
 <p>Un nouveau tableau de données <code>rp2012</code> devrait apparaître dans votre environnement. Celui-ci comprend les 5170 communes de France métropolitaine de plus de 2000 habitants, et une soixantaine de variables telles que le département, la population, le taux de chômage, etc. Pour une description plus complète et une liste des variables, voir section <a href="#rp2012"><strong>??</strong></a>.</p>
-<div id="représentation-graphique-3" class="section level4" number="1.4.3.1">
-<h4><span class="header-section-number">1.4.3.1</span> Représentation graphique</h4>
+<div id="représentation-graphique-3" class="section level4 hasAnchor" number="1.4.3.1">
+<h4><span class="header-section-number">1.4.3.1</span> Représentation graphique<a href="analyse-de-2-variables.html#représentation-graphique-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Quand on croise deux variables quantitatives, l’idéal est de faire une représentation graphique sous forme de nuage de points à l’aide de la fonction <code>plot</code>. On va représenter le croisement entre le pourcentage de cadres et le pourcentage de propriétaires dans la commune :</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="analyse-de-2-variables.html#cb202-1" aria-hidden="true"></a><span class="kw">plot</span>(rp2012<span class="op">$</span>cadres, rp2012<span class="op">$</span>proprio)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-153"></span>
@@ -803,8 +802,8 @@ abline(reg, col = "red")
 -->
 </div>
 </div>
-<div id="ex-introR-biv" class="section level3" number="1.4.4">
-<h3><span class="header-section-number">1.4.4</span> Exercices</h3>
+<div id="ex-introR-biv" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Exercices<a href="analyse-de-2-variables.html#ex-introR-biv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Exercice 1</strong></p>
 <p>Dans le jeu de données <code>hdv2003</code>, faire le tableau croisé entre la catégorie socio-professionnelle (variable <code>qualif</code>) et le fait de croire ou non en l’existence des classes sociales (variable <code>clso</code>). Identifier la variable indépendante et la variable dépendante, et calculer les pourcentages ligne ou colonne. Interpréter le résultat.</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb204-1"><a href="analyse-de-2-variables.html#cb204-1" aria-hidden="true"></a><span class="kw">library</span>(questionr)</span>
@@ -890,7 +889,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

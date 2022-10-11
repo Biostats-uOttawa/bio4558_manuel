@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.3 Visualiser graphiquement les tableaux de contingence et test d’indépendance | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.3 Visualiser graphiquement les tableaux de contingence et test d’indépendance | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="organisation-des-données-3-formats.html"/>
 <link rel="next" href="régression-de-poisson-une-alternative-au-test-de-chi-carré-pour-les-tableaux-de-contingence.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Visualiser graphiquement les tableaux de contingence et test d’indépendance</h2>
+<div id="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Visualiser graphiquement les tableaux de contingence et test d’indépendance<a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Les tableaux de contingence peuvent servir à éprouver l’hypothèse d’indépendance des observations. Ceci équivaut à répondre à la question: est-ce que la classification des observations selon une variable (par exemple sex) indépendante de la classification par une autre variable (par exemple ageclass). En autres mots, est-ce que la proportion des mâles et femelles indépendante de l’âge ou varie avec l’âge?</p>
 <p>Le package <code>vcd</code> inclut la fonction <code>mosaic()</code> qui permet de représenter graphiquement le contenu d’un tableau de contingence:</p>
 <div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="visualiser-graphiquement-les-tableaux-de-contingence-et-test-dindépendance.html#cb632-1" aria-hidden="true"></a><span class="kw">library</span>(vcd)</span>
@@ -445,7 +444,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null

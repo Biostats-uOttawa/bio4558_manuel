@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.7 Test de permutation pour l’ANOVA à deux facteurs de classification | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.7 Test de permutation pour l’ANOVA à deux facteurs de classification | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
-  
   <meta property="og:image" content="/images/missing.png" />
   <meta property="og:description" content="Manuel de laboratoire pour le cours BIO4558" />
   <meta name="github-repo" content="Bio4158-4558-uottawa/manuel_labo/" />
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="comparaisons-multiples.html"/>
 <link rel="next" href="bootstrap-pour-lanova-à-deux-facteurs-de-classification.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -349,82 +348,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> Test de permutation pour l’ANOVA à deux facteurs de classification</h2>
+<div id="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Test de permutation pour l’ANOVA à deux facteurs de classification<a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#test-de-permutation-pour-lanova-à-deux-facteurs-de-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Quand les données ne rencontrent pas les conditions d’application des tests paramétriques d’ANOVA à un ou plusieurs facteurs de classification, il est possible d’utiliser les tests de permutation comme une alternative aux tests non-paramétriques pour calculer des p-valeurs. Le code suivant est pour un modèle I d’une ANOVA à deux facteurs de classification. Je vous laisse le soin d’adapter ce code pour d’autres modèles. (J’offre même des points boni pour une solution élégante pour des modèles à plusieurs facteurs de classification).</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-1" aria-hidden="true"></a><span class="co">###########################################################</span></span>
-<span id="cb499-2"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-2" aria-hidden="true"></a><span class="co"># Permutation test for two way ANOVA</span></span>
-<span id="cb499-3"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-3" aria-hidden="true"></a><span class="co"># Ter Braak creates residuals from cell means and then permutes across</span></span>
-<span id="cb499-4"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-4" aria-hidden="true"></a><span class="co"># all cells</span></span>
-<span id="cb499-5"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-5" aria-hidden="true"></a><span class="co"># This can be accomplished by taking residuals from the full model</span></span>
-<span id="cb499-6"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-6" aria-hidden="true"></a><span class="co"># modified from code written by David C. Howell</span></span>
-<span id="cb499-7"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-7" aria-hidden="true"></a><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></span>
-<span id="cb499-8"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-8" aria-hidden="true"></a>nreps &lt;-<span class="st"> </span><span class="dv">500</span></span>
-<span id="cb499-9"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-9" aria-hidden="true"></a>dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</span>
-<span id="cb499-10"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-10" aria-hidden="true"></a>factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</span>
-<span id="cb499-11"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-11" aria-hidden="true"></a>factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</span>
-<span id="cb499-12"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-12" aria-hidden="true"></a>my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</span>
-<span id="cb499-13"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-13" aria-hidden="true"></a>my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</span>
-<span id="cb499-14"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-14" aria-hidden="true"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</span>
-<span id="cb499-15"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-15" aria-hidden="true"></a>  <span class="dt">data =</span> my.dataframe.noNA</span>
-<span id="cb499-16"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-16" aria-hidden="true"></a>)</span>
-<span id="cb499-17"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-17" aria-hidden="true"></a>res &lt;-<span class="st"> </span>mod<span class="op">$</span>residuals</span>
-<span id="cb499-18"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-18" aria-hidden="true"></a>TBint &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
-<span id="cb499-19"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-19" aria-hidden="true"></a>TB1 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
-<span id="cb499-20"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-20" aria-hidden="true"></a>TB2 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
-<span id="cb499-21"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-21" aria-hidden="true"></a>ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod))</span>
-<span id="cb499-22"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-22" aria-hidden="true"></a><span class="kw">cat</span>(</span>
-<span id="cb499-23"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-23" aria-hidden="true"></a>  <span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</span>
-<span id="cb499-24"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-24" aria-hidden="true"></a>  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
-<span id="cb499-25"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-25" aria-hidden="true"></a>)</span>
-<span id="cb499-26"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-26" aria-hidden="true"></a>F1 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</span>
-<span id="cb499-27"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-27" aria-hidden="true"></a>F2 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</span>
-<span id="cb499-28"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-28" aria-hidden="true"></a>Finteract &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</span>
-<span id="cb499-29"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-29" aria-hidden="true"></a><span class="kw">print</span>(ANOVA)</span>
-<span id="cb499-30"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-30" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb499-31"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-31" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb499-32"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-32" aria-hidden="true"></a>TBint[<span class="dv">1</span>] &lt;-<span class="st"> </span>Finteract</span>
-<span id="cb499-33"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-33" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</span>
-<span id="cb499-34"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-34" aria-hidden="true"></a>  newdat &lt;-<span class="st"> </span><span class="kw">sample</span>(res, <span class="kw">length</span>(res), <span class="dt">replace =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb499-35"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-35" aria-hidden="true"></a>  modb &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(newdat <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span></span>
-<span id="cb499-36"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-36" aria-hidden="true"></a><span class="st">    </span>factor1<span class="op">:</span>factor2,</span>
-<span id="cb499-37"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-37" aria-hidden="true"></a>  <span class="dt">data =</span> my.dataframe.noNA</span>
-<span id="cb499-38"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-38" aria-hidden="true"></a>  ))</span>
-<span id="cb499-39"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-39" aria-hidden="true"></a>  TBint[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</span>
-<span id="cb499-40"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-40" aria-hidden="true"></a>  TB1[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</span>
-<span id="cb499-41"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-41" aria-hidden="true"></a>  TB2[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</span>
-<span id="cb499-42"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-42" aria-hidden="true"></a>}</span>
-<span id="cb499-43"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-43" aria-hidden="true"></a>probInt &lt;-<span class="st"> </span><span class="kw">length</span>(TBint[TBint <span class="op">&gt;=</span><span class="st"> </span>Finteract]) <span class="op">/</span><span class="st"> </span>nreps</span>
-<span id="cb499-44"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-44" aria-hidden="true"></a>prob1 &lt;-<span class="st"> </span><span class="kw">length</span>(TB1[TB1 <span class="op">&gt;=</span><span class="st"> </span>F1]) <span class="op">/</span><span class="st"> </span>nreps</span>
-<span id="cb499-45"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-45" aria-hidden="true"></a>prob2 &lt;-<span class="st"> </span><span class="kw">length</span>(TB2[TB1 <span class="op">&gt;=</span><span class="st"> </span>F2]) <span class="op">/</span><span class="st"> </span>nreps</span>
-<span id="cb499-46"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-46" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb499-47"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-47" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb499-48"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-48" aria-hidden="true"></a><span class="kw">print</span>(<span class="st">&quot;Resampling as in ter Braak with unrestricted sampling</span></span>
-<span id="cb499-49"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-49" aria-hidden="true"></a><span class="st">of cell residuals. &quot;</span>)</span>
-<span id="cb499-50"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-50" aria-hidden="true"></a><span class="kw">cat</span>(</span>
-<span id="cb499-51"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-51" aria-hidden="true"></a>  <span class="st">&quot;The probability for the effect of Interaction is &quot;</span>,</span>
-<span id="cb499-52"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-52" aria-hidden="true"></a>  probInt, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
-<span id="cb499-53"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-53" aria-hidden="true"></a>)</span>
-<span id="cb499-54"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-54" aria-hidden="true"></a><span class="kw">cat</span>(</span>
-<span id="cb499-55"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-55" aria-hidden="true"></a>  <span class="st">&quot;The probability for the effect of Factor 1 is &quot;</span>,</span>
-<span id="cb499-56"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-56" aria-hidden="true"></a>  prob1, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
-<span id="cb499-57"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-57" aria-hidden="true"></a>)</span>
-<span id="cb499-58"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-58" aria-hidden="true"></a><span class="kw">cat</span>(</span>
-<span id="cb499-59"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-59" aria-hidden="true"></a>  <span class="st">&quot;The probability for the effect of Factor 2 is &quot;</span>,</span>
-<span id="cb499-60"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-60" aria-hidden="true"></a>  prob2, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
-<span id="cb499-61"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb499-61" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-1" aria-hidden="true"></a><span class="co">###########################################################</span></span>
+<span id="cb500-2"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-2" aria-hidden="true"></a><span class="co"># Permutation test for two way ANOVA</span></span>
+<span id="cb500-3"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-3" aria-hidden="true"></a><span class="co"># Ter Braak creates residuals from cell means and then permutes across</span></span>
+<span id="cb500-4"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-4" aria-hidden="true"></a><span class="co"># all cells</span></span>
+<span id="cb500-5"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-5" aria-hidden="true"></a><span class="co"># This can be accomplished by taking residuals from the full model</span></span>
+<span id="cb500-6"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-6" aria-hidden="true"></a><span class="co"># modified from code written by David C. Howell</span></span>
+<span id="cb500-7"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-7" aria-hidden="true"></a><span class="co"># http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Permutation%20Anova/PermTestsAnova.html</span></span>
+<span id="cb500-8"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-8" aria-hidden="true"></a>nreps &lt;-<span class="st"> </span><span class="dv">500</span></span>
+<span id="cb500-9"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-9" aria-hidden="true"></a>dependent &lt;-<span class="st"> </span>Stu2wdat<span class="op">$</span>rdwght</span>
+<span id="cb500-10"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-10" aria-hidden="true"></a>factor1 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>sex)</span>
+<span id="cb500-11"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-11" aria-hidden="true"></a>factor2 &lt;-<span class="st"> </span><span class="kw">as.factor</span>(Stu2wdat<span class="op">$</span>location)</span>
+<span id="cb500-12"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-12" aria-hidden="true"></a>my.dataframe &lt;-<span class="st"> </span><span class="kw">data.frame</span>(dependent, factor1, factor2)</span>
+<span id="cb500-13"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-13" aria-hidden="true"></a>my.dataframe.noNA &lt;-<span class="st"> </span>my.dataframe[<span class="kw">complete.cases</span>(my.dataframe), ]</span>
+<span id="cb500-14"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-14" aria-hidden="true"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(dependent <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span><span class="st"> </span>factor1<span class="op">:</span>factor2,</span>
+<span id="cb500-15"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-15" aria-hidden="true"></a>  <span class="dt">data =</span> my.dataframe.noNA</span>
+<span id="cb500-16"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-16" aria-hidden="true"></a>)</span>
+<span id="cb500-17"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-17" aria-hidden="true"></a>res &lt;-<span class="st"> </span>mod<span class="op">$</span>residuals</span>
+<span id="cb500-18"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-18" aria-hidden="true"></a>TBint &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
+<span id="cb500-19"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-19" aria-hidden="true"></a>TB1 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
+<span id="cb500-20"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-20" aria-hidden="true"></a>TB2 &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
+<span id="cb500-21"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-21" aria-hidden="true"></a>ANOVA &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(mod))</span>
+<span id="cb500-22"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-22" aria-hidden="true"></a><span class="kw">cat</span>(</span>
+<span id="cb500-23"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-23" aria-hidden="true"></a>  <span class="st">&quot; The standard ANOVA for these data follows &quot;</span>,</span>
+<span id="cb500-24"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-24" aria-hidden="true"></a>  <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb500-25"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-25" aria-hidden="true"></a>)</span>
+<span id="cb500-26"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-26" aria-hidden="true"></a>F1 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</span>
+<span id="cb500-27"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-27" aria-hidden="true"></a>F2 &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</span>
+<span id="cb500-28"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-28" aria-hidden="true"></a>Finteract &lt;-<span class="st"> </span>ANOVA[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</span>
+<span id="cb500-29"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-29" aria-hidden="true"></a><span class="kw">print</span>(ANOVA)</span>
+<span id="cb500-30"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-30" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb500-31"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-31" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb500-32"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-32" aria-hidden="true"></a>TBint[<span class="dv">1</span>] &lt;-<span class="st"> </span>Finteract</span>
+<span id="cb500-33"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-33" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>nreps) {</span>
+<span id="cb500-34"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-34" aria-hidden="true"></a>  newdat &lt;-<span class="st"> </span><span class="kw">sample</span>(res, <span class="kw">length</span>(res), <span class="dt">replace =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb500-35"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-35" aria-hidden="true"></a>  modb &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">aov</span>(newdat <span class="op">~</span><span class="st"> </span>factor1 <span class="op">+</span><span class="st"> </span>factor2 <span class="op">+</span></span>
+<span id="cb500-36"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-36" aria-hidden="true"></a><span class="st">    </span>factor1<span class="op">:</span>factor2,</span>
+<span id="cb500-37"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-37" aria-hidden="true"></a>  <span class="dt">data =</span> my.dataframe.noNA</span>
+<span id="cb500-38"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-38" aria-hidden="true"></a>  ))</span>
+<span id="cb500-39"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-39" aria-hidden="true"></a>  TBint[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">3</span>]</span>
+<span id="cb500-40"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-40" aria-hidden="true"></a>  TB1[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">1</span>]</span>
+<span id="cb500-41"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-41" aria-hidden="true"></a>  TB2[i] &lt;-<span class="st"> </span>modb[[<span class="dv">1</span>]]<span class="op">$</span><span class="st">&quot;F value&quot;</span>[<span class="dv">2</span>]</span>
+<span id="cb500-42"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-42" aria-hidden="true"></a>}</span>
+<span id="cb500-43"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-43" aria-hidden="true"></a>probInt &lt;-<span class="st"> </span><span class="kw">length</span>(TBint[TBint <span class="op">&gt;=</span><span class="st"> </span>Finteract]) <span class="op">/</span><span class="st"> </span>nreps</span>
+<span id="cb500-44"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-44" aria-hidden="true"></a>prob1 &lt;-<span class="st"> </span><span class="kw">length</span>(TB1[TB1 <span class="op">&gt;=</span><span class="st"> </span>F1]) <span class="op">/</span><span class="st"> </span>nreps</span>
+<span id="cb500-45"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-45" aria-hidden="true"></a>prob2 &lt;-<span class="st"> </span><span class="kw">length</span>(TB2[TB1 <span class="op">&gt;=</span><span class="st"> </span>F2]) <span class="op">/</span><span class="st"> </span>nreps</span>
+<span id="cb500-46"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-46" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb500-47"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-47" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb500-48"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-48" aria-hidden="true"></a><span class="kw">print</span>(<span class="st">&quot;Resampling as in ter Braak with unrestricted sampling</span></span>
+<span id="cb500-49"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-49" aria-hidden="true"></a><span class="st">of cell residuals. &quot;</span>)</span>
+<span id="cb500-50"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-50" aria-hidden="true"></a><span class="kw">cat</span>(</span>
+<span id="cb500-51"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-51" aria-hidden="true"></a>  <span class="st">&quot;The probability for the effect of Interaction is &quot;</span>,</span>
+<span id="cb500-52"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-52" aria-hidden="true"></a>  probInt, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb500-53"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-53" aria-hidden="true"></a>)</span>
+<span id="cb500-54"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-54" aria-hidden="true"></a><span class="kw">cat</span>(</span>
+<span id="cb500-55"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-55" aria-hidden="true"></a>  <span class="st">&quot;The probability for the effect of Factor 1 is &quot;</span>,</span>
+<span id="cb500-56"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-56" aria-hidden="true"></a>  prob1, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb500-57"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-57" aria-hidden="true"></a>)</span>
+<span id="cb500-58"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-58" aria-hidden="true"></a><span class="kw">cat</span>(</span>
+<span id="cb500-59"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-59" aria-hidden="true"></a>  <span class="st">&quot;The probability for the effect of Factor 2 is &quot;</span>,</span>
+<span id="cb500-60"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-60" aria-hidden="true"></a>  prob2, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb500-61"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-61" aria-hidden="true"></a>)</span></code></pre></div>
 <p>Si vous avez la chance d’avoir accès au package lmPerm, vous pouvez effectuer le test de permutation beaucoup plus rapidement et facilement:</p>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-1" aria-hidden="true"></a><span class="co">#######################################################################</span></span>
-<span id="cb500-2"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-2" aria-hidden="true"></a><span class="co">## lmPerm version of permutation test</span></span>
-<span id="cb500-3"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-3" aria-hidden="true"></a><span class="kw">library</span>(lmPerm)</span>
-<span id="cb500-4"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-4" aria-hidden="true"></a><span class="co"># for generality, copy desired dataframe to mydata</span></span>
-<span id="cb500-5"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-5" aria-hidden="true"></a><span class="co"># and model formula to myformula</span></span>
-<span id="cb500-6"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-6" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span>Stu2wdat</span>
-<span id="cb500-7"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-7" aria-hidden="true"></a>myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;rdwght ~ sex+location+sex:location&quot;</span>)</span>
-<span id="cb500-8"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-8" aria-hidden="true"></a><span class="co"># Fit desired model on the desired dataframe</span></span>
-<span id="cb500-9"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-9" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</span>
-<span id="cb500-10"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-10" aria-hidden="true"></a><span class="co"># Calculate permutation p-value</span></span>
-<span id="cb500-11"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb500-11" aria-hidden="true"></a><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center =</span> <span class="ot">FALSE</span>, <span class="dt">Ca =</span> <span class="fl">0.001</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-1" aria-hidden="true"></a><span class="co">#######################################################################</span></span>
+<span id="cb501-2"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-2" aria-hidden="true"></a><span class="co">## lmPerm version of permutation test</span></span>
+<span id="cb501-3"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-3" aria-hidden="true"></a><span class="kw">library</span>(lmPerm)</span>
+<span id="cb501-4"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-4" aria-hidden="true"></a><span class="co"># for generality, copy desired dataframe to mydata</span></span>
+<span id="cb501-5"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-5" aria-hidden="true"></a><span class="co"># and model formula to myformula</span></span>
+<span id="cb501-6"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-6" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span>Stu2wdat</span>
+<span id="cb501-7"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-7" aria-hidden="true"></a>myformula &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="st">&quot;rdwght ~ sex+location+sex:location&quot;</span>)</span>
+<span id="cb501-8"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-8" aria-hidden="true"></a><span class="co"># Fit desired model on the desired dataframe</span></span>
+<span id="cb501-9"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-9" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</span>
+<span id="cb501-10"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-10" aria-hidden="true"></a><span class="co"># Calculate permutation p-value</span></span>
+<span id="cb501-11"><a href="test-de-permutation-pour-lanova-à-deux-facteurs-de-classification.html#cb501-11" aria-hidden="true"></a><span class="kw">anova</span>(<span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>, <span class="dt">center =</span> <span class="ot">FALSE</span>, <span class="dt">Ca =</span> <span class="fl">0.001</span>))</span></code></pre></div>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -465,7 +464,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub", "Labo_BIO4558.mobi"],
+"download": ["Labo_BIO4558.pdf", "Labo_BIO4558.epub"],
 "search": {
 "engine": "fuse",
 "options": null
