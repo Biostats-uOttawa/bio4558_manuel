@@ -100,7 +100,7 @@ Test | Taille d'effet | Formule
 :----|:--------------:|:--------------------
 test de t sur des moyennes | d | $d = \frac{|\mu_1 - \mu_2|}{\sqrt{({s_1}^2 + {s_2}^2)/2}}$
 test de t pour des corrélations |  r |
-autres tests de t | f | $f = \frac{\mu_1}{\sigma}$
+autres tests de t | d | $d = \frac{\mu}{\sigma}$
 test F (ANOVA) | f | $f = \frac{\frac{\sqrt{\sum_{i=1}^k (\mu_i - \mu)^2}}{k}}{\sigma}$
 autres test F | $f^2$ | $f^2 = \frac{{R_p}^2}{1-{R_p}^2}$
  | | | ${R_p}$ est le coefficient de corrélation partiel

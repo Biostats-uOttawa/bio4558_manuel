@@ -308,6 +308,16 @@ wilcox.test(skull_h$width5, skull_h$width6,
 )
 ```
 
+Pour estimer la puissance d'un test de t  avec R, il faut utiliser la fonction `power.t.test()`. Il faut spécifier l'argument `type = "paired"`, utiliser la moyenne et l'écart-type de la différence au sein des paires dans les arguments `delta`et `sd`.
+
+```{r, tpaired-pow}
+skull_w$diff <- skull_w$width6 - skull_w$width5
+power.t.test(
+  n = 15,
+  delta = mean(skull_w$diff),
+  sd = sd(skull_w$diff),
+  type = "paired")
+```
 
 ## Références
 Bumpus, H.C. (1898) The elimination of the unfit as illustrated by the introduced sparrow, Passer domesticus. Biological Lectures, Woods Hole Biology Laboratory, Woods Hole, 11 th Lecture: 209 - 226.
