@@ -308,15 +308,16 @@ wilcox.test(skull_h$width5, skull_h$width6,
 )
 ```
 
-Pour estimer la puissance d'un test de t  avec R, il faut utiliser la fonction `power.t.test()`. Il faut spécifier l'argument `type = "paired"`, utiliser la moyenne et l'écart-type de la différence au sein des paires dans les arguments `delta`et `sd`.
+Pour estimer la puissance d'un test de t  avec R, il faut utiliser la fonction `power.t.test()`. Il faut spécifier l'argument `type = "paired"`, utiliser la moyenne et l'écart-type de la différence au sein des paires dans les arguments `delta` et `sd`.
 
 ```{r, tpaired-pow}
-skull_w$diff <- skull_w$width6 - skull_w$width5
+skull_h$diff <- skull_h$width6 - skull_h$width5
 power.t.test(
   n = 15,
-  delta = mean(skull_w$diff),
-  sd = sd(skull_w$diff),
-  type = "paired")
+  delta = mean(skull_h$diff),
+  sd = sd(skull_h$diff),
+  type = "paired"
+)
 ```
 
 ## Références
