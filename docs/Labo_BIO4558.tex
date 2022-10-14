@@ -239,7 +239,7 @@
 \makeatother
 \subtitle{Manuel de Laboratoire}
 \author{Julien Martin}
-\date{11-10-2022}
+\date{13-10-2022}
 
 \begin{document}
 \maketitle
@@ -1551,8 +1551,11 @@ La fonction \texttt{names} retourne les noms des colonnes du tableau, c'est-à-d
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "id"            "age"           "sexe"          "nivetud"       "poids"         "occup"         "qualif"        "freres.soeurs" "clso"          "relig"        
-## [11] "trav.imp"      "trav.satisf"   "hard.rock"     "lecture.bd"    "peche.chasse"  "cuisine"       "bricol"        "cinema"        "sport"         "heures.tv"
+##  [1] "id"            "age"           "sexe"          "nivetud"      
+##  [5] "poids"         "occup"         "qualif"        "freres.soeurs"
+##  [9] "clso"          "relig"         "trav.imp"      "trav.satisf"  
+## [13] "hard.rock"     "lecture.bd"    "peche.chasse"  "cuisine"      
+## [17] "bricol"        "cinema"        "sport"         "heures.tv"
 \end{verbatim}
 
 Enfin, la fonction \texttt{str} renvoie un descriptif plus détaillé de la structure du tableau. Elle liste les différentes variables, indique leur type \footnote{Les différents types de variables seront décrits plus en détail dans le chapitre \ref{vectorfactor} sur les recodages.} et affiche les premières valeurs~:
@@ -1605,14 +1608,23 @@ Une opération très importante est l'accès aux variables du tableau (à ses co
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme Femme Femme Femme Femme Homme Femme Homme Femme Femme Homme Femme Femme Femme Homme Femme
-##  [28] Homme Homme Homme Homme Homme Homme Homme Femme Femme Homme Femme Femme Homme Femme Homme Homme Femme Femme Homme Femme Femme Femme Femme Homme Femme Homme Femme
-##  [55] Homme Femme Femme Femme Homme Femme Femme Homme Homme Homme Homme Femme Homme Homme Femme Femme Homme Homme Femme Femme Femme Femme Homme Femme Femme Femme Femme
-##  [82] Femme Femme Homme Homme Femme Homme Homme Homme Homme Homme Femme Homme Femme Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Homme Femme Femme Femme
-## [109] Femme Homme Homme Homme Homme Homme Femme Homme Homme Femme Homme Homme Femme Femme Femme Homme Femme Femme Homme Femme Femme Homme Femme Homme Femme Femme Femme
-## [136] Homme Homme Homme Homme Homme Homme Homme Homme Femme Homme Homme Homme Femme Femme Femme Homme Femme Femme Femme Femme Homme Femme Homme Homme Homme Femme Homme
-## [163] Femme Homme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Femme Homme Femme Femme Homme Homme Femme Femme Femme Femme
-## [190] Femme Homme Homme Femme Homme Homme Femme Homme Femme Homme Femme
+##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme
+##  [13] Femme Femme Femme Femme Homme Femme Homme Femme Femme Homme Femme Femme
+##  [25] Femme Homme Femme Homme Homme Homme Homme Homme Homme Homme Femme Femme
+##  [37] Homme Femme Femme Homme Femme Homme Homme Femme Femme Homme Femme Femme
+##  [49] Femme Femme Homme Femme Homme Femme Homme Femme Femme Femme Homme Femme
+##  [61] Femme Homme Homme Homme Homme Femme Homme Homme Femme Femme Homme Homme
+##  [73] Femme Femme Femme Femme Homme Femme Femme Femme Femme Femme Femme Homme
+##  [85] Homme Femme Homme Homme Homme Homme Homme Femme Homme Femme Femme Femme
+##  [97] Homme Homme Femme Femme Femme Homme Femme Homme Homme Femme Femme Femme
+## [109] Femme Homme Homme Homme Homme Homme Femme Homme Homme Femme Homme Homme
+## [121] Femme Femme Femme Homme Femme Femme Homme Femme Femme Homme Femme Homme
+## [133] Femme Femme Femme Homme Homme Homme Homme Homme Homme Homme Homme Femme
+## [145] Homme Homme Homme Femme Femme Femme Homme Femme Femme Femme Femme Homme
+## [157] Femme Homme Homme Homme Femme Homme Femme Homme Femme Homme Homme Femme
+## [169] Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Femme
+## [181] Homme Femme Femme Homme Homme Femme Femme Femme Femme Femme Homme Homme
+## [193] Femme Homme Homme Femme Homme Femme Homme Femme
 ##  [ reached getOption("max.print") -- omitted 1800 entries ]
 ## Levels: Homme Femme
 \end{verbatim}
@@ -1956,8 +1968,10 @@ Ce tableau nous indique donc que parmi nos enquêtés on trouve 899 hommes et 11
 
 \begin{verbatim}
 ## 
-##       Ouvrier specialise         Ouvrier qualifie               Technicien Profession intermediaire                    Cadre                  Employe 
-##                      203                      292                       86                      160                      260                      594 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                      203                      292                       86 
+## Profession intermediaire                    Cadre                  Employe 
+##                      160                      260                      594 
 ##                    Autre 
 ##                       58
 \end{verbatim}
@@ -1973,8 +1987,10 @@ Un tableau de ce type peut être affiché ou stocké dans un objet, et on peut �
 
 \begin{verbatim}
 ## 
-##                    Autre               Technicien Profession intermediaire       Ouvrier specialise                    Cadre         Ouvrier qualifie 
-##                       58                       86                      160                      203                      260                      292 
+##                    Autre               Technicien Profession intermediaire 
+##                       58                       86                      160 
+##       Ouvrier specialise                    Cadre         Ouvrier qualifie 
+##                      203                      260                      292 
 ##                  Employe 
 ##                      594
 \end{verbatim}
@@ -1992,8 +2008,10 @@ Attention, par défaut la fonction \texttt{table} n'affiche pas les valeurs manq
 \end{Shaded}
 
 \begin{verbatim}
-##       Ouvrier specialise         Ouvrier qualifie               Technicien Profession intermediaire                    Cadre                  Employe 
-##                      203                      292                       86                      160                      260                      594 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                      203                      292                       86 
+## Profession intermediaire                    Cadre                  Employe 
+##                      160                      260                      594 
 ##                    Autre                     NA's 
 ##                       58                      347
 \end{verbatim}
@@ -2733,10 +2751,14 @@ Je vous déconseille cependant, la fonction \texttt{ls.str()} car elle peut prod
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "anglais"        "chien"          "d"              "d_nonsport"     "d_sport"        "diplome"        "erables"        "hdv2003"        "imc"           
-## [10] "maths"          "p"              "params"         "poids"          "precipitations" "reg"            "resultat"       "rp2012"         "s"             
-## [19] "sport"          "tab"            "taille1"        "taille2"        "taille3"        "taille4"        "taille5"        "tailles"        "tailles_m"     
-## [28] "temperature"    "title"          "x"              "y"
+##  [1] "anglais"        "chien"          "d"              "d_nonsport"    
+##  [5] "d_sport"        "diplome"        "erables"        "hdv2003"       
+##  [9] "imc"            "maths"          "p"              "params"        
+## [13] "poids"          "precipitations" "reg"            "resultat"      
+## [17] "rp2012"         "s"              "sport"          "tab"           
+## [21] "taille1"        "taille2"        "taille3"        "taille4"       
+## [25] "taille5"        "tailles"        "tailles_m"      "temperature"   
+## [29] "title"          "x"              "y"
 \end{verbatim}
 
 \begin{Shaded}
@@ -2836,14 +2858,30 @@ Pour un sommaire du contenu du base de données appelé sturgeon qui est en mém
 \end{Shaded}
 
 \begin{verbatim}
-##     fklngth         totlngth        drlngth          rdwght           age            girth           sex              location              year     
-##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73   Min.   : 7.00   Min.   :11.50   Length:186         Length:186         Min.   :1978  
-##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09   1st Qu.:17.00   1st Qu.:40.00   Class :character   Class :character   1st Qu.:1979  
-##  Median :44.06   Median :47.32   Median :27.00   Median :23.10   Median :20.00   Median :44.00   Mode  :character   Mode  :character   Median :1979  
-##  Mean   :44.15   Mean   :47.45   Mean   :27.29   Mean   :24.87   Mean   :20.24   Mean   :44.33                                         Mean   :1979  
-##  3rd Qu.:48.00   3rd Qu.:51.97   3rd Qu.:29.72   3rd Qu.:30.27   3rd Qu.:23.50   3rd Qu.:48.80                                         3rd Qu.:1980  
-##  Max.   :66.85   Max.   :72.05   Max.   :41.93   Max.   :93.72   Max.   :55.00   Max.   :73.70                                         Max.   :1980  
-##                  NA's   :85      NA's   :13      NA's   :4       NA's   :11      NA's   :85
+##     fklngth         totlngth        drlngth          rdwght     
+##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73  
+##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09  
+##  Median :44.06   Median :47.32   Median :27.00   Median :23.10  
+##  Mean   :44.15   Mean   :47.45   Mean   :27.29   Mean   :24.87  
+##  3rd Qu.:48.00   3rd Qu.:51.97   3rd Qu.:29.72   3rd Qu.:30.27  
+##  Max.   :66.85   Max.   :72.05   Max.   :41.93   Max.   :93.72  
+##                  NA's   :85      NA's   :13      NA's   :4      
+##       age            girth           sex              location        
+##  Min.   : 7.00   Min.   :11.50   Length:186         Length:186        
+##  1st Qu.:17.00   1st Qu.:40.00   Class :character   Class :character  
+##  Median :20.00   Median :44.00   Mode  :character   Mode  :character  
+##  Mean   :20.24   Mean   :44.33                                        
+##  3rd Qu.:23.50   3rd Qu.:48.80                                        
+##  Max.   :55.00   Max.   :73.70                                        
+##  NA's   :11      NA's   :85                                           
+##       year     
+##  Min.   :1978  
+##  1st Qu.:1979  
+##  Median :1979  
+##  Mean   :1979  
+##  3rd Qu.:1980  
+##  Max.   :1980  
+## 
 \end{verbatim}
 
 Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la valeur au milieu de la liste des observations ordonnées (appelée le 50 ième percentile), ici, la 93 ième valeur des 186 observations, les valeurs au premier (25\%) et troisième quartile (75\%), et si il y a des valeurs manquantes dans la colonne.
@@ -3333,9 +3371,9 @@ r\strut
 \begin{minipage}[t]{0.11\columnwidth}\raggedright
 autres tests de t\strut
 \end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
-f\strut
+d\strut
 \end{minipage} & \begin{minipage}[t]{0.46\columnwidth}\raggedright
-\(f = \frac{\mu_1}{\sigma}\)\strut
+\(d = \frac{\mu}{\sigma}\)\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.11\columnwidth}\raggedright
 test F (ANOVA)\strut
@@ -3947,7 +3985,8 @@ parfaitement normale, mais les déviations semblent mineures.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in applyDefaults(diagonal, defaults = list(method = "adaptiveDensity"), : unnamed diag arguments, will be ignored
+## Warning in applyDefaults(diagonal, defaults = list(method =
+## "adaptiveDensity"), : unnamed diag arguments, will be ignored
 \end{verbatim}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/stur-scatmat-1.pdf}
@@ -4086,7 +4125,8 @@ Les deux plus communes sont le coefficient de rang de Spearman et le \(\tau\) (t
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in cor.test.default(sturgeon$lfklngth, sturgeon$rdwght, alternative = "two.sided", : Cannot compute exact p-value with ties
+## Warning in cor.test.default(sturgeon$lfklngth, sturgeon$rdwght, alternative =
+## "two.sided", : Cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
@@ -4818,9 +4858,9 @@ Un test non paramétrique pour l'ordonnée à l'origine et la pente d'une régre
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 1.1919926  0.0007002052  0.03409080
-## t2* 0.3408557 -0.0002333302  0.02692617
+##      original      bias    std. error
+## t1* 1.1919926  0.00147444  0.03308167
+## t2* 0.3408557 -0.00107355  0.02630631
 \end{verbatim}
 
 Pour chaque paramètre du modèle (ici l'ordonnée à l'origine est
@@ -4864,7 +4904,8 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in boot.ci(results, type = "all", index = 1): bootstrap variances needed for studentized intervals
+## Warning in boot.ci(results, type = "all", index = 1): bootstrap variances needed
+## for studentized intervals
 \end{verbatim}
 
 \begin{verbatim}
@@ -4876,10 +4917,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.124,  1.258 )   ( 1.124,  1.256 )  
+## 95%   ( 1.126,  1.255 )   ( 1.126,  1.255 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.128,  1.260 )   ( 1.115,  1.253 )  
+## 95%   ( 1.129,  1.258 )   ( 1.116,  1.248 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -4891,7 +4932,8 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in boot.ci(results, type = "all", index = 2): bootstrap variances needed for studentized intervals
+## Warning in boot.ci(results, type = "all", index = 2): bootstrap variances needed
+## for studentized intervals
 \end{verbatim}
 
 \begin{verbatim}
@@ -4903,10 +4945,10 @@ La distribution des estimés obtenus par bootstrap est assez normale dans cet ex
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2883,  0.3939 )   ( 0.2905,  0.3930 )  
+## 95%   ( 0.2904,  0.3935 )   ( 0.2892,  0.3924 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2887,  0.3912 )   ( 0.2931,  0.3985 )  
+## 95%   ( 0.2893,  0.3925 )   ( 0.2960,  0.4021 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5189,7 +5231,8 @@ Qu'en est-il de l'égalité des variances?
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in leveneTest.default(y = y, group = group, ...): group coerced to factor.
+## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.
 \end{verbatim}
 
 \begin{verbatim}
@@ -5267,9 +5310,9 @@ La deuxième section avec la commande boot() fait le gros du travail: on prend l
 ## 
 ## 
 ## Bootstrap Statistics :
-##      original        bias    std. error
-## t1* 45.084391 -0.0004662572   0.4187187
-## t2* -1.714546 -0.0214718547   0.7717655
+##      original       bias    std. error
+## t1* 45.084391  0.001389093   0.4506971
+## t2* -1.714546 -0.001161898   0.7741727
 \end{verbatim}
 
 On obtient les estimés originaux pour les deux coefficients du modèle: la moyenne pour le premier (alphabétiquement) site soit Cumberland, et la différence entre les deux moyennes à Cumberland et The Pas. C'est ce second paramètre, la différence entre les moyennes, qui nous intéresse.
@@ -5302,7 +5345,7 @@ On obtient les estimés originaux pour les deux coefficients du modèle: la moye
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   (-3.173, -0.106 )  
+## 95%   (-3.128, -0.141 )  
 ## Calculations and Intervals on Original Scale
 \end{verbatim}
 
@@ -5346,7 +5389,7 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 ## 
 ## Coefficients:
 ##           Estimate Iter Pr(Prob)  
-## location1   0.8573 3324   0.0295 *
+## location1   0.8573 3992   0.0245 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5359,9 +5402,9 @@ La fonction \texttt{lmp()} fait tout le travail pour nous. Ici, cette fonction e
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \texttt{Iter}: la règle a limité à 3324 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
+  \texttt{Iter}: la règle a limité à 3992 permutations le calcul. Notez que ce nombre va varier à chaque fois que vous tournerez cet petit bout de code. Ce sont des résultats obtenus par permutations aléatoires, donc vous devez vous attendre à de la variabilité. .
 \item
-  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0295. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0295= 97.1\%) des 3324 permutations. Notez que 3324 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
+  \texttt{Pr(Prob)}: La p-valeur estimée pour H0 est 0.0245. La différence observée pour fklngth between entre les deux sites était plus grande que les valeurs permutées environ (1 - 0.0245= 97.5\%) des 3992 permutations. Notez que 3992 permutations ce n'est pas un si grand nombre de permutations que ça, et donc les faibles valeurs de p ne sont pas très précises. Si vous voulez des valeurs précises de p, vous devrez faire plus de permutations. Vous pouvez ajuster 2 paramètres: maxIter, le nombre maximal de permutations (défaut 5000) et Ca, le seuil de précision désiré qui arrête les permutations quand l'erreur- type de p est plus petite que Ca*p (défaut=0.1)
 \item
   \texttt{F-statistic}: Le reste est la sortie standard pour un modèle ajusté à des données, avec le test paramétrique. Ici, la p-valeur, présumant que toutes les conditions d'application sont remplies, est 0.034.
 \end{enumerate}
@@ -5528,7 +5571,8 @@ Avec \emph{r} = 0.9930841. En présence d'une si forte corrélation, l'erreur-ty
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative = "two.sided", : cannot compute exact p-value with ties
+## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
+## "two.sided", : cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
@@ -5577,7 +5621,8 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative = "less", : cannot compute exact p-value with ties
+## Warning in wilcox.test.default(skull_h$width5, skull_h$width6, alternative =
+## "less", : cannot compute exact p-value with ties
 \end{verbatim}
 
 \begin{verbatim}
@@ -5587,6 +5632,34 @@ Mais, attendez une minute! On a utilisé des tests bilatéraux ici mais, compte 
 ## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0003597
 ## alternative hypothesis: true location shift is less than 0
+\end{verbatim}
+
+Pour estimer la puissance d'un test de t avec R, il faut utiliser la fonction \texttt{power.t.test()}. Il faut spécifier l'argument \texttt{type\ =\ "paired"}, utiliser la moyenne et l'écart-type de la différence au sein des paires dans les arguments \texttt{delta} et \texttt{sd}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{skull\_h}\OperatorTok{$}\NormalTok{diff \textless{}{-}}\StringTok{ }\NormalTok{skull\_h}\OperatorTok{$}\NormalTok{width6 }\OperatorTok{{-}}\StringTok{ }\NormalTok{skull\_h}\OperatorTok{$}\NormalTok{width5}
+\KeywordTok{power.t.test}\NormalTok{(}
+  \DataTypeTok{n =} \DecValTok{15}\NormalTok{,}
+  \DataTypeTok{delta =} \KeywordTok{mean}\NormalTok{(skull\_h}\OperatorTok{$}\NormalTok{diff),}
+  \DataTypeTok{sd =} \KeywordTok{sd}\NormalTok{(skull\_h}\OperatorTok{$}\NormalTok{diff),}
+  \DataTypeTok{type =} \StringTok{"paired"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Paired t test power calculation 
+## 
+##               n = 15
+##           delta = 0.2
+##              sd = 0.03927922
+##       sig.level = 0.05
+##           power = 1
+##     alternative = two.sided
+## 
+## NOTE: n is number of *pairs*, sd is std.dev. of *differences* within pairs
 \end{verbatim}
 
 \hypertarget{ruxe9fuxe9rences}{%
@@ -6091,18 +6164,18 @@ Le package multcomp peut produire de meilleurs graphiques, mais requiert un peu 
 ## 
 ## Fit: aov(formula = aov(fklngth ~ myyear, data = Dam10dat))
 ## 
-## Quantile = 2.5919
+## Quantile = 2.5933
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##                    Estimate lwr      upr     
-## m1958 - m1954 == 0   0.1872  -3.2690   3.6434
-## m1965 - m1954 == 0  -5.5077  -9.9944  -1.0210
-## m1966 - m1954 == 0  -3.3127  -6.3412  -0.2842
-## m1965 - m1958 == 0  -5.6949 -10.4083  -0.9815
-## m1966 - m1958 == 0  -3.4999  -6.8552  -0.1447
-## m1966 - m1965 == 0   2.1950  -2.2144   6.6043
+## m1958 - m1954 == 0   0.1872  -3.2709   3.6453
+## m1965 - m1954 == 0  -5.5077  -9.9968  -1.0185
+## m1966 - m1954 == 0  -3.3127  -6.3428  -0.2825
+## m1965 - m1958 == 0  -5.6949 -10.4108  -0.9789
+## m1966 - m1958 == 0  -3.4999  -6.8570  -0.1429
+## m1966 - m1965 == 0   2.1950  -2.2168   6.6067
 \end{verbatim}
 
 \begin{Shaded}
@@ -6492,11 +6565,16 @@ Les graphiques montrent qu'aux deux sites les femelles sont probablement plus gr
 \end{Shaded}
 
 \begin{verbatim}
-##            sex     location rdwght.Min. rdwght.1st Qu. rdwght.Median rdwght.Mean rdwght.3rd Qu. rdwght.Max.
-## 1 FEMALE       CUMBERLAND      15.10000       20.40000      26.80000    27.37347       31.40000    55.60000
-## 2 MALE         CUMBERLAND      14.00000       19.22500      20.85000    22.14118       23.90000    35.60000
-## 3 FEMALE       THE_PAS         12.54000       19.14000      27.39000    27.97717       33.88000    93.72000
-## 4 MALE         THE_PAS          4.73000       14.63000      20.79000    20.64652       24.94250    49.94000
+##            sex     location rdwght.Min. rdwght.1st Qu. rdwght.Median
+## 1 FEMALE       CUMBERLAND      15.10000       20.40000      26.80000
+## 2 MALE         CUMBERLAND      14.00000       19.22500      20.85000
+## 3 FEMALE       THE_PAS         12.54000       19.14000      27.39000
+## 4 MALE         THE_PAS          4.73000       14.63000      20.79000
+##   rdwght.Mean rdwght.3rd Qu. rdwght.Max.
+## 1    27.37347       31.40000    55.60000
+## 2    22.14118       23.90000    35.60000
+## 3    27.97717       33.88000    93.72000
+## 4    20.64652       24.94250    49.94000
 \end{verbatim}
 
 Ces résultats supportent l'interprétation des box plots: Les femelles sont plus grosses que les mâles, et la différence de taille entre les deuxsites sont petites.
@@ -6914,7 +6992,8 @@ Le test de normalité sur les résidus donne p = 0.16, donc l'hypothèse de norm
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in leveneTest.default(y = y, group = group, ...): group coerced to factor.
+## Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+## factor.
 \end{verbatim}
 
 \begin{verbatim}
@@ -8458,8 +8537,12 @@ Ce modèle s'ajuste un peu mieux aux données que les modèle ``final'' (il expl
 \end{verbatim}
 
 \begin{verbatim}
-##        logarea         cpfor2         thtden          swamp     I(swamp^2) logarea:cpfor2 logarea:thtden  logarea:swamp  cpfor2:thtden   cpfor2:swamp   thtden:swamp 
-##       49.86060       78.49622      101.42437       90.47389      115.08457       66.97792       71.69894       67.27034       14.66814       29.41422       20.04410
+##        logarea         cpfor2         thtden          swamp     I(swamp^2) 
+##       49.86060       78.49622      101.42437       90.47389      115.08457 
+## logarea:cpfor2 logarea:thtden  logarea:swamp  cpfor2:thtden   cpfor2:swamp 
+##       66.97792       71.69894       67.27034       14.66814       29.41422 
+##   thtden:swamp 
+##       20.04410
 \end{verbatim}
 
 Aie! tous les VIF sont plus grands que 5, pas seulement les termes incluant swamp. Cette forte multicolinéarité empêche de quantifier avec précision l'effet de ces interactions. De plus, ce modèle avec interactions n'est pas plus informatif que le modèle ``final'' puisque son AIC est plus élevé (souvenez-vous qu'on privilégie le modèle avec la valeur d'AIC la plus basse):
@@ -8576,7 +8659,8 @@ L'objet \texttt{dd} contient tous les modèles possibles (i.e.~ceux qui ont tout
 ## model.avg(object = top.models.1)
 ## 
 ## Component model call: 
-## lm(formula = logherp ~ <2 unique rhs>, data = mysub, na.action = na.fail)
+## lm(formula = logherp ~ <2 unique rhs>, data = mysub, na.action = 
+##      na.fail)
 ## 
 ## Component models: 
 ##       df logLik   AICc delta weight
@@ -8703,14 +8787,14 @@ Les limites précises peuvent être obtenues par:
 
 \begin{verbatim}
 ##       (Intercept)   logarea       thtden      swamp    I(swamp^2)
-## 0.5%  -0.73422729 0.1335877 -0.046856637 0.01676951 -0.0003490629
-## 1%    -0.71114489 0.1382783 -0.045658586 0.01783226 -0.0003445505
-## 2.5%  -0.65221802 0.1489210 -0.043089461 0.01962176 -0.0003282325
-## 5%    -0.59951126 0.1598310 -0.040350330 0.02086406 -0.0003157115
-## 95%   -0.06984058 0.2789479 -0.011851367 0.03774024 -0.0001808568
-## 97.5% -0.02180083 0.2936673 -0.009912345 0.03909459 -0.0001688144
-## 99%    0.04757930 0.3062464 -0.007687683 0.04122327 -0.0001550275
-## 99.5%  0.08756265 0.3116054 -0.005244553 0.04231185 -0.0001410735
+## 0.5%  -0.74271217 0.1400956 -0.046991419 0.01706338 -0.0003495422
+## 1%    -0.69761463 0.1442992 -0.044909529 0.01810643 -0.0003429794
+## 2.5%  -0.64040343 0.1554045 -0.041881367 0.01961982 -0.0003241338
+## 5%    -0.60396405 0.1659998 -0.039085040 0.02111382 -0.0003149634
+## 95%   -0.06774084 0.2783843 -0.012463473 0.03781933 -0.0001806500
+## 97.5% -0.02587819 0.2846997 -0.009993364 0.03925620 -0.0001696570
+## 99%    0.02207839 0.2999068 -0.006583432 0.04139601 -0.0001573936
+## 99.5%  0.06418413 0.3120696 -0.005640701 0.04213061 -0.0001476897
 \end{verbatim}
 
 Ces intervalles de confiances ne sont pas fiables si la distribution des estimés bootstrap n'est pas Gaussienne. Dans ce cas, il vaut mieux calculer des coefficients non-biaisés (bias-corrected accelerated confidence limits, BCa):
@@ -8768,8 +8852,9 @@ Pour logarea, cela donne:
 ## 
 ## Intervals : 
 ## Level       BCa          
-## 95%   ( 0.1179,  0.3175 )  
+## 95%   ( 0.1248,  0.3227 )  
 ## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable
 \end{verbatim}
 
 \includegraphics{Labo_BIO4558_files/figure-latex/unnamed-chunk-294-1.pdf}
@@ -9068,8 +9153,10 @@ Donc, comme les conditions des LM sont suffisamment remplies, on peut accepter l
 ## lm(formula = lfkl ~ lage + locate + lage:locate, data = anc3dat)
 ## 
 ## Coefficients:
-##             (Intercept)                     lage       locateNELSON        lage:locateNELSON        
-##                  1.2284                   0.3253                   0.2207                  -0.1656
+##             (Intercept)                     lage       locateNELSON        
+##                  1.2284                   0.3253                   0.2207  
+## lage:locateNELSON        
+##                 -0.1656
 \end{verbatim}
 
 Par défaut, la variable \texttt{locate} est encodée comme 0 pour le site qui vient le premier en ordre alphabétique (LofW) et 1 pour l'autre (Nelson). Les régressions pour chaque site deviennent donc:
@@ -9104,7 +9191,7 @@ Vous pouvez vérifier en ajustant séparément les régressions pour chaque site
 ## (Intercept)         lage  
 ##      1.2284       0.3253  
 ## 
-## ------------------------------------------------------------------------------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## anc3dat$locate: NELSON      
 ## 
 ## Call:
@@ -9715,7 +9802,8 @@ L'estimation de la valeur p associée à la statistique du Chi carré est approx
 
 \begin{verbatim}
 ## 
-##  Pearson's Chi-squared test with simulated p-value (based on 10000 replicates)
+##  Pearson's Chi-squared test with simulated p-value (based on 10000
+##  replicates)
 ## 
 ## data:  USTable
 ## X-squared = 1162.6, df = NA, p-value = 9.999e-05
@@ -9745,7 +9833,8 @@ Pour de petits tableaux de contingence avec des fréquences attendues petites, l
 
 \begin{verbatim}
 ## 
-##  Fisher's Exact Test for Count Data with simulated p-value (based on 10000 replicates)
+##  Fisher's Exact Test for Count Data with simulated p-value (based on
+##  10000 replicates)
 ## 
 ## data:  USTable
 ## p-value = 9.999e-05
@@ -10042,19 +10131,32 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 ##  [1]  0  0  0  0  0  0  0  0  0  0  0  0
 ## 
 ## Coefficients:
-##                                               Estimate Std. Error z value Pr(>|z|)    
-## (Intercept)                                    2.30259    0.31623   7.281  3.3e-13 ***
-## sexMALE                                        0.33647    0.41404   0.813  0.41641    
-## year1979                                       1.09861    0.36515   3.009  0.00262 ** 
-## year1980                                       0.09531    0.43693   0.218  0.82732    
-## locationTHE_PAS                               -0.69315    0.54772  -1.266  0.20569    
-## sexMALE        :year1979                      -1.09861    0.52554  -2.090  0.03658 *  
-## sexMALE        :year1980                      -0.94261    0.65498  -1.439  0.15011    
-## sexMALE        :locationTHE_PAS                0.82668    0.65873   1.255  0.20950    
-## year1979:locationTHE_PAS                      -0.22314    0.64550  -0.346  0.72957    
-## year1980:locationTHE_PAS                       1.93284    0.64593   2.992  0.00277 ** 
-## sexMALE        :year1979:locationTHE_PAS      -0.06454    0.83986  -0.077  0.93875    
-## sexMALE        :year1980:locationTHE_PAS      -0.96776    0.87942  -1.100  0.27114    
+##                                               Estimate Std. Error z value
+## (Intercept)                                    2.30259    0.31623   7.281
+## sexMALE                                        0.33647    0.41404   0.813
+## year1979                                       1.09861    0.36515   3.009
+## year1980                                       0.09531    0.43693   0.218
+## locationTHE_PAS                               -0.69315    0.54772  -1.266
+## sexMALE        :year1979                      -1.09861    0.52554  -2.090
+## sexMALE        :year1980                      -0.94261    0.65498  -1.439
+## sexMALE        :locationTHE_PAS                0.82668    0.65873   1.255
+## year1979:locationTHE_PAS                      -0.22314    0.64550  -0.346
+## year1980:locationTHE_PAS                       1.93284    0.64593   2.992
+## sexMALE        :year1979:locationTHE_PAS      -0.06454    0.83986  -0.077
+## sexMALE        :year1980:locationTHE_PAS      -0.96776    0.87942  -1.100
+##                                               Pr(>|z|)    
+## (Intercept)                                    3.3e-13 ***
+## sexMALE                                        0.41641    
+## year1979                                       0.00262 ** 
+## year1980                                       0.82732    
+## locationTHE_PAS                                0.20569    
+## sexMALE        :year1979                       0.03658 *  
+## sexMALE        :year1980                       0.15011    
+## sexMALE        :locationTHE_PAS                0.20950    
+## year1979:locationTHE_PAS                       0.72957    
+## year1980:locationTHE_PAS                       0.00277 ** 
+## sexMALE        :year1979:locationTHE_PAS       0.93875    
+## sexMALE        :year1980:locationTHE_PAS       0.27114    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 

@@ -378,8 +378,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Bootstrap Statistics :
 ##      original       bias    std. error
-## t1* 1.1919926  0.002304063  0.03282150
-## t2* 0.3408557 -0.001724259  0.02599985</code></pre>
+## t1* 1.1919926  0.002189033  0.03541683
+## t2* 0.3408557 -0.001569806  0.02805883</code></pre>
 <p>Pour chaque paramètre du modèle (ici l’ordonnée à l’origine est
 appelée t1* et la pente de la régression t2*), R imprime :</p>
 <ol style="list-style-type: decimal">
@@ -405,10 +405,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 1.125,  1.254 )   ( 1.126,  1.253 )  
+## 95%   ( 1.120,  1.259 )   ( 1.114,  1.260 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 1.131,  1.258 )   ( 1.122,  1.251 )  
+## 95%   ( 1.124,  1.270 )   ( 1.118,  1.255 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="bootstrap-en-régression-simple-avec-r.html#cb325-1" aria-hidden="true"></a><span class="co"># intervalle de confiance pour la pente</span></span>
 <span id="cb325-2"><a href="bootstrap-en-régression-simple-avec-r.html#cb325-2" aria-hidden="true"></a><span class="kw">boot.ci</span>(results, <span class="dt">type =</span> <span class="st">&quot;all&quot;</span>, <span class="dt">index =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -422,10 +422,10 @@ appelée t1* et la pente de la régression t2*), R imprime :</p>
 ## 
 ## Intervals : 
 ## Level      Normal              Basic         
-## 95%   ( 0.2916,  0.3935 )   ( 0.2935,  0.3934 )  
+## 95%   ( 0.2874,  0.3974 )   ( 0.2881,  0.4009 )  
 ## 
 ## Level     Percentile            BCa          
-## 95%   ( 0.2883,  0.3882 )   ( 0.2934,  0.3962 )  
+## 95%   ( 0.2808,  0.3936 )   ( 0.2896,  0.4005 )  
 ## Calculations and Intervals on Original Scale</code></pre>
 <p>Ici, les 4 types d’intervalles de confiance que R a calculé sont essentiellement semblables. Si les données avaient violé plus sévèrement les conditions d’application de la régression (normalité, homoscedasticité), alors les différentes méthodes (Normal, Basic, Percentile, et BCa) auraient divergé un peu plus. Lequel choisir alors? BCa est celui qui est préféré de la majorité des praticiens, présentement.</p>
 

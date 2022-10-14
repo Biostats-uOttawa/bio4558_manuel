@@ -354,13 +354,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Faites un diagramme de dispersion des résidus (residual) de la régression <code>logherp ~ logarea</code> en fonction de swamp .</li>
 </ul>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb527-1"><a href="régression-polynomiale.html#cb527-1" aria-hidden="true"></a><span class="co"># problème avec les données de manquantes dans logherp</span></span>
-<span id="cb527-2"><a href="régression-polynomiale.html#cb527-2" aria-hidden="true"></a>mysub &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, <span class="op">!</span><span class="kw">is.na</span>(logherp))</span>
-<span id="cb527-3"><a href="régression-polynomiale.html#cb527-3" aria-hidden="true"></a><span class="co"># ajouter les résidus dans les donnée</span></span>
-<span id="cb527-4"><a href="régression-polynomiale.html#cb527-4" aria-hidden="true"></a>mysub<span class="op">$</span>resloga &lt;-<span class="st"> </span><span class="kw">residuals</span>(model.loga)</span>
-<span id="cb527-5"><a href="régression-polynomiale.html#cb527-5" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mysub, <span class="kw">aes</span>(<span class="dt">y =</span> resloga, <span class="dt">x =</span> swamp)) <span class="op">+</span></span>
-<span id="cb527-6"><a href="régression-polynomiale.html#cb527-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb527-7"><a href="régression-polynomiale.html#cb527-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb529-1"><a href="régression-polynomiale.html#cb529-1" aria-hidden="true"></a><span class="co"># problème avec les données de manquantes dans logherp</span></span>
+<span id="cb529-2"><a href="régression-polynomiale.html#cb529-2" aria-hidden="true"></a>mysub &lt;-<span class="st"> </span><span class="kw">subset</span>(mydata, <span class="op">!</span><span class="kw">is.na</span>(logherp))</span>
+<span id="cb529-3"><a href="régression-polynomiale.html#cb529-3" aria-hidden="true"></a><span class="co"># ajouter les résidus dans les donnée</span></span>
+<span id="cb529-4"><a href="régression-polynomiale.html#cb529-4" aria-hidden="true"></a>mysub<span class="op">$</span>resloga &lt;-<span class="st"> </span><span class="kw">residuals</span>(model.loga)</span>
+<span id="cb529-5"><a href="régression-polynomiale.html#cb529-5" aria-hidden="true"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> mysub, <span class="kw">aes</span>(<span class="dt">y =</span> resloga, <span class="dt">x =</span> swamp)) <span class="op">+</span></span>
+<span id="cb529-6"><a href="régression-polynomiale.html#cb529-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb529-7"><a href="régression-polynomiale.html#cb529-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_smooth</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-263"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-263-1.svg" alt="Relation entre swamp et les résidus de la régression entre logherp et logarea" width="672" />
@@ -371,8 +371,8 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 <ul>
 <li>L’examen de ce graphique suggère qu’il y a une forte relation entre les deux variables, mais qu’elle n’est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?</li>
 </ul>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb529-1"><a href="régression-polynomiale.html#cb529-1" aria-hidden="true"></a>model.resloga &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span><span class="st"> </span>swamp, mysub)</span>
-<span id="cb529-2"><a href="régression-polynomiale.html#cb529-2" aria-hidden="true"></a><span class="kw">summary</span>(model.resloga)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb531-1"><a href="régression-polynomiale.html#cb531-1" aria-hidden="true"></a>model.resloga &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span><span class="st"> </span>swamp, mysub)</span>
+<span id="cb531-2"><a href="régression-polynomiale.html#cb531-2" aria-hidden="true"></a><span class="kw">summary</span>(model.resloga)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = resloga ~ swamp, data = mysub)
@@ -393,8 +393,8 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 <ul>
 <li>Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter <span class="math inline">\(swamp^2\)</span> . L’expression devrait apparaître comme: <span class="math inline">\(Y ~ X + I(X^2)\)</span> . Que concluez-vous? Qu’est-ce que l’examen des résidus de cette régression multiple révèle?</li>
 </ul>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb531-1"><a href="régression-polynomiale.html#cb531-1" aria-hidden="true"></a>model.resloga2 &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), mysub)</span>
-<span id="cb531-2"><a href="régression-polynomiale.html#cb531-2" aria-hidden="true"></a><span class="kw">summary</span>(model.resloga2)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb533-1"><a href="régression-polynomiale.html#cb533-1" aria-hidden="true"></a>model.resloga2 &lt;-<span class="st"> </span><span class="kw">lm</span>(resloga <span class="op">~</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>), mysub)</span>
+<span id="cb533-2"><a href="régression-polynomiale.html#cb533-2" aria-hidden="true"></a><span class="kw">summary</span>(model.resloga2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = resloga ~ swamp + I(swamp^2), data = mysub)
@@ -415,8 +415,8 @@ Figure 7.3: Relation entre swamp et les résidus de la régression entre logherp
 ## Multiple R-squared:  0.6132, Adjusted R-squared:  0.5823 
 ## F-statistic: 19.82 on 2 and 25 DF,  p-value: 6.972e-06</code></pre>
 <p>Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp, selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb533-1"><a href="régression-polynomiale.html#cb533-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb533-2"><a href="régression-polynomiale.html#cb533-2" aria-hidden="true"></a><span class="kw">plot</span>(model.resloga2)</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb535-1"><a href="régression-polynomiale.html#cb535-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb535-2"><a href="régression-polynomiale.html#cb535-2" aria-hidden="true"></a><span class="kw">plot</span>(model.resloga2)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-266"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-266-1.svg" alt="Relation " width="672" />
 <p class="caption">
@@ -427,11 +427,11 @@ Figure 7.4: Relation
 <li>En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d’après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.</li>
 </ul>
 <p>Suite à ces analyses, il semble opportun d’essayer d’ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp^2 :</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb534-1"><a href="régression-polynomiale.html#cb534-1" aria-hidden="true"></a>model.poly1 &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
-<span id="cb534-2"><a href="régression-polynomiale.html#cb534-2" aria-hidden="true"></a>  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
-<span id="cb534-3"><a href="régression-polynomiale.html#cb534-3" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
-<span id="cb534-4"><a href="régression-polynomiale.html#cb534-4" aria-hidden="true"></a>)</span>
-<span id="cb534-5"><a href="régression-polynomiale.html#cb534-5" aria-hidden="true"></a><span class="kw">summary</span>(model.poly1)</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb536-1"><a href="régression-polynomiale.html#cb536-1" aria-hidden="true"></a>model.poly1 &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
+<span id="cb536-2"><a href="régression-polynomiale.html#cb536-2" aria-hidden="true"></a>  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
+<span id="cb536-3"><a href="régression-polynomiale.html#cb536-3" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
+<span id="cb536-4"><a href="régression-polynomiale.html#cb536-4" aria-hidden="true"></a>)</span>
+<span id="cb536-5"><a href="régression-polynomiale.html#cb536-5" aria-hidden="true"></a><span class="kw">summary</span>(model.poly1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2), 
@@ -457,11 +457,11 @@ Figure 7.4: Relation
 ## Multiple R-squared:  0.8181, Adjusted R-squared:  0.7767 
 ## F-statistic: 19.78 on 5 and 22 DF,  p-value: 1.774e-07</code></pre>
 <p>Les résultats de cette analyse suggèrent qu’on devrait probablement exclure <code>cpfor2</code> du modèle:</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb536-1"><a href="régression-polynomiale.html#cb536-1" aria-hidden="true"></a>model.poly2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
-<span id="cb536-2"><a href="régression-polynomiale.html#cb536-2" aria-hidden="true"></a>  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
-<span id="cb536-3"><a href="régression-polynomiale.html#cb536-3" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
-<span id="cb536-4"><a href="régression-polynomiale.html#cb536-4" aria-hidden="true"></a>)</span>
-<span id="cb536-5"><a href="régression-polynomiale.html#cb536-5" aria-hidden="true"></a><span class="kw">summary</span>(model.poly2)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb538-1"><a href="régression-polynomiale.html#cb538-1" aria-hidden="true"></a>model.poly2 &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
+<span id="cb538-2"><a href="régression-polynomiale.html#cb538-2" aria-hidden="true"></a>  logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(swamp<span class="op">^</span><span class="dv">2</span>),</span>
+<span id="cb538-3"><a href="régression-polynomiale.html#cb538-3" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
+<span id="cb538-4"><a href="régression-polynomiale.html#cb538-4" aria-hidden="true"></a>)</span>
+<span id="cb538-5"><a href="régression-polynomiale.html#cb538-5" aria-hidden="true"></a><span class="kw">summary</span>(model.poly2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + thtden + swamp + I(swamp^2), 
@@ -486,7 +486,7 @@ Figure 7.4: Relation
 ## Multiple R-squared:  0.8129, Adjusted R-squared:  0.7804 
 ## F-statistic: 24.98 on 4 and 23 DF,  p-value: 4.405e-08</code></pre>
 <p>Est-ce qu’il y a possiblement un problème de multicolinéarité?</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="régression-polynomiale.html#cb538-1" aria-hidden="true"></a><span class="kw">vif</span>(model.poly2)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="régression-polynomiale.html#cb540-1" aria-hidden="true"></a><span class="kw">vif</span>(model.poly2)</span></code></pre></div>
 <pre><code>##    logarea     thtden      swamp I(swamp^2) 
 ##   1.053193   1.123491  45.845845  45.656453</code></pre>
 <p>Les valeurs d’inflation de la variance (VIF) pour les deux termes de swamp sont beaucoup plus élevés que le seuil de 5. Cependant, c’est la norme pour les termes polynomiaux et on ne doit pas s’en préoccuper outre mesure, surtout quand les deux termes sont hautement significatifs dans le modèle. Les fortes valeurs de VIF indiquent que les coefficients pour ces deux termes ne sont pas estimés précisément, mais leur utilisation dans le modèle permet tout de même de faire de bonnes prédictions (i.e. ils décrivent la réponse à swamp).</p>

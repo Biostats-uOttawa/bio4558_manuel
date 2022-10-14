@@ -481,6 +481,25 @@ Figure 4.5: Relation entre la taille de la tête à 5 et 6 ans
 ## data:  skull_h$width5 and skull_h$width6
 ## V = 0, p-value = 0.0003597
 ## alternative hypothesis: true location shift is less than 0</code></pre>
+<p>Pour estimer la puissance d’un test de t avec R, il faut utiliser la fonction <code>power.t.test()</code>. Il faut spécifier l’argument <code>type = "paired"</code>, utiliser la moyenne et l’écart-type de la différence au sein des paires dans les arguments <code>delta</code> et <code>sd</code>.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-1" aria-hidden="true"></a>skull_h<span class="op">$</span>diff &lt;-<span class="st"> </span>skull_h<span class="op">$</span>width6 <span class="op">-</span><span class="st"> </span>skull_h<span class="op">$</span>width5</span>
+<span id="cb372-2"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-2" aria-hidden="true"></a><span class="kw">power.t.test</span>(</span>
+<span id="cb372-3"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-3" aria-hidden="true"></a>  <span class="dt">n =</span> <span class="dv">15</span>,</span>
+<span id="cb372-4"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-4" aria-hidden="true"></a>  <span class="dt">delta =</span> <span class="kw">mean</span>(skull_h<span class="op">$</span>diff),</span>
+<span id="cb372-5"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-5" aria-hidden="true"></a>  <span class="dt">sd =</span> <span class="kw">sd</span>(skull_h<span class="op">$</span>diff),</span>
+<span id="cb372-6"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-6" aria-hidden="true"></a>  <span class="dt">type =</span> <span class="st">&quot;paired&quot;</span></span>
+<span id="cb372-7"><a href="comparer-les-moyennes-de-deux-échantillons-appariés.html#cb372-7" aria-hidden="true"></a>)</span></code></pre></div>
+<pre><code>## 
+##      Paired t test power calculation 
+## 
+##               n = 15
+##           delta = 0.2
+##              sd = 0.03927922
+##       sig.level = 0.05
+##           power = 1
+##     alternative = two.sided
+## 
+## NOTE: n is number of *pairs*, sd is std.dev. of *differences* within pairs</code></pre>
 </div>
 <script src="js/solution.js"></script>
             </section>

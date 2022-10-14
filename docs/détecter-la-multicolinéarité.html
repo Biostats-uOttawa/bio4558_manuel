@@ -358,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Bref, les VIF indiquent de combien l’incertitude de chaque coefficient de régression est augmentée par la multicolinéarité.</p>
 <p><strong>Attrappe.</strong> Il y a plusieurs fonctions vif() (j’en connais au moins trois dans les extensions <code>car</code>, <code>HH</code> et <code>DAAG</code>), et je ne sais pas en quoi elles diffèrent.</p>
 <p>On peut calculer les VIF avec la fonction <code>vif()</code> de l’extension <code>car</code>: :</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="détecter-la-multicolinéarité.html#cb525-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
-<span id="cb525-2"><a href="détecter-la-multicolinéarité.html#cb525-2" aria-hidden="true"></a><span class="kw">vif</span>(model.mtri)</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="détecter-la-multicolinéarité.html#cb527-1" aria-hidden="true"></a><span class="kw">library</span>(car)</span>
+<span id="cb527-2"><a href="détecter-la-multicolinéarité.html#cb527-2" aria-hidden="true"></a><span class="kw">vif</span>(model.mtri)</span></code></pre></div>
 <pre><code>##  logarea   cpfor2   thtden 
 ## 1.022127 1.344455 1.365970</code></pre>
 <p>Ici, il n’y a pas d’évidence de multicolinéarité car toutes les valeurs de VIF sont près de 1.</p>

@@ -366,12 +366,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>la densité des routes pavées (en m/ha) dans un rayon de 1km du marais (thtden).</li>
 </ul>
 <p>Nous allons nous concentrer sur les amphibiens et les reptiles (herptile) pour cet exemple, il est donc avisé d’examiner la distribution de cette variable et les corrélations avec les variables indépendantes potentielles:</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="premières-régressions-multiples.html#cb503-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Mregdat.csv&quot;</span>)</span>
-<span id="cb503-2"><a href="premières-régressions-multiples.html#cb503-2" aria-hidden="true"></a><span class="kw">scatterplotMatrix</span>(</span>
-<span id="cb503-3"><a href="premières-régressions-multiples.html#cb503-3" aria-hidden="true"></a>  <span class="op">~</span><span class="st"> </span>logherp <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp,</span>
-<span id="cb503-4"><a href="premières-régressions-multiples.html#cb503-4" aria-hidden="true"></a>  <span class="dt">regLine =</span> <span class="ot">TRUE</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb503-5"><a href="premières-régressions-multiples.html#cb503-5" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
-<span id="cb503-6"><a href="premières-régressions-multiples.html#cb503-6" aria-hidden="true"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="premières-régressions-multiples.html#cb505-1" aria-hidden="true"></a>mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/Mregdat.csv&quot;</span>)</span>
+<span id="cb505-2"><a href="premières-régressions-multiples.html#cb505-2" aria-hidden="true"></a><span class="kw">scatterplotMatrix</span>(</span>
+<span id="cb505-3"><a href="premières-régressions-multiples.html#cb505-3" aria-hidden="true"></a>  <span class="op">~</span><span class="st"> </span>logherp <span class="op">+</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden <span class="op">+</span><span class="st"> </span>swamp,</span>
+<span id="cb505-4"><a href="premières-régressions-multiples.html#cb505-4" aria-hidden="true"></a>  <span class="dt">regLine =</span> <span class="ot">TRUE</span>, <span class="dt">smooth =</span> <span class="ot">TRUE</span>, <span class="dt">diagonal =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb505-5"><a href="premières-régressions-multiples.html#cb505-5" aria-hidden="true"></a>  <span class="dt">data =</span> mydata</span>
+<span id="cb505-6"><a href="premières-régressions-multiples.html#cb505-6" aria-hidden="true"></a>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-253"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-253-1.svg" alt="Matrice de rélation et densité pour la richesse spécifique des amphibiens et reptiles" width="672" />
 <p class="caption">
@@ -381,8 +381,8 @@ Figure 7.1: Matrice de rélation et densité pour la richesse spécifique des am
 <ul>
 <li>En utilisant les données de ce fichier, faites la régression simple de <code>logherp</code> en fonction de <code>logarea</code> . Que concluez-vous à partir de cette analyse?</li>
 </ul>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="premières-régressions-multiples.html#cb504-1" aria-hidden="true"></a>model.loga &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea, <span class="dt">data =</span> mydata)</span>
-<span id="cb504-2"><a href="premières-régressions-multiples.html#cb504-2" aria-hidden="true"></a><span class="kw">summary</span>(model.loga)</span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="premières-régressions-multiples.html#cb506-1" aria-hidden="true"></a>model.loga &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea, <span class="dt">data =</span> mydata)</span>
+<span id="cb506-2"><a href="premières-régressions-multiples.html#cb506-2" aria-hidden="true"></a><span class="kw">summary</span>(model.loga)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea, data = mydata)
@@ -402,8 +402,8 @@ Figure 7.1: Matrice de rélation et densité pour la richesse spécifique des am
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.3552, Adjusted R-squared:  0.3304 
 ## F-statistic: 14.32 on 1 and 26 DF,  p-value: 0.0008185</code></pre>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="premières-régressions-multiples.html#cb506-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb506-2"><a href="premières-régressions-multiples.html#cb506-2" aria-hidden="true"></a><span class="kw">plot</span>(model.loga)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="premières-régressions-multiples.html#cb508-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb508-2"><a href="premières-régressions-multiples.html#cb508-2" aria-hidden="true"></a><span class="kw">plot</span>(model.loga)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-254"></span>
 <img src="Labo_BIO4558_files/figure-html/unnamed-chunk-254-1.svg" alt="Conditions d'applications de la régression de *logherp* sur *logarea*" width="672" />
 <p class="caption">
@@ -414,8 +414,8 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 <ul>
 <li>Faites ensuite la régression de <code>logherp</code> en fonction de <code>cpfor2</code> . Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb507-1"><a href="premières-régressions-multiples.html#cb507-1" aria-hidden="true"></a>model.logcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</span>
-<span id="cb507-2"><a href="premières-régressions-multiples.html#cb507-2" aria-hidden="true"></a><span class="kw">summary</span>(model.logcp)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb509-1"><a href="premières-régressions-multiples.html#cb509-1" aria-hidden="true"></a>model.logcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</span>
+<span id="cb509-2"><a href="premières-régressions-multiples.html#cb509-2" aria-hidden="true"></a><span class="kw">summary</span>(model.logcp)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ cpfor2, data = mydata)
@@ -439,8 +439,8 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 <ul>
 <li>Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb509-1"><a href="premières-régressions-multiples.html#cb509-1" aria-hidden="true"></a>model.mcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</span>
-<span id="cb509-2"><a href="premières-régressions-multiples.html#cb509-2" aria-hidden="true"></a><span class="kw">summary</span>(model.mcp)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb511-1"><a href="premières-régressions-multiples.html#cb511-1" aria-hidden="true"></a>model.mcp &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2, <span class="dt">data =</span> mydata)</span>
+<span id="cb511-2"><a href="premières-régressions-multiples.html#cb511-2" aria-hidden="true"></a><span class="kw">summary</span>(model.mcp)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2, data = mydata)
@@ -465,8 +465,8 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 <ul>
 <li>Ajustez un autre modèle, cette fois en remplaçant <code>cpfor2</code> par <code>thtden</code> (logherp ~ logarea + thtden). Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb511-1"><a href="premières-régressions-multiples.html#cb511-1" aria-hidden="true"></a>model.mden &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</span>
-<span id="cb511-2"><a href="premières-régressions-multiples.html#cb511-2" aria-hidden="true"></a><span class="kw">summary</span>(model.mden)</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb513-1"><a href="premières-régressions-multiples.html#cb513-1" aria-hidden="true"></a>model.mden &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</span>
+<span id="cb513-2"><a href="premières-régressions-multiples.html#cb513-2" aria-hidden="true"></a><span class="kw">summary</span>(model.mden)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + thtden, data = mydata)
@@ -493,8 +493,8 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 <ul>
 <li>Estimez un modèle de régression avec <code>logherp</code> comme variable dépendante et <code>logarea</code>, <code>cpfor2</code> et <code>thtden</code> comme variables indépendantes. Que concluez-vous?</li>
 </ul>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb513-1"><a href="premières-régressions-multiples.html#cb513-1" aria-hidden="true"></a>model.mtri &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</span>
-<span id="cb513-2"><a href="premières-régressions-multiples.html#cb513-2" aria-hidden="true"></a><span class="kw">summary</span>(model.mtri)</span></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb515-1"><a href="premières-régressions-multiples.html#cb515-1" aria-hidden="true"></a>model.mtri &lt;-<span class="st"> </span><span class="kw">lm</span>(logherp <span class="op">~</span><span class="st"> </span>logarea <span class="op">+</span><span class="st"> </span>cpfor2 <span class="op">+</span><span class="st"> </span>thtden, <span class="dt">data =</span> mydata)</span>
+<span id="cb515-2"><a href="premières-régressions-multiples.html#cb515-2" aria-hidden="true"></a><span class="kw">summary</span>(model.mtri)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logherp ~ logarea + cpfor2 + thtden, data = mydata)
@@ -521,7 +521,7 @@ Figure 7.2: Conditions d’applications de la régression de <em>logherp</em> su
 2. Le <span class="math inline">\(R^2\)</span> pour ce modèle(0.547) n’est que légèrement supérieur au <span class="math inline">\(R^2\)</span> du modèle avec seulement <code>logarea</code> et <code>thtden</code> (.536), ce qui confirme que <code>cpfor2</code> n’explique pas grand-chose de plus.</p>
 <p>Notez aussi que même si le coefficient de régression pour <code>thtden</code> n’a pas beaucoup changé par rapport à ce qui avait été estimé lorsque seul <code>thtden</code> et <code>logarea</code> étaient dans le modèle (0-.036 vs -0.042), l’erreur type pour l’estimé du coefficient est plus grand, et ce modèle plus complexe mène à un estimé moins précis. Si la corrélation entre <code>thtden</code> et <code>cpfor2</code> était plus forte, la décroissance de la précision serait encore plus grande.</p>
 <p>On peut comparer les deux derniers modèles (i.e., le modèle incluant les 3 variables et celui avec seulement logarea and thtden) pour décider lequel privilégier.</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="premières-régressions-multiples.html#cb515-1" aria-hidden="true"></a><span class="kw">anova</span>(model.mtri, model.mden)</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="premières-régressions-multiples.html#cb517-1" aria-hidden="true"></a><span class="kw">anova</span>(model.mtri, model.mden)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: logherp ~ logarea + cpfor2 + thtden
