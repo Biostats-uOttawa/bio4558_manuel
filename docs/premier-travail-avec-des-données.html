@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.3 Premier travail avec des données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -428,11 +432,8 @@ Sous R, on peut importer ou créer autant de tableaux de données qu’on le sou
 <pre><code>## [1] 2000   20</code></pre>
 <p>La fonction <code>names</code> retourne les noms des colonnes du tableau, c’est-à-dire la liste de nos <em>variables</em> :</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="premier-travail-avec-des-données.html#cb120-1" aria-hidden="true"></a><span class="kw">names</span>(d)</span></code></pre></div>
-<pre><code>##  [1] &quot;id&quot;            &quot;age&quot;           &quot;sexe&quot;          &quot;nivetud&quot;      
-##  [5] &quot;poids&quot;         &quot;occup&quot;         &quot;qualif&quot;        &quot;freres.soeurs&quot;
-##  [9] &quot;clso&quot;          &quot;relig&quot;         &quot;trav.imp&quot;      &quot;trav.satisf&quot;  
-## [13] &quot;hard.rock&quot;     &quot;lecture.bd&quot;    &quot;peche.chasse&quot;  &quot;cuisine&quot;      
-## [17] &quot;bricol&quot;        &quot;cinema&quot;        &quot;sport&quot;         &quot;heures.tv&quot;</code></pre>
+<pre><code>##  [1] &quot;id&quot;            &quot;age&quot;           &quot;sexe&quot;          &quot;nivetud&quot;       &quot;poids&quot;         &quot;occup&quot;         &quot;qualif&quot;        &quot;freres.soeurs&quot; &quot;clso&quot;          &quot;relig&quot;        
+## [11] &quot;trav.imp&quot;      &quot;trav.satisf&quot;   &quot;hard.rock&quot;     &quot;lecture.bd&quot;    &quot;peche.chasse&quot;  &quot;cuisine&quot;       &quot;bricol&quot;        &quot;cinema&quot;        &quot;sport&quot;         &quot;heures.tv&quot;</code></pre>
 <p>Enfin, la fonction <code>str</code> renvoie un descriptif plus détaillé de la structure du tableau. Elle liste les différentes variables, indique leur type <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> et affiche les premières valeurs :</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="premier-travail-avec-des-données.html#cb122-1" aria-hidden="true"></a><span class="kw">str</span>(d)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    2000 obs. of  20 variables:
@@ -469,23 +470,14 @@ Figure 1.7: Structure d’un objet
 <h4><span class="header-section-number">1.3.2.2</span> Accéder aux variables d’un tableau<a href="premier-travail-avec-des-données.html#accéder-aux-variables-dun-tableau" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Une opération très importante est l’accès aux variables du tableau (à ses colonnes) pour pouvoir les manipuler, effectuer des calculs, etc. On utilise pour cela l’opérateur <code>$</code>, qui permet d’accéder aux colonnes du tableau. Ainsi, si l’on tape :</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="premier-travail-avec-des-données.html#cb124-1" aria-hidden="true"></a>d<span class="op">$</span>sexe</span></code></pre></div>
-<pre><code>##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme
-##  [13] Femme Femme Femme Femme Homme Femme Homme Femme Femme Homme Femme Femme
-##  [25] Femme Homme Femme Homme Homme Homme Homme Homme Homme Homme Femme Femme
-##  [37] Homme Femme Femme Homme Femme Homme Homme Femme Femme Homme Femme Femme
-##  [49] Femme Femme Homme Femme Homme Femme Homme Femme Femme Femme Homme Femme
-##  [61] Femme Homme Homme Homme Homme Femme Homme Homme Femme Femme Homme Homme
-##  [73] Femme Femme Femme Femme Homme Femme Femme Femme Femme Femme Femme Homme
-##  [85] Homme Femme Homme Homme Homme Homme Homme Femme Homme Femme Femme Femme
-##  [97] Homme Homme Femme Femme Femme Homme Femme Homme Homme Femme Femme Femme
-## [109] Femme Homme Homme Homme Homme Homme Femme Homme Homme Femme Homme Homme
-## [121] Femme Femme Femme Homme Femme Femme Homme Femme Femme Homme Femme Homme
-## [133] Femme Femme Femme Homme Homme Homme Homme Homme Homme Homme Homme Femme
-## [145] Homme Homme Homme Femme Femme Femme Homme Femme Femme Femme Femme Homme
-## [157] Femme Homme Homme Homme Femme Homme Femme Homme Femme Homme Homme Femme
-## [169] Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Femme
-## [181] Homme Femme Femme Homme Homme Femme Femme Femme Femme Femme Homme Homme
-## [193] Femme Homme Homme Femme Homme Femme Homme Femme
+<pre><code>##   [1] Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Femme Homme Femme Femme Femme Femme Homme Femme Homme Femme Femme Homme Femme Femme Femme Homme Femme Homme
+##  [29] Homme Homme Homme Homme Homme Homme Femme Femme Homme Femme Femme Homme Femme Homme Homme Femme Femme Homme Femme Femme Femme Femme Homme Femme Homme Femme Homme Femme
+##  [57] Femme Femme Homme Femme Femme Homme Homme Homme Homme Femme Homme Homme Femme Femme Homme Homme Femme Femme Femme Femme Homme Femme Femme Femme Femme Femme Femme Homme
+##  [85] Homme Femme Homme Homme Homme Homme Homme Femme Homme Femme Femme Femme Homme Homme Femme Femme Femme Homme Femme Homme Homme Femme Femme Femme Femme Homme Homme Homme
+## [113] Homme Homme Femme Homme Homme Femme Homme Homme Femme Femme Femme Homme Femme Femme Homme Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Homme Homme
+## [141] Homme Homme Homme Femme Homme Homme Homme Femme Femme Femme Homme Femme Femme Femme Femme Homme Femme Homme Homme Homme Femme Homme Femme Homme Femme Homme Homme Femme
+## [169] Femme Femme Homme Femme Homme Femme Femme Femme Homme Homme Homme Femme Homme Femme Femme Homme Homme Femme Femme Femme Femme Femme Homme Homme Femme Homme Homme Femme
+## [197] Homme Femme Homme Femme
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 1800 entries ]
 ## Levels: Homme Femme</code></pre>
 <p>R va nous afficher l’ensemble des valeurs de notre variable <code>sexe</code> dans la console, ce qui est à nouveau fort peu utile. Mais cela nous permet de constater que <code>d$sexe</code> est un vecteur de chaînes de caractères tels qu’on en a déjà rencontré précédemment.</p>
@@ -628,20 +620,16 @@ avec l’extension <code>ggplot2</code> qui permet la production et la personnal
 <p>Ce tableau nous indique donc que parmi nos enquêtés on trouve 899 hommes et 1101 femmes.</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="premier-travail-avec-des-données.html#cb163-1" aria-hidden="true"></a><span class="kw">table</span>(d<span class="op">$</span>qualif)</span></code></pre></div>
 <pre><code>## 
-##       Ouvrier specialise         Ouvrier qualifie               Technicien 
-##                      203                      292                       86 
-## Profession intermediaire                    Cadre                  Employe 
-##                      160                      260                      594 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien Profession intermediaire                    Cadre                  Employe 
+##                      203                      292                       86                      160                      260                      594 
 ##                    Autre 
 ##                       58</code></pre>
 <p>Un tableau de ce type peut être affiché ou stocké dans un objet, et on peut à son tour lui appliquer des fonctions. Par exemple, la fonction <code>sort</code> permet de trier le tableau selon la valeur de l’effectif. On peut donc faire :</p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="premier-travail-avec-des-données.html#cb165-1" aria-hidden="true"></a>tab &lt;-<span class="st"> </span><span class="kw">table</span>(d<span class="op">$</span>qualif)</span>
 <span id="cb165-2"><a href="premier-travail-avec-des-données.html#cb165-2" aria-hidden="true"></a><span class="kw">sort</span>(tab)</span></code></pre></div>
 <pre><code>## 
-##                    Autre               Technicien Profession intermediaire 
-##                       58                       86                      160 
-##       Ouvrier specialise                    Cadre         Ouvrier qualifie 
-##                      203                      260                      292 
+##                    Autre               Technicien Profession intermediaire       Ouvrier specialise                    Cadre         Ouvrier qualifie 
+##                       58                       86                      160                      203                      260                      292 
 ##                  Employe 
 ##                      594</code></pre>
 
@@ -650,10 +638,8 @@ Attention, par défaut la fonction <code>table</code> n’affiche pas les valeur
 </div>
 <p>À noter qu’on peut aussi appliquer <code>summary</code> à une variable qualitative. Le résultat est également le tri à plat de la variable, avec en plus le nombre de valeurs manquantes éventuelles :</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="premier-travail-avec-des-données.html#cb167-1" aria-hidden="true"></a><span class="kw">summary</span>(d<span class="op">$</span>qualif)</span></code></pre></div>
-<pre><code>##       Ouvrier specialise         Ouvrier qualifie               Technicien 
-##                      203                      292                       86 
-## Profession intermediaire                    Cadre                  Employe 
-##                      160                      260                      594 
+<pre><code>##       Ouvrier specialise         Ouvrier qualifie               Technicien Profession intermediaire                    Cadre                  Employe 
+##                      203                      292                       86                      160                      260                      594 
 ##                    Autre                     NA&#39;s 
 ##                       58                      347</code></pre>
 <p>Par défaut ces tris à plat sont en effectifs et ne sont donc pas toujours très lisibles, notamment quand on a des effectifs importants. On leur rajoute donc en général la répartition en pourcentages. Pour cela, nous allons utiliser la fonction <code>freq</code> de l’extension <code>questionr</code>, qui devra donc avoir précédemment été chargée avec <code>library(questionr)</code> :</p>
@@ -835,7 +821,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Note sur les devoirs et Rmarkdown | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Note sur les devoirs et Rmarkdown | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -354,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Le fichier inclue l’énoncé du devoir, les questions et la structure pour intégrer le code R, les sorties R et vos interprétations.</p>
 <p>Après avoir modifié et sauvegardé le fichier <code>Rmd</code>, il faut générer le rapport dynamique en format <code>pdf</code>.
 Pour ce faire, il faut avoir installer une distribution de latex. Le plus simple est d’installer <code>tinytex</code>. Pour ce faire il faut installer l’extension R <code>tinytex</code> et à partir de decette extension installer la distribution latex <code>tinytex</code>.</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="note-sur-les-devoirs-et-rmarkdown.html#cb669-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
-<span id="cb669-2"><a href="note-sur-les-devoirs-et-rmarkdown.html#cb669-2" aria-hidden="true"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="note-sur-les-devoirs-et-rmarkdown.html#cb665-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</span>
+<span id="cb665-2"><a href="note-sur-les-devoirs-et-rmarkdown.html#cb665-2" aria-hidden="true"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</span></code></pre></div>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -414,7 +418,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

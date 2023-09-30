@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.5 Gérer les données | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.5 Gérer les données | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -412,14 +416,10 @@ Googlez-la si vous en avez besoin.
 Je vous déconseille cependant, la fonction <code>ls.str()</code> car elle peut produire des sorties extrèmementn longue si vous avez beaucoup d’objet dans l’environnement R. Je vous suggère donc d’utliser <code>ls()</code> et ensuite <code>str()</code> sur l’objet qui vous intéresse.
 </div>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="gérer-les-données.html#cb212-1" aria-hidden="true"></a><span class="kw">ls</span>()</span></code></pre></div>
-<pre><code>##  [1] &quot;anglais&quot;        &quot;chien&quot;          &quot;d&quot;              &quot;d_nonsport&quot;    
-##  [5] &quot;d_sport&quot;        &quot;diplome&quot;        &quot;erables&quot;        &quot;hdv2003&quot;       
-##  [9] &quot;imc&quot;            &quot;maths&quot;          &quot;p&quot;              &quot;params&quot;        
-## [13] &quot;poids&quot;          &quot;precipitations&quot; &quot;reg&quot;            &quot;resultat&quot;      
-## [17] &quot;rp2012&quot;         &quot;s&quot;              &quot;sport&quot;          &quot;tab&quot;           
-## [21] &quot;taille1&quot;        &quot;taille2&quot;        &quot;taille3&quot;        &quot;taille4&quot;       
-## [25] &quot;taille5&quot;        &quot;tailles&quot;        &quot;tailles_m&quot;      &quot;temperature&quot;   
-## [29] &quot;title&quot;          &quot;x&quot;              &quot;y&quot;</code></pre>
+<pre><code>##  [1] &quot;anglais&quot;        &quot;chien&quot;          &quot;d&quot;              &quot;d_nonsport&quot;     &quot;d_sport&quot;        &quot;diplome&quot;        &quot;erables&quot;        &quot;hdv2003&quot;        &quot;imc&quot;           
+## [10] &quot;maths&quot;          &quot;p&quot;              &quot;params&quot;         &quot;poids&quot;          &quot;precipitations&quot; &quot;reg&quot;            &quot;resultat&quot;       &quot;rp2012&quot;         &quot;s&quot;             
+## [19] &quot;sport&quot;          &quot;tab&quot;            &quot;taille1&quot;        &quot;taille2&quot;        &quot;taille3&quot;        &quot;taille4&quot;        &quot;taille5&quot;        &quot;tailles&quot;        &quot;tailles_m&quot;     
+## [28] &quot;temperature&quot;    &quot;title&quot;          &quot;x&quot;              &quot;y&quot;</code></pre>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="gérer-les-données.html#cb214-1" aria-hidden="true"></a><span class="kw">str</span>(erables)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  3 variables:
 ##  $ station: chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
@@ -480,30 +480,14 @@ Ces données ont été récoltées, entre autres, pour examiner comment la taill
 <h4><span class="header-section-number">1.5.2.1</span> Sommaire statistique<a href="gérer-les-données.html#sommaire-statistique" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pour un sommaire du contenu du base de données appelé sturgeon qui est en mémoire, taper la commande</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="gérer-les-données.html#cb219-1" aria-hidden="true"></a><span class="kw">summary</span>(sturgeon)</span></code></pre></div>
-<pre><code>##     fklngth         totlngth        drlngth          rdwght     
-##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73  
-##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09  
-##  Median :44.06   Median :47.32   Median :27.00   Median :23.10  
-##  Mean   :44.15   Mean   :47.45   Mean   :27.29   Mean   :24.87  
-##  3rd Qu.:48.00   3rd Qu.:51.97   3rd Qu.:29.72   3rd Qu.:30.27  
-##  Max.   :66.85   Max.   :72.05   Max.   :41.93   Max.   :93.72  
-##                  NA&#39;s   :85      NA&#39;s   :13      NA&#39;s   :4      
-##       age            girth           sex              location        
-##  Min.   : 7.00   Min.   :11.50   Length:186         Length:186        
-##  1st Qu.:17.00   1st Qu.:40.00   Class :character   Class :character  
-##  Median :20.00   Median :44.00   Mode  :character   Mode  :character  
-##  Mean   :20.24   Mean   :44.33                                        
-##  3rd Qu.:23.50   3rd Qu.:48.80                                        
-##  Max.   :55.00   Max.   :73.70                                        
-##  NA&#39;s   :11      NA&#39;s   :85                                           
-##       year     
-##  Min.   :1978  
-##  1st Qu.:1979  
-##  Median :1979  
-##  Mean   :1979  
-##  3rd Qu.:1980  
-##  Max.   :1980  
-## </code></pre>
+<pre><code>##     fklngth         totlngth        drlngth          rdwght           age            girth           sex              location              year     
+##  Min.   :24.96   Min.   :28.15   Min.   :14.33   Min.   : 4.73   Min.   : 7.00   Min.   :11.50   Length:186         Length:186         Min.   :1978  
+##  1st Qu.:41.00   1st Qu.:43.66   1st Qu.:25.00   1st Qu.:18.09   1st Qu.:17.00   1st Qu.:40.00   Class :character   Class :character   1st Qu.:1979  
+##  Median :44.06   Median :47.32   Median :27.00   Median :23.10   Median :20.00   Median :44.00   Mode  :character   Mode  :character   Median :1979  
+##  Mean   :44.15   Mean   :47.45   Mean   :27.29   Mean   :24.87   Mean   :20.24   Mean   :44.33                                         Mean   :1979  
+##  3rd Qu.:48.00   3rd Qu.:51.97   3rd Qu.:29.72   3rd Qu.:30.27   3rd Qu.:23.50   3rd Qu.:48.80                                         3rd Qu.:1980  
+##  Max.   :66.85   Max.   :72.05   Max.   :41.93   Max.   :93.72   Max.   :55.00   Max.   :73.70                                         Max.   :1980  
+##                  NA&#39;s   :85      NA&#39;s   :13      NA&#39;s   :4       NA&#39;s   :11      NA&#39;s   :85</code></pre>
 <p>Pour chaque variable, R donne le minimum, le maximum, la médiane qui est la valeur au milieu de la liste des observations ordonnées (appelée le 50 ième percentile), ici, la 93 ième valeur des 186 observations, les valeurs au premier (25%) et troisième quartile (75%), et si il y a des valeurs manquantes dans la colonne.
 Notez que plusieurs des variables ont des observations manquantes (NA).
 Donc, seules les variables fklngth (longueur à la fourche), sex, location et year ont 186 observations.</p>
@@ -828,7 +812,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

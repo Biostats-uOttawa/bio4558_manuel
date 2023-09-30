@@ -68,24 +68,29 @@ L’utilisation de G\*Power implique généralement en trois étapes:
 
 ### Types d’analyses de puissance disponibles
 #### A priori {-}
+
 Calcule l’effectif requis pour une valeur de $\alpha$, $\beta$ et de taille d’effet donnée.
 Ce type d’analyse est utile à l’étape de planification des expériences.
 
 #### Compromis {-}
+
 Calcule $\alpha$ et $\beta$ pour un rapport $\beta / \alpha$ donné, un effectif fixe, et une taille d’effet donnée.
 Ce type d’analyse est plus rarement utilisé (je ne l’ai jamais fait), mais peut être utile lorsque le rapport $\beta / \alpha$ est d’intérêt, par exemple lorsque le coût d’une erreur de type I et de type II peut être quantifié.
 
 #### Critère {-}
+
 Calcule $\alpha$ pour $\beta$, effectif et taille d’effet donné.
 En pratique, je vois peu d’utilité pour ce type de calcul.
 Contactez-moi si vous en voyez une!
 
 #### Post-hoc {-}
+
 Calcule la puissance (1 - $\beta$) pour $\alpha$, une taille d’effet et un effectif donné.
 Très utilisée pour interpréter les résultats d’une analyse statistique non-significative, mais seulement si l’on utilise une taille d’effet biologiquement significative (et non la taille d’effet observée).
 Peu pertinente lorsque le test est significatif.
 
 #### Sensitivité {-}
+
 Calcule la taille d’effet détectable pour une valeur d’$\alpha$, $\beta$ et un effectif donné.
 Très utile également au stade de planification des expériences.
 
@@ -108,6 +113,16 @@ test Chi-carré | w | $w = \sqrt{ \sum_{i=1}^m \frac{(p_{0i} - p_{1i})^2 }{ p_{0
  | | | $p_{0i}$ $p_{1i}$ sont les proportions de la catégorie i prédites par l'hypothèse nulle et alternative respectivement
 
 ## Puissance pour un test de t comparant deux moyennes
+
+```{block2, type = "rmdimportant"}
+L'ensemble des analyses de puissance décrites après peuvent être réalisé avec 2
+fonctions dans R.
+
+* `pwr.t.test()`: lorsque les tailles d'échantillons sont identiques
+* `pwr.t2n.test()`: lorsque les échantillons ont des tailles différentes
+
+```
+
 L’objectif de cette séance de laboratoire est de vous familiariser avec G\*Power et de vous aider à comprendre comment les quatre paramètres des analyses de puissance ($\alpha$, $\beta$, effectif et taille de l’effet) sont reliés entre eux.
 On examinera seulement un des nombreux tests, le test de t permettant de comparer deux moyennes indépendantes.
 C’est le test le plus communément utilisé par les biologistes, vous l’avez tous déjà utilisé, et il conviendra très bien pour les besoins de la cause.

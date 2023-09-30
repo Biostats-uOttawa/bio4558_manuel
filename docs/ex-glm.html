@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.7 Exercice | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.7 Exercice | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -355,11 +359,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdcode">
 Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquence d’individus capturés par sex, location, et year . Sauvegardez ce tableau comme strugdat.table . Faites une figure mosaïque de ces données.
 </div>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="ex-glm.html#cb656-1" aria-hidden="true"></a>sturgdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgdat.csv&quot;</span>)</span>
-<span id="cb656-2"><a href="ex-glm.html#cb656-2" aria-hidden="true"></a><span class="co"># Reorganize data from case form to table form</span></span>
-<span id="cb656-3"><a href="ex-glm.html#cb656-3" aria-hidden="true"></a>sturgdat.table &lt;-<span class="st"> </span><span class="kw">with</span>(sturgdat, <span class="kw">table</span>(sex, year, location))</span>
-<span id="cb656-4"><a href="ex-glm.html#cb656-4" aria-hidden="true"></a><span class="co"># display the table</span></span>
-<span id="cb656-5"><a href="ex-glm.html#cb656-5" aria-hidden="true"></a>sturgdat.table</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="ex-glm.html#cb652-1" aria-hidden="true"></a>sturgdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/sturgdat.csv&quot;</span>)</span>
+<span id="cb652-2"><a href="ex-glm.html#cb652-2" aria-hidden="true"></a><span class="co"># Reorganize data from case form to table form</span></span>
+<span id="cb652-3"><a href="ex-glm.html#cb652-3" aria-hidden="true"></a>sturgdat.table &lt;-<span class="st"> </span><span class="kw">with</span>(sturgdat, <span class="kw">table</span>(sex, year, location))</span>
+<span id="cb652-4"><a href="ex-glm.html#cb652-4" aria-hidden="true"></a><span class="co"># display the table</span></span>
+<span id="cb652-5"><a href="ex-glm.html#cb652-5" aria-hidden="true"></a>sturgdat.table</span></code></pre></div>
 <pre><code>## , , location = CUMBERLAND  
 ## 
 ##               year
@@ -373,10 +377,10 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 ## sex            1978 1979 1980
 ##   FEMALE          5   12   38
 ##   MALE           16   12   18</code></pre>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="ex-glm.html#cb658-1" aria-hidden="true"></a><span class="co"># Create data frame while converting from table form to frequency form</span></span>
-<span id="cb658-2"><a href="ex-glm.html#cb658-2" aria-hidden="true"></a>sturgdat.freq &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sturgdat.table)</span>
-<span id="cb658-3"><a href="ex-glm.html#cb658-3" aria-hidden="true"></a><span class="co"># display data frame</span></span>
-<span id="cb658-4"><a href="ex-glm.html#cb658-4" aria-hidden="true"></a>sturgdat.freq</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="ex-glm.html#cb654-1" aria-hidden="true"></a><span class="co"># Create data frame while converting from table form to frequency form</span></span>
+<span id="cb654-2"><a href="ex-glm.html#cb654-2" aria-hidden="true"></a>sturgdat.freq &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(sturgdat.table)</span>
+<span id="cb654-3"><a href="ex-glm.html#cb654-3" aria-hidden="true"></a><span class="co"># display data frame</span></span>
+<span id="cb654-4"><a href="ex-glm.html#cb654-4" aria-hidden="true"></a>sturgdat.freq</span></code></pre></div>
 <pre><code>##             sex year     location Freq
 ## 1  FEMALE       1978 CUMBERLAND     10
 ## 2  MALE         1978 CUMBERLAND     14
@@ -390,11 +394,11 @@ Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquen
 ## 10 MALE         1979 THE_PAS        12
 ## 11 FEMALE       1980 THE_PAS        38
 ## 12 MALE         1980 THE_PAS        18</code></pre>
-<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="ex-glm.html#cb660-1" aria-hidden="true"></a><span class="co"># Look at the data as mosaic plot</span></span>
-<span id="cb660-2"><a href="ex-glm.html#cb660-2" aria-hidden="true"></a><span class="co"># mosaic using the table created above</span></span>
-<span id="cb660-3"><a href="ex-glm.html#cb660-3" aria-hidden="true"></a><span class="kw">mosaic</span>(sturgdat.table, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-339"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-339-1.svg" alt="Fréquence de femelles et males en fonction de l'année et du lieu" width="672" />
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="ex-glm.html#cb656-1" aria-hidden="true"></a><span class="co"># Look at the data as mosaic plot</span></span>
+<span id="cb656-2"><a href="ex-glm.html#cb656-2" aria-hidden="true"></a><span class="co"># mosaic using the table created above</span></span>
+<span id="cb656-3"><a href="ex-glm.html#cb656-3" aria-hidden="true"></a><span class="kw">mosaic</span>(sturgdat.table, <span class="dt">shade =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-340"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-340-1.svg" alt="Fréquence de femelles et males en fonction de l'année et du lieu" width="672" />
 <p class="caption">
 Figure 9.4: Fréquence de femelles et males en fonction de l’année et du lieu
 </p>
@@ -403,44 +407,28 @@ Figure 9.4: Fréquence de femelles et males en fonction de l’année et du lieu
 <div class="rmdcode">
 À partir de ces données en format de fréquence, ajustez le modèle loglinéaire complet et le tableau d’anova avec les statistique de Chi carré pour les termes du modèles. Est-ce que l’interaction triple (<code>location:year:sex</code>) est significative? Est-ce que le rapport des sexes varien entre les sites ou d’une année à l’autre?.
 </div>
-<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="ex-glm.html#cb661-1" aria-hidden="true"></a><span class="co"># Fit full model</span></span>
-<span id="cb661-2"><a href="ex-glm.html#cb661-2" aria-hidden="true"></a>full.model &lt;-<span class="st"> </span><span class="kw">glm</span>(Freq <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>year <span class="op">*</span><span class="st"> </span>location, <span class="dt">data =</span> sturgdat.freq, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
-<span id="cb661-3"><a href="ex-glm.html#cb661-3" aria-hidden="true"></a><span class="kw">summary</span>(full.model)</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="ex-glm.html#cb657-1" aria-hidden="true"></a><span class="co"># Fit full model</span></span>
+<span id="cb657-2"><a href="ex-glm.html#cb657-2" aria-hidden="true"></a>full.model &lt;-<span class="st"> </span><span class="kw">glm</span>(Freq <span class="op">~</span><span class="st"> </span>sex <span class="op">*</span><span class="st"> </span>year <span class="op">*</span><span class="st"> </span>location, <span class="dt">data =</span> sturgdat.freq, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb657-3"><a href="ex-glm.html#cb657-3" aria-hidden="true"></a><span class="kw">summary</span>(full.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Freq ~ sex * year * location, family = &quot;poisson&quot;, 
 ##     data = sturgdat.freq)
 ## 
-## Deviance Residuals: 
-##  [1]  0  0  0  0  0  0  0  0  0  0  0  0
-## 
 ## Coefficients:
-##                                               Estimate Std. Error z value
-## (Intercept)                                    2.30259    0.31623   7.281
-## sexMALE                                        0.33647    0.41404   0.813
-## year1979                                       1.09861    0.36515   3.009
-## year1980                                       0.09531    0.43693   0.218
-## locationTHE_PAS                               -0.69315    0.54772  -1.266
-## sexMALE        :year1979                      -1.09861    0.52554  -2.090
-## sexMALE        :year1980                      -0.94261    0.65498  -1.439
-## sexMALE        :locationTHE_PAS                0.82668    0.65873   1.255
-## year1979:locationTHE_PAS                      -0.22314    0.64550  -0.346
-## year1980:locationTHE_PAS                       1.93284    0.64593   2.992
-## sexMALE        :year1979:locationTHE_PAS      -0.06454    0.83986  -0.077
-## sexMALE        :year1980:locationTHE_PAS      -0.96776    0.87942  -1.100
-##                                               Pr(&gt;|z|)    
-## (Intercept)                                    3.3e-13 ***
-## sexMALE                                        0.41641    
-## year1979                                       0.00262 ** 
-## year1980                                       0.82732    
-## locationTHE_PAS                                0.20569    
-## sexMALE        :year1979                       0.03658 *  
-## sexMALE        :year1980                       0.15011    
-## sexMALE        :locationTHE_PAS                0.20950    
-## year1979:locationTHE_PAS                       0.72957    
-## year1980:locationTHE_PAS                       0.00277 ** 
-## sexMALE        :year1979:locationTHE_PAS       0.93875    
-## sexMALE        :year1980:locationTHE_PAS       0.27114    
+##                                               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                                    2.30259    0.31623   7.281  3.3e-13 ***
+## sexMALE                                        0.33647    0.41404   0.813  0.41641    
+## year1979                                       1.09861    0.36515   3.009  0.00262 ** 
+## year1980                                       0.09531    0.43693   0.218  0.82732    
+## locationTHE_PAS                               -0.69315    0.54772  -1.266  0.20569    
+## sexMALE        :year1979                      -1.09861    0.52554  -2.090  0.03658 *  
+## sexMALE        :year1980                      -0.94261    0.65498  -1.439  0.15011    
+## sexMALE        :locationTHE_PAS                0.82668    0.65873   1.255  0.20950    
+## year1979:locationTHE_PAS                      -0.22314    0.64550  -0.346  0.72957    
+## year1980:locationTHE_PAS                       1.93284    0.64593   2.992  0.00277 ** 
+## sexMALE        :year1979:locationTHE_PAS      -0.06454    0.83986  -0.077  0.93875    
+## sexMALE        :year1980:locationTHE_PAS      -0.96776    0.87942  -1.100  0.27114    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -451,7 +439,7 @@ Figure 9.4: Fréquence de femelles et males en fonction de l’année et du lieu
 ## AIC: 77.28
 ## 
 ## Number of Fisher Scoring iterations: 3</code></pre>
-<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="ex-glm.html#cb663-1" aria-hidden="true"></a><span class="kw">Anova</span>(full.model, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="ex-glm.html#cb659-1" aria-hidden="true"></a><span class="kw">Anova</span>(full.model, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type III tests)
 ## 
 ## Response: Freq
@@ -471,8 +459,8 @@ Figure 9.4: Fréquence de femelles et males en fonction de l’année et du lieu
 <ul>
 <li>Ajustez le modèle en excluant l’interaction du troisième degré:</li>
 </ul>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb665-1"><a href="ex-glm.html#cb665-1" aria-hidden="true"></a>o2int.model &lt;-<span class="st"> </span><span class="kw">glm</span>(Freq <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>year <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location <span class="op">+</span><span class="st"> </span>year<span class="op">:</span>location, <span class="dt">data =</span> sturgdat.freq, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
-<span id="cb665-2"><a href="ex-glm.html#cb665-2" aria-hidden="true"></a><span class="kw">Anova</span>(o2int.model, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb661-1"><a href="ex-glm.html#cb661-1" aria-hidden="true"></a>o2int.model &lt;-<span class="st"> </span><span class="kw">glm</span>(Freq <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>year <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>location <span class="op">+</span><span class="st"> </span>year<span class="op">:</span>location, <span class="dt">data =</span> sturgdat.freq, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb661-2"><a href="ex-glm.html#cb661-2" aria-hidden="true"></a><span class="kw">Anova</span>(o2int.model, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type III tests)
 ## 
 ## Response: Freq
@@ -490,8 +478,8 @@ Figure 9.4: Fréquence de femelles et males en fonction de l’année et du lieu
 <ul>
 <li>Ajustez le modèle sans l’interaction sex:location :</li>
 </ul>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb667-1"><a href="ex-glm.html#cb667-1" aria-hidden="true"></a>o2int.model2 &lt;-<span class="st"> </span><span class="kw">glm</span>(Freq <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>year <span class="op">+</span><span class="st"> </span>year<span class="op">:</span>location, <span class="dt">data =</span> sturgdat.freq, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
-<span id="cb667-2"><a href="ex-glm.html#cb667-2" aria-hidden="true"></a><span class="kw">Anova</span>(o2int.model2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb663-1"><a href="ex-glm.html#cb663-1" aria-hidden="true"></a>o2int.model2 &lt;-<span class="st"> </span><span class="kw">glm</span>(Freq <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>location <span class="op">+</span><span class="st"> </span>sex<span class="op">:</span>year <span class="op">+</span><span class="st"> </span>year<span class="op">:</span>location, <span class="dt">data =</span> sturgdat.freq, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb663-2"><a href="ex-glm.html#cb663-2" aria-hidden="true"></a><span class="kw">Anova</span>(o2int.model2, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type III tests)
 ## 
 ## Response: Freq
@@ -570,7 +558,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

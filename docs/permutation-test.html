@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.8 Permutation test | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.8 Permutation test | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -350,29 +354,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="permutation-test" class="section level2 hasAnchor" number="8.8">
 <h2><span class="header-section-number">8.8</span> Permutation test<a href="permutation-test.html#permutation-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="permutation-test.html#cb623-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
-<span id="cb623-2"><a href="permutation-test.html#cb623-2" aria-hidden="true"></a><span class="co">##########</span></span>
-<span id="cb623-3"><a href="permutation-test.html#cb623-3" aria-hidden="true"></a><span class="co"># Permutation test</span></span>
-<span id="cb623-4"><a href="permutation-test.html#cb623-4" aria-hidden="true"></a><span class="co">#</span></span>
-<span id="cb623-5"><a href="permutation-test.html#cb623-5" aria-hidden="true"></a><span class="co"># using lmperm library</span></span>
-<span id="cb623-6"><a href="permutation-test.html#cb623-6" aria-hidden="true"></a><span class="co"># To simplify future modifications of the code in this file,</span></span>
-<span id="cb623-7"><a href="permutation-test.html#cb623-7" aria-hidden="true"></a><span class="co"># copy the data to a generic mydata dataframe</span></span>
-<span id="cb623-8"><a href="permutation-test.html#cb623-8" aria-hidden="true"></a>mydata&lt;-anc3dat</span>
-<span id="cb623-9"><a href="permutation-test.html#cb623-9" aria-hidden="true"></a><span class="co"># create a myformula variable containing the formula for the</span></span>
-<span id="cb623-10"><a href="permutation-test.html#cb623-10" aria-hidden="true"></a><span class="co"># model to be fitted</span></span>
-<span id="cb623-11"><a href="permutation-test.html#cb623-11" aria-hidden="true"></a>myformula&lt;-<span class="kw">as.formula</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate)</span>
-<span id="cb623-12"><a href="permutation-test.html#cb623-12" aria-hidden="true"></a><span class="kw">require</span>(lmPerm2)</span>
-<span id="cb623-13"><a href="permutation-test.html#cb623-13" aria-hidden="true"></a><span class="co"># Fit desired model on the desired dataframe</span></span>
-<span id="cb623-14"><a href="permutation-test.html#cb623-14" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</span>
-<span id="cb623-15"><a href="permutation-test.html#cb623-15" aria-hidden="true"></a><span class="co"># Calculate p-values for each term by permutation</span></span>
-<span id="cb623-16"><a href="permutation-test.html#cb623-16" aria-hidden="true"></a><span class="co"># Note that lmp centers numeric variable by default, so to</span></span>
-<span id="cb623-17"><a href="permutation-test.html#cb623-17" aria-hidden="true"></a><span class="co"># get results that are</span></span>
-<span id="cb623-18"><a href="permutation-test.html#cb623-18" aria-hidden="true"></a><span class="co"># consistent with standard models, it is necessary to set</span></span>
-<span id="cb623-19"><a href="permutation-test.html#cb623-19" aria-hidden="true"></a>center=<span class="ot">FALSE</span></span>
-<span id="cb623-20"><a href="permutation-test.html#cb623-20" aria-hidden="true"></a>mymodelProb &lt;-<span class="st"> </span><span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">center=</span><span class="ot">FALSE</span>,</span>
-<span id="cb623-21"><a href="permutation-test.html#cb623-21" aria-hidden="true"></a><span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</span>
-<span id="cb623-22"><a href="permutation-test.html#cb623-22" aria-hidden="true"></a><span class="kw">summary</span>(mymodel)</span>
-<span id="cb623-23"><a href="permutation-test.html#cb623-23" aria-hidden="true"></a><span class="kw">summary</span>(mymodelProb)</span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="permutation-test.html#cb619-1" aria-hidden="true"></a><span class="co">############################################################</span></span>
+<span id="cb619-2"><a href="permutation-test.html#cb619-2" aria-hidden="true"></a><span class="co">##########</span></span>
+<span id="cb619-3"><a href="permutation-test.html#cb619-3" aria-hidden="true"></a><span class="co"># Permutation test</span></span>
+<span id="cb619-4"><a href="permutation-test.html#cb619-4" aria-hidden="true"></a><span class="co">#</span></span>
+<span id="cb619-5"><a href="permutation-test.html#cb619-5" aria-hidden="true"></a><span class="co"># using lmperm library</span></span>
+<span id="cb619-6"><a href="permutation-test.html#cb619-6" aria-hidden="true"></a><span class="co"># To simplify future modifications of the code in this file,</span></span>
+<span id="cb619-7"><a href="permutation-test.html#cb619-7" aria-hidden="true"></a><span class="co"># copy the data to a generic mydata dataframe</span></span>
+<span id="cb619-8"><a href="permutation-test.html#cb619-8" aria-hidden="true"></a>mydata&lt;-anc3dat</span>
+<span id="cb619-9"><a href="permutation-test.html#cb619-9" aria-hidden="true"></a><span class="co"># create a myformula variable containing the formula for the</span></span>
+<span id="cb619-10"><a href="permutation-test.html#cb619-10" aria-hidden="true"></a><span class="co"># model to be fitted</span></span>
+<span id="cb619-11"><a href="permutation-test.html#cb619-11" aria-hidden="true"></a>myformula&lt;-<span class="kw">as.formula</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate)</span>
+<span id="cb619-12"><a href="permutation-test.html#cb619-12" aria-hidden="true"></a><span class="kw">require</span>(lmPerm2)</span>
+<span id="cb619-13"><a href="permutation-test.html#cb619-13" aria-hidden="true"></a><span class="co"># Fit desired model on the desired dataframe</span></span>
+<span id="cb619-14"><a href="permutation-test.html#cb619-14" aria-hidden="true"></a>mymodel &lt;-<span class="st"> </span><span class="kw">lm</span>(myformula, <span class="dt">data =</span> mydata)</span>
+<span id="cb619-15"><a href="permutation-test.html#cb619-15" aria-hidden="true"></a><span class="co"># Calculate p-values for each term by permutation</span></span>
+<span id="cb619-16"><a href="permutation-test.html#cb619-16" aria-hidden="true"></a><span class="co"># Note that lmp centers numeric variable by default, so to</span></span>
+<span id="cb619-17"><a href="permutation-test.html#cb619-17" aria-hidden="true"></a><span class="co"># get results that are</span></span>
+<span id="cb619-18"><a href="permutation-test.html#cb619-18" aria-hidden="true"></a><span class="co"># consistent with standard models, it is necessary to set</span></span>
+<span id="cb619-19"><a href="permutation-test.html#cb619-19" aria-hidden="true"></a>center=<span class="ot">FALSE</span></span>
+<span id="cb619-20"><a href="permutation-test.html#cb619-20" aria-hidden="true"></a>mymodelProb &lt;-<span class="st"> </span><span class="kw">lmp</span>(myformula, <span class="dt">data =</span> mydata, <span class="dt">center=</span><span class="ot">FALSE</span>,</span>
+<span id="cb619-21"><a href="permutation-test.html#cb619-21" aria-hidden="true"></a><span class="dt">perm =</span> <span class="st">&quot;Prob&quot;</span>)</span>
+<span id="cb619-22"><a href="permutation-test.html#cb619-22" aria-hidden="true"></a><span class="kw">summary</span>(mymodel)</span>
+<span id="cb619-23"><a href="permutation-test.html#cb619-23" aria-hidden="true"></a><span class="kw">summary</span>(mymodelProb)</span></code></pre></div>
 
 </div>
 <!-- </div> -->
@@ -433,7 +437,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

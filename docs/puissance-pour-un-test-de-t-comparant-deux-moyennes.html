@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Puissance pour un test de t comparant deux moyennes | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -350,6 +354,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="puissance-pour-un-test-de-t-comparant-deux-moyennes" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Puissance pour un test de t comparant deux moyennes<a href="puissance-pour-un-test-de-t-comparant-deux-moyennes.html#puissance-pour-un-test-de-t-comparant-deux-moyennes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+<div class="rmdimportant">
+<p>L’ensemble des analyses de puissance décrites après peuvent être réalisé avec 2
+fonctions dans R.</p>
+<ul>
+<li><code>pwr.t.test()</code>: lorsque les tailles d’échantillons sont identiques</li>
+<li><code>pwr.t2n.test()</code>: lorsque les échantillons ont des tailles différentes</li>
+</ul>
+</div>
 <p>L’objectif de cette séance de laboratoire est de vous familiariser avec G*Power et de vous aider à comprendre comment les quatre paramètres des analyses de puissance (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, effectif et taille de l’effet) sont reliés entre eux.
 On examinera seulement un des nombreux tests, le test de t permettant de comparer deux moyennes indépendantes.
 C’est le test le plus communément utilisé par les biologistes, vous l’avez tous déjà utilisé, et il conviendra très bien pour les besoins de la cause.
@@ -626,7 +639,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

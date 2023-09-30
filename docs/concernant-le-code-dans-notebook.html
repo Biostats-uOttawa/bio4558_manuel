@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.3 Concernant le code dans notebook | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.3 Concernant le code dans notebook | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -356,43 +360,43 @@ Pour créer un nouveau bloc de code, taper <em><code>```{r}</code></em> pour ouv
 Sinon, appuyer sur <em>Ctrl+Alt+I</em>
 Dans Rstudio, pour éxécuter le code à l’intérieur d’un bloc appuyer sur <em>Ctrl+Shift+Enter</em> ou cliquer sur le boutton <em>Run</em> (dans le bloc, en haut à droite).</p>
 <p>Charger les données et les packages dans le premier bloc de code.</p>
-<div class="sourceCode" id="cb673"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb673-1"><a href="concernant-le-code-dans-notebook.html#cb673-1" aria-hidden="true"></a><span class="in">```{r} #ouverture du bloc de code</span></span>
-<span id="cb673-2"><a href="concernant-le-code-dans-notebook.html#cb673-2" aria-hidden="true"></a><span class="in">code</span></span>
-<span id="cb673-3"><a href="concernant-le-code-dans-notebook.html#cb673-3" aria-hidden="true"></a><span class="in">``` #fermeture du bloc code</span></span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb669-1"><a href="concernant-le-code-dans-notebook.html#cb669-1" aria-hidden="true"></a><span class="in">```{r} #ouverture du bloc de code</span></span>
+<span id="cb669-2"><a href="concernant-le-code-dans-notebook.html#cb669-2" aria-hidden="true"></a><span class="in">code</span></span>
+<span id="cb669-3"><a href="concernant-le-code-dans-notebook.html#cb669-3" aria-hidden="true"></a><span class="in">``` #fermeture du bloc code</span></span></code></pre></div>
 <p>Lorsque vous exécuter du code dans un bloc, le résultat apparait directement en dessous de la du bloc (si votre document est un R Notebook).
 L’option <code>fig.cap</code> fonctionnement seulement lorsqu’on génère un PDF.</p>
 <p>Lorsque vous sauvegarder un notebook, un fichier HTLM contenant le code et les résultats est sauvegarder en même temps. Cliquer sur le bouton <em>Preview</em> ou appuyer sur <em>Ctrl+Shift+K</em> pour voir le fichier HTML.</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb674-1"><a href="concernant-le-code-dans-notebook.html#cb674-1" aria-hidden="true"></a><span class="in">```{r, fig.cap = &quot;Exemple de graphique tiré du fichier d&#39;aide de la fonction stat_bin&quot;}</span></span>
-<span id="cb674-2"><a href="concernant-le-code-dans-notebook.html#cb674-2" aria-hidden="true"></a><span class="in">ggplot(diamonds, aes(carat)) +</span></span>
-<span id="cb674-3"><a href="concernant-le-code-dans-notebook.html#cb674-3" aria-hidden="true"></a><span class="in">  geom_histogram()</span></span>
-<span id="cb674-4"><a href="concernant-le-code-dans-notebook.html#cb674-4" aria-hidden="true"></a></span>
-<span id="cb674-5"><a href="concernant-le-code-dans-notebook.html#cb674-5" aria-hidden="true"></a><span class="in">ggplot(diamonds, aes(carat)) +</span></span>
-<span id="cb674-6"><a href="concernant-le-code-dans-notebook.html#cb674-6" aria-hidden="true"></a><span class="in">  geom_histogram(binwidth = 0.01)</span></span>
-<span id="cb674-7"><a href="concernant-le-code-dans-notebook.html#cb674-7" aria-hidden="true"></a></span>
-<span id="cb674-8"><a href="concernant-le-code-dans-notebook.html#cb674-8" aria-hidden="true"></a><span class="in">ggplot(diamonds, aes(carat)) +</span></span>
-<span id="cb674-9"><a href="concernant-le-code-dans-notebook.html#cb674-9" aria-hidden="true"></a><span class="in">  geom_histogram(bins = 200)</span></span>
-<span id="cb674-10"><a href="concernant-le-code-dans-notebook.html#cb674-10" aria-hidden="true"></a><span class="in">```</span></span></code></pre></div>
-<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="concernant-le-code-dans-notebook.html#cb675-1" aria-hidden="true"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></span>
-<span id="cb675-2"><a href="concernant-le-code-dans-notebook.html#cb675-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb670-1"><a href="concernant-le-code-dans-notebook.html#cb670-1" aria-hidden="true"></a><span class="in">```{r, fig.cap = &quot;Exemple de graphique tiré du fichier d&#39;aide de la fonction stat_bin&quot;}</span></span>
+<span id="cb670-2"><a href="concernant-le-code-dans-notebook.html#cb670-2" aria-hidden="true"></a><span class="in">ggplot(diamonds, aes(carat)) +</span></span>
+<span id="cb670-3"><a href="concernant-le-code-dans-notebook.html#cb670-3" aria-hidden="true"></a><span class="in">  geom_histogram()</span></span>
+<span id="cb670-4"><a href="concernant-le-code-dans-notebook.html#cb670-4" aria-hidden="true"></a></span>
+<span id="cb670-5"><a href="concernant-le-code-dans-notebook.html#cb670-5" aria-hidden="true"></a><span class="in">ggplot(diamonds, aes(carat)) +</span></span>
+<span id="cb670-6"><a href="concernant-le-code-dans-notebook.html#cb670-6" aria-hidden="true"></a><span class="in">  geom_histogram(binwidth = 0.01)</span></span>
+<span id="cb670-7"><a href="concernant-le-code-dans-notebook.html#cb670-7" aria-hidden="true"></a></span>
+<span id="cb670-8"><a href="concernant-le-code-dans-notebook.html#cb670-8" aria-hidden="true"></a><span class="in">ggplot(diamonds, aes(carat)) +</span></span>
+<span id="cb670-9"><a href="concernant-le-code-dans-notebook.html#cb670-9" aria-hidden="true"></a><span class="in">  geom_histogram(bins = 200)</span></span>
+<span id="cb670-10"><a href="concernant-le-code-dans-notebook.html#cb670-10" aria-hidden="true"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="concernant-le-code-dans-notebook.html#cb671-1" aria-hidden="true"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></span>
+<span id="cb671-2"><a href="concernant-le-code-dans-notebook.html#cb671-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-345-1"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-345-1.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-346-1"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-346-1.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
 <p class="caption">
 Figure B.1: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
 </p>
 </div>
-<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="concernant-le-code-dans-notebook.html#cb677-1" aria-hidden="true"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></span>
-<span id="cb677-2"><a href="concernant-le-code-dans-notebook.html#cb677-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.01</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-345-2"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-345-2.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="concernant-le-code-dans-notebook.html#cb673-1" aria-hidden="true"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></span>
+<span id="cb673-2"><a href="concernant-le-code-dans-notebook.html#cb673-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.01</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-346-2"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-346-2.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
 <p class="caption">
 Figure B.2: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
 </p>
 </div>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="concernant-le-code-dans-notebook.html#cb678-1" aria-hidden="true"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></span>
-<span id="cb678-2"><a href="concernant-le-code-dans-notebook.html#cb678-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">200</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-345-3"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-345-3.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="concernant-le-code-dans-notebook.html#cb674-1" aria-hidden="true"></a><span class="kw">ggplot</span>(diamonds, <span class="kw">aes</span>(carat)) <span class="op">+</span></span>
+<span id="cb674-2"><a href="concernant-le-code-dans-notebook.html#cb674-2" aria-hidden="true"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">200</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-346-3"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-346-3.svg" alt="Exemple de graphique tiré du fichier d'aide de la fonction stat_bin" width="672" />
 <p class="caption">
 Figure B.3: Exemple de graphique tiré du fichier d’aide de la fonction stat_bin
 </p>
@@ -456,7 +460,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

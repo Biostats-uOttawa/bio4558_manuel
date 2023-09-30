@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.6 Comparer l’ajustement de modèles | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.6 Comparer l’ajustement de modèles | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -355,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdcode">
 En utilisant les données de <code>anc1dat</code> comparez l’ajustement du modèle ANCOVA et de la régression commune:
 </div>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="comparer-lajustement-de-modèles.html#cb618-1" aria-hidden="true"></a><span class="kw">anova</span>(model.ancova,model.linear)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="comparer-lajustement-de-modèles.html#cb614-1" aria-hidden="true"></a><span class="kw">anova</span>(model.ancova,model.linear)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: lfkl ~ sex + lage
@@ -368,9 +372,9 @@ En utilisant les données de <code>anc1dat</code> comparez l’ajustement du mod
 <div class="rmdcode">
 Refaites le même processus avec le données de <code>anc3dat</code>, ajustez le modèle complet avec interaction (LFKL~LAGE+LOCATE+LAGE:LOCATE) et sans interaction (LFKL~LAGE+LOCATE), Comparez l’ajustement des deux modèles, que concluez vous?
 </div>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="comparer-lajustement-de-modèles.html#cb620-1" aria-hidden="true"></a>model.full.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate, <span class="dt">data =</span> anc3dat)</span>
-<span id="cb620-2"><a href="comparer-lajustement-de-modèles.html#cb620-2" aria-hidden="true"></a>model.ancova.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate, <span class="dt">data =</span> anc3dat)</span>
-<span id="cb620-3"><a href="comparer-lajustement-de-modèles.html#cb620-3" aria-hidden="true"></a><span class="kw">anova</span>(model.full.anc3dat,model.ancova.anc3dat)</span></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="comparer-lajustement-de-modèles.html#cb616-1" aria-hidden="true"></a>model.full.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate <span class="op">+</span><span class="st"> </span>lage<span class="op">:</span>locate, <span class="dt">data =</span> anc3dat)</span>
+<span id="cb616-2"><a href="comparer-lajustement-de-modèles.html#cb616-2" aria-hidden="true"></a>model.ancova.anc3dat&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage <span class="op">+</span><span class="st"> </span>locate, <span class="dt">data =</span> anc3dat)</span>
+<span id="cb616-3"><a href="comparer-lajustement-de-modèles.html#cb616-3" aria-hidden="true"></a><span class="kw">anova</span>(model.full.anc3dat,model.ancova.anc3dat)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: lfkl ~ lage + locate + lage:locate
@@ -439,7 +443,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

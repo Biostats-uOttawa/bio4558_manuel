@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.5 Le modèle d’ANCOVA | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.5 Le modèle d’ANCOVA | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -355,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Puisque l’approche simplifiée est moins puissante, si vous rejetez quand même H0, alors votre conclusion ne changera pas, mais sera seulement renforcée, en utilisant l’approche traditionnelle.</p>
 <p>Ici, je vais comparer l’approche traditionnelle et l’approche simplifiée. Rappelez-vous que vous voulez évaluer l’égalité des ordonnées à l’origine <strong>après avoir déterminé que les pentes étaient égales</strong>. Éprouver l’égalité des ordonnées à l’origine quand les pentes diffèrent (ou, si vous préférez, quand il y a une interaction) est rarement sensé, peut facilement être mal interprété, et ne devrait être effectué que rarement.</p>
 <p>De retour aux données de anc1dat.csv, en comparant la relation entre lfkl et lage entre les sexes, nous avions obtenu les résultats suivants pour le modèle complet avec interactions:</p>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="le-modèle-dancova.html#cb604-1" aria-hidden="true"></a><span class="kw">Anova</span>(model.full1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="le-modèle-dancova.html#cb600-1" aria-hidden="true"></a><span class="kw">Anova</span>(model.full1, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -369,8 +373,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>On avait déjà conclu que la pente ne varie pas entre les sexes (i.e. l’interaction n’est pas significative). Notez que la p-valeur associée au sexe (0.4795) n’est pas significative non plus.</p>
 <p>De l’autre côté, selon l’approche traditionnelle, l’inférence quand à l’effet du sexe se fait à partir du modèle réduit (le modèle ANCOVA sensus stricto):</p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="le-modèle-dancova.html#cb606-1" aria-hidden="true"></a>model.ancova &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</span>
-<span id="cb606-2"><a href="le-modèle-dancova.html#cb606-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.ancova, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="le-modèle-dancova.html#cb602-1" aria-hidden="true"></a>model.ancova &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</span>
+<span id="cb602-2"><a href="le-modèle-dancova.html#cb602-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.ancova, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -381,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residuals   0.07162 89                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="le-modèle-dancova.html#cb608-1" aria-hidden="true"></a><span class="kw">summary</span>(model.ancova)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="le-modèle-dancova.html#cb604-1" aria-hidden="true"></a><span class="kw">summary</span>(model.ancova)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ sex + lage, data = anc1dat)
@@ -406,8 +410,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdcode">
 En examinant les graphiques diagnostiques, vous noterez qu’il y a trois observations dont la valeur absolue du résidu est grande (cas 19, 49, et 50). Ces observations pourraient avoir un effet disproportionné sur les résultats de l’analyse. Éliminez-les et refaites l’analyse. Les conclusions changent-elles ?
 </div>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="le-modèle-dancova.html#cb610-1" aria-hidden="true"></a>model.ancova.nooutliers &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</span>
-<span id="cb610-2"><a href="le-modèle-dancova.html#cb610-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.ancova.nooutliers, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="le-modèle-dancova.html#cb606-1" aria-hidden="true"></a>model.ancova.nooutliers &lt;-<span class="st"> </span><span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</span>
+<span id="cb606-2"><a href="le-modèle-dancova.html#cb606-2" aria-hidden="true"></a><span class="kw">Anova</span>(model.ancova.nooutliers, <span class="dt">type =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type III tests)
 ## 
 ## Response: lfkl
@@ -418,7 +422,7 @@ En examinant les graphiques diagnostiques, vous noterez qu’il y a trois observ
 ## Residuals   0.04950 86                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="le-modèle-dancova.html#cb612-1" aria-hidden="true"></a><span class="kw">summary</span>(model.ancova.nooutliers)</span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="le-modèle-dancova.html#cb608-1" aria-hidden="true"></a><span class="kw">summary</span>(model.ancova.nooutliers)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ sex + lage, data = anc1dat[c(-49, -50, -19), 
@@ -445,8 +449,8 @@ En examinant les graphiques diagnostiques, vous noterez qu’il y a trois observ
 Ajustez une régression simple entre lfkl et lage pour l’ensemble complet de données et aussi pour le sous-ensemble sans les 3 valeurs déviantes. Comparez ces modèles avec les modèles d’ANCOVA ajustés précédemment. Que concluez-vous ? Quel modèle, d’après vous, a le meilleur ajustement aux données ? Pourquoi ?
 </div>
 <p>Le modèle en excluant les valeurs extrêmes:</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="le-modèle-dancova.html#cb614-1" aria-hidden="true"></a>model.linear.nooutliers&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage,<span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</span>
-<span id="cb614-2"><a href="le-modèle-dancova.html#cb614-2" aria-hidden="true"></a><span class="kw">summary</span>(model.linear.nooutliers)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="le-modèle-dancova.html#cb610-1" aria-hidden="true"></a>model.linear.nooutliers&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage,<span class="dt">data =</span> anc1dat[<span class="kw">c</span>(<span class="op">-</span><span class="dv">49</span>, <span class="dv">-50</span>, <span class="dv">-19</span>),])</span>
+<span id="cb610-2"><a href="le-modèle-dancova.html#cb610-2" aria-hidden="true"></a><span class="kw">summary</span>(model.linear.nooutliers)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ lage, data = anc1dat[c(-49, -50, -19), ])
@@ -467,8 +471,8 @@ Ajustez une régression simple entre lfkl et lage pour l’ensemble complet de d
 ## F-statistic: 275.2 on 1 and 87 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Pour la régression simple (sans les valeurs extrêmes) on obtient un R 2 de 0.76 et une erreur-type des résidus de 0.02441, En comparant à l’erreur-type des résidus du modèle d’ANCOVA (0.02399) on réalise que la qualité des prédictions est essentiellement la même, même en ajustant des ordonnées à l’origine différentes pour chaque groupe. Par conséquent, les bénéfices de l’inclusion d’un terme pour les différentes ordonnées à l’origine sont faibles alors que le coût, en terme de complexité du modèle, est élevé (33% d’augmentation du nombre de termes pour un très faible amélioration de la qualité d’ajustement). Si vous examinez les résidus de ce modèle, vous trouverez qu’ils sont à peu près O.K.)</p>
 <p>Si on ajuste une régression simple sur toutes les données, on obtient:</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="le-modèle-dancova.html#cb616-1" aria-hidden="true"></a>model.linear&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</span>
-<span id="cb616-2"><a href="le-modèle-dancova.html#cb616-2" aria-hidden="true"></a><span class="kw">summary</span>(model.linear)</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="le-modèle-dancova.html#cb612-1" aria-hidden="true"></a>model.linear&lt;-<span class="kw">lm</span>(lfkl <span class="op">~</span><span class="st"> </span>lage, <span class="dt">data =</span> anc1dat)</span>
+<span id="cb612-2"><a href="le-modèle-dancova.html#cb612-2" aria-hidden="true"></a><span class="kw">summary</span>(model.linear)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lfkl ~ lage, data = anc1dat)
@@ -548,7 +552,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

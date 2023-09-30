@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.4 Plans hiérarchiques | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.4 Plans hiérarchiques | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -354,12 +358,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Le fichier <code>nestdat.csv</code> contient les résultats d’une expérience semblable. Il contient trois variables : genotype, chamber et survival. Effectuez une ANOVA hiérarchique avec survival comme variable dépendante et genotype et chamber/genotype comme variables indépendantes.</li>
 </ul>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="plans-hiérarchiques.html#cb461-1" aria-hidden="true"></a>nestdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nestdat.csv&quot;</span>)</span>
-<span id="cb461-2"><a href="plans-hiérarchiques.html#cb461-2" aria-hidden="true"></a>nestdat<span class="op">$</span>chamber &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>chamber)</span>
-<span id="cb461-3"><a href="plans-hiérarchiques.html#cb461-3" aria-hidden="true"></a>nestdat<span class="op">$</span>genotype &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>genotype)</span>
-<span id="cb461-4"><a href="plans-hiérarchiques.html#cb461-4" aria-hidden="true"></a>anova.nested &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype <span class="op">/</span><span class="st"> </span>chamber, <span class="dt">data =</span> nestdat)</span></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="plans-hiérarchiques.html#cb457-1" aria-hidden="true"></a>nestdat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/nestdat.csv&quot;</span>)</span>
+<span id="cb457-2"><a href="plans-hiérarchiques.html#cb457-2" aria-hidden="true"></a>nestdat<span class="op">$</span>chamber &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>chamber)</span>
+<span id="cb457-3"><a href="plans-hiérarchiques.html#cb457-3" aria-hidden="true"></a>nestdat<span class="op">$</span>genotype &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nestdat<span class="op">$</span>genotype)</span>
+<span id="cb457-4"><a href="plans-hiérarchiques.html#cb457-4" aria-hidden="true"></a>anova.nested &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype <span class="op">/</span><span class="st"> </span>chamber, <span class="dt">data =</span> nestdat)</span></code></pre></div>
 <p>Que concluez-vous de cette analyse ? Que devrait être la prochaine étape ? (Indice: si l’effet de Chamber / genotype n’est pas significatif, vous pouvez augmenter la puissance des comparaisons entre génotypes en regroupant les chambres de chaque génotype.). Faites-le ! N’oubliez pas de vérifier les conditions d’applications de l’ANOVA!</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb462-1"><a href="plans-hiérarchiques.html#cb462-1" aria-hidden="true"></a><span class="kw">anova</span>(anova.nested)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb458-1"><a href="plans-hiérarchiques.html#cb458-1" aria-hidden="true"></a><span class="kw">anova</span>(anova.nested)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: survival
@@ -369,18 +373,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residuals        36  181.61    5.04                    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb464-1"><a href="plans-hiérarchiques.html#cb464-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb464-2"><a href="plans-hiérarchiques.html#cb464-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.nested)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-233"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-233-1.svg" alt="Conditions d'applications du modèle anova.nested" width="672" />
+<div class="sourceCode" id="cb460"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb460-1"><a href="plans-hiérarchiques.html#cb460-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb460-2"><a href="plans-hiérarchiques.html#cb460-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.nested)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-234"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-234-1.svg" alt="Conditions d'applications du modèle anova.nested" width="672" />
 <p class="caption">
 Figure 6.6: Conditions d’applications du modèle anova.nested
 </p>
 </div>
 <p>On conclue de cette analyse que la variation entre les chambres de croissance n’est pas significative, mais qu’on doit rejeter l’hypothèse nulle que tous les génotypes ont la même résistance à la dessiccation.</p>
 <p>Comme l’effet hiérarchique chamber / genotype n’est pas significatif, on peut regrouper les observations pour augmenter le nombre de degrés de liberté:</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="plans-hiérarchiques.html#cb465-1" aria-hidden="true"></a>anova.simple &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype, <span class="dt">data =</span> nestdat)</span>
-<span id="cb465-2"><a href="plans-hiérarchiques.html#cb465-2" aria-hidden="true"></a><span class="kw">anova</span>(anova.simple)</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="plans-hiérarchiques.html#cb461-1" aria-hidden="true"></a>anova.simple &lt;-<span class="st"> </span><span class="kw">lm</span>(survival <span class="op">~</span><span class="st"> </span>genotype, <span class="dt">data =</span> nestdat)</span>
+<span id="cb461-2"><a href="plans-hiérarchiques.html#cb461-2" aria-hidden="true"></a><span class="kw">anova</span>(anova.simple)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: survival
@@ -391,29 +395,29 @@ Figure 6.6: Conditions d’applications du modèle anova.nested
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Donc on conclue qu’il y a une variation significative de résistance à la dessiccation entre les trois génotypes.</p>
 <p>Le graphique de <code>survival</code> en fonction du <code>génotype</code> suggère que la résistance à la dessiccation varie entre chaque génotype. On peut combiner cela avec un test de Tukey.</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="plans-hiérarchiques.html#cb467-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb467-2"><a href="plans-hiérarchiques.html#cb467-2" aria-hidden="true"></a><span class="co"># Compute and plot means and Tukey CI</span></span>
-<span id="cb467-3"><a href="plans-hiérarchiques.html#cb467-3" aria-hidden="true"></a>means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.simple, <span class="dt">linfct =</span> <span class="kw">mcp</span>(</span>
-<span id="cb467-4"><a href="plans-hiérarchiques.html#cb467-4" aria-hidden="true"></a>  <span class="dt">genotype =</span></span>
-<span id="cb467-5"><a href="plans-hiérarchiques.html#cb467-5" aria-hidden="true"></a>    <span class="st">&quot;Tukey&quot;</span></span>
-<span id="cb467-6"><a href="plans-hiérarchiques.html#cb467-6" aria-hidden="true"></a>))</span>
-<span id="cb467-7"><a href="plans-hiérarchiques.html#cb467-7" aria-hidden="true"></a>cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</span>
-<span id="cb467-8"><a href="plans-hiérarchiques.html#cb467-8" aria-hidden="true"></a><span class="co"># use sufficiently large upper margin</span></span>
-<span id="cb467-9"><a href="plans-hiérarchiques.html#cb467-9" aria-hidden="true"></a>old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</span>
-<span id="cb467-10"><a href="plans-hiérarchiques.html#cb467-10" aria-hidden="true"></a><span class="co"># plot</span></span>
-<span id="cb467-11"><a href="plans-hiérarchiques.html#cb467-11" aria-hidden="true"></a><span class="kw">plot</span>(cimeans, <span class="dt">las =</span> <span class="dv">1</span>) <span class="co"># las option to put y-axis labels as God intended them</span></span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-235"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-235-1.svg" alt="Effet du genotype sur la résistance à la dessication avec un test de Tukey " width="672" />
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="plans-hiérarchiques.html#cb463-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb463-2"><a href="plans-hiérarchiques.html#cb463-2" aria-hidden="true"></a><span class="co"># Compute and plot means and Tukey CI</span></span>
+<span id="cb463-3"><a href="plans-hiérarchiques.html#cb463-3" aria-hidden="true"></a>means &lt;-<span class="st"> </span><span class="kw">glht</span>(anova.simple, <span class="dt">linfct =</span> <span class="kw">mcp</span>(</span>
+<span id="cb463-4"><a href="plans-hiérarchiques.html#cb463-4" aria-hidden="true"></a>  <span class="dt">genotype =</span></span>
+<span id="cb463-5"><a href="plans-hiérarchiques.html#cb463-5" aria-hidden="true"></a>    <span class="st">&quot;Tukey&quot;</span></span>
+<span id="cb463-6"><a href="plans-hiérarchiques.html#cb463-6" aria-hidden="true"></a>))</span>
+<span id="cb463-7"><a href="plans-hiérarchiques.html#cb463-7" aria-hidden="true"></a>cimeans &lt;-<span class="st"> </span><span class="kw">cld</span>(means)</span>
+<span id="cb463-8"><a href="plans-hiérarchiques.html#cb463-8" aria-hidden="true"></a><span class="co"># use sufficiently large upper margin</span></span>
+<span id="cb463-9"><a href="plans-hiérarchiques.html#cb463-9" aria-hidden="true"></a>old.par &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mai =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.25</span>, <span class="dv">1</span>))</span>
+<span id="cb463-10"><a href="plans-hiérarchiques.html#cb463-10" aria-hidden="true"></a><span class="co"># plot</span></span>
+<span id="cb463-11"><a href="plans-hiérarchiques.html#cb463-11" aria-hidden="true"></a><span class="kw">plot</span>(cimeans, <span class="dt">las =</span> <span class="dv">1</span>) <span class="co"># las option to put y-axis labels as God intended them</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-236"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-236-1.svg" alt="Effet du genotype sur la résistance à la dessication avec un test de Tukey " width="672" />
 <p class="caption">
 Figure 6.7: Effet du genotype sur la résistance à la dessication avec un test de Tukey
 </p>
 </div>
 <p>On conclue donc que la résistance à la dessiccation (R), telle que mesurée par la survie dans des conditions chaudes et sèches, varie significativement entre les trois génotypes avec R(AA) &gt; R(Aa) &gt; R(aa).</p>
 <p>Cependant, avant d’accepter cette conclusion, il faut éprouver les conditions d’application du test. Voici les diagnostics des résidus pour l’ANOVA à un critère de classification (non hiérarchique):</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb468-1"><a href="plans-hiérarchiques.html#cb468-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb468-2"><a href="plans-hiérarchiques.html#cb468-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.simple)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-236"></span>
-<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-236-1.svg" alt="Conditions d'applications du modèle anova.simple" width="672" />
+<div class="sourceCode" id="cb464"><pre class="sourceCode r exer"><code class="sourceCode r"><span id="cb464-1"><a href="plans-hiérarchiques.html#cb464-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb464-2"><a href="plans-hiérarchiques.html#cb464-2" aria-hidden="true"></a><span class="kw">plot</span>(anova.simple)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-237"></span>
+<img src="Labo_BIO4558_files/figure-html/unnamed-chunk-237-1.svg" alt="Conditions d'applications du modèle anova.simple" width="672" />
 <p class="caption">
 Figure 6.8: Conditions d’applications du modèle anova.simple
 </p>
@@ -477,7 +481,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

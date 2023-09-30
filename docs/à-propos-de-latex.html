@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>B.2 À propos de LaTex | BIO4558 Biostatistiques appliquées avec R</title>
   <meta name="description" content="Manuel de laboratoire pour le cours BIO4558" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="B.2 À propos de LaTex | BIO4558 Biostatistiques appliquées avec R" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -353,11 +357,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Ce qui suit concerne uniquement ceux qui on installer LaTex.
 Les fonction LaTex serve à modifier le texte, mais ne fonctionne que lorsqu’on produit un document PDF (ça fonctionne peut-être aussi pour les document word). Ils en existe beaucoup trop de fonction pour toutes les énumérer ici. Google est votre ami.</p>
 <p>Voici quelques exemple:</p>
-<div class="sourceCode" id="cb671"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb671-1"><a href="à-propos-de-latex.html#cb671-1" aria-hidden="true"></a><span class="fu">\emph</span>{texte italique}</span>
-<span id="cb671-2"><a href="à-propos-de-latex.html#cb671-2" aria-hidden="true"></a><span class="fu">\textcolor</span>{red}{texte rouge}</span>
-<span id="cb671-3"><a href="à-propos-de-latex.html#cb671-3" aria-hidden="true"></a><span class="fu">\texttt</span>{même police que le code de R}</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb667-1"><a href="à-propos-de-latex.html#cb667-1" aria-hidden="true"></a><span class="fu">\emph</span>{texte italique}</span>
+<span id="cb667-2"><a href="à-propos-de-latex.html#cb667-2" aria-hidden="true"></a><span class="fu">\textcolor</span>{red}{texte rouge}</span>
+<span id="cb667-3"><a href="à-propos-de-latex.html#cb667-3" aria-hidden="true"></a><span class="fu">\texttt</span>{même police que le code de R}</span></code></pre></div>
 <p>Le nom de la prochaine fonction est assez descriptif</p>
-<div class="sourceCode" id="cb672"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb672-1"><a href="à-propos-de-latex.html#cb672-1" aria-hidden="true"></a><span class="fu">\pagebreak</span></span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb668-1"><a href="à-propos-de-latex.html#cb668-1" aria-hidden="true"></a><span class="fu">\pagebreak</span></span></code></pre></div>
 </div>
 <script src="js/solution.js"></script>
             </section>
@@ -416,7 +420,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
