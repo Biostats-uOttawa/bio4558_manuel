@@ -3,12 +3,14 @@
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage[margin=2cm]{geometry}
+ \usepackage{letltxmacro}
+\usepackage{hyperref} 
 
 \floatplacement{figure}{H}
 
 %\usepackage[sf,bf]{titlesec}
 
-\hypersetup{colorlinks=true, urlcolor=blue}
+%\hypersetup{colorlinks=true, urlcolor=blue}
 
 \renewcommand{\chaptername}{Chapitre}
 \renewcommand{\contentsname}{Table des Matières}
@@ -25,6 +27,7 @@
 
 %\renewenvironment{quote}{\begin{VF}}{\end{VF}}
 
+%not using xetex
 \ifxetex
  \usepackage{letltxmacro}
  \setlength{\XeTeXLinkMargin}{1pt}
