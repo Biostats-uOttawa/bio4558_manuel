@@ -37,9 +37,9 @@ book:
     left:
       - text: Cours
         href: https://biostats-uottawa.github.io/bio4558_cours/
-      - text: Data
+      - text: Données
         href: https://biostats-uottawa.github.io/bio4558_coure/dataset.html
-      - text: Other resources
+      - text: Autres ressources
         menu:
           - text: Biostats uOttawa
             href: https://biostats-uottawa.github.io/
