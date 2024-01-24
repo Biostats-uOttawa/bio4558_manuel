@@ -1,44 +1,11 @@
----
-title: "BIO4558 Biostatistiques appliquées avec R"
-subtitle: "Manuel de Laboratoire"
-author: "Julien Martin"
-date: "`r format(Sys.Date(), '%d-%m-%Y')`"
-site: bookdown::bookdown_site
-documentclass: book
-#lot: yes
-#lof: yes
-fontsize: 12pt
-#monofont: "Source Code Pro"
-monofontoptions: "Scale=0.7"
-description: "Manuel de laboratoire pour le cours BIO4558"
-github-repo: "Bio4158-4558-uottawa/manuel_labo/"
-cover-image: "images/missing.png"
-params:
-  echo_sol: true
----
+# Préface {-}
+<!-- {-} pour enlever num/rotation -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE) # , warning = FALSE, message = FALSE)
 # knitr::opts_chunk$set(out.extra = 'class="plot"')
 # knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
-library(ggplot2)
-library(car)
-library(lmtest)
-library(boot)
-library(lmPerm)
-library(multcomp)
-library(questionr)
-library(simpleboot)
-library(svglite)
-library(pwr)
-library(performance)
-# svglite
 ```
-# Note {-}
-Version en cours de développement pour le cours de l'automne 2020. Les chapitres vont apparaitre au cours de la session.
-
-
-# Préface {-}
-<!-- {-} pour enlever num/rotation -->
 
 Les exercices de laboratoire que vous retrouverez dans les pages qui suivent sont conçus de manière à vous permettre de développer une expérience pratique en analyse de données à l'aide d'un logiciel (R).
 R est un logiciel très puissant, mais comme tous les logiciels, il a des limites.
@@ -165,32 +132,27 @@ Vous trouverez dans le manuel des explications sur la théorie, du code R, des e
 Le manuel essaie aussi de mettre en évidence le texte de différentes manières.
 
 
-```{block2, type = "rmdcode"}
+::: {.callout-caution}
+# Exercice
 Avec des sections à vous de jouer, ui indique un exercise à faire, idéalement sans regarder la solution qui se trouve plus bas.
-```
+:::
 
-```{block2, type = "rmdcaution"}
+::: {.callout-tip}
+# Solution
+aves les réponses
+:::
+
+::: {.callout-warning}
 des avertissements
-```
+:::
 
-```{block2, type = "rmdwarning"}
-des avertissements
-```
-
-```{block2, type = "rmdimportant"}
+::: {.callout-important}
 des points importants
-```
+:::
 
-```{block2, type = "rmdnote"}
+::: {.callout-note}
 des notes
-```
-
-```{block2, type = "rmdtip"}
-et des conseils
-```
-### Resources {-}
-
-Ce document est généré par l'excellente extension [bookdown](https://bookdown.org/) de [Yihui Xie](https://yihui.name/). Il est basé sur le précédent manuel de laboratoire *BIO4558 manuel de laboratoire* par Antoine Morin. L'introduction à R est largement reprise de l'excellent manuel de **Julien Barnier** intitulé [*Introduction à R et au tidyverse*](https://juba.github.io/tidyverse/)
+:::
 
 
 ### Licence {-}

@@ -29,7 +29,7 @@ Ce laboratoire nécessite:
 Il ne faut pas oublier de charge les extensions avec `library()` et de les installer au besoin avec `install.packages()`
 Pour les données, il faut les lire et les assigner à un objet R.
 
-```{r,setup-3, eval = FALSE}
+```{r,setup-3, warning = FALSE, message = FALSE}
 library(car)
 library(lmtest)
 library(boot)
@@ -40,9 +40,9 @@ library(performance)
 sturgeon <- read.csv("data/sturgeon.csv")
 ```
 
-```{block2, type ="rmdnote"}
+::: {.callout-note}
 Notez que la ligne de code pour lire les données considère que le fichier de données se trouve dans un dossier `data` au sein de votre répertoire de travail. Si ce n'est pas le cas veuillez ajuster la ligne de commande.
-```
+:::
 
 
 ## Diagrammes de dispersion
@@ -344,9 +344,9 @@ plot(RegModel.1)
 3. En bas à gauche, intitulé Scale-Location, permet d’évaluer l’homoscedasticité. On y retrouve sur l’ordonnée (l’axe des y) la racine carrée de la valeur absolue des résidus standardisés (résidus divisés par l’écart-type des résidus) en fonction des valeurs prédites. Le graphique aide à déterminer si la variation des résidus est constante ou non. Si les résidus sont homoscédastiques, la valeur moyenne sur l’axe des y ne va pas changer en fonction de la valeur prédite. Ici, il y a une certaine tendance, mais pas une tendance monotone puisqu’ il y a d’abord une baisse puis une hausse..; bref, rien qui soit une forte évidence contre la supposition d’homoscédasticité.
 4. En bas à droite, montre les résidus en fonction du "leverage" et permet de détecter certaines valeurs extrêmes qui ont une grande influence sur la régression. Le leverage d’un point mesure sa distance des autres points, mais seulement en ce qui concerne les variables indépendantes. Dans le cas d’une régression simple, cela revient à la distance entre le point sur l’axe des x et la moyenne de tous les points sur cet axe. Vous devriez porter une attention particulière aux observations qui ont un leverage plus grand que $2(k+1)/n$, où k est le nombre de variables indépendantes (ici, 1) et n est le nombre d’observations. Dans cet exemple, il y a 75 observations et une variable indépendante et donc les points ayant un leverage plus grand que $4 / 75 =  0.053$ devrait être considérés avec attention. Le graphique indique également comment la régression changerait si on enlevait un point. Ce changement est mesuré par la distance de Cook, illustrée par les bandes en rouge sur le graphique. Un point ayant une distance de Cook supérieure à 1 a une grande influence.
 
-```{block2, type ="rmdwarning"}
+::: {.callout-warning}
 Notez que R identifie automatiquement les cas les plus extrèmes sur chacun de ces 4 graphiques. Le fait qu’un point soit identifié ne signifie pas nécessairement que c’est une valeur réellement extrème, ou que vous devez vous en préoccuper. Dans tous les ensembles de données il y aura toujours un résidu plus grand que les autres...
-```
+:::
 
 Il est possible d'obtenir des graphiques d'évalutions des conditions d'applications, qui sont plus simple à interpréter et plus joli (avec des couleurs).
 Il faut utiliser la fonction `model_check()` dans le `r emo::ji("package")` `performance`.
@@ -363,16 +363,20 @@ Personnellement, je n’utilise jamais les tests formels des conditions d’appl
 
 Le package `lmtest`, qui ne fait pas partie de l’installation de base, mais qui est disponible sur CRAN, permet de faire plusieurs tests de linéarité et d’homoscédasticité. Et on peut tester la normalité avec le test Shapiro-Wilk test vu précédemment.
 
-```{block2, type = "rmdcode"}
+
 Charger le package lmtest de CRAN (et installer le si besoin).
-```
+
+::: {.callout-tip collapse="true"}
+# Solution
 ```{r, sturfor-1}
 library(lmtest)
 ```
+:::
 
-```{block2, type = "rmdcode"}
+::: {.callout-caution}
+# Exercice
 Exécutez les commandes suivantes
-```
+:::
 
 ```{r, sturfor-2}
 bptest(RegModel.1)

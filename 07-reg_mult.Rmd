@@ -1,5 +1,9 @@
 # Régression multiple
 
+```{r, echo = FALSE, message = FALSE}
+source("_common.R")
+```
+
 Après avoir complété cet exercice de laboratoire, vous devriez pouvoir :
 
 * Utiliser R pour ajuster une régression multiple et comparer des modèles selon l’approche inférentielle et celle de la théorie de l’information
@@ -70,30 +74,37 @@ Il semble donc y avoir une relation positive entre la richesse spécifique des r
 
 -  Faites ensuite la régression de `logherp` en fonction de `cpfor2` . Que concluez-vous?
 
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.logcp <- lm(logherp ~ cpfor2, data = mydata)
 summary(model.logcp)
 ```
-
+:::
 
 Ici, on doit accepter l’hypothèse nulle et conclure qu’il n’y a pas de relation entre la richesse spécifique dans les marais (`logherp`) et la proportion de forêts sur les terres adjacentes (`cpfor2`). Qu’est-ce qui arrive quand on fait une régression avec les 2 variables indépendantes?
 
 -  Refaites la régression de logherp enfonction de logarea et cpfor2 à la fois. Que concluez-vous?
 
-
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.mcp <- lm(logherp ~ logarea + cpfor2, data = mydata)
 summary(model.mcp)
 ```
+:::
 
 On voit donc qu’on peut rejeter les 2 hypothèses nulles que la pente de la régression de `logherp` sur `logarea` est zéro et que la pente de la régression de `logherp` sur `cpfor2` est zéro. Pourquoi `cpfor2` devient-il un facteur significatif dans la régression multiple alors qu’il n’est pas significatif dans la régression simple? Parce qu’il est parfois nécessaire de contrôler pour l’effet d’une variable pour pouvoir détecter les effets plus subtils d’autres variables. Ici, il y a une relation significative entre `logherp` et `logarea` qui masque l’effet de `cpfor2` sur `logherp` . Lorsque le modèle tient compte des deux variables explicatives, il devient possible de détecter l’effet de `cpfor2` .
 
 -  Ajustez un autre modèle, cette fois en remplaçant `cpfor2` par `thtden` (logherp ~ logarea + thtden). Que concluez-vous?
 
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.mden <- lm(logherp ~ logarea + thtden, data = mydata)
 summary(model.mden)
 ```
+:::
 
 On rejette donc l’hypothèse nulle que la richesse spécifique n’est pas influencée par la taille des marais (`logarea`) ni par la densité des routes (`thtden`). Notez qu’ici il y a une relation négative significative entre la richesse spécifique des amphibiens et reptiles et la densité des routes sur les terres adjacentes, tandis que la relation est positive pour la taille des marais et pour la densité des forêts (`cpfor2` ; résultat de la dernière régression).
 
@@ -103,10 +114,13 @@ La richesse spécifique des reptiles et amphibiens semble donc reliée à la sur
 
 -  Estimez un modèle de régression avec `logherp` comme variable dépendante et `logarea`, `cpfor2` et `thtden` comme variables indépendantes. Que concluez-vous?
 
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.mtri <- lm(logherp ~ logarea + cpfor2 + thtden, data = mydata)
 summary(model.mtri)
 ```
+:::
 
 Plusieurs choses sont à noter ici:
 1. Tel que prédit, le coefficient de régression pour `cpfor2` n’est plus significativement différent de 0. Une fois que la variabilité attribuable à `logarea` et `thtden` est enlevée, il ne reste qu’une fraction nonsignificative de la variabilité attribuable à `cpfor2` .
@@ -204,7 +218,9 @@ La régression requiert la linéarité de la relation entre les variables dépen
 
 -  Faites un diagramme de dispersion des résidus (residual) de la régression `logherp ~ logarea` en fonction de swamp .
 
-```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r , fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
 # problème avec les données de manquantes dans logherp
 mysub <- subset(mydata, !is.na(logherp))
 # ajouter les résidus dans les donnée
@@ -213,51 +229,67 @@ ggplot(data = mysub, aes(y = resloga, x = swamp)) +
   geom_point() +
   geom_smooth()
 ```
+:::
 
 -  L'examen de ce graphique suggère qu'il y a une forte relation entre les deux variables, mais qu'elle n'est pas linéaire. Essayez de faire une régression de residual sur swamp . Quelle est votre conclusion?
 
-```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r , fig.cap = "Relation entre swamp et les résidus de la régression entre logherp et logarea"}
 model.resloga <- lm(resloga ~ swamp, mysub)
 summary(model.resloga)
 ```
+:::
 
 En deux mots, l’ajustement est épouvantable! Malgré le fait que le graphique suggère une relation très forte entre les deux variables. Cependant, cette relation n’est pas linéaire... (ce qui est également apparent si vous examinez les résidus du modèle linéaire).
 
 -  Refaites la régression d’en haut, mais cette fois incluez un terme pour représenter $swamp^2$ . L’expression devrait apparaître comme: $Y ~ X + I(X^2)$ . Que concluez-vous? Qu'est-ce que l'examen des résidus de cette régression multiple révèle?
 
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.resloga2 <- lm(resloga ~ swamp + I(swamp^2), mysub)
 summary(model.resloga2)
 ```
+:::
 
 Il devient évident que si on corrige la richesse spécifique pour la taille des marais, une fraction importante de la variabilité résiduelle peut être associée à swamp, selon une relation quadratique. Si vous examinez les résidus, vous observerez que l’ajustement est nettement meilleur qu’avec le modèle linéaire.
 
-```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Relation "}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r , fig.cap = "Relation "}
 par(mfrow = c(2, 2))
 plot(model.resloga2)
 ```
+:::
 
 -  En vous basant sur les résultats de la dernière analyse, comment suggérez-vous de modifier le modèle de régression multiple? Quel est, d'après vous, le meilleur modèle? Pourquoi? Ordonnez les différents facteurs en ordre croissant de leur effet sur la richesse spécifique des reptiles.
 
 Suite à ces analyses, il semble opportun d’essayer d’ajuster un modèle incluant logarea, thtden, cpfor2, swamp et swamp^2 :
 
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.poly1 <- lm(
   logherp ~ logarea + cpfor2 + thtden + swamp + I(swamp^2),
   data = mydata
 )
 summary(model.poly1)
 ```
+:::
 
 Les résultats de cette analyse suggèrent qu’on devrait probablement exclure `cpfor2` du modèle:
 
-```{r, echo = params$echo_sol, class.source = "exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r }
 model.poly2 <- lm(
   logherp ~ logarea + thtden + swamp + I(swamp^2),
   data = mydata
 )
 summary(model.poly2)
 ```
+:::
 
 Est-ce qu’il y a possiblement un problème de multicolinéarité?
 
@@ -273,10 +305,14 @@ Les valeurs d’inflation de la variance (VIF) pour les deux termes de swamp son
 Toutes les techniques de sélection des modèles présument que les conditions d’applications (indépendance, normalité, homoscédasticité, linéarité) sont remplies. Comme il y a un grand nombre de modèles qui peuvent être ajustés, il peut paraître quasi impossible de vérifier si les conditions sont remplies à chaque étape de construction. Cependant, il est souvent suffisant d’examiner les résidus du modèle complet (saturé) puis du modèle final. Les termes qui ne contribuent pas significativement à l’ajustement n’affectent pas beaucoup les résidus et donc les résidus du modèle final sont généralement similaires à ceux du modèle complet.
 
 Examinons donc les graphiques diagnostiques du modèle final:
-```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Conditions d'application du modèle `model.poly2`"}
+
+::: {.callout-tip collapse="true"}
+# Solution
+```{r , fig.cap = "Conditions d'application du modèle `model.poly2`"}
 par(mfrow = c(2, 2))
 plot(model.poly2)
 ```
+:::
 
 Tout semble acceptable dans ce cas. Pour convaincre les sceptiques, on peut faire les tests formels des conditions d’application:
 
@@ -316,14 +352,16 @@ Notez que l’échelle de l’axe des y varie sur chaque graphique. Pour thtden,
 
 Pour illustrer ce qui serait visible sur ces graphiques si il y avait une déviation de linéarité, enlevons le terme du second degré pour swamp, puis on va refaire ces graphiques et effectuer le test RESET.
 
-
-```{r, echo = params$echo_sol, class.source = "exer", fig.cap = "Graphiques de résidus partiels du modèle `model.nopoly`"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r , fig.cap = "Graphiques de résidus partiels du modèle `model.nopoly`"}
 model.nopoly <- lm(
   logherp ~ logarea + thtden + swamp,
   data = mydata
 )
 crPlots(model.nopoly)
 ```
+:::
 
 La relation non-linéaire avec swamp devient évidente. Et le test RESET détecte bien cette non-linéarité:
 
@@ -404,9 +442,9 @@ Une alternative, défendue par Burnham et Anderson (2002, Model selection and mu
 L'approche de comparaison par *AIC* a d'abord été développé pour comparer un ensemble de modèle préalablement défini basé sur les connaissance du sytème et les hypothèses biologiques. Cependant, certains ont développé une approche plutôt brutale et sans scrupule de faire tous les modèles possibles et de les comparer par *AIC*. Cette approche a été suivie dans le package `MuMIn`. Les comparaisons de modèle par `AIC`doivent être faites en utilisant exactement le même jeu de données pour chaque modèle.
 Il faut donc s'arrurer d'enlever les données manquantes et de spécifier dans la fonction `lm` de ne pas marcher s'il y a des données manquantes.
 
-```{block2, type = "rmdnote"}
+::: {.callout-note}
 Je ne supporte pas l'approche stepwise ni l'approche par AIC. Je déteste l'approche par la fonction `dredge()` qui selon moi va à l'encontre de la philosophie des AIC et de la parsimonie. Je soutiens de dévelooper un modèle basé sur des hypothèses biologiques et de reporter ce modèle avec tous les effets significatifs ou non.
-```
+:::
 
 ```{r}
 # refaire le modèle en s'assurant qu'il n'y a pas de "NA" et en spécificant na.action

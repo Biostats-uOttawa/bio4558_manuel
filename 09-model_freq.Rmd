@@ -1,5 +1,9 @@
 # Analyse de données de fréquence: Tableaux de contingence, modèles log-linéaires et régression de Poisson
 
+```{r, echo = FALSE, message = FALSE}
+source("_common.R")
+```
+
 Après avoir complété ce laboratoire, vous devriez être en mesure de:
 
 * Créer et manipuler des jeux de données en R pour analyser des données de fréquences.
@@ -170,14 +174,18 @@ chisq.test(Popn0.9, correct = F) ### X2 without Yates
 chisq.test(Popn0.9) ### X2 with Yates
 ```
 
-```{block2, type= "rmdcode"}
+::: {.callout-caution}
+# Exercice
 Éprouvez l’hypothèse nulle que la proportion de mâles et femelles à la naissance est égale. Que concluez-vous? Croyez-vous que ces données sont appropriées pour tester cette hypothèse?
-```
+:::
 
-```{r, echo = params$echo_sol, class.source="exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r}
 chisq.test(Popn0.9, correct = F)
 chisq.test(Popn0.9)
 ```
+:::
 
 Notez que pour un tableau 2X2, on devrait utiliser une correction de Yates ou un test de Fisher. Le test de Fisher ne pouvant être utilisé lorsque l’échantillon dépasse 200, on utilise la correction de Yates. Selon cette analyse, on accepte l’hypothèse nulle que le rapport des sexes est 1:1à la naissance. Ceci dit, ces données ne sont pas très appropriées pour éprouver l’hypothèse car la première classe d’âge est trop grossière. Il est possible que le rapport des sexes à la naissance soit différent de 1:1 mais que la mortalité différentielle des deux sexes compense au cours des 9 premières années (par exemple si il y a plus de mâles à la naissance, mais que les jeunes garçons ont une survie plus faible au cours de leurs 9 premières années). Dans un tel cas, le rapport des sexes n’est PAS de 1:1 à la naissance, mais on accepte l’hypothèse nulle à partir des données dans la classe d’âge 0-9.
 
@@ -219,9 +227,10 @@ Les probabilités associées à chaque terme sont ici calculées en comparant l�
 
 Le fichier Sturgdat contient les données qui vous permettront d'éprouver l’hypothèse que le nombre d’esturgeons capturé est indépendants du site, de l’année, et du sexe. Avant de commencer l’analyse, les données devront être réorganisées pour pouvoir ajuster un modèle log-linéaire:
 
-```{block2, type = "rmdcode"}
+::: {.callout-caution}
+# Exercice
 Ouvrez sturgdat.csv, puis utilisez la fonction table() pour obtenir les fréquence d’individus capturés par sex, location, et year . Sauvegardez ce tableau comme strugdat.table . Faites une figure mosaïque de ces données.
-```
+:::
 
 
 ```{r, fig.cap = "Fréquence de femelles et males en fonction de l'année et du lieu"}
@@ -239,9 +248,10 @@ sturgdat.freq
 mosaic(sturgdat.table, shade = TRUE)
 ```
 
-```{block2,type="rmdcode"}
+::: {.callout-caution}
+# Exercice
 À partir de ces données en format de fréquence, ajustez le modèle loglinéaire complet et le tableau d’anova avec les statistique de Chi carré pour les termes du modèles. Est-ce que l’interaction triple (`location:year:sex`) est significative? Est-ce que le rapport des sexes varien entre les sites ou d’une année à l’autre?.
-```
+:::
 
 ```{r}
 # Fit full model
@@ -258,10 +268,13 @@ Puisqu’il n’y a pas d’interaction triple, il est (statistiquement) justifi
 
 - Ajustez le modèle en excluant l’interaction du troisième degré:
 
-```{r, echo = params$echo_sol, class.source="exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r}
 o2int.model <- glm(Freq ~ sex + year + location + sex:year + sex:location + year:location, data = sturgdat.freq, family = "poisson")
 Anova(o2int.model, type = 3)
 ```
+:::
 
 L’interaction `sex:location` n’explique pas une portion significative de la déviance, alors que les deux autres sont significatives. Le rapport des sexes ne varie pas entre les sites, mais il varie selon les années. L’interaction `year:location` est aussi significative (voir plus pas pour son interprétation).
 
@@ -269,10 +282,13 @@ Devriez vous tenter de simplifier le modèle encore plus? Les vrais statisticien
 
 - Ajustez le modèle sans l’interaction sex:location :
 
-```{r, echo = params$echo_sol, class.source="exer"}
+::: {.callout-tip collapse="true"}
+# Solution
+```{r}
 o2int.model2 <- glm(Freq ~ sex + year + location + sex:year + year:location, data = sturgdat.freq, family = "poisson")
 Anova(o2int.model2, type = 3)
 ```
+:::
 
 Les deux interactions sont significatives et ce modèle semble le meilleur. Ce modèle est:
 

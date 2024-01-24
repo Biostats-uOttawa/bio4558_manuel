@@ -1,8 +1,8 @@
-\cleardoublepage
-
-# (APPENDIX) Appendices {-}
-
 # Note sur les devoirs et Rmarkdown
+
+```{r, echo = FALSE, message = FALSE}
+source("_common.R")
+```
 
 Pour les devoirs, veuillez soumettre les rapports en utilisant le fichier Rmarkdown fourni.
 Le fichier inclue l'énoncé du devoir, les questions et la structure pour intégrer le code R, les sorties R et vos interprétations.

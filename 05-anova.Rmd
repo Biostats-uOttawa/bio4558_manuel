@@ -17,7 +17,7 @@ Ce laboratoire nécessite:
 * les fichiers de données
   * Dam10dat.csv
 
-```{r}
+```{r, message = FALSE}
 library(ggplot2)
 library(car)
 library(multcomp)
@@ -88,13 +88,13 @@ par(mfrow = c(2, 2))
 plot(anova.model1)
 ```
 
-```{block2, type="rmdwarning"}
+::: {.callout-warning}
 Faire attention dans le cadre d'une ANOVA à ce que la variable indépendante soit bien un facteur **factor**. Si la variable indépendante est reconnu comme du texte **character** alors vous n'obtiendrez que 3 graphiques et un message d'erreur du type:
 
 `hat values (leverages) are all = 0.1
 
  and there are no factor predictors; no plot no. 5`
-```
+:::
 
 D’après les graphiques, on peut douter de la normalité et de l’homogénéité des variances. Notez qu’il y a un point qui ressort vraiment avec une forte valeur résiduelle (cas numéro 59) et qu’il ne s’aligne pas bien avec les autres valeurs: c’est la valeur extrême qui avait été détectée plus tôt. Ce point fera sans doute gonfler la variance résiduelle du groupe auquel il appartient.
 

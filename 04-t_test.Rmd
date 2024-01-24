@@ -20,6 +20,16 @@ Ce laboratoire nécessite:
   * sturgeon.csv
   * skulldat_2020.csv
 
+```{r, message = FALSE}
+library(car)
+library(lmtest)
+library(boot)
+library(lmPerm)
+library(ggplot2)
+sturgeon <- read.csv("data/sturgeon.csv")
+skull <- read.csv("data/skulldat_2020.csv")
+```
+
 ## Examen visuel des données
 Une des premières étapes dans toute analyse de données est l’examen visuel des données par des graphiques et statistiques sommaires pour détecter les distributions sous-jacentes, les valeurs extrêmes et les tendances dans vos données. Cela commence souvent avec des graphiques de vos données (histogrammes, diagrammes de probabilité, Box plots, etc.) qui vous permettent d’évaluer si vos données sont normales, si elles sont corrélées les unes aux autres, ou s’il y a des valeurs suspectes dans le fichier.
 
@@ -219,9 +229,9 @@ summary(m1Perm)
 
 ## Comparer les moyennes de deux échantillons appariés
 
-```{block2, type= "rmdwarning" }
+::: {.callout-warning}
 Pour la section suivante veuillez télécharger le nouveau fichier `skulldat_2020.csv` qui a été récemment ajouté sur Brightspace.
-```
+:::
 
 Dans certaines expériences les mêmes individus sont mesurés deux fois, par exemple avant et après un traitement ou encore à deux moments au cours de leur développement. Les mesures obtenues lors de ces deux événements ne sont pas indépendantes, et des comparaisons de ces mesures appariées doivent être faites.
 
