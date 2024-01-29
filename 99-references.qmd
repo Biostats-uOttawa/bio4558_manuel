@@ -5,24 +5,28 @@
 ```{r}
 #| echo: FALSE
 #| cache: false
+#| message: false
 library(grateful)
+library(tidyverse)
 pkgs <- cite_packages(
   output = "table",
-  out.dir = ".")
+  out.dir = "."
+)
 pkgs_dep <- cite_packages(
   output = "table",
   out.dir = ".",
-  dependencies = TRUE) %>%
+  dependencies = TRUE
+) %>%
   filter(!(Package %in% pkgs$Package))
 knitr::kable(
   pkgs,
   captions = "Ensemble de paquet R directement utilisés dans le livre"
-  )
+)
 
 knitr::kable(
   pkgs_dep,
   captions = "Dépendances des paquets R utilisés"
-  )
+)
 ```
 
 ### Bibliography  {.unnumbered}

@@ -1,10 +1,16 @@
 # Préface {-}
 <!-- {-} pour enlever num/rotation -->
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, cache = FALSE}
 knitr::opts_chunk$set(echo = TRUE) # , warning = FALSE, message = FALSE)
 # knitr::opts_chunk$set(out.extra = 'class="plot"')
 # knitr::opts_chunk$set(fig.pos = "!H", out.extra = "")
+library(grateful)
+pkgs_dep <- cite_packages(
+  output = "table",
+  out.dir = ".",
+  dependencies = TRUE
+)
 ```
 
 Les exercices de laboratoire que vous retrouverez dans les pages qui suivent sont conçus de manière à vous permettre de développer une expérience pratique en analyse de données à l'aide d'un logiciel (R).

@@ -12,3 +12,4 @@ BIO8940_book_cache/
 !docs/*_files/
 
 /.quarto/
+/_book/
