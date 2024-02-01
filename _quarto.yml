@@ -7,6 +7,7 @@ execute:
   freeze: auto
 
 book:
+  google-analytics: G-6LLMGL3T2Q
   title: "Biostatistiques appliquées avec R"
   subtitle: "Manuel de laboratoire pour le cours BIO4558"
   description: "Contient de l'information supplémentaire et des exercises"
