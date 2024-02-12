@@ -349,7 +349,7 @@ Notez que R identifie automatiquement les cas les plus extrèmes sur chacun de c
 :::
 
 Il est possible d'obtenir des graphiques d'évalutions des conditions d'applications, qui sont plus simple à interpréter et plus joli (avec des couleurs).
-Il faut utiliser la fonction `model_check()` dans le `r emo::ji("package")` `performance`.
+Il faut utiliser la fonction `model_check()` dans le `r emoji::emoji("package")` `performance`.
 
 ```{r}
 check_model(RegModel.1)
