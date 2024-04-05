@@ -6,36 +6,33 @@
 #| echo: FALSE
 #| cache: false
 #| message: false
+#| tbl-cap: Ensemble de paquet R utilisés dans le livre
 library(grateful)
 library(tidyverse)
 pkgs <- cite_packages(
   output = "table",
-  out.dir = "."
-)
-pkgs_dep <- cite_packages(
-  output = "table",
   out.dir = ".",
-  dependencies = TRUE
-) %>%
-  filter(!(Package %in% pkgs$Package))
+  omit = ""
+)
+# pkgs_dep <- cite_packages(
+#  output = "table",
+#  out.dir = ".",
+#  dependencies = TRUE
+# ) %>%
+#  filter(!(Package %in% pkgs$Package))
+
 knitr::kable(
   pkgs,
-  captions = "Ensemble de paquet R directement utilisés dans le livre"
+  captions = ""
 )
 
-knitr::kable(
-  pkgs_dep,
-  captions = "Dépendances des paquets R utilisés"
-)
+# knitr::kable(
+#  pkgs_dep,
+#  captions = "Dépendances des paquets R utilisés"
+# )
 ```
 
-### Bibliography  {.unnumbered}
-
-::: {#refs}
-:::
-
-
-### Bibliography  {.unnumbered}
+### Bibliographie  {.unnumbered}
 
 ::: {#refs}
 :::

@@ -37,7 +37,7 @@ book:
       - text: Cours
         href: https://biostats-uottawa.github.io/bio4558_cours/
       - text: Données
-        href: https://biostats-uottawa.github.io/bio4558_coure/dataset.html
+        href: https://biostats-uottawa.github.io/bio4558_cours/dataset.html
       - text: Autres ressources
         menu:
           - text: Biostats uOttawa
@@ -89,7 +89,7 @@ format:
     include-before-body: latex/before_body.tex
     include-after-body: latex/after_body.tex
     toc-depth: 2
-
+    pdf-engine: lualatex
   epub:
     dev: svglite
     stylesheet: css/epub.css
