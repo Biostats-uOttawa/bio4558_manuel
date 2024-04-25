@@ -32,7 +32,7 @@ book:
 #    logo: quarto.png
 #    logo-alt: "Quarto logo."
     collapse-below: lg
-    title: "BIO4558: Labo"
+    title: '![](images/hex/bio4x58_logo_hex.png){width="50px"} Bio4558 Labo'
     left:
       - text: Cours
         href: https://biostats-uottawa.github.io/bio4558_cours/
