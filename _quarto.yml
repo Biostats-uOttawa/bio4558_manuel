@@ -22,17 +22,17 @@ book:
     right: |
       Ce livre a été crée avec <a href="https://quarto.org/">Quarto</a>.
   cover-image: images/blue_dragon.jpg
-  favicon: cover.jpg
   site-url: https://biostats-uottawa.github.io/bio4558_manuel/
   repo-url: https://github.com/biostats-uottawa/bio4558_manuel/
   repo-actions: [edit, issue]
   downloads: [pdf, epub]
+  favicon: images/hex/logo_hex.png
   navbar:
+    title: '![](images/hex/bio4x58_logo_hex.png){width="50px"} Bio4558 Labo'
     background: light
 #    logo: quarto.png
 #    logo-alt: "Quarto logo."
     collapse-below: lg
-    title: '![](images/hex/bio4x58_logo_hex.png){width="50px"} Bio4558 Labo'
     left:
       - text: Cours
         href: https://biostats-uottawa.github.io/bio4558_cours/
